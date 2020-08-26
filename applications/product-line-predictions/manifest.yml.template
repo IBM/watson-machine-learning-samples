@@ -1,0 +1,5 @@
+applications:
+- name:    product-line-prediction
+  memory:  256M
+  services:
+  - <ml-service-name>

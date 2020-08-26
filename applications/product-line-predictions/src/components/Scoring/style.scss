@@ -1,0 +1,85 @@
+.runButton {
+  background-color: #F15D4E;
+  color: white;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  width: 250px;
+  cursor: pointer;
+}
+
+.group {
+  padding-top: 34px;
+}
+
+.scoring-result {
+  min-width: 420px;
+  background-color: #ffffff;
+  color:#2a3261;
+  text-align: center;
+  display: inline-flex;
+  margin-bottom: 50px;
+  padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.scoring-result-left {
+  display: flex;
+  align-items: center;
+  width: 26%;
+  min-width: 100px;
+  margin-left: 20px;
+}
+
+.scoring-result-left img {
+  width: 100%;
+}
+
+.resultText {
+  margin: 25px;
+  text-align: left;
+  padding-left: 40px;
+}
+
+.scoring-result-middle{
+  @extend .resultText;
+  display: inline-block;
+  padding-left: 3%;
+}
+
+.scoring-result-middle h1{
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.scoring-result-middle p{
+  font-size: 18px;
+  font-weight: 300;
+  text-align: left;
+}
+
+.scoring-result-right{
+  @extend .resultText;
+  width: 50%;
+  max-width: 400px;
+  float: right;
+  border-left: 1px solid #dfdfdf;
+  display: flex;
+  justify-content: space-between;
+}
+
+.scoring-result-right h1{
+  font-size:18px;
+  color:#2A3261;
+  font-weight: 400;
+}
+
+.scoring-result-right p{
+  font-size:16px;
+  color:#2A3261;
+  font-weight: 300;
+}
+
+.bold{
+  font-weight: 600;
+}

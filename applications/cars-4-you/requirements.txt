@@ -1,0 +1,5 @@
+urllib3==1.25.10
+ibm-watson-machine-learning
+cfenv==0.5.3
+Flask==1.1.2
+watson-developer-cloud==2.10.1
