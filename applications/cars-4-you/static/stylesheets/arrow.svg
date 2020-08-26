@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 11.41">
-  <defs>
-    <style>
-      .a {
-        fill: #1cbdc3;
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <title>hAsset 2</title>
-  <polygon class="a" points="18.59 0 10 8.59 1.41 0 0 1.41 10 11.41 20 1.41 18.59 0"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 11.41"><defs><style>.a{fill:#1cbdc3;fill-rule:evenodd}</style></defs><title>hAsset 2</title><polygon points="18.59 0 10 8.59 1.41 0 0 1.41 10 11.41 20 1.41 18.59 0" class="a"/></svg>
