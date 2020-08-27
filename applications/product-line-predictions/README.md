@@ -23,7 +23,7 @@ Within this sample scoring application you are able to:
 
 ### Prepare Bluemix ecosystem
 1. From Bluemix catalog choose [IBM Watson Machine Learning][pa] service. This service will later be binded with a Node.js application created from this sample.
-2. Create deployment of type *online* using *Product Line Prediction* model from this [notebook](../../notebooks/python/deployments/spark/Use%20Spark%20to%20predict%20product%20line.ipynb)
+2. Create deployment of type *online* using *Product Line Prediction* model from this [notebook](../../notebooks/python_sdk/deployments/spark/Use%20Spark%20to%20predict%20product%20line.ipynb)
 
 
 # Application Deployment
