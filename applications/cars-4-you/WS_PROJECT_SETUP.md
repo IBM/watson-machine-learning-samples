@@ -8,7 +8,7 @@ Please find step by step instruction below.
 
 ## Notebooks to train models and create deployments
 All necessary notebooks can be found in this repository 
- - [Spark notebooks](../../notebooks/python/deployments/spark)
- - [Python function notebooks](../../notebooks/python/deployments/python_function/cars-4-you)
+ - [Spark notebooks](../../notebooks/python_sdk/deployments/spark)
+ - [Python function notebooks](../../notebooks/python_sdk/deployments/python_function/cars-4-you)
 
 
