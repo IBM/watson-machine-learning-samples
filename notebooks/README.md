@@ -6,8 +6,8 @@ Sample notebooks demonstrating Watson Machine Learning capabilities like:
 - model lifecycle management (update model version, refresh deployment)
 
 
-Notebooks with python code and python SDK can be found under `python` folder.
-The REST API examples are organized under `curl` folder.
+Notebooks with python code and python SDK can be found under `python_sdk` folder.
+The REST API examples are organized under `rest_api` folder.
 
 
 ## experiments
@@ -27,7 +27,6 @@ The following 3rd party frameworks are covered:
 - tensorflow
 - pytorch
 - python functions
-- RShiny app
 
 
 ## monitoring
