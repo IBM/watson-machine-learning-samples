@@ -474,11 +474,7 @@
             },
             "name": "probability",
             "nullable": true,
-            "type": {
-              "containsNull": true,
-              "elementType": "double",
-              "type": "array"
-            }
+            "type": "[double]"
           },
           {
             "metadata": {},
