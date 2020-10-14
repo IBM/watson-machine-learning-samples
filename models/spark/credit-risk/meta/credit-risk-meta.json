@@ -294,6 +294,7 @@
     "output": [
       {
         "id": "out_1",
+        "type": "struct",
         "fields": [
           {
             "metadata": {
