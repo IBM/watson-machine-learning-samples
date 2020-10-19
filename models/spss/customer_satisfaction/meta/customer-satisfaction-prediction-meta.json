@@ -5,7 +5,7 @@
       "software_spec":{
          "id":"687eddc9-028a-4117-b9dd-e57b36f1efa5"
       },
-      "type":"spss-modeler_18.1",
+      "type":"spss-modeler_18.2",
       "label_column":"Churn"
    }
 }

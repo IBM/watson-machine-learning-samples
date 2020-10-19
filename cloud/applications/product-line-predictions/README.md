@@ -27,19 +27,10 @@ Within this sample scoring application you are able to:
 
 
 # Application Deployment
-For a fast start, you can deploy the pre-built app to Bluemix either by clicking the button
-
-#TODO: change URL to prebuild App
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=...)
-
-or using Watson Machine Learning Dashboard -> Samples -> (+) button.
-
-
-
 **Note:** the application is fully functional only if binded with an instance of *IBM Watson Machine Learning* service, which needs to be done manually. Check [instructions](#binding-services-in-bluemix) how to do it.
 
 ### Manual Bluemix deployment
-As an alternative to the button, the application can be manually deployed to Bluemix by pushing it with Cloud Foundry commands, as described in next [section](#push-to-bluemix). Manual deployment is also required when you want to deploy [modified source code](#source-code-changes). Manual deployment consists of [pushing](#push-to-bluemix) the application to Bluemix followed with [binding](#binding-services-in-bluemix) *IBM Watson Machine Learning* service to deployed application.
+The application can be manually deployed to Bluemix by pushing it with Cloud Foundry commands, as described in next [section](#push-to-bluemix). Manual deployment is also required when you want to deploy [modified source code](#source-code-changes). Manual deployment consists of [pushing](#push-to-bluemix) the application to Bluemix followed with [binding](#binding-services-in-bluemix) *IBM Watson Machine Learning* service to deployed application.
 
 ##### Push to Bluemix
 To push an application to Bluemix, open a shell, change to directory of your application and execute:

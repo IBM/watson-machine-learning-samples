@@ -20,7 +20,7 @@ const request = require('request');
 const log4js = require('../utils/log4js-logger-util');
 const logger = log4js.getLogger('server/service-client');
 const debug = require('debug')('sample');
-const tokenEndpoint = 'https://iam.test.cloud.ibm.com/oidc/token';  // authorization endpoint
+const tokenEndpoint = 'https://iam.cloud.ibm.com/oidc/token';  // authorization endpoint
 
 const modelInfo = require('../config/model.json');
 const schema = modelInfo['model-schema'].map(obj => obj.name);
