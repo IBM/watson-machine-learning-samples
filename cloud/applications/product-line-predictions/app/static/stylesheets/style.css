@@ -1,0 +1,21 @@
+body {
+	background-image: url(../images/background.png);
+	background-size: cover;
+	font-family: Helvetica Neue, sans-serif;
+}
+
+h3 {
+	color: #797979;
+	font-family: Helvetica Neue Light, Helvetica Neue, sans-serif;
+	padding-bottom: 18px;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+.markWithColor {
+	color: #F15D4E;
+}
