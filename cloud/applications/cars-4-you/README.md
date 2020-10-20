@@ -11,6 +11,9 @@
 User also should have account on Bluemix with active us-south region. In us-south region the following services should be prepared:
 - IBM Machine Learning (wml). Please note that `Lite` (free) plan is offered.
 
+Deployments and models preparation:
+[Notebooks](./WS_PROJECT_SETUP.md)
+
 Optional services:
 - Natural Language Understanding. Please note that `Lite` (free) plan is offered.
 
