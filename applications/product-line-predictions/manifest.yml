@@ -1,4 +1,0 @@
-applications:
-- name:    product-line-prediction
-  memory:  256M
-  random-route: true

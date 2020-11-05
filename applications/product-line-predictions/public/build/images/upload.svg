@@ -1,9 +1,0 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 370 130" width="370" height="130">
-  <polyline points="165 27, 185 45, 205 27" stroke-width="3" fill="none" stroke="#41d6c3">
-    <animate attributeName="opacity" values="1;0.2;1" dur="7s" repeatCount="indefinite"/>
-  </polyline>
-  <text x="185" y="65" text-anchor="middle" font-size="9pt" fill="#41d6c3">
-    Either enter your content here manually, drag-and-drop a file to load
-    <tspan x="185" dy="12">its content, or double-click this field to select a file and load its content.</tspan>
-  </text>
-</svg>
