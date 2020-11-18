@@ -5,10 +5,10 @@ from watson_developer_cloud.natural_language_understanding_v1 import \
 
 class NLUUtils:
     """NLUUtils class defines connection to NLU service and provides a way to analyze text sentiment."""
-    def __init__(self, nlu_vcap: dict) -> None:
-        self.version = nlu_vcap["version"]
-        self.url = nlu_vcap["url"]
-        self.apikey = nlu_vcap["apikey"]
+    def __init__(self, nlu_details: dict) -> None:
+        self.version = nlu_details["version"]
+        self.url = nlu_details["url"]
+        self.apikey = nlu_details["apikey"]
 
         self.nlu = NaturalLanguageUnderstandingV1(
             version=self.version, url=self.url, iam_apikey=self.apikey)

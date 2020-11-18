@@ -59,7 +59,7 @@ function getTokenFromTokenEndpoint (apiKey) {
   });
 }
 
-// Initialize ServiceClient with service credentials (apikey and url) and space_id for deployments
+// Initialize ServiceClient with service apikey, url and space_id for deployments
 const ServiceClient = module.exports = function (service) {
   if (service) {
     this.credentials = service.credentials;

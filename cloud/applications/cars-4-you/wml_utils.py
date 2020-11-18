@@ -10,13 +10,13 @@ from ibm_watson_machine_learning import APIClient
 class WMLHelper:
     """WMLHelper class defines connection to WML service and provides a way to find/score
     this application deployments"""
-    def __init__(self, wml_vcap: dict) -> None:
+    def __init__(self, wml_details: dict) -> None:
         self.logger = logging.getLogger(self.__class__.__name__)
         self.logger.setLevel(logging.DEBUG)
 
-        self.logger.info("Client authentication. URL: {}".format(wml_vcap["url"]))
-        self.client = APIClient(wml_vcap.copy())
-        self.client.set.default_space(wml_vcap['space_id'])
+        self.logger.info("Client authentication. URL: {}".format(wml_details["url"]))
+        self.client = APIClient(wml_details.copy())
+        self.client.set.default_space(wml_details['space_id'])
         self.deployment_list = self.client.deployments.get_details()['resources']
 
         self.transaction_id = 'transaction-id-' + uuid.uuid4().hex

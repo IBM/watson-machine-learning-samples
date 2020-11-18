@@ -22,17 +22,16 @@ Optional services:
 ### Initial configuration
 
 1. Clone repository and enter cloned project directory:  
-**TODO: fill in new repository URL**
 
    ```bash
-   git clone ...
+   git clone https://github.com/IBM/watson-machine-learning-samples/tree/master/cloud/applications/cars-4-you
    cd cars-4-you
    ```
 
-2. Update with your services credentials the folowing files:
+2. Update with your Machine Learning service details the folowing files:
 
-- `vcaps/wml.vcap` (Machine Learning service credentials)
-- `vcaps/nlu.vcap` (Natural Language Understanding credentials).
+- `settings/wml.json` (Machine Learning service)
+- `settings/nlu.json` (Natural Language Understanding)
 
 ### Deployment and run on local environment
 

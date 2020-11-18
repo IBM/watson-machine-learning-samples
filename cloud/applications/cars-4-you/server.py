@@ -2,12 +2,12 @@ import os
 from flask import Flask, send_from_directory, request, jsonify, logging
 from wml_utils import WMLHelper
 from nlu_utils import NLUUtils
-from get_vcap import get_wml_vcap, get_cos_vcap, get_vcap
+from get_details import get_wml_details, get_cos_details, get_details
 
 app = Flask(__name__, static_url_path='/static')
 
-wml_vcap = get_wml_vcap()
-wml_client = WMLHelper(wml_vcap)
+wml_details = get_wml_details()
+wml_client = WMLHelper(wml_details)
 
 
 @app.route('/')
