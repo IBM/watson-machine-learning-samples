@@ -14323,7 +14323,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR PLATFORM API KEY HERE&#39;</span>
@@ -14338,7 +14338,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wml_credentials</span> <span class="o">=</span> <span class="p">{</span>
@@ -14375,7 +14375,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14406,7 +14406,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR SPACE ID HERE&#39;</span>
@@ -14443,10 +14443,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <p>To be able to interact with all resources available in Watson Machine Learning, you need to set <strong>space</strong> which you will be using.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -14455,6 +14455,29 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;SUCCESS&#39;</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14498,7 +14521,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibm_boto3</span>
@@ -14525,7 +14548,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos_credentials</span> <span class="o">=</span> <span class="p">{</span>
@@ -14562,7 +14585,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span> <span class="o">=</span> <span class="n">ibm_boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span>
@@ -14593,7 +14616,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tf-keras-data-example&#39;</span><span class="p">,</span> <span class="s1">&#39;tf-keras-results-example&#39;</span><span class="p">]</span>
@@ -14653,7 +14676,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">link</span> <span class="o">=</span> <span class="s1">&#39;https://s3.amazonaws.com/img-datasets/mnist.npz&#39;</span>
@@ -14667,7 +14690,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wget</span>
@@ -14717,7 +14740,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_name</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -14807,7 +14830,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">metaprops</span> <span class="o">=</span> <span class="p">{</span>
@@ -14833,7 +14856,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename_mnist</span> <span class="o">=</span> <span class="s1">&#39;MNIST.zip&#39;</span>
@@ -14861,7 +14884,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_definition_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">filename_mnist</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">metaprops</span><span class="p">)</span>
@@ -14875,7 +14898,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_definition_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">model_definition_details</span><span class="p">)</span>
@@ -14899,7 +14922,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>d5fb0e96-1506-4af4-a21a-a07847c63a0d
+<pre>2c2f7550-ae9e-4f04-bcb0-8e19a30550b0
 </pre>
 </div>
 </div>
@@ -14941,7 +14964,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_metadata</span> <span class="o">=</span> <span class="p">{</span>
@@ -14960,7 +14983,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
             <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">]</span>
       <span class="p">},</span>
       <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
       <span class="p">},</span>
     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span>
   <span class="p">},</span>
@@ -14988,7 +15011,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
         <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">]</span>
       <span class="p">},</span>
       <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
       <span class="p">},</span>
       <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;idmlp_schema&quot;</span><span class="p">,</span>
@@ -15017,7 +15040,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">training_metadata</span><span class="p">)</span>
@@ -15036,7 +15059,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">training</span><span class="p">)</span>
@@ -15050,7 +15073,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">training_id</span><span class="p">)[</span><span class="s2">&quot;state&quot;</span><span class="p">]</span>
@@ -15069,7 +15092,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 
 
 
@@ -15149,7 +15172,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">training_id</span><span class="p">)[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;results_reference&#39;</span><span class="p">][</span><span class="s1">&#39;location&#39;</span><span class="p">][</span><span class="s1">&#39;logs&#39;</span><span class="p">]</span>
@@ -15168,10 +15191,10 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_name</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_name</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">bucket_obj</span> <span class="o">=</span> <span class="n">cos</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">)</span>
 
 <span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -15192,19 +15215,18 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Unpack-model-and-compress-it-to-tar.gz-format">Unpack model and compress it to tar.gz format<a class="anchor-link" href="#Unpack-model-and-compress-it-to-tar.gz-format">&#182;</a></h4>
+<h4 id="Load-downloaded_model.">Load downloaded_model.<a class="anchor-link" href="#Load-downloaded_model.">&#182;</a></h4><p><strong>Hint</strong>: To install tensorflow execute <code>!pip install tensorflow</code></p>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tarfile</span>
-    
-<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;mnist_cnn.h5&quot;</span>    
-<span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">model_name</span> <span class="o">+</span> <span class="s2">&quot;.tar.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;w:gz&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
-    <span class="n">tar</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;mnist_cnn.h5&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15217,10 +15239,29 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="4.2-Publish-model">4.2 Publish model<a class="anchor-link" href="#4.2-Publish-model">&#182;</a></h3>
 </div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>To specify format how keras model is saved use parameter:</p>
+
+<pre><code>model_meta_props = {
+    ...
+    client.repository.ModelMetaNames.TF_MODEL_PARAMS: {"save_format": "tf"}
+    ...
+}</code></pre>
+<p>Where <code>tf</code> stands for standard tensorflow format and <code>h5</code> will save a model in HDF format.<br>
+For keras models <code>h5</code> is default and for native tensorflow models <code>tf</code> is used if <code>TF_MODEL_PARAMS</code> not passed.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="4.2-Publish-model">4.2 Publish model<a class="anchor-link" href="#4.2-Publish-model">&#182;</a></h3>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s1">&#39;default_py3.7&#39;</span><span class="p">)</span>
@@ -15234,16 +15275,17 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_meta_props</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Keras MNIST&quot;</span><span class="p">,</span>
-                    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;tensorflow_2.1&quot;</span><span class="p">,</span>
-                    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">software_spec_uid</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Keras MNIST&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;tensorflow_2.1&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">software_spec_uid</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TF_MODEL_PARAMS</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;save_format&quot;</span><span class="p">:</span> <span class="s2">&quot;h5&quot;</span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">published_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">&#39;mnist_cnn.h5.tar.gz&#39;</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">model_meta_props</span><span class="p">)</span>
+<span class="n">published_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">model_meta_props</span><span class="p">)</span>
 <span class="n">model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_uid</span><span class="p">(</span><span class="n">published_model</span><span class="p">)</span>
 </pre></div>
 
@@ -15260,7 +15302,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
@@ -15287,18 +15329,21 @@ You can find these credentials in your COS instance dashboard under the <strong>
 <pre>{
   &#34;entity&#34;: {
     &#34;software_spec&#34;: {
-      &#34;id&#34;: &#34;2b73a275-7cbf-420b-a912-eae7f436e0bc&#34;,
-      &#34;name&#34;: &#34;tensorflow_1.15-py3.6&#34;
+      &#34;id&#34;: &#34;e4429883-c883-42b6-87a8-f419d64088cd&#34;,
+      &#34;name&#34;: &#34;default_py3.7&#34;
     },
-    &#34;type&#34;: &#34;keras_2.2.5&#34;
+    &#34;type&#34;: &#34;tensorflow_2.1&#34;
   },
   &#34;metadata&#34;: {
-    &#34;created_at&#34;: &#34;2020-08-13T07:57:10.103Z&#34;,
-    &#34;id&#34;: &#34;8096e0bb-fe4f-47ab-88ff-7c076481f9b4&#34;,
-    &#34;modified_at&#34;: &#34;2020-08-13T07:57:17.335Z&#34;,
+    &#34;created_at&#34;: &#34;2021-02-02T11:19:14.711Z&#34;,
+    &#34;id&#34;: &#34;938066be-0bc2-417d-8788-bff7e106eb37&#34;,
+    &#34;modified_at&#34;: &#34;2021-02-02T11:19:23.975Z&#34;,
     &#34;name&#34;: &#34;Keras MNIST&#34;,
-    &#34;owner&#34;: &#34;IBMid-5500067NJD&#34;,
-    &#34;space_id&#34;: &#34;74133c06-dce2-4dfc-b913-2e0dc8efc750&#34;
+    &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
+    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+  },
+  &#34;system&#34;: {
+    &#34;warnings&#34;: []
   }
 }
 </pre>
@@ -15342,7 +15387,7 @@ You can find these credentials in your COS instance dashboard under the <strong>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
@@ -15373,17 +15418,17 @@ You can find these credentials in your COS instance dashboard under the <strong>
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;8096e0bb-fe4f-47ab-88ff-7c076481f9b4&#39; started
+Synchronous deployment creation for uid: &#39;938066be-0bc2-417d-8788-bff7e106eb37&#39; started
 
 #######################################################################################
 
 
-initializing....
+initializing..
 ready
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e4-898d-c7b370fdff7b&#39;
+Successfully finished deployment creation, deployment_uid=&#39;25b0e0c5-b395-4794-a037-e2ced244cf55&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -15403,7 +15448,7 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployments_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">)</span>
@@ -15430,31 +15475,32 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 <pre>{
   &#34;entity&#34;: {
     &#34;asset&#34;: {
-      &#34;id&#34;: &#34;8096e0bb-fe4f-47ab-88ff-7c076481f9b4&#34;
+      &#34;id&#34;: &#34;938066be-0bc2-417d-8788-bff7e106eb37&#34;
     },
     &#34;custom&#34;: {},
+    &#34;deployed_asset_type&#34;: &#34;model&#34;,
     &#34;hardware_spec&#34;: {
       &#34;id&#34;: &#34;Not_Applicable&#34;,
-      &#34;name&#34;: &#34;S&#34;,
+      &#34;name&#34;: &#34;XS&#34;,
       &#34;num_nodes&#34;: 1
     },
     &#34;name&#34;: &#34;Keras MNIST&#34;,
     &#34;online&#34;: {},
-    &#34;space_id&#34;: &#34;74133c06-dce2-4dfc-b913-2e0dc8efc750&#34;,
+    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
     &#34;status&#34;: {
       &#34;online_url&#34;: {
-        &#34;url&#34;: &#34;https://wml-fvt.ml.test.cloud.ibm.com/ml/v4/deployments/b78f9981-1b37-47e4-898d-c7b370fdff7b/predictions&#34;
+        &#34;url&#34;: &#34;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/25b0e0c5-b395-4794-a037-e2ced244cf55/predictions&#34;
       },
       &#34;state&#34;: &#34;ready&#34;
     }
   },
   &#34;metadata&#34;: {
-    &#34;created_at&#34;: &#34;2020-08-13T07:57:23.623Z&#34;,
-    &#34;id&#34;: &#34;b78f9981-1b37-47e4-898d-c7b370fdff7b&#34;,
-    &#34;modified_at&#34;: &#34;2020-08-13T07:57:23.623Z&#34;,
+    &#34;created_at&#34;: &#34;2021-02-02T11:19:27.842Z&#34;,
+    &#34;id&#34;: &#34;25b0e0c5-b395-4794-a037-e2ced244cf55&#34;,
+    &#34;modified_at&#34;: &#34;2021-02-02T11:19:27.842Z&#34;,
     &#34;name&#34;: &#34;Keras MNIST&#34;,
-    &#34;owner&#34;: &#34;IBMid-5500067NJD&#34;,
-    &#34;space_id&#34;: &#34;74133c06-dce2-4dfc-b913-2e0dc8efc750&#34;
+    &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
+    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
   }
 }
 </pre>
@@ -15498,7 +15544,7 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -15516,7 +15562,7 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -15531,7 +15577,7 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_test</span><span class="p">[</span><span class="mi">1</span><span class="p">]]):</span>
@@ -15579,7 +15625,7 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">image_1</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">/</span> <span class="mi">255</span>
@@ -15599,7 +15645,7 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span>
@@ -15632,6 +15678,7 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 {
   &#34;predictions&#34;: [
     {
+      &#34;id&#34;: &#34;dense_2&#34;,
       &#34;fields&#34;: [
         &#34;prediction&#34;,
         &#34;prediction_classes&#34;,
@@ -15640,56 +15687,56 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
       &#34;values&#34;: [
         [
           [
-            1.4112320687043045e-11,
-            6.71987257505613e-11,
-            1.7774758021005255e-07,
-            2.486277423940919e-07,
-            4.02627052961083e-16,
-            2.431678990111319e-11,
-            4.179393737831339e-18,
-            0.9999996423721313,
-            4.879279202896214e-10,
-            1.1160609325600035e-08
+            7.466905316277916e-08,
+            9.893429705698509e-06,
+            3.900993033312261e-05,
+            4.162672848906368e-05,
+            8.139633411730074e-10,
+            1.8486717863197555e-06,
+            9.200988582147573e-11,
+            0.9999065399169922,
+            3.4652100566745503e-07,
+            6.348946044454351e-07
           ],
           7,
           [
-            1.4112320687043045e-11,
-            6.71987257505613e-11,
-            1.7774758021005255e-07,
-            2.486277423940919e-07,
-            4.02627052961083e-16,
-            2.431678990111319e-11,
-            4.179393737831339e-18,
-            0.9999996423721313,
-            4.879279202896214e-10,
-            1.1160609325600035e-08
+            7.466905316277916e-08,
+            9.893429705698509e-06,
+            3.900993033312261e-05,
+            4.162672848906368e-05,
+            8.139633411730074e-10,
+            1.8486717863197555e-06,
+            9.200988582147573e-11,
+            0.9999065399169922,
+            3.4652100566745503e-07,
+            6.348946044454351e-07
           ]
         ],
         [
           [
-            1.6697327548387264e-11,
-            3.123093165413593e-06,
-            0.9999967813491821,
-            9.436178061150713e-08,
-            1.4241461072845846e-17,
-            3.3048402903190777e-10,
-            4.1099714777337315e-12,
-            3.5958473611902297e-12,
-            2.457088310592326e-09,
-            2.2838061320256294e-17
+            1.1282578782356723e-07,
+            5.920806142967194e-05,
+            0.9999393224716187,
+            1.099073188015609e-06,
+            1.3057225439760956e-11,
+            2.9339268792227813e-08,
+            3.2738667332665727e-09,
+            3.2951981143725106e-09,
+            2.6347234438617306e-07,
+            1.539121781413133e-11
           ],
           2,
           [
-            1.6697327548387264e-11,
-            3.123093165413593e-06,
-            0.9999967813491821,
-            9.436178061150713e-08,
-            1.4241461072845846e-17,
-            3.3048402903190777e-10,
-            4.1099714777337315e-12,
-            3.5958473611902297e-12,
-            2.457088310592326e-09,
-            2.2838061320256294e-17
+            1.1282578782356723e-07,
+            5.920806142967194e-05,
+            0.9999393224716187,
+            1.099073188015609e-06,
+            1.3057225439760956e-11,
+            2.9339268792227813e-08,
+            3.2738667332665727e-09,
+            3.2951981143725106e-09,
+            2.6347234438617306e-07,
+            1.539121781413133e-11
           ]
         ]
       ]
@@ -15747,7 +15794,7 @@ Successfully finished deployment creation, deployment_uid=&#39;b78f9981-1b37-47e
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Copyright © 2020 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020, 2021 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 
 </div>
 </div>
