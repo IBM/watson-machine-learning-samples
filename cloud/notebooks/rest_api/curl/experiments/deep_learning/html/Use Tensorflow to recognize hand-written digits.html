@@ -14471,10 +14471,10 @@ curl -sk -X GET \
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out data_links
 
-<span class="nb">declare</span> -a <span class="nv">data_links</span><span class="o">=(</span><span class="s1">&#39;http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz&#39;</span>
-                       <span class="s1">&#39;http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz&#39;</span>
-                       <span class="s1">&#39;http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz&#39;</span>
-                       <span class="s1">&#39;http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz&#39;</span><span class="o">)</span>
+<span class="nb">declare</span> -a <span class="nv">data_links</span><span class="o">=(</span><span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/mnist/raw/train-images-idx3-ubyte.gz&#39;</span>
+                       <span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/mnist/raw/train-labels-idx1-ubyte.gz&#39;</span>
+                       <span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/mnist/raw/t10k-images-idx3-ubyte.gz&#39;</span>
+                       <span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/mnist/raw/t10k-labels-idx1-ubyte.gz&#39;</span><span class="o">)</span>
 
 <span class="nb">echo</span> <span class="si">${</span><span class="nv">data_links</span><span class="p">[@]</span><span class="si">}</span>
 </pre></div>

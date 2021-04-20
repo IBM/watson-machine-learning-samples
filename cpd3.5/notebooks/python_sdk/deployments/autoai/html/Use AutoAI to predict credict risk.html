@@ -14259,27 +14259,28 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Use-AutoAI-and-batch-deployment-to-predict-credit-risk-with-Watson-Machine-Learning-REST-API">Use AutoAI and batch deployment to predict credit risk with Watson Machine Learning REST API<a class="anchor-link" href="#Use-AutoAI-and-batch-deployment-to-predict-credit-risk-with-Watson-Machine-Learning-REST-API">&#182;</a></h1>
+<h1 id="Use-AutoAI-to-predict-credit-risk-with-ibm-watson-machine-learning">Use AutoAI to predict credit risk with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-AutoAI-to-predict-credit-risk-with-ibm-watson-machine-learning">&#182;</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>This notebook contains steps and code to demonstrate support of AutoAI experiments in Watson Machine Learning Service. It introduces commands for getting data, training experiments, persisting pipelines, publishing models, deploying models and scoring.</p>
-<p>Some familiarity with cURL is helpful. This notebook uses cURL examples.</p>
+<p>This notebook demonstrates how to deploy in Watson Machine Learning service an AutoAI model created in <code>Generated Scikit-learn Notebook</code><br>
+which is composed
+during autoai experiments (in order to learn more about AutoAI experiments go to <a href="https://github.com/IBM/watson-machine-learning-samples/tree/master/cpd3.5/notebooks/python_sdk/experiments/autoai">experiments/autoai</a>).</p>
+<p>Some familiarity with bash is helpful. This notebook uses Python 3.7.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
-<li>Working with Watson Machine Learning experiments to train AutoAI models.</li>
-<li>Downloading computed models to local storage.</li>
-<li>Batch deployment and scoring of trained model.</li>
+<li>Working with the Watson Machine Learning instance</li>
+<li>Online deployment of AutoAI model</li>
+<li>Scoring data using deployed model</li>
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><p>This notebook contains the following parts:</p>
 <ol>
-<li><a href="#setup">Setup</a>  </li>
-<li><a href="#experiment_definition">Experiment definition</a>  </li>
-<li><a href="#run">Experiment Run</a>  </li>
-<li><a href="#runs">Historical runs</a>  </li>
-<li><a href="#deploy_and_score">Deploy and Score</a>  </li>
-<li><a href="#cleaning">Cleaning</a> </li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#upload">Model upload</a> </li>
+<li><a href="#deploy">Web service creation</a></li>
+<li><a href="#score">Scoring</a></li>
+<li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
 
@@ -14290,20 +14291,14 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">&#182;</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Create a <a href="https://console.ng.bluemix.net/catalog/services/ibm-watson-machine-learning/" target="_blank" rel="noopener no referrer">Watson Machine Learning (WML) Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-service-instance.html?context=analytics" target="_blank" rel="noopener no referrer">here</a>).</li>
-<li>Create a <a href="https://console.bluemix.net/catalog/infrastructure/cloud-object-storage" target="_blank" rel="noopener no referrer">Cloud Object Storage (COS)</a> instance (a lite plan is offered and information about how to order storage can be found <a href="https://console.bluemix.net/docs/services/cloud-object-storage/basics/order-storage.html#order-storage" target="_blank" rel="noopener no referrer">here</a>). <br/><strong>Note: When using Watson Studio, you already have a COS instance associated with the project you are running the notebook in.</strong></li>
+<li>Contact with your Cloud Pack for Data administrator and ask him for your account credentials</li>
 </ul>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can find your COS credentials in COS instance dashboard under the <strong>Service credentials</strong> tab.
-Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get the endpoint information.</p>
-<p>Authenticate the Watson Machine Learning service on IBM Cloud.</p>
-<p>Your Cloud API key can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below.</p>
-<p><strong>NOTE:</strong> You can also get service specific apikey by going to the <a href="https://cloud.ibm.com/iam/serviceids"><strong>Service IDs</strong> section of the Cloud Console</a>.  From that page, click <strong>Create</strong>, then copy the created key and paste it below.</p>
-<p><strong>Action:</strong> Fill below information to get started with this notebook.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>password</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14312,22 +14307,29 @@ Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get t
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> API_KEY=...
-<span class="o">%</span><span class="k">env</span> WML_ENDPOINT_URL=...
-<span class="o">%</span><span class="k">env</span> WML_INSTANCE_CRN=&quot;fill out only if you want to create a new space&quot;
-<span class="o">%</span><span class="k">env</span> WML_INSTANCE_NAME=...
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR USERNAME HERE&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR PASSWORD HERE&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;PASTE THE PLATFORM URL HERE&#39;</span>
+</pre></div>
 
-<span class="o">%</span><span class="k">env</span> COS_CRN=&quot;fill out only if you want to create a new space&quot;
-<span class="o">%</span><span class="k">env</span> COS_ENDPOINT=...
-<span class="o">%</span><span class="k">env</span> COS_BUCKET=...
-<span class="o">%</span><span class="k">env</span> COS_ACCESS_KEY_ID=...
-<span class="o">%</span><span class="k">env</span> COS_SECRET_ACCESS_KEY=...
-<span class="o">%</span><span class="k">env</span> COS_API_KEY=...
+     </div>
+</div>
+</div>
+</div>
 
-<span class="o">%</span><span class="k">env</span> SPACE_ID=&quot;fill out only if you have space already created&quot;
-
-<span class="o">%</span><span class="k">env</span> DATAPLATFORM_URL=https://api.dataplatform.cloud.ibm.com   
-<span class="o">%</span><span class="k">env</span> AUTH_ENDPOINT=https://iam.cloud.ibm.com/oidc/token
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wml_credentials</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+    <span class="s2">&quot;instance_id&quot;</span><span class="p">:</span> <span class="s1">&#39;openshift&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;3.5&#39;</span>
+<span class="p">}</span>
 </pre></div>
 
      </div>
@@ -14338,30 +14340,16 @@ Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get t
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="wml_token"></a></p>
-<h3 id="Getting-WML-authorization-token-for-further-cURL-calls">Getting WML authorization token for further cURL calls<a class="anchor-link" href="#Getting-WML-authorization-token-for-further-cURL-calls">&#182;</a></h3>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token" target="_blank" rel="noopener no referrer">Example of cURL call to get WML token</a></p>
+<h3 id="Install-and-import-the-ibm-watson-machine-learning-package">Install and import the <code>ibm-watson-machine-learning</code> package<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning-package">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="http://ibm-wml-api-pyclient.mybluemix.net/" target="_blank" rel="noopener no referrer">here</a>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
-
-curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    --data-urlencode <span class="s2">&quot;grant_type=urn:ibm:params:oauth:grant-type:apikey&quot;</span> <span class="se">\</span>
-    --data-urlencode <span class="s2">&quot;apikey=</span><span class="nv">$API_KEY</span><span class="s2">&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$AUTH_ENDPOINT</span><span class="s2">&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> cut -d <span class="s1">&#39;&quot;&#39;</span> -f <span class="m">4</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install -U ibm-watson-machine-learning
 </pre></div>
 
      </div>
@@ -14369,13 +14357,15 @@ curl -sk -X POST <span class="se">\</span>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> TOKEN=$token 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">wml_credentials</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14383,110 +14373,27 @@ curl -sk -X POST <span class="se">\</span>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TOKEN=eyJraWQiOiIyMDIwMDgyMzE4MzIiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC01NTAwMDA5MVZDIiwiaWQiOiJJQk1pZC01NTAwMDA5MVZDIiwicmVhbG1pZCI6IklCTWlkIiwiaWRlbnRpZmllciI6IjU1MDAwMDkxVkMiLCJnaXZlbl9uYW1lIjoiV01MIiwiZmFtaWx5X25hbWUiOiJXTUwtQmV0YSIsIm5hbWUiOiJXTUwgV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20iLCJzdWIiOiJXTUwtQmV0YUBwbC5pYm0uY29tIiwiYWNjb3VudCI6eyJ2YWxpZCI6dHJ1ZSwiYnNzIjoiZTBmN2VjM2FjMWIyNGVjOWFlNzcxZWZkNzcyNTM4YTIiLCJpbXNfdXNlcl9pZCI6IjcxNzY5NDMiLCJmcm96ZW4iOnRydWUsImltcyI6IjE2ODQ3ODMifSwiaWF0IjoxNjAwMTcwNzMzLCJleHAiOjE2MDAxNzQzMzMsImlzcyI6Imh0dHBzOi8vaWFtLmNsb3VkLmlibS5jb20vaWRlbnRpdHkiLCJncmFudF90eXBlIjoidXJuOmlibTpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTphcGlrZXkiLCJzY29wZSI6ImlibSBvcGVuaWQiLCJjbGllbnRfaWQiOiJkZWZhdWx0IiwiYWNyIjoxLCJhbXIiOlsicHdkIl19.D22NXXVAtiO-xw-XMzZRXVo7jBu0MPx9kJLS2Qu-Iw0wzUzTAzJf2ojUKB8T60nVypy_b_pYsDJDbAYZOQSXPI3rVC3otuCqyQVzAePtUW7OKws_bPzpyHb6MAwopZUKHxD0iDg5oj8eZ2Hs7oowiIwyJzqrjJEEeuayGC4Mzx4iF6Bdoup9CACXvIozBUu4FXdauxTt8_KXl4i8Oq0gvPNurBB06WudjaHgdDgX2iDNVHlmj33BMba_4mmLMDfjKp-2KENlfKfInAl0Bda-HJV-xpbj4KlWP6OTDmLqW67E36c6bGKmN7gw4UgUk3oRfQGPPPKbN7OMQ5QUzuWluA
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="space_creation"></a></p>
-<h3 id="Space-creation">Space creation<a class="anchor-link" href="#Space-creation">&#182;</a></h3><p><strong>Tip:</strong> If you do not have <code>space</code> already created, please convert below three cells to <code>code</code> and run them.</p>
-<p>First of all, you need to create a <code>space</code> that will be used in all of your further cURL calls. 
-If you do not have <code>space</code> already created, below is the cURL call to create one.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://cpd-spaces-api.eu-gb.cf.appdomain.cloud/#/Spaces/spaces_create" 
-target="_blank" rel="noopener no referrer">Space creation</a></p>
-
-</div>
-</div>%%bash --out space_id
-
-curl -sk -X POST \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data '{"name": "curl_DL", "storage": {"type": "bmcos_object_storage", "resource_crn": "'"$COS_CRN"'"}, "compute": [{"name": "'"$WML_INSTANCE_NAME"'", "crn": "'"$WML_INSTANCE_CRN"'", "type": "machine_learning"}]}' \
-    "$DATAPLATFORM_URL/v2/spaces" \
-     | grep '"id": ' | awk -F '"' '{ print $4 }'space_id = space_id.split('\n')[1]
-%env SPACE_ID=$space_id
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Space creation is asynchronous. This means that you need to check space creation status after creation call.
-Make sure that your newly created space is <code>active</code>.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://cpd-spaces-api.eu-gb.cf.appdomain.cloud/#/Spaces/spaces_get" 
-target="_blank" rel="noopener no referrer">Get space information</a></p>
-
-</div>
-</div>%%bash
-
-!curl -sk -X GET \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/v2/spaces/$SPACE_ID"
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="experiment_definition"></a></p>
-<h2 id="2.-Experiment-/-optimizer-configuration">2. Experiment / optimizer configuration<a class="anchor-link" href="#2.-Experiment-/-optimizer-configuration">&#182;</a></h2><p>Provide input information for AutoAI experiment / optimizer:</p>
+<h3 id="Working-with-spaces">Working with spaces<a class="anchor-link" href="#Working-with-spaces">&#182;</a></h3><p>First of all, you need to create a space that will be used for your work. If you do not have space already created, you can use <code>{PLATFORM_URL}/ml-runtime/spaces?context=icp4data</code> to create one.</p>
 <ul>
-<li><code>name</code> - experiment name</li>
-<li><code>learning_type</code> - type of the problem</li>
-<li><code>label</code> - target column name</li>
-<li><code>scorer_for_ranking</code> - optimization metric</li>
-<li><code>holdout_param</code> - percentage of training data to use as a holdout [0 - 1]</li>
-<li><code>daub_include_only_estimators</code> - list of estimators to use</li>
+<li>Click New Deployment Space</li>
+<li>Create an empty space</li>
+<li>Go to space <code>Settings</code> tab</li>
+<li>Copy <code>space_id</code> and paste it below</li>
 </ul>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can modify <code>parameters</code> section of the following cURL call to change AutoAI experiment settings.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Pipelines/pipelines_create" 
-target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
+<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd3.5/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
+<p><strong>Action</strong>: Assign space ID below</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out pipeline_payload
-
-<span class="nv">PIPELINE_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;name&quot;: &quot;Credit Risk Prediction - AutoAI&quot;, &quot;description&quot;: &quot;&quot;, &quot;document&quot;: {&quot;doc_type&quot;: &quot;pipeline&quot;, &quot;version&quot;: &quot;2.0&quot;, &quot;pipelines&quot;: [{&quot;id&quot;: &quot;autoai&quot;, &quot;runtime_ref&quot;: &quot;hybrid&quot;, &quot;nodes&quot;: [{&quot;id&quot;: &quot;automl&quot;, &quot;type&quot;: &quot;execution_node&quot;, &quot;parameters&quot;: {&quot;stage_flag&quot;: true, &quot;output_logs&quot;: true, &quot;input_file_separator&quot;: &quot;,&quot;, &quot;optimization&quot;: {&quot;learning_type&quot;: &quot;binary&quot;, &quot;label&quot;: &quot;Risk&quot;, &quot;max_num_daub_ensembles&quot;: 1, &quot;daub_include_only_estimators&quot;: [&quot;ExtraTreesClassifierEstimator&quot;, &quot;GradientBoostingClassifierEstimator&quot;, &quot;LGBMClassifierEstimator&quot;, &quot;LogisticRegressionEstimator&quot;, &quot;RandomForestClassifierEstimator&quot;, &quot;XGBClassifierEstimator&quot;, &quot;DecisionTreeClassifierEstimator&quot;], &quot;scorer_for_ranking&quot;: &quot;roc_auc&quot;, &quot;compute_pipeline_notebooks_flag&quot;: true, &quot;run_cognito_flag&quot;: true, &quot;holdout_param&quot;: 0.1}}, &quot;runtime_ref&quot;: &quot;autoai&quot;, &quot;op&quot;: &quot;kube&quot;}]}], &quot;runtimes&quot;: [{&quot;id&quot;: &quot;autoai&quot;, &quot;name&quot;: &quot;auto_ai.kb&quot;, &quot;app_data&quot;: {&quot;wml_data&quot;: {&quot;hardware_spec&quot;: { &quot;name&quot;: &quot;L&quot;}}}, &quot;version&quot;: &quot;3.0.2&quot;}],&quot;primary_pipeline&quot;: &quot;autoai&quot;}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$PIPELINE_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR SPACE ID HERE&#39;</span>
 </pre></div>
 
      </div>
@@ -14494,13 +14401,39 @@ target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>You can use <code>list</code> method to print all existing spaces.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">spaces</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>To be able to interact with all resources available in Watson Machine Learning, you need to set <strong>space</strong> which you will be using.</p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> PIPELINE_PAYLOAD=$pipeline_payload
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14516,94 +14449,55 @@ target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: PIPELINE_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;name&#34;: &#34;Credit Risk Prediction - AutoAI&#34;,
-    &#34;description&#34;: &#34;&#34;,
-    &#34;document&#34;: {
-        &#34;doc_type&#34;: &#34;pipeline&#34;,
-        &#34;version&#34;: &#34;2.0&#34;,
-        &#34;pipelines&#34;: [
-            {
-                &#34;id&#34;: &#34;autoai&#34;,
-                &#34;runtime_ref&#34;: &#34;hybrid&#34;,
-                &#34;nodes&#34;: [
-                    {
-                        &#34;id&#34;: &#34;automl&#34;,
-                        &#34;type&#34;: &#34;execution_node&#34;,
-                        &#34;parameters&#34;: {
-                            &#34;stage_flag&#34;: true,
-                            &#34;output_logs&#34;: true,
-                            &#34;input_file_separator&#34;: &#34;,&#34;,
-                            &#34;optimization&#34;: {
-                                &#34;learning_type&#34;: &#34;binary&#34;,
-                                &#34;label&#34;: &#34;Risk&#34;,
-                                &#34;max_num_daub_ensembles&#34;: 1,
-                                &#34;daub_include_only_estimators&#34;: [
-                                    &#34;ExtraTreesClassifierEstimator&#34;,
-                                    &#34;GradientBoostingClassifierEstimator&#34;,
-                                    &#34;LGBMClassifierEstimator&#34;,
-                                    &#34;LogisticRegressionEstimator&#34;,
-                                    &#34;RandomForestClassifierEstimator&#34;,
-                                    &#34;XGBClassifierEstimator&#34;,
-                                    &#34;DecisionTreeClassifierEstimator&#34;
-                                ],
-                                &#34;scorer_for_ranking&#34;: &#34;roc_auc&#34;,
-                                &#34;compute_pipeline_notebooks_flag&#34;: true,
-                                &#34;run_cognito_flag&#34;: true,
-                                &#34;holdout_param&#34;: 0.1
-                            }
-                        },
-                        &#34;runtime_ref&#34;: &#34;autoai&#34;,
-                        &#34;op&#34;: &#34;kube&#34;
-                    }
-                ]
-            }
-        ],
-        &#34;runtimes&#34;: [
-            {
-                &#34;id&#34;: &#34;autoai&#34;,
-                &#34;name&#34;: &#34;auto_ai.kb&#34;,
-                &#34;app_data&#34;: {
-                    &#34;wml_data&#34;: {
-                        &#34;hardware_spec&#34;: {
-                            &#34;name&#34;: &#34;L&#34;
-                        }
-                    }
-                },
-                &#34;version&#34;: &#34;3.0.2&#34;
-            }
-        ],
-        &#34;primary_pipeline&#34;: &#34;autoai&#34;
-    }
-}
-</pre>
-</div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;SUCCESS&#39;</pre>
 </div>
 
 </div>
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="upload"></a></p>
+<h2 id="2.-Upload-model">2. Upload model<a class="anchor-link" href="#2.-Upload-model">&#182;</a></h2><p>In this section you will learn how to upload the model.</p>
+<h4 id="Download-the-data-as-an-pandas-DataFrame-and-AutoAI-saved-as-scikit-pipeline-model-using-wget.">Download the data as an pandas DataFrame and AutoAI saved as scikit pipeline model using <code>wget</code>.<a class="anchor-link" href="#Download-the-data-as-an-pandas-DataFrame-and-AutoAI-saved-as-scikit-pipeline-model-using-wget.">&#182;</a></h4><p><strong>Hint</strong>: To install required packages exacute command <code>!pip install pandas wget numpy</code>.</p>
+<p>We can exract model from executed AutoAI experiment using <code>ibm-watson-machine-learning</code> with following command: <code>experiment.optimizer(...).get_pipeline(astype='sklearn')</code>.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out pipeline_id
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">wget</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    --data <span class="s2">&quot;</span><span class="nv">$PIPELINE_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/pipelines?version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 5p
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;german_credit_data_biased_training.csv&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/data/credit_risk/german_credit_data_biased_training.csv&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;model.pickle&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/models/autoai/credit-risk/model.pickle&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">model_name</span><span class="p">):</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">credit_risk_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">credit_risk_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Risk&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">credit_risk_df</span><span class="p">[</span><span class="s1">&#39;Risk&#39;</span><span class="p">]</span>
+
+<span class="n">credit_risk_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14611,13 +14505,206 @@ curl -sk -X POST <span class="se">\</span>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CheckingStatus</th>
+      <th>LoanDuration</th>
+      <th>CreditHistory</th>
+      <th>LoanPurpose</th>
+      <th>LoanAmount</th>
+      <th>ExistingSavings</th>
+      <th>EmploymentDuration</th>
+      <th>InstallmentPercent</th>
+      <th>Sex</th>
+      <th>OthersOnLoan</th>
+      <th>...</th>
+      <th>OwnsProperty</th>
+      <th>Age</th>
+      <th>InstallmentPlans</th>
+      <th>Housing</th>
+      <th>ExistingCreditsCount</th>
+      <th>Job</th>
+      <th>Dependents</th>
+      <th>Telephone</th>
+      <th>ForeignWorker</th>
+      <th>Risk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0_to_200</td>
+      <td>31</td>
+      <td>credits_paid_to_date</td>
+      <td>other</td>
+      <td>1889</td>
+      <td>100_to_500</td>
+      <td>less_1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>none</td>
+      <td>...</td>
+      <td>savings_insurance</td>
+      <td>32</td>
+      <td>none</td>
+      <td>own</td>
+      <td>1</td>
+      <td>skilled</td>
+      <td>1</td>
+      <td>none</td>
+      <td>yes</td>
+      <td>No Risk</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>less_0</td>
+      <td>18</td>
+      <td>credits_paid_to_date</td>
+      <td>car_new</td>
+      <td>462</td>
+      <td>less_100</td>
+      <td>1_to_4</td>
+      <td>2</td>
+      <td>female</td>
+      <td>none</td>
+      <td>...</td>
+      <td>savings_insurance</td>
+      <td>37</td>
+      <td>stores</td>
+      <td>own</td>
+      <td>2</td>
+      <td>skilled</td>
+      <td>1</td>
+      <td>none</td>
+      <td>yes</td>
+      <td>No Risk</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>less_0</td>
+      <td>15</td>
+      <td>prior_payments_delayed</td>
+      <td>furniture</td>
+      <td>250</td>
+      <td>less_100</td>
+      <td>1_to_4</td>
+      <td>2</td>
+      <td>male</td>
+      <td>none</td>
+      <td>...</td>
+      <td>real_estate</td>
+      <td>28</td>
+      <td>none</td>
+      <td>own</td>
+      <td>2</td>
+      <td>skilled</td>
+      <td>1</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>No Risk</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0_to_200</td>
+      <td>28</td>
+      <td>credits_paid_to_date</td>
+      <td>retraining</td>
+      <td>3693</td>
+      <td>less_100</td>
+      <td>greater_7</td>
+      <td>3</td>
+      <td>male</td>
+      <td>none</td>
+      <td>...</td>
+      <td>savings_insurance</td>
+      <td>32</td>
+      <td>none</td>
+      <td>own</td>
+      <td>1</td>
+      <td>skilled</td>
+      <td>1</td>
+      <td>none</td>
+      <td>yes</td>
+      <td>No Risk</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>no_checking</td>
+      <td>28</td>
+      <td>prior_payments_delayed</td>
+      <td>education</td>
+      <td>6235</td>
+      <td>500_to_1000</td>
+      <td>greater_7</td>
+      <td>3</td>
+      <td>male</td>
+      <td>none</td>
+      <td>...</td>
+      <td>unknown</td>
+      <td>57</td>
+      <td>none</td>
+      <td>own</td>
+      <td>2</td>
+      <td>skilled</td>
+      <td>1</td>
+      <td>none</td>
+      <td>yes</td>
+      <td>Risk</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Custom-software_specification">Custom software_specification<a class="anchor-link" href="#Custom-software_specification">&#182;</a></h4><p>Create new software specification based on default Python 3.7 environment extended by autoai-libs package.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> PIPELINE_ID=$pipeline_id
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">base_sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s2">&quot;default_py3.7&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14625,55 +14712,15 @@ curl -sk -X POST <span class="se">\</span>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: PIPELINE_ID=366e3603-4dc3-4552-b8d9-9d093dafc44c
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="experiment_details"></a></p>
-<h3 id="Get-experiment-details">Get experiment details<a class="anchor-link" href="#Get-experiment-details">&#182;</a></h3><p>To retrieve AutoAI experiment / optimizer configuration you can follow below cURL GET call.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Pipelines/pipelines_get" 
-target="_blank" rel="noopener no referrer">Get experiment / optimizer information</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/pipelines/</span><span class="nv">$PIPELINE_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> python -m json.tool
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/configs/config.yaml&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s1">&#39;config.yaml&#39;</span><span class="p">):</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14681,114 +14728,13 @@ curl -sk -X GET <span class="se">\</span>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-    &#34;entity&#34;: {
-        &#34;document&#34;: {
-            &#34;doc_type&#34;: &#34;pipeline&#34;,
-            &#34;pipelines&#34;: [
-                {
-                    &#34;id&#34;: &#34;autoai&#34;,
-                    &#34;nodes&#34;: [
-                        {
-                            &#34;id&#34;: &#34;automl&#34;,
-                            &#34;op&#34;: &#34;kube&#34;,
-                            &#34;parameters&#34;: {
-                                &#34;input_file_separator&#34;: &#34;,&#34;,
-                                &#34;optimization&#34;: {
-                                    &#34;compute_pipeline_notebooks_flag&#34;: true,
-                                    &#34;daub_include_only_estimators&#34;: [
-                                        &#34;ExtraTreesClassifierEstimator&#34;,
-                                        &#34;GradientBoostingClassifierEstimator&#34;,
-                                        &#34;LGBMClassifierEstimator&#34;,
-                                        &#34;LogisticRegressionEstimator&#34;,
-                                        &#34;RandomForestClassifierEstimator&#34;,
-                                        &#34;XGBClassifierEstimator&#34;,
-                                        &#34;DecisionTreeClassifierEstimator&#34;
-                                    ],
-                                    &#34;holdout_param&#34;: 0.1,
-                                    &#34;label&#34;: &#34;Risk&#34;,
-                                    &#34;learning_type&#34;: &#34;binary&#34;,
-                                    &#34;max_num_daub_ensembles&#34;: 1.0,
-                                    &#34;run_cognito_flag&#34;: true,
-                                    &#34;scorer_for_ranking&#34;: &#34;roc_auc&#34;
-                                },
-                                &#34;output_logs&#34;: true,
-                                &#34;stage_flag&#34;: true
-                            },
-                            &#34;runtime_ref&#34;: &#34;autoai&#34;,
-                            &#34;type&#34;: &#34;execution_node&#34;
-                        }
-                    ],
-                    &#34;runtime_ref&#34;: &#34;hybrid&#34;
-                }
-            ],
-            &#34;primary_pipeline&#34;: &#34;autoai&#34;,
-            &#34;runtimes&#34;: [
-                {
-                    &#34;app_data&#34;: {
-                        &#34;wml_data&#34;: {
-                            &#34;hardware_spec&#34;: {
-                                &#34;id&#34;: &#34;a6c4923b-b8e4-444c-9f43-8a7ec3020110&#34;,
-                                &#34;name&#34;: &#34;L&#34;
-                            }
-                        }
-                    },
-                    &#34;id&#34;: &#34;autoai&#34;,
-                    &#34;name&#34;: &#34;auto_ai.kb&#34;,
-                    &#34;version&#34;: &#34;3.0.2&#34;
-                }
-            ],
-            &#34;version&#34;: &#34;2.0&#34;
-        }
-    },
-    &#34;metadata&#34;: {
-        &#34;created_at&#34;: &#34;2020-09-15T11:43:31.908Z&#34;,
-        &#34;id&#34;: &#34;366e3603-4dc3-4552-b8d9-9d093dafc44c&#34;,
-        &#34;modified_at&#34;: &#34;2020-09-15T11:43:31.908Z&#34;,
-        &#34;name&#34;: &#34;Credit Risk Prediction - AutoAI&#34;,
-        &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
-    }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="training_connection"></a></p>
-<h3 id="Training-data-connection">Training data connection<a class="anchor-link" href="#Training-data-connection">&#182;</a></h3><p>Define connection information to COS bucket and training data CSV file. This example uses the German Credit Risk dataset.</p>
-<p>The dataset can be downloaded from <a href="https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/credit_risk/credit_risk_training_light.csv">here</a>. You can also download it to local filesystem by running the cell below.</p>
-<p><strong>Action</strong>: Upload training data to COS bucket and enter location information in the next cURL examples.</p>
-
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/credit_risk/credit_risk_training_light.csv <span class="se">\</span>
-     -O credit_risk_training_light.csv
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat config.yaml
 </pre></div>
 
      </div>
@@ -14807,23 +14753,64 @@ wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/dat
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>--2020-09-15 13:43:40--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/credit_risk/credit_risk_training_light.csv
-Resolving github.com... 140.82.121.4
-Connecting to github.com|140.82.121.4|:443... connected.
-HTTP request sent, awaiting response... 302 Found
-Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/data/credit_risk/credit_risk_training_light.csv [following]
---2020-09-15 13:43:41--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/data/credit_risk/credit_risk_training_light.csv
-Resolving raw.githubusercontent.com... 199.232.16.133
-Connecting to raw.githubusercontent.com|199.232.16.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 34787 (34K) [text/plain]
-Saving to: &#39;credit_risk_training_light.csv&#39;
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>name: python37
+channels:
+  - defaults
+dependencies:
+  - pip:
+    - autoai-libs
 
-     0K .......... .......... .......... ...                  100%  574K=0.06s
+prefix: /opt/anaconda3/envs/python37</pre>
+</div>
+</div>
 
-2020-09-15 13:43:41 (574 KB/s) - &#39;credit_risk_training_light.csv&#39; saved [34787/34787]
+</div>
 
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>config.yaml</code> file describes details of package extention. Now you need to store new package extention with APIClient.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_prop_pkg_extn</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;scikt with autoai-libs&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Extension for autoai-libs&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;conda_yml&quot;</span>
+<span class="p">}</span>
+
+<span class="n">pkg_extn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_prop_pkg_extn</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;config.yaml&quot;</span><span class="p">)</span>
+<span class="n">pkg_extn_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">pkg_extn_details</span><span class="p">)</span>
+<span class="n">pkg_extn_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">get_href</span><span class="p">(</span><span class="n">pkg_extn_details</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Creating package extensions
+SUCCESS
 </pre>
 </div>
 </div>
@@ -14835,46 +14822,24 @@ Saving to: &#39;credit_risk_training_light.csv&#39;
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="cos_token"></a></p>
-<h3 id="Get-COS-token">Get COS token<a class="anchor-link" href="#Get-COS-token">&#182;</a></h3><p>Retrieve COS token for further authentication calls.</p>
-
+<h4 id="Create-new-software-specification-and-add-created-package-extention-to-it.">Create new software specification and add created package extention to it.<a class="anchor-link" href="#Create-new-software-specification-and-add-created-package-extention-to-it.">&#182;</a></h4>
 </div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-token" 
-target="_blank" rel="noopener no referrer">Retrieve COS authentication token</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out cos_token
-
-curl -s -X <span class="s2">&quot;POST&quot;</span> <span class="s2">&quot;</span><span class="nv">$AUTH_ENDPOINT</span><span class="s2">&quot;</span> <span class="se">\</span>
-     -H <span class="s1">&#39;Accept: application/json&#39;</span> <span class="se">\</span>
-     -H <span class="s1">&#39;Content-Type: application/x-www-form-urlencoded&#39;</span> <span class="se">\</span>
-     --data-urlencode <span class="s2">&quot;apikey=</span><span class="nv">$COS_API_KEY</span><span class="s2">&quot;</span> <span class="se">\</span>
-     --data-urlencode <span class="s2">&quot;response_type=cloud_iam&quot;</span> <span class="se">\</span>
-     --data-urlencode <span class="s2">&quot;grant_type=urn:ibm:params:oauth:grant-type:apikey&quot;</span> <span class="se">\</span>
-     <span class="p">|</span> cut -d <span class="s1">&#39;&quot;&#39;</span> -f <span class="m">4</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> COS_TOKEN=$cos_token
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_prop_sw_spec</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Mitigated AutoAI bases on scikit spec&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Software specification for scikt with autoai-libs&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">BASE_SOFTWARE_SPECIFICATION</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;guid&quot;</span><span class="p">:</span> <span class="n">base_sw_spec_uid</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">sw_spec_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_prop_sw_spec</span><span class="p">)</span>
+<span class="n">sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">sw_spec_details</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">add_package_extension</span><span class="p">(</span><span class="n">sw_spec_uid</span><span class="p">,</span> <span class="n">pkg_extn_uid</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14894,157 +14859,98 @@ curl -s -X <span class="s2">&quot;POST&quot;</span> <span class="s2">&quot;</spa
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: COS_TOKEN=eyJraWQiOiIyMDIwMDgyMzE4MzIiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJpYW0tU2VydmljZUlkLTU3MzMwOTM3LWJkNTQtNDYyYi04ODUxLWY3OTFhZDYyYzY1OSIsImlkIjoiaWFtLVNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJyZWFsbWlkIjoiaWFtIiwiaWRlbnRpZmllciI6IlNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJuYW1lIjoiY3JlZGVudGlhbHNfMSIsInN1YiI6IlNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJzdWJfdHlwZSI6IlNlcnZpY2VJZCIsImFjY291bnQiOnsidmFsaWQiOnRydWUsImJzcyI6ImUwZjdlYzNhYzFiMjRlYzlhZTc3MWVmZDc3MjUzOGEyIiwiZnJvemVuIjp0cnVlfSwiaWF0IjoxNjAwMTcwMjIwLCJleHAiOjE2MDAxNzM4MjAsImlzcyI6Imh0dHBzOi8vaWFtLmNsb3VkLmlibS5jb20vaWRlbnRpdHkiLCJncmFudF90eXBlIjoidXJuOmlibTpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTphcGlrZXkiLCJzY29wZSI6ImlibSBvcGVuaWQiLCJjbGllbnRfaWQiOiJkZWZhdWx0IiwiYWNyIjoxLCJhbXIiOlsicHdkIl19.bb2asi8pl7rPmjivTBPA3Ln-d6aVUCviESoLTU0JIvxjyyKaD54w0rakXb2xqay7PkgiGgvuoLdHy9FV4fsc2m-0lpWeW-2u-nxDPIv6J-Sd3MIestN3ZhAsd1bJ_LGnGKNj1L6saflWaDzaZIlZkMImeNnzT84YPfjycm7KggdG7io21sdBEYoWcnwVAp050kh1VhSd5vfGmZecpvbWu_Z6sY151qSBd9Icwb8XO4VFDVfNSN4xcH6sLN-speIYD7o-FRNvyqY_qswUiy0LgKurVVBH3K5st4gWe6eA_3N8iCHICvzPsODXaHYsMbnbFVo0ZtYY5qIGL7CORyqaFA
+<pre>SUCCESS
 </pre>
 </div>
 </div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="cos_upload"></a></p>
-<h3 id="Upload-file-to-COS">Upload file to COS<a class="anchor-link" href="#Upload-file-to-COS">&#182;</a></h3><p>Upload your local dataset into your COS bucket</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://cloud.ibm.com/docs/cloud-object-storage?topic=cloud-object-storage-curl#curl-put-object" 
-target="_blank" rel="noopener no referrer">Upload file to COS</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-curl -sk -X PUT <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$COS_TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/octet-stream&quot;</span> <span class="se">\</span>
-    --data-binary <span class="s2">&quot;@credit_risk_training_light.csv&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">/</span><span class="nv">$COS_BUCKET</span><span class="s2">/credit_risk_training_light.csv&quot;</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>There should be an empty response when upload finished succesfully.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="run"></a></p>
-<h2 id="3.-Experiment-run">3. Experiment run<a class="anchor-link" href="#3.-Experiment-run">&#182;</a></h2><p>This section provides samples about how to trigger AutoAI experiment via cURL calls.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Trainings/trainings_create" 
-target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI experiment</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_payload
-
-<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;training_data_references&quot;: [{&quot;type&quot;: &quot;s3&quot;, &quot;id&quot;: &quot;credit_risk_training_light.csv&quot;, &quot;connection&quot;: {&quot;endpoint_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;path&quot;: &quot;credit_risk_training_light.csv&quot;}}], &quot;results_reference&quot;: {&quot;type&quot;: &quot;s3&quot;, &quot;id&quot;: &quot;autoai_results&quot;, &quot;connection&quot;: {&quot;endpoint_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;path&quot;: &quot;.&quot;}}, &quot;tags&quot;: [{&quot;value&quot;: &quot;autoai&quot;}], &quot;pipeline&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$PIPELINE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span> <span class="p">|</span> python -m json.tool
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> TRAINING_PAYLOAD=$training_payload
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TRAINING_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;training_data_references&#34;: [
-        {
-            &#34;type&#34;: &#34;s3&#34;,
-            &#34;id&#34;: &#34;credit_risk_training_light.csv&#34;,
-            &#34;connection&#34;: {
-                &#34;endpoint_url&#34;: &#34;***&#34;,
-                &#34;access_key_id&#34;: &#34;***&#34;,
-                &#34;secret_access_key&#34;: &#34;***&#34;
-            },
-            &#34;location&#34;: {
-                &#34;bucket&#34;: &#34;***&#34;,
-                &#34;path&#34;: &#34;credit_risk_training_light.csv&#34;
-            }
-        }
-    ],
-    &#34;results_reference&#34;: {
-        &#34;type&#34;: &#34;s3&#34;,
-        &#34;id&#34;: &#34;autoai_results&#34;,
-        &#34;connection&#34;: {
-            &#34;endpoint_url&#34;: &#34;***&#34;,
-            &#34;access_key_id&#34;: &#34;***&#34;,
-            &#34;secret_access_key&#34;: &#34;***&#34;
-        },
-        &#34;location&#34;: {
-            &#34;bucket&#34;: &#34;***&#34;,
-            &#34;path&#34;: &#34;.&#34;
-        }
-    },
-    &#34;tags&#34;: [
-        {
-            &#34;value&#34;: &#34;autoai&#34;
-        }
-    ],
-    &#34;pipeline&#34;: {
-        &#34;href&#34;: &#34;/v4/pipelines/366e3603-4dc3-4552-b8d9-9d093dafc44c&#34;
-    }
-}
-</pre>
-</div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;SUCCESS&#39;</pre>
 </div>
 
 </div>
 
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Get-the-details-of-created-software-specification">Get the details of created software specification<a class="anchor-link" href="#Get-the-details-of-created-software-specification">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">sw_spec_uid</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Load-the-AutoAI-model-saved-as-scikit-learn-pipeline.">Load the AutoAI model saved as <code>scikit-learn</code> pipeline.<a class="anchor-link" href="#Load-the-AutoAI-model-saved-as-scikit-learn-pipeline.">&#182;</a></h4><p>Depending on estimator type in autoai model pipeline may consist models from following frameworks:</p>
+<ul>
+<li><code>xgboost</code></li>
+<li><code>lightgbm</code></li>
+<li><code>scikit-learn</code></li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">load</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Store-the-model">Store the model<a class="anchor-link" href="#Store-the-model">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_props</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;AutoAI model&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;scikit-learn_0.23&#39;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">sw_spec_uid</span>
+    
+<span class="p">}</span>
+<span class="n">feature_vector</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15053,15 +14959,14 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_id
-
-curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    --data <span class="s2">&quot;</span><span class="nv">$TRAINING_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/trainings?version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> awk -F<span class="s1">&#39;&quot;id&quot;:&#39;</span> <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> cut -c2-37
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span> 
+    <span class="n">meta_props</span><span class="o">=</span><span class="n">model_props</span><span class="p">,</span>
+    <span class="n">training_data</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">training_target</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_vector</span><span class="p">,</span>
+    <span class="n">label_column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Risk&#39;</span><span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15069,13 +14974,13 @@ curl -sk -X POST <span class="se">\</span>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> TRAINING_ID=$training_id
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">published_model</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15083,71 +14988,18 @@ curl -sk -X POST <span class="se">\</span>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TRAINING_ID=75589ec7-738c-4460-bf12-9c94cde3929d
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="training_details"></a></p>
-<h3 id="Get-training-details">Get training details<a class="anchor-link" href="#Get-training-details">&#182;</a></h3><p>Training is an asynchronous endpoint. In case you want to monitor training status and details,
-you need to use a GET method and specify which training you want to monitor by usage of training ID.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Trainings/trainings_get" 
-target="_blank" rel="noopener no referrer">Get information about training job</a></p>
-
-</div>
-</div>%%bash
-
-curl -sk -X GET \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    "$WML_ENDPOINT_URL/ml/v4/trainings/$TRAINING_ID?space_id=$SPACE_ID&version=2020-08-01" \
-    | python -m json.tool
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Get-training-status">Get training status<a class="anchor-link" href="#Get-training-status">&#182;</a></h3>
+<h4 id="Get-model-details">Get model details<a class="anchor-link" href="#Get-model-details">&#182;</a></h4>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-<span class="nv">STATUS</span><span class="o">=</span><span class="k">$(</span>curl -sk -X GET<span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/trainings/</span><span class="nv">$TRAINING_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span><span class="k">)</span>
-    
-<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">#*state</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
-<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
-<span class="nb">echo</span> <span class="nv">$STATUS</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">published_model_uid</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15163,13 +15015,53 @@ curl -sk -X GET \
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>completed
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;entity&#39;: {&#39;label_column&#39;: &#39;Risk&#39;,
+  &#39;software_spec&#39;: {&#39;id&#39;: &#39;26e0f147-c5e4-4c38-800e-fe2495db0313&#39;,
+   &#39;name&#39;: &#39;Mitigated AutoAI bases on scikit spec&#39;},
+  &#39;training_data_references&#39;: [{&#39;connection&#39;: {&#39;access_key_id&#39;: &#39;not_applicable&#39;,
+     &#39;endpoint_url&#39;: &#39;not_applicable&#39;,
+     &#39;secret_access_key&#39;: &#39;not_applicable&#39;},
+    &#39;id&#39;: &#39;1&#39;,
+    &#39;location&#39;: {},
+    &#39;schema&#39;: {&#39;fields&#39;: [{&#39;name&#39;: &#39;CheckingStatus&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;LoanDuration&#39;, &#39;type&#39;: &#39;int&#39;},
+      {&#39;name&#39;: &#39;CreditHistory&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;LoanPurpose&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;LoanAmount&#39;, &#39;type&#39;: &#39;int&#39;},
+      {&#39;name&#39;: &#39;ExistingSavings&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;EmploymentDuration&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;InstallmentPercent&#39;, &#39;type&#39;: &#39;int&#39;},
+      {&#39;name&#39;: &#39;Sex&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;OthersOnLoan&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;CurrentResidenceDuration&#39;, &#39;type&#39;: &#39;int&#39;},
+      {&#39;name&#39;: &#39;OwnsProperty&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;Age&#39;, &#39;type&#39;: &#39;int&#39;},
+      {&#39;name&#39;: &#39;InstallmentPlans&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;Housing&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;ExistingCreditsCount&#39;, &#39;type&#39;: &#39;int&#39;},
+      {&#39;name&#39;: &#39;Job&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;Dependents&#39;, &#39;type&#39;: &#39;int&#39;},
+      {&#39;name&#39;: &#39;Telephone&#39;, &#39;type&#39;: &#39;str&#39;},
+      {&#39;name&#39;: &#39;ForeignWorker&#39;, &#39;type&#39;: &#39;str&#39;}],
+     &#39;id&#39;: &#39;1&#39;,
+     &#39;type&#39;: &#39;ndarray&#39;},
+    &#39;type&#39;: &#39;s3&#39;}],
+  &#39;type&#39;: &#39;scikit-learn_0.23&#39;},
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2020-12-10T12:32:35.495Z&#39;,
+  &#39;id&#39;: &#39;3ceddf9e-dd23-4641-ae18-9deea936d3c8&#39;,
+  &#39;modified_at&#39;: &#39;2020-12-10T12:32:38.925Z&#39;,
+  &#39;name&#39;: &#39;AutoAI model&#39;,
+  &#39;owner&#39;: &#39;IBMid-5500067NJD&#39;,
+  &#39;space_id&#39;: &#39;d44bbfd5-3d6f-4a61-b6fd-07625244c896&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
 </div>
+
 </div>
 
 </div>
@@ -15179,29 +15071,7 @@ curl -sk -X GET \
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Please make sure that training is completed before you go to the next sections.
-Monitor <code>state</code> of your training by running above cell couple of times.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="runs"></a></p>
-<h2 id="4.-Historical-runs">4. Historical runs<a class="anchor-link" href="#4.-Historical-runs">&#182;</a></h2><p>In this section you will see cURL examples describing how to get historical training runs information.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Output should be similar to the output from training creation but you should see more trainings entries.<br>
-Listing trainings:</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Trainings/trainings_list" 
-target="_blank" rel="noopener no referrer">Get list of historical training jobs information</a></p>
+<p><strong>Note:</strong> You can see that model is successfully stored in Watson Machine Learning Service.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15210,16 +15080,7 @@ target="_blank" rel="noopener no referrer">Get list of historical training jobs 
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-<span class="nv">HISTORICAL_TRAINING_LIMIT_TO_GET</span><span class="o">=</span><span class="m">2</span>
-
-curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/trainings?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;limit=</span><span class="nv">$HISTORICAL_TRAINING_LIMIT_TO_GET</span><span class="s2">&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> python -m json.tool
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">list_models</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15230,84 +15091,22 @@ curl -sk -X GET <span class="se">\</span>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="training_cancel"></a></p>
-<h3 id="Cancel-training-run">Cancel training run<a class="anchor-link" href="#Cancel-training-run">&#182;</a></h3><p><strong>Tip:</strong> If you want to cancel your training, please convert below cell to <code>code</code>, specify training ID and run.</p>
+<p><a id="deploy"></a></p>
+<h2 id="3.-Create-online-deployment">3. Create online deployment<a class="anchor-link" href="#3.-Create-online-deployment">&#182;</a></h2><p>You can use commands bellow to create online deployment for stored model (web service).</p>
 
 </div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Trainings/trainings_delete" 
-target="_blank" rel="noopener no referrer">Canceling training</a></p>
-
-</div>
-</div>%%bash
-
-TRAINING_ID_TO_CANCEL=...
-
-curl -sk -X DELETE \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    "$WML_ENDPOINT_URL/ml/v4/trainings/$TRAINING_ID_TO_CANCEL?space_id=$SPACE_ID&version=2020-08-01"
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<hr>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="deploy_and_score"></a></p>
-<h2 id="5.-Deploy-and-Score">5. Deploy and Score<a class="anchor-link" href="#5.-Deploy-and-Score">&#182;</a></h2><p>In this section you will learn how to deploy and score pipeline model as webservice using WML instance.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Before deployment creation, you need store your model in WML repository.
-Please see below cURL call example how to do it. Remember that you need to
-specify where your chosen model is stored in COS.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="model_store"></a></p>
-<h3 id="Store-AutoAI-model">Store AutoAI model<a class="anchor-link" href="#Store-AutoAI-model">&#182;</a></h3><p>Store information about your model to WML repository.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Models/models_create" 
-target="_blank" rel="noopener no referrer">Model storing</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_payload
-
-<span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;autoai_credit_risk_model&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;type&quot;: &quot;wml-hybrid_0.1&quot;, &quot;software_spec&quot;: {&quot;name&quot;: &quot;hybrid_0.1&quot;}, &quot;content_location&quot;: { &quot;type&quot;: &quot;s3&quot;, &quot;contents&quot;: [ { &quot;content_format&quot;: &quot;native&quot;, &quot;file_name&quot;: &quot;pipeline_model.json&quot;, &quot;location&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$TRAINING_ID</span><span class="s2">/assets/</span><span class="si">${</span><span class="nv">TRAINING_ID</span><span class="si">}</span><span class="s2">_P1_global_output/resources/wml_model/pipeline_model.json&quot;</span><span class="s1">&#39;&quot;}, { &quot;content_format&quot;: &quot;pipeline-node&quot;, &quot;file_name&quot;: &quot;P1_automl.zip&quot;, &quot;location&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$TRAINING_ID</span><span class="s2">/assets/</span><span class="si">${</span><span class="nv">TRAINING_ID</span><span class="si">}</span><span class="s2">_P1_global_output/resources/wml_model/P1_automl.zip&quot;</span><span class="s1">&#39;&quot;, &quot;pipeline_node_id&quot;: &quot;automl&quot;}],&quot;connection&quot;: {&quot;endpoint_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$MODEL_PAYLOAD</span> <span class="p">|</span> python -m json.tool
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> MODEL_PAYLOAD=$model_payload
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Deployment of AutoAI model.&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="n">created_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">published_model_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15327,39 +15126,24 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: MODEL_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;name&#34;: &#34;autoai_credit_risk_model&#34;,
-    &#34;description&#34;: &#34;This is description&#34;,
-    &#34;type&#34;: &#34;wml-hybrid_0.1&#34;,
-    &#34;software_spec&#34;: {
-        &#34;name&#34;: &#34;hybrid_0.1&#34;
-    },
-    &#34;content_location&#34;: {
-        &#34;type&#34;: &#34;s3&#34;,
-        &#34;contents&#34;: [
-            {
-                &#34;content_format&#34;: &#34;native&#34;,
-                &#34;file_name&#34;: &#34;pipeline_model.json&#34;,
-                &#34;location&#34;: &#34;75589ec7-738c-4460-bf12-9c94cde3929d/assets/75589ec7-738c-4460-bf12-9c94cde3929d_P1_global_output/resources/wml_model/pipeline_model.json&#34;
-            },
-            {
-                &#34;content_format&#34;: &#34;pipeline-node&#34;,
-                &#34;file_name&#34;: &#34;P1_automl.zip&#34;,
-                &#34;location&#34;: &#34;75589ec7-738c-4460-bf12-9c94cde3929d/assets/75589ec7-738c-4460-bf12-9c94cde3929d_P1_global_output/resources/wml_model/P1_automl.zip&#34;,
-                &#34;pipeline_node_id&#34;: &#34;automl&#34;
-            }
-        ],
-        &#34;connection&#34;: {
-            &#34;endpoint_url&#34;: &#34;***&#34;,
-            &#34;access_key_id&#34;: &#34;***&#34;,
-            &#34;secret_access_key&#34;: &#34;***&#34;
-        },
-        &#34;location&#34;: {
-            &#34;bucket&#34;: &#34;***&#34;
-        }
-    }
-}
+<pre>
+
+#######################################################################################
+
+Synchronous deployment creation for uid: &#39;3ceddf9e-dd23-4641-ae18-9deea936d3c8&#39; started
+
+#######################################################################################
+
+
+initializing........................................................................
+ready
+
+
+------------------------------------------------------------------------------------------------
+Successfully finished deployment creation, deployment_uid=&#39;10fb561b-b198-4ebe-8024-4723d5f5725d&#39;
+------------------------------------------------------------------------------------------------
+
+
 </pre>
 </div>
 </div>
@@ -15368,35 +15152,20 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_id
-
-curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    --data <span class="s2">&quot;</span><span class="nv">$MODEL_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/models?version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 2p
-</pre></div>
-
-     </div>
 </div>
-</div>
-</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Get deployment id.</p>
 
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> MODEL_ID=$model_id
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">created_deployment</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15416,7 +15185,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: MODEL_ID=27c9eb97-28f3-48a4-862d-1227f0fb0c03
+<pre>10fb561b-b198-4ebe-8024-4723d5f5725d
 </pre>
 </div>
 </div>
@@ -15428,29 +15197,23 @@ curl -sk -X POST <span class="se">\</span>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="model_content_download"></a></p>
-<h3 id="Download-model-content">Download model content<a class="anchor-link" href="#Download-model-content">&#182;</a></h3><p>If you want to download your saved model, please make the following call.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Models/models_filtered_download" 
-target="_blank" rel="noopener no referrer">Download model content</a></p>
+<p><a id="score"></a></p>
+<h2 id="4.-Scoring">4. Scoring<a class="anchor-link" href="#4.-Scoring">&#182;</a></h2><p>You can send new scoring records to web-service deployment using <code>score</code> method.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>
 
-curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --output <span class="s2">&quot;model.tar.gz&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/download?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span>
+<span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;input_data&quot;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
 </pre></div>
 
      </div>
@@ -15461,10 +15224,11 @@ curl -sk -X GET <span class="se">\</span>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls -l model.tar.gz
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
+<span class="n">predictions</span>
 </pre></div>
 
      </div>
@@ -15480,150 +15244,20 @@ curl -sk -X GET <span class="se">\</span>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>-rw-r--r--  1 jansoltysik  staff  297 Sep 15 13:54 model.tar.gz
-</pre>
-</div>
-</div>
 
-</div>
 
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id=""><a id="deployment_creation" /><a class="anchor-link" href="#">&#182;</a></h2><h3 id="Deployment-creation">Deployment creation<a class="anchor-link" href="#Deployment-creation">&#182;</a></h3><p>An AutoAI Batch deployment creation is presented below.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Deployments/deployments_create" 
-target="_blank" rel="noopener no referrer">Create deployment</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_payload
-
-<span class="nv">DFEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;AutoAI deployment&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;batch&quot;: {}, &quot;hybrid_pipeline_hardware_specs&quot;: [{&quot;node_runtime_id&quot;: &quot;auto_ai.kb&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;M&quot;}}],&quot;asset&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$DFEPLOYMENT_PAYLOAD</span> <span class="p">|</span> python -m json.tool
-</pre></div>
-
-     </div>
-</div>
-</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;predictions&#39;: [{&#39;fields&#39;: [&#39;prediction&#39;, &#39;probability&#39;],
+   &#39;values&#39;: [[&#39;No Risk&#39;, [0.8386276960372925, 0.16137228906154633]],
+    [&#39;No Risk&#39;, [0.9069419503211975, 0.0930580273270607]],
+    [&#39;No Risk&#39;, [0.9069419503211975, 0.0930580273270607]],
+    [&#39;No Risk&#39;, [0.8035027980804443, 0.19649720191955566]],
+    [&#39;No Risk&#39;, [0.6937689185142517, 0.3062310814857483]]]}]}</pre>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> DFEPLOYMENT_PAYLOAD=$deployment_payload
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: DFEPLOYMENT_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;name&#34;: &#34;AutoAI deployment&#34;,
-    &#34;description&#34;: &#34;This is description&#34;,
-    &#34;batch&#34;: {},
-    &#34;hybrid_pipeline_hardware_specs&#34;: [
-        {
-            &#34;node_runtime_id&#34;: &#34;auto_ai.kb&#34;,
-            &#34;hardware_spec&#34;: {
-                &#34;name&#34;: &#34;M&#34;
-            }
-        }
-    ],
-    &#34;asset&#34;: {
-        &#34;id&#34;: &#34;27c9eb97-28f3-48a4-862d-1227f0fb0c03&#34;
-    }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_id
-
-curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    --data <span class="s2">&quot;</span><span class="nv">$DFEPLOYMENT_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/deployments?version=2020-08-01&quot;</span> <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 2p
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> DEPLOYMENT_ID=$deployment_id
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: DEPLOYMENT_ID=a2a56ec9-d2a1-45b3-b316-1bcfe81dba77
-</pre>
-</div>
 </div>
 
 </div>
@@ -15633,604 +15267,42 @@ curl -sk -X POST <span class="se">\</span>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="deployment_details"></a></p>
-<h3 id="Get-deployment-details">Get deployment details<a class="anchor-link" href="#Get-deployment-details">&#182;</a></h3><p>As deployment API is asynchronous, please make sure your deployment is in <code>ready</code> state before going to the next points.</p>
-
+<p><a id="cleanup"></a></p>
+<h2 id="5.-Clean-up">5. Clean up<a class="anchor-link" href="#5.-Clean-up">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Deployments/deployments_get" 
-target="_blank" rel="noopener no referrer">Get deployment details</a></p>
+<p>If you want to clean up all created assets:</p>
+<ul>
+<li>experiments</li>
+<li>trainings</li>
+<li>pipelines</li>
+<li>model definitions</li>
+<li>models</li>
+<li>functions</li>
+<li>deployments</li>
+</ul>
+<p>see the steps in this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd3.5/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> python -m json.tool
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-    &#34;entity&#34;: {
-        &#34;asset&#34;: {
-            &#34;id&#34;: &#34;27c9eb97-28f3-48a4-862d-1227f0fb0c03&#34;
-        },
-        &#34;batch&#34;: {},
-        &#34;custom&#34;: {},
-        &#34;deployed_asset_type&#34;: &#34;model&#34;,
-        &#34;description&#34;: &#34;This is description&#34;,
-        &#34;hybrid_pipeline_hardware_specs&#34;: [
-            {
-                &#34;hardware_spec&#34;: {
-                    &#34;name&#34;: &#34;M&#34;
-                },
-                &#34;node_runtime_id&#34;: &#34;auto_ai.kb&#34;
-            }
-        ],
-        &#34;name&#34;: &#34;AutoAI deployment&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-        &#34;status&#34;: {
-            &#34;state&#34;: &#34;ready&#34;
-        }
-    },
-    &#34;metadata&#34;: {
-        &#34;created_at&#34;: &#34;2020-09-15T11:54:27.598Z&#34;,
-        &#34;description&#34;: &#34;This is description&#34;,
-        &#34;id&#34;: &#34;a2a56ec9-d2a1-45b3-b316-1bcfe81dba77&#34;,
-        &#34;modified_at&#34;: &#34;2020-09-15T11:54:27.598Z&#34;,
-        &#34;name&#34;: &#34;AutoAI deployment&#34;,
-        &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
-    }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="batch_score"></a></p>
-<h3 id="Score-your-Batch-deployment">Score your Batch deployment<a class="anchor-link" href="#Score-your-Batch-deployment">&#182;</a></h3><p>Scoring for Batch deployment is done by creating <code>jobs</code>. User can specify job payload as a json or as data connection to eg. COS.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Deployment%20Jobs/deployment_jobs_create" 
-target="_blank" rel="noopener no referrer">Create deployment job</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out job_payload
-
-<span class="nv">JOB_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;AutoAI job&quot;, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;deployment&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;hybrid_pipeline_hardware_specs&quot;: [{&quot;node_runtime_id&quot;: &quot;auto_ai.kb&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;M&quot;}}], &quot;scoring&quot;: {&quot;input_data&quot;: [{&quot;fields&quot;: [&quot;CheckingStatus&quot;, &quot;LoanDuration&quot;, &quot;CreditHistory&quot;, &quot;LoanPurpose&quot;, &quot;LoanAmount&quot;, &quot;ExistingSavings&quot;, &quot;EmploymentDuration&quot;, &quot;InstallmentPercent&quot;, &quot;Sex&quot;, &quot;OthersOnLoan&quot;, &quot;CurrentResidenceDuration&quot;, &quot;OwnsProperty&quot;, &quot;Age&quot;, &quot;InstallmentPlans&quot;, &quot;Housing&quot;, &quot;ExistingCreditsCount&quot;, &quot;Job&quot;, &quot;Dependents&quot;, &quot;Telephone&quot;, &quot;ForeignWorker&quot;], &quot;values&quot;: [[&quot;less_0&quot;, 6, &quot;all_credits_paid_back&quot;, &quot;car_used&quot;, 250, &quot;less_100&quot;, &quot;1_to_4&quot;, 2, &quot;male&quot;, &quot;none&quot;, 2, &quot;savings_insurance&quot;, 28, &quot;stores&quot;, &quot;rent&quot;, 1, &quot;skilled&quot;, 1, &quot;none&quot;, &quot;yes&quot;]]}]}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$JOB_PAYLOAD</span> <span class="p">|</span> python -m json.tool
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> JOB_PAYLOAD=$job_payload
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: JOB_PAYLOAD={
-    &#34;name&#34;: &#34;AutoAI job&#34;,
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;deployment&#34;: {
-        &#34;id&#34;: &#34;a2a56ec9-d2a1-45b3-b316-1bcfe81dba77&#34;
-    },
-    &#34;hybrid_pipeline_hardware_specs&#34;: [
-        {
-            &#34;node_runtime_id&#34;: &#34;auto_ai.kb&#34;,
-            &#34;hardware_spec&#34;: {
-                &#34;name&#34;: &#34;M&#34;
-            }
-        }
-    ],
-    &#34;scoring&#34;: {
-        &#34;input_data&#34;: [
-            {
-                &#34;fields&#34;: [
-                    &#34;CheckingStatus&#34;,
-                    &#34;LoanDuration&#34;,
-                    &#34;CreditHistory&#34;,
-                    &#34;LoanPurpose&#34;,
-                    &#34;LoanAmount&#34;,
-                    &#34;ExistingSavings&#34;,
-                    &#34;EmploymentDuration&#34;,
-                    &#34;InstallmentPercent&#34;,
-                    &#34;Sex&#34;,
-                    &#34;OthersOnLoan&#34;,
-                    &#34;CurrentResidenceDuration&#34;,
-                    &#34;OwnsProperty&#34;,
-                    &#34;Age&#34;,
-                    &#34;InstallmentPlans&#34;,
-                    &#34;Housing&#34;,
-                    &#34;ExistingCreditsCount&#34;,
-                    &#34;Job&#34;,
-                    &#34;Dependents&#34;,
-                    &#34;Telephone&#34;,
-                    &#34;ForeignWorker&#34;
-                ],
-                &#34;values&#34;: [
-                    [
-                        &#34;less_0&#34;,
-                        6,
-                        &#34;all_credits_paid_back&#34;,
-                        &#34;car_used&#34;,
-                        250,
-                        &#34;less_100&#34;,
-                        &#34;1_to_4&#34;,
-                        2,
-                        &#34;male&#34;,
-                        &#34;none&#34;,
-                        2,
-                        &#34;savings_insurance&#34;,
-                        28,
-                        &#34;stores&#34;,
-                        &#34;rent&#34;,
-                        1,
-                        &#34;skilled&#34;,
-                        1,
-                        &#34;none&#34;,
-                        &#34;yes&#34;
-                    ]
-                ]
-            }
-        ]
-    }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out job_id
-
-curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    --data <span class="s2">&quot;</span><span class="nv">$JOB_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/deployment_jobs?version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 2p
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> JOB_ID=$job_id
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: JOB_ID=9d4d4f6c-ad44-416c-9992-2871d8ff3970
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="job_list"></a></p>
-<h3 id="Listing-all-Batch-jobs">Listing all Batch jobs<a class="anchor-link" href="#Listing-all-Batch-jobs">&#182;</a></h3>
-</div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Deployment%20Jobs/deployment_jobs_list" 
-target="_blank" rel="noopener no referrer">List jobs</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/deployment_jobs?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> python -m json.tool
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="job_get"></a></p>
-<h3 id="Get-particular-job-details">Get particular job details<a class="anchor-link" href="#Get-particular-job-details">&#182;</a></h3>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Deployment%20Jobs/deployment_jobs_get" 
-target="_blank" rel="noopener no referrer">Get job details</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/deployment_jobs/</span><span class="nv">$JOB_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> python -m json.tool
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-    &#34;entity&#34;: {
-        &#34;deployment&#34;: {
-            &#34;id&#34;: &#34;a2a56ec9-d2a1-45b3-b316-1bcfe81dba77&#34;
-        },
-        &#34;scoring&#34;: {
-            &#34;input_data&#34;: [
-                {
-                    &#34;fields&#34;: [
-                        &#34;CheckingStatus&#34;,
-                        &#34;LoanDuration&#34;,
-                        &#34;CreditHistory&#34;,
-                        &#34;LoanPurpose&#34;,
-                        &#34;LoanAmount&#34;,
-                        &#34;ExistingSavings&#34;,
-                        &#34;EmploymentDuration&#34;,
-                        &#34;InstallmentPercent&#34;,
-                        &#34;Sex&#34;,
-                        &#34;OthersOnLoan&#34;,
-                        &#34;CurrentResidenceDuration&#34;,
-                        &#34;OwnsProperty&#34;,
-                        &#34;Age&#34;,
-                        &#34;InstallmentPlans&#34;,
-                        &#34;Housing&#34;,
-                        &#34;ExistingCreditsCount&#34;,
-                        &#34;Job&#34;,
-                        &#34;Dependents&#34;,
-                        &#34;Telephone&#34;,
-                        &#34;ForeignWorker&#34;
-                    ],
-                    &#34;values&#34;: [
-                        [
-                            &#34;less_0&#34;,
-                            6,
-                            &#34;all_credits_paid_back&#34;,
-                            &#34;car_used&#34;,
-                            250,
-                            &#34;less_100&#34;,
-                            &#34;1_to_4&#34;,
-                            2,
-                            &#34;male&#34;,
-                            &#34;none&#34;,
-                            2,
-                            &#34;savings_insurance&#34;,
-                            28,
-                            &#34;stores&#34;,
-                            &#34;rent&#34;,
-                            1,
-                            &#34;skilled&#34;,
-                            1,
-                            &#34;none&#34;,
-                            &#34;yes&#34;
-                        ]
-                    ]
-                }
-            ],
-            &#34;predictions&#34;: [
-                {
-                    &#34;fields&#34;: [
-                        &#34;prediction&#34;,
-                        &#34;probability&#34;
-                    ],
-                    &#34;values&#34;: [
-                        [
-                            &#34;Risk&#34;,
-                            [
-                                0.3,
-                                0.7
-                            ]
-                        ]
-                    ]
-                }
-            ],
-            &#34;status&#34;: {
-                &#34;completed_at&#34;: &#34;2020-09-15T11:55:19.000Z&#34;,
-                &#34;running_at&#34;: &#34;2020-09-15T11:55:14.000Z&#34;,
-                &#34;state&#34;: &#34;completed&#34;
-            }
-        }
-    },
-    &#34;metadata&#34;: {
-        &#34;created_at&#34;: &#34;2020-09-15T11:54:41.424Z&#34;,
-        &#34;id&#34;: &#34;9d4d4f6c-ad44-416c-9992-2871d8ff3970&#34;,
-        &#34;modified_at&#34;: &#34;2020-09-15T11:55:19.492Z&#34;,
-        &#34;name&#34;: &#34;AutoAI job&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
-    }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="job_cancel"></a></p>
-<h3 id="Cancel-job">Cancel job<a class="anchor-link" href="#Cancel-job">&#182;</a></h3><p><strong>Tip:</strong> You can cancel running job by calling delete method.
-Just convert below cell to <code>code</code> and run it.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Deployment%20Jobs/deployment_jobs_delete" 
-target="_blank" rel="noopener no referrer">Cancel job</a></p>
-
-</div>
-</div>%%bash
-
-curl -sk -X DELETE \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    "$WML_ENDPOINT_URL/ml/v4/deployment_jobs/$JOB_ID?space_id=$SPACE_ID&version=2020-08-01"
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="deployments_list"></a></p>
-<h3 id="Listing-all-deployments">Listing all deployments<a class="anchor-link" href="#Listing-all-deployments">&#182;</a></h3>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Deployments/deployments_list" 
-target="_blank" rel="noopener no referrer">List deployments details</a></p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash
-
-curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$WML_ENDPOINT_URL</span><span class="s2">/ml/v4/deployments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> python -m json.tool
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="cleaning"></a></p>
-<h2 id="6.-Cleaning-section">6. Cleaning section<a class="anchor-link" href="#6.-Cleaning-section">&#182;</a></h2><p>Below section is useful when you want to clean all of your previous work within this notebook.
-Just convert below cells into the <code>code</code> and run them.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="training_delete"></a></p>
-<h3 id="Delete-training-run">Delete training run<a class="anchor-link" href="#Delete-training-run">&#182;</a></h3><p><strong>Tip:</strong> You can completely delete a training run with its metadata.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Trainings/trainings_delete" 
-target="_blank" rel="noopener no referrer">Deleting training</a></p>
-
-</div>
-</div>%%bash
-
-TRAINING_ID_TO_DELETE=...
-
-curl -sk -X DELETE \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    "$WML_ENDPOINT_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&version=2020-08-01&hard_delete=true"
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="job_delete"></a></p>
-<h3 id="Delete-job">Delete job<a class="anchor-link" href="#Delete-job">&#182;</a></h3><p><strong>Tip:</strong> If you want remove job completely (with metadata), just specify <code>hard_delete</code> to True.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Deployment%20Jobs/deployment_jobs_delete" 
-target="_blank" rel="noopener no referrer">Delete job</a></p>
-
-</div>
-</div>%%bash
-
-curl -sk -X DELETE \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    "$WML_ENDPOINT_URL/ml/v4/deployment_jobs/$JOB_ID?space_id=$SPACE_ID&version=2020-08-01&hard_delete=true"
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="deployment_delete"></a></p>
-<h3 id="Deleting-deployment">Deleting deployment<a class="anchor-link" href="#Deleting-deployment">&#182;</a></h3><p><strong>Tip:</strong> You can delete existing deployment by calling DELETE method.</p>
-
-</div>
-</div>%%bash
-
-curl -sk -X DELETE \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    "$WML_ENDPOINT_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&version=2020-08-01"
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="model_delete"></a></p>
-<h3 id="Delete-model-from-repository">Delete model from repository<a class="anchor-link" href="#Delete-model-from-repository">&#182;</a></h3><p><strong>Tip:</strong> If you want to completely remove your stored model and model metadata, just use a DELETE method.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a href="https://watson-ml-v4-api.mybluemix.net/wml-restapi-cloud.html#/Models/models_delete" 
-target="_blank" rel="noopener no referrer">Delete model from repository</a></p>
-
-</div>
-</div>%%bash
-
-curl -sk -X DELETE \
-    --header "Authorization: Bearer $TOKEN" \
-    --header "Content-Type: application/json" \
-    "$WML_ENDPOINT_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&version=2020-08-01"
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="7.-Summary-and-next-steps">7. Summary and next steps<a class="anchor-link" href="#7.-Summary-and-next-steps">&#182;</a></h2><p>You successfully completed this notebook!.</p>
-<p>You learned how to use <code>cURL</code> calls to store, deploy and score a AutoAI model in WML.</p>
+<h2 id="6.-Summary-and-next-steps">6. Summary and next steps<a class="anchor-link" href="#6.-Summary-and-next-steps">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>You successfully completed this notebook! You learned how to use Watson Machine Learning for AutoA model deployment and scoring.<br>
+ Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/analyze-data/wml-setup.html">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Authors">Authors<a class="anchor-link" href="#Authors">&#182;</a></h3><p><strong>Amadeusz Masny</strong>, Python Software Developer in Watson Machine Learning at IBM<br>
-<strong>Jan Sołtysik</strong>, Intern in Watson Machine Learning at IBM</p>
+<h3 id="Author">Author<a class="anchor-link" href="#Author">&#182;</a></h3><p><strong>Jan Sołtysik</strong> Intern in Watson Machine Learning.</p>
 
 </div>
 </div>

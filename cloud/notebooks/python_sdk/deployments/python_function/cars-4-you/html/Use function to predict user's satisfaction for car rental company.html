@@ -15211,7 +15211,7 @@ Epoch 20/20
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[85]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;tensorflow_2.1-py3.7&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;tensorflow_2.4-py3.7&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">software_spec_id</span><span class="p">)</span>
 </pre></div>
 
@@ -15247,15 +15247,15 @@ Epoch 20/20
 <p>Store model</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[87]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;CARS4U - Satisfaction Prediction Model&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;tensorflow_2.1&#39;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;tensorflow_2.4&#39;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span> <span class="p">:</span> <span class="n">software_spec_id</span>
 <span class="p">}</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>    
@@ -15267,36 +15267,15 @@ Epoch 20/20
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{&#39;name&#39;: &#39;CARS4U - Satisfaction Prediction Model&#39;, &#39;type&#39;: &#39;keras_2.2.5&#39;, &#39;software_spec&#39;: &#39;2b73a275-7cbf-420b-a912-eae7f436e0bc&#39;}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="4.2:-Get-model-details">4.2: Get model details<a class="anchor-link" href="#4.2:-Get-model-details">&#182;</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[88]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -15310,42 +15289,6 @@ Epoch 20/20
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-  &#34;entity&#34;: {
-    &#34;software_spec&#34;: {
-      &#34;id&#34;: &#34;2b73a275-7cbf-420b-a912-eae7f436e0bc&#34;
-    },
-    &#34;type&#34;: &#34;keras_2.2.5&#34;
-  },
-  &#34;metadata&#34;: {
-    &#34;created_at&#34;: &#34;2020-08-12T07:54:33.970Z&#34;,
-    &#34;id&#34;: &#34;2e7ad091-9f60-4205-a81d-ceaa623e2129&#34;,
-    &#34;modified_at&#34;: &#34;2020-08-12T07:54:44.057Z&#34;,
-    &#34;name&#34;: &#34;CARS4U - Satisfaction Prediction Model&#34;,
-    &#34;owner&#34;: &#34;IBMid-550004P1CE&#34;,
-    &#34;space_id&#34;: &#34;f98c8db8-0d02-4ba6-a873-f299e2dc2378&#34;
-  }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
