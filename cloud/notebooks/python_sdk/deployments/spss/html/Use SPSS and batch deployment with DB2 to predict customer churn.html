@@ -14650,7 +14650,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">db2_data_source_type_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="s1">&#39;db2&#39;</span><span class="p">)</span>
 
 <span class="n">db2_conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;db2_conn&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;conn_db2&quot;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">db2_data_source_type_id</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Connection using DB2&quot;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
@@ -14931,7 +14931,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7ca37c54-19ab-463
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">job_payload_ref</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA_REFERENCES</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;db2_conn&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;conn_db2&quot;</span><span class="p">,</span>
             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;input_data_1_href&quot;</span><span class="p">,</span>
             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;data_asset&quot;</span><span class="p">,</span>
             <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{},</span>
@@ -14940,7 +14940,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7ca37c54-19ab-463
             <span class="p">}</span>
         <span class="p">},</span>
         <span class="p">{</span>
-            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;db2_conn&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;conn_db2&quot;</span><span class="p">,</span>
             <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;input_data_2_href&quot;</span><span class="p">,</span>
             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;data_asset&quot;</span><span class="p">,</span>
             <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{},</span>
@@ -15144,7 +15144,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7ca37c54-19ab-463
 <span class="p">}</span>
 
 <span class="n">sql_command</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;commands&quot;</span><span class="p">:</span> <span class="s2">&quot;SELECT * FROM CUSTOMER_OUTPUT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;commands&quot;</span><span class="p">:</span> <span class="s2">&quot;SELECT * FROM OUTPUT&quot;</span><span class="p">,</span>
     <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
     <span class="s2">&quot;separator&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span>
     <span class="s2">&quot;stop_on_error&quot;</span><span class="p">:</span> <span class="s2">&quot;yes&quot;</span>

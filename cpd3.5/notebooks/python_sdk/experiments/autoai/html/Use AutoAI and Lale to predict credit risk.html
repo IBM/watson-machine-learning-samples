@@ -16302,7 +16302,7 @@ instead pretty-print your pipeline with
 <p>To work with historical pipelines found during a particular optimizer
 run, you need to first provide the <code>run_id</code> to select the fitted
 optimizer.</p>
-<p><strong>ACTION:</strong> assign selected run_id to the <code>run_id</code> variable.</p>
+<p><strong>Note</strong>: you can assign selected <code>run_id</code> to the run_id variable.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -16311,7 +16311,7 @@ optimizer.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">run_id</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR RUN ID HERE&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">run_id</span> <span class="o">=</span> <span class="n">run_details</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 </pre></div>
 
      </div>
