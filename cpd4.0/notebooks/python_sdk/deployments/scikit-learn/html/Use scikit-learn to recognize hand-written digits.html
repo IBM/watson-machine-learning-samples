@@ -14259,7 +14259,7 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Use-scikit-learn-to-recognize-hand-written-digits-with-ibm-watson-machine-learning">Use scikit-learn to recognize hand-written digits with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-scikit-learn-to-recognize-hand-written-digits-with-ibm-watson-machine-learning">&#182;</a></h1><p>This notebook contains steps and code to demonstrate how to persist and deploy locally trained scikit-learn model in Watson Machine Learning Service. This notebook contains steps and code to work with <a href="https://pypi.python.org/pypi/ibm-watson-machine-learning">ibm-watson-machine-learning</a> library available in PyPI repository. This notebook introduces commands for getting model and training data, persisting model, deploying model, scoring it, updating the model and redeploying it.</p>
+<h1 id="Use-scikit-learn-to-recognize-hand-written-digits-with-ibm-watson-machine-learning">Use scikit-learn to recognize hand-written digits with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-scikit-learn-to-recognize-hand-written-digits-with-ibm-watson-machine-learning">&#182;</a></h1><p>This notebook contains steps and code to demonstrate how to persist and deploy a locally trained scikit-learn model in the Watson Machine Learning Service. This notebook contains steps and code to work with the <a href="https://pypi.python.org/pypi/ibm-watson-machine-learning">ibm-watson-machine-learning</a> library available in the PyPI repository. This notebook introduces commands for getting a model and training data, persisting the model, deploying it, scoring it, updating it, and redeploying it.</p>
 <p>Some familiarity with Python is helpful. This notebook uses Python 3.7 with the ibm-watson-machine-learning package.</p>
 
 </div>
@@ -14268,17 +14268,18 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
-<li>Train sklearn model.</li>
-<li>Persist trained model in Watson Machine Learning repository.</li>
-<li>Deploy model for online scoring using client library.</li>
-<li>Score sample records using client library.</li>
+<li>Train an sklearn model</li>
+<li>Persist the trained model in the Watson Machine Learning repository</li>
+<li>Deploy the model for online scoring using the client library</li>
+<li>Score sample records using the client library</li>
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><p>This notebook contains the following parts:</p>
 <ol>
 <li><a href="#setup">Setup</a></li>
-<li><a href="#train">Explore data and create scikit-learn model</a></li>
-<li><a href="#persistence">Persist externally created scikit model</a></li>
+<li><a href="#train">Explore data and create an scikit-learn model</a></li>
+<li><a href="#persistence">Persist the externally created scikit model</a></li>
 <li><a href="#scoring">Deploy and score</a></li>
+<li><a href="#batch">Batch scoring ussing connection_asset</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
@@ -14288,16 +14289,13 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="setup"></a></p>
-<h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">&#182;</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
-<ul>
-<li>Contact with your Cloud Pack for Data administrator and ask him for your account credentials</li>
-</ul>
+<h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">&#182;</a></h2><p>Before you use the sample code in this notebook, contact your Cloud Pack for Data administrator and ask for your account credentials.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>password</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14307,7 +14305,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR USERNAME HERE&#39;</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR PASSWORD HERE&#39;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR API_KEY HERE&#39;</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;PASTE THE PLATFORM URL HERE&#39;</span>
 </pre></div>
 
@@ -14324,10 +14322,10 @@ a.anchor-link {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wml_credentials</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
-    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+    <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
     <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
     <span class="s2">&quot;instance_id&quot;</span><span class="p">:</span> <span class="s1">&#39;openshift&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;3.5&#39;</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.0&#39;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14336,6 +14334,20 @@ a.anchor-link {
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Alternatively you can use <code>username</code> and <code>password</code> to authenticate WML services.</p>
+
+<pre><code>wml_credentials = {
+    "username": ***,
+    "password": ***,
+    "url": ***,
+    "instance_id": 'openshift',
+    "version": '4.0'
+}</code></pre>
+
+</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14375,14 +14387,14 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Working-with-spaces">Working with spaces<a class="anchor-link" href="#Working-with-spaces">&#182;</a></h3><p>First of all, you need to create a space that will be used for your work. If you do not have space already created, you can use <code>{PLATFORM_URL}/ml-runtime/spaces?context=icp4data</code> to create one.</p>
+<h3 id="Working-with-spaces">Working with spaces<a class="anchor-link" href="#Working-with-spaces">&#182;</a></h3><p>First of all, you need to create a space that will be used for your work. If you do not have a space, you can use <code>{PLATFORM_URL}/ml-runtime/spaces?context=icp4data</code> to create one.</p>
 <ul>
 <li>Click New Deployment Space</li>
 <li>Create an empty space</li>
 <li>Go to space <code>Settings</code> tab</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
-<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd3.5/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
+<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
 <p><strong>Action</strong>: Assign space ID below</p>
 
 </div>
@@ -14403,7 +14415,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can use <code>list</code> method to print all existing spaces.</p>
+<p>You can use the <code>list()</code> method to print all existing spaces.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14467,7 +14479,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="train"></a></p>
-<h2 id="2.-Explore-data-and-create-scikit-learn-model">2. Explore data and create scikit-learn model<a class="anchor-link" href="#2.-Explore-data-and-create-scikit-learn-model">&#182;</a></h2><p>In this section, you will prepare and train handwritten digits model using scikit-learn library.</p>
+<h2 id="2.-Explore-data-and-create-an-scikit-learn-model">2. Explore data and create an scikit-learn model<a class="anchor-link" href="#2.-Explore-data-and-create-an-scikit-learn-model">&#182;</a></h2><p>In this section, you will prepare and train a handwritten digits model using the scikit-learn library.</p>
 
 </div>
 </div>
@@ -14478,7 +14490,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>As a first step, you will load the data from scikit-learn sample datasets and perform a basic exploration.</p>
+<p>As the first step, you will load the data from scikit-learn sample datasets and perform basic exploration.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14501,7 +14513,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Loaded toy dataset consists of 8x8 pixels images of hand-written digits.</p>
+<p>Loaded dataset consists of 8x8 pixels images of hand-written digits.</p>
 <p>Let's display first digit data and label using <strong>data</strong> and <strong>target</strong>.</p>
 
 </div>
@@ -14587,7 +14599,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In next step, you will count data examples.</p>
+<p>In the next step, you will count data examples.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14704,13 +14716,13 @@ Number of scoring records : 180
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Next, you'll create scikit-learn pipeline.</p>
+<p>Next, you'll create an scikit-learn pipeline.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In ths step, you will import scikit-learn machine learning packages that will be needed in next cells.</p>
+<p>In this step, you will import the scikit-learn machine learning packages to be used in next cells.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14752,7 +14764,7 @@ Number of scoring records : 180
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Next, define estimators you want to use for classification. Support Vector Machines (SVM) with radial basis function as kernel is used in the following example.</p>
+<p>Next, define estimators you want to use for classification. Support Vector Machines (SVM) with the radial basis function as kernel is used in the following example.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14772,7 +14784,7 @@ Number of scoring records : 180
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Let's build the pipeline now. This pipeline consists of transformer and an estimator.</p>
+<p>Let's build the pipeline now. This pipeline consists of a transformer and an estimator.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14885,19 +14897,19 @@ weighted avg       0.95      0.94      0.95       360
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can tune your model now to achieve better accuracy. For simplicity of this example tuning section is omitted.</p>
+<p>You can tune your model now to achieve better accuracy. For simplicity, tuning section is omitted.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="persistence"></a></p>
-<h2 id="3.-Persist-locally-created-scikit-learn-model">3. Persist locally created scikit-learn model<a class="anchor-link" href="#3.-Persist-locally-created-scikit-learn-model">&#182;</a></h2>
+<h2 id="3.-Persist-the-locally-created-scikit-learn-model">3. Persist the locally created scikit-learn model<a class="anchor-link" href="#3.-Persist-the-locally-created-scikit-learn-model">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In this section, you will learn how to store your model in Watson Machine Learning repository by using the IBM Watson Machine Learning SDK.</p>
+<p>In this section, you will learn how to store your model in the Watson Machine Learning repository by using the IBM Watson Machine Learning SDK.</p>
 
 </div>
 </div>
@@ -14908,7 +14920,7 @@ weighted avg       0.95      0.94      0.95       360
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Publish-model-in-Watson-Machine-Learning-repository-on-Cloud.">Publish model in Watson Machine Learning repository on Cloud.<a class="anchor-link" href="#Publish-model-in-Watson-Machine-Learning-repository-on-Cloud.">&#182;</a></h4>
+<h4 id="Publish-the-model-in-the-Watson-Machine-Learning-repository-on-Cloud.">Publish the model in the Watson Machine Learning repository on Cloud.<a class="anchor-link" href="#Publish-the-model-in-the-Watson-Machine-Learning-repository-on-Cloud.">&#182;</a></h4>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -15005,18 +15017,18 @@ weighted avg       0.95      0.94      0.95       360
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In this section you will learn how to create online scoring and to score a new data record by using the IBM Watson Machine Learning SDK.</p>
+<p>In this section, you will learn how to create online scoring and to score a new data record by using the IBM Watson Machine Learning SDK.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="4.1:-Create-model-deployment">4.1: Create model deployment<a class="anchor-link" href="#4.1:-Create-model-deployment">&#182;</a></h3>
+<h3 id="4.1:-Create-a-model-deployment">4.1: Create a model deployment<a class="anchor-link" href="#4.1:-Create-a-model-deployment">&#182;</a></h3>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Create-online-deployment-for-published-model">Create online deployment for published model<a class="anchor-link" href="#Create-online-deployment-for-published-model">&#182;</a></h4>
+<h4 id="Create-an-online-deployment-for-the-published-model">Create an online deployment for the published model<a class="anchor-link" href="#Create-an-online-deployment-for-the-published-model">&#182;</a></h4>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -15078,7 +15090,7 @@ Successfully finished deployment creation, deployment_uid=&#39;d12bff99-0d99-4c6
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note</strong>: Here we use deployment url saved in published_model object. In next section, we show how to retrive deployment url from Watson Machine Learning instance.</p>
+<p><strong>Note</strong>: Here we use the deployment url saved in the published_model object. In the next section, we show how to retrieve the deployment url from the Watson Machine Learning instance.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15221,7 +15233,7 @@ Successfully finished deployment creation, deployment_uid=&#39;d12bff99-0d99-4c6
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can use the following method to do test scoring request against deployed model.</p>
+<p>You can use the following method to perform a test scoring request against the deployed model.</p>
 
 </div>
 </div>
@@ -15333,8 +15345,356 @@ Successfully finished deployment creation, deployment_uid=&#39;d12bff99-0d99-4c6
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="batch"></a></p>
+<h2 id="5.-Create-a-batch-deployment-and-score-using-connection-asset">5. Create a batch deployment and score using connection asset<a class="anchor-link" href="#5.-Create-a-batch-deployment-and-score-using-connection-asset">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="5.1:-Create-a-batch-deployment-of-the-keras-model">5.1: Create a batch deployment of the keras model<a class="anchor-link" href="#5.1:-Create-a-batch-deployment-of-the-keras-model">&#182;</a></h3>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Use the cell below to create a batch deployment for the stored model.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">artifact_uid</span><span class="o">=</span><span class="n">published_model_uid</span><span class="p">,</span>
+    <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Batch deployment of scikit model&quot;</span><span class="p">,</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">BATCH</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">HARDWARE_SPEC</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;num_nodes&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">deployment_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">deployment</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+
+#######################################################################################
+
+Synchronous deployment creation for uid: &#39;19782d64-ba21-41dc-8a99-84fab7666f69&#39; started
+
+#######################################################################################
+
+
+ready.
+
+
+------------------------------------------------------------------------------------------------
+Successfully finished deployment creation, deployment_uid=&#39;5af6b01e-f34a-4b3e-bd43-ba3220e3c4bd&#39;
+------------------------------------------------------------------------------------------------
+
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="5.2-Create-a-connection-to-an-external-database">5.2 Create a connection to an external database<a class="anchor-link" href="#5.2-Create-a-connection-to-an-external-database">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Action</strong>: Enter your COS credentials in the following cell.<br>
+You can find these credentials in your COS instance dashboard under the <strong>Service credentials</strong> tab.<br>
+<strong>Note</strong> the HMAC key, described in <a href="#setup">set up the environment</a> is included in these credentials.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">db_name</span> <span class="o">=</span> <span class="s1">&#39;bluemixcloudobjectstorage&#39;</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;mnist_scoring&#39;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_name</span> <span class="o">=</span> <span class="s1">&#39;PUT YOUR COS BUCKET NAME HERE&#39;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos_credentials</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;cos_hmac_keys&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;access_key_id&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;endpoints&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;iam_apikey_description&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;iam_apikey_name&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;iam_role_crn&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;iam_serviceid_crn&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;resource_instance_id&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Create-the-connection">Create the connection<a class="anchor-link" href="#Create-the-connection">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Connection to Database - </span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="n">db_name</span><span class="p">),</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Connection to external Database&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">bucket_name</span><span class="p">,</span>
+        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;access_key_id&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://iam.cloud.ibm.com/identity/token&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://s3.us.cloud-object-storage.appdomain.cloud&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">conn_meta_props</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Creating connections...
+SUCCESS
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">conn_details</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="5.4-Scoring">5.4 Scoring<a class="anchor-link" href="#5.4-Scoring">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>You can create a batch job using methods listed below.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Upload-batch-data-to-the-specified-location.">Upload batch data to the specified location.<a class="anchor-link" href="#Upload-batch-data-to-the-specified-location.">&#182;</a></h4><p><strong>Hint</strong>: To install <code>pandas</code> execute <code>!pip install pandas</code></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">S3Location</span>
+
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
+    <span class="n">connection_asset_id</span><span class="o">=</span><span class="n">connection_id</span><span class="p">,</span>
+    <span class="n">location</span><span class="o">=</span><span class="n">S3Location</span><span class="p">(</span>
+        <span class="n">bucket</span><span class="o">=</span><span class="n">bucket_name</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">file_name</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">conn</span><span class="o">.</span><span class="n">_wml_client</span> <span class="o">=</span> <span class="n">client</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">score_data</span><span class="p">),</span> <span class="n">remote_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">job_payload_ref</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA_REFERENCES</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Connection to Database - </span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;input_data_href&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">connection_id</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">bucket_name</span><span class="p">,</span>
+                <span class="s1">&#39;file_name&#39;</span><span class="p">:</span> <span class="n">file_name</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">OUTPUT_DATA_REFERENCE</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">connection_id</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">bucket_name</span><span class="p">,</span>
+                <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="s1">&#39;output&#39;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">job</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">job_payload_ref</span><span class="p">)</span>
+<span class="n">job_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_uid</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_details</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Monitor-job-execution">Monitor job execution<a class="anchor-link" href="#Monitor-job-execution">&#182;</a></h3><p>Here you can check the status of your batch scoring. When the batch job is completed the results will be written to an output table.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">elapsed_time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_status</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;completed&#39;</span> <span class="ow">and</span> <span class="n">elapsed_time</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Current state: </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_status</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">elapsed_time</span> <span class="o">+=</span> <span class="mi">10</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_status</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;completed&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; Current state: </span><span class="si">{</span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_status</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">job_details_do</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_details</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">job_details_do</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Job hasn&#39;t completed successfully in 5 minutes.&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="cleanup"></a></p>
-<h2 id="5.-Clean-up">5. Clean up<a class="anchor-link" href="#5.-Clean-up">&#182;</a></h2>
+<h2 id="7.-Cleanup">7. Cleanup<a class="anchor-link" href="#7.-Cleanup">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -15349,14 +15709,14 @@ Successfully finished deployment creation, deployment_uid=&#39;d12bff99-0d99-4c6
 <li>functions</li>
 <li>deployments</li>
 </ul>
-<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd3.5/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>follow the steps listed in this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="6.-Summary-and-next-steps">6. Summary and next steps<a class="anchor-link" href="#6.-Summary-and-next-steps">&#182;</a></h2>
+<h2 id="8.-Summary-and-next-steps">8. Summary and next steps<a class="anchor-link" href="#8.-Summary-and-next-steps">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">

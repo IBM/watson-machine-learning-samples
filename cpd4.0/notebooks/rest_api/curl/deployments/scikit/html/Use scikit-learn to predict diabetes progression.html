@@ -14300,7 +14300,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>password</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14310,7 +14310,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> USERNAME=
-<span class="o">%</span><span class="k">env</span> PASSWORD=
+<span class="o">%</span><span class="k">env</span> API_KEY=
 <span class="o">%</span><span class="k">env</span> DATAPLATFORM_URL=
 
 <span class="o">%</span><span class="k">env</span> SPACE_ID=
@@ -14336,16 +14336,19 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
 
-curl -sk -X GET <span class="se">\</span>
-    --user <span class="nv">$USERNAME</span>:<span class="nv">$PASSWORD</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v1/preauth/validateAuth&quot;</span> <span class="se">\</span>
-    <span class="p">|</span> cut -d <span class="s1">&#39;&quot;&#39;</span> -f <span class="m">44</span>
+<span class="nv">token</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
+        --header <span class="s2">&quot;Content-type: application/json&quot;</span> <span class="se">\</span>
+        -d <span class="s2">&quot;{\&quot;username\&quot;:\&quot;</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span><span class="s2">\&quot;,\&quot;api_key\&quot;:\&quot;</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">\&quot;}&quot;</span> <span class="se">\</span>
+        <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/icp4d-api/v1/authorize&quot;</span><span class="k">)</span>
+
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*token</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="nv">$token</span>
 </pre></div>
 
      </div>
@@ -14356,7 +14359,7 @@ curl -sk -X GET <span class="se">\</span>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> TOKEN=$token
@@ -14379,7 +14382,7 @@ curl -sk -X GET <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOlsiYWRtaW5pc3RyYXRvciIsImNhbl9wcm92aXNpb24iLCJtYW5hZ2VfY2F0YWxvZyIsImFjY2Vzc19jYXRhbG9nIl0sImdyb3VwcyI6WzEwMDAwXSwic3ViIjoiYWRtaW4iLCJpc3MiOiJLTk9YU1NPIiwiYXVkIjoiRFNYIiwidWlkIjoiMTAwMDMzMDk5OSIsImF1dGhlbnRpY2F0b3IiOiJkZWZhdWx0IiwiaWF0IjoxNjA3NDM1ODE2LCJleHAiOjE2MDc0Nzg5ODB9.MGVWAw21zCtckxVBjRWcKcJyjWlGnPEvR_D1S5zgNx3gsKGlww0mH5cnJyhbTKlGF2bb-Rdi3Kp3ZrJ7FqMutnef_9CoS02tm-KTKUWRnMXc9mcFobjS3mjzTq99ssFCaPMgwBTlrKQe7UfFzS346p199lAbEmed43tVDGkDbykvSKkyMT5ILoGWdfjCquXEtqiIczGpWTjcCgKa6k9Pkj3bG7lAMO-ny2G3tl25CMbVRkBYXfYNmQG7mJ0_y85ER2qx-T712ehdH8Jx-4t9MhhBpgr78KaaQbFJLOBEDxKJElTrRAzBlb6EIfi6wO7EesuGBO_J2jYfUrEkANurmA
+<pre>env: TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdOTEJmb0QwXzE2Vy1rMDBXdzFCX3BrMFFCSjhLTFo0N2pMaUs5a3VQX3cifQ.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOlsiYWRtaW5pc3RyYXRvciIsImNhbl9wcm92aXNpb24iLCJtYW5hZ2VfY2F0YWxvZyIsImFjY2Vzc19jYXRhbG9nIl0sImdyb3VwcyI6WzEwMDAwXSwic3ViIjoiYWRtaW4iLCJpc3MiOiJLTk9YU1NPIiwiYXVkIjoiRFNYIiwidWlkIjoiMTAwMDMzMDk5OSIsImF1dGhlbnRpY2F0b3IiOiJkZWZhdWx0IiwiaWF0IjoxNjE4MjI4OTQwLCJleHAiOjE2MTgyNzIxMDR9.VyLudRtpd0seOsJ3Dsnf86dfK9QAKAXeFZ45yBNGAcY5A343ncnLRaOGi50URVC5pZwiMmCFDZjQwLdQfi5Z-2cQEllfD7B9v7sxnuThKtHKh_wp0Nm0IqR9Sus086dw88STULHCYSkblpDHOPdhVdwxnapBEDV8RYMOGkdWo7RO-83w7QCkXKRLW3SraRuobaU8UPhu-H3F7Gk-Bi-xa1XTeoOad-tOS90X-mCC4PL6Rvra61DU-UQkMkQ8vxYSg3QKihIrnB227jlX5QUUW6rZBby_zkMF9P0bb3J0Z4-wFdxmEJBxh7hBC0n-dzZ2KnKUy8V5OyvIXIN91VD-gQ
 </pre>
 </div>
 </div>
@@ -14724,7 +14727,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd3.5/models/scikit/diabetes/model/diabetes_model.tar.gz <span class="err">\</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/models/scikit/diabetes/model/diabetes_model.tar.gz <span class="err">\</span>
     <span class="o">-</span><span class="n">O</span> <span class="n">diabetes_model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> 
 </pre></div>
 
@@ -14745,12 +14748,12 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>--2020-12-08 14:57:14--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd3.5/models/scikit/diabetes/model/diabetes_model.tar.gz
+<pre>--2020-12-08 14:57:14--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/models/scikit/diabetes/model/diabetes_model.tar.gz
 Resolving github.com... 140.82.121.4
 Connecting to github.com|140.82.121.4|:443... connected.
 HTTP request sent, awaiting response... 302 Found
-Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/models/scikit/diabetes/model/diabetes_model.tar.gz [following]
---2020-12-08 14:57:15--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/models/scikit/diabetes/model/diabetes_model.tar.gz
+Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/models/scikit/diabetes/model/diabetes_model.tar.gz [following]
+--2020-12-08 14:57:15--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/models/scikit/diabetes/model/diabetes_model.tar.gz
 Resolving raw.githubusercontent.com... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...
 Connecting to raw.githubusercontent.com|151.101.0.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
@@ -15708,7 +15711,7 @@ curl -sk -X PATCH <span class="se">\</span>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd3.5/models/scikit/diabetes/model/new_diabetes_model.tar.gz <span class="err">\</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/models/scikit/diabetes/model/new_diabetes_model.tar.gz <span class="err">\</span>
     <span class="o">-</span><span class="n">O</span> <span class="n">new_diabetes_model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> 
 </pre></div>
 
@@ -15729,12 +15732,12 @@ curl -sk -X PATCH <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>--2020-12-08 14:58:57--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd3.5/models/scikit/diabetes/model/new_diabetes_model.tar.gz
+<pre>--2020-12-08 14:58:57--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/models/scikit/diabetes/model/new_diabetes_model.tar.gz
 Resolving github.com... 140.82.121.4
 Connecting to github.com|140.82.121.4|:443... connected.
 HTTP request sent, awaiting response... 302 Found
-Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/models/scikit/diabetes/model/new_diabetes_model.tar.gz [following]
---2020-12-08 14:58:57--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/models/scikit/diabetes/model/new_diabetes_model.tar.gz
+Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/models/scikit/diabetes/model/new_diabetes_model.tar.gz [following]
+--2020-12-08 14:58:57--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/models/scikit/diabetes/model/new_diabetes_model.tar.gz
 Resolving raw.githubusercontent.com... 151.101.128.133, 151.101.192.133, 151.101.0.133, ...
 Connecting to raw.githubusercontent.com|151.101.128.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK

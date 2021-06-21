@@ -14271,7 +14271,7 @@ a.anchor-link {
 <li>Work with Watson Machine Learning experiments to train AutoAI models.</li>
 <li>Compare trained models quality and select the best one for further refinement.</li>
 <li>Refine the best model and test new variations.</li>
-<li>Online deployment and score the trained model.</li>
+<li>Perform online deployment and score the trained model.</li>
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><p>This notebook contains the following parts:</p>
 <ol>
@@ -14291,26 +14291,23 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="setup"></a></p>
-<h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">&#182;</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
-<ul>
-<li>Contact with your Cloud Pack for Data administrator and ask him for your account credentials</li>
-</ul>
+<h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">&#182;</a></h2><p>Before you use the sample code in this notebook, contact with your Cloud Pack for Data administrator and ask for your account credentials.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>password</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR USERNAME HERE&#39;</span>
-<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR PASSWORD HERE&#39;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR API_KEY HERE&#39;</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;PASTE THE PLATFORM URL HERE&#39;</span>
 </pre></div>
 
@@ -14327,10 +14324,10 @@ a.anchor-link {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wml_credentials</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
-    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">,</span>
+    <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
     <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
     <span class="s2">&quot;instance_id&quot;</span><span class="p">:</span> <span class="s1">&#39;openshift&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;3.5&#39;</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.0&#39;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14339,6 +14336,20 @@ a.anchor-link {
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Alternatively you can use <code>username</code> and <code>password</code> to authenticate WML services.</p>
+
+<pre><code>wml_credentials = {
+    "username": ***,
+    "password": ***,
+    "url": ***,
+    "instance_id": 'openshift',
+    "version": '4.0'
+}</code></pre>
+
+</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14385,7 +14396,7 @@ a.anchor-link {
 <li>Go to space <code>Settings</code> tab</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
-<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd3.5/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
+<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
 <p><strong>Action</strong>: Assign space ID below</p>
 
 </div>
@@ -14475,17 +14486,28 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Training-data-connection">Training data connection<a class="anchor-link" href="#Training-data-connection">&#182;</a></h3><p>Define connection information to training data CSV file. This example uses the German Credit Risk dataset.</p>
-<p>The dataset can be downloaded from <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/data/credit_risk/german_credit_data_biased_training.csv">here</a>.</p>
+<h3 id="Training-data-connection">Training data connection<a class="anchor-link" href="#Training-data-connection">&#182;</a></h3><p>Define connection information to an external database.</p>
+<p>This example uses the German Credit Risk dataset. 
+The dataset can be downloaded from <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/data/credit_risk/german_credit_data_biased_training.csv">here</a>.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Connection-configuration">Connection configuration<a class="anchor-link" href="#Connection-configuration">&#182;</a></h3><p>Credentials for database should be passed as a python dictionary.<br>
+For the vast number of supported datasets the credentials should follow the bellow pattern.<br>
+<strong>Warning</strong>: Database name should be slected from the list of all the supported databases, in order to look it up use <code>client.connections.list_datasource_types()</code><br>
+<strong>Warning</strong>: Input table should be uploaded in database under the location <code>/schema_name/table_name</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;credit_risk_training.csv&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">db_name</span> <span class="o">=</span> <span class="s1">&#39;PUT YOUR DATABASE NAME HERE&#39;</span>
+<span class="n">schema_name</span> <span class="o">=</span> <span class="s1">&#39;PUT YOUR SCHEMA NAME HERE&#39;</span>
 </pre></div>
 
      </div>
@@ -14493,14 +14515,13 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/data/credit_risk/german_credit_data_biased_training.csv <span class="err">\</span>
-    <span class="o">-</span><span class="n">O</span> <span class="n">credit_risk_training</span><span class="o">.</span><span class="n">csv</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">table_name</span> <span class="o">=</span> <span class="s1">&#39;CREDIT_RISK&#39;</span>
 </pre></div>
 
      </div>
@@ -14508,45 +14529,20 @@ a.anchor-link {
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>--2020-12-08 13:39:58--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/data/credit_risk/german_credit_data_biased_training.csv
-Resolving raw.githubusercontent.com... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...
-Connecting to raw.githubusercontent.com|151.101.0.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 689622 (673K) [text/plain]
-Saving to: &#39;credit_risk_training.csv&#39;
-
-credit_risk_trainin 100%[===================&gt;] 673.46K   868KB/s    in 0.8s    
-
-2020-12-08 13:39:59 (868 KB/s) - &#39;credit_risk_training.csv&#39; saved [689622/689622]
-
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">asset_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;german_credit_data_biased_training&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-<span class="n">asset_details</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">db_credentials</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;database&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ssl&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span>
+<span class="p">}</span>
 </pre></div>
 
      </div>
@@ -14554,60 +14550,92 @@ credit_risk_trainin 100%[===================&gt;] 673.46K   868KB/s    in 0.8s
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Create-connection">Create connection<a class="anchor-link" href="#Create-connection">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Connection to Database - </span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="n">db_name</span><span class="p">),</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Connection to external Database&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="n">db_credentials</span>
+<span class="p">}</span>
 
+<span class="n">conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">conn_meta_props</span><span class="p">)</span>
+</pre></div>
 
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Creating data asset...
-SUCCESS
-</pre>
+     </div>
 </div>
 </div>
+</div>
 
-<div class="jp-OutputArea-child">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">conn_details</span><span class="p">)</span>
+</pre></div>
 
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;metadata&#39;: {&#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;,
-  &#39;guid&#39;: &#39;de0ad416-de6c-4177-b8ce-96827906a3cf&#39;,
-  &#39;href&#39;: &#39;/v2/assets/de0ad416-de6c-4177-b8ce-96827906a3cf?space_id=83b00166-9047-4159-b777-83dcb498e7ab&#39;,
-  &#39;asset_type&#39;: &#39;data_asset&#39;,
-  &#39;created_at&#39;: &#39;2020-12-08T12:40:02Z&#39;,
-  &#39;last_updated_at&#39;: &#39;2020-12-08T12:40:02Z&#39;},
- &#39;entity&#39;: {&#39;data_asset&#39;: {&#39;mime_type&#39;: &#39;text/csv&#39;}}}</pre>
+     </div>
+</div>
+</div>
 </div>
 
 </div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Download-training-data">Download training data<a class="anchor-link" href="#Download-training-data">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget -q <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/data/credit_risk/german_credit_data_biased_training.csv&#39;</span> -O <span class="err">\</span>
+            <span class="s1">&#39;credit_risk.csv&#39;</span>
+</pre></div>
 
+     </div>
+</div>
+</div>
 </div>
 
 </div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Hint</strong>: To install <code>pandas</code> execute <code>!pip install pandas</code></p>
 
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">AssetLocation</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">DatabaseLocation</span>
 
 
 <span class="n">credit_risk_conn</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
-    <span class="n">location</span><span class="o">=</span><span class="n">AssetLocation</span><span class="p">(</span><span class="n">asset_id</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">asset_details</span><span class="p">)))</span>
+    <span class="n">connection_asset_id</span><span class="o">=</span><span class="n">connection_id</span><span class="p">,</span>
+    <span class="n">location</span><span class="o">=</span><span class="n">DatabaseLocation</span><span class="p">(</span>
+        <span class="n">schema_name</span><span class="o">=</span><span class="n">schema_name</span><span class="p">,</span>
+        <span class="n">table_name</span><span class="o">=</span><span class="n">table_name</span>
+    <span class="p">)</span>
+<span class="p">)</span>
 
+<span class="n">credit_risk_conn</span><span class="o">.</span><span class="n">_wml_client</span> <span class="o">=</span> <span class="n">client</span>
+<span class="n">credit_risk_conn</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;credit_risk.csv&quot;</span><span class="p">))</span>
 <span class="n">training_data_reference</span><span class="o">=</span><span class="p">[</span><span class="n">credit_risk_conn</span><span class="p">]</span>
 </pre></div>
 
@@ -14631,7 +14659,7 @@ SUCCESS
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.experiment</span> <span class="kn">import</span> <span class="n">AutoAI</span>
@@ -15093,9 +15121,10 @@ you like for further testing.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">backend</span> <span class="o">=</span> <span class="s2">&quot;plotly&quot;</span>
 
-<span class="n">summary</span><span class="o">.</span><span class="n">holdout_roc_auc</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+<span class="n">summary</span><span class="o">.</span><span class="n">holdout_roc_auc</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15876,10 +15905,10 @@ operator.</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Pipeline-source-code">Pipeline source code<a class="anchor-link" href="#Pipeline-source-code">&#182;</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">best_pipeline</span><span class="o">.</span><span class="n">pretty_print</span><span class="p">(</span><span class="n">ipython_display</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -15888,253 +15917,6 @@ operator.</p>
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-OutputArea-output " data-mime-type="text/markdown">
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">NumpyColumnSelector</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">CompressStrings</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">NumpyReplaceMissingValues</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">NumpyReplaceUnknownValues</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">boolean2float</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">CatImputer</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">CatEncoder</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">float32_transform</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">FloatStr2Float</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">NumImputer</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">OptStandardScaler</span>
-<span class="kn">from</span> <span class="nn">lale.lib.lale</span> <span class="kn">import</span> <span class="n">ConcatFeatures</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.transformers.exportable</span> <span class="kn">import</span> <span class="n">NumpyPermuteArray</span>
-<span class="kn">from</span> <span class="nn">autoai_libs.cognito.transforms.transform_utils</span> <span class="kn">import</span> <span class="n">TNoOp</span>
-<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
-<span class="kn">import</span> <span class="nn">lale</span>
-
-<span class="n">lale</span><span class="o">.</span><span class="n">wrap_imported_operators</span><span class="p">()</span>
-<span class="n">numpy_column_selector_0</span> <span class="o">=</span> <span class="n">NumpyColumnSelector</span><span class="p">(</span>
-    <span class="n">columns</span><span class="o">=</span><span class="p">[</span>
-        <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-<span class="n">compress_strings</span> <span class="o">=</span> <span class="n">CompressStrings</span><span class="p">(</span>
-    <span class="n">compress_type</span><span class="o">=</span><span class="s2">&quot;hash&quot;</span><span class="p">,</span>
-    <span class="n">dtypes_list</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;int_num&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;int_num&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;int_num&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;int_num&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;int_num&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span> <span class="s2">&quot;int_num&quot;</span><span class="p">,</span> <span class="s2">&quot;char_str&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;char_str&quot;</span><span class="p">,</span>
-    <span class="p">],</span>
-    <span class="n">missing_values_reference_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)],</span>
-    <span class="n">misslist_list</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span>
-        <span class="p">[],</span> <span class="p">[],</span>
-    <span class="p">],</span>
-<span class="p">)</span>
-<span class="n">numpy_replace_missing_values_0</span> <span class="o">=</span> <span class="n">NumpyReplaceMissingValues</span><span class="p">(</span>
-    <span class="n">missing_values</span><span class="o">=</span><span class="p">[],</span> <span class="n">filling_values</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">numpy_replace_unknown_values</span> <span class="o">=</span> <span class="n">NumpyReplaceUnknownValues</span><span class="p">(</span>
-    <span class="n">filling_values</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span>
-    <span class="n">filling_values_list</span><span class="o">=</span><span class="p">[</span>
-        <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span>
-        <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span>
-        <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span>
-        <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span>
-    <span class="p">],</span>
-    <span class="n">known_values_list</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">[</span>
-            <span class="mi">227259264688753646810077375790908286508</span><span class="p">,</span>
-            <span class="mi">253732214910815238134509288111402486722</span><span class="p">,</span>
-            <span class="mi">303819144345098626554456011496217223575</span><span class="p">,</span>
-            <span class="mi">280353606872939388614315901186094326949</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span>
-            <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span>
-            <span class="mi">38</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span>
-            <span class="mi">54</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">310861434292724266828512742170106879235</span><span class="p">,</span>
-            <span class="mi">259078546728323006823621149382123274851</span><span class="p">,</span>
-            <span class="mi">241304191515355600141369672905481462228</span><span class="p">,</span>
-            <span class="mi">210421363963937264134596964576525922958</span><span class="p">,</span>
-            <span class="mi">32212939341074532066845731816970003693</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">338473629843581165720544432281125239609</span><span class="p">,</span>
-            <span class="mi">326781793206258442673692969623843435113</span><span class="p">,</span>
-            <span class="mi">272002530391893084684429324616350007975</span><span class="p">,</span>
-            <span class="mi">249661578098852569030863268336475104259</span><span class="p">,</span>
-            <span class="mi">277452992311061223498548004061740954923</span><span class="p">,</span>
-            <span class="mi">337000624133206789825115182809991844205</span><span class="p">,</span>
-            <span class="mi">161330870025401753341235738137984802479</span><span class="p">,</span>
-            <span class="mi">133401727367742042681318083577551821203</span><span class="p">,</span>
-            <span class="mi">260491112873202394519945523636494874646</span><span class="p">,</span>
-            <span class="mi">208131593747174447223154626949015695834</span><span class="p">,</span>
-            <span class="mi">317093190772141179412539616679296858597</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">155466114539413991851582417126364895339</span><span class="p">,</span>
-            <span class="mi">246789352403109329930648176329125946981</span><span class="p">,</span>
-            <span class="mi">295936621451169689699218469248254275361</span><span class="p">,</span>
-            <span class="mi">223681476361652455808150317408145666122</span><span class="p">,</span>
-            <span class="mi">230715114430321724850934713783197932106</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">185340558928138909626603812763488190588</span><span class="p">,</span>
-            <span class="mi">319328661378046583715176476627492385778</span><span class="p">,</span>
-            <span class="mi">263799749086692576083148855705354099872</span><span class="p">,</span>
-            <span class="mi">179222502770383138876302755836424893586</span><span class="p">,</span>
-            <span class="mi">283364312271660996400883763491949419861</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">52149379001264932068757487059177351405</span><span class="p">,</span>
-            <span class="mi">10381015089147753033583386570985939629</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">90380513159839424205657141466603309780</span><span class="p">,</span>
-            <span class="mi">72020144360318906788270974425375628494</span><span class="p">,</span>
-            <span class="mi">68186749286663113704472210246844540664</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">184210183797580735197442541762508088723</span><span class="p">,</span>
-            <span class="mi">112784645159752486323086095897586579102</span><span class="p">,</span>
-            <span class="mi">194064631024616485005022213750224679171</span><span class="p">,</span>
-            <span class="mi">230715114430321724850934713783197932106</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span>
-            <span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span>
-            <span class="mi">51</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span>
-            <span class="mi">67</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">251696305476606261219998849299484831626</span><span class="p">,</span>
-            <span class="mi">68186749286663113704472210246844540664</span><span class="p">,</span>
-            <span class="mi">129843969358953857049997737920307864573</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">226204649993248704235747196731638161812</span><span class="p">,</span>
-            <span class="mi">240703879997496844699455009880498205665</span><span class="p">,</span>
-            <span class="mi">243184888600665221836895697954701357177</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">328286527295663582663365503319902632676</span><span class="p">,</span>
-            <span class="mi">119641707607939038914465000864290288880</span><span class="p">,</span>
-            <span class="mi">283364312271660996400883763491949419861</span><span class="p">,</span>
-            <span class="mi">27741019508977055807423991753468819528</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">68186749286663113704472210246844540664</span><span class="p">,</span>
-            <span class="mi">220736790854050750400968561922076059550</span><span class="p">,</span>
-        <span class="p">],</span>
-        <span class="p">[</span>
-            <span class="mi">169662019754859674907370307324476606919</span><span class="p">,</span>
-            <span class="mi">220736790854050750400968561922076059550</span><span class="p">,</span>
-        <span class="p">],</span>
-    <span class="p">],</span>
-    <span class="n">missing_values_reference_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)],</span>
-<span class="p">)</span>
-<span class="n">cat_imputer</span> <span class="o">=</span> <span class="n">CatImputer</span><span class="p">(</span>
-    <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">,</span>
-    <span class="n">missing_values</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span>
-    <span class="n">sklearn_version_family</span><span class="o">=</span><span class="s2">&quot;23&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">cat_encoder</span> <span class="o">=</span> <span class="n">CatEncoder</span><span class="p">(</span>
-    <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;ordinal&quot;</span><span class="p">,</span>
-    <span class="n">categories</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
-    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
-    <span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
-    <span class="n">sklearn_version_family</span><span class="o">=</span><span class="s2">&quot;23&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">numpy_column_selector_1</span> <span class="o">=</span> <span class="n">NumpyColumnSelector</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-<span class="n">float_str2_float</span> <span class="o">=</span> <span class="n">FloatStr2Float</span><span class="p">(</span>
-    <span class="n">dtypes_list</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;int_num&quot;</span><span class="p">],</span> <span class="n">missing_values_reference_list</span><span class="o">=</span><span class="p">[]</span>
-<span class="p">)</span>
-<span class="n">numpy_replace_missing_values_1</span> <span class="o">=</span> <span class="n">NumpyReplaceMissingValues</span><span class="p">(</span>
-    <span class="n">missing_values</span><span class="o">=</span><span class="p">[],</span> <span class="n">filling_values</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">num_imputer</span> <span class="o">=</span> <span class="n">NumImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="n">missing_values</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">))</span>
-<span class="n">opt_standard_scaler</span> <span class="o">=</span> <span class="n">OptStandardScaler</span><span class="p">(</span>
-    <span class="n">num_scaler_copy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">num_scaler_with_mean</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">num_scaler_with_std</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">use_scaler_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">numpy_permute_array</span> <span class="o">=</span> <span class="n">NumpyPermuteArray</span><span class="p">(</span>
-    <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">permutation_indices</span><span class="o">=</span><span class="p">[</span>
-        <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="p">],</span>
-<span class="p">)</span>
-<span class="n">t_no_op</span> <span class="o">=</span> <span class="n">TNoOp</span><span class="p">(</span>
-    <span class="n">fun</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;no_action&quot;</span><span class="p">,</span> <span class="n">datatypes</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">feat_constraints</span><span class="o">=</span><span class="p">[]</span>
-<span class="p">)</span>
-<span class="n">xgb_classifier</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span>
-    <span class="n">gamma</span><span class="o">=</span><span class="mf">0.44579800091381966</span><span class="p">,</span>
-    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.021330806558379982</span><span class="p">,</span>
-    <span class="n">min_child_weight</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-    <span class="n">missing</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">),</span>
-    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">574</span><span class="p">,</span>
-    <span class="n">n_jobs</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span>
-    <span class="n">reg_alpha</span><span class="o">=</span><span class="mf">0.724822538978647</span><span class="p">,</span>
-    <span class="n">reg_lambda</span><span class="o">=</span><span class="mf">0.2506742141014951</span><span class="p">,</span>
-    <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.41147527714871196</span><span class="p">,</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">tree_method</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">pipeline</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="p">(</span>
-        <span class="p">(</span>
-            <span class="n">numpy_column_selector_0</span>
-            <span class="o">&gt;&gt;</span> <span class="n">compress_strings</span>
-            <span class="o">&gt;&gt;</span> <span class="n">numpy_replace_missing_values_0</span>
-            <span class="o">&gt;&gt;</span> <span class="n">numpy_replace_unknown_values</span>
-            <span class="o">&gt;&gt;</span> <span class="n">boolean2float</span><span class="p">()</span>
-            <span class="o">&gt;&gt;</span> <span class="n">cat_imputer</span>
-            <span class="o">&gt;&gt;</span> <span class="n">cat_encoder</span>
-            <span class="o">&gt;&gt;</span> <span class="n">float32_transform</span><span class="p">()</span>
-        <span class="p">)</span>
-        <span class="o">&amp;</span> <span class="p">(</span>
-            <span class="n">numpy_column_selector_1</span>
-            <span class="o">&gt;&gt;</span> <span class="n">float_str2_float</span>
-            <span class="o">&gt;&gt;</span> <span class="n">numpy_replace_missing_values_1</span>
-            <span class="o">&gt;&gt;</span> <span class="n">num_imputer</span>
-            <span class="o">&gt;&gt;</span> <span class="n">opt_standard_scaler</span>
-            <span class="o">&gt;&gt;</span> <span class="n">float32_transform</span><span class="p">()</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-    <span class="o">&gt;&gt;</span> <span class="n">ConcatFeatures</span><span class="p">()</span>
-    <span class="o">&gt;&gt;</span> <span class="n">numpy_permute_array</span>
-    <span class="o">&gt;&gt;</span> <span class="n">t_no_op</span>
-    <span class="o">&gt;&gt;</span> <span class="n">xgb_classifier</span>
-<span class="p">)</span>
-</pre></div>
-
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -17971,7 +17753,7 @@ data.</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.deployment</span> <span class="kn">import</span> <span class="n">WebService</span>
@@ -17980,7 +17762,7 @@ data.</p>
 
 <span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">run_id</span><span class="p">,</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_model</span><span class="p">,</span> 
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;Pipeline_1&#39;</span><span class="p">,</span> 
     <span class="n">deployment_name</span><span class="o">=</span><span class="s2">&quot;Credit Risk Deployment AutoAI&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -18002,24 +17784,23 @@ data.</p>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>Preparing an AutoAI Deployment...
-Depreciation Warning: Passing an object will no longer be supported. Please specify the AutoAI model name to deploy.
-Published model uid: 3113ed7a-f448-41dc-996d-34f9d01b411f
-Deploying model 3113ed7a-f448-41dc-996d-34f9d01b411f using V4 client.
+Published model uid: 014ffcfa-dcf1-4c26-add5-369243b140dd
+Deploying model 014ffcfa-dcf1-4c26-add5-369243b140dd using V4 client.
 
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;3113ed7a-f448-41dc-996d-34f9d01b411f&#39; started
+Synchronous deployment creation for uid: &#39;014ffcfa-dcf1-4c26-add5-369243b140dd&#39; started
 
 #######################################################################################
 
 
-initializing..................
+initializing..
 ready
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;3ac3a3df-2a83-4352-972c-9efca525645f&#39;
+Successfully finished deployment creation, deployment_uid=&#39;e0f705fd-2fcb-437f-bc83-b17d5296b01d&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -18040,7 +17821,7 @@ Successfully finished deployment creation, deployment_uid=&#39;3ac3a3df-2a83-435
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
@@ -18063,7 +17844,7 @@ Successfully finished deployment creation, deployment_uid=&#39;3ac3a3df-2a83-435
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>name: Credit Risk Deployment AutoAI, id: 3ac3a3df-2a83-4352-972c-9efca525645f, scoring_url: https://wmlgmc-cpd-wmlgmc.apps.wmlautoai.cp.fyre.ibm.com/ml/v4/deployments/3ac3a3df-2a83-4352-972c-9efca525645f/predictions, asset_id: 3113ed7a-f448-41dc-996d-34f9d01b411f
+<pre>name: Credit Risk Deployment AutoAI, id: e0f705fd-2fcb-437f-bc83-b17d5296b01d, scoring_url: https://cpd-wmlautoai-may12.apps.ocp46wmlautoaai.cp.fyre.ibm.com/ml/v4/deployments/e0f705fd-2fcb-437f-bc83-b17d5296b01d/predictions, asset_id: 014ffcfa-dcf1-4c26-add5-369243b140dd
 </pre>
 </div>
 </div>
@@ -18081,7 +17862,7 @@ Successfully finished deployment creation, deployment_uid=&#39;3ac3a3df-2a83-435
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">service</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
@@ -18100,13 +17881,13 @@ Successfully finished deployment creation, deployment_uid=&#39;3ac3a3df-2a83-435
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[42]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;3113ed7a-f448-41dc-996d-34f9d01b411f&#39;},
+<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;014ffcfa-dcf1-4c26-add5-369243b140dd&#39;},
   &#39;custom&#39;: {},
   &#39;deployed_asset_type&#39;: &#39;model&#39;,
   &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;c076e82c-b2a7-4d20-9c0f-1f0c2fdf5a24&#39;,
@@ -18117,15 +17898,15 @@ Successfully finished deployment creation, deployment_uid=&#39;3ac3a3df-2a83-435
     &#39;node_runtime_id&#39;: &#39;auto_ai.kb&#39;}],
   &#39;name&#39;: &#39;Credit Risk Deployment AutoAI&#39;,
   &#39;online&#39;: {},
-  &#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;,
-  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://wmlgmc-cpd-wmlgmc.apps.wmlautoai.cp.fyre.ibm.com/ml/v4/deployments/3ac3a3df-2a83-4352-972c-9efca525645f/predictions&#39;},
+  &#39;space_id&#39;: &#39;fbd2dc3a-634a-46d5-9edd-8faa22d27b8d&#39;,
+  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://cpd-wmlautoai-may12.apps.ocp46wmlautoaai.cp.fyre.ibm.com/ml/v4/deployments/e0f705fd-2fcb-437f-bc83-b17d5296b01d/predictions&#39;},
    &#39;state&#39;: &#39;ready&#39;}},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2020-12-08T13:17:37.189Z&#39;,
-  &#39;id&#39;: &#39;3ac3a3df-2a83-4352-972c-9efca525645f&#39;,
-  &#39;modified_at&#39;: &#39;2020-12-08T13:17:37.189Z&#39;,
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2021-05-20T08:23:53.001Z&#39;,
+  &#39;id&#39;: &#39;e0f705fd-2fcb-437f-bc83-b17d5296b01d&#39;,
+  &#39;modified_at&#39;: &#39;2021-05-20T08:23:53.001Z&#39;,
   &#39;name&#39;: &#39;Credit Risk Deployment AutoAI&#39;,
   &#39;owner&#39;: &#39;1000330999&#39;,
-  &#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;}}</pre>
+  &#39;space_id&#39;: &#39;fbd2dc3a-634a-46d5-9edd-8faa22d27b8d&#39;}}</pre>
 </div>
 
 </div>
@@ -18191,11 +17972,11 @@ Successfully finished deployment creation, deployment_uid=&#39;3ac3a3df-2a83-435
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>If you want to work with the web service in an external Python application you can retrieve the service object by:</p>
+<p>If you want to work with the web service in an external Python application, you can retrieve the service object:</p>
 <ul>
-<li>Initialize the service by <code>service = WebService(wml_credentials)</code></li>
-<li>Get deployment_id by <code>service.list()</code> method</li>
-<li>Get webservice object by <code>service.get('deployment_id')</code> method</li>
+<li>Initialize the service using <code>service = WebService(wml_credentials)</code></li>
+<li>Get deployment_id using the <code>service.list()</code> method</li>
+<li>Get webservice object using the <code>service.get('deployment_id')</code> method</li>
 </ul>
 <p>After that you can call <code>service.score()</code> method.</p>
 
@@ -18578,12 +18359,12 @@ Scoring job  &#39;478b6b5b-a80f-43f5-98f9-63e9da889720&#39; finished successfull
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Score-batch-deployment-with-payload-as-data-asset.">Score batch deployment with payload as data asset.<a class="anchor-link" href="#Score-batch-deployment-with-payload-as-data-asset.">&#182;</a></h3>
+<h3 id="Score-batch-deployment-with-payload-as-connected-asset.">Score batch deployment with payload as connected asset.<a class="anchor-link" href="#Score-batch-deployment-with-payload-as-connected-asset.">&#182;</a></h3>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Save pandas DataFrame with batch payload to file and crate new data asset with the file.</p>
+<p>Simmilary to training use created connection in order to locate tabe in used database.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -18603,7 +18384,7 @@ Scoring job  &#39;478b6b5b-a80f-43f5-98f9-63e9da889720&#39; finished successfull
             <span class="n">file_path</span><span class="o">=</span><span class="n">batch_payload_filename</span><span class="p">)</span>
 <span class="n">asset_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">asset_details</span><span class="p">)</span>
 
-<span class="n">payload_reference</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">AssetLocation</span><span class="p">(</span><span class="n">asset_id</span><span class="o">=</span><span class="n">asset_id</span><span class="p">))</span>
+<span class="n">payload_reference</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span><span class="n">data_asset_id</span><span class="o">=</span><span class="n">asset_id</span><span class="p">)</span>
 <span class="n">results_reference</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
             <span class="n">location</span><span class="o">=</span><span class="n">DeploymentOutputAssetLocation</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;batch_output_credit_risk.csv&quot;</span><span class="p">))</span>
 </pre></div>
@@ -18721,7 +18502,7 @@ To list the existing:</p>
 <li>functions</li>
 <li>deployments</li>
 </ul>
-<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd3.5/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 
 </div>
 </div>
@@ -18740,6 +18521,7 @@ To list the existing:</p>
 <p><strong>Amadeusz Masny</strong>, Python Software Developer in Watson Machine Learning at IBM</p>
 <p><strong>Kiran Kate</strong>, Senior Software Engineer at IBM Research AI</p>
 <p><strong>Martin Hirzel</strong>, Research Staff Member and Manager at IBM Research AI</p>
+<p><strong>Jan Sołtysik</strong>, Intern in Watson Machine Learning</p>
 
 </div>
 </div>

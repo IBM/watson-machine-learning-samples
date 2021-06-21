@@ -14297,7 +14297,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>password</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14307,7 +14307,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> USERNAME=
-<span class="o">%</span><span class="k">env</span> PASSWORD=
+<span class="o">%</span><span class="k">env</span> API_KEY=
 <span class="o">%</span><span class="k">env</span> DATAPLATFORM_URL=
 
 <span class="o">%</span><span class="k">env</span> SPACE_ID=
@@ -14333,17 +14333,17 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
 
-<span class="nv">token</span><span class="o">=</span><span class="k">$(</span>curl -sk -X GET <span class="se">\</span>
-    --user <span class="nv">$USERNAME</span>:<span class="nv">$PASSWORD</span> <span class="se">\</span>
-    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
-    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v1/preauth/validateAuth&quot;</span><span class="k">)</span>
+<span class="nv">token</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
+        --header <span class="s2">&quot;Content-type: application/json&quot;</span> <span class="se">\</span>
+        -d <span class="s2">&quot;{\&quot;username\&quot;:\&quot;</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span><span class="s2">\&quot;,\&quot;api_key\&quot;:\&quot;</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">\&quot;}&quot;</span> <span class="se">\</span>
+        <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/icp4d-api/v1/authorize&quot;</span><span class="k">)</span>
 
-<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*accessToken</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*token</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
 <span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
 <span class="nb">echo</span> <span class="nv">$token</span>
 </pre></div>
@@ -14356,10 +14356,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> TOKEN=$token 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> TOKEN=$token
 </pre></div>
 
      </div>
@@ -14379,7 +14379,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphbiIsInJvbGUiOiJVc2VyIiwicGVybWlzc2lvbnMiOlsiYWNjZXNzX2NhdGFsb2ciLCJjYW5fcHJvdmlzaW9uIl0sImdyb3VwcyI6WzEwMDAwXSwic3ViIjoiamFuIiwiaXNzIjoiS05PWFNTTyIsImF1ZCI6IkRTWCIsInVpZCI6IjEwMDAzMzEwMDkiLCJhdXRoZW50aWNhdG9yIjoiZGVmYXVsdCIsImlhdCI6MTYwNzYwODkzNiwiZXhwIjoxNjA3NjUyMTAwfQ.AkgXPbBgX1qUXDD4QafER4Lrvv75sn2HtIIkZzNTlsxWv9dXfpemGKQ8onUrI623k0_DfBafDRNDQ6PZ_Md9IiHsu8fvEyFaivQMsrE4TMP8Rb4o01WAKE4RW-nbtME5JNCsSyyIdLw1zex18TR0rU5IeuwQrr66xZ8qXzT-sebipobjrxEsoMuXCiSK3LCjv9O2AtGq-ZMqZX6eOoRrudJPdZ4TNI76ckrgRx_kqek_MLmdxSMcrQ9qg-k3IejaP5wn292nOwm_vN_81F44enYdnekmqW7OugdULNzBqKz55ZHfNocLoTDsv3SGvxXtmd_Wy8InJQ4ghBlbIsDoYA
+<pre>env: TOKEN=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdOTEJmb0QwXzE2Vy1rMDBXdzFCX3BrMFFCSjhLTFo0N2pMaUs5a3VQX3cifQ.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOlsiYWRtaW5pc3RyYXRvciIsImNhbl9wcm92aXNpb24iLCJtYW5hZ2VfY2F0YWxvZyIsImFjY2Vzc19jYXRhbG9nIl0sImdyb3VwcyI6WzEwMDAwXSwic3ViIjoiYWRtaW4iLCJpc3MiOiJLTk9YU1NPIiwiYXVkIjoiRFNYIiwidWlkIjoiMTAwMDMzMDk5OSIsImF1dGhlbnRpY2F0b3IiOiJkZWZhdWx0IiwiaWF0IjoxNjE4MjI4OTQwLCJleHAiOjE2MTgyNzIxMDR9.VyLudRtpd0seOsJ3Dsnf86dfK9QAKAXeFZ45yBNGAcY5A343ncnLRaOGi50URVC5pZwiMmCFDZjQwLdQfi5Z-2cQEllfD7B9v7sxnuThKtHKh_wp0Nm0IqR9Sus086dw88STULHCYSkblpDHOPdhVdwxnapBEDV8RYMOGkdWo7RO-83w7QCkXKRLW3SraRuobaU8UPhu-H3F7Gk-Bi-xa1XTeoOad-tOS90X-mCC4PL6Rvra61DU-UQkMkQ8vxYSg3QKihIrnB227jlX5QUUW6rZBby_zkMF9P0bb3J0Z4-wFdxmEJBxh7hBC0n-dzZ2KnKUy8V5OyvIXIN91VD-gQ
 </pre>
 </div>
 </div>
@@ -14593,7 +14593,7 @@ target="_blank" rel="noopener no referrer">Download tf-softmax-model.zip</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
-wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd3.5/definitions/tensorflow/mnist/tf_model_with_metrics_2_1.zip <span class="se">\</span>
+wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/definitions/tensorflow/mnist/tf_model_with_metrics_2_1.zip <span class="se">\</span>
      -O tf_model_with_metrics_2_1.zip
 </pre></div>
 
@@ -14614,12 +14614,12 @@ wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd3.5/de
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>--2020-12-10 15:02:30--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd3.5/definitions/tensorflow/mnist/tf_model_with_metrics_2_1.zip
+<pre>--2020-12-10 15:02:30--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/definitions/tensorflow/mnist/tf_model_with_metrics_2_1.zip
 Resolving github.com... 140.82.121.3
 Connecting to github.com|140.82.121.3|:443... connected.
 HTTP request sent, awaiting response... 302 Found
-Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/definitions/tensorflow/mnist/tf_model_with_metrics_2_1.zip [following]
---2020-12-10 15:02:31--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd3.5/definitions/tensorflow/mnist/tf_model_with_metrics_2_1.zip
+Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/definitions/tensorflow/mnist/tf_model_with_metrics_2_1.zip [following]
+--2020-12-10 15:02:31--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/definitions/tensorflow/mnist/tf_model_with_metrics_2_1.zip
 Resolving raw.githubusercontent.com... 151.101.64.133, 151.101.128.133, 151.101.192.133, ...
 Connecting to raw.githubusercontent.com|151.101.64.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
@@ -14734,7 +14734,7 @@ Change <code>training_data_references: location: path: ...</code></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_payload
 
-<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;training_data_references&quot;: [{&quot;name&quot;: &quot;training_input_data&quot;, &quot;type&quot;: &quot;fs&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;tf-mnist&quot;}, &quot;schema&quot;: {&quot;id&quot;: &quot;idmlp_schema&quot;, &quot;fields&quot;: [{&quot;name&quot;: &quot;text&quot;, &quot;type&quot;: &quot;string&quot;}]}}], &quot;results_reference&quot;: {&quot;name&quot;: &quot;MNIST results&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;spaces/&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;/assets/experiment&quot;}, &quot;type&quot;: &quot;fs&quot;}, &quot;tags&quot;: [{&quot;value&quot;: &quot;tags_tf&quot;, &quot;description&quot;: &quot;Tags TF&quot;}], &quot;name&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;description&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;model_definition&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;command&quot;: &quot;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;K80&quot;, &quot;nodes&quot;: 1}, &quot;software_spec&quot;: {&quot;name&quot;: &quot;tensorflow_2.1-py3.7&quot;}, &quot;parameters&quot;: {&quot;name&quot;: &quot;MNIST Tf&quot;, &quot;description&quot;: &quot;Tf DL model&quot;}}, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}&#39;</span>
+<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;training_data_references&quot;: [{&quot;name&quot;: &quot;training_input_data&quot;, &quot;type&quot;: &quot;fs&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;tf-mnist&quot;}, &quot;schema&quot;: {&quot;id&quot;: &quot;idmlp_schema&quot;, &quot;fields&quot;: [{&quot;name&quot;: &quot;text&quot;, &quot;type&quot;: &quot;string&quot;}]}}], &quot;results_reference&quot;: {&quot;name&quot;: &quot;MNIST results&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;spaces/&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;/assets/experiment&quot;}, &quot;type&quot;: &quot;fs&quot;}, &quot;tags&quot;: [{&quot;value&quot;: &quot;tags_tf&quot;, &quot;description&quot;: &quot;Tags TF&quot;}], &quot;name&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;description&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;model_definition&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;command&quot;: &quot;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;K80&quot;, &quot;nodes&quot;: 1}, &quot;software_spec&quot;: {&quot;name&quot;: &quot;tensorflow_2.4-py3.7&quot;}, &quot;parameters&quot;: {&quot;name&quot;: &quot;MNIST Tf&quot;, &quot;description&quot;: &quot;Tf DL model&quot;}}, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span> <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -15553,7 +15553,7 @@ curl -sk -X GET <span class="se">\</span>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget -q https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd3.5/data/mnist/mnist.npz
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget -q https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/data/mnist/mnist.npz
 </pre></div>
 
      </div>

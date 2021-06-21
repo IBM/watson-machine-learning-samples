@@ -14299,17 +14299,17 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>password</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">USERNAME</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="n">PASSWORD</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="n">API_KEY</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 <span class="n">DATAPLATFORM_URL</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 
 <span class="n">space_id</span><span class="o">=</span><span class="s2">&quot;fill out only if you have space already created&quot;</span>
@@ -14355,10 +14355,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">token_creation_params</span> <span class="o">=</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">token_creation_params</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">{{\&quot;</span><span class="s1">username</span><span class="se">\&quot;</span><span class="s1">: </span><span class="se">\&quot;</span><span class="si">{</span><span class="n">USERNAME</span><span class="si">}</span><span class="se">\&quot;</span><span class="s1">, </span><span class="se">\&quot;</span><span class="s1">api_key</span><span class="se">\&quot;</span><span class="s1">: </span><span class="se">\&quot;</span><span class="si">{</span><span class="n">API_KEY</span><span class="si">}</span><span class="se">\&quot;}}</span><span class="s1">&#39;</span>
 </pre></div>
 
      </div>
@@ -14375,11 +14375,16 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s1">/v1/preauth/validateAuth&#39;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">token_creation_params</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;accessToken&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s1">/icp4d-api/v1/authorize&#39;</span><span class="p">,</span>
+                         <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+                             <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
+                         <span class="p">},</span>
+                         <span class="n">data</span><span class="o">=</span><span class="n">token_creation_params</span><span class="p">,</span>
+                         <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
 </pre></div>
 
@@ -14400,7 +14405,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOlsiYWRtaW5pc3RyYXRvciIsImNhbl9wcm92aXNpb24iLCJtYW5hZ2VfY2F0YWxvZyIsImFjY2Vzc19jYXRhbG9nIl0sImdyb3VwcyI6WzEwMDAwXSwic3ViIjoiYWRtaW4iLCJpc3MiOiJLTk9YU1NPIiwiYXVkIjoiRFNYIiwidWlkIjoiMTAwMDMzMDk5OSIsImF1dGhlbnRpY2F0b3IiOiJkZWZhdWx0IiwiaWF0IjoxNjA3NDM1NTc3LCJleHAiOjE2MDc0Nzg3NDF9.S3jebZyPe3guKOBc-q8UvLyLRJiLRsxnkzls3ugUJJ4VEB6n-1Kk7WEhO6-FecCE7PE3OF5fjZAnkTCkHHkW2vYD5flZ5p-HD2whbivrNRX-2cOr5lyZo_e24gffrYDA631f2U_L5sC4RqfrFTj5ewjcM8X9rJYcVLc3-W5siu1FlQ2oQlHRg4QDe39avVUghuP2idKZKaEM-TLB3zLvH7eiRXyqUQhRaVrxsnjm4Lu_e9p2eTcpx-xH4Vi2GD7c2U7wkoY9Nmst2WB6siv5b88CYaviRNL0iGTnwquUv4efCSXqJ4fwzJUpnvVlOuUjntHwFR7J5XlJnVaVOEtcAw
+<pre>eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdOTEJmb0QwXzE2Vy1rMDBXdzFCX3BrMFFCSjhLTFo0N2pMaUs5a3VQX3cifQ.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6IkFkbWluIiwicGVybWlzc2lvbnMiOlsiYWRtaW5pc3RyYXRvciIsImNhbl9wcm92aXNpb24iLCJtYW5hZ2VfY2F0YWxvZyIsImFjY2Vzc19jYXRhbG9nIl0sImdyb3VwcyI6WzEwMDAwXSwic3ViIjoiYWRtaW4iLCJpc3MiOiJLTk9YU1NPIiwiYXVkIjoiRFNYIiwidWlkIjoiMTAwMDMzMDk5OSIsImF1dGhlbnRpY2F0b3IiOiJkZWZhdWx0IiwiaWF0IjoxNjE4MjI5NzA2LCJleHAiOjE2MTgyNzI4NzB9.fa8oCe-PPeMlIbx5KiLssw5VnQeoxqzIoOQ7sH2V47AP1ut7yFFw6tV89OfIudN_71BDPHQZC5eZ0bUWpEVC5OyoVpNyKpVV8utMqomPLOxdcJW9vn7mqHvPz-76K88d09KVJks2YvA1Vc2BgulBYq2TRA5jXfflS4aP3wWAbziZC3DS79xfnmopB2z2XGMNpUApOh2mRUFtfC22TTjLS6nlPeLtxwZVs_ifd8fpOOmd8JNk4kPJIBI7QigJNfOXdwuI_bDVeZIiADV0YOzPSnE-OACGLQEX7EDjol0bjhB2V6lKjvDQOnR8Vu45Kzyx2FdV0bwSyKl6Ikox4dJr4g
 </pre>
 </div>
 </div>
