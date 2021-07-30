@@ -14559,7 +14559,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Look up software specification for the MNIST model</span>
 
-<span class="n">sofware_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">&quot;tensorflow_2.1-py3.7&quot;</span><span class="p">)</span>
+<span class="n">sofware_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">&quot;default_py3.7_opence&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14577,7 +14577,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 
 <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s1">&#39;Saved MNIST model&#39;</span><span class="p">,</span>
-            <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;tensorflow_2.1&#39;</span><span class="p">,</span>
+            <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;tensorflow_2.4&#39;</span><span class="p">,</span>
             <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">sofware_spec_uid</span>
 <span class="p">}</span>
 <span class="n">model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
@@ -14893,18 +14893,7 @@ Num image data entries: 139876 - (n * n * 4) elements - RGBA values
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ai_parms</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;wml_credentials&quot;</span><span class="p">:</span> <span class="n">wml_credentials</span><span class="p">,</span> <span class="s2">&quot;space_id&quot;</span><span class="p">:</span> <span class="n">space_id</span><span class="p">,</span> <span class="s2">&quot;model_deployment_id&quot;</span><span class="p">:</span> <span class="n">model_deployment_id</span><span class="p">}</span>
 
-<span class="k">def</span> <span class="nf">my_deployable_function</span><span class="p">(</span> <span class="n">parms</span><span class="o">=</span><span class="n">ai_parms</span> <span class="p">):</span>
-    
-    <span class="k">try</span><span class="p">:</span>
-        
-        <span class="kn">import</span> <span class="nn">subprocess</span>
-        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s2">&quot;pip install pillow --user&quot;</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        
-    <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>        
-        <span class="n">install_err</span> <span class="o">=</span> <span class="s2">&quot;subprocess.CalledProcessError:</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;cmd:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">cmd</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">output:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Installing failed:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">install_err</span><span class="p">)</span>
-    
-        
+<span class="k">def</span> <span class="nf">my_deployable_function</span><span class="p">(</span> <span class="n">parms</span><span class="o">=</span><span class="n">ai_parms</span> <span class="p">):</span>        
     <span class="k">def</span> <span class="nf">getRGBAArr</span><span class="p">(</span><span class="n">canvas_data</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
         <span class="n">dimension</span> <span class="o">=</span> <span class="n">canvas_data</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span>

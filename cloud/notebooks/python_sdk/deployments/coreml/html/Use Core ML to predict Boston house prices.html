@@ -14265,7 +14265,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook demonstrates how to perform regression analysis using scikit-learn and the watson-machine-learning-client package.</p>
-<p>Some familiarity with Python is helpful. This notebook is compatible with Python 3.6.</p>
+<p>Some familiarity with Python is helpful. This notebook is compatible with Python 3.7.</p>
 <p>You will use the sample data set, <strong>sklearn.datasets.load_boston</strong> which is available in scikit-learn, to predict house prices.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>In this notebook, you will learn how to:</p>
 <ul>
@@ -15307,10 +15307,10 @@ Number of training records: 167
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Get-information-about-all-of-the-models-in-the-WML-repository.">Get information about all of the models in the WML repository.<a class="anchor-link" href="#Get-information-about-all-of-the-models-in-the-WML-repository.">&#182;</a></h4>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">models_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">list_models</span><span class="p">()</span>
@@ -15319,38 +15319,6 @@ Number of training records: 167
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>------------------------------------  -------------------------------------  ------------------------  -----------------
-ID                                    NAME                                   CREATED                   TYPE
-d79d1ce6-8cc6-4e96-93a6-fe6b1852c45a  Boston house price                     2020-10-07T13:16:05.002Z  scikit-learn_0.23
-44ed59ec-8daa-40d6-87b0-34d824724133  Temp prediction model with custom lib  2020-10-07T12:51:56.002Z  scikit-learn_0.23
-440e50f3-2fcc-4145-93a9-6a850f3f135d  XGBoost model for breast cancer        2020-10-07T12:48:52.002Z  scikit-learn_0.20
-77b94ee5-209a-4fbb-b867-027994fbbea0  XGBoost model for breast cancer        2020-10-07T12:48:14.002Z  scikit-learn_0.20
-22a2337f-3921-4588-9ded-a25df6d8e1d5  XGBoost model for breast cancer        2020-10-07T12:47:28.002Z  scikit-learn_0.23
-ba6906c5-67b5-4ac0-9955-1e2affad4012  XGBoost model for breast cancer        2020-10-07T12:46:44.002Z  scikit-learn_0.23
-7650a765-d24f-4ee0-a9ba-c92d700d19f4  External scikit model                  2020-10-07T12:35:33.002Z  scikit-learn_0.23
-640a63b0-5dd9-488e-8661-bfa59aab517b  Scikit German Risk Model WML V4        2020-10-07T12:32:51.002Z  scikit-learn_0.23
-20f0d8e7-fedd-4509-a067-502d6e11df1c  eloo1                                  2020-08-18T09:10:58.002Z  tensorflow_1.15
-------------------------------------  -------------------------------------  ------------------------  -----------------
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>

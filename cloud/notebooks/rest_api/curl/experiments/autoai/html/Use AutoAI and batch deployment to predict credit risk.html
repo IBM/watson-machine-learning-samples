@@ -14946,6 +14946,182 @@ curl -sk -X PUT <span class="se">\</span>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Create-connection-to-COS">Create connection to COS<a class="anchor-link" href="#Create-connection-to-COS">&#182;</a></h3><p>Created connection will be used in training as a reference to given COS location.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out connection_payload
+
+<span class="nv">CONNECTION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;REST COS connection&quot;, &quot;datasource_type&quot;: &quot;193a97c1-4475-4a19-b90c-295c4fdc6517&quot;, &quot;properties&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;iam_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$AUTH_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;origin_country&quot;: &quot;US&quot;}&#39;</span>
+<span class="nb">echo</span> <span class="nv">$CONNECTION_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> CONNECTION_PAYLOAD=$connection_payload
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>env: CONNECTION_PAYLOAD={
+    &#34;name&#34;: &#34;REST COS connection&#34;,
+    &#34;datasource_type&#34;: &#34;193a97c1-4475-4a19-b90c-295c4fdc6517&#34;,
+    &#34;properties&#34;: {
+        &#34;bucket&#34;: &#34;&#34;,
+        &#34;access_key&#34;: &#34;&#34;,
+        &#34;secret_key&#34;: &#34;&#34;,
+        &#34;iam_url&#34;: &#34;&#34;,
+        &#34;url&#34;: &#34;&#34;
+    },
+    &#34;origin_country&#34;: &#34;US&#34;
+}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out connection_id
+<span class="nv">CONNECTION_ID</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
+                    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+                    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+                    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+                    --data <span class="s2">&quot;</span><span class="nv">$CONNECTION_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+                    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/connections?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="k">)</span>
+
+<span class="nv">CONNECTION_ID</span><span class="o">=</span><span class="si">${</span><span class="nv">CONNECTION_ID</span><span class="p">#*asset_id</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">CONNECTION_ID</span><span class="o">=</span><span class="si">${</span><span class="nv">CONNECTION_ID</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="nv">$CONNECTION_ID</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> CONNECTION_ID=$connection_id
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>env: CONNECTION_ID=65c9a953-8816-413b-9af7-a264bb5c610e
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Connections-to-external-databases.">Connections to external databases.<a class="anchor-link" href="#Connections-to-external-databases.">&#182;</a></h3><p>If you want to create experiment using data saved in the external database instead of COS,<br>
+you should change the following properties in the <code>CONNECTION_PAYLOAD</code>:</p>
+<ul>
+<li><code>datasource_type</code></li>
+<li><code>properties</code>  </li>
+</ul>
+<p>Where <code>properties</code> key should contain credentials required for the connection creation which should follow the bellow pattern:</p>
+
+<pre><code>"properties": {
+    "database": "***",
+    "password": "***",
+    "port": "***",
+    "host": "***",
+    "ssl": "***",
+    "username": "***"
+}</code></pre>
+<p>The <code>datasource_type</code> list can be obtained by using bellow request.</p>
+
+</div>
+</div>%%bash
+
+curl -sk -X GET \
+    --header "Authorization: Bearer $TOKEN" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    "$DATAPLATFORM_URL/v2/datasource_types?space_id=$SPACE_ID" \
+    | python -m json.tool
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Exemplary-payload-for-DB2-database:">Exemplary payload for <strong>DB2</strong> database:<a class="anchor-link" href="#Exemplary-payload-for-DB2-database:">&#182;</a></h4>
+<pre><code>{
+    "name": "REST DB2 connection",
+    "datasource_type": "8c1a4480-1c29-4b33-9086-9cb799d7b157",
+    "properties": {
+        "database": "BLUDB",
+        "username": "***"
+        "password": "***",
+        "port": 50000,
+        "host": "dashdb-txn-sbox-yp-dal09-11.services.dal.bluemix.net",
+        "ssl": "true",
+    },
+    "origin_country": "US"
+}</code></pre>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="run"></a></p>
 <h2 id="3.-Experiment-run">3. Experiment run<a class="anchor-link" href="#3.-Experiment-run">&#182;</a></h2><p>This section provides samples about how to trigger AutoAI experiment via cURL calls.</p>
 
@@ -14960,12 +15136,12 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_payload
 
-<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;training_data_references&quot;: [{&quot;type&quot;: &quot;s3&quot;, &quot;id&quot;: &quot;credit_risk_training_light.csv&quot;, &quot;connection&quot;: {&quot;endpoint_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;path&quot;: &quot;credit_risk_training_light.csv&quot;}}], &quot;results_reference&quot;: {&quot;type&quot;: &quot;s3&quot;, &quot;id&quot;: &quot;autoai_results&quot;, &quot;connection&quot;: {&quot;endpoint_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;path&quot;: &quot;.&quot;}}, &quot;tags&quot;: [{&quot;value&quot;: &quot;autoai&quot;}], &quot;pipeline&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$PIPELINE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
+<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;training_data_references&quot;: [{&quot;type&quot;: &quot;connection_asset&quot;, &quot;id&quot;: &quot;credit_risk_training_light.csv&quot;, &quot;connection&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$CONNECTION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;file_name&quot;: &quot;credit_risk_training_light.csv&quot;}}], &quot;results_reference&quot;: {&quot;type&quot;: &quot;connection_asset&quot;, &quot;id&quot;: &quot;autoai_results&quot;, &quot;connection&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$CONNECTION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;file_name&quot;: &quot;.&quot;}}, &quot;tags&quot;: [{&quot;value&quot;: &quot;autoai&quot;}], &quot;pipeline&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$PIPELINE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span> <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -14977,7 +15153,7 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> TRAINING_PAYLOAD=$training_payload
@@ -15001,33 +15177,29 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>env: TRAINING_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
+    &#34;space_id&#34;: &#34;&#34;,
     &#34;training_data_references&#34;: [
         {
-            &#34;type&#34;: &#34;s3&#34;,
+            &#34;type&#34;: &#34;connection_asset&#34;,
             &#34;id&#34;: &#34;credit_risk_training_light.csv&#34;,
             &#34;connection&#34;: {
-                &#34;endpoint_url&#34;: &#34;***&#34;,
-                &#34;access_key_id&#34;: &#34;***&#34;,
-                &#34;secret_access_key&#34;: &#34;***&#34;
+                &#34;id&#34;: &#34;&#34;
             },
             &#34;location&#34;: {
-                &#34;bucket&#34;: &#34;***&#34;,
-                &#34;path&#34;: &#34;credit_risk_training_light.csv&#34;
+                &#34;bucket&#34;: &#34;&#34;,
+                &#34;file_name&#34;: &#34;credit_risk_training_light.csv&#34;
             }
         }
     ],
     &#34;results_reference&#34;: {
-        &#34;type&#34;: &#34;s3&#34;,
+        &#34;type&#34;: &#34;connection_asset&#34;,
         &#34;id&#34;: &#34;autoai_results&#34;,
         &#34;connection&#34;: {
-            &#34;endpoint_url&#34;: &#34;***&#34;,
-            &#34;access_key_id&#34;: &#34;***&#34;,
-            &#34;secret_access_key&#34;: &#34;***&#34;
+            &#34;id&#34;: &#34;&#34;
         },
         &#34;location&#34;: {
-            &#34;bucket&#34;: &#34;***&#34;,
-            &#34;path&#34;: &#34;.&#34;
+            &#34;bucket&#34;: &#34;&#34;,
+            &#34;file_name&#34;: &#34;.&#34;
         }
     },
     &#34;tags&#34;: [
@@ -15036,7 +15208,7 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
         }
     ],
     &#34;pipeline&#34;: {
-        &#34;href&#34;: &#34;/v4/pipelines/366e3603-4dc3-4552-b8d9-9d093dafc44c&#34;
+        &#34;id&#34;: &#34;&#34;
     }
 }
 </pre>

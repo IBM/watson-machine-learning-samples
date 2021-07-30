@@ -14358,8 +14358,7 @@ a.anchor-link {
 <h3 id="Install-and-import-the-ibm-watson-machine-learning-package">Install and import the <code>ibm-watson-machine-learning</code> package<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning-package">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="http://ibm-wml-api-pyclient.mybluemix.net/" target="_blank" rel="noopener no referrer">here</a>.</p>
 
 </div>
-</div>!pip install -U ibm-watson-machine-learning | tail -n 1
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>!pip install -U ibm-watson-machine-learning | tail -n 1<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
@@ -14752,7 +14751,7 @@ Next, edges between nodes with join columns names (<code>from_column</code>, <co
             <span class="n">scoring</span><span class="o">=</span><span class="n">AutoAI</span><span class="o">.</span><span class="n">Metrics</span><span class="o">.</span><span class="n">R2_SCORE</span><span class="p">,</span>
             <span class="n">max_number_of_estimators</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="n">data_join_graph</span><span class="o">=</span><span class="n">data_join_graph</span><span class="p">,</span>
-            <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span>
+            <span class="n">holdout_size</span><span class="o">=</span><span class="mf">0.5</span>
         <span class="p">)</span>
 </pre></div>
 

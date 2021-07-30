@@ -14265,7 +14265,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook contains steps and code to develop a predictive model, and start scoring new data. This notebook introduces commands for getting data and for basic data cleaning and exploration, pipeline creation, model training, model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.6 and Apache® Spark 2.4.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.7 and Apache® Spark 2.4.</p>
 <p>You will use a data set, <strong>Telco Customer Churn</strong>, which details anonymous customer data from a telecommunication company. Use the details of this data set to predict customer churn which is very critical to business as it's easier to retain existing customers rather than acquiring new ones.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
@@ -15282,6 +15282,75 @@ WA_FnUseC_TelcoCustomerChurn.csv is uploaded.
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Create-connections-to-a-COS-bucket">Create connections to a COS bucket<a class="anchor-link" href="#Create-connections-to-a-COS-bucket">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="s1">&#39;bluemixcloudobjectstorage&#39;</span><span class="p">)</span>
+
+<span class="n">conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;COS connection - spark&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">datasource_type</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">connection_access_key_id</span><span class="p">,</span>
+        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">connection_secret_access_key</span><span class="p">,</span>
+        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="n">auth_endpoint</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">service_endpoint</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">conn_meta_props</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Note</strong>: The above connection can be initialized alternatively with <code>api_key</code> and <code>resource_instance_id</code>.<br>
+The above cell can be replaced with:</p>
+
+<pre><code>conn_meta_props= {
+    client.connections.ConfigurationMetaNames.NAME: f"Connection to Database - {db_name} ",
+    client.connections.ConfigurationMetaNames.DATASOURCE_TYPE: client.connections.get_datasource_type_uid_by_name(db_name),
+    client.connections.ConfigurationMetaNames.DESCRIPTION: "Connection to external Database",
+    client.connections.ConfigurationMetaNames.PROPERTIES: {
+        'bucket': bucket_name,
+        'api_key': cos_credentials['apikey'],
+        'resource_instance_id': cos_credentials['resource_instance_id'],
+        'iam_url': 'https://iam.cloud.ibm.com/identity/token',
+        'url': 'https://s3.us.cloud-object-storage.appdomain.cloud'
+    }
+}
+
+conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">conn_details</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="4.1:-Save-pipeline-and-model">4.1: Save pipeline and model<a class="anchor-link" href="#4.1:-Save-pipeline-and-model">&#182;</a></h3>
 </div>
 </div>
@@ -15299,15 +15368,13 @@ WA_FnUseC_TelcoCustomerChurn.csv is uploaded.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_data_references</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;customer churn&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;access_key_id&quot;</span><span class="p">:</span> <span class="n">connection_access_key_id</span><span class="p">,</span>
-                        <span class="s2">&quot;endpoint_url&quot;</span><span class="p">:</span> <span class="n">service_endpoint</span><span class="p">,</span>
-                        <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="n">connection_secret_access_key</span>
+                        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">connection_id</span>
                     <span class="p">},</span>
                     <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">score_filename</span><span class="p">,</span>
+                        <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">score_filename</span><span class="p">,</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">]</span>
@@ -15775,152 +15842,10 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Save-data-for-prediction-to-Object-Storage">Save data for prediction to Object Storage<a class="anchor-link" href="#Save-data-for-prediction-to-Object-Storage">&#182;</a></h4>
 </div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>ibm-cos-sdk library allows Python developers to manage Cloud Object Storage (COS).</p>
-
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibm_boto3</span>
-<span class="kn">from</span> <span class="nn">ibm_botocore.client</span> <span class="kn">import</span> <span class="n">Config</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Action</strong>: Put credentials from Object Storage Service in Bluemix here.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos_credentials</span> <span class="o">=</span> <span class="p">{</span>
-                  <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
-                  <span class="s2">&quot;cos_hmac_keys&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;access_key_id&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span>
-                  <span class="p">},</span>
-                  <span class="s2">&quot;endpoints&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
-                  <span class="s2">&quot;iam_apikey_description&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
-                  <span class="s2">&quot;iam_apikey_name&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
-                  <span class="s2">&quot;iam_role_crn&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
-                  <span class="s2">&quot;iam_serviceid_crn&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span><span class="p">,</span>
-                  <span class="s2">&quot;resource_instance_id&quot;</span><span class="p">:</span> <span class="s2">&quot;***&quot;</span>
-                <span class="p">}</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_apikey</span> <span class="o">=</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">]</span>
-<span class="n">connection_resource_instance_id</span> <span class="o">=</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s2">&quot;resource_instance_id&quot;</span><span class="p">]</span>
-<span class="n">connection_access_key_id</span> <span class="o">=</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;access_key_id&#39;</span><span class="p">]</span>
-<span class="n">connection_secret_access_key</span> <span class="o">=</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">]</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Action</strong>: Define the service endpoint we will use. <br>
-<strong>Tip</strong>: You can find this information in Endpoints section of your Cloud Object Storage intance's dashbord.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">service_endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://s3.us.cloud-object-storage.appdomain.cloud&#39;</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You also need IBM Cloud authorization endpoint to be able to create COS resource object.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">auth_endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://iam.cloud.ibm.com/identity/token&#39;</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We create COS resource to be able to write data to Cloud Object Storage.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span> <span class="o">=</span> <span class="n">ibm_boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span>
-                         <span class="n">ibm_api_key_id</span><span class="o">=</span><span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">],</span>
-                         <span class="n">ibm_service_instance_id</span><span class="o">=</span><span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;resource_instance_id&#39;</span><span class="p">],</span>
-                         <span class="n">ibm_auth_endpoint</span><span class="o">=</span><span class="n">auth_endpoint</span><span class="p">,</span>
-                         <span class="n">config</span><span class="o">=</span><span class="n">Config</span><span class="p">(</span><span class="n">signature_version</span><span class="o">=</span><span class="s1">&#39;oauth&#39;</span><span class="p">),</span>
-                         <span class="n">endpoint_url</span><span class="o">=</span><span class="n">service_endpoint</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now you will create bucket in COS and copy <code>dataset</code> for batch scoring from <strong>Telco Customer Churn project</strong>.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
@@ -16016,6 +15941,67 @@ scoreInput.csv is uploaded.
 
 </div>
 
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Create-connections-to-COS-Buckets">Create connections to COS Buckets<a class="anchor-link" href="#Create-connections-to-COS-Buckets">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="s1">&#39;bluemixcloudobjectstorage&#39;</span><span class="p">)</span>
+
+<span class="n">input_conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Input COS connection - spark&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">datasource_type</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">connection_access_key_id</span><span class="p">,</span>
+        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">connection_secret_access_key</span><span class="p">,</span>
+        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="n">auth_endpoint</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">service_endpoint</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">output_conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Output COS connection - spark&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">datasource_type</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">connection_access_key_id</span><span class="p">,</span>
+        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">connection_secret_access_key</span><span class="p">,</span>
+        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="n">auth_endpoint</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">service_endpoint</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">input_conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">input_conn_meta_props</span><span class="p">)</span>
+<span class="n">output_conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">output_conn_meta_props</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">input_conn_details</span><span class="p">)</span>
+<span class="n">output_connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">output_conn_details</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
 </div>
 
 </div>
@@ -16208,29 +16194,25 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA_REFERENCES</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
             <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;scoringDataset&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span><span class="p">,</span>
             <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;endpoint_url&quot;</span><span class="p">:</span> <span class="n">service_endpoint</span><span class="p">,</span>
-                <span class="s2">&quot;access_key_id&quot;</span><span class="p">:</span> <span class="n">connection_access_key_id</span><span class="p">,</span>
-                <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="n">connection_secret_access_key</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">input_connection_id</span>
             <span class="p">},</span>
             <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
               <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">score_filename</span>
+              <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">score_filename</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">],</span>
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">OUTPUT_DATA_REFERENCE</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span><span class="p">,</span>
             <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;endpoint_url&quot;</span><span class="p">:</span> <span class="n">service_endpoint</span><span class="p">,</span>
-                <span class="s2">&quot;access_key_id&quot;</span><span class="p">:</span> <span class="n">connection_access_key_id</span><span class="p">,</span>
-                <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="n">connection_secret_access_key</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">output_connection_id</span><span class="p">,</span>
             <span class="p">},</span>
             <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
               <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;scoring_output&quot;</span>
+              <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="s2">&quot;scoring_output&quot;</span>
             <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>

@@ -14466,12 +14466,12 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_payload
 
-<span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;scikit_diabetes_model&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;type&quot;: &quot;scikit-learn_0.23&quot;, &quot;software_spec&quot;: {&quot;name&quot;: &quot;default_py3.7&quot;}}&#39;</span>
+<span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;scikit_diabetes_model&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;type&quot;: &quot;scikit-learn_0.23&quot;, &quot;software_spec&quot;: {&quot;name&quot;: &quot;default_py3.8&quot;}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$MODEL_PAYLOAD</span> <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -14483,7 +14483,7 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> MODEL_PAYLOAD=$model_payload
@@ -14507,12 +14507,12 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>env: MODEL_PAYLOAD={
-    &#34;space_id&#34;: &#34;cc59083a-923f-4c35-8947-10c126343bd0&#34;,
+    &#34;space_id&#34;: &#34;&#34;,
     &#34;name&#34;: &#34;scikit_diabetes_model&#34;,
     &#34;description&#34;: &#34;This is description&#34;,
     &#34;type&#34;: &#34;scikit-learn_0.23&#34;,
     &#34;software_spec&#34;: {
-        &#34;name&#34;: &#34;default_py3.7&#34;
+        &#34;name&#34;: &#34;default_py3.8&#34;
     }
 }
 </pre>

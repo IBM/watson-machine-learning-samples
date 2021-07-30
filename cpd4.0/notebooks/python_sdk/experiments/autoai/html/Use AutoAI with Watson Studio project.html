@@ -15360,7 +15360,7 @@ Successfully finished deployment creation, deployment_uid=&#39;e46839f6-b6b8-406
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_data_connections</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="n">train_X</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Risk&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Risk&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">train_y</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">Risk</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 
@@ -15770,122 +15770,6 @@ Scoring job  &#39;478b6b5b-a80f-43f5-98f9-63e9da889720&#39; finished successfull
    [&#39;Risk&#39;, [0.22297507524490356, 0.7770249247550964]]]}]</pre>
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Score-batch-deployment-with-payload-as-data-asset.">Score batch deployment with payload as data asset.<a class="anchor-link" href="#Score-batch-deployment-with-payload-as-data-asset.">&#182;</a></h3>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Save pandas DataFrame with batch payload to file and crate new data asset with the file.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.helpers.connections</span> <span class="kn">import</span> <span class="n">AssetLocation</span><span class="p">,</span> <span class="n">DeploymentOutputAssetLocation</span>
-
-
-<span class="n">batch_payload_filename</span> <span class="o">=</span> <span class="s2">&quot;credit_risk_batch_payload.csv&quot;</span>
-<span class="n">batch_payload_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">batch_payload_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="n">asset_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="n">batch_payload_filename</span><span class="p">,</span>
-            <span class="n">file_path</span><span class="o">=</span><span class="n">batch_payload_filename</span><span class="p">)</span>
-<span class="n">asset_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">asset_details</span><span class="p">)</span>
-
-<span class="n">payload_reference</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">AssetLocation</span><span class="p">(</span><span class="n">asset_id</span><span class="o">=</span><span class="n">asset_id</span><span class="p">))</span>
-<span class="n">results_reference</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
-            <span class="n">location</span><span class="o">=</span><span class="n">DeploymentOutputAssetLocation</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;batch_output_credit_risk.csv&quot;</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Creating data asset...
-SUCCESS
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Run scoring job for batch deployment.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scoring_params</span> <span class="o">=</span> <span class="n">service_batch</span><span class="o">.</span><span class="n">run_job</span><span class="p">(</span>
-            <span class="n">payload</span><span class="o">=</span><span class="p">[</span><span class="n">payload_reference</span><span class="p">],</span>
-            <span class="n">output_data_reference</span><span class="o">=</span><span class="n">results_reference</span><span class="p">,</span>
-            <span class="n">background_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>
-
-##########################################################################
-
-Synchronous scoring for id: &#39;80664cc6-3bf8-4fae-9309-f8622972a119&#39; started
-
-##########################################################################
-
-
-queued.........
-running.
-completed
-Scoring job  &#39;80664cc6-3bf8-4fae-9309-f8622972a119&#39; finished successfully.
-</pre>
-</div>
 </div>
 
 </div>

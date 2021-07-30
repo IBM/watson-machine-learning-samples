@@ -14772,6 +14772,91 @@ Create the list of links for training dataset.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="1.3-Create-connections-to-a-COS-bucket.">1.3 Create connections to a COS bucket.<a class="anchor-link" href="#1.3-Create-connections-to-a-COS-bucket.">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="s1">&#39;bluemixcloudobjectstorage&#39;</span><span class="p">)</span>
+
+<span class="n">input_conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Input COS connection&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">datasource_type</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;access_key_id&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="n">auth_endpoint</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">service_endpoint</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">output_conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Output COS connection&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">datasource_type</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;access_key_id&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="n">auth_endpoint</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">service_endpoint</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">input_conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">input_conn_meta_props</span><span class="p">)</span>
+<span class="n">output_conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">output_conn_meta_props</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Creating connections...
+SUCCESS
+Creating connections...
+SUCCESS
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">input_conn_details</span><span class="p">)</span>
+<span class="n">output_connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">output_conn_details</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The model is ready to be trained.</p>
 
 </div>
@@ -14921,38 +15006,36 @@ Create the list of links for training dataset.</p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">TRAINING_DATA_REFERENCE</span> <span class="o">=</span> <span class="p">[{</span>
-                              <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;training_input_data&quot;</span><span class="p">,</span>
-                              <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span><span class="p">,</span>
-                              <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="s2">&quot;endpoint_url&quot;</span><span class="p">:</span> <span class="n">service_endpoint</span><span class="p">,</span>
-                                <span class="s2">&quot;access_key_id&quot;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;access_key_id&#39;</span><span class="p">],</span>
-                                <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">]</span>
-                              <span class="p">},</span>
-                              <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                              <span class="p">},</span>
-                              <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;idmlp_schema&quot;</span><span class="p">,</span>
-                                <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
-                                  <span class="p">{</span>
-                                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
-                                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
-                                  <span class="p">}</span>
-                                <span class="p">]</span>
-                              <span class="p">}</span>
-                            <span class="p">}]</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;training_input_data&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">input_connection_id</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;schema&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;idmlp_schema&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}]</span>
 <span class="n">TRAINING_RESULTS_REFERENCE</span> <span class="o">=</span> <span class="p">{</span>
-                                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MNIST results&quot;</span><span class="p">,</span>
-                                <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                        <span class="s2">&quot;endpoint_url&quot;</span><span class="p">:</span> <span class="n">service_endpoint</span><span class="p">,</span>
-                                        <span class="s2">&quot;access_key_id&quot;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;access_key_id&#39;</span><span class="p">],</span>
-                                        <span class="s2">&quot;secret_access_key&quot;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;cos_hmac_keys&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">]</span>
-                                  <span class="p">},</span>
-                                  <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                    <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                                  <span class="p">},</span>
-                                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;s3&quot;</span>
-                              <span class="p">}</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MNIST results&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">output_connection_id</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span>
+<span class="p">}</span>
 </pre></div>
 
      </div>
@@ -14983,7 +15066,7 @@ Create the list of links for training dataset.</p>
           <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="mi">2</span>
         <span class="p">},</span>
         <span class="s2">&quot;software_spec&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tensorflow_2.1-py3.7-horovod&quot;</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tensorflow_2.4-py3.7-horovod&quot;</span>
         <span class="p">},</span>
         <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
           <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Hand-written Digit Recognition&quot;</span><span class="p">,</span>
@@ -15221,7 +15304,7 @@ Create the list of links for training dataset.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s1">&#39;tensorflow_2.4-py3.7&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s1">&#39;default_py3.7_opence&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>

@@ -1,8 +1,8 @@
-name: python37
+name: python38
 channels:
   - defaults
 dependencies:
   - pip:
     - autoai-libs
 
-prefix: /opt/anaconda3/envs/python37
+prefix: /opt/anaconda3/envs/python38

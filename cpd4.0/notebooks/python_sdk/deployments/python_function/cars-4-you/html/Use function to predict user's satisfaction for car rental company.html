@@ -14265,7 +14265,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook trains a <strong>Keras</strong> (TensorFlow) model to predict customer satisfaction based on the feedback that has been provided. The notebook also demonstrates how you can use the <strong>python function</strong> for the deep learning model data preprocessing required before you start model scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.7 and the watson-machine-learning-client package.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and the watson-machine-learning-client package.</p>
 
 </div>
 </div>
@@ -14374,7 +14374,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14489,7 +14489,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install --upgrade <span class="nv">tensorflow</span><span class="o">==</span><span class="m">2</span>.1 <span class="p">|</span> tail -n <span class="m">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install --upgrade <span class="nv">tensorflow</span><span class="o">==</span><span class="m">2</span>.4 <span class="p">|</span> tail -n <span class="m">1</span>
 </pre></div>
 
      </div>
@@ -14792,13 +14792,13 @@ dtype: int64</pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.text</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.sequence</span> <span class="kn">import</span> <span class="n">pad_sequences</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Embedding</span><span class="p">,</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">SpatialDropout1D</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">MaxPooling1D</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Embedding</span>
@@ -14998,7 +14998,7 @@ _________________________________________________________________
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
@@ -15021,47 +15021,46 @@ _________________________________________________________________
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Train on 325 samples, validate on 161 samples
-Epoch 1/20
-325/325 [==============================] - 2s 6ms/sample - loss: 0.6900 - accuracy: 0.5354 - val_loss: 0.6869 - val_accuracy: 0.5342
+<pre>Epoch 1/20
+6/6 [==============================] - 3s 146ms/step - loss: 0.6904 - accuracy: 0.5217 - val_loss: 0.6863 - val_accuracy: 0.5342
 Epoch 2/20
-325/325 [==============================] - 0s 392us/sample - loss: 0.6758 - accuracy: 0.5785 - val_loss: 0.6885 - val_accuracy: 0.5342
+6/6 [==============================] - 0s 29ms/step - loss: 0.6765 - accuracy: 0.5673 - val_loss: 0.6850 - val_accuracy: 0.5342
 Epoch 3/20
-325/325 [==============================] - 0s 437us/sample - loss: 0.6680 - accuracy: 0.5785 - val_loss: 0.6829 - val_accuracy: 0.5342
+6/6 [==============================] - 0s 29ms/step - loss: 0.6519 - accuracy: 0.6028 - val_loss: 0.6744 - val_accuracy: 0.5342
 Epoch 4/20
-325/325 [==============================] - 0s 474us/sample - loss: 0.6463 - accuracy: 0.5785 - val_loss: 0.6630 - val_accuracy: 0.5342
+6/6 [==============================] - 0s 26ms/step - loss: 0.6412 - accuracy: 0.5904 - val_loss: 0.6549 - val_accuracy: 0.5963
 Epoch 5/20
-325/325 [==============================] - 0s 434us/sample - loss: 0.6221 - accuracy: 0.5785 - val_loss: 0.6450 - val_accuracy: 0.6149
+6/6 [==============================] - 0s 26ms/step - loss: 0.6290 - accuracy: 0.6888 - val_loss: 0.6257 - val_accuracy: 0.7267
 Epoch 6/20
-325/325 [==============================] - 0s 455us/sample - loss: 0.5862 - accuracy: 0.7169 - val_loss: 0.6063 - val_accuracy: 0.6957
+6/6 [==============================] - 0s 26ms/step - loss: 0.5855 - accuracy: 0.7572 - val_loss: 0.5842 - val_accuracy: 0.6894
 Epoch 7/20
-325/325 [==============================] - 0s 516us/sample - loss: 0.5365 - accuracy: 0.7785 - val_loss: 0.5459 - val_accuracy: 0.7081
+6/6 [==============================] - 0s 27ms/step - loss: 0.5223 - accuracy: 0.7937 - val_loss: 0.5701 - val_accuracy: 0.7081
 Epoch 8/20
-325/325 [==============================] - 0s 454us/sample - loss: 0.4681 - accuracy: 0.8185 - val_loss: 0.4838 - val_accuracy: 0.7516
+6/6 [==============================] - 0s 25ms/step - loss: 0.5191 - accuracy: 0.7807 - val_loss: 0.5084 - val_accuracy: 0.8075
 Epoch 9/20
-325/325 [==============================] - 0s 462us/sample - loss: 0.3800 - accuracy: 0.8369 - val_loss: 0.3911 - val_accuracy: 0.8447
+6/6 [==============================] - 0s 27ms/step - loss: 0.4350 - accuracy: 0.8587 - val_loss: 0.4194 - val_accuracy: 0.8137
 Epoch 10/20
-325/325 [==============================] - 0s 452us/sample - loss: 0.2672 - accuracy: 0.9077 - val_loss: 0.2999 - val_accuracy: 0.8820
+6/6 [==============================] - 0s 25ms/step - loss: 0.3359 - accuracy: 0.8596 - val_loss: 0.3644 - val_accuracy: 0.8323
 Epoch 11/20
-325/325 [==============================] - 0s 451us/sample - loss: 0.1639 - accuracy: 0.9662 - val_loss: 0.3969 - val_accuracy: 0.7950
+6/6 [==============================] - 0s 26ms/step - loss: 0.2159 - accuracy: 0.9129 - val_loss: 0.2976 - val_accuracy: 0.9006
 Epoch 12/20
-325/325 [==============================] - 0s 483us/sample - loss: 0.1675 - accuracy: 0.9323 - val_loss: 0.3208 - val_accuracy: 0.9255
+6/6 [==============================] - 0s 26ms/step - loss: 0.1807 - accuracy: 0.9427 - val_loss: 0.2674 - val_accuracy: 0.9130
 Epoch 13/20
-325/325 [==============================] - 0s 468us/sample - loss: 0.1273 - accuracy: 0.9662 - val_loss: 0.2308 - val_accuracy: 0.9193
+6/6 [==============================] - 0s 25ms/step - loss: 0.1248 - accuracy: 0.9466 - val_loss: 0.3135 - val_accuracy: 0.9130
 Epoch 14/20
-325/325 [==============================] - 0s 479us/sample - loss: 0.0996 - accuracy: 0.9754 - val_loss: 0.2155 - val_accuracy: 0.9255
+6/6 [==============================] - 0s 26ms/step - loss: 0.0906 - accuracy: 0.9725 - val_loss: 0.2421 - val_accuracy: 0.9317
 Epoch 15/20
-325/325 [==============================] - 0s 474us/sample - loss: 0.0904 - accuracy: 0.9692 - val_loss: 0.2123 - val_accuracy: 0.9379
+6/6 [==============================] - 0s 29ms/step - loss: 0.0652 - accuracy: 0.9784 - val_loss: 0.2813 - val_accuracy: 0.9255
 Epoch 16/20
-325/325 [==============================] - 0s 502us/sample - loss: 0.0760 - accuracy: 0.9754 - val_loss: 0.1979 - val_accuracy: 0.9503
+6/6 [==============================] - 0s 38ms/step - loss: 0.0640 - accuracy: 0.9800 - val_loss: 0.2862 - val_accuracy: 0.9255
 Epoch 17/20
-325/325 [==============================] - 0s 511us/sample - loss: 0.0654 - accuracy: 0.9877 - val_loss: 0.1881 - val_accuracy: 0.9503
+6/6 [==============================] - 0s 31ms/step - loss: 0.0590 - accuracy: 0.9822 - val_loss: 0.3116 - val_accuracy: 0.9379
 Epoch 18/20
-325/325 [==============================] - 0s 399us/sample - loss: 0.0594 - accuracy: 0.9846 - val_loss: 0.1856 - val_accuracy: 0.9503
+6/6 [==============================] - 0s 33ms/step - loss: 0.0440 - accuracy: 0.9827 - val_loss: 0.2738 - val_accuracy: 0.9441
 Epoch 19/20
-325/325 [==============================] - 0s 420us/sample - loss: 0.0467 - accuracy: 0.9877 - val_loss: 0.2334 - val_accuracy: 0.9565
+6/6 [==============================] - 0s 40ms/step - loss: 0.0389 - accuracy: 0.9934 - val_loss: 0.2275 - val_accuracy: 0.9565
 Epoch 20/20
-325/325 [==============================] - 0s 497us/sample - loss: 0.0437 - accuracy: 0.9877 - val_loss: 0.1978 - val_accuracy: 0.9565
+6/6 [==============================] - 0s 41ms/step - loss: 0.0403 - accuracy: 0.9865 - val_loss: 0.2797 - val_accuracy: 0.9441
 </pre>
 </div>
 </div>
@@ -15073,7 +15072,7 @@ Epoch 20/20
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="s2">&quot;Best accuracy on test: </span><span class="si">%3.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
@@ -15092,7 +15091,7 @@ Epoch 20/20
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 
 
 
@@ -15122,7 +15121,7 @@ Epoch 20/20
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -15142,13 +15141,13 @@ Epoch 20/20
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;Evaluation Accuracy: 95.65%&#39;</pre>
+<pre>&#39;Evaluation Accuracy: 94.41%&#39;</pre>
 </div>
 
 </div>
@@ -15160,7 +15159,7 @@ Epoch 20/20
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;complain_model.h5&#39;</span>
@@ -15199,10 +15198,10 @@ Epoch 20/20
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;tensorflow_2.4-py3.7&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;default_py3.8&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">software_spec_id</span><span class="p">)</span>
 </pre></div>
 
@@ -15223,7 +15222,7 @@ Epoch 20/20
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>c4032338-2a40-500a-beef-b01ab2667e27
+<pre>ab9e1b80-f2ce-592c-a7d2-4f2344f77194
 </pre>
 </div>
 </div>
@@ -15238,10 +15237,10 @@ Epoch 20/20
 <p>Store model</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
@@ -15258,15 +15257,36 @@ Epoch 20/20
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;name&#39;: &#39;CARS4U - Satisfaction Prediction Model&#39;, &#39;type&#39;: &#39;tensorflow_2.4&#39;, &#39;software_spec&#39;: &#39;ab9e1b80-f2ce-592c-a7d2-4f2344f77194&#39;}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="4.2:-Get-model-details">4.2: Get model details<a class="anchor-link" href="#4.2:-Get-model-details">&#182;</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -15282,6 +15302,46 @@ Epoch 20/20
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+  &#34;entity&#34;: {
+    &#34;software_spec&#34;: {
+      &#34;id&#34;: &#34;ab9e1b80-f2ce-592c-a7d2-4f2344f77194&#34;,
+      &#34;name&#34;: &#34;default_py3.8&#34;
+    },
+    &#34;type&#34;: &#34;tensorflow_2.4&#34;
+  },
+  &#34;metadata&#34;: {
+    &#34;created_at&#34;: &#34;2021-07-19T10:11:17.277Z&#34;,
+    &#34;id&#34;: &#34;47111f2c-d826-4771-8796-1fa0a0c100eb&#34;,
+    &#34;modified_at&#34;: &#34;2021-07-19T10:11:19.731Z&#34;,
+    &#34;name&#34;: &#34;CARS4U - Satisfaction Prediction Model&#34;,
+    &#34;owner&#34;: &#34;1000330999&#34;,
+    &#34;space_id&#34;: &#34;97cebfee-a9da-4c04-822d-f36540c1070d&#34;
+  },
+  &#34;system&#34;: {
+    &#34;warnings&#34;: []
+  }
+}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15293,7 +15353,7 @@ Epoch 20/20
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_props</span> <span class="o">=</span> <span class="p">{</span>
@@ -15310,7 +15370,7 @@ Epoch 20/20
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="p">,</span> <span class="n">background_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -15337,17 +15397,19 @@ Epoch 20/20
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;839f757e-a9a0-4da4-901a-61a17ad9db76&#39; started
+Synchronous deployment creation for uid: &#39;47111f2c-d826-4771-8796-1fa0a0c100eb&#39; started
 
 #######################################################################################
 
 
-initializing.
+initializing
+Note: online_url is deprecated and will be removed in a future release. Use serving_urls instead.
+.
 ready
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-4877-8043-adb22aaddd7f&#39;
+Successfully finished deployment creation, deployment_uid=&#39;0dac350e-7d32-4ff8-a81a-da242d811a6d&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -15368,7 +15430,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
@@ -15407,7 +15469,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">)</span>
@@ -15426,27 +15488,30 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;839f757e-a9a0-4da4-901a-61a17ad9db76&#39;},
+<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;47111f2c-d826-4771-8796-1fa0a0c100eb&#39;},
   &#39;custom&#39;: {},
   &#39;deployed_asset_type&#39;: &#39;model&#39;,
   &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;Not_Applicable&#39;, &#39;name&#39;: &#39;XXS&#39;, &#39;num_nodes&#39;: 1},
   &#39;name&#39;: &#39;CARS4U - Satisfaction Prediction Model Deployment&#39;,
   &#39;online&#39;: {},
-  &#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;,
-  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://wmlgmc-cpd-wmlgmc.apps.wmlautoai.cp.fyre.ibm.com/ml/v4/deployments/7445e109-6b0f-4877-8043-adb22aaddd7f/predictions&#39;},
+  &#39;space_id&#39;: &#39;97cebfee-a9da-4c04-822d-f36540c1070d&#39;,
+  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://cpd-wmlautoai-jun24.apps.ocp46wmlautoaai.cp.fyre.ibm.com/ml/v4/deployments/0dac350e-7d32-4ff8-a81a-da242d811a6d/predictions&#39;},
+   &#39;serving_urls&#39;: [&#39;https://cpd-wmlautoai-jun24.apps.ocp46wmlautoaai.cp.fyre.ibm.com/ml/v4/deployments/0dac350e-7d32-4ff8-a81a-da242d811a6d/predictions&#39;],
    &#39;state&#39;: &#39;ready&#39;}},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2020-12-08T12:36:40.361Z&#39;,
-  &#39;id&#39;: &#39;7445e109-6b0f-4877-8043-adb22aaddd7f&#39;,
-  &#39;modified_at&#39;: &#39;2020-12-08T12:36:40.361Z&#39;,
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2021-07-19T10:11:43.426Z&#39;,
+  &#39;id&#39;: &#39;0dac350e-7d32-4ff8-a81a-da242d811a6d&#39;,
+  &#39;modified_at&#39;: &#39;2021-07-19T10:11:43.426Z&#39;,
   &#39;name&#39;: &#39;CARS4U - Satisfaction Prediction Model Deployment&#39;,
   &#39;owner&#39;: &#39;1000330999&#39;,
-  &#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;}}</pre>
+  &#39;space_id&#39;: &#39;97cebfee-a9da-4c04-822d-f36540c1070d&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: [{&#39;id&#39;: &#39;Deprecated&#39;,
+    &#39;message&#39;: &#39;online_url is deprecated and will be removed in a future release. Use serving_urls instead.&#39;}]}}</pre>
 </div>
 
 </div>
@@ -15471,7 +15536,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
@@ -15485,7 +15550,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span>
@@ -15504,13 +15569,13 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;7445e109-6b0f-4877-8043-adb22aaddd7f&#39;</pre>
+<pre>&#39;0dac350e-7d32-4ff8-a81a-da242d811a6d&#39;</pre>
 </div>
 
 </div>
@@ -15528,7 +15593,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="mi">5</span>
@@ -15570,7 +15635,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA</span><span class="p">:</span>
@@ -15590,7 +15655,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
@@ -15610,7 +15675,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">scores</span><span class="p">))</span>
@@ -15633,7 +15698,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{&#39;predictions&#39;: [{&#39;id&#39;: &#39;dense&#39;, &#39;fields&#39;: [&#39;prediction&#39;, &#39;prediction_classes&#39;, &#39;probability&#39;], &#39;values&#39;: [[[0.0005826586857438087], [0], [0.0005826586857438087]]]}]}
+<pre>{&#39;predictions&#39;: [{&#39;id&#39;: &#39;dense&#39;, &#39;fields&#39;: [&#39;prediction&#39;, &#39;prediction_classes&#39;, &#39;probability&#39;], &#39;values&#39;: [[[0.0003279447555541992], [0], [0.0003279447555541992]]]}]}
 </pre>
 </div>
 </div>
@@ -15657,7 +15722,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ai_params</span> <span class="o">=</span> <span class="p">{</span>
@@ -15676,7 +15741,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">score_generator</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">ai_params</span><span class="p">):</span>
@@ -15721,7 +15786,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_payload</span> <span class="o">=</span> <span class="p">{</span>
@@ -15742,7 +15807,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sample_payload</span><span class="p">)</span>
@@ -15777,7 +15842,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">score</span> <span class="o">=</span> <span class="n">score_generator</span><span class="p">()</span>
@@ -15802,7 +15867,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{&#39;predictions&#39;: [{&#39;id&#39;: &#39;dense&#39;, &#39;fields&#39;: [&#39;prediction&#39;, &#39;prediction_classes&#39;, &#39;probability&#39;], &#39;values&#39;: [[[0.005412891041487455], [0], [0.005412891041487455]], [[0.9990930557250977], [1], [0.9990930557250977]]]}]}
+<pre>{&#39;predictions&#39;: [{&#39;id&#39;: &#39;dense&#39;, &#39;fields&#39;: [&#39;prediction&#39;, &#39;prediction_classes&#39;, &#39;probability&#39;], &#39;values&#39;: [[[0.0011971890926361084], [0], [0.0011971890926361084]], [[0.9994399547576904], [1], [0.9994399547576904]]]}]}
 </pre>
 </div>
 </div>
@@ -15825,10 +15890,10 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">&quot;default_py3.7&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">&quot;default_py3.8&quot;</span><span class="p">)</span>
 <span class="n">software_spec_id</span> 
 </pre></div>
 
@@ -15845,13 +15910,13 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[36]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[37]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;e4429883-c883-42b6-87a8-f419d64088cd&#39;</pre>
+<pre>&#39;ab9e1b80-f2ce-592c-a7d2-4f2344f77194&#39;</pre>
 </div>
 
 </div>
@@ -15863,7 +15928,7 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_data</span> <span class="o">=</span> <span class="p">{</span>
@@ -15928,15 +15993,15 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;software_spec&#39;: {&#39;id&#39;: &#39;e4429883-c883-42b6-87a8-f419d64088cd&#39;,
-   &#39;name&#39;: &#39;default_py3.7&#39;},
+<pre>{&#39;entity&#39;: {&#39;software_spec&#39;: {&#39;id&#39;: &#39;ab9e1b80-f2ce-592c-a7d2-4f2344f77194&#39;,
+   &#39;name&#39;: &#39;default_py3.8&#39;},
   &#39;type&#39;: &#39;python&#39;},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2020-12-08T12:37:11.870Z&#39;,
-  &#39;id&#39;: &#39;89a291fa-3268-498d-a034-d9f6379b80ea&#39;,
-  &#39;modified_at&#39;: &#39;2020-12-08T12:37:14.569Z&#39;,
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2021-07-19T10:12:52.648Z&#39;,
+  &#39;id&#39;: &#39;b86a09b6-95f2-4527-b1e1-7a46413a9709&#39;,
+  &#39;modified_at&#39;: &#39;2021-07-19T10:12:54.577Z&#39;,
   &#39;name&#39;: &#39;CARS4U - Satisfaction Prediction - AI Function&#39;,
   &#39;owner&#39;: &#39;1000330999&#39;,
-  &#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;},
+  &#39;space_id&#39;: &#39;97cebfee-a9da-4c04-822d-f36540c1070d&#39;},
  &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
 </div>
 
@@ -15993,17 +16058,19 @@ Successfully finished deployment creation, deployment_uid=&#39;7445e109-6b0f-487
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;89a291fa-3268-498d-a034-d9f6379b80ea&#39; started
+Synchronous deployment creation for uid: &#39;b86a09b6-95f2-4527-b1e1-7a46413a9709&#39; started
 
 #######################################################################################
 
 
-initializing...
+initializing
+Note: online_url is deprecated and will be removed in a future release. Use serving_urls instead.
+..
 ready
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;913d9d94-339c-4b31-95e1-d527d6edcae7&#39;
+Successfully finished deployment creation, deployment_uid=&#39;db55dd81-5dde-418b-ad3e-57032c00d369&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -16050,7 +16117,7 @@ Successfully finished deployment creation, deployment_uid=&#39;913d9d94-339c-4b3
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>913d9d94-339c-4b31-95e1-d527d6edcae7
+<pre>db55dd81-5dde-418b-ad3e-57032c00d369
 {
    &#34;predictions&#34;: [
       {
@@ -16063,24 +16130,24 @@ Successfully finished deployment creation, deployment_uid=&#39;913d9d94-339c-4b3
          &#34;values&#34;: [
             [
                [
-                  0.005412891041487455
+                  0.0011971890926361084
                ],
                [
                   0
                ],
                [
-                  0.005412891041487455
+                  0.0011971890926361084
                ]
             ],
             [
                [
-                  0.9990930557250977
+                  0.9994399547576904
                ],
                [
                   1
                ],
                [
-                  0.9990930557250977
+                  0.9994399547576904
                ]
             ]
          ]

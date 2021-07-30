@@ -14293,7 +14293,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Install-and-import-the-ibm-watson-machine-learning,-lale-and-aif360.">Install and import the <code>ibm-watson-machine-learning</code>, <code>lale</code> and <code>aif360</code>.<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning,-lale-and-aif360.">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="http://ibm-wml-api-pyclient.mybluemix.net/" target="_blank" rel="noopener no referrer">here</a>.</p>
+<h3 id="Install-and-import-the-ibm-watson-machine-learning,-lale-,aif360-and-dependencies.">Install and import the <code>ibm-watson-machine-learning</code>, <code>lale</code> ,<code>aif360</code> and dependencies.<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning,-lale-,aif360-and-dependencies.">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="http://ibm-wml-api-pyclient.mybluemix.net/" target="_blank" rel="noopener no referrer">here</a>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14303,10 +14303,13 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install -U ibm-watson-machine-learning <span class="p">|</span> tail -n <span class="m">1</span>
-<span class="o">!</span>pip install -U scikit-learn<span class="o">==</span><span class="m">0</span>.23.1 <span class="p">|</span> tail -n <span class="m">1</span>
+<span class="o">!</span>pip install -U scikit-learn<span class="o">==</span><span class="m">0</span>.23.2 <span class="p">|</span> tail -n <span class="m">1</span>
 <span class="o">!</span>pip install -U autoai-libs <span class="p">|</span> tail -n <span class="m">1</span>
 <span class="o">!</span>pip install -U lale <span class="p">|</span> tail -n <span class="m">1</span>
 <span class="o">!</span>pip install -U aif360 <span class="p">|</span> tail -n <span class="m">1</span>
+<span class="o">!</span>pip install -U liac-arff <span class="p">|</span> tail -n <span class="m">1</span>
+<span class="o">!</span>pip install -U cvxpy <span class="p">|</span> tail -n <span class="m">1</span>
+<span class="o">!</span>pip install -U fairlearn <span class="p">|</span> tail -n <span class="m">1</span>
 </pre></div>
 
      </div>
@@ -14495,6 +14498,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;german_credit_data_biased_training.csv&#39;</span>
+<span class="n">datasource_name</span> <span class="o">=</span> <span class="s1">&#39;bluemixcloudobjectstorage&#39;</span>
 <span class="n">bucketname</span> <span class="o">=</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;bucket_name&#39;</span><span class="p">]</span>
 </pre></div>
 
@@ -14728,6 +14732,74 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Create-connection">Create connection<a class="anchor-link" href="#Create-connection">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Connection to Database - </span><span class="si">{</span><span class="n">datasource_name</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="n">datasource_name</span><span class="p">),</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Connection to external Database&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">bucketname</span><span class="p">,</span>
+        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;credentials&#39;</span><span class="p">][</span><span class="s1">&#39;editor&#39;</span><span class="p">][</span><span class="s1">&#39;access_key_id&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;credentials&#39;</span><span class="p">][</span><span class="s1">&#39;editor&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="s1">&#39;https://iam.cloud.ibm.com/identity/token&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;endpoint_url&#39;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">conn_meta_props</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Note</strong>: The above connection can be initialized alternatively with <code>api_key</code> and <code>resource_instance_id</code>.<br>
+The above cell can be replaced with:</p>
+
+<pre><code>conn_meta_props= {
+    client.connections.ConfigurationMetaNames.NAME: f"Connection to Database - {db_name} ",
+    client.connections.ConfigurationMetaNames.DATASOURCE_TYPE: client.connections.get_datasource_type_uid_by_name(db_name),
+    client.connections.ConfigurationMetaNames.DESCRIPTION: "Connection to external Database",
+    client.connections.ConfigurationMetaNames.PROPERTIES: {
+        'bucket': bucket_name,
+        'api_key': cos_credentials['apikey'],
+        'resource_instance_id': cos_credentials['resource_instance_id'],
+        'iam_url': 'https://iam.cloud.ibm.com/identity/token',
+        'url': 'https://s3.us.cloud-object-storage.appdomain.cloud'
+    }
+}
+
+conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">conn_details</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Define connection information to training data and upload train dataset to COS bucket.</p>
 
 </div>
@@ -14737,16 +14809,15 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">S3Connection</span><span class="p">,</span> <span class="n">S3Location</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">S3Location</span>
 
 
 <span class="n">credit_risk_conn</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
-    <span class="n">connection</span><span class="o">=</span><span class="n">S3Connection</span><span class="p">(</span><span class="n">endpoint_url</span><span class="o">=</span><span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;endpoint_url&#39;</span><span class="p">],</span>
-                            <span class="n">access_key_id</span><span class="o">=</span><span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;credentials&#39;</span><span class="p">][</span><span class="s1">&#39;editor&#39;</span><span class="p">][</span><span class="s1">&#39;access_key_id&#39;</span><span class="p">],</span>
-                            <span class="n">secret_access_key</span><span class="o">=</span><span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;credentials&#39;</span><span class="p">][</span><span class="s1">&#39;editor&#39;</span><span class="p">][</span><span class="s1">&#39;secret_access_key&#39;</span><span class="p">]),</span>
+    <span class="n">connection_asset_id</span><span class="o">=</span><span class="n">connection_id</span><span class="p">,</span>
     <span class="n">location</span><span class="o">=</span><span class="n">S3Location</span><span class="p">(</span><span class="n">bucket</span><span class="o">=</span><span class="n">bucketname</span><span class="p">,</span>
                         <span class="n">path</span><span class="o">=</span><span class="n">filename</span><span class="p">))</span>
 
+<span class="n">credit_risk_conn</span><span class="o">.</span><span class="n">_wml_client</span> <span class="o">=</span> <span class="n">client</span>
 <span class="n">training_data_reference</span><span class="o">=</span><span class="p">[</span><span class="n">credit_risk_conn</span><span class="p">]</span>
 
 
@@ -14786,7 +14857,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
     <span class="n">prediction_type</span><span class="o">=</span><span class="n">AutoAI</span><span class="o">.</span><span class="n">PredictionType</span><span class="o">.</span><span class="n">BINARY</span><span class="p">,</span>
     <span class="n">prediction_column</span><span class="o">=</span><span class="s1">&#39;Risk&#39;</span><span class="p">,</span>
     <span class="n">scoring</span><span class="o">=</span><span class="n">AutoAI</span><span class="o">.</span><span class="n">Metrics</span><span class="o">.</span><span class="n">ROC_AUC_SCORE</span><span class="p">,</span>
-    <span class="n">daub_include_only_estimators</span><span class="o">=</span><span class="p">[</span><span class="n">experiment</span><span class="o">.</span><span class="n">ClassificationAlgorithms</span><span class="o">.</span><span class="n">XGB</span><span class="p">]</span>    
+    <span class="n">include_only_estimators</span><span class="o">=</span><span class="p">[</span><span class="n">experiment</span><span class="o">.</span><span class="n">ClassificationAlgorithms</span><span class="o">.</span><span class="n">XGB</span><span class="p">]</span>    
 <span class="p">)</span>
 </pre></div>
 
@@ -15095,8 +15166,8 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fairness_info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;favorable_labels&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;No Risk&#39;</span><span class="p">],</span>
                  <span class="s1">&#39;protected_attributes&#39;</span><span class="p">:</span> <span class="p">[</span>
-                     <span class="p">{</span><span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">),</span><span class="s1">&#39;privileged_groups&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">]},</span>
-                     <span class="p">{</span><span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">),</span> <span class="s1">&#39;privileged_groups&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">26</span><span class="p">,</span> <span class="mi">40</span><span class="p">]]}]}</span>
+                     <span class="p">{</span><span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">),</span><span class="s1">&#39;reference_group&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">]},</span>
+                     <span class="p">{</span><span class="s1">&#39;feature&#39;</span><span class="p">:</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">),</span> <span class="s1">&#39;reference_group&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">26</span><span class="p">,</span> <span class="mi">40</span><span class="p">]]}]}</span>
 <span class="n">fairness_info</span>
 </pre></div>
 

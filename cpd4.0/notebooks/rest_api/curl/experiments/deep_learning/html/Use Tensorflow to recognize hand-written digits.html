@@ -14450,12 +14450,12 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_definition_payload
 
-<span class="nv">MODEL_DEFINITION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;Hand-written Digit Recognition&quot;, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;description&quot;: &quot;Hand-written Digit Recognition&quot;, &quot;tags&quot;: [&quot;DL&quot;, &quot;TF&quot;], &quot;version&quot;: &quot;v1&quot;, &quot;platform&quot;: {&quot;name&quot;: &quot;python&quot;, &quot;versions&quot;: [&quot;3.7&quot;]}, &quot;command&quot;: &quot;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;}&#39;</span>
+<span class="nv">MODEL_DEFINITION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;Hand-written Digit Recognition&quot;, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;description&quot;: &quot;Hand-written Digit Recognition&quot;, &quot;tags&quot;: [&quot;DL&quot;, &quot;TF&quot;], &quot;version&quot;: &quot;v1&quot;, &quot;platform&quot;: {&quot;name&quot;: &quot;python&quot;, &quot;versions&quot;: [&quot;3.8&quot;]}, &quot;command&quot;: &quot;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$MODEL_DEFINITION_PAYLOAD</span> <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -14467,7 +14467,7 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> MODEL_DEFINITION_PAYLOAD=$model_definition_payload
@@ -14492,7 +14492,7 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>env: MODEL_DEFINITION_PAYLOAD={
     &#34;name&#34;: &#34;Hand-written Digit Recognition&#34;,
-    &#34;space_id&#34;: &#34;dfabc53a-c862-4a4c-9161-e74d6726629a&#34;,
+    &#34;space_id&#34;: &#34;&#34;,
     &#34;description&#34;: &#34;Hand-written Digit Recognition&#34;,
     &#34;tags&#34;: [
         &#34;DL&#34;,
@@ -14502,7 +14502,7 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
     &#34;platform&#34;: {
         &#34;name&#34;: &#34;python&#34;,
         &#34;versions&#34;: [
-            &#34;3.7&#34;
+            &#34;3.8&#34;
         ]
     },
     &#34;command&#34;: &#34;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&#34;
@@ -14729,12 +14729,12 @@ Change <code>training_data_references: location: path: ...</code></p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_payload
 
-<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;training_data_references&quot;: [{&quot;name&quot;: &quot;training_input_data&quot;, &quot;type&quot;: &quot;fs&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;tf-mnist&quot;}, &quot;schema&quot;: {&quot;id&quot;: &quot;idmlp_schema&quot;, &quot;fields&quot;: [{&quot;name&quot;: &quot;text&quot;, &quot;type&quot;: &quot;string&quot;}]}}], &quot;results_reference&quot;: {&quot;name&quot;: &quot;MNIST results&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;spaces/&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;/assets/experiment&quot;}, &quot;type&quot;: &quot;fs&quot;}, &quot;tags&quot;: [{&quot;value&quot;: &quot;tags_tf&quot;, &quot;description&quot;: &quot;Tags TF&quot;}], &quot;name&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;description&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;model_definition&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;command&quot;: &quot;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;K80&quot;, &quot;nodes&quot;: 1}, &quot;software_spec&quot;: {&quot;name&quot;: &quot;tensorflow_2.4-py3.7&quot;}, &quot;parameters&quot;: {&quot;name&quot;: &quot;MNIST Tf&quot;, &quot;description&quot;: &quot;Tf DL model&quot;}}, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}&#39;</span>
+<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;training_data_references&quot;: [{&quot;name&quot;: &quot;training_input_data&quot;, &quot;type&quot;: &quot;fs&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;tf-mnist&quot;}, &quot;schema&quot;: {&quot;id&quot;: &quot;idmlp_schema&quot;, &quot;fields&quot;: [{&quot;name&quot;: &quot;text&quot;, &quot;type&quot;: &quot;string&quot;}]}}], &quot;results_reference&quot;: {&quot;name&quot;: &quot;MNIST results&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;spaces/&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;/assets/experiment&quot;}, &quot;type&quot;: &quot;fs&quot;}, &quot;tags&quot;: [{&quot;value&quot;: &quot;tags_tf&quot;, &quot;description&quot;: &quot;Tags TF&quot;}], &quot;name&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;description&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;model_definition&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;command&quot;: &quot;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;K80&quot;, &quot;nodes&quot;: 1}, &quot;software_spec&quot;: {&quot;name&quot;: &quot;tensorflow_2.4-py3.8&quot;}, &quot;parameters&quot;: {&quot;name&quot;: &quot;MNIST Tf&quot;, &quot;description&quot;: &quot;Tf DL model&quot;}}, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span> <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -14746,7 +14746,7 @@ Change <code>training_data_references: location: path: ...</code></p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">env</span> TRAINING_PAYLOAD=$training_payload
@@ -14793,7 +14793,7 @@ Change <code>training_data_references: location: path: ...</code></p>
         &#34;name&#34;: &#34;MNIST results&#34;,
         &#34;connection&#34;: {},
         &#34;location&#34;: {
-            &#34;path&#34;: &#34;spaces/dfabc53a-c862-4a4c-9161-e74d6726629a/assets/experiment&#34;
+            &#34;path&#34;: &#34;spaces//assets/experiment&#34;
         },
         &#34;type&#34;: &#34;fs&#34;
     },
@@ -14806,21 +14806,21 @@ Change <code>training_data_references: location: path: ...</code></p>
     &#34;name&#34;: &#34;TF hand-written Digit Recognition&#34;,
     &#34;description&#34;: &#34;TF hand-written Digit Recognition&#34;,
     &#34;model_definition&#34;: {
-        &#34;id&#34;: &#34;1326fdfd-4f4c-40cb-9144-d4e49fae8c75&#34;,
+        &#34;id&#34;: &#34;&#34;,
         &#34;command&#34;: &#34;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&#34;,
         &#34;hardware_spec&#34;: {
             &#34;name&#34;: &#34;K80&#34;,
             &#34;nodes&#34;: 1
         },
         &#34;software_spec&#34;: {
-            &#34;name&#34;: &#34;tensorflow_2.1-py3.7&#34;
+            &#34;name&#34;: &#34;cuda-py3.8&#34;
         },
         &#34;parameters&#34;: {
             &#34;name&#34;: &#34;MNIST Tf&#34;,
             &#34;description&#34;: &#34;Tf DL model&#34;
         }
     },
-    &#34;space_id&#34;: &#34;dfabc53a-c862-4a4c-9161-e74d6726629a&#34;
+    &#34;space_id&#34;: &#34;&#34;
 }
 </pre>
 </div>
