@@ -14358,10 +14358,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <h3 id="Install-and-import-the-latest-ibm-watson-machine-learning-package">Install and import the latest <code>ibm-watson-machine-learning</code> package<a class="anchor-link" href="#Install-and-import-the-latest-ibm-watson-machine-learning-package">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="http://ibm-wml-api-pyclient.mybluemix.net/" target="_blank" rel="noopener no referrer">here</a>. Latest client can be found <a href="https://pypi.org/project/ibm-watson-machine-learning/" rel="noopener no referrer">here.</a></p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14372,27 +14372,6 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>DEPRECATED!!! Python 3.6 framework is deprecated and will be removed on Jan 20, 2021. Use Python 3.7 instead. For details, see https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/pm_service_supported_frameworks.html
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -14593,7 +14572,7 @@ import space_id: 65fe28f3-9fff-4582-b456-5d4af6a7d796
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sofware_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">&quot;default_py3.7_opence&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sofware_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">&quot;tensorflow_2.4-py3.8&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15455,10 +15434,10 @@ GUID                                  NAME                                STATE 
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="6.2:-Get-deployment-details">6.2: Get deployment details<a class="anchor-link" href="#6.2:-Get-deployment-details">&#182;</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">)</span>
@@ -15468,60 +15447,6 @@ GUID                                  NAME                                STATE 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-  &#34;entity&#34;: {
-    &#34;asset&#34;: {
-      &#34;id&#34;: &#34;92d21007-e03d-4028-8f4e-ac3ee0231c36&#34;
-    },
-    &#34;custom&#34;: {},
-    &#34;deployed_asset_type&#34;: &#34;model&#34;,
-    &#34;hardware_spec&#34;: {
-      &#34;id&#34;: &#34;Not_Applicable&#34;,
-      &#34;name&#34;: &#34;S&#34;,
-      &#34;num_nodes&#34;: 1
-    },
-    &#34;name&#34;: &#34;Deployment of external Keras model&#34;,
-    &#34;online&#34;: {},
-    &#34;space_id&#34;: &#34;65fe28f3-9fff-4582-b456-5d4af6a7d796&#34;,
-    &#34;status&#34;: {
-      &#34;message&#34;: {
-        &#34;text&#34;: &#34;Tensorflow 1.15 framework with Python3.6 for Watson Machine Learning is deprecated and will be removed on December 1, 2020. Use Tensorflow 2.1 with default_py3.7 instead. For details, see https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/pm_service_supported_frameworks.html&#34;
-      },
-      &#34;online_url&#34;: {
-        &#34;url&#34;: &#34;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/5a357ed4-1d69-469a-a609-9e06d9d96fe8/predictions&#34;
-      },
-      &#34;state&#34;: &#34;ready&#34;
-    }
-  },
-  &#34;metadata&#34;: {
-    &#34;created_at&#34;: &#34;2020-10-16T14:36:46.968Z&#34;,
-    &#34;id&#34;: &#34;5a357ed4-1d69-469a-a609-9e06d9d96fe8&#34;,
-    &#34;modified_at&#34;: &#34;2020-10-16T14:36:46.968Z&#34;,
-    &#34;name&#34;: &#34;Deployment of external Keras model&#34;,
-    &#34;owner&#34;: &#34;IBMid-060000697R&#34;,
-    &#34;space_id&#34;: &#34;65fe28f3-9fff-4582-b456-5d4af6a7d796&#34;
-  }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
