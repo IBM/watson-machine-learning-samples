@@ -14259,27 +14259,30 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Use-AutoAI-to-predict-credit-risk-with-ibm-watson-machine-learning">Use AutoAI to predict credit risk with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-AutoAI-to-predict-credit-risk-with-ibm-watson-machine-learning">&#182;</a></h1>
+<h1 id="Use-AutoAI-and-AI-lifecycle-to-predict-credit-risk-with-ibm-watson-machine-learning">Use AutoAI and AI lifecycle to predict credit risk with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-AutoAI-and-AI-lifecycle-to-predict-credit-risk-with-ibm-watson-machine-learning">&#182;</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>This notebook demonstrates how to deploy in Watson Machine Learning service an AutoAI model created in <code>Generated Scikit-learn Notebook</code><br>
-which is composed
-during autoai experiments (in order to learn more about AutoAI experiments go to <a href="https://github.com/IBM/watson-machine-learning-samples/tree/master/cloud/notebooks/python_sdk/experiments/autoai">experiments/autoai</a>).</p>
-<p>Some familiarity with bash is helpful. This notebook uses Python 3.8.</p>
+<p>This notebook contains the steps and code to demonstrate support of AI Lifecycle features of am AutoAI model in Watson Machine Learning Service in Watson Machine Learning service. It contains steps and code to work with <a href="https://pypi.python.org/pypi/ibm-watson-machine-learning">ibm-watson-machine-learning</a> library available in PyPI repository. It also introduces commands for  training, persisting and deploying model, scoring it, updating the model and redeploying it.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.8.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
-<li>Working with the Watson Machine Learning instance</li>
-<li>Online deployment of AutoAI model</li>
-<li>Scoring data using deployed model</li>
+<li>Work with Watson Machine Learning experiments to train AutoAI models.</li>
+<li>Persist an external model in Watson Machine Learning repository.</li>
+<li>Deploy model for online scoring using client library.</li>
+<li>Score sample records using client library.</li>
+<li>Update previously persisted model.</li>
+<li>Redeploy model in-place.</li>
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><p>This notebook contains the following parts:</p>
 <ol>
 <li><a href="#setup">Setup</a></li>
-<li><a href="#upload">Model upload</a> </li>
-<li><a href="#deploy">Web service creation</a></li>
-<li><a href="#score">Scoring</a></li>
+<li><a href="#definition">Optimizer definition</a></li>
+<li><a href="#run">Experiment Run</a></li>
+<li><a href="#persistence">Persist and Deploy trained AutoAI model</a></li>
+<li><a href="#refine">Refine and persist new version of the model</a></li>
+<li><a href="#redeploy">Redeploy and score new version of the model</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
@@ -14289,35 +14292,13 @@ during autoai experiments (in order to learn more about AutoAI experiments go to
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="setup"></a></p>
-<h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">&#182;</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
-<ul>
-<li>Create a <a href="https://console.ng.bluemix.net/catalog/services/ibm-watson-machine-learning/" target="_blank" rel="noopener no referrer">Watson Machine Learning (WML) Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href=" https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-service-instance.html?context=analytics" target="_blank" rel="noopener no referrer">here</a>).</li>
-</ul>
+<h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">&#182;</a></h2><p>Before you use the sample code in this notebook, contact with your Cloud Pack for Data administrator and ask for your account credentials.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
-<p>You can use <a href="https://cloud.ibm.com/docs/cli/index.html">IBM Cloud CLI</a> to retrieve platform API Key and instance location.</p>
-<p>API Key can be generated in the following way:</p>
-
-<pre><code>ibmcloud login
-ibmcloud iam api-key-create API_KEY_NAME</code></pre>
-<p>In result, get the value of <code>api_key</code> from the output.</p>
-<p>Location of your WML instance can be retrieved in the following way:</p>
-
-<pre><code>ibmcloud login --apikey API_KEY -a https://cloud.ibm.com
-ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
-<p>In result, get the value of <code>location</code> from the output.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the Watson Machine Learning docs</a>.  You can check your instance location in your  <a href="https://console.ng.bluemix.net/catalog/services/ibm-watson-machine-learning/" target="_blank" rel="noopener no referrer">Watson Machine Learning (WML) Service</a> instance details.</p>
-<p>You can also get service specific apikey by going to the <a href="https://cloud.ibm.com/iam/serviceids"><strong>Service IDs</strong> section of the Cloud Console</a>.  From that page, click <strong>Create</strong>, then copy the created key and paste it below.</p>
-<p><strong>Action</strong>: Enter your <code>api_key</code> and <code>location</code> in the following cell.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14326,8 +14307,9 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR PLATFORM API KEY HERE&#39;</span>
-<span class="n">location</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR INSTANCE LOCATION HERE&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR USERNAME HERE&#39;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR API_KEY HERE&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;PASTE THE PLATFORM URL HERE&#39;</span>
 </pre></div>
 
      </div>
@@ -14342,8 +14324,11 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wml_credentials</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
     <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
-    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s1">&#39;https://&#39;</span> <span class="o">+</span> <span class="n">location</span> <span class="o">+</span> <span class="s1">&#39;.ml.cloud.ibm.com&#39;</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+    <span class="s2">&quot;instance_id&quot;</span><span class="p">:</span> <span class="s1">&#39;openshift&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.0&#39;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14352,6 +14337,20 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Alternatively you can use <code>username</code> and <code>password</code> to authenticate WML services.</p>
+
+<pre><code>wml_credentials = {
+    "username": ***,
+    "password": ***,
+    "url": ***,
+    "instance_id": 'openshift',
+    "version": '4.0'
+}</code></pre>
+
+</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14364,7 +14363,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install -U ibm-watson-machine-learning
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install ibm-watson-machine-learning <span class="p">|</span> tail -n <span class="m">1</span>
+<span class="o">!</span>pip install -U autoai-libs <span class="p">|</span> tail -n <span class="m">1</span>
+<span class="o">!</span>pip install -U lale <span class="p">|</span> tail -n <span class="m">1</span>
+<span class="o">!</span>pip install -U scikit-learn<span class="o">==</span><span class="m">0</span>.23.2 <span class="p">|</span> tail -n <span class="m">1</span>
 </pre></div>
 
      </div>
@@ -14391,22 +14393,35 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Working-with-spaces">Working with spaces<a class="anchor-link" href="#Working-with-spaces">&#182;</a></h3><p>First, create a space that will be used for your work. If you do not have space already created, you can use <a href="https://dataplatform.cloud.ibm.com/ml-runtime/spaces?context=cpdaas">Deployment Spaces Dashboard</a> to create one.</p>
+<h3 id="Working-with-spaces">Working with spaces<a class="anchor-link" href="#Working-with-spaces">&#182;</a></h3><p>First of all, you need to create a space that will be used for your work. If you do not have space already created, you can use <code>{PLATFORM_URL}/ml-runtime/spaces?context=icp4data</code> to create one.</p>
 <ul>
 <li>Click New Deployment Space</li>
 <li>Create an empty space</li>
-<li>Select Cloud Object Storage</li>
-<li>Select Watson Machine Learning instance and press Create</li>
+<li>Go to space <code>Settings</code> tab</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
-<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
+<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
 <p><strong>Action</strong>: Assign space ID below</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR SPACE ID HERE&#39;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can use <code>list</code> method to print all existing spaces.</p>
+<p>You can use the <code>list</code> method to print all existing spaces.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14426,27 +14441,13 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>To be able to interact with all resources available in Watson Machine Learning, you need to set <strong>space</strong> which you will be using.</p>
+<p>To be able to interact with all resources available in Watson Machine Learning, you need to set the <strong>space</strong> which you will be using.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR SPACE ID HERE&#39;</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -14465,7 +14466,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
 
@@ -14483,19 +14484,23 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="upload"></a></p>
-<h2 id="2.-Upload-model">2. Upload model<a class="anchor-link" href="#2.-Upload-model">&#182;</a></h2><p>In this section you will learn how to upload the model to the Cloud.</p>
-<h4 id="Download-the-data-as-an-pandas-DataFrame-and-AutoAI-saved-as-scikit-pipeline-model-using-wget.">Download the data as an pandas DataFrame and AutoAI saved as scikit pipeline model using <code>wget</code>.<a class="anchor-link" href="#Download-the-data-as-an-pandas-DataFrame-and-AutoAI-saved-as-scikit-pipeline-model-using-wget.">&#182;</a></h4><p><strong>Hint</strong>: To install required packages execute command <code>!pip install pandas wget numpy</code>.</p>
-<p>We can extract model from executed AutoAI experiment using <code>ibm-watson-machine-learning</code> with following command: <code>experiment.optimizer(...).get_pipeline(astype='sklearn')</code>.</p>
+<p><a id="definition"></a></p>
+<h2 id="2.-Optimizer-definition">2. Optimizer definition<a class="anchor-link" href="#2.-Optimizer-definition">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Training-data-connection">Training data connection<a class="anchor-link" href="#Training-data-connection">&#182;</a></h3><p>Define connection information to training data CSV file. This example uses the German Credit Risk dataset.</p>
+<p>The dataset can be downloaded from <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/data/credit_risk/credit_risk_training_light.csv">here</a>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install pandas wget numpy
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;credit_risk_training_light.csv&#39;</span>
 </pre></div>
 
      </div>
@@ -14503,254 +14508,22 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Download training data from git repository.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">wget</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;german_credit_data_biased_training.csv&#39;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/data/credit_risk/german_credit_data_biased_training.csv&#39;</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;model.pickle&quot;</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/models/autoai/credit-risk/model.pickle&#39;</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">model_name</span><span class="p">):</span>
-    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-<span class="n">credit_risk_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">credit_risk_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Risk&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">credit_risk_df</span><span class="p">[</span><span class="s1">&#39;Risk&#39;</span><span class="p">]</span>
-
-<span class="n">credit_risk_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>CheckingStatus</th>
-      <th>LoanDuration</th>
-      <th>CreditHistory</th>
-      <th>LoanPurpose</th>
-      <th>LoanAmount</th>
-      <th>ExistingSavings</th>
-      <th>EmploymentDuration</th>
-      <th>InstallmentPercent</th>
-      <th>Sex</th>
-      <th>OthersOnLoan</th>
-      <th>...</th>
-      <th>OwnsProperty</th>
-      <th>Age</th>
-      <th>InstallmentPlans</th>
-      <th>Housing</th>
-      <th>ExistingCreditsCount</th>
-      <th>Job</th>
-      <th>Dependents</th>
-      <th>Telephone</th>
-      <th>ForeignWorker</th>
-      <th>Risk</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0_to_200</td>
-      <td>31</td>
-      <td>credits_paid_to_date</td>
-      <td>other</td>
-      <td>1889</td>
-      <td>100_to_500</td>
-      <td>less_1</td>
-      <td>3</td>
-      <td>female</td>
-      <td>none</td>
-      <td>...</td>
-      <td>savings_insurance</td>
-      <td>32</td>
-      <td>none</td>
-      <td>own</td>
-      <td>1</td>
-      <td>skilled</td>
-      <td>1</td>
-      <td>none</td>
-      <td>yes</td>
-      <td>No Risk</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>less_0</td>
-      <td>18</td>
-      <td>credits_paid_to_date</td>
-      <td>car_new</td>
-      <td>462</td>
-      <td>less_100</td>
-      <td>1_to_4</td>
-      <td>2</td>
-      <td>female</td>
-      <td>none</td>
-      <td>...</td>
-      <td>savings_insurance</td>
-      <td>37</td>
-      <td>stores</td>
-      <td>own</td>
-      <td>2</td>
-      <td>skilled</td>
-      <td>1</td>
-      <td>none</td>
-      <td>yes</td>
-      <td>No Risk</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>less_0</td>
-      <td>15</td>
-      <td>prior_payments_delayed</td>
-      <td>furniture</td>
-      <td>250</td>
-      <td>less_100</td>
-      <td>1_to_4</td>
-      <td>2</td>
-      <td>male</td>
-      <td>none</td>
-      <td>...</td>
-      <td>real_estate</td>
-      <td>28</td>
-      <td>none</td>
-      <td>own</td>
-      <td>2</td>
-      <td>skilled</td>
-      <td>1</td>
-      <td>yes</td>
-      <td>no</td>
-      <td>No Risk</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0_to_200</td>
-      <td>28</td>
-      <td>credits_paid_to_date</td>
-      <td>retraining</td>
-      <td>3693</td>
-      <td>less_100</td>
-      <td>greater_7</td>
-      <td>3</td>
-      <td>male</td>
-      <td>none</td>
-      <td>...</td>
-      <td>savings_insurance</td>
-      <td>32</td>
-      <td>none</td>
-      <td>own</td>
-      <td>1</td>
-      <td>skilled</td>
-      <td>1</td>
-      <td>none</td>
-      <td>yes</td>
-      <td>No Risk</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>no_checking</td>
-      <td>28</td>
-      <td>prior_payments_delayed</td>
-      <td>education</td>
-      <td>6235</td>
-      <td>500_to_1000</td>
-      <td>greater_7</td>
-      <td>3</td>
-      <td>male</td>
-      <td>none</td>
-      <td>...</td>
-      <td>unknown</td>
-      <td>57</td>
-      <td>none</td>
-      <td>own</td>
-      <td>2</td>
-      <td>skilled</td>
-      <td>1</td>
-      <td>none</td>
-      <td>yes</td>
-      <td>Risk</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 21 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Custom-software_specification">Custom software_specification<a class="anchor-link" href="#Custom-software_specification">&#182;</a></h4><p>Create new software specification based on default Python 3.7 environment extended by autoai-libs package.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">base_sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s2">&quot;default_py3.8&quot;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/configs/config.yaml&#39;</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s1">&#39;config.yaml&#39;</span><span class="p">):</span>
-    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/data/credit_risk/credit_risk_training_light.csv&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14761,10 +14534,11 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat config.yaml
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">asset_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;credit_risk_training&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+<span class="n">asset_details</span>
 </pre></div>
 
      </div>
@@ -14784,126 +14558,52 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>name: python38
-channels:
-  - defaults
-dependencies:
-  - pip:
-    - autoai-libs
-
-prefix: /opt/anaconda3/envs/python38</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><code>config.yaml</code> file describes details of package extention. Now you need to store new package extention with APIClient.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_prop_pkg_extn</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;scikt with autoai-libs&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Extension for autoai-libs&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;conda_yml&quot;</span>
-<span class="p">}</span>
-
-<span class="n">pkg_extn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_prop_pkg_extn</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;config.yaml&quot;</span><span class="p">)</span>
-<span class="n">pkg_extn_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">pkg_extn_details</span><span class="p">)</span>
-<span class="n">pkg_extn_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">get_href</span><span class="p">(</span><span class="n">pkg_extn_details</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Creating package extensions
+<pre>Creating data asset...
 SUCCESS
 </pre>
 </div>
 </div>
 
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Create-new-software-specification-and-add-created-package-extention-to-it.">Create new software specification and add created package extention to it.<a class="anchor-link" href="#Create-new-software-specification-and-add-created-package-extention-to-it.">&#182;</a></h4>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_prop_sw_spec</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Mitigated AutoAI bases on scikit spec&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Software specification for scikt with autoai-libs&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">BASE_SOFTWARE_SPECIFICATION</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;guid&quot;</span><span class="p">:</span> <span class="n">base_sw_spec_uid</span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">sw_spec_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_prop_sw_spec</span><span class="p">)</span>
-<span class="n">sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">sw_spec_details</span><span class="p">)</span>
-
-<span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">add_package_extension</span><span class="p">(</span><span class="n">sw_spec_uid</span><span class="p">,</span> <span class="n">pkg_extn_uid</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>SUCCESS
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;SUCCESS&#39;</pre>
+<pre>{&#39;metadata&#39;: {&#39;rov&#39;: {&#39;mode&#39;: 0, &#39;collaborator_ids&#39;: {}},
+  &#39;space_id&#39;: &#39;507f09f6-e591-4c7b-8169-731021cb5f0d&#39;,
+  &#39;usage&#39;: {&#39;last_updated_at&#39;: &#39;2021-10-18T14:30:49Z&#39;,
+   &#39;last_updater_id&#39;: &#39;1000330999&#39;,
+   &#39;last_update_time&#39;: 1634567449696,
+   &#39;last_accessed_at&#39;: &#39;2021-10-18T14:30:49Z&#39;,
+   &#39;last_access_time&#39;: 1634567449696,
+   &#39;last_accessor_id&#39;: &#39;1000330999&#39;,
+   &#39;access_count&#39;: 0},
+  &#39;name&#39;: &#39;credit_risk_training&#39;,
+  &#39;description&#39;: &#39;&#39;,
+  &#39;tags&#39;: [],
+  &#39;asset_type&#39;: &#39;data_asset&#39;,
+  &#39;origin_country&#39;: &#39;us&#39;,
+  &#39;resource_key&#39;: &#39;credit_risk_training&#39;,
+  &#39;rating&#39;: 0.0,
+  &#39;total_ratings&#39;: 0,
+  &#39;catalog_id&#39;: &#39;9defae00-d9cc-46dc-b84b-337cb13bf73c&#39;,
+  &#39;created&#39;: 1634567449696,
+  &#39;created_at&#39;: &#39;2021-10-18T14:30:49Z&#39;,
+  &#39;owner_id&#39;: &#39;1000330999&#39;,
+  &#39;size&#39;: 0,
+  &#39;version&#39;: 2.0,
+  &#39;asset_state&#39;: &#39;available&#39;,
+  &#39;asset_attributes&#39;: [&#39;data_asset&#39;],
+  &#39;asset_id&#39;: &#39;a6ec5b47-8dfc-4e34-94d3-1ced8958c8e5&#39;,
+  &#39;asset_category&#39;: &#39;USER&#39;,
+  &#39;guid&#39;: &#39;a6ec5b47-8dfc-4e34-94d3-1ced8958c8e5&#39;,
+  &#39;href&#39;: &#39;/v2/assets/a6ec5b47-8dfc-4e34-94d3-1ced8958c8e5?space_id=507f09f6-e591-4c7b-8169-731021cb5f0d&#39;,
+  &#39;last_updated_at&#39;: &#39;2021-10-18T14:30:49Z&#39;},
+ &#39;entity&#39;: {&#39;data_asset&#39;: {&#39;mime_type&#39;: &#39;text/csv&#39;}}}</pre>
 </div>
 
 </div>
@@ -14912,18 +14612,19 @@ SUCCESS
 
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Get-the-details-of-created-software-specification">Get the details of created software specification<a class="anchor-link" href="#Get-the-details-of-created-software-specification">&#182;</a></h4>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">sw_spec_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">AssetLocation</span>
+
+
+<span class="n">credit_risk_conn</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="n">AssetLocation</span><span class="p">(</span><span class="n">asset_id</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">asset_details</span><span class="p">)))</span>
+
+<span class="n">training_data_reference</span><span class="o">=</span><span class="p">[</span><span class="n">credit_risk_conn</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -14934,68 +14635,30 @@ SUCCESS
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Load-the-AutoAI-model-saved-as-scikit-learn-pipeline.">Load the AutoAI model saved as <code>scikit-learn</code> pipeline.<a class="anchor-link" href="#Load-the-AutoAI-model-saved-as-scikit-learn-pipeline.">&#182;</a></h4><p>Depending on estimator type in autoai model pipeline may consist models from following frameworks:</p>
+<h3 id="Optimizer-configuration">Optimizer configuration<a class="anchor-link" href="#Optimizer-configuration">&#182;</a></h3><p>Provide the input information for AutoAI optimizer:</p>
 <ul>
-<li><code>xgboost</code></li>
-<li><code>lightgbm</code></li>
-<li><code>scikit-learn</code></li>
+<li><code>name</code> - experiment name</li>
+<li><code>prediction_type</code> - type of the problem</li>
+<li><code>prediction_column</code> - target column name</li>
+<li><code>scoring</code> - optimization metric</li>
 </ul>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">load</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.experiment</span> <span class="kn">import</span> <span class="n">AutoAI</span>
 
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-</pre></div>
+<span class="n">experiment</span> <span class="o">=</span> <span class="n">AutoAI</span><span class="p">(</span><span class="n">wml_credentials</span><span class="p">,</span> <span class="n">space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
 
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Store-the-model">Store the model<a class="anchor-link" href="#Store-the-model">&#182;</a></h4>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_props</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;AutoAI model&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;scikit-learn_0.23&#39;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">sw_spec_uid</span>
-    
-<span class="p">}</span>
-<span class="n">feature_vector</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span> 
-    <span class="n">meta_props</span><span class="o">=</span><span class="n">model_props</span><span class="p">,</span>
-    <span class="n">training_data</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-    <span class="n">training_target</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-    <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_vector</span><span class="p">,</span>
-    <span class="n">label_column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Risk&#39;</span><span class="p">]</span>
+<span class="n">pipeline_optimizer</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">optimizer</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Credit Risk Prediction - AutoAI&#39;</span><span class="p">,</span>
+    <span class="n">prediction_type</span><span class="o">=</span><span class="n">AutoAI</span><span class="o">.</span><span class="n">PredictionType</span><span class="o">.</span><span class="n">BINARY</span><span class="p">,</span>
+    <span class="n">prediction_column</span><span class="o">=</span><span class="s1">&#39;Risk&#39;</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="n">AutoAI</span><span class="o">.</span><span class="n">Metrics</span><span class="o">.</span><span class="n">ROC_AUC_SCORE</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -15004,32 +14667,19 @@ SUCCESS
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">published_model</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Get-model-details">Get model details<a class="anchor-link" href="#Get-model-details">&#182;</a></h4>
+<p>Configuration parameters can be retrieved via <code>get_params()</code>.</p>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">published_model_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15045,51 +14695,41 @@ SUCCESS
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;label_column&#39;: &#39;Risk&#39;,
-  &#39;software_spec&#39;: {&#39;id&#39;: &#39;26e0f147-c5e4-4c38-800e-fe2495db0313&#39;,
-   &#39;name&#39;: &#39;Mitigated AutoAI bases on scikit spec&#39;},
-  &#39;training_data_references&#39;: [{&#39;connection&#39;: {&#39;access_key_id&#39;: &#39;not_applicable&#39;,
-     &#39;endpoint_url&#39;: &#39;not_applicable&#39;,
-     &#39;secret_access_key&#39;: &#39;not_applicable&#39;},
-    &#39;id&#39;: &#39;1&#39;,
-    &#39;location&#39;: {},
-    &#39;schema&#39;: {&#39;fields&#39;: [{&#39;name&#39;: &#39;CheckingStatus&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;LoanDuration&#39;, &#39;type&#39;: &#39;int&#39;},
-      {&#39;name&#39;: &#39;CreditHistory&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;LoanPurpose&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;LoanAmount&#39;, &#39;type&#39;: &#39;int&#39;},
-      {&#39;name&#39;: &#39;ExistingSavings&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;EmploymentDuration&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;InstallmentPercent&#39;, &#39;type&#39;: &#39;int&#39;},
-      {&#39;name&#39;: &#39;Sex&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;OthersOnLoan&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;CurrentResidenceDuration&#39;, &#39;type&#39;: &#39;int&#39;},
-      {&#39;name&#39;: &#39;OwnsProperty&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;Age&#39;, &#39;type&#39;: &#39;int&#39;},
-      {&#39;name&#39;: &#39;InstallmentPlans&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;Housing&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;ExistingCreditsCount&#39;, &#39;type&#39;: &#39;int&#39;},
-      {&#39;name&#39;: &#39;Job&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;Dependents&#39;, &#39;type&#39;: &#39;int&#39;},
-      {&#39;name&#39;: &#39;Telephone&#39;, &#39;type&#39;: &#39;str&#39;},
-      {&#39;name&#39;: &#39;ForeignWorker&#39;, &#39;type&#39;: &#39;str&#39;}],
-     &#39;id&#39;: &#39;1&#39;,
-     &#39;type&#39;: &#39;ndarray&#39;},
-    &#39;type&#39;: &#39;s3&#39;}],
-  &#39;type&#39;: &#39;scikit-learn_0.23&#39;},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2020-12-10T12:32:35.495Z&#39;,
-  &#39;id&#39;: &#39;3ceddf9e-dd23-4641-ae18-9deea936d3c8&#39;,
-  &#39;modified_at&#39;: &#39;2020-12-10T12:32:38.925Z&#39;,
-  &#39;name&#39;: &#39;AutoAI model&#39;,
-  &#39;owner&#39;: &#39;IBMid-5500067NJD&#39;,
-  &#39;space_id&#39;: &#39;d44bbfd5-3d6f-4a61-b6fd-07625244c896&#39;},
- &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
+<pre>{&#39;name&#39;: &#39;Credit Risk Prediction - AutoAI&#39;,
+ &#39;desc&#39;: &#39;&#39;,
+ &#39;prediction_type&#39;: &#39;binary&#39;,
+ &#39;prediction_column&#39;: &#39;Risk&#39;,
+ &#39;prediction_columns&#39;: None,
+ &#39;timestamp_column_name&#39;: None,
+ &#39;scoring&#39;: &#39;roc_auc&#39;,
+ &#39;holdout_size&#39;: 0.1,
+ &#39;max_num_daub_ensembles&#39;: 2,
+ &#39;t_shirt_size&#39;: &#39;m&#39;,
+ &#39;train_sample_rows_test_size&#39;: None,
+ &#39;include_only_estimators&#39;: None,
+ &#39;backtest_num&#39;: None,
+ &#39;lookback_window&#39;: None,
+ &#39;forecast_window&#39;: None,
+ &#39;backtest_gap_length&#39;: None,
+ &#39;cognito_transform_names&#39;: None,
+ &#39;data_join_graph&#39;: False,
+ &#39;csv_separator&#39;: &#39;,&#39;,
+ &#39;excel_sheet&#39;: 0,
+ &#39;encoding&#39;: &#39;utf-8&#39;,
+ &#39;positive_label&#39;: None,
+ &#39;drop_duplicates&#39;: True,
+ &#39;text_processing&#39;: None,
+ &#39;word2vec_feature_number&#39;: None,
+ &#39;daub_give_priority_to_runtime&#39;: None,
+ &#39;text_columns_names&#39;: None,
+ &#39;n_parallel_data_connections&#39;: None,
+ &#39;run_id&#39;: None}</pre>
 </div>
 
 </div>
@@ -15101,7 +14741,214 @@ SUCCESS
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note:</strong> You can see that model is successfully stored in Watson Machine Learning Service.</p>
+<p><a id="run"></a></p>
+<h2 id="3.-Experiment-run">3. Experiment run<a class="anchor-link" href="#3.-Experiment-run">&#182;</a></h2><p>Call the <code>fit()</code> method to trigger the AutoAI experiment. You can either use interactive mode (synchronous job) or background mode (asychronous job) by specifying <code>background_model=True</code>.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">run_details</span> <span class="o">=</span> <span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+            <span class="n">training_data_reference</span><span class="o">=</span><span class="n">training_data_reference</span><span class="p">,</span>
+            <span class="n">background_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Training job ff24edc0-0d19-46cb-8b91-fe993f4daf2a completed: 100%|████████| [03:41&lt;00:00,  2.21s/it]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>You can use the <code>get_run_status()</code> method to monitor AutoAI jobs in background mode.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_run_status</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;completed&#39;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Load-trained-model">Load trained model<a class="anchor-link" href="#Load-trained-model">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_pipeline</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Reading-training-data-from-COS">Reading training data from COS<a class="anchor-link" href="#Reading-training-data-from-COS">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_data_connections</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">train_X</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Risk&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">train_y</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">Risk</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="persistence"></a></p>
+<h2 id="4.-Persist-and-Deploy-trained-AutoAI-model">4. Persist and Deploy trained AutoAI model<a class="anchor-link" href="#4.-Persist-and-Deploy-trained-AutoAI-model">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>In this section you will learn how to deploy and score pipeline model as webservice using WML instance.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Online-deployment-creation">Online deployment creation<a class="anchor-link" href="#Online-deployment-creation">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning.deployment</span> <span class="kn">import</span> <span class="n">WebService</span>
+
+<span class="n">service</span> <span class="o">=</span> <span class="n">WebService</span><span class="p">(</span><span class="n">wml_credentials</span><span class="p">,</span> <span class="n">source_space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
+
+<span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">run_details</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;Pipeline_1&quot;</span><span class="p">,</span> 
+    <span class="n">deployment_name</span><span class="o">=</span><span class="s2">&quot;AutoAI credit-risk deployment&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Preparing an AutoAI Deployment...
+Published model uid: 44472067-33d4-4708-9dd2-d305c0eca40f
+Deploying model 44472067-33d4-4708-9dd2-d305c0eca40f using V4 client.
+
+
+#######################################################################################
+
+Synchronous deployment creation for uid: &#39;44472067-33d4-4708-9dd2-d305c0eca40f&#39; started
+
+#######################################################################################
+
+
+initializing....
+ready
+
+
+------------------------------------------------------------------------------------------------
+Successfully finished deployment creation, deployment_uid=&#39;0a561646-ce6e-4dd4-96c4-488463417307&#39;
+------------------------------------------------------------------------------------------------
+
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Deployment object could be printed to show basic information:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15110,7 +14957,7 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">list_models</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15121,129 +14968,16 @@ SUCCESS
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="deploy"></a></p>
-<h2 id="3.-Create-online-deployment">3. Create online deployment<a class="anchor-link" href="#3.-Create-online-deployment">&#182;</a></h2><p>You can use commands bellow to create online deployment for stored model (web service).</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Deployment of AutoAI model.&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{}</span>
-<span class="p">}</span>
-
-<span class="n">created_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">published_model_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>
-
-#######################################################################################
-
-Synchronous deployment creation for uid: &#39;3ceddf9e-dd23-4641-ae18-9deea936d3c8&#39; started
-
-#######################################################################################
-
-
-initializing........................................................................
-ready
-
-
-------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;10fb561b-b198-4ebe-8024-4723d5f5725d&#39;
-------------------------------------------------------------------------------------------------
-
-
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Get deployment id.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">created_deployment</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>10fb561b-b198-4ebe-8024-4723d5f5725d
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="score"></a></p>
-<h2 id="4.-Scoring">4. Scoring<a class="anchor-link" href="#4.-Scoring">&#182;</a></h2><p>You can send new scoring records to web-service deployment using <code>score</code> method.</p>
+<p>To show all available information about the deployment use the <code>.get_params()</code> method:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>
-
-<span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;input_data&quot;</span><span class="p">:</span> <span class="p">[{</span>
-        <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
-    <span class="p">}]</span>
-<span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">service</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15251,13 +14985,19 @@ Successfully finished deployment creation, deployment_uid=&#39;10fb561b-b198-4eb
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Scoring-of-webservice">Scoring of webservice<a class="anchor-link" href="#Scoring-of-webservice">&#182;</a></h3><p>You can make scoring request by calling <code>score()</code> on deployed pipeline.</p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">payload</span><span class="o">=</span><span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Risk&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
 <span class="n">predictions</span>
 </pre></div>
 
@@ -15274,18 +15014,23 @@ Successfully finished deployment creation, deployment_uid=&#39;10fb561b-b198-4eb
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>{&#39;predictions&#39;: [{&#39;fields&#39;: [&#39;prediction&#39;, &#39;probability&#39;],
-   &#39;values&#39;: [[&#39;No Risk&#39;, [0.8386276960372925, 0.16137228906154633]],
-    [&#39;No Risk&#39;, [0.9069419503211975, 0.0930580273270607]],
-    [&#39;No Risk&#39;, [0.9069419503211975, 0.0930580273270607]],
-    [&#39;No Risk&#39;, [0.8035027980804443, 0.19649720191955566]],
-    [&#39;No Risk&#39;, [0.6937689185142517, 0.3062310814857483]]]}]}</pre>
+   &#39;values&#39;: [[&#39;No Risk&#39;, [0.9937857257272232, 0.006214274272776733]],
+    [&#39;No Risk&#39;, [0.9692945258787946, 0.030705474121205386]],
+    [&#39;No Risk&#39;, [0.9659028536178904, 0.034097146382109624]],
+    [&#39;No Risk&#39;, [0.9528451816827154, 0.0471548183172846]],
+    [&#39;Risk&#39;, [0.040341752701822275, 0.9596582472981777]],
+    [&#39;Risk&#39;, [0.05804472513532977, 0.9419552748646702]],
+    [&#39;No Risk&#39;, [0.8992536806845922, 0.10074631931540776]],
+    [&#39;No Risk&#39;, [0.8997752272794306, 0.1002247727205694]],
+    [&#39;No Risk&#39;, [0.998303342620675, 0.0016966573793250517]],
+    [&#39;Risk&#39;, [0.007805452098065269, 0.9921945479019347]]]}]}</pre>
 </div>
 
 </div>
@@ -15297,8 +15042,1429 @@ Successfully finished deployment creation, deployment_uid=&#39;10fb561b-b198-4eb
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>If you want to work with the web service in an external Python application you can retrieve the service object by:</p>
+<ul>
+<li>Initialize the service by <code>service = WebService(wml_credentials)</code></li>
+<li>Get deployment_id by <code>service.list()</code> method</li>
+<li>Get webservice object by <code>service.get('deployment_id')</code> method</li>
+</ul>
+<p>After that you can call <code>service.score()</code> method.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Deleting-deployment">Deleting deployment<a class="anchor-link" href="#Deleting-deployment">&#182;</a></h3><p>You can delete the existing deployment by calling the <code>service.delete()</code> command.
+To list the existing web services you can use <code>service.list()</code>.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="refine"></a></p>
+<h2 id="5.-Refine-and-persist-new-version-of-the-model">5. Refine and persist new version of the model<a class="anchor-link" href="#5.-Refine-and-persist-new-version-of-the-model">&#182;</a></h2><p>In this section, you'll learn how to store new refinement version of your model in Watson Machine Learning repository by using the Watson Machine Learning Client.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Pipeline-refinement-with-Lale">Pipeline refinement with <a href="https://github.com/IBM/lale">Lale</a><a class="anchor-link" href="#Pipeline-refinement-with-Lale">&#182;</a></h3><p>In this section you learn how to refine and retrain the best
+pipeline returned by AutoAI. There are many ways to refine a pipeline.
+For illustration, simply replace the final estimator in the
+pipeline by an interpretable model. The call to
+<code>wrap_imported_operators()</code> augments scikit-learn operators with
+schemas for hyperparameter tuning.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">LR</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> <span class="k">as</span> <span class="n">Tree</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span> <span class="k">as</span> <span class="n">KNN</span>
+<span class="kn">from</span> <span class="nn">lale.lib.lale</span> <span class="kn">import</span> <span class="n">Hyperopt</span>
+<span class="kn">from</span> <span class="nn">lale</span> <span class="kn">import</span> <span class="n">wrap_imported_operators</span>
+
+<span class="n">wrap_imported_operators</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Pipeline-decomposition-and-new-definition">Pipeline decomposition and new definition<a class="anchor-link" href="#Pipeline-decomposition-and-new-definition">&#182;</a></h4><p>Start by removing the last step of the pipeline, i.e., the final estimator.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">prefix</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">remove_last</span><span class="p">()</span><span class="o">.</span><span class="n">freeze_trainable</span><span class="p">()</span>
+<span class="n">prefix</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.47.0 (20210316.0004)
+ -->
+<!-- Title: cluster:(root) Pages: 1 -->
+<svg width="1275pt" height="149pt"
+ viewBox="0.00 0.00 1274.96 148.54" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 144.54)">
+<title>cluster:(root)</title>
+<g id="a_graph0"><a xlink:title="(root) = ...">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-144.54 1270.96,-144.54 1270.96,4 -4,4"/>
+</a>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster:tam</title>
+<g id="a_clust1"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.tam.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="tam = TAM(tans_class=feature_agglomeration, name=&#39;featureagglomeration&#39;, col_names=[&#39;CheckingStatus&#39;, &#39;LoanDuration&#39;, &#39;CreditHistory&#39;, &#39;LoanPurpose&#39;, &#39;LoanAmount&#39;, &#39;ExistingSavings&#39;, &#39;EmploymentDuration&#39;, &#39;InstallmentPercent&#39;, &#39;Sex&#39;, &#39;OthersOnLoan&#39;, &#39;CurrentResi...)">
+<polygon fill="white" stroke="black" points="1062.89,-40.77 1062.89,-119.77 1184.96,-119.77 1184.96,-40.77 1062.89,-40.77"/>
+<text text-anchor="middle" x="1123.92" y="-104.57" font-family="Times,serif" font-size="14.00">TAM</text>
+</a>
+</g>
+</g>
+<!-- numpy_column_selector_0 -->
+<g id="node1" class="node">
+<title>numpy_column_selector_0</title>
+<g id="a_node1"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_column_selector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_column_selector_0 = NumpyColumnSelector(columns=[0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19])">
+<ellipse fill="white" stroke="black" cx="33.23" cy="-103.77" rx="33.47" ry="28.07"/>
+<text text-anchor="middle" x="33.23" y="-112.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="33.23" y="-100.97" font-family="Times,serif" font-size="11.00">Column&#45;</text>
+<text text-anchor="middle" x="33.23" y="-88.97" font-family="Times,serif" font-size="11.00">Selector</text>
+</a>
+</g>
+</g>
+<!-- compress_strings -->
+<g id="node2" class="node">
+<title>compress_strings</title>
+<g id="a_node2"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.compress_strings.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="compress_strings = CompressStrings(compress_type=&#39;hash&#39;, dtypes_list=[&#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;], missing_values_r...)">
+<ellipse fill="white" stroke="black" cx="142.77" cy="-103.77" rx="40.11" ry="19.6"/>
+<text text-anchor="middle" x="142.77" y="-106.97" font-family="Times,serif" font-size="11.00">Compress&#45;</text>
+<text text-anchor="middle" x="142.77" y="-94.97" font-family="Times,serif" font-size="11.00">Strings</text>
+</a>
+</g>
+</g>
+<!-- numpy_column_selector_0&#45;&gt;compress_strings -->
+<g id="edge1" class="edge">
+<title>numpy_column_selector_0&#45;&gt;compress_strings</title>
+<path fill="none" stroke="black" d="M66.5,-103.77C74.59,-103.77 83.46,-103.77 92.19,-103.77"/>
+<polygon fill="black" stroke="black" points="92.3,-107.27 102.3,-103.77 92.3,-100.27 92.3,-107.27"/>
+</g>
+<!-- numpy_replace_missing_values_0 -->
+<g id="node3" class="node">
+<title>numpy_replace_missing_values_0</title>
+<g id="a_node3"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_missing_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_missing_values_0 = NumpyReplaceMissingValues(missing_values=[], filling_values=float(&#39;nan&#39;))">
+<ellipse fill="white" stroke="black" cx="253.73" cy="-103.77" rx="34.8" ry="36.54"/>
+<text text-anchor="middle" x="253.73" y="-118.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="253.73" y="-106.97" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
+<text text-anchor="middle" x="253.73" y="-94.97" font-family="Times,serif" font-size="11.00">Missing&#45;</text>
+<text text-anchor="middle" x="253.73" y="-82.97" font-family="Times,serif" font-size="11.00">Values</text>
+</a>
+</g>
+</g>
+<!-- compress_strings&#45;&gt;numpy_replace_missing_values_0 -->
+<g id="edge2" class="edge">
+<title>compress_strings&#45;&gt;numpy_replace_missing_values_0</title>
+<path fill="none" stroke="black" d="M183.11,-103.77C191.43,-103.77 200.26,-103.77 208.74,-103.77"/>
+<polygon fill="black" stroke="black" points="208.85,-107.27 218.85,-103.77 208.85,-100.27 208.85,-107.27"/>
+</g>
+<!-- numpy_replace_unknown_values -->
+<g id="node4" class="node">
+<title>numpy_replace_unknown_values</title>
+<g id="a_node4"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_unknown_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_unknown_values = NumpyReplaceUnknownValues(filling_values=float(&#39;nan&#39;), filling_values_list=[float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(...)">
+<ellipse fill="white" stroke="black" cx="363.27" cy="-103.77" rx="38.78" ry="36.54"/>
+<text text-anchor="middle" x="363.27" y="-118.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="363.27" y="-106.97" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
+<text text-anchor="middle" x="363.27" y="-94.97" font-family="Times,serif" font-size="11.00">Unknown&#45;</text>
+<text text-anchor="middle" x="363.27" y="-82.97" font-family="Times,serif" font-size="11.00">Values</text>
+</a>
+</g>
+</g>
+<!-- numpy_replace_missing_values_0&#45;&gt;numpy_replace_unknown_values -->
+<g id="edge3" class="edge">
+<title>numpy_replace_missing_values_0&#45;&gt;numpy_replace_unknown_values</title>
+<path fill="none" stroke="black" d="M288.46,-103.77C296.6,-103.77 305.47,-103.77 314.13,-103.77"/>
+<polygon fill="black" stroke="black" points="314.16,-107.27 324.16,-103.77 314.16,-100.27 314.16,-107.27"/>
+</g>
+<!-- boolean2float -->
+<g id="node5" class="node">
+<title>boolean2float</title>
+<g id="a_node5"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.boolean2float.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="boolean2float = boolean2float()">
+<ellipse fill="white" stroke="black" cx="476.11" cy="-100.77" rx="37.91" ry="18"/>
+<text text-anchor="middle" x="476.11" y="-97.97" font-family="Times,serif" font-size="11.00">boolean2float</text>
+</a>
+</g>
+</g>
+<!-- numpy_replace_unknown_values&#45;&gt;boolean2float -->
+<g id="edge4" class="edge">
+<title>numpy_replace_unknown_values&#45;&gt;boolean2float</title>
+<path fill="none" stroke="black" d="M402.41,-102.74C410.6,-102.52 419.36,-102.28 427.85,-102.05"/>
+<polygon fill="black" stroke="black" points="428.12,-105.54 438.02,-101.77 427.93,-98.55 428.12,-105.54"/>
+</g>
+<!-- cat_imputer -->
+<g id="node6" class="node">
+<title>cat_imputer</title>
+<g id="a_node6"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.cat_imputer.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="cat_imputer = CatImputer(strategy=&#39;most_frequent&#39;, missing_values=float(&#39;nan&#39;), sklearn_version_family=&#39;23&#39;)">
+<ellipse fill="white" stroke="black" cx="580.47" cy="-98.77" rx="30.31" ry="19.6"/>
+<text text-anchor="middle" x="580.47" y="-101.97" font-family="Times,serif" font-size="11.00">Cat&#45;</text>
+<text text-anchor="middle" x="580.47" y="-89.97" font-family="Times,serif" font-size="11.00">Imputer</text>
+</a>
+</g>
+</g>
+<!-- boolean2float&#45;&gt;cat_imputer -->
+<g id="edge5" class="edge">
+<title>boolean2float&#45;&gt;cat_imputer</title>
+<path fill="none" stroke="black" d="M514.07,-100.05C522.45,-99.88 531.39,-99.71 539.88,-99.54"/>
+<polygon fill="black" stroke="black" points="540.02,-103.04 549.95,-99.35 539.88,-96.04 540.02,-103.04"/>
+</g>
+<!-- cat_encoder -->
+<g id="node7" class="node">
+<title>cat_encoder</title>
+<g id="a_node7"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.cat_encoder.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="cat_encoder = CatEncoder(encoding=&#39;ordinal&#39;, categories=&#39;auto&#39;, dtype=np.float64, handle_unknown=&#39;error&#39;, sklearn_version_family=&#39;23&#39;)">
+<ellipse fill="white" stroke="black" cx="682.94" cy="-97.77" rx="31.64" ry="19.6"/>
+<text text-anchor="middle" x="682.94" y="-100.97" font-family="Times,serif" font-size="11.00">Cat&#45;</text>
+<text text-anchor="middle" x="682.94" y="-88.97" font-family="Times,serif" font-size="11.00">Encoder</text>
+</a>
+</g>
+</g>
+<!-- cat_imputer&#45;&gt;cat_encoder -->
+<g id="edge6" class="edge">
+<title>cat_imputer&#45;&gt;cat_encoder</title>
+<path fill="none" stroke="black" d="M611.07,-98.47C620.35,-98.38 630.77,-98.28 640.7,-98.18"/>
+<polygon fill="black" stroke="black" points="640.84,-101.68 650.8,-98.08 640.77,-94.68 640.84,-101.68"/>
+</g>
+<!-- float32_transform_0 -->
+<g id="node8" class="node">
+<title>float32_transform_0</title>
+<g id="a_node8"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float32_transform.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float32_transform_0 = float32_transform()">
+<ellipse fill="white" stroke="black" cx="791.06" cy="-94.77" rx="36.12" ry="19.6"/>
+<text text-anchor="middle" x="791.06" y="-97.97" font-family="Times,serif" font-size="11.00">float32_&#45;</text>
+<text text-anchor="middle" x="791.06" y="-85.97" font-family="Times,serif" font-size="11.00">transform</text>
+</a>
+</g>
+</g>
+<!-- cat_encoder&#45;&gt;float32_transform_0 -->
+<g id="edge7" class="edge">
+<title>cat_encoder&#45;&gt;float32_transform_0</title>
+<path fill="none" stroke="black" d="M714.92,-96.89C724.18,-96.63 734.54,-96.34 744.53,-96.06"/>
+<polygon fill="black" stroke="black" points="744.85,-99.55 754.75,-95.77 744.66,-92.55 744.85,-99.55"/>
+</g>
+<!-- concat_features -->
+<g id="node15" class="node">
+<title>concat_features</title>
+<g id="a_node15"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.lale.concat_features.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="concat_features = ConcatFeatures()">
+<ellipse fill="white" stroke="black" cx="896.36" cy="-68.77" rx="33.47" ry="19.6"/>
+<text text-anchor="middle" x="896.36" y="-71.97" font-family="Times,serif" font-size="11.00">Concat&#45;</text>
+<text text-anchor="middle" x="896.36" y="-59.97" font-family="Times,serif" font-size="11.00">Features</text>
+</a>
+</g>
+</g>
+<!-- float32_transform_0&#45;&gt;concat_features -->
+<g id="edge13" class="edge">
+<title>float32_transform_0&#45;&gt;concat_features</title>
+<path fill="none" stroke="black" d="M824.18,-86.69C834.15,-84.18 845.25,-81.38 855.66,-78.76"/>
+<polygon fill="black" stroke="black" points="856.53,-82.15 865.38,-76.32 854.82,-75.36 856.53,-82.15"/>
+</g>
+<!-- numpy_column_selector_1 -->
+<g id="node9" class="node">
+<title>numpy_column_selector_1</title>
+<g id="a_node9"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_column_selector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_column_selector_1 = NumpyColumnSelector(columns=[1, 4, 12])">
+<ellipse fill="white" stroke="black" cx="253.73" cy="-31.77" rx="33.47" ry="28.07"/>
+<text text-anchor="middle" x="253.73" y="-40.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="253.73" y="-28.97" font-family="Times,serif" font-size="11.00">Column&#45;</text>
+<text text-anchor="middle" x="253.73" y="-16.97" font-family="Times,serif" font-size="11.00">Selector</text>
+</a>
+</g>
+</g>
+<!-- float_str2_float -->
+<g id="node10" class="node">
+<title>float_str2_float</title>
+<g id="a_node10"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float_str2_float.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float_str2_float = FloatStr2Float(dtypes_list=[&#39;int_num&#39;, &#39;int_num&#39;, &#39;int_num&#39;], missing_values_reference_list=[])">
+<ellipse fill="white" stroke="black" cx="363.27" cy="-31.77" rx="27" ry="28.07"/>
+<text text-anchor="middle" x="363.27" y="-40.97" font-family="Times,serif" font-size="11.00">Float&#45;</text>
+<text text-anchor="middle" x="363.27" y="-28.97" font-family="Times,serif" font-size="11.00">Str2&#45;</text>
+<text text-anchor="middle" x="363.27" y="-16.97" font-family="Times,serif" font-size="11.00">Float</text>
+</a>
+</g>
+</g>
+<!-- numpy_column_selector_1&#45;&gt;float_str2_float -->
+<g id="edge8" class="edge">
+<title>numpy_column_selector_1&#45;&gt;float_str2_float</title>
+<path fill="none" stroke="black" d="M286.99,-31.77C299.27,-31.77 313.34,-31.77 325.96,-31.77"/>
+<polygon fill="black" stroke="black" points="326.16,-35.27 336.16,-31.77 326.16,-28.27 326.16,-35.27"/>
+</g>
+<!-- numpy_replace_missing_values_1 -->
+<g id="node11" class="node">
+<title>numpy_replace_missing_values_1</title>
+<g id="a_node11"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_missing_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_missing_values_1 = NumpyReplaceMissingValues(missing_values=[], filling_values=float(&#39;nan&#39;))">
+<ellipse fill="white" stroke="black" cx="476.11" cy="-36.77" rx="34.8" ry="36.54"/>
+<text text-anchor="middle" x="476.11" y="-51.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="476.11" y="-39.97" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
+<text text-anchor="middle" x="476.11" y="-27.97" font-family="Times,serif" font-size="11.00">Missing&#45;</text>
+<text text-anchor="middle" x="476.11" y="-15.97" font-family="Times,serif" font-size="11.00">Values</text>
+</a>
+</g>
+</g>
+<!-- float_str2_float&#45;&gt;numpy_replace_missing_values_1 -->
+<g id="edge9" class="edge">
+<title>float_str2_float&#45;&gt;numpy_replace_missing_values_1</title>
+<path fill="none" stroke="black" d="M390.25,-32.94C402.39,-33.49 417.18,-34.16 430.99,-34.78"/>
+<polygon fill="black" stroke="black" points="431.15,-38.29 441.3,-35.24 431.47,-31.3 431.15,-38.29"/>
+</g>
+<!-- num_imputer -->
+<g id="node12" class="node">
+<title>num_imputer</title>
+<g id="a_node12"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.num_imputer.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="num_imputer = NumImputer(strategy=&#39;median&#39;, missing_values=float(&#39;nan&#39;))">
+<ellipse fill="white" stroke="black" cx="580.47" cy="-39.77" rx="30.31" ry="19.6"/>
+<text text-anchor="middle" x="580.47" y="-42.97" font-family="Times,serif" font-size="11.00">Num&#45;</text>
+<text text-anchor="middle" x="580.47" y="-30.97" font-family="Times,serif" font-size="11.00">Imputer</text>
+</a>
+</g>
+</g>
+<!-- numpy_replace_missing_values_1&#45;&gt;num_imputer -->
+<g id="edge10" class="edge">
+<title>numpy_replace_missing_values_1&#45;&gt;num_imputer</title>
+<path fill="none" stroke="black" d="M510.91,-37.76C520.15,-38.03 530.24,-38.33 539.78,-38.61"/>
+<polygon fill="black" stroke="black" points="539.74,-42.11 549.83,-38.9 539.94,-35.11 539.74,-42.11"/>
+</g>
+<!-- opt_standard_scaler -->
+<g id="node13" class="node">
+<title>opt_standard_scaler</title>
+<g id="a_node13"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.opt_standard_scaler.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="opt_standard_scaler = OptStandardScaler(num_scaler_copy=None, num_scaler_with_mean=None, num_scaler_with_std=None, use_scaler_flag=False)">
+<ellipse fill="white" stroke="black" cx="682.94" cy="-41.77" rx="36.12" ry="28.07"/>
+<text text-anchor="middle" x="682.94" y="-50.97" font-family="Times,serif" font-size="11.00">Opt&#45;</text>
+<text text-anchor="middle" x="682.94" y="-38.97" font-family="Times,serif" font-size="11.00">Standard&#45;</text>
+<text text-anchor="middle" x="682.94" y="-26.97" font-family="Times,serif" font-size="11.00">Scaler</text>
+</a>
+</g>
+</g>
+<!-- num_imputer&#45;&gt;opt_standard_scaler -->
+<g id="edge11" class="edge">
+<title>num_imputer&#45;&gt;opt_standard_scaler</title>
+<path fill="none" stroke="black" d="M611.07,-40.36C619.14,-40.52 628.07,-40.7 636.8,-40.87"/>
+<polygon fill="black" stroke="black" points="636.81,-44.37 646.88,-41.07 636.95,-37.37 636.81,-44.37"/>
+</g>
+<!-- float32_transform_1 -->
+<g id="node14" class="node">
+<title>float32_transform_1</title>
+<g id="a_node14"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float32_transform.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float32_transform_1 = float32_transform()">
+<ellipse fill="white" stroke="black" cx="791.06" cy="-45.77" rx="36.12" ry="19.6"/>
+<text text-anchor="middle" x="791.06" y="-48.97" font-family="Times,serif" font-size="11.00">float32_&#45;</text>
+<text text-anchor="middle" x="791.06" y="-36.97" font-family="Times,serif" font-size="11.00">transform</text>
+</a>
+</g>
+</g>
+<!-- opt_standard_scaler&#45;&gt;float32_transform_1 -->
+<g id="edge12" class="edge">
+<title>opt_standard_scaler&#45;&gt;float32_transform_1</title>
+<path fill="none" stroke="black" d="M718.98,-43.09C727.31,-43.4 736.32,-43.74 745.03,-44.07"/>
+<polygon fill="black" stroke="black" points="744.93,-47.57 755.06,-44.45 745.2,-40.58 744.93,-47.57"/>
+</g>
+<!-- float32_transform_1&#45;&gt;concat_features -->
+<g id="edge14" class="edge">
+<title>float32_transform_1&#45;&gt;concat_features</title>
+<path fill="none" stroke="black" d="M824.75,-53.05C834.41,-55.2 845.1,-57.58 855.18,-59.82"/>
+<polygon fill="black" stroke="black" points="854.47,-63.25 865,-62.01 856,-56.42 854.47,-63.25"/>
+</g>
+<!-- numpy_permute_array -->
+<g id="node16" class="node">
+<title>numpy_permute_array</title>
+<g id="a_node16"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_permute_array.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_permute_array = NumpyPermuteArray(axis=0, permutation_indices=[0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 1, 4, 12])">
+<ellipse fill="white" stroke="black" cx="1000.24" cy="-68.77" rx="34.8" ry="28.07"/>
+<text text-anchor="middle" x="1000.24" y="-77.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="1000.24" y="-65.97" font-family="Times,serif" font-size="11.00">Permute&#45;</text>
+<text text-anchor="middle" x="1000.24" y="-53.97" font-family="Times,serif" font-size="11.00">Array</text>
+</a>
+</g>
+</g>
+<!-- concat_features&#45;&gt;numpy_permute_array -->
+<g id="edge15" class="edge">
+<title>concat_features&#45;&gt;numpy_permute_array</title>
+<path fill="none" stroke="black" d="M929.6,-68.77C937.81,-68.77 946.78,-68.77 955.46,-68.77"/>
+<polygon fill="black" stroke="black" points="955.46,-72.27 965.46,-68.77 955.46,-65.27 955.46,-72.27"/>
+</g>
+<!-- feature_agglomeration -->
+<g id="node17" class="node">
+<title>feature_agglomeration</title>
+<g id="a_node17"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.feature_agglomeration.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="feature_agglomeration = FeatureAgglomeration()">
+<ellipse fill="white" stroke="black" cx="1123.92" cy="-68.77" rx="53.07" ry="19.6"/>
+<text text-anchor="middle" x="1123.92" y="-71.97" font-family="Times,serif" font-size="11.00">Feature&#45;</text>
+<text text-anchor="middle" x="1123.92" y="-59.97" font-family="Times,serif" font-size="11.00">Agglomeration</text>
+</a>
+</g>
+</g>
+<!-- numpy_permute_array&#45;&gt;feature_agglomeration -->
+<g id="edge16" class="edge">
+<title>numpy_permute_array&#45;&gt;feature_agglomeration</title>
+<path fill="none" stroke="black" d="M1035.14,-68.77C1043.02,-68.77 1051.66,-68.77 1060.35,-68.77"/>
+<polygon fill="black" stroke="black" points="1052.89,-72.27 1062.89,-68.77 1052.89,-65.27 1052.89,-72.27"/>
+</g>
+<!-- fs1 -->
+<g id="node18" class="node">
+<title>fs1</title>
+<g id="a_node18"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.fs1.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="fs1 = FS1(cols_ids_must_keep=range(0, 20), additional_col_count_to_keep=20, ptype=&#39;classification&#39;)">
+<ellipse fill="white" stroke="black" cx="1239.96" cy="-68.77" rx="27" ry="18"/>
+<text text-anchor="middle" x="1239.96" y="-65.97" font-family="Times,serif" font-size="11.00">FS1</text>
+</a>
+</g>
+</g>
+<!-- feature_agglomeration&#45;&gt;fs1 -->
+<g id="edge17" class="edge">
+<title>feature_agglomeration&#45;&gt;fs1</title>
+<path fill="none" stroke="black" d="M1184.96,-68.77C1190.96,-68.77 1196.92,-68.77 1202.56,-68.77"/>
+<polygon fill="black" stroke="black" points="1202.72,-72.27 1212.72,-68.77 1202.72,-65.27 1202.72,-72.27"/>
+</g>
+</g>
+</svg>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Next, add a new final step, which consists of a choice of three
+estimators. In this code, <code>|</code> is the or combinator (algorithmic
+choice). It defines a search space for another optimizer run.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_pipeline</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">LR</span> <span class="o">|</span> <span class="n">Tree</span> <span class="o">|</span> <span class="n">KNN</span><span class="p">)</span>
+<span class="n">new_pipeline</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.47.0 (20210316.0004)
+ -->
+<!-- Title: cluster:(root) Pages: 1 -->
+<svg width="1381pt" height="200pt"
+ viewBox="0.00 0.00 1380.96 199.77" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 195.77)">
+<title>cluster:(root)</title>
+<g id="a_graph0"><a xlink:title="(root) = ...">
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-195.77 1376.96,-195.77 1376.96,4 -4,4"/>
+</a>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster:tam</title>
+<g id="a_clust1"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.tam.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="tam = TAM(tans_class=feature_agglomeration, name=&#39;featureagglomeration&#39;, col_names=[&#39;CheckingStatus&#39;, &#39;LoanDuration&#39;, &#39;CreditHistory&#39;, &#39;LoanPurpose&#39;, &#39;LoanAmount&#39;, &#39;ExistingSavings&#39;, &#39;EmploymentDuration&#39;, &#39;InstallmentPercent&#39;, &#39;Sex&#39;, &#39;OthersOnLoan&#39;, &#39;CurrentResi...)">
+<polygon fill="white" stroke="black" points="1062.89,-92 1062.89,-171 1184.96,-171 1184.96,-92 1062.89,-92"/>
+<text text-anchor="middle" x="1123.92" y="-155.8" font-family="Times,serif" font-size="14.00">TAM</text>
+</a>
+</g>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster:choice</title>
+<g id="a_clust2"><a xlink:title="choice = lr | tree | knn">
+<polygon fill="#7ec0ee" stroke="black" points="1294.96,-8 1294.96,-169 1364.96,-169 1364.96,-8 1294.96,-8"/>
+<text text-anchor="middle" x="1329.96" y="-153.8" font-family="Times,serif" font-size="14.00">Choice</text>
+</a>
+</g>
+</g>
+<!-- numpy_column_selector_0 -->
+<g id="node1" class="node">
+<title>numpy_column_selector_0</title>
+<g id="a_node1"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_column_selector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_column_selector_0 = NumpyColumnSelector(columns=[0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19])">
+<ellipse fill="white" stroke="black" cx="33.23" cy="-155" rx="33.47" ry="28.07"/>
+<text text-anchor="middle" x="33.23" y="-164.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="33.23" y="-152.2" font-family="Times,serif" font-size="11.00">Column&#45;</text>
+<text text-anchor="middle" x="33.23" y="-140.2" font-family="Times,serif" font-size="11.00">Selector</text>
+</a>
+</g>
+</g>
+<!-- compress_strings -->
+<g id="node2" class="node">
+<title>compress_strings</title>
+<g id="a_node2"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.compress_strings.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="compress_strings = CompressStrings(compress_type=&#39;hash&#39;, dtypes_list=[&#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;], missing_values_r...)">
+<ellipse fill="white" stroke="black" cx="142.77" cy="-155" rx="40.11" ry="19.6"/>
+<text text-anchor="middle" x="142.77" y="-158.2" font-family="Times,serif" font-size="11.00">Compress&#45;</text>
+<text text-anchor="middle" x="142.77" y="-146.2" font-family="Times,serif" font-size="11.00">Strings</text>
+</a>
+</g>
+</g>
+<!-- numpy_column_selector_0&#45;&gt;compress_strings -->
+<g id="edge1" class="edge">
+<title>numpy_column_selector_0&#45;&gt;compress_strings</title>
+<path fill="none" stroke="black" d="M66.5,-155C74.59,-155 83.46,-155 92.19,-155"/>
+<polygon fill="black" stroke="black" points="92.3,-158.5 102.3,-155 92.3,-151.5 92.3,-158.5"/>
+</g>
+<!-- numpy_replace_missing_values_0 -->
+<g id="node3" class="node">
+<title>numpy_replace_missing_values_0</title>
+<g id="a_node3"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_missing_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_missing_values_0 = NumpyReplaceMissingValues(missing_values=[], filling_values=float(&#39;nan&#39;))">
+<ellipse fill="white" stroke="black" cx="253.73" cy="-155" rx="34.8" ry="36.54"/>
+<text text-anchor="middle" x="253.73" y="-170.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="253.73" y="-158.2" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
+<text text-anchor="middle" x="253.73" y="-146.2" font-family="Times,serif" font-size="11.00">Missing&#45;</text>
+<text text-anchor="middle" x="253.73" y="-134.2" font-family="Times,serif" font-size="11.00">Values</text>
+</a>
+</g>
+</g>
+<!-- compress_strings&#45;&gt;numpy_replace_missing_values_0 -->
+<g id="edge2" class="edge">
+<title>compress_strings&#45;&gt;numpy_replace_missing_values_0</title>
+<path fill="none" stroke="black" d="M183.11,-155C191.43,-155 200.26,-155 208.74,-155"/>
+<polygon fill="black" stroke="black" points="208.85,-158.5 218.85,-155 208.85,-151.5 208.85,-158.5"/>
+</g>
+<!-- numpy_replace_unknown_values -->
+<g id="node4" class="node">
+<title>numpy_replace_unknown_values</title>
+<g id="a_node4"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_unknown_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_unknown_values = NumpyReplaceUnknownValues(filling_values=float(&#39;nan&#39;), filling_values_list=[float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(...)">
+<ellipse fill="white" stroke="black" cx="363.27" cy="-155" rx="38.78" ry="36.54"/>
+<text text-anchor="middle" x="363.27" y="-170.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="363.27" y="-158.2" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
+<text text-anchor="middle" x="363.27" y="-146.2" font-family="Times,serif" font-size="11.00">Unknown&#45;</text>
+<text text-anchor="middle" x="363.27" y="-134.2" font-family="Times,serif" font-size="11.00">Values</text>
+</a>
+</g>
+</g>
+<!-- numpy_replace_missing_values_0&#45;&gt;numpy_replace_unknown_values -->
+<g id="edge3" class="edge">
+<title>numpy_replace_missing_values_0&#45;&gt;numpy_replace_unknown_values</title>
+<path fill="none" stroke="black" d="M288.46,-155C296.6,-155 305.47,-155 314.13,-155"/>
+<polygon fill="black" stroke="black" points="314.16,-158.5 324.16,-155 314.16,-151.5 314.16,-158.5"/>
+</g>
+<!-- boolean2float -->
+<g id="node5" class="node">
+<title>boolean2float</title>
+<g id="a_node5"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.boolean2float.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="boolean2float = boolean2float()">
+<ellipse fill="white" stroke="black" cx="476.11" cy="-152" rx="37.91" ry="18"/>
+<text text-anchor="middle" x="476.11" y="-149.2" font-family="Times,serif" font-size="11.00">boolean2float</text>
+</a>
+</g>
+</g>
+<!-- numpy_replace_unknown_values&#45;&gt;boolean2float -->
+<g id="edge4" class="edge">
+<title>numpy_replace_unknown_values&#45;&gt;boolean2float</title>
+<path fill="none" stroke="black" d="M402.41,-153.97C410.6,-153.75 419.36,-153.51 427.85,-153.28"/>
+<polygon fill="black" stroke="black" points="428.12,-156.77 438.02,-153 427.93,-149.78 428.12,-156.77"/>
+</g>
+<!-- cat_imputer -->
+<g id="node6" class="node">
+<title>cat_imputer</title>
+<g id="a_node6"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.cat_imputer.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="cat_imputer = CatImputer(strategy=&#39;most_frequent&#39;, missing_values=float(&#39;nan&#39;), sklearn_version_family=&#39;23&#39;)">
+<ellipse fill="white" stroke="black" cx="580.47" cy="-150" rx="30.31" ry="19.6"/>
+<text text-anchor="middle" x="580.47" y="-153.2" font-family="Times,serif" font-size="11.00">Cat&#45;</text>
+<text text-anchor="middle" x="580.47" y="-141.2" font-family="Times,serif" font-size="11.00">Imputer</text>
+</a>
+</g>
+</g>
+<!-- boolean2float&#45;&gt;cat_imputer -->
+<g id="edge5" class="edge">
+<title>boolean2float&#45;&gt;cat_imputer</title>
+<path fill="none" stroke="black" d="M514.07,-151.28C522.45,-151.11 531.39,-150.94 539.88,-150.77"/>
+<polygon fill="black" stroke="black" points="540.02,-154.27 549.95,-150.58 539.88,-147.27 540.02,-154.27"/>
+</g>
+<!-- cat_encoder -->
+<g id="node7" class="node">
+<title>cat_encoder</title>
+<g id="a_node7"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.cat_encoder.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="cat_encoder = CatEncoder(encoding=&#39;ordinal&#39;, categories=&#39;auto&#39;, dtype=np.float64, handle_unknown=&#39;error&#39;, sklearn_version_family=&#39;23&#39;)">
+<ellipse fill="white" stroke="black" cx="682.94" cy="-149" rx="31.64" ry="19.6"/>
+<text text-anchor="middle" x="682.94" y="-152.2" font-family="Times,serif" font-size="11.00">Cat&#45;</text>
+<text text-anchor="middle" x="682.94" y="-140.2" font-family="Times,serif" font-size="11.00">Encoder</text>
+</a>
+</g>
+</g>
+<!-- cat_imputer&#45;&gt;cat_encoder -->
+<g id="edge6" class="edge">
+<title>cat_imputer&#45;&gt;cat_encoder</title>
+<path fill="none" stroke="black" d="M611.07,-149.71C620.35,-149.61 630.77,-149.51 640.7,-149.41"/>
+<polygon fill="black" stroke="black" points="640.84,-152.91 650.8,-149.31 640.77,-145.91 640.84,-152.91"/>
+</g>
+<!-- float32_transform_0 -->
+<g id="node8" class="node">
+<title>float32_transform_0</title>
+<g id="a_node8"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float32_transform.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float32_transform_0 = float32_transform()">
+<ellipse fill="white" stroke="black" cx="791.06" cy="-146" rx="36.12" ry="19.6"/>
+<text text-anchor="middle" x="791.06" y="-149.2" font-family="Times,serif" font-size="11.00">float32_&#45;</text>
+<text text-anchor="middle" x="791.06" y="-137.2" font-family="Times,serif" font-size="11.00">transform</text>
+</a>
+</g>
+</g>
+<!-- cat_encoder&#45;&gt;float32_transform_0 -->
+<g id="edge7" class="edge">
+<title>cat_encoder&#45;&gt;float32_transform_0</title>
+<path fill="none" stroke="black" d="M714.92,-148.12C724.18,-147.86 734.54,-147.57 744.53,-147.29"/>
+<polygon fill="black" stroke="black" points="744.85,-150.78 754.75,-147 744.66,-143.78 744.85,-150.78"/>
+</g>
+<!-- concat_features -->
+<g id="node15" class="node">
+<title>concat_features</title>
+<g id="a_node15"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.lale.concat_features.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="concat_features = ConcatFeatures()">
+<ellipse fill="white" stroke="black" cx="896.36" cy="-120" rx="33.47" ry="19.6"/>
+<text text-anchor="middle" x="896.36" y="-123.2" font-family="Times,serif" font-size="11.00">Concat&#45;</text>
+<text text-anchor="middle" x="896.36" y="-111.2" font-family="Times,serif" font-size="11.00">Features</text>
+</a>
+</g>
+</g>
+<!-- float32_transform_0&#45;&gt;concat_features -->
+<g id="edge13" class="edge">
+<title>float32_transform_0&#45;&gt;concat_features</title>
+<path fill="none" stroke="black" d="M824.18,-137.92C834.15,-135.41 845.25,-132.61 855.66,-129.99"/>
+<polygon fill="black" stroke="black" points="856.53,-133.38 865.38,-127.55 854.82,-126.59 856.53,-133.38"/>
+</g>
+<!-- numpy_column_selector_1 -->
+<g id="node9" class="node">
+<title>numpy_column_selector_1</title>
+<g id="a_node9"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_column_selector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_column_selector_1 = NumpyColumnSelector(columns=[1, 4, 12])">
+<ellipse fill="white" stroke="black" cx="253.73" cy="-83" rx="33.47" ry="28.07"/>
+<text text-anchor="middle" x="253.73" y="-92.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="253.73" y="-80.2" font-family="Times,serif" font-size="11.00">Column&#45;</text>
+<text text-anchor="middle" x="253.73" y="-68.2" font-family="Times,serif" font-size="11.00">Selector</text>
+</a>
+</g>
+</g>
+<!-- float_str2_float -->
+<g id="node10" class="node">
+<title>float_str2_float</title>
+<g id="a_node10"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float_str2_float.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float_str2_float = FloatStr2Float(dtypes_list=[&#39;int_num&#39;, &#39;int_num&#39;, &#39;int_num&#39;], missing_values_reference_list=[])">
+<ellipse fill="white" stroke="black" cx="363.27" cy="-83" rx="27" ry="28.07"/>
+<text text-anchor="middle" x="363.27" y="-92.2" font-family="Times,serif" font-size="11.00">Float&#45;</text>
+<text text-anchor="middle" x="363.27" y="-80.2" font-family="Times,serif" font-size="11.00">Str2&#45;</text>
+<text text-anchor="middle" x="363.27" y="-68.2" font-family="Times,serif" font-size="11.00">Float</text>
+</a>
+</g>
+</g>
+<!-- numpy_column_selector_1&#45;&gt;float_str2_float -->
+<g id="edge8" class="edge">
+<title>numpy_column_selector_1&#45;&gt;float_str2_float</title>
+<path fill="none" stroke="black" d="M286.99,-83C299.27,-83 313.34,-83 325.96,-83"/>
+<polygon fill="black" stroke="black" points="326.16,-86.5 336.16,-83 326.16,-79.5 326.16,-86.5"/>
+</g>
+<!-- numpy_replace_missing_values_1 -->
+<g id="node11" class="node">
+<title>numpy_replace_missing_values_1</title>
+<g id="a_node11"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_missing_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_missing_values_1 = NumpyReplaceMissingValues(missing_values=[], filling_values=float(&#39;nan&#39;))">
+<ellipse fill="white" stroke="black" cx="476.11" cy="-88" rx="34.8" ry="36.54"/>
+<text text-anchor="middle" x="476.11" y="-103.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="476.11" y="-91.2" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
+<text text-anchor="middle" x="476.11" y="-79.2" font-family="Times,serif" font-size="11.00">Missing&#45;</text>
+<text text-anchor="middle" x="476.11" y="-67.2" font-family="Times,serif" font-size="11.00">Values</text>
+</a>
+</g>
+</g>
+<!-- float_str2_float&#45;&gt;numpy_replace_missing_values_1 -->
+<g id="edge9" class="edge">
+<title>float_str2_float&#45;&gt;numpy_replace_missing_values_1</title>
+<path fill="none" stroke="black" d="M390.25,-84.17C402.39,-84.72 417.18,-85.39 430.99,-86.01"/>
+<polygon fill="black" stroke="black" points="431.15,-89.52 441.3,-86.47 431.47,-82.53 431.15,-89.52"/>
+</g>
+<!-- num_imputer -->
+<g id="node12" class="node">
+<title>num_imputer</title>
+<g id="a_node12"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.num_imputer.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="num_imputer = NumImputer(strategy=&#39;median&#39;, missing_values=float(&#39;nan&#39;))">
+<ellipse fill="white" stroke="black" cx="580.47" cy="-91" rx="30.31" ry="19.6"/>
+<text text-anchor="middle" x="580.47" y="-94.2" font-family="Times,serif" font-size="11.00">Num&#45;</text>
+<text text-anchor="middle" x="580.47" y="-82.2" font-family="Times,serif" font-size="11.00">Imputer</text>
+</a>
+</g>
+</g>
+<!-- numpy_replace_missing_values_1&#45;&gt;num_imputer -->
+<g id="edge10" class="edge">
+<title>numpy_replace_missing_values_1&#45;&gt;num_imputer</title>
+<path fill="none" stroke="black" d="M510.91,-88.99C520.15,-89.26 530.24,-89.56 539.78,-89.84"/>
+<polygon fill="black" stroke="black" points="539.74,-93.34 549.83,-90.13 539.94,-86.34 539.74,-93.34"/>
+</g>
+<!-- opt_standard_scaler -->
+<g id="node13" class="node">
+<title>opt_standard_scaler</title>
+<g id="a_node13"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.opt_standard_scaler.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="opt_standard_scaler = OptStandardScaler(num_scaler_copy=None, num_scaler_with_mean=None, num_scaler_with_std=None, use_scaler_flag=False)">
+<ellipse fill="white" stroke="black" cx="682.94" cy="-93" rx="36.12" ry="28.07"/>
+<text text-anchor="middle" x="682.94" y="-102.2" font-family="Times,serif" font-size="11.00">Opt&#45;</text>
+<text text-anchor="middle" x="682.94" y="-90.2" font-family="Times,serif" font-size="11.00">Standard&#45;</text>
+<text text-anchor="middle" x="682.94" y="-78.2" font-family="Times,serif" font-size="11.00">Scaler</text>
+</a>
+</g>
+</g>
+<!-- num_imputer&#45;&gt;opt_standard_scaler -->
+<g id="edge11" class="edge">
+<title>num_imputer&#45;&gt;opt_standard_scaler</title>
+<path fill="none" stroke="black" d="M611.07,-91.59C619.14,-91.75 628.07,-91.93 636.8,-92.1"/>
+<polygon fill="black" stroke="black" points="636.81,-95.6 646.88,-92.3 636.95,-88.6 636.81,-95.6"/>
+</g>
+<!-- float32_transform_1 -->
+<g id="node14" class="node">
+<title>float32_transform_1</title>
+<g id="a_node14"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float32_transform.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float32_transform_1 = float32_transform()">
+<ellipse fill="white" stroke="black" cx="791.06" cy="-97" rx="36.12" ry="19.6"/>
+<text text-anchor="middle" x="791.06" y="-100.2" font-family="Times,serif" font-size="11.00">float32_&#45;</text>
+<text text-anchor="middle" x="791.06" y="-88.2" font-family="Times,serif" font-size="11.00">transform</text>
+</a>
+</g>
+</g>
+<!-- opt_standard_scaler&#45;&gt;float32_transform_1 -->
+<g id="edge12" class="edge">
+<title>opt_standard_scaler&#45;&gt;float32_transform_1</title>
+<path fill="none" stroke="black" d="M718.98,-94.32C727.31,-94.63 736.32,-94.97 745.03,-95.3"/>
+<polygon fill="black" stroke="black" points="744.93,-98.8 755.06,-95.68 745.2,-91.81 744.93,-98.8"/>
+</g>
+<!-- float32_transform_1&#45;&gt;concat_features -->
+<g id="edge14" class="edge">
+<title>float32_transform_1&#45;&gt;concat_features</title>
+<path fill="none" stroke="black" d="M824.75,-104.28C834.41,-106.43 845.1,-108.81 855.18,-111.05"/>
+<polygon fill="black" stroke="black" points="854.47,-114.48 865,-113.24 856,-107.65 854.47,-114.48"/>
+</g>
+<!-- numpy_permute_array -->
+<g id="node16" class="node">
+<title>numpy_permute_array</title>
+<g id="a_node16"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_permute_array.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_permute_array = NumpyPermuteArray(axis=0, permutation_indices=[0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 1, 4, 12])">
+<ellipse fill="white" stroke="black" cx="1000.24" cy="-120" rx="34.8" ry="28.07"/>
+<text text-anchor="middle" x="1000.24" y="-129.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
+<text text-anchor="middle" x="1000.24" y="-117.2" font-family="Times,serif" font-size="11.00">Permute&#45;</text>
+<text text-anchor="middle" x="1000.24" y="-105.2" font-family="Times,serif" font-size="11.00">Array</text>
+</a>
+</g>
+</g>
+<!-- concat_features&#45;&gt;numpy_permute_array -->
+<g id="edge15" class="edge">
+<title>concat_features&#45;&gt;numpy_permute_array</title>
+<path fill="none" stroke="black" d="M929.6,-120C937.81,-120 946.78,-120 955.46,-120"/>
+<polygon fill="black" stroke="black" points="955.46,-123.5 965.46,-120 955.46,-116.5 955.46,-123.5"/>
+</g>
+<!-- feature_agglomeration -->
+<g id="node17" class="node">
+<title>feature_agglomeration</title>
+<g id="a_node17"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.feature_agglomeration.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="feature_agglomeration = FeatureAgglomeration()">
+<ellipse fill="white" stroke="black" cx="1123.92" cy="-120" rx="53.07" ry="19.6"/>
+<text text-anchor="middle" x="1123.92" y="-123.2" font-family="Times,serif" font-size="11.00">Feature&#45;</text>
+<text text-anchor="middle" x="1123.92" y="-111.2" font-family="Times,serif" font-size="11.00">Agglomeration</text>
+</a>
+</g>
+</g>
+<!-- numpy_permute_array&#45;&gt;feature_agglomeration -->
+<g id="edge16" class="edge">
+<title>numpy_permute_array&#45;&gt;feature_agglomeration</title>
+<path fill="none" stroke="black" d="M1035.14,-120C1043.02,-120 1051.66,-120 1060.35,-120"/>
+<polygon fill="black" stroke="black" points="1052.89,-123.5 1062.89,-120 1052.89,-116.5 1052.89,-123.5"/>
+</g>
+<!-- fs1 -->
+<g id="node18" class="node">
+<title>fs1</title>
+<g id="a_node18"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.fs1.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="fs1 = FS1(cols_ids_must_keep=range(0, 20), additional_col_count_to_keep=20, ptype=&#39;classification&#39;)">
+<ellipse fill="white" stroke="black" cx="1239.96" cy="-120" rx="27" ry="18"/>
+<text text-anchor="middle" x="1239.96" y="-117.2" font-family="Times,serif" font-size="11.00">FS1</text>
+</a>
+</g>
+</g>
+<!-- feature_agglomeration&#45;&gt;fs1 -->
+<g id="edge17" class="edge">
+<title>feature_agglomeration&#45;&gt;fs1</title>
+<path fill="none" stroke="black" d="M1184.96,-120C1190.96,-120 1196.92,-120 1202.56,-120"/>
+<polygon fill="black" stroke="black" points="1202.72,-123.5 1212.72,-120 1202.72,-116.5 1202.72,-123.5"/>
+</g>
+<!-- lr -->
+<g id="node19" class="node">
+<title>lr</title>
+<g id="a_node19"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.logistic_regression.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="lr = LR">
+<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-120" rx="27" ry="18"/>
+<text text-anchor="middle" x="1329.96" y="-117.2" font-family="Times,serif" font-size="11.00">LR</text>
+</a>
+</g>
+</g>
+<!-- fs1&#45;&gt;lr -->
+<g id="edge18" class="edge">
+<title>fs1&#45;&gt;lr</title>
+<path fill="none" stroke="black" d="M1267.36,-120C1275.35,-120 1284.27,-120 1292.78,-120"/>
+<polygon fill="black" stroke="black" points="1284.96,-123.5 1294.96,-120 1284.96,-116.5 1284.96,-123.5"/>
+</g>
+<!-- tree -->
+<g id="node20" class="node">
+<title>tree</title>
+<g id="a_node20"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.decision_tree_classifier.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="tree = Tree">
+<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-77" rx="27" ry="18"/>
+<text text-anchor="middle" x="1329.96" y="-74.2" font-family="Times,serif" font-size="11.00">Tree</text>
+</a>
+</g>
+</g>
+<!-- knn -->
+<g id="node21" class="node">
+<title>knn</title>
+<g id="a_node21"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.k_neighbors_classifier.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="knn = KNN">
+<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-34" rx="27" ry="18"/>
+<text text-anchor="middle" x="1329.96" y="-31.2" font-family="Times,serif" font-size="11.00">KNN</text>
+</a>
+</g>
+</g>
+</g>
+</svg>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="New-optimizer-Hyperopt-configuration-and-training">New optimizer <code>Hyperopt</code> configuration and training<a class="anchor-link" href="#New-optimizer-Hyperopt-configuration-and-training">&#182;</a></h4><p>To automatically select the algorithm and tune its hyperparameters, we
+create an instance of the <code>Hyperopt</code> optimizer and <code>fit</code> it to the
+data.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">33</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hyperopt</span> <span class="o">=</span> <span class="n">Hyperopt</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">new_pipeline</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_evals</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;roc_auc&#39;</span><span class="p">)</span>
+<span class="n">hyperopt_pipelines</span> <span class="o">=</span> <span class="n">hyperopt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>100%|██████████| 20/20 [00:36&lt;00:00,  1.82s/trial, best loss: -0.7943909200702679]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline_model</span> <span class="o">=</span> <span class="n">hyperopt_pipelines</span><span class="o">.</span><span class="n">get_pipeline</span><span class="p">(</span><span class="n">astype</span><span class="o">=</span><span class="s1">&#39;sklearn&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Save-newly-refined-pipeline">Save newly refined pipeline<a class="anchor-link" href="#Save-newly-refined-pipeline">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">joblib</span>
+
+<span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;refined_pipeline.pickle&quot;</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">pipeline_model</span><span class="p">,</span> <span class="n">model_path</span><span class="p">);</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">tarfile</span>
+
+<span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">model_path</span> <span class="o">+</span> <span class="s2">&quot;.tar.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;w:gz&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+    <span class="n">tar</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="n">model_path</span> <span class="o">+=</span> <span class="s2">&quot;.tar.gz&quot;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Publish-new-version-of-the-model">Publish new version of the model<a class="anchor-link" href="#Publish-new-version-of-the-model">&#182;</a></h3>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Download-current-version-of-the-model">Download current version of the model<a class="anchor-link" href="#Download-current-version-of-the-model">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_id</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">get_params</span><span class="p">()[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;asset&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+<span class="n">deployment_id</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">get_params</span><span class="p">()[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">downloaded_model_name</span> <span class="o">=</span> <span class="s2">&quot;current_model.zip&quot;</span>
+<span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">model_id</span><span class="p">,</span> <span class="n">downloaded_model_name</span><span class="p">);</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Successfully saved model content to file: &#39;current_model.zip&#39;
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">downloaded_model_name</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+    <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Create-archive-containing-updated-model">Create archive containing updated model<a class="anchor-link" href="#Create-archive-containing-updated-model">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">updated_model_path</span> <span class="o">=</span> <span class="s2">&quot;updated_model.zip&quot;</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">updated_model_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+    <span class="n">zip_ref</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+    <span class="n">zip_ref</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;pipeline-model.json&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Save-the-current-model-version">Save the current model version<a class="anchor-link" href="#Save-the-current-model-version">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">create_model_revision</span><span class="p">(</span><span class="n">model_id</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Update-the-model">Update the model<a class="anchor-link" href="#Update-the-model">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s1">&#39;AutoAI credit-risk updated model&#39;</span>
+<span class="p">}</span>
+
+<span class="n">published_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">update_model</span><span class="p">(</span>
+    <span class="n">model_uid</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span>
+    <span class="n">update_model</span><span class="o">=</span><span class="n">updated_model_path</span><span class="p">,</span>
+    <span class="n">updated_meta_props</span><span class="o">=</span><span class="n">metadata</span>
+<span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Save-new-model-revision-of-the-updated-model">Save new model revision of the updated model<a class="anchor-link" href="#Save-new-model-revision-of-the-updated-model">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_model_revision</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">create_model_revision</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">new_model_revision</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Note:</strong> Model revisions can be identified by model <code>id</code> and <code>rev</code> number.</p>
+<p>Get model <code>rev</code> number from creation details:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rev_id</span> <span class="o">=</span> <span class="n">new_model_revision</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;rev&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="List-list-existing-revisions-of-the-model">List list existing revisions of the model<a class="anchor-link" href="#List-list-existing-revisions-of-the-model">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">list_models_revisions</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>--  --------------------------------  ------------------------
+ID  NAME                              CREATED
+2   AutoAI credit-risk updated model  2021-10-18T14:42:08.102Z
+1   P1                                2021-10-18T14:42:08.102Z
+--  --------------------------------  ------------------------
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Get-details-of-updated-model">Get details of updated model<a class="anchor-link" href="#Get-details-of-updated-model">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">model_id</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="redeploy"></a></p>
+<h2 id="6.-Redeploy-and-score-new-version-of-the-model">6. Redeploy and score new version of the model<a class="anchor-link" href="#6.-Redeploy-and-score-new-version-of-the-model">&#182;</a></h2><p>In this section, you'll learn how to redeploy new version of the model by using the Watson Machine Learning Client.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ASSET</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">model_id</span><span class="p">,</span>
+        <span class="s2">&quot;rev&quot;</span><span class="p">:</span> <span class="n">rev_id</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+    
+<span class="n">updated_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">changes</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Since ASSET is patched, deployment with new asset id/rev is being started. Monitor the status using deployments.get_details(deployment_uid) api
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Wait for the deployment update:</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">status</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">while</span> <span class="n">status</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ready&#39;</span><span class="p">,</span> <span class="s1">&#39;failed&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">deployment_details</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Deployment update finished with status: &quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>. . . . . . . . 
+Deployment update finished with status:  ready
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Get-updated-deployment-details">Get updated deployment details<a class="anchor-link" href="#Get-updated-deployment-details">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Score-updated-model">Score updated model<a class="anchor-link" href="#Score-updated-model">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;input_data&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Risk&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">]}]}</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Use client.deployments.score() method to run scoring.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+  &#34;predictions&#34;: [
+    {
+      &#34;fields&#34;: [
+        &#34;prediction&#34;,
+        &#34;probability&#34;
+      ],
+      &#34;values&#34;: [
+        [
+          &#34;No Risk&#34;,
+          [
+            0.9807692307692307,
+            0.019230769230769232
+          ]
+        ],
+        [
+          &#34;No Risk&#34;,
+          [
+            0.9807692307692307,
+            0.019230769230769232
+          ]
+        ],
+        [
+          &#34;No Risk&#34;,
+          [
+            0.847457627118644,
+            0.15254237288135594
+          ]
+        ],
+        [
+          &#34;No Risk&#34;,
+          [
+            0.847457627118644,
+            0.15254237288135594
+          ]
+        ],
+        [
+          &#34;Risk&#34;,
+          [
+            0.29508196721311475,
+            0.7049180327868853
+          ]
+        ]
+      ]
+    }
+  ]
+}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="cleanup"></a></p>
-<h2 id="5.-Clean-up">5. Clean up<a class="anchor-link" href="#5.-Clean-up">&#182;</a></h2>
+<h2 id="7.-Clean-up">7. Clean up<a class="anchor-link" href="#7.-Clean-up">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -15313,25 +16479,26 @@ Successfully finished deployment creation, deployment_uid=&#39;10fb561b-b198-4eb
 <li>functions</li>
 <li>deployments</li>
 </ul>
-<p>see the steps in this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="6.-Summary-and-next-steps">6. Summary and next steps<a class="anchor-link" href="#6.-Summary-and-next-steps">&#182;</a></h2>
+<h2 id="8.-Summary-and-next-steps">8. Summary and next steps<a class="anchor-link" href="#8.-Summary-and-next-steps">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You successfully completed this notebook! You learned how to use Watson Machine Learning for AutoA model deployment and scoring. Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=analytics">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
+<p>You successfully completed this notebook!<br>
+ Check out our <em><a href="https://www.ibm.com/cloud/watson-studio/autoai">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Author">Author<a class="anchor-link" href="#Author">&#182;</a></h3><p><strong>Jan Sołtysik</strong> Intern in Watson Machine Learning.</p>
+<h3 id="Authors">Authors<a class="anchor-link" href="#Authors">&#182;</a></h3><p><strong>Jan Sołtysik</strong>, Intern</p>
 
 </div>
 </div>
