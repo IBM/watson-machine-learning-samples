@@ -14259,35 +14259,27 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Use-XGBoost-to-classify-tumors-with-ibm-watson-machine-learning">Use XGBoost to classify tumors with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-XGBoost-to-classify-tumors-with-ibm-watson-machine-learning">&#182;</a></h1>
+<h1 id="Use-Custom-Image,-Software-Specification-and-Runtime-Definition-to-deploy-a-python-function-with-ibm-watson-machine-learning">Use Custom Image, Software Specification and Runtime Definition to deploy a python function with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-Custom-Image,-Software-Specification-and-Runtime-Definition-to-deploy-a-python-function-with-ibm-watson-machine-learning">&#182;</a></h1>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>This notebook contains steps and code to get data from the IBM Watson Studio Community, create a predictive model, and start scoring new data. It introduces commands for getting data and for basic data cleaning and exploration, model training, model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.8, XGBoost, and scikit-learn.</p>
-<p>You will use a publicly available data set, the Breast Cancer Wisconsin (Diagnostic) Data Set, to train an XGBoost Model to classify breast cancer tumors (as benign or malignant) from 569 diagnostic images based on measurements such as radius, texture, perimeter and area. XGBoost is short for “E<strong>x</strong>treme <strong>G</strong>radient <strong>Boost</strong>ing”.</p>
-<p>The XGBoost classifier makes its predictions based on the majority vote from collection of models which are a set of classification trees. It uses the combination of weak learners to create a single strong learner. It’s a sequential training process, whereby new learners focus on the misclassified examples of previous learners.</p>
-<h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>You will learn how to:</p>
+<p>This notebook demonstrates how to deploy in Watson Machine Learning service a python function which requires to create custom software specification and runtime definition.<br>
+Familiarity with oc and python is helpful. This notebook uses Python 3.8.</p>
+<h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
-<li>Load a CSV file into numpy array</li>
-<li>Explore data</li>
-<li>Prepare data for training and evaluation</li>
-<li>Create an XGBoost machine learning model</li>
-<li>Train and evaluate a model</li>
-<li>Use cross-validation to optimize model's hyperparameters</li>
-<li>Persist a model in Watson Machine Learning repository</li>
-<li>Deploy a model for online scoring</li>
-<li>Score sample data</li>
+<li>Creating a Custom Image</li>
+<li>Creating custom software specification and runtime definition</li>
+<li>Online deployment of python function</li>
+<li>Scoring data using deployed function</li>
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><p>This notebook contains the following parts:</p>
 <ol>
 <li><a href="#setup">Setup</a></li>
-<li><a href="#load">Load and explore the data</a></li>
-<li><a href="#model">Create the XGBoost model</a></li>
-<li><a href="#upload">Persist model</a></li>
-<li><a href="#deploy">Deployment</a></li>
-<li><a href="#score">Score the model</a></li>
+<li><a href="#image">Create custom image</a></li>
+<li><a href="#soft">Create software specification</a></li>
+<li><a href="#runtime">Create runtime definition</a> </li>
+<li><a href="#deploy">Web service creation and scoring</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
@@ -14317,7 +14309,9 @@ a.anchor-link {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR USERNAME HERE&#39;</span>
 <span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR API_KEY HERE&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR PASSWORD HERE&#39;</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;PASTE THE PLATFORM URL HERE&#39;</span>
+<span class="n">bedrock_url</span> <span class="o">=</span> <span class="s1">&#39;PASTE THE PLATFORM BEDROCK URL HERE&#39;</span>
 </pre></div>
 
      </div>
@@ -14348,20 +14342,6 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Alternatively you can use <code>username</code> and <code>password</code> to authenticate WML services.</p>
-
-<pre><code>wml_credentials = {
-    "username": ***,
-    "password": ***,
-    "url": ***,
-    "instance_id": 'openshift',
-    "version": '4.0'
-}</code></pre>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Install-and-import-the-ibm-watson-machine-learning-package">Install and import the <code>ibm-watson-machine-learning</code> package<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning-package">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="http://ibm-wml-api-pyclient.mybluemix.net/" target="_blank" rel="noopener no referrer">here</a>.</p>
 
 </div>
@@ -14382,7 +14362,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14452,7 +14432,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -14471,7 +14451,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
 
 
@@ -14489,29 +14469,126 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="load"></a></p>
-<h2 id="2.-Load-and-explore-the-data">2. Load and explore the data<a class="anchor-link" href="#2.-Load-and-explore-the-data">&#182;</a></h2>
+<p><a id="image"></a></p>
+<h2 id="2.-Create-a-Custom-Image">2. Create a Custom Image<a class="anchor-link" href="#2.-Create-a-Custom-Image">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In this section you will load the data as a numpy array and perform a basic exploration.</p>
-<p>To load the data as a numpy array, user <code>wget</code> to download the data, then use the <code>genfromtxt</code> method to read the data.</p>
+<p>After the creation of a Custom image as described in <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=deployments-deploying-using-custom-image">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=deployments-deploying-using-custom-image</a>. We need to create a new base software specification for the custom image and the runtime definition for it. This notebook shows how to perform these steps and use the custom image in a WML deployment:</p>
+<ol>
+<li>Create a new base software specification for the custom image</li>
+<li>Create the new runtime definition file for the custom image</li>
+<li>Create and Deploy a WML <code>python function</code> model with the custom image</li>
+</ol>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Example</strong>: First, you need to install the required packages. You can do this by running the following code. Run it only one time.<BR><BR></p>
+<p><em>Required Role: You must be a Cloud Pak for Data cluster administrator</em> </p>
+<p>The Creation of the custom image involves the following steps, which cannot be done from a notebook. It involves pulling building pushing docker images and can be performed in the cluster.</p>
+<ol>
+<li>Downloading the base image <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=image-downloading-base">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=image-downloading-base</a></li>
+<li>Creating and uploading a custom image <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=image-creating-custom">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=image-creating-custom</a></li>
+</ol>
+<h4 id="1.-Downloading-the-base-image">1. Downloading the base image<a class="anchor-link" href="#1.-Downloading-the-base-image">&#182;</a></h4><p>To Find out which CPD release you are on.</p>
 
+<pre><code>    oc get wmlbase wml-cr -o=jsonpath='{.spec.version}'</code></pre>
+<p>Select the base image by refering to the documentation. Base image selected for this example:</p>
+
+<pre><code>    wml-deployment-runtime-py38-1:4.0.2.78-amd64</code></pre>
+<p>For this example the WML cluster installation uses the private container registry <code>cp.stg.icr.io</code> with the namespace <code>/cp/cpd/</code> and so, the base image will be available from:</p>
+
+<pre><code>    cp.stg.icr.io/cp/cpd/wml-deployment-runtime-py38-1:4.0.2.78-amd64</code></pre>
+<p>If you do not remember which private registry have been enabled, you can use the below queries and links to help in identifying. These registrys are configured at installation time. more info - <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-configuring-your-cluster-pull-images">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-configuring-your-cluster-pull-images</a></p>
+
+<pre><code>    oc get imageContentSourcePolicy/mirror-config -o yaml    
+    oc get secret/pull-secret -n openshift-config -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d</code></pre>
+<p>Pull the base image:</p>
+
+<pre><code>    podman login -u &lt;user&gt; -p &lt;password&gt; cp.stg.icr.io/cp/cpd/
+    podman pull cp.stg.icr.io/cp/cpd/wml-deployment-runtime-py38-1:4.0.2.78-amd64</code></pre>
+<h4 id="2.-Creating-and-uploading-a-custom-image">2. Creating and uploading a custom image<a class="anchor-link" href="#2.-Creating-and-uploading-a-custom-image">&#182;</a></h4><h5 id="2.1-Building-the-custom-image">2.1 Building the custom image<a class="anchor-link" href="#2.1-Building-the-custom-image">&#182;</a></h5><p>Dockerfile sample for this example is as below. We are going to install the program <code>gdb</code> as well as the python package <code>simplejson</code> here.</p>
+
+<pre><code>ARG  base_image_tag
+FROM ${base_image_tag}
+
+# For installing OS packages, use root:root
+# e.g.
+USER root:root
+RUN yum install -y gdb
+
+# For installing to conda site-packages,
+# use wmlfuser:condausers
+# e.g.
+USER wmlfuser:condausers
+RUN umask 002 &amp;&amp; \
+   pip install simplejson</code></pre>
+<p>Build the custom image <code>wml-demo-image:test-1</code>:</p>
+
+<pre><code>    podman build -t wml-demo-image:test-1 \
+        --build-arg base_image_tag=cp.stg.icr.io/cp/cpd/wml-deployment-runtime-py38-1:4.0.2.78-amd64 \
+        -f Dockerfile</code></pre>
+<p>Some sanity checks on image for this example.</p>
+
+<pre><code>    podman run -it wml-demo-image:test-1 bash
+    $ gdb --version
+    $ conda list | grep simplejson
+    $ uwsgi --version
+    $ exit</code></pre>
+<h5 id="2.2-Uploading-the-custom-image">2.2 Uploading the custom image<a class="anchor-link" href="#2.2-Uploading-the-custom-image">&#182;</a></h5><p>We have the following Options described below on where to upload the custom image. In this demo, we are going to use the internal registry (Option 1).</p>
+<p><em>Option 1:</em> Push the image to internal registry.</p>
+<p>Check if default route is enabled</p>
+
+<pre><code>    oc get configs.imageregistry.operator.openshift.io/cluster -o=jsonpath='{.spec.defaultRoute}</code></pre>
+<p>Get default route URL and login</p>
+
+<pre><code>    DEFAULT_ROUTE_REG=$(oc get route default-route -n openshift-image-registry -o=jsonpath='{ .spec.host }')
+    echo $DEFAULT_ROUTE_REG
+
+    e.g. default-route-openshift-image-registry.apps.wml402devdep3.cp.fyre.ibm.com
+    podman login -u kubeadmin -p $(oc whoami -t) --tls-verify=false $DEFAULT_ROUTE_REG</code></pre>
+<p>Get internal registry namespace of WML</p>
+
+<pre><code>    WML_REG_NAMESPACE=$(oc get wmlbase wml-cr -o=jsonpath='{.metadata.namespace}')
+    echo $WML_REG_NAMESPACE</code></pre>
+<p>Tag and push the custom image to the <code>default route</code> registry</p>
+
+<pre><code>    podman tag wml-demo-image:test-1 $DEFAULT_ROUTE_REG/$WML_REG_NAMESPACE/wml-demo-image:test-1
+    podman push $DEFAULT_ROUTE_REG/$WML_REG_NAMESPACE/wml-demo-image:test-1 --tls-verify=false</code></pre>
+<p>Required custom image:</p>
+
+<pre><code>    echo image-registry.openshift-image-registry.svc:5000/$WML_REG_NAMESPACE/wml-demo-image:test-1
+
+    e.g.
+    image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1</code></pre>
+<p>In this demo, the custom image was built in a machine which is part of the cluster. If image is built in a machine outside of the cluster, then additional Openshift related setups may be required to be able to push to the internal registry. Help on Openshift registry - <a href="https://docs.openshift.com/container-platform/4.8/registry/securing-exposing-registry.html">https://docs.openshift.com/container-platform/4.8/registry/securing-exposing-registry.html</a></p>
+<p><em>Option 2: If you know the private container registry. just tag and push it there.</em></p>
+
+<pre><code>    e.g
+    podman login -u &lt;user&gt; -p &lt;password&gt; cp.stg.icr.io/cp/cpd/
+    podman tag wml-demo-image:test-1 cp.stg.icr.io/cp/cpd/wml-demo-image:test-1
+    podman push cp.stg.icr.io/cp/cpd/wml-demo-image:test-1
+
+    Required custom image:
+    cp.stg.icr.io/cp/cpd/wml-demo-image:test-1</code></pre>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Credentials-and-generating-tokens">Credentials and generating tokens<a class="anchor-link" href="#Credentials-and-generating-tokens">&#182;</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install wget --upgrade
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">urllib3</span>
+<span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">(</span><span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">InsecureRequestWarning</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14519,21 +14596,44 @@ a.anchor-link {
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CPDHOST</span><span class="o">=</span><span class="n">url</span>
+<span class="n">BEDROCK_URL</span><span class="o">=</span><span class="n">bedrock_url</span>
+<span class="n">PASSWORD</span><span class="o">=</span><span class="n">password</span>
+<span class="n">USERNAME</span><span class="o">=</span><span class="n">username</span>
+
+<span class="c1"># namespace here is the wmlbase namespace:</span>
+<span class="c1">#    oc get wmlbase wml-cr -o=jsonpath=&#39;{.metadata.namespace}&#39;</span>
+<span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;zen&quot;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Generate-Token">Generate Token<a class="anchor-link" href="#Generate-Token">&#182;</a></h2>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wget</span><span class="o">,</span> <span class="nn">os</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cpd_token_resp</span> <span class="o">=</span> <span class="o">!</span>curl -sSk -X POST <span class="err">\</span>
+    <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/x-www-form-urlencoded;charset=UTF-8&quot;</span> \
+    <span class="o">-</span><span class="n">d</span> <span class="s2">&quot;grant_type=password&amp;username=</span><span class="si">{USERNAME}</span><span class="s2">&amp;password=</span><span class="si">{PASSWORD}</span><span class="s2">&amp;scope=openid&quot;</span> \
+    <span class="p">{</span><span class="n">BEDROCK_URL</span><span class="p">}</span><span class="o">/</span><span class="n">idprovider</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">identitytoken</span>
 
-<span class="n">WisconsinDataSet</span> <span class="o">=</span> <span class="s1">&#39;BreastCancerWisconsinDataSet.csv&#39;</span> 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">WisconsinDataSet</span><span class="p">):</span>
-    <span class="n">link_to_data</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/data/cancer/&#39;</span> <span class="o">+</span> <span class="n">WisconsinDataSet</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">link_to_data</span><span class="p">)</span>
-    <span class="n">WisconsinDataSet</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">link_to_data</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">WisconsinDataSet</span><span class="p">)</span>
+<span class="n">cpd_token</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">cpd_token_resp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -14541,43 +14641,18 @@ a.anchor-link {
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>BreastCancerWisconsinDataSet.csv
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The csv file <strong>BreastCancerWisconsinDataSet.csv</strong> is downloaded. Run the code in the next cells to load the file to the numpy array.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">np_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">WisconsinDataSet</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">token_ep</span> <span class="o">=</span> <span class="n">CPDHOST</span> <span class="o">+</span> <span class="s2">&quot;/v1/preauth/validateAuth&quot;</span>
+<span class="n">token_auth_resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">token_ep</span><span class="p">,</span>
+                               <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">USERNAME</span><span class="p">,</span>
+                                        <span class="s2">&quot;iam-token&quot;</span><span class="p">:</span> <span class="n">cpd_token</span><span class="p">},</span>
+                               <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">token_auth_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;accessToken&quot;</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -14585,41 +14660,70 @@ a.anchor-link {
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>(842302, &#39;M&#39;, 17.99, 10.38, 122.8, 1001., 0.1184, 0.2776, 0.3001, 0.1471, 0.2419, 0.07871, 1.095, 0.9053, 8.589, 153.4, 0.006399, 0.04904, 0.05373, 0.01587, 0.03003, 0.006193, 25.38, 17.33, 184.6, 2019., 0.1622, 0.6656, 0.7119, 0.2654, 0.4601, 0.1189)
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Run the code in the next cell to view the feature names and data storage types.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display the feature names and data storage types.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer &#39;</span> <span class="o">+</span> <span class="n">token</span><span class="p">,</span>
+         <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">VERSION</span> <span class="o">=</span> <span class="s1">&#39;2020-07-08&#39;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Create-a-Volume-in-an-existing-PVC---&quot;cc-home-pvc&quot;">Create a Volume in an existing PVC - "cc-home-pvc"<a class="anchor-link" href="#Create-a-Volume-in-an-existing-PVC---&quot;cc-home-pvc&quot;">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Creation of Base software specification and Runtime definition require uploading of the metadata json files to certain PVC path. We will use Volume Service APIs to access the PVC <code>cc-home-pvc</code></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># name for this Vol Service instance</span>
+<span class="n">display_name</span><span class="o">=</span><span class="s1">&#39;CCHome&#39;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="s1">&#39;/zen-data/v3/service_instances&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;addon_type&quot;</span><span class="p">:</span> <span class="s2">&quot;volumes&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;addon_version&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;create_arguments&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;existing_pvc_name&quot;</span><span class="p">:</span> <span class="s2">&quot;cc-home-pvc&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;namespace&quot;</span><span class="p">:</span> <span class="n">namespace</span><span class="p">,</span>
+        <span class="s2">&quot;display_name&quot;</span><span class="p">:</span> <span class="n">display_name</span>
+    <span class="p">},</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14635,13 +14739,15 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[(&#39;id&#39;, &#39;&lt;i8&#39;), (&#39;diagnosis&#39;, &#39;&lt;U1&#39;), (&#39;radius_mean&#39;, &#39;&lt;f8&#39;), (&#39;texture_mean&#39;, &#39;&lt;f8&#39;), (&#39;perimeter_mean&#39;, &#39;&lt;f8&#39;), (&#39;area_mean&#39;, &#39;&lt;f8&#39;), (&#39;smoothness_mean&#39;, &#39;&lt;f8&#39;), (&#39;compactness_mean&#39;, &#39;&lt;f8&#39;), (&#39;concavity_mean&#39;, &#39;&lt;f8&#39;), (&#39;concave_points_mean&#39;, &#39;&lt;f8&#39;), (&#39;symmetry_mean&#39;, &#39;&lt;f8&#39;), (&#39;fractal_dimension_mean&#39;, &#39;&lt;f8&#39;), (&#39;radius_se&#39;, &#39;&lt;f8&#39;), (&#39;texture_se&#39;, &#39;&lt;f8&#39;), (&#39;perimeter_se&#39;, &#39;&lt;f8&#39;), (&#39;area_se&#39;, &#39;&lt;f8&#39;), (&#39;smoothness_se&#39;, &#39;&lt;f8&#39;), (&#39;compactness_se&#39;, &#39;&lt;f8&#39;), (&#39;concavity_se&#39;, &#39;&lt;f8&#39;), (&#39;concave_points_se&#39;, &#39;&lt;f8&#39;), (&#39;symmetry_se&#39;, &#39;&lt;f8&#39;), (&#39;fractal_dimension_se&#39;, &#39;&lt;f8&#39;), (&#39;radius_worst&#39;, &#39;&lt;f8&#39;), (&#39;texture_worst&#39;, &#39;&lt;f8&#39;), (&#39;perimeter_worst&#39;, &#39;&lt;f8&#39;), (&#39;area_worst&#39;, &#39;&lt;f8&#39;), (&#39;smoothness_worst&#39;, &#39;&lt;f8&#39;), (&#39;compactness_worst&#39;, &#39;&lt;f8&#39;), (&#39;concavity_worst&#39;, &#39;&lt;f8&#39;), (&#39;concave_points_worst&#39;, &#39;&lt;f8&#39;), (&#39;symmetry_worst&#39;, &#39;&lt;f8&#39;), (&#39;fractal_dimension_worst&#39;, &#39;&lt;f8&#39;)]
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>(200, {&#39;id&#39;: &#39;1635916789402144&#39;})</pre>
 </div>
+
 </div>
 
 </div>
@@ -14651,12 +14757,11 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display the number of records and features.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of rows: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np_data</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of columns: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vol_svc_id</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+<span class="n">vol_svc_id</span>
 </pre></div>
 
      </div>
@@ -14672,121 +14777,80 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Number of rows: 569
-Number of columns: 32
-</pre>
-</div>
-</div>
 
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;1635916789402144&#39;</pre>
 </div>
 
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can see that the data set has 569 records and 32 features.</p>
 
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="model"></a></p>
-<h2 id="3.-Create-an-XGBoost-model">3. Create an XGBoost model<a class="anchor-link" href="#3.-Create-an-XGBoost-model">&#182;</a></h2><p>In this section you will learn how to train and test an XGBoost model.</p>
-<ul>
-<li><a href="#prepare">3.1. Prepare the data</a></li>
-<li><a href="#create">3.2. Create the XGBoost model</a></li>
-</ul>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note:</strong> Update <code>xgboost</code> to ensure you have <code>1.3.3</code> version.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install -U <span class="nv">xgboost</span><span class="o">==</span><span class="m">1</span>.3.3
-</pre></div>
-
-     </div>
-</div>
-</div>
 </div>
 
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="3.1.-Prepare-data">3.1. Prepare data<a id="prepare" /><a class="anchor-link" href="#3.1.-Prepare-data">&#182;</a></h3>
+<h3 id="Check-Volume-Instances---if-it-is-already-created">Check Volume Instances - if it is already created<a class="anchor-link" href="#Check-Volume-Instances---if-it-is-already-created">&#182;</a></h3>
 </div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now, you can prepare your data for model building. You will use the <code>diagnosis</code> column as your target variable so you must remove it from the set of predictors. You must also remove the <code>id</code> variable.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="n">np_data</span><span class="p">[</span><span class="s1">&#39;diagnosis&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">r</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">np_data</span><span class="p">])</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Split the data set into:</p>
-<ul>
-<li>Train data set</li>
-<li>Test data set</li>
-</ul>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Split the data set and create two data sets.</span>
-<span class="c1"># from sklearn.cross_validation import train_test_split </span>
-
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># List the number of records in each data set.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of training records: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of testing records : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">CPDHOST</span> <span class="o">+</span> <span class="s1">&#39;/zen-data/v3/service_instances&#39;</span><span class="p">,</span>
+                        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                        <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>200</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vol_svc_id</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">for</span> <span class="n">svc_inst</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;service_instances&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">svc_inst</span><span class="p">[</span><span class="s1">&#39;display_name&#39;</span><span class="p">],</span> <span class="n">svc_inst</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">svc_inst</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;existing_pvc_name&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">svc_inst</span><span class="p">[</span><span class="s1">&#39;display_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">display_name</span><span class="p">:</span>
+        <span class="n">vol_svc_id</span> <span class="o">=</span> <span class="n">svc_inst</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+
+        
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">vol_svc_id:&#39;</span><span class="p">,</span> <span class="n">vol_svc_id</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14806,8 +14870,11 @@ Number of columns: 32
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Number of training records: 369
-Number of testing records : 200
+<pre>CCHome 1635916789402144 cc-home-pvc
+deploy-fvt-zen-ready 1630415688762284 volumes-deploy-fvt-zen-pvc
+deploy-fvt-zen 1630415685720759 None
+
+vol_svc_id: 1635916789402144
 </pre>
 </div>
 </div>
@@ -14819,74 +14886,7 @@ Number of testing records : 200
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The data has been successfully split into two data sets:</p>
-<ul>
-<li>The train data set, which is the largest group, will be used for training</li>
-<li>The test data set will be used for model evaluation and is used to test the assumptions of the model</li>
-</ul>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="3.2.-Create-the-XGBoost-model">3.2. Create the XGBoost model<a id="create" /><a class="anchor-link" href="#3.2.-Create-the-XGBoost-model">&#182;</a></h3>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Start by importing the necessary libraries.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import the libraries you need to create the XGBoost model.</span>
-<span class="kn">from</span> <span class="nn">xgboost.sklearn</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="3.2.1.-Create-an-XGBoost-classifier">3.2.1. Create an XGBoost classifier<a class="anchor-link" href="#3.2.1.-Create-an-XGBoost-classifier">&#182;</a></h4>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In this section you create an XGBoost classifier with default hyperparameter values and you will call it <em>xgb_model</em>.</p>
-<p><strong>Note</strong> The next sections show you how to improve this base model.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create the XGB classifier, xgb_model.</span>
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Display the default parameters for <em>xgb_model</em>.</p>
-
+<h3 id="Check-the-new-volume-instance">Check the new volume instance<a class="anchor-link" href="#Check-the-new-volume-instance">&#182;</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -14894,8 +14894,10 @@ Number of testing records : 200
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># List the default parameters.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">xgb_model</span><span class="o">.</span><span class="n">get_xgb_params</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-data/v3/service_instances/</span><span class="si">{</span><span class="n">vol_svc_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                        <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14915,7 +14917,33 @@ Number of testing records : 200
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{&#39;objective&#39;: &#39;binary:logistic&#39;, &#39;base_score&#39;: None, &#39;booster&#39;: None, &#39;colsample_bylevel&#39;: None, &#39;colsample_bynode&#39;: None, &#39;colsample_bytree&#39;: None, &#39;gamma&#39;: None, &#39;gpu_id&#39;: None, &#39;interaction_constraints&#39;: None, &#39;learning_rate&#39;: None, &#39;max_delta_step&#39;: None, &#39;max_depth&#39;: None, &#39;min_child_weight&#39;: None, &#39;monotone_constraints&#39;: None, &#39;n_jobs&#39;: None, &#39;num_parallel_tree&#39;: None, &#39;random_state&#39;: None, &#39;reg_alpha&#39;: None, &#39;reg_lambda&#39;: None, &#39;scale_pos_weight&#39;: None, &#39;subsample&#39;: None, &#39;tree_method&#39;: None, &#39;validate_parameters&#39;: None, &#39;verbosity&#39;: None}
+<pre>{
+  &#34;service_instance&#34;: {
+    &#34;addon_type&#34;: &#34;volumes&#34;,
+    &#34;addon_version&#34;: &#34;-&#34;,
+    &#34;created_at&#34;: &#34;2021-11-03T05:19:49.489000Z&#34;,
+    &#34;display_name&#34;: &#34;CCHome&#34;,
+    &#34;id&#34;: &#34;1635916789402144&#34;,
+    &#34;instance_identifiers&#34;: null,
+    &#34;metadata&#34;: {
+      &#34;existing_pvc_name&#34;: &#34;cc-home-pvc&#34;
+    },
+    &#34;misc_data&#34;: {},
+    &#34;namespace&#34;: &#34;zen&#34;,
+    &#34;owner_uid&#34;: &#34;1000330999&#34;,
+    &#34;owner_username&#34;: &#34;admin&#34;,
+    &#34;parameters&#34;: {},
+    &#34;provision_status&#34;: &#34;PROVISIONED&#34;,
+    &#34;resources&#34;: {},
+    &#34;roles&#34;: [
+      &#34;Admin&#34;
+    ],
+    &#34;updated_at&#34;: &#34;2021-11-03T05:19:49.481394Z&#34;,
+    &#34;zen_service_instance_info&#34;: {
+      &#34;docker_registry_prefix&#34;: &#34;quay.io/opencloudio&#34;
+    }
+  }
+}
 </pre>
 </div>
 </div>
@@ -14927,8 +14955,7 @@ Number of testing records : 200
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now that your XGBoost classifier, <em>xgb_model</em>, is set up, you can train it by invoking the fit method. You will also evaluate <em>xgb_model</em> while the train and test data are being trained.</p>
-
+<h3 id="Start-file-server-on-volume">Start file server on volume<a class="anchor-link" href="#Start-file-server-on-volume">&#182;</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -14936,8 +14963,12 @@ Number of testing records : 200
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Train and evaluate.</span>
-<span class="n">xgb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">],</span> <span class="n">eval_set</span><span class="o">=</span><span class="p">[((</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)),(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-data/v1/volumes/volume_services/</span><span class="si">{</span><span class="n">display_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14957,182 +14988,37 @@ Number of testing records : 200
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[0]	validation_0-error:0.01626	validation_1-error:0.06000
-[1]	validation_0-error:0.00813	validation_1-error:0.06000
-[2]	validation_0-error:0.00813	validation_1-error:0.05500
-[3]	validation_0-error:0.00542	validation_1-error:0.05000
-[4]	validation_0-error:0.00542	validation_1-error:0.05000
-[5]	validation_0-error:0.00271	validation_1-error:0.04500
-[6]	validation_0-error:0.00271	validation_1-error:0.05500
-[7]	validation_0-error:0.00271	validation_1-error:0.05000
-[8]	validation_0-error:0.00271	validation_1-error:0.05000
-[9]	validation_0-error:0.00271	validation_1-error:0.05000
-[10]	validation_0-error:0.00271	validation_1-error:0.05500
-[11]	validation_0-error:0.00271	validation_1-error:0.05000
-[12]	validation_0-error:0.00271	validation_1-error:0.04500
-[13]	validation_0-error:0.00271	validation_1-error:0.04000
-[14]	validation_0-error:0.00271	validation_1-error:0.04000
-[15]	validation_0-error:0.00271	validation_1-error:0.03000
-[16]	validation_0-error:0.00271	validation_1-error:0.03500
-[17]	validation_0-error:0.00271	validation_1-error:0.03000
-[18]	validation_0-error:0.00000	validation_1-error:0.04000
-[19]	validation_0-error:0.00000	validation_1-error:0.03500
-[20]	validation_0-error:0.00000	validation_1-error:0.03500
-[21]	validation_0-error:0.00000	validation_1-error:0.03500
-[22]	validation_0-error:0.00000	validation_1-error:0.04000
-[23]	validation_0-error:0.00000	validation_1-error:0.04500
-[24]	validation_0-error:0.00000	validation_1-error:0.03500
-[25]	validation_0-error:0.00000	validation_1-error:0.04500
-[26]	validation_0-error:0.00000	validation_1-error:0.04000
-[27]	validation_0-error:0.00000	validation_1-error:0.05000
-[28]	validation_0-error:0.00000	validation_1-error:0.04500
-[29]	validation_0-error:0.00000	validation_1-error:0.05000
-[30]	validation_0-error:0.00000	validation_1-error:0.05000
-[31]	validation_0-error:0.00000	validation_1-error:0.04500
-[32]	validation_0-error:0.00000	validation_1-error:0.04500
-[33]	validation_0-error:0.00000	validation_1-error:0.04500
-[34]	validation_0-error:0.00000	validation_1-error:0.04500
-[35]	validation_0-error:0.00000	validation_1-error:0.05000
-[36]	validation_0-error:0.00000	validation_1-error:0.05000
-[37]	validation_0-error:0.00000	validation_1-error:0.05000
-[38]	validation_0-error:0.00000	validation_1-error:0.05000
-[39]	validation_0-error:0.00000	validation_1-error:0.05000
-[40]	validation_0-error:0.00000	validation_1-error:0.05000
-[41]	validation_0-error:0.00000	validation_1-error:0.05000
-[42]	validation_0-error:0.00000	validation_1-error:0.05000
-[43]	validation_0-error:0.00000	validation_1-error:0.05000
-[44]	validation_0-error:0.00000	validation_1-error:0.05000
-[45]	validation_0-error:0.00000	validation_1-error:0.05000
-[46]	validation_0-error:0.00000	validation_1-error:0.05000
-[47]	validation_0-error:0.00000	validation_1-error:0.05000
-[48]	validation_0-error:0.00000	validation_1-error:0.05000
-[49]	validation_0-error:0.00000	validation_1-error:0.05000
-[50]	validation_0-error:0.00000	validation_1-error:0.05000
-[51]	validation_0-error:0.00000	validation_1-error:0.05000
-[52]	validation_0-error:0.00000	validation_1-error:0.05500
-[53]	validation_0-error:0.00000	validation_1-error:0.05500
-[54]	validation_0-error:0.00000	validation_1-error:0.05500
-[55]	validation_0-error:0.00000	validation_1-error:0.05500
-[56]	validation_0-error:0.00000	validation_1-error:0.05500
-[57]	validation_0-error:0.00000	validation_1-error:0.05500
-[58]	validation_0-error:0.00000	validation_1-error:0.05500
-[59]	validation_0-error:0.00000	validation_1-error:0.05500
-[60]	validation_0-error:0.00000	validation_1-error:0.05500
-[61]	validation_0-error:0.00000	validation_1-error:0.06000
-[62]	validation_0-error:0.00000	validation_1-error:0.06000
-[63]	validation_0-error:0.00000	validation_1-error:0.06000
-[64]	validation_0-error:0.00000	validation_1-error:0.06000
-[65]	validation_0-error:0.00000	validation_1-error:0.06000
-[66]	validation_0-error:0.00000	validation_1-error:0.06000
-[67]	validation_0-error:0.00000	validation_1-error:0.06000
-[68]	validation_0-error:0.00000	validation_1-error:0.06000
-[69]	validation_0-error:0.00000	validation_1-error:0.06000
-[70]	validation_0-error:0.00000	validation_1-error:0.06000
-[71]	validation_0-error:0.00000	validation_1-error:0.06000
-[72]	validation_0-error:0.00000	validation_1-error:0.06000
-[73]	validation_0-error:0.00000	validation_1-error:0.06000
-[74]	validation_0-error:0.00000	validation_1-error:0.06000
-[75]	validation_0-error:0.00000	validation_1-error:0.06000
-[76]	validation_0-error:0.00000	validation_1-error:0.06000
-[77]	validation_0-error:0.00000	validation_1-error:0.06000
-[78]	validation_0-error:0.00000	validation_1-error:0.06000
-[79]	validation_0-error:0.00000	validation_1-error:0.06000
-[80]	validation_0-error:0.00000	validation_1-error:0.06000
-[81]	validation_0-error:0.00000	validation_1-error:0.06000
-[82]	validation_0-error:0.00000	validation_1-error:0.06000
-[83]	validation_0-error:0.00000	validation_1-error:0.06000
-[84]	validation_0-error:0.00000	validation_1-error:0.06000
-[85]	validation_0-error:0.00000	validation_1-error:0.06000
-[86]	validation_0-error:0.00000	validation_1-error:0.06000
-[87]	validation_0-error:0.00000	validation_1-error:0.06000
-[88]	validation_0-error:0.00000	validation_1-error:0.06000
-[89]	validation_0-error:0.00000	validation_1-error:0.06000
-[90]	validation_0-error:0.00000	validation_1-error:0.06000
-[91]	validation_0-error:0.00000	validation_1-error:0.06000
-[92]	validation_0-error:0.00000	validation_1-error:0.06000
-[93]	validation_0-error:0.00000	validation_1-error:0.06000
-[94]	validation_0-error:0.00000	validation_1-error:0.06000
-[95]	validation_0-error:0.00000	validation_1-error:0.06000
-[96]	validation_0-error:0.00000	validation_1-error:0.06000
-[97]	validation_0-error:0.00000	validation_1-error:0.06000
-[98]	validation_0-error:0.00000	validation_1-error:0.06000
-[99]	validation_0-error:0.00000	validation_1-error:0.06000
+<pre>{
+  &#34;_messageCode_&#34;: &#34;200&#34;,
+  &#34;message&#34;: &#34;Successfully started volume service&#34;
+}
 </pre>
 </div>
 </div>
 
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>XGBClassifier(base_score=0.5, booster=&#39;gbtree&#39;, colsample_bylevel=1,
-              colsample_bynode=1, colsample_bytree=1, gamma=0, gpu_id=-1,
-              importance_type=&#39;gain&#39;, interaction_constraints=&#39;&#39;,
-              learning_rate=0.300000012, max_delta_step=0, max_depth=6,
-              min_child_weight=1, missing=nan, monotone_constraints=&#39;()&#39;,
-              n_estimators=100, n_jobs=12, num_parallel_tree=1, random_state=0,
-              reg_alpha=0, reg_lambda=1, scale_pos_weight=1, subsample=1,
-              tree_method=&#39;exact&#39;, use_label_encoder=False,
-              validate_parameters=1, verbosity=None)</pre>
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note:</strong> You can also use a pandas dataFrame instead of the numpy array.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Plot the model performance evaluated during the training process to assess model overfitting.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import the library</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-
-<span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-
-     </div>
-</div>
-</div>
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Plot and display the performance evaluation</span>
-<span class="n">xgb_eval</span> <span class="o">=</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">evals_result</span><span class="p">()</span>
-<span class="n">eval_steps</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xgb_eval</span><span class="p">[</span><span class="s1">&#39;validation_0&#39;</span><span class="p">][</span><span class="s1">&#39;error&#39;</span><span class="p">]))</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_steps</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xgb_eval</span><span class="p">[</span><span class="s1">&#39;validation_0&#39;</span><span class="p">][</span><span class="s1">&#39;error&#39;</span><span class="p">]],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_steps</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xgb_eval</span><span class="p">[</span><span class="s1">&#39;validation_1&#39;</span><span class="p">][</span><span class="s1">&#39;error&#39;</span><span class="p">]],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Number of iterations&#39;</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># In case you want to restart</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-data/v1/volumes/volume_services/</span><span class="si">{</span><span class="n">display_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># print(json.dumps(response.json(), indent=2))</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-data/v1/volumes/volume_services/</span><span class="si">{</span><span class="n">display_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15151,14 +15037,13 @@ Number of testing records : 200
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedImage jp-OutputArea-output ">
-<img src="data:image/png;base64,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djKwAmggCPdzzeyszJPd/SZ3b3T3xlQqVaAiiYiIlL6JORyzDTgx9rwh3NbP3bcT1qjNbBrwDnffY2YfBn7r7vvDfT8HXg08UICyi4iIlL1catQPA0vNbLGZTQYuAe6IH2Bm9WYWvdZ1wM3h4xcJatoTzWwSQW37qKZvERERyW7YoHb3HuBq4C6CkP2+u280s+vN7G3hYWuBFjPbDMwDbgi33wY8AzxJ0I/9uLv/pLC/goiISPkydy92GQZpbGz0DRs2FLsYIiIi48bMHnH3xmz7NDOZiIhIgimoRUREEkxBLSIikmAKahERkQRTUIuIiCSYglpERCTBFNQiIiIJpqAWERFJMAW1iIhIgimoRUREEkxBLSIikmAKahERkQRTUIuIiCSYglpERCTBFNQiIiIJpqAWERFJMAW1iIhIgimoRUREEkxBLSIikmAKahERkQRTUIuIiCSYglpERCTBFNQiIiIJpqAWERFJMAW1iIhIgimoRUREEkxBLSIikmATi10AERGpbEeOHKG1tZXu7u5iF2XM1dTU0NDQwKRJk3I+R0EtIiJF1drayvTp01m0aBFmVuzijBl3p6Ojg9bWVhYvXpzzeWr6FhGRouru7qaurq6sQxrAzKirq8u75UBBLSIiRVfuIR0Zye+poBYREUkwBbWIiFS0jo4OVq9ezerVqznuuOOYP39+//PDhw8f89wNGzbwsY99bEzLp8FkIiJS0erq6njssccA+NznPse0adO45ppr+vf39PQwcWL2uGxsbKSxsXFMy6catYiISIYrrriCq666ijPOOINPfOITPPTQQ7z61a9mzZo1vOY1r6GlpQWA9evX85a3vAUIQv4DH/gAa9euZcmSJXz1q18tSFlUoxYRkcT4m59sZNP2zoK+5soTZvDZt74s7/NaW1t58MEHqaqqorOzkwceeICJEydy77338ld/9Vf84Ac/OOqc5uZm1q1bx759+1i2bBl/8id/ktc909koqEVERLJ417veRVVVFQB79+7l8ssv5+mnn8bMOHLkSNZz3vzmN1NdXU11dTVz585l586dNDQ0jKocCmoREUmMkdR8x0ptbW3/409/+tOcc8453H777Tz//POsXbs26znV1dX9j6uqqujp6Rl1OdRHLSIiMoy9e/cyf/58AG655ZZxvbaCWkREZBif+MQnuO6661izZk1Basn5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
-"
->
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+  &#34;_messageCode_&#34;: &#34;200&#34;,
+  &#34;message&#34;: &#34;Successfully started volume service&#34;
+}
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -15168,24 +15053,198 @@ Number of testing records : 200
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can see that there is model overfitting, and there is a decrease in model accuracy after about 60 iterations</p>
-<p>Select the trained model obtained after 30 iterations.</p>
+<p><a id='soft'></a></p>
+<h1 id="3.-Create-a-new-base-software-specification-for-the-custom-image">3. Create a new base software specification for the custom image<a class="anchor-link" href="#3.-Create-a-new-base-software-specification-for-the-custom-image">&#182;</a></h1>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We will create the base software specification <code>cspec-38-1-t1</code> for this demo</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Select trained model.</span>
-<span class="n">n_trees</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">ntree_limit</span><span class="o">=</span> <span class="n">n_trees</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sw_spec_name</span><span class="o">=</span><span class="s1">&#39;cspec-38-1-t1&#39;</span>
+<span class="n">sw_spec_filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sw_spec_name</span><span class="si">}</span><span class="s1">.json&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;software spec name     :&#39;</span><span class="p">,</span> <span class="n">sw_spec_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;software spec filename :&#39;</span><span class="p">,</span> <span class="n">sw_spec_filename</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>software spec name     : cspec-38-1-t1
+software spec filename : cspec-38-1-t1.json
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Custom-Image-software-specification:">Custom Image software specification:<a class="anchor-link" href="#Custom-Image-software-specification:">&#182;</a></h4><ul>
+<li><code>entity.software_specification.type</code> have to be set to "base" to indicate custom image.</li>
+<li><code>entity.software_specification.built_in</code> have to be set boolean <code>False</code> to indicate custom image.</li>
+<li><code>entity.software_configuration.included_packages</code> array is informational, it can be empty list <code>[]</code> . </li>
+<li><code>entity.software_configuration.platform.name</code> should be set to <code>python</code> .</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sw_spec</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">sw_spec_name</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Test&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;entity&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;software_specification&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;base&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;built_in&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+      <span class="s2">&quot;package_extensions&quot;</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">&quot;display_name&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Test </span><span class="si">{</span><span class="n">sw_spec_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;software_configuration&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;included_packages&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;simplejson&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;3.17.5&quot;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;dummy-b&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.1&quot;</span>
+          <span class="p">}</span>         
+        <span class="p">],</span>
+        <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;3.8&quot;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Upload-file-to-the-specified-path-on-the-volume">Upload file to the specified path on the volume<a class="anchor-link" href="#Upload-file-to-the-specified-path-on-the-volume">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">target_file</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;%2F_global_%2Fconfig%2Fenvironments%2Fsoftware-specifications%2F</span><span class="si">{</span><span class="n">sw_spec_filename</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">target_file</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;%2F_global_%2Fconfig%2Fenvironments%2Fsoftware-specifications%2Fcspec-38-1-t1.json&#39;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># multipart/form-data</span>
+<span class="c1"># Do not set the Content-type header yourself, leave that to pyrequests to generate</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-volumes/</span><span class="si">{</span><span class="n">display_name</span><span class="si">}</span><span class="s1">/v1/volumes/files/</span><span class="si">{</span><span class="n">target_file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">files</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;upFile&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">sw_spec_filename</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sw_spec</span><span class="p">),</span> <span class="s1">&#39;application/json&#39;</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>200</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15194,10 +15253,7 @@ Number of testing records : 200
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check the accuracy of the trained model.</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%.1f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15213,131 +15269,14 @@ Number of testing records : 200
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Accuracy: 95.0%
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note:</strong> You will use the accuracy value obtained on the test data to compare the accuracy of the model with default parameters to the accuracy of the model with tuned parameters.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="3.2.2.-Use-grid-search-and-cross-validation-to-tune-the-model">3.2.2. Use grid search and cross-validation to tune the model<a class="anchor-link" href="#3.2.2.-Use-grid-search-and-cross-validation-to-tune-the-model">&#182;</a></h4>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can use grid search and cross-validation to tune your model to achieve better accuracy.</p>
-<p>XGBoost has an extensive catalog of hyperparameters which provides great flexibility to shape an algorithm’s desired behavior. Here you will the optimize the model tuning which adds an L1 penalty (<code>reg_alpha</code>).</p>
-<p>Use a 5-fold cross-validation because your training data set is small.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In the cell below, create the XGBoost pipeline and set up the parameter grid for the search.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create XGBoost pipeline, set up parameter grid.</span>
-<span class="n">xgb_model_gs</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">eval_metric</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">],</span> <span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;reg_alpha&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;reg_lambda&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">n_trees</span><span class="p">],</span> <span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1337</span><span class="p">]}</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Use <code>GridSearchCV</code> to search for the best parameters over the parameters values that were specified in the previous section.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Search for the best parameters.</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">xgb_model_gs</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">refit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  16 out of  20 | elapsed:    3.3s remaining:    0.8s
-[Parallel(n_jobs=-1)]: Done  20 out of  20 | elapsed:    3.4s finished
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>GridSearchCV(cv=5,
-             estimator=XGBClassifier(base_score=None, booster=None,
-                                     colsample_bylevel=None,
-                                     colsample_bynode=None,
-                                     colsample_bytree=None,
-                                     eval_metric=[&#39;error&#39;], gamma=None,
-                                     gpu_id=None, importance_type=&#39;gain&#39;,
-                                     interaction_constraints=None,
-                                     learning_rate=None, max_delta_step=None,
-                                     max_depth=None, min_child_weight=None,
-                                     missing=nan, monotone_constraints=None,
-                                     n_estimators=100, n_jobs=None,
-                                     num_parallel_tree=None, random_state=None,
-                                     reg_alpha=None, reg_lambda=None,
-                                     scale_pos_weight=None, subsample=None,
-                                     tree_method=None, use_label_encoder=False,
-                                     validate_parameters=None, verbosity=None),
-             n_jobs=-1,
-             param_grid={&#39;n_estimators&#39;: [30], &#39;reg_alpha&#39;: [0.0, 1.0],
-                         &#39;reg_lambda&#39;: [0.0, 1.0], &#39;seed&#39;: [1337]},
-             scoring=&#39;accuracy&#39;, verbose=-1)</pre>
+<pre>{&#39;_messageCode_&#39;: &#39;Success&#39;,
+ &#39;message&#39;: &#39;Successfully uploaded file and created the directory structure&#39;}</pre>
 </div>
 
 </div>
@@ -15349,23 +15288,18 @@ Number of testing records : 200
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>From the grid scores, you can see the performance result of all parameter combinations including the best parameter combination based on model performance.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Display the accuracy estimated using cross-validation and the hyperparameter values for the best model.</p>
-
+<h3 id="We-can-check-if-the-file-was-successfully-upload">We can check if the file was successfully upload<a class="anchor-link" href="#We-can-check-if-the-file-was-successfully-upload">&#182;</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best score: </span><span class="si">%.1f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">best_score_</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best parameter set: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">best_params_</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-volumes/</span><span class="si">{</span><span class="n">display_name</span><span class="si">}</span><span class="s1">/v1/volumes/files/</span><span class="si">{</span><span class="n">target_file</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                        <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15385,8 +15319,37 @@ Number of testing records : 200
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Best score: 95.9%
-Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;reg_lambda&#39;: 1.0, &#39;seed&#39;: 1337}
+<pre>200 
+ {
+  &#34;metadata&#34;: {
+    &#34;name&#34;: &#34;cspec-38-1-t1&#34;,
+    &#34;description&#34;: &#34;Test&#34;
+  },
+  &#34;entity&#34;: {
+    &#34;software_specification&#34;: {
+      &#34;type&#34;: &#34;base&#34;,
+      &#34;built_in&#34;: false,
+      &#34;package_extensions&#34;: [],
+      &#34;display_name&#34;: &#34;Test cspec-38-1-t1&#34;,
+      &#34;software_configuration&#34;: {
+        &#34;included_packages&#34;: [
+          {
+            &#34;name&#34;: &#34;simplejson&#34;,
+            &#34;version&#34;: &#34;3.17.5&#34;
+          },
+          {
+            &#34;name&#34;: &#34;dummy-b&#34;,
+            &#34;version&#34;: &#34;0.0.1&#34;
+          }
+        ],
+        &#34;platform&#34;: {
+          &#34;name&#34;: &#34;python&#34;,
+          &#34;version&#34;: &#34;3.8&#34;
+        }
+      }
+    }
+  }
+}
 </pre>
 </div>
 </div>
@@ -15398,73 +15361,31 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Display the accuracy of best parameter combination on the test set.</p>
+<h3 id="Wait-for-about-5-mins">Wait for about 5 mins<a class="anchor-link" href="#Wait-for-about-5-mins">&#182;</a></h3><p>Refresh intervel is handled by <code>env-spec-sync-job</code> cronjob</p>
 
+<pre><code>e.g.
+oc get cronjobs env-spec-sync-job
+
+NAME                SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+env-spec-sync-job   */5 * * * *   False     0        82s             23d</code></pre>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Check-if-the-new-Software-Specification-is-activated">Check if the new Software Specification is activated<a class="anchor-link" href="#Check-if-the-new-Software-Specification-is-activated">&#182;</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">ntree_limit</span><span class="o">=</span> <span class="n">n_trees</span><span class="p">)</span>
-
-<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%.1f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Accuracy: 96.5%
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The accuracy on test set is about the same for tuned model as it is for the trained model that has default hyperparameters values, even though the selected hyperparameters are different to the default parameters.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="3.2.3.-Model-with-pipeline-data-preprocessing">3.2.3. Model with pipeline data preprocessing<a class="anchor-link" href="#3.2.3.-Model-with-pipeline-data-preprocessing">&#182;</a></h4>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Here you learn how to use the XGBoost model within the scikit-learn pipeline.</p>
-<p>Let's start by importing the required objects.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/v2/software_specifications?name=</span><span class="si">{</span><span class="n">sw_spec_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15472,15 +15393,92 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+  &#34;total_results&#34;: 1,
+  &#34;resources&#34;: [
+    {
+      &#34;metadata&#34;: {
+        &#34;created_at&#34;: &#34;2021-11-03T05:25:04.075Z&#34;,
+        &#34;updated_at&#34;: &#34;2021-11-03T05:25:04.075Z&#34;,
+        &#34;name&#34;: &#34;cspec-38-1-t1&#34;,
+        &#34;description&#34;: &#34;Test&#34;,
+        &#34;asset_type&#34;: &#34;software_specification&#34;,
+        &#34;href&#34;: &#34;/v2/software_specifications/abe090f5-92fc-5945-81f0-27136b56306f&#34;,
+        &#34;asset_id&#34;: &#34;abe090f5-92fc-5945-81f0-27136b56306f&#34;
+      },
+      &#34;entity&#34;: {
+        &#34;software_specification&#34;: {
+          &#34;type&#34;: &#34;base&#34;,
+          &#34;built_in&#34;: false,
+          &#34;package_extensions&#34;: [],
+          &#34;display_name&#34;: &#34;Test cspec-38-1-t1&#34;,
+          &#34;software_configuration&#34;: {
+            &#34;included_packages&#34;: [
+              {
+                &#34;name&#34;: &#34;simplejson&#34;,
+                &#34;version&#34;: &#34;3.17.5&#34;
+              },
+              {
+                &#34;name&#34;: &#34;dummy-b&#34;,
+                &#34;version&#34;: &#34;0.0.1&#34;
+              }
+            ],
+            &#34;platform&#34;: {
+              &#34;name&#34;: &#34;python&#34;,
+              &#34;version&#34;: &#34;3.8&#34;
+            }
+          }
+        }
+      }
+    }
+  ]
+}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Warning:-Do-not-proceed-unless-the-new-software-specification-is-activated!"><strong>Warning</strong>: Do not proceed unless the new software specification is activated!<a class="anchor-link" href="#Warning:-Do-not-proceed-unless-the-new-software-specification-is-activated!">&#182;</a></h3>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="runtime"></a></p>
+<h1 id="4.-Create-the-new-runtime-definition-file-for-the-custom-image">4. Create the new runtime definition file for the custom image<a class="anchor-link" href="#4.-Create-the-new-runtime-definition-file-for-the-custom-image">&#182;</a></h1>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We will create the Runtime definition file, which connects the software specification <code>cspec-38-1-t1</code> to the custom image name <code>image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1</code></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">xgb_model_pca</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n_trees</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">],</span> <span class="n">use_label_encoder</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;xgb&#39;</span><span class="p">,</span> <span class="n">xgb_model_pca</span><span class="p">)])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># fully qualified name for the Internal Registry image of custom image</span>
+<span class="n">custom_image_fqn</span><span class="o">=</span><span class="s1">&#39;image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1&#39;</span>
+<span class="n">custom_image_fqn</span>
 </pre></div>
 
      </div>
@@ -15488,13 +15486,61 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1&#39;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Runtime-Definition-file-for-Custom-image:">Runtime Definition file for Custom image:<a class="anchor-link" href="#Runtime-Definition-file-for-Custom-image:">&#182;</a></h4><ul>
+<li>filename needs to end with <code>*-server.json</code></li>
+<li>the prefix in filename <code>&lt;runtime_definition_name&gt;-server.json</code> will be the runtime definition name. If <code>name</code> is provided, <code>name</code> will be ignored.</li>
+<li><code>runtimeType</code> should be <code>wml</code> for custom image</li>
+<li>This runtime definition is the link between the software specification and the image name for custom image</li>
+<li>If the custom image had been uploaded to the private container registry, then the value for <code>custom_image_fqn</code> would be <code>cp.stg.icr.io/cp/cpd/wml-demo-image:test-1</code></li>
+</ul>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">runtime_definition</span><span class="o">=</span><span class="p">{</span>
+  <span class="s2">&quot;displayName&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Test </span><span class="si">{</span><span class="n">sw_spec_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Test description&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;IBM&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;tested&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+  <span class="s2">&quot;isService&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+  <span class="s2">&quot;features&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;wml&quot;</span>
+  <span class="p">],</span>
+  <span class="s2">&quot;runtimeType&quot;</span><span class="p">:</span> <span class="s2">&quot;wml&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;software_specification_name&quot;</span><span class="p">:</span> <span class="n">sw_spec_name</span><span class="p">,</span>
+  <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">custom_image_fqn</span>
+<span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">runtime_definition</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15510,29 +15556,25 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>Pipeline(steps=[(&#39;pca&#39;, PCA(n_components=10)),
-                (&#39;xgb&#39;,
-                 XGBClassifier(base_score=0.5, booster=&#39;gbtree&#39;,
-                               colsample_bylevel=1, colsample_bynode=1,
-                               colsample_bytree=1, eval_metric=[&#39;error&#39;],
-                               gamma=0, gpu_id=-1, importance_type=&#39;gain&#39;,
-                               interaction_constraints=&#39;&#39;,
-                               learning_rate=0.300000012, max_delta_step=0,
-                               max_depth=6, min_child_weight=1, missing=nan,
-                               monotone_constraints=&#39;()&#39;, n_estimators=30,
-                               n_jobs=12, num_parallel_tree=1, random_state=0,
-                               reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
-                               subsample=1, tree_method=&#39;exact&#39;,
-                               use_label_encoder=False, validate_parameters=1,
-                               verbosity=1))])</pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+  &#34;displayName&#34;: &#34;Test cspec-38-1-t1&#34;,
+  &#34;description&#34;: &#34;Test description&#34;,
+  &#34;author&#34;: &#34;IBM&#34;,
+  &#34;tested&#34;: true,
+  &#34;isService&#34;: true,
+  &#34;features&#34;: [
+    &#34;wml&#34;
+  ],
+  &#34;runtimeType&#34;: &#34;wml&#34;,
+  &#34;software_specification_name&#34;: &#34;cspec-38-1-t1&#34;,
+  &#34;image&#34;: &#34;image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1&#34;
+}
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -15542,8 +15584,7 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now you are ready to evaluate accuracy of the model trained on the reduced set of features.</p>
-
+<h3 id="Upload-file-to-the-specified-path-on-the-volume&#182;">Upload file to the specified path on the volume&#182;<a class="anchor-link" href="#Upload-file-to-the-specified-path-on-the-volume&#182;">&#182;</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
@@ -15551,10 +15592,8 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy: </span><span class="si">%.1f%%</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span> <span class="o">*</span> <span class="mf">100.0</span><span class="p">))</span>
-<span class="n">pipeline</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">runtime_definition_filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sw_spec_name</span><span class="si">}</span><span class="s1">-server.json&#39;</span>
+<span class="n">runtime_definition_filename</span>
 </pre></div>
 
      </div>
@@ -15566,18 +15605,6 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Accuracy: 94.5%
-</pre>
-</div>
-</div>
 
 <div class="jp-OutputArea-child">
 
@@ -15588,21 +15615,7 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>Pipeline(steps=[(&#39;pca&#39;, PCA(n_components=10)),
-                (&#39;xgb&#39;,
-                 XGBClassifier(base_score=0.5, booster=&#39;gbtree&#39;,
-                               colsample_bylevel=1, colsample_bynode=1,
-                               colsample_bytree=1, eval_metric=[&#39;error&#39;],
-                               gamma=0, gpu_id=-1, importance_type=&#39;gain&#39;,
-                               interaction_constraints=&#39;&#39;,
-                               learning_rate=0.300000012, max_delta_step=0,
-                               max_depth=6, min_child_weight=1, missing=nan,
-                               monotone_constraints=&#39;()&#39;, n_estimators=30,
-                               n_jobs=12, num_parallel_tree=1, random_state=0,
-                               reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
-                               subsample=1, tree_method=&#39;exact&#39;,
-                               use_label_encoder=False, validate_parameters=1,
-                               verbosity=1))])</pre>
+<pre>&#39;cspec-38-1-t1-server.json&#39;</pre>
 </div>
 
 </div>
@@ -15611,45 +15624,25 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can see that this model has a similar accuracy to the model trained using default hyperparameter values.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Let's see how you can save your XGBoost pipeline using the WML service instance and deploy it for online scoring.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="upload"></a></p>
-<h2 id="4.-Persist-model">4. Persist model<a class="anchor-link" href="#4.-Persist-model">&#182;</a></h2>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In this section you learn how to use the Python client libraries to store your XGBoost model in the WML repository.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Save-the-XGBoost-model-to-the-WML-Repository">Save the XGBoost model to the WML Repository<a class="anchor-link" href="#Save-the-XGBoost-model-to-the-WML-Repository">&#182;</a></h3><p>Save the model artifact as <em>XGBoost model for breast cancer</em> to your WML instance.</p>
-<p>Get software specification for XGBoost.</p>
-
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s1">&#39;default_py3.8&#39;</span><span class="p">)</span>
-<span class="n">software_spec_uid</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># multipart/form-data</span>
+<span class="c1"># Do not set the Content-type header yourself, leave that to pyrequests to generate</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-data/v1/volumes/files/%2F_global_%2Fconfig%2F.runtime-definitions%2Fibm&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">files</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;upFile&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">runtime_definition_filename</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">runtime_definition</span><span class="p">),</span> <span class="s1">&#39;application/json&#39;</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
 </pre></div>
 
      </div>
@@ -15671,7 +15664,7 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;ab9e1b80-f2ce-592c-a7d2-4f2344f77194&#39;</pre>
+<pre>200</pre>
 </div>
 
 </div>
@@ -15680,17 +15673,13 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;XGBoost model for breast cancer&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;scikit-learn_0.23&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span> <span class="p">:</span> <span class="n">software_spec_uid</span><span class="p">,</span>
-<span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15698,49 +15687,47 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;_messageCode_&#39;: &#39;Success&#39;,
+ &#39;message&#39;: &#39;Successfully uploaded file and created the directory structure&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Check-upload-runtime-definition-file.">Check upload runtime definition file.<a class="anchor-link" href="#Check-upload-runtime-definition-file.">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">metadata</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Get the saved model metadata from WML.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="deploy"></a></p>
-<h2 id="5.-Deployment">5. Deployment<a class="anchor-link" href="#5.-Deployment">&#182;</a></h2><p>In this section you will learn how to create batch deployment to create job using the Watson Machine Learning Client.</p>
-<p>You can use commands bellow to create batch deployment for stored model (web service).</p>
-<h3 id="5.1:-Create-model-deployment">5.1: Create model deployment<a class="anchor-link" href="#5.1:-Create-model-deployment">&#182;</a></h3>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You need the model uid to create the deployment. You can extract the model uid from the saved model details.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract the uid.</span>
-<span class="n">model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_uid</span><span class="p">(</span><span class="n">model_details</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> 
+    <span class="sa">f</span><span class="s1">&#39;/zen-data/v1/volumes/files/%2F_global_%2Fconfig%2F.runtime-definitions%2Fibm%2F</span><span class="si">{</span><span class="n">runtime_definition_filename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15760,7 +15747,19 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>572df224-e590-4c21-a474-bbb0c4cd3b77
+<pre>{
+  &#34;displayName&#34;: &#34;Test cspec-38-1-t1&#34;,
+  &#34;description&#34;: &#34;Test description&#34;,
+  &#34;author&#34;: &#34;IBM&#34;,
+  &#34;tested&#34;: true,
+  &#34;isService&#34;: true,
+  &#34;features&#34;: [
+    &#34;wml&#34;
+  ],
+  &#34;runtimeType&#34;: &#34;wml&#34;,
+  &#34;software_specification_name&#34;: &#34;cspec-38-1-t1&#34;,
+  &#34;image&#34;: &#34;image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1&#34;
+}
 </pre>
 </div>
 </div>
@@ -15772,28 +15771,520 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Use this modul_uid in the next section to create the deployment.</p>
+<h3 id="Check-if-the-new-Runtime-Definition-is-activated">Check if the new Runtime Definition is activated<a class="anchor-link" href="#Check-if-the-new-Runtime-Definition-is-activated">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/v2/runtime_definitions&#39;</span><span class="p">,</span> 
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>200</pre>
+</div>
 
 </div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now you can create a deployment, <em>Predict breast cancer</em>.</p>
 
 </div>
+
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create the deployment.</span>
-<span class="n">meta_props</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Predict breast cancer&#39;&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{}</span>
-<span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># since we have named our runtime defination filename as &lt;sw_spec&gt;-server.json</span>
+<span class="c1"># we can look for that name</span>
 
-<span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model_uid</span><span class="p">,</span><span class="n">meta_props</span><span class="p">)</span>
+<span class="n">run_def_name</span><span class="o">=</span><span class="n">sw_spec_name</span>
+
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;runtime_type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;wml&#39;</span> <span class="ow">and</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">run_def_name</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+        
+<span class="c1"># The `entity.software_configuration` metadata needs special authorization to see details.</span>
+<span class="c1"># It will be shown as empty dict here (internally it is not necessarily empty).</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+  &#34;metadata&#34;: {
+    &#34;guid&#34;: &#34;fc69bfed-af1f-453c-ac57-8bec9bfd336e&#34;,
+    &#34;created_at&#34;: &#34;2021-11-03T05:25:50.339Z&#34;
+  },
+  &#34;entity&#34;: {
+    &#34;name&#34;: &#34;cspec-38-1-t1&#34;,
+    &#34;display_name&#34;: &#34;Test cspec-38-1-t1&#34;,
+    &#34;description&#34;: &#34;Test description&#34;,
+    &#34;author&#34;: &#34;IBM&#34;,
+    &#34;tested&#34;: true,
+    &#34;is_service&#34;: true,
+    &#34;features&#34;: [
+      &#34;wml&#34;
+    ],
+    &#34;runtime_type&#34;: &#34;wml&#34;,
+    &#34;software_configuration&#34;: {}
+  }
+}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The required software specification name:&#39;</span><span class="p">,</span> <span class="n">sw_spec_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">custom_image_fqn</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>The required software specification name: cspec-38-1-t1
+	 image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Stop-File-server-on-the-Volume">Stop File server on the Volume<a class="anchor-link" href="#Stop-File-server-on-the-Volume">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-data/v1/volumes/volume_services/</span><span class="si">{</span><span class="n">display_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+    <span class="n">json</span><span class="o">=</span><span class="p">{},</span>
+    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+  &#34;_messageCode_&#34;: &#34;200&#34;,
+  &#34;message&#34;: &#34;Successfully stopped volume service&#34;
+}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Cleanup---delete-the-Volume-instance">Cleanup - delete the Volume instance<a class="anchor-link" href="#Cleanup---delete-the-Volume-instance">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;/zen-data/v3/service_instances/</span><span class="si">{</span><span class="n">vol_svc_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                           <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                           <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+  &#34;id&#34;: &#34;1635916789402144&#34;
+}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="deploy"></a></p>
+<h2 id="5.-Create-and-Deploy-a-WML-python-function-model-with-the-custom-image">5. Create and Deploy a WML <code>python function</code> model with the custom image<a class="anchor-link" href="#5.-Create-and-Deploy-a-WML-python-function-model-with-the-custom-image">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The demo <code>python function</code> below showcase the package <code>simplejson</code> which was installed for this custom image is now usable by returning the <code>version</code>, and does nothing else useful beyond that.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> aifun_{sw_spec_name}.py
+
+<span class="k">def</span> <span class="nf">score_generator</span><span class="p">():</span>
+        
+    <span class="c1"># Define scoring function</span>
+    <span class="k">def</span> <span class="nf">callModel</span><span class="p">(</span><span class="n">payload_scoring</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">simplejson</span>
+
+        <span class="n">v4_scoring_response</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;predictions&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">simplejson</span><span class="o">.</span><span class="n">__version__</span><span class="p">]}]</span>
+        <span class="p">}</span>
+    
+        <span class="k">return</span> <span class="n">v4_scoring_response</span>
+
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+
+        <span class="c1"># Score using the pre-defined model</span>
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">callModel</span><span class="p">(</span><span class="nb">input</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">prediction</span>
+    
+    <span class="k">return</span> <span class="n">score</span>
+
+
+<span class="n">score</span> <span class="o">=</span> <span class="n">score_generator</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Writing aifun_cspec-38-1-t1.py
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>python function</code> needs to be gzipped for storing in WML repository</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>gzip -fk aifun_<span class="o">{</span>sw_spec_name<span class="o">}</span>.py
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls aifun_<span class="o">{</span>sw_spec_name<span class="o">}</span>*
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>aifun_cspec-38-1-t1.py    aifun_cspec-38-1-t1.py.gz
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>We need use the Base software specification that was created earlier <code>cspec-38-1-t1</code></strong></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sw_spec_name</span><span class="p">,</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="n">sw_spec_name</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[48]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>(&#39;cspec-38-1-t1&#39;, &#39;abe090f5-92fc-5945-81f0-27136b56306f&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_props</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">FunctionMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;py-function for custom image t1&quot;</span><span class="p">,</span>
+   <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">FunctionMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Test Custom Image&quot;</span><span class="p">,</span>
+   <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">FunctionMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="n">sw_spec_name</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">stored_function_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_function</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;aifun_</span><span class="si">{</span><span class="n">sw_spec_name</span><span class="si">}</span><span class="s1">.py.gz&#39;</span><span class="p">,</span> <span class="n">meta_props</span><span class="p">)</span>
+<span class="n">stored_function_details</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[44]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;entity&#39;: {&#39;software_spec&#39;: {&#39;id&#39;: &#39;abe090f5-92fc-5945-81f0-27136b56306f&#39;,
+   &#39;name&#39;: &#39;cspec-38-1-t1&#39;},
+  &#39;type&#39;: &#39;python&#39;},
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2021-11-03T05:28:54.251Z&#39;,
+  &#39;description&#39;: &#39;Test Custom Image&#39;,
+  &#39;id&#39;: &#39;2fbedbff-abcb-4f83-ac11-058ac03fa725&#39;,
+  &#39;modified_at&#39;: &#39;2021-11-03T05:28:54.251Z&#39;,
+  &#39;name&#39;: &#39;py-function for custom image t1&#39;,
+  &#39;owner&#39;: &#39;1000330999&#39;,
+  &#39;space_id&#39;: &#39;af104b1b-14e0-4ca9-86d2-08cc4c9eb141&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">function_id</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_function_id</span><span class="p">(</span><span class="n">stored_function_details</span><span class="p">)</span>
+<span class="n">function_id</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[46]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;2fbedbff-abcb-4f83-ac11-058ac03fa725&#39;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Create-an-online-deployment">Create an online deployment<a class="anchor-link" href="#Create-an-online-deployment">&#182;</a></h3>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_props</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;function dep Online t1&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{},</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">HARDWARE_SPEC</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span>  <span class="n">client</span><span class="o">.</span><span class="n">hardware_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">)}</span>
+<span class="p">}</span>
+<span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">function_id</span><span class="p">,</span> <span class="n">meta_props</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15817,19 +16308,19 @@ Best parameter set: {&#39;n_estimators&#39;: 30, &#39;reg_alpha&#39;: 1.0, &#39;
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;572df224-e590-4c21-a474-bbb0c4cd3b77&#39; started
+Synchronous deployment creation for uid: &#39;2fbedbff-abcb-4f83-ac11-058ac03fa725&#39; started
 
 #######################################################################################
 
 
 initializing
 Note: online_url is deprecated and will be removed in a future release. Use serving_urls instead.
-
+..........................................
 ready
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;4e8e9303-b9f3-4ff6-b183-ec273c16b032&#39;
+Successfully finished deployment creation, deployment_uid=&#39;b2b0a470-35f3-4316-a900-53dc80fdbfa1&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -15844,49 +16335,24 @@ Successfully finished deployment creation, deployment_uid=&#39;4e8e9303-b9f3-4ff
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Get a list of all deployments.</p>
+<p>You can monitor the cluster for pods with name prefix "wml-" and "ci-" in its name
+example:</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># List the deployments.</span>
-<span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
-</pre></div>
+<pre><code>$ oc get pods | grep wml | grep ci-
+wml-dep-od-ai-function0.0-cl-ci-wbiku1vw-764974dfd6-bwrn2       0/1     Running     0          4m58s
 
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The <em>Predict breast cancer model</em> has been successfully deployed.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="5.2-Get-deployment-details">5.2 Get deployment details<a class="anchor-link" href="#5.2-Get-deployment-details">&#182;</a></h3>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>To show deployments details, you need get deployment_uid.</p>
+$ oc describe pod wml-dep-od-ai-function0.0-cl-ci-wbiku1vw-764974dfd6-bwrn2 | grep Image: | grep "wml-demo-image:test-1"
+    Image:         image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1</code></pre>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
-<span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
+<span class="n">deployment_id</span>
 </pre></div>
 
      </div>
@@ -15902,30 +16368,13 @@ Successfully finished deployment creation, deployment_uid=&#39;4e8e9303-b9f3-4ff
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[34]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[51]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;572df224-e590-4c21-a474-bbb0c4cd3b77&#39;},
-  &#39;custom&#39;: {},
-  &#39;deployed_asset_type&#39;: &#39;model&#39;,
-  &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;Not_Applicable&#39;, &#39;name&#39;: &#39;S&#39;, &#39;num_nodes&#39;: 1},
-  &#39;name&#39;: &#34;Predict breast cancer&#39;&#34;,
-  &#39;online&#39;: {},
-  &#39;space_id&#39;: &#39;97cebfee-a9da-4c04-822d-f36540c1070d&#39;,
-  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://cpd-wmlautoai-jun24.apps.ocp46wmlautoaai.cp.fyre.ibm.com/ml/v4/deployments/4e8e9303-b9f3-4ff6-b183-ec273c16b032/predictions&#39;},
-   &#39;serving_urls&#39;: [&#39;https://cpd-wmlautoai-jun24.apps.ocp46wmlautoaai.cp.fyre.ibm.com/ml/v4/deployments/4e8e9303-b9f3-4ff6-b183-ec273c16b032/predictions&#39;],
-   &#39;state&#39;: &#39;ready&#39;}},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2021-07-19T09:38:27.422Z&#39;,
-  &#39;id&#39;: &#39;4e8e9303-b9f3-4ff6-b183-ec273c16b032&#39;,
-  &#39;modified_at&#39;: &#39;2021-07-19T09:38:27.422Z&#39;,
-  &#39;name&#39;: &#34;Predict breast cancer&#39;&#34;,
-  &#39;owner&#39;: &#39;1000330999&#39;,
-  &#39;space_id&#39;: &#39;97cebfee-a9da-4c04-822d-f36540c1070d&#39;},
- &#39;system&#39;: {&#39;warnings&#39;: [{&#39;id&#39;: &#39;Deprecated&#39;,
-    &#39;message&#39;: &#39;online_url is deprecated and will be removed in a future release. Use serving_urls instead.&#39;}]}}</pre>
+<pre>&#39;b2b0a470-35f3-4316-a900-53dc80fdbfa1&#39;</pre>
 </div>
 
 </div>
@@ -15937,88 +16386,34 @@ Successfully finished deployment creation, deployment_uid=&#39;4e8e9303-b9f3-4ff
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="score"></a></p>
-<h2 id="6.-Score-the-model">6. Score the model<a class="anchor-link" href="#6.-Score-the-model">&#182;</a></h2><p>Let's see if our deployment works.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now, extract the url endpoint, <em>scoring_url</em>, which will be used to send scoring requests.</p>
-
+<h3 id="Predict-using-created-deployment">Predict using created deployment<a class="anchor-link" href="#Predict-using-created-deployment">&#182;</a></h3>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Prepare the scoring payload with the values to score.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Prepare scoring payload.</span>
-<span class="n">payload_scoring</span> <span class="o">=</span> <span class="p">{</span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA</span><span class="p">:</span>
-    <span class="p">[</span>
-        <span class="p">{</span>
-        <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">X_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
-        <span class="p">}</span>
-   <span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;input_data&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;id1&#39;</span><span class="p">,</span> <span class="s1">&#39;fields&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span> <span class="s1">&#39;dummy_c2&#39;</span><span class="p">],</span> <span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]}</span>
+    <span class="p">]</span>
 <span class="p">}</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">payload_scoring</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{&#39;input_data&#39;: [{&#39;values&#39;: [[12.23, 19.56, 78.54, 461.0, 0.09586, 0.08087, 0.04187, 0.04107, 0.1979, 0.06013, 0.3534, 1.326, 2.308, 27.24, 0.007514, 0.01779, 0.01401, 0.0114, 0.01503, 0.003338, 14.44, 28.36, 92.15, 638.4, 0.1429, 0.2042, 0.1377, 0.108, 0.2668, 0.08174]]}]}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Perform prediction and display the result.</span>
-<span class="n">response_scoring</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">payload_scoring</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">response_scoring</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
+<span class="n">predictions</span>
 </pre></div>
 
      </div>
@@ -16034,30 +16429,26 @@ Successfully finished deployment creation, deployment_uid=&#39;4e8e9303-b9f3-4ff
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[54]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{&#39;predictions&#39;: [{&#39;fields&#39;: [&#39;prediction&#39;, &#39;probability&#39;], &#39;values&#39;: [[0, [0.9749674201011658, 0.02503260038793087]]]}]}
-</pre>
-</div>
-</div>
 
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;predictions&#39;: [{&#39;values&#39;: [&#39;3.17.5&#39;]}]}</pre>
 </div>
 
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Result</strong>: The patient record is classified as a benign tumor.</p>
 
 </div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="cleanup"></a></p>
-<h2 id="7.-Clean-up">7. Clean up<a class="anchor-link" href="#7.-Clean-up">&#182;</a></h2>
+<h2 id="6.-Clean-up">6. Clean up<a class="anchor-link" href="#6.-Clean-up">&#182;</a></h2>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -16079,9 +16470,33 @@ Successfully finished deployment creation, deployment_uid=&#39;4e8e9303-b9f3-4ff
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="8.-Summary-and-next-steps">8. Summary and next steps<a class="anchor-link" href="#8.-Summary-and-next-steps">&#182;</a></h2><p>You successfully completed this notebook! You learned how to use Keras machine learning library as well as Watson Machine Learning for model creation and deployment.</p>
-<p>Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/analyze-data/wml-setup.html">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
-<h3 id="Authors">Authors<a class="anchor-link" href="#Authors">&#182;</a></h3><p><strong>Wojciech Jargielo</strong>, Software Engineer</p>
+<h2 id="7.-Summary-and-next-steps">7. Summary and next steps<a class="anchor-link" href="#7.-Summary-and-next-steps">&#182;</a></h2>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>You successfully completed this notebook! You learned how to use Watson Machine Learning for function deployment and scoring with custom custom_image, software_spec and runtime definition.<br>
+ Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=analytics">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="References:">References:<a class="anchor-link" href="#References:">&#182;</a></h4><ul>
+<li><a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=deployments-deploying-using-custom-image">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=deployments-deploying-using-custom-image</a></li>
+<li><a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=resources-volumes-api">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=resources-volumes-api</a></li>
+</ul>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Author">Author<a class="anchor-link" href="#Author">&#182;</a></h3><p><strong>Ginbiaksang Naulak</strong> Software Engineer at IBM.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Copyright © 2020, 2021 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 
 </div>

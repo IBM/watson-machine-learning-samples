@@ -14284,7 +14284,7 @@ a.anchor-link {
 <li><a href="#install_lib">Install python library containing custom transformer implementation</a></li>
 <li><a href="#load">Prepare training data</a></li>
 <li><a href="#train">Train the scikit-learn model</a></li>
-<li><a href="#persistence">Save the model and library to WML Repository</a></li>
+<li><a href="#upload">Save the model and library to WML Repository</a></li>
 <li><a href="#deploy">Deploy and score data</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
@@ -14493,9 +14493,29 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The library - <code>linalgnorm-0.1.zip</code> is a python distributable package that contains the implementation of a user defined Scikit-Learn transformer - <code>LNormalizer</code> . <br>
+<p>Library - <code>linalgnorm-0.1</code> is a python distributable package that contains the implementation of a user defined Scikit-Learn transformer - <code>LNormalizer</code> . <br>
 Any 3rd party libraries that are required for the custom transformer must be defined as the dependency for the corresponding library that contains implementation of the transformer.</p>
-<p>In this section, we download the library and install it in the current notebook environment.</p>
+<p>In this section, we will create the library and install it in the current notebook environment.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>mkdir -p linalgnorm-0.1/linalg_norm
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Define a custom scikit transformer.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14504,7 +14524,29 @@ Any 3rd party libraries that are required for the custom transformer must be def
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/libraries/linalgnorm-0.1.zip --output-document<span class="o">=</span>linalgnorm-0.1.zip
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> linalgnorm-0.1/linalg_norm/sklearn_transformers.py
+
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">class</span> <span class="nc">LNormalizer</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">norm_ord</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm_ord</span> <span class="o">=</span> <span class="n">norm_ord</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_ord</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">X</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span>
+
+    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_norm_vals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span>
 </pre></div>
 
      </div>
@@ -14524,22 +14566,218 @@ Any 3rd party libraries that are required for the custom transformer must be def
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>--2020-12-08 12:45:08--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/libraries/linalgnorm-0.1.zip
-Resolving github.com... 140.82.121.3
-Connecting to github.com|140.82.121.3|:443... connected.
-HTTP request sent, awaiting response... 302 Found
-Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/libraries/linalgnorm-0.1.zip [following]
---2020-12-08 12:45:08--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cpd4.0/libraries/linalgnorm-0.1.zip
-Resolving raw.githubusercontent.com... 151.101.192.133, 151.101.0.133, 151.101.64.133, ...
-Connecting to raw.githubusercontent.com|151.101.192.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 2550 (2.5K) [application/zip]
-Saving to: &#39;linalgnorm-0.1.zip&#39;
+<pre>Writing linalgnorm-0.1/linalg_norm/sklearn_transformers.py
+</pre>
+</div>
+</div>
 
-linalgnorm-0.1.zip  100%[===================&gt;]   2.49K  --.-KB/s    in 0.009s  
+</div>
 
-2020-12-08 12:45:08 (280 KB/s) - &#39;linalgnorm-0.1.zip&#39; saved [2550/2550]
+</div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Wrap created code into Python source distribution package.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> linalgnorm-0.1/linalg_norm/__init__.py
+
+<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.1&quot;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Writing linalgnorm-0.1/linalg_norm/__init__.py
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> linalgnorm-0.1/README.md
+
+<span class="n">A</span> <span class="n">simple</span> <span class="n">library</span> <span class="n">containing</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">custom</span> <span class="n">scikit</span> <span class="n">estimator</span><span class="o">.</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Writing linalgnorm-0.1/README.md
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> linalgnorm-0.1/setup.py
+
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">VERSION</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span>
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;linalgnorm&#39;</span><span class="p">,</span>
+      <span class="n">version</span><span class="o">=</span><span class="n">VERSION</span><span class="p">,</span>
+      <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://github.ibm.com/NGP-TWC/repository/&#39;</span><span class="p">,</span>
+      <span class="n">author</span><span class="o">=</span><span class="s1">&#39;IBM&#39;</span><span class="p">,</span>
+      <span class="n">author_email</span><span class="o">=</span><span class="s1">&#39;ibm@ibm.com&#39;</span><span class="p">,</span>
+      <span class="n">license</span><span class="o">=</span><span class="s1">&#39;IBM&#39;</span><span class="p">,</span>
+      <span class="n">packages</span><span class="o">=</span><span class="p">[</span>
+            <span class="s1">&#39;linalg_norm&#39;</span>
+      <span class="p">],</span>
+      <span class="n">zip_safe</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Writing linalgnorm-0.1/setup.py
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+
+<span class="nb">cd</span> linalgnorm-0.1
+python setup.py sdist --formats<span class="o">=</span>zip
+<span class="nb">cd</span> ..
+mv linalgnorm-0.1/dist/linalgnorm-0.1.zip .
+rm -rf linalgnorm-0.1
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>running sdist
+running egg_info
+creating linalgnorm.egg-info
+writing linalgnorm.egg-info/PKG-INFO
+writing dependency_links to linalgnorm.egg-info/dependency_links.txt
+writing top-level names to linalgnorm.egg-info/top_level.txt
+writing manifest file &#39;linalgnorm.egg-info/SOURCES.txt&#39;
+reading manifest file &#39;linalgnorm.egg-info/SOURCES.txt&#39;
+writing manifest file &#39;linalgnorm.egg-info/SOURCES.txt&#39;
+running check
+creating linalgnorm-0.1
+creating linalgnorm-0.1/linalg_norm
+creating linalgnorm-0.1/linalgnorm.egg-info
+copying files to linalgnorm-0.1...
+copying README.md -&gt; linalgnorm-0.1
+copying setup.py -&gt; linalgnorm-0.1
+copying linalg_norm/__init__.py -&gt; linalgnorm-0.1/linalg_norm
+copying linalg_norm/sklearn_transformers.py -&gt; linalgnorm-0.1/linalg_norm
+copying linalgnorm.egg-info/PKG-INFO -&gt; linalgnorm-0.1/linalgnorm.egg-info
+copying linalgnorm.egg-info/SOURCES.txt -&gt; linalgnorm-0.1/linalgnorm.egg-info
+copying linalgnorm.egg-info/dependency_links.txt -&gt; linalgnorm-0.1/linalgnorm.egg-info
+copying linalgnorm.egg-info/not-zip-safe -&gt; linalgnorm-0.1/linalgnorm.egg-info
+copying linalgnorm.egg-info/top_level.txt -&gt; linalgnorm-0.1/linalgnorm.egg-info
+Writing linalgnorm-0.1/setup.cfg
+creating dist
+creating &#39;dist/linalgnorm-0.1.zip&#39; and adding &#39;linalgnorm-0.1&#39; to it
+adding &#39;linalgnorm-0.1&#39;
+adding &#39;linalgnorm-0.1/linalg_norm&#39;
+adding &#39;linalgnorm-0.1/linalgnorm.egg-info&#39;
+adding &#39;linalgnorm-0.1/PKG-INFO&#39;
+adding &#39;linalgnorm-0.1/README.md&#39;
+adding &#39;linalgnorm-0.1/setup.py&#39;
+adding &#39;linalgnorm-0.1/setup.cfg&#39;
+adding &#39;linalgnorm-0.1/linalg_norm/sklearn_transformers.py&#39;
+adding &#39;linalgnorm-0.1/linalg_norm/__init__.py&#39;
+adding &#39;linalgnorm-0.1/linalgnorm.egg-info/PKG-INFO&#39;
+adding &#39;linalgnorm-0.1/linalgnorm.egg-info/not-zip-safe&#39;
+adding &#39;linalgnorm-0.1/linalgnorm.egg-info/SOURCES.txt&#39;
+adding &#39;linalgnorm-0.1/linalgnorm.egg-info/top_level.txt&#39;
+adding &#39;linalgnorm-0.1/linalgnorm.egg-info/dependency_links.txt&#39;
+removing &#39;linalgnorm-0.1&#39; (and everything under it)
 </pre>
 </div>
 </div>
@@ -15056,7 +15294,7 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="persistence"></a></p>
+<p><a id="upload"></a></p>
 <h2 id="5.-Persist-the-model-and-custom-library">5. Persist the model and custom library<a class="anchor-link" href="#5.-Persist-the-model-and-custom-library">&#182;</a></h2><p>In this section, using <code>ibm-watson_machine_learning</code> SDK, you will ...</p>
 <ul>
 <li>save the library <code>linalgnorm-0.1.zip</code> in WML Repository by creating a package extension resource</li>
@@ -15546,6 +15784,7 @@ Successfully finished deployment creation, deployment_uid=&#39;0d94523d-a2e7-4d7
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="score"></a></p>
 <h3 id="Predict-using-the-deployed-model">Predict using the deployed model<a class="anchor-link" href="#Predict-using-the-deployed-model">&#182;</a></h3>
 </div>
 </div>
