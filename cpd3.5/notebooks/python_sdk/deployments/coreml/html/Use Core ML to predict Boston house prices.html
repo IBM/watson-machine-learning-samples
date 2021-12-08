@@ -14259,11 +14259,6 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Use-Core-ML-to-predict-Boston-house-prices-with-ibm-watson-machine-learning">Use Core ML to predict Boston house prices with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-Core-ML-to-predict-Boston-house-prices-with-ibm-watson-machine-learning">&#182;</a></h1>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook demonstrates how to perform regression analysis using scikit-learn and the watson-machine-learning-client package.</p>
 <p>Some familiarity with Python is helpful. This notebook is compatible with Python 3.7.</p>
 <p>You will use the sample data set, <strong>sklearn.datasets.load_boston</strong> which is available in scikit-learn, to predict house prices.</p>
@@ -14281,8 +14276,8 @@ a.anchor-link {
 <li><a href="#setup">Set up the environment</a></li>
 <li><a href="#load">Load and explore data</a></li>
 <li><a href="#model">Build a scikit-learn linear regression model</a></li>
-<li><a href="#persistence">Set up the WML instance and save the model in the WML repository</a></li>
-<li><a href="#scoring">Deploy the model via Core ML</a></li>
+<li><a href="#upload">Set up the WML instance and save the model in the WML repository</a></li>
+<li><a href="#deploy">Deploy the model via Core ML</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
@@ -15260,7 +15255,7 @@ Number of test records: 167
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="persistence"></a></p>
+<p><a id="upload"></a></p>
 <h2 id="4.-Save-the-model-in-the-WML-repository">4. Save the model in the WML repository<a class="anchor-link" href="#4.-Save-the-model-in-the-WML-repository">&#182;</a></h2>
 </div>
 </div>
@@ -15330,7 +15325,7 @@ Number of test records: 167
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="scoring"></a></p>
+<p><a id="deploy"></a></p>
 <h2 id="5.-Deploy-the-model-via-Core-ML">5. Deploy the model via Core ML<a class="anchor-link" href="#5.-Deploy-the-model-via-Core-ML">&#182;</a></h2>
 </div>
 </div>
@@ -15434,6 +15429,7 @@ Successfully finished deployment creation, deployment_uid=&#39;29ebee31-849b-4ef
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="score"></a></p>
 <h4 id="Download-the-virtual-deployment-content:-Core-ML-model.">Download the virtual deployment content: Core ML model.<a class="anchor-link" href="#Download-the-virtual-deployment-content:-Core-ML-model.">&#182;</a></h4>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">

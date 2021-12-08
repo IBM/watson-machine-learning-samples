@@ -14273,10 +14273,11 @@ See: <a href="https://dataplatform.cloud.ibm.com/docs/content/analyze-data/ml-de
 <li><a href="#setup">Setup</a></li>
 <li><a href="#step4">Get an ID for a model deployment</a></li>
 <li><a href="#step5">Get sample canvas data</a></li>
-<li><a href="#step6">Create a deployable function</a></li>
-<li><a href="#step7">Store and deploy the function</a></li>
-<li><a href="#step8">Test the deployed function</a></li>
+<li><a href="#upload">Create a deployable function</a></li>
+<li><a href="#deploy">Store and deploy the function</a></li>
+<li><a href="#score">Test the deployed function</a></li>
 <li><a href="#cleanup">Clean up</a></li>
+<li><a href="#summary">Summary</a></li>
 </ol>
 
 </div>
@@ -14914,7 +14915,7 @@ Num image data entries: 139876 - (n * n * 4) elements - RGBA values
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="-4.-Create-a-deployable-function"><a id="step6" /> 4. Create a deployable function<a class="anchor-link" href="#-4.-Create-a-deployable-function">&#182;</a></h2><p>The basics of creating and deploying functions in Watson Machine Learning are given here:</p>
+<h2 id="-4.-Create-a-deployable-function"><a id="upload" /> 4. Create a deployable function<a class="anchor-link" href="#-4.-Create-a-deployable-function">&#182;</a></h2><p>The basics of creating and deploying functions in Watson Machine Learning are given here:</p>
 <ul>
 <li><a href="https://dataplatform.cloud.ibm.com/docs/content/analyze-data/ml-deploy-functions.html" target="_blank" rel="noopener noreferrer">Creating and deploying functions</a></li>
 <li><a href="https://dataplatform.cloud.ibm.com/docs/content/analyze-data/ml-functions.html" target="_blank" rel="noopener noreferrer">Implementation details of deployable functions</a></li>
@@ -15046,7 +15047,7 @@ Num image data entries: 139876 - (n * n * 4) elements - RGBA values
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="-5.-Store-and-deploy-the-function"><a id="step7" /> 5. Store and deploy the function<a class="anchor-link" href="#-5.-Store-and-deploy-the-function">&#182;</a></h2><p>Before you can deploy the function, you must store the function in your Watson Machine Learning repository.</p>
+<h2 id="-5.-Store-and-deploy-the-function"><a id="deploy" /> 5. Store and deploy the function<a class="anchor-link" href="#-5.-Store-and-deploy-the-function">&#182;</a></h2><p>Before you can deploy the function, you must store the function in your Watson Machine Learning repository.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15164,7 +15165,7 @@ Successfully finished deployment creation, deployment_uid=&#39;f709a93b-c9d8-46b
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="-6.-Test-the-deployed-function"><a id="step8" /> 6. Test the deployed function<a class="anchor-link" href="#-6.-Test-the-deployed-function">&#182;</a></h2><p>You can use the Watson Machine Learning Python client or REST API to send data to your function deployment for processing in exactly the same way you send data to model deployments for processing.</p>
+<h2 id="-6.-Test-the-deployed-function"><a id="score" /> 6. Test the deployed function<a class="anchor-link" href="#-6.-Test-the-deployed-function">&#182;</a></h2><p>You can use the Watson Machine Learning Python client or REST API to send data to your function deployment for processing in exactly the same way you send data to model deployments for processing.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15290,7 +15291,8 @@ https://wmlgmc-cpd-wmlgmc.apps.wmlautoai.cp.fyre.ibm.com/ml/v4/deployments/f709a
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">&#182;</a></h2><p>In this notebook, you created a Python function that receives HTML canvas image data and then processes and sends that data to a model trained to recognize handwritten digits.</p>
+<p><a id="summary"></a></p>
+<h2 id="8.-Summary-and-next-steps">8. Summary and next steps<a class="anchor-link" href="#8.-Summary-and-next-steps">&#182;</a></h2><p>In this notebook, you created a Python function that receives HTML canvas image data and then processes and sends that data to a model trained to recognize handwritten digits.</p>
 <p>To learn how you can use this deployed function in a web app, see:</p>
 <ul>
 <li><a href="https://dataplatform.cloud.ibm.com/docs/content/analyze-data/ml-nodejs-mnist-tutorial.html" target="_blank" rel="noopener noreferrer">Sample Node.js app that recognizes hand-drawn digits</a></li>
