@@ -14283,9 +14283,9 @@ a.anchor-link {
 <li><a href="#setup">Set up the environment</a></li>
 <li><a href="#load">Load and explore data</a></li>
 <li><a href="#model">Create spark ml model</a></li>
-<li><a href="#persistence">Persist model</a></li>
+<li><a href="#upload">Persist model</a></li>
 <li><a href="#visualization">Predict locally and visualize</a></li>
-<li><a href="#scoring">Deploy and score in a Cloud</a></li>
+<li><a href="#deploy">Deploy and score in a Cloud</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
@@ -15016,7 +15016,7 @@ Accuracy = 0.80
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="persistence"></a></p>
+<p><a id="upload"></a></p>
 <h2 id="4.-Persist-model">4. Persist model<a class="anchor-link" href="#4.-Persist-model">&#182;</a></h2>
 </div>
 </div>
@@ -15788,7 +15788,7 @@ only showing top 5 rows
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><a id="scoring"></a></p>
+<p><a id="deploy"></a></p>
 <h2 id="6.-Deploy-model-and-score-in-a-Cloud">6. Deploy model and score in a Cloud<a class="anchor-link" href="#6.-Deploy-model-and-score-in-a-Cloud">&#182;</a></h2>
 </div>
 </div>
@@ -16182,6 +16182,7 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><a id="score"></a></p>
 <h4 id="Create-and-run-Batch-job">Create and run Batch job<a class="anchor-link" href="#Create-and-run-Batch-job">&#182;</a></h4>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -16374,7 +16375,7 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[88]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ls</span> <span class="n">res</span><span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls res*
 </pre></div>
 
      </div>
