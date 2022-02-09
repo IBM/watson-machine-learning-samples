@@ -9,11 +9,11 @@
 
 
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
@@ -14265,7 +14265,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook introduces commands for model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 2.4.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 3.0.</p>
 <p>You will use <strong>German Credit Risk</strong> dataset.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
@@ -14327,7 +14327,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR PLATFORM API KEY HERE&#39;</span>
@@ -14342,7 +14342,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wml_credentials</span> <span class="o">=</span> <span class="p">{</span>
@@ -14379,7 +14379,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14447,10 +14447,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <p>To be able to interact with all resources available in Watson Machine Learning, you need to set <strong>space</strong> which you will be using.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -14461,6 +14461,29 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;SUCCESS&#39;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14469,7 +14492,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -14502,10 +14525,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <p>The csv file for German Credit Risk is available on the same repository as this notebook. Load the file to Apache® Spark DataFrame using code below.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -14525,10 +14548,30 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>100% [........................................................] 689222 / 689222</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
@@ -14545,6 +14588,31 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>22/02/02 16:02:50 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark&#39;s default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to &#34;WARN&#34;.
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+22/02/02 16:02:51 WARN Utils: Service &#39;SparkUI&#39; could not bind on port 4040. Attempting port 4041.
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14556,10 +14624,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </ul>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_data</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -14570,16 +14638,59 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>root
+ |-- CheckingStatus: string (nullable = true)
+ |-- LoanDuration: integer (nullable = true)
+ |-- CreditHistory: string (nullable = true)
+ |-- LoanPurpose: string (nullable = true)
+ |-- LoanAmount: integer (nullable = true)
+ |-- ExistingSavings: string (nullable = true)
+ |-- EmploymentDuration: string (nullable = true)
+ |-- InstallmentPercent: integer (nullable = true)
+ |-- Sex: string (nullable = true)
+ |-- OthersOnLoan: string (nullable = true)
+ |-- CurrentResidenceDuration: integer (nullable = true)
+ |-- OwnsProperty: string (nullable = true)
+ |-- Age: integer (nullable = true)
+ |-- InstallmentPlans: string (nullable = true)
+ |-- Housing: string (nullable = true)
+ |-- ExistingCreditsCount: integer (nullable = true)
+ |-- Job: string (nullable = true)
+ |-- Dependents: integer (nullable = true)
+ |-- Telephone: string (nullable = true)
+ |-- ForeignWorker: string (nullable = true)
+ |-- Risk: string (nullable = true)
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>As you can see, the data contains 21 fields. Risk field is the one we would like to predict (label).</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_data</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -14590,10 +14701,142 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>-RECORD 0------------------------------------------
+ CheckingStatus           | 0_to_200               
+ LoanDuration             | 31                     
+ CreditHistory            | credits_paid_to_date   
+ LoanPurpose              | other                  
+ LoanAmount               | 1889                   
+ ExistingSavings          | 100_to_500             
+ EmploymentDuration       | less_1                 
+ InstallmentPercent       | 3                      
+ Sex                      | female                 
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 3                      
+ OwnsProperty             | savings_insurance      
+ Age                      | 32                     
+ InstallmentPlans         | none                   
+ Housing                  | own                    
+ ExistingCreditsCount     | 1                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | none                   
+ ForeignWorker            | yes                    
+ Risk                     | No Risk                
+-RECORD 1------------------------------------------
+ CheckingStatus           | less_0                 
+ LoanDuration             | 18                     
+ CreditHistory            | credits_paid_to_date   
+ LoanPurpose              | car_new                
+ LoanAmount               | 462                    
+ ExistingSavings          | less_100               
+ EmploymentDuration       | 1_to_4                 
+ InstallmentPercent       | 2                      
+ Sex                      | female                 
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 2                      
+ OwnsProperty             | savings_insurance      
+ Age                      | 37                     
+ InstallmentPlans         | stores                 
+ Housing                  | own                    
+ ExistingCreditsCount     | 2                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | none                   
+ ForeignWorker            | yes                    
+ Risk                     | No Risk                
+-RECORD 2------------------------------------------
+ CheckingStatus           | less_0                 
+ LoanDuration             | 15                     
+ CreditHistory            | prior_payments_delayed 
+ LoanPurpose              | furniture              
+ LoanAmount               | 250                    
+ ExistingSavings          | less_100               
+ EmploymentDuration       | 1_to_4                 
+ InstallmentPercent       | 2                      
+ Sex                      | male                   
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 3                      
+ OwnsProperty             | real_estate            
+ Age                      | 28                     
+ InstallmentPlans         | none                   
+ Housing                  | own                    
+ ExistingCreditsCount     | 2                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | yes                    
+ ForeignWorker            | no                     
+ Risk                     | No Risk                
+-RECORD 3------------------------------------------
+ CheckingStatus           | 0_to_200               
+ LoanDuration             | 28                     
+ CreditHistory            | credits_paid_to_date   
+ LoanPurpose              | retraining             
+ LoanAmount               | 3693                   
+ ExistingSavings          | less_100               
+ EmploymentDuration       | greater_7              
+ InstallmentPercent       | 3                      
+ Sex                      | male                   
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 2                      
+ OwnsProperty             | savings_insurance      
+ Age                      | 32                     
+ InstallmentPlans         | none                   
+ Housing                  | own                    
+ ExistingCreditsCount     | 1                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | none                   
+ ForeignWorker            | yes                    
+ Risk                     | No Risk                
+-RECORD 4------------------------------------------
+ CheckingStatus           | no_checking            
+ LoanDuration             | 28                     
+ CreditHistory            | prior_payments_delayed 
+ LoanPurpose              | education              
+ LoanAmount               | 6235                   
+ ExistingSavings          | 500_to_1000            
+ EmploymentDuration       | greater_7              
+ InstallmentPercent       | 3                      
+ Sex                      | male                   
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 3                      
+ OwnsProperty             | unknown                
+ Age                      | 57                     
+ InstallmentPlans         | none                   
+ Housing                  | own                    
+ ExistingCreditsCount     | 2                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | none                   
+ ForeignWorker            | yes                    
+ Risk                     | Risk                   
+only showing top 5 rows
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of records: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
@@ -14602,6 +14845,27 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Number of records: 5000
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14616,10 +14880,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <h3 id="2.1-Prepare-data">2.1 Prepare data<a class="anchor-link" href="#2.1-Prepare-data">&#182;</a></h3><p>In this subsection you will split your data into: train, test and predict datasets.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">splitted_data</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span> <span class="mi">24</span><span class="p">)</span>
@@ -14635,6 +14899,29 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Number of training records: 4005
+Number of testing records : 901
+Number of prediction records : 94
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14663,7 +14950,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note</strong>: Apache® Spark 2.4 is required.</p>
+<p><strong>Note</strong>: Apache® Spark 3.0 is required.</p>
 
 </div>
 </div>
@@ -14680,7 +14967,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibm_boto3</span>
@@ -14701,7 +14988,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos_credentials</span> <span class="o">=</span> <span class="p">{</span>
@@ -14727,7 +15014,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_apikey</span> <span class="o">=</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">]</span>
@@ -14751,7 +15038,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">service_endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://s3.us.cloud-object-storage.appdomain.cloud&#39;</span>
@@ -14771,7 +15058,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">auth_endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://iam.cloud.ibm.com/identity/token&#39;</span>
@@ -14791,7 +15078,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span> <span class="o">=</span> <span class="n">ibm_boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span>
@@ -14816,7 +15103,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
@@ -14832,10 +15119,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
@@ -14852,10 +15139,31 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Creating bucket &#34;credit-risk-fd6ae1a1-cee7-4fb1-8915-36eac44ba67a&#34;...
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_obj</span> <span class="o">=</span> <span class="n">cos</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -14871,15 +15179,37 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Uploading data credit_risk_training.csv...
+credit_risk_training.csv is uploaded.
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Create-connections-to-a-COS-bucket">Create connections to a COS bucket<a class="anchor-link" href="#Create-connections-to-a-COS-bucket">&#182;</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="s1">&#39;bluemixcloudobjectstorage&#39;</span><span class="p">)</span>
@@ -14902,6 +15232,28 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Creating connections...
+SUCCESS
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14929,7 +15281,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">conn_details</span><span class="p">)</span>
@@ -14957,10 +15309,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 <p><strong>Download pipeline and model archives</strong></p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -14983,6 +15335,26 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>100% [..........................................................] 41564 / 41564</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14998,7 +15370,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_data_references</span> <span class="o">=</span> <span class="p">[</span>
@@ -15156,15 +15528,15 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model_filename</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s1">&#39;Credit Risk model&#39;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_2.4&quot;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_2.4&#39;</span><span class="p">),</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_3.0&quot;</span><span class="p">,</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_3.0&#39;</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TRAINING_DATA_REFERENCES</span><span class="p">:</span> <span class="n">training_data_references</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">&quot;Risk&quot;</span><span class="p">,</span>
     <span class="p">},</span> 
@@ -15177,14 +15549,14 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_uid</span><span class="p">(</span><span class="n">published_model_details</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">published_model_details</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15192,18 +15564,151 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>f5ef3e30-33be-4a8c-aa27-6791469134a1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_details</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_details</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[34]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;entity&#39;: {&#39;hybrid_pipeline_software_specs&#39;: [],
+  &#39;label_column&#39;: &#39;Risk&#39;,
+  &#39;software_spec&#39;: {&#39;id&#39;: &#39;5c1b0ca2-4977-5c2e-9439-ffd44ea8ffe9&#39;,
+   &#39;name&#39;: &#39;spark-mllib_3.0&#39;},
+  &#39;training_data_references&#39;: [{&#39;connection&#39;: {&#39;id&#39;: &#39;97a53027-b543-481a-87ff-ee70ffe6e5ed&#39;},
+    &#39;location&#39;: {&#39;bucket&#39;: &#39;credit-risk-fd6ae1a1-cee7-4fb1-8915-36eac44ba67a&#39;,
+     &#39;file_name&#39;: &#39;credit_risk_training.csv&#39;},
+    &#39;schema&#39;: {&#39;fields&#39;: [{&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;CheckingStatus&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;LoanDuration&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;CreditHistory&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;LoanPurpose&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;LoanAmount&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;ExistingSavings&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;EmploymentDuration&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;InstallmentPercent&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {}, &#39;name&#39;: &#39;Sex&#39;, &#39;nullable&#39;: True, &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;OthersOnLoan&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;CurrentResidenceDuration&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;OwnsProperty&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {}, &#39;name&#39;: &#39;Age&#39;, &#39;nullable&#39;: True, &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;InstallmentPlans&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {}, &#39;name&#39;: &#39;Housing&#39;, &#39;nullable&#39;: True, &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;ExistingCreditsCount&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {}, &#39;name&#39;: &#39;Job&#39;, &#39;nullable&#39;: True, &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;Dependents&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;Telephone&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;ForeignWorker&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {&#39;modeling_role&#39;: &#39;target&#39;},
+       &#39;name&#39;: &#39;Risk&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;}],
+     &#39;id&#39;: &#39;training_schema&#39;},
+    &#39;type&#39;: &#39;connection_asset&#39;}],
+  &#39;type&#39;: &#39;mllib_3.0&#39;},
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-02T15:05:22.932Z&#39;,
+  &#39;id&#39;: &#39;f5ef3e30-33be-4a8c-aa27-6791469134a1&#39;,
+  &#39;modified_at&#39;: &#39;2022-02-02T15:05:26.751Z&#39;,
+  &#39;name&#39;: &#39;Credit Risk model&#39;,
+  &#39;owner&#39;: &#39;IBMid-663001S62U&#39;,
+  &#39;resource_key&#39;: &#39;8c649288-8304-4891-9551-9c28f7443c23&#39;,
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15218,10 +15723,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 <p><strong>Tip</strong>: Use <code>client.repository.ModelMetaNames.show()</code> to get the list of available props.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -15230,6 +15735,50 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>------------------------  ----  --------  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+META_PROP NAME            TYPE  REQUIRED  SCHEMA
+NAME                      str   Y
+DESCRIPTION               str   N
+INPUT_DATA_SCHEMA         list  N         {&#39;id(required)&#39;: &#39;string&#39;, &#39;fields(required)&#39;: [{&#39;name(required)&#39;: &#39;string&#39;, &#39;type(required)&#39;: &#39;string&#39;, &#39;nullable(optional)&#39;: &#39;string&#39;}]}
+TRAINING_DATA_REFERENCES  list  N         [{&#39;name(optional)&#39;: &#39;string&#39;, &#39;type(required)&#39;: &#39;string&#39;, &#39;connection(required)&#39;: {&#39;endpoint_url(required)&#39;: &#39;string&#39;, &#39;access_key_id(required)&#39;: &#39;string&#39;, &#39;secret_access_key(required)&#39;: &#39;string&#39;}, &#39;location(required)&#39;: {&#39;bucket&#39;: &#39;string&#39;, &#39;path&#39;: &#39;string&#39;}, &#39;schema(optional)&#39;: {&#39;id(required)&#39;: &#39;string&#39;, &#39;fields(required)&#39;: [{&#39;name(required)&#39;: &#39;string&#39;, &#39;type(required)&#39;: &#39;string&#39;, &#39;nullable(optional)&#39;: &#39;string&#39;}]}}]
+OUTPUT_DATA_SCHEMA        dict  N         {&#39;id(required)&#39;: &#39;string&#39;, &#39;fields(required)&#39;: [{&#39;name(required)&#39;: &#39;string&#39;, &#39;type(required)&#39;: &#39;string&#39;, &#39;nullable(optional)&#39;: &#39;string&#39;}]}
+LABEL_FIELD               str   N
+TRANSFORMED_LABEL_FIELD   str   N
+TAGS                      list  N         [&#39;string&#39;, &#39;string&#39;]
+SIZE                      dict  N         {&#39;in_memory(optional)&#39;: &#39;string&#39;, &#39;content(optional)&#39;: &#39;string&#39;}
+PIPELINE_UID              str   N
+RUNTIME_UID               str   N
+TYPE                      str   Y
+CUSTOM                    dict  N
+DOMAIN                    str   N
+HYPER_PARAMETERS          dict  N
+METRICS                   list  N
+IMPORT                    dict  N         {&#39;name(optional)&#39;: &#39;string&#39;, &#39;type(required)&#39;: &#39;string&#39;, &#39;connection(required)&#39;: {&#39;endpoint_url(required)&#39;: &#39;string&#39;, &#39;access_key_id(required)&#39;: &#39;string&#39;, &#39;secret_access_key(required)&#39;: &#39;string&#39;}, &#39;location(required)&#39;: {&#39;bucket&#39;: &#39;string&#39;, &#39;path&#39;: &#39;string&#39;}}
+TRAINING_LIB_UID          str   N
+MODEL_DEFINITION_UID      str   N
+SOFTWARE_SPEC_UID         str   N
+TF_MODEL_PARAMS           dict  N
+------------------------  ----  --------  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15246,10 +15795,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loaded_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loaded_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15263,10 +15812,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 <p>You can print for example model name to make sure that model has been loaded correctly.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">loaded_model</span><span class="p">))</span>
@@ -15275,6 +15824,27 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>&lt;class &#39;pyspark.ml.pipeline.PipelineModel&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15300,10 +15870,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 <p>In this subsection you will score <em>predict_data</em> data set.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">predict_data</span><span class="p">)</span>
@@ -15314,24 +15884,272 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>22/02/02 16:07:41 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting &#39;spark.sql.debug.maxToStringFields&#39;.
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Preview the results by calling the <em>show()</em> method on the predictions DataFrame.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>-RECORD 0----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 4                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | education            
+ LoanAmount               | 936                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 2                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 2                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 41                   
+ InstallmentPlans         | bank                 
+ Housing                  | rent                 
+ ExistingCreditsCount     | 1                    
+ Job                      | unskilled            
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 7.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 2.0                  
+ Housing_IX               | 1.0                  
+ Job_IX                   | 1.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | [2.0,3.0,7.0,0.0,... 
+ rawPrediction            | [17.8582417779453... 
+ probability              | [0.89291208889726... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+-RECORD 1----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 4                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | furniture            
+ LoanAmount               | 250                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | 1_to_4               
+ InstallmentPercent       | 2                    
+ Sex                      | female               
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 1                    
+ OwnsProperty             | real_estate          
+ Age                      | 19                   
+ InstallmentPlans         | bank                 
+ Housing                  | rent                 
+ ExistingCreditsCount     | 1                    
+ Job                      | unskilled            
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 1.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 0.0                  
+ Sex_IX                   | 1.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 2.0                  
+ InstallmentPlans_IX      | 2.0                  
+ Housing_IX               | 1.0                  
+ Job_IX                   | 1.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | [2.0,3.0,1.0,0.0,... 
+ rawPrediction            | [18.6217190953704... 
+ probability              | [0.93108595476852... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+-RECORD 2----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 7                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | car_new              
+ LoanAmount               | 3091                 
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 3                    
+ Sex                      | female               
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 2                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 28                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 2                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 0.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 1.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,1,4,5,13,1... 
+ rawPrediction            | [17.0900288758532... 
+ probability              | [0.85450144379266... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+-RECORD 3----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 9                    
+ CreditHistory            | prior_payments_de... 
+ LoanPurpose              | furniture            
+ LoanAmount               | 250                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 1                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 3                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 31                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 1                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | yes                  
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 0.0                  
+ LoanPurpose_IX           | 1.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 1.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,2,4,11,13,... 
+ rawPrediction            | [17.3233263549217... 
+ probability              | [0.86616631774608... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+-RECORD 4----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 10                   
+ CreditHistory            | prior_payments_de... 
+ LoanPurpose              | car_new              
+ LoanAmount               | 1797                 
+ ExistingSavings          | greater_1000         
+ EmploymentDuration       | 4_to_7               
+ InstallmentPercent       | 3                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 3                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 28                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 1                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 0.0                  
+ LoanPurpose_IX           | 0.0                  
+ ExistingSavings_IX       | 3.0                  
+ EmploymentDuration_IX    | 1.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,3,4,13,14,... 
+ rawPrediction            | [16.7833363666722... 
+ probability              | [0.83916681833361... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+only showing top 5 rows
+
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15340,10 +16158,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 <p>By tabulating a count, you can see which product line is the most popular.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -15352,6 +16170,33 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>+--------------+-----+
+|predictedLabel|count|
++--------------+-----+
+|No Risk       |71   |
+|Risk          |23   |
++--------------+-----+
+
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15389,14 +16234,14 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Create-online-deployment-for-published-model">Create online deployment for published model<a class="anchor-link" href="#Create-online-deployment-for-published-model">&#182;</a></h4>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model_uid</span><span class="p">,</span> 
+    <span class="n">model_id</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Credit Risk model deployment&quot;</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{}</span>
@@ -15409,10 +16254,50 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+
+#######################################################################################
+
+Synchronous deployment creation for uid: &#39;f5ef3e30-33be-4a8c-aa27-6791469134a1&#39; started
+
+#######################################################################################
+
+
+initializing
+Note: online_url is deprecated and will be removed in a future release. Use serving_urls instead.
+.
+ready
+
+
+------------------------------------------------------------------------------------------------
+Successfully finished deployment creation, deployment_uid=&#39;ed13c49f-a29c-40ae-91fe-7b23a53ac7ba&#39;
+------------------------------------------------------------------------------------------------
+
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span>
@@ -15423,6 +16308,48 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[50]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;f5ef3e30-33be-4a8c-aa27-6791469134a1&#39;},
+  &#39;custom&#39;: {},
+  &#39;deployed_asset_type&#39;: &#39;model&#39;,
+  &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;e7ed1d6c-2e89-42d7-aed5-863b972c1d2b&#39;,
+   &#39;name&#39;: &#39;S&#39;,
+   &#39;num_nodes&#39;: 1},
+  &#39;name&#39;: &#39;Credit Risk model deployment&#39;,
+  &#39;online&#39;: {},
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;,
+  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/ed13c49f-a29c-40ae-91fe-7b23a53ac7ba/predictions&#39;},
+   &#39;serving_urls&#39;: [&#39;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/ed13c49f-a29c-40ae-91fe-7b23a53ac7ba/predictions&#39;],
+   &#39;state&#39;: &#39;ready&#39;}},
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-02T15:10:02.635Z&#39;,
+  &#39;id&#39;: &#39;ed13c49f-a29c-40ae-91fe-7b23a53ac7ba&#39;,
+  &#39;modified_at&#39;: &#39;2022-02-02T15:10:02.635Z&#39;,
+  &#39;name&#39;: &#39;Credit Risk model deployment&#39;,
+  &#39;owner&#39;: &#39;IBMid-663001S62U&#39;,
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: [{&#39;id&#39;: &#39;Deprecated&#39;,
+    &#39;message&#39;: &#39;online_url is deprecated and will be removed in a future release. Use serving_urls instead.&#39;}]}}</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15430,10 +16357,10 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 Now, you can send new scoring records (new data) for which you would like to get predictions. To do that, execute the following sample code:</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CheckingStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;LoanDuration&quot;</span><span class="p">,</span> <span class="s2">&quot;CreditHistory&quot;</span><span class="p">,</span> <span class="s2">&quot;LoanPurpose&quot;</span><span class="p">,</span> <span class="s2">&quot;LoanAmount&quot;</span><span class="p">,</span> <span class="s2">&quot;ExistingSavings&quot;</span><span class="p">,</span>
@@ -15468,6 +16395,454 @@ Now, you can send new scoring records (new data) for which you would like to get
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[51]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;predictions&#39;: [{&#39;fields&#39;: [&#39;CheckingStatus&#39;,
+    &#39;LoanDuration&#39;,
+    &#39;CreditHistory&#39;,
+    &#39;LoanPurpose&#39;,
+    &#39;LoanAmount&#39;,
+    &#39;ExistingSavings&#39;,
+    &#39;EmploymentDuration&#39;,
+    &#39;InstallmentPercent&#39;,
+    &#39;Sex&#39;,
+    &#39;OthersOnLoan&#39;,
+    &#39;CurrentResidenceDuration&#39;,
+    &#39;OwnsProperty&#39;,
+    &#39;Age&#39;,
+    &#39;InstallmentPlans&#39;,
+    &#39;Housing&#39;,
+    &#39;ExistingCreditsCount&#39;,
+    &#39;Job&#39;,
+    &#39;Dependents&#39;,
+    &#39;Telephone&#39;,
+    &#39;ForeignWorker&#39;,
+    &#39;CheckingStatus_IX&#39;,
+    &#39;CreditHistory_IX&#39;,
+    &#39;LoanPurpose_IX&#39;,
+    &#39;ExistingSavings_IX&#39;,
+    &#39;EmploymentDuration_IX&#39;,
+    &#39;Sex_IX&#39;,
+    &#39;OthersOnLoan_IX&#39;,
+    &#39;OwnsProperty_IX&#39;,
+    &#39;InstallmentPlans_IX&#39;,
+    &#39;Housing_IX&#39;,
+    &#39;Job_IX&#39;,
+    &#39;Telephone_IX&#39;,
+    &#39;ForeignWorker_IX&#39;,
+    &#39;features&#39;,
+    &#39;rawPrediction&#39;,
+    &#39;probability&#39;,
+    &#39;prediction&#39;,
+    &#39;predictedLabel&#39;],
+   &#39;values&#39;: [[&#39;no_checking&#39;,
+     13,
+     &#39;credits_paid_to_date&#39;,
+     &#39;car_new&#39;,
+     1343,
+     &#39;100_to_500&#39;,
+     &#39;1_to_4&#39;,
+     2,
+     &#39;female&#39;,
+     &#39;none&#39;,
+     3,
+     &#39;savings_insurance&#39;,
+     46,
+     &#39;none&#39;,
+     &#39;own&#39;,
+     2,
+     &#39;skilled&#39;,
+     1,
+     &#39;none&#39;,
+     &#39;yes&#39;,
+     0.0,
+     1.0,
+     0.0,
+     1.0,
+     0.0,
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     [20,
+      [1, 3, 5, 13, 14, 15, 16, 17, 18, 19],
+      [1.0, 1.0, 1.0, 13.0, 1343.0, 2.0, 3.0, 46.0, 2.0, 1.0]],
+     [14.298844113312466, 5.701155886687534],
+     [0.7149422056656233, 0.2850577943343767],
+     0.0,
+     &#39;No Risk&#39;],
+    [&#39;no_checking&#39;,
+     24,
+     &#39;prior_payments_delayed&#39;,
+     &#39;furniture&#39;,
+     4567,
+     &#39;500_to_1000&#39;,
+     &#39;1_to_4&#39;,
+     4,
+     &#39;male&#39;,
+     &#39;none&#39;,
+     4,
+     &#39;savings_insurance&#39;,
+     36,
+     &#39;none&#39;,
+     &#39;free&#39;,
+     2,
+     &#39;management_self-employed&#39;,
+     1,
+     &#39;none&#39;,
+     &#39;yes&#39;,
+     0.0,
+     0.0,
+     1.0,
+     2.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     2.0,
+     2.0,
+     0.0,
+     0.0,
+     [20,
+      [2, 3, 9, 10, 13, 14, 15, 16, 17, 18, 19],
+      [1.0, 2.0, 2.0, 2.0, 24.0, 4567.0, 4.0, 4.0, 36.0, 2.0, 1.0]],
+     [13.06676919836477, 6.93323080163523],
+     [0.6533384599182386, 0.34666154008176153],
+     0.0,
+     &#39;No Risk&#39;],
+    [&#39;0_to_200&#39;,
+     26,
+     &#39;all_credits_paid_back&#39;,
+     &#39;car_new&#39;,
+     863,
+     &#39;less_100&#39;,
+     &#39;less_1&#39;,
+     2,
+     &#39;female&#39;,
+     &#39;co-applicant&#39;,
+     2,
+     &#39;real_estate&#39;,
+     38,
+     &#39;none&#39;,
+     &#39;own&#39;,
+     1,
+     &#39;skilled&#39;,
+     1,
+     &#39;none&#39;,
+     &#39;yes&#39;,
+     2.0,
+     3.0,
+     0.0,
+     0.0,
+     3.0,
+     1.0,
+     1.0,
+     2.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     [2.0,
+      3.0,
+      0.0,
+      0.0,
+      3.0,
+      1.0,
+      1.0,
+      2.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      26.0,
+      863.0,
+      2.0,
+      2.0,
+      38.0,
+      1.0,
+      1.0],
+     [17.26065854270966, 2.739341457290342],
+     [0.863032927135483, 0.1369670728645171],
+     0.0,
+     &#39;No Risk&#39;],
+    [&#39;0_to_200&#39;,
+     14,
+     &#39;no_credits&#39;,
+     &#39;car_new&#39;,
+     2368,
+     &#39;less_100&#39;,
+     &#39;1_to_4&#39;,
+     3,
+     &#39;female&#39;,
+     &#39;none&#39;,
+     3,
+     &#39;real_estate&#39;,
+     29,
+     &#39;none&#39;,
+     &#39;own&#39;,
+     1,
+     &#39;skilled&#39;,
+     1,
+     &#39;none&#39;,
+     &#39;yes&#39;,
+     2.0,
+     4.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0,
+     2.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     [20,
+      [0, 1, 5, 7, 13, 14, 15, 16, 17, 18, 19],
+      [2.0, 4.0, 1.0, 2.0, 14.0, 2368.0, 3.0, 3.0, 29.0, 1.0, 1.0]],
+     [17.80975737817367, 2.190242621826325],
+     [0.8904878689086837, 0.10951213109131627],
+     0.0,
+     &#39;No Risk&#39;],
+    [&#39;0_to_200&#39;,
+     4,
+     &#39;no_credits&#39;,
+     &#39;car_new&#39;,
+     250,
+     &#39;less_100&#39;,
+     &#39;unemployed&#39;,
+     2,
+     &#39;female&#39;,
+     &#39;none&#39;,
+     3,
+     &#39;real_estate&#39;,
+     23,
+     &#39;none&#39;,
+     &#39;rent&#39;,
+     1,
+     &#39;management_self-employed&#39;,
+     1,
+     &#39;none&#39;,
+     &#39;yes&#39;,
+     2.0,
+     4.0,
+     0.0,
+     0.0,
+     4.0,
+     1.0,
+     0.0,
+     2.0,
+     0.0,
+     1.0,
+     2.0,
+     0.0,
+     0.0,
+     [2.0,
+      4.0,
+      0.0,
+      0.0,
+      4.0,
+      1.0,
+      0.0,
+      2.0,
+      0.0,
+      1.0,
+      2.0,
+      0.0,
+      0.0,
+      4.0,
+      250.0,
+      2.0,
+      3.0,
+      23.0,
+      1.0,
+      1.0],
+     [18.38016125542918, 1.6198387445708178],
+     [0.9190080627714591, 0.08099193722854091],
+     0.0,
+     &#39;No Risk&#39;],
+    [&#39;no_checking&#39;,
+     17,
+     &#39;credits_paid_to_date&#39;,
+     &#39;car_new&#39;,
+     832,
+     &#39;100_to_500&#39;,
+     &#39;1_to_4&#39;,
+     2,
+     &#39;male&#39;,
+     &#39;none&#39;,
+     2,
+     &#39;real_estate&#39;,
+     42,
+     &#39;none&#39;,
+     &#39;own&#39;,
+     1,
+     &#39;skilled&#39;,
+     1,
+     &#39;none&#39;,
+     &#39;yes&#39;,
+     0.0,
+     1.0,
+     0.0,
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     2.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     [20,
+      [1, 3, 7, 13, 14, 15, 16, 17, 18, 19],
+      [1.0, 1.0, 2.0, 17.0, 832.0, 2.0, 2.0, 42.0, 1.0, 1.0]],
+     [16.887908351466088, 3.112091648533915],
+     [0.8443954175733043, 0.15560458242669573],
+     0.0,
+     &#39;No Risk&#39;],
+    [&#39;no_checking&#39;,
+     33,
+     &#39;outstanding_credit&#39;,
+     &#39;appliances&#39;,
+     5696,
+     &#39;unknown&#39;,
+     &#39;greater_7&#39;,
+     4,
+     &#39;male&#39;,
+     &#39;co-applicant&#39;,
+     4,
+     &#39;unknown&#39;,
+     54,
+     &#39;none&#39;,
+     &#39;free&#39;,
+     2,
+     &#39;skilled&#39;,
+     1,
+     &#39;yes&#39;,
+     &#39;yes&#39;,
+     0.0,
+     2.0,
+     4.0,
+     4.0,
+     2.0,
+     0.0,
+     1.0,
+     3.0,
+     0.0,
+     2.0,
+     0.0,
+     1.0,
+     0.0,
+     [0.0,
+      2.0,
+      4.0,
+      4.0,
+      2.0,
+      0.0,
+      1.0,
+      3.0,
+      0.0,
+      2.0,
+      0.0,
+      1.0,
+      0.0,
+      33.0,
+      5696.0,
+      4.0,
+      4.0,
+      54.0,
+      2.0,
+      1.0],
+     [2.252422102778986, 17.747577897221014],
+     [0.1126211051389493, 0.8873788948610507],
+     1.0,
+     &#39;Risk&#39;],
+    [&#39;0_to_200&#39;,
+     13,
+     &#39;prior_payments_delayed&#39;,
+     &#39;retraining&#39;,
+     1375,
+     &#39;100_to_500&#39;,
+     &#39;4_to_7&#39;,
+     3,
+     &#39;male&#39;,
+     &#39;none&#39;,
+     3,
+     &#39;real_estate&#39;,
+     37,
+     &#39;none&#39;,
+     &#39;own&#39;,
+     2,
+     &#39;management_self-employed&#39;,
+     1,
+     &#39;none&#39;,
+     &#39;yes&#39;,
+     2.0,
+     0.0,
+     8.0,
+     1.0,
+     1.0,
+     0.0,
+     0.0,
+     2.0,
+     0.0,
+     0.0,
+     2.0,
+     0.0,
+     0.0,
+     [2.0,
+      0.0,
+      8.0,
+      1.0,
+      1.0,
+      0.0,
+      0.0,
+      2.0,
+      0.0,
+      0.0,
+      2.0,
+      0.0,
+      0.0,
+      13.0,
+      1375.0,
+      3.0,
+      3.0,
+      37.0,
+      2.0,
+      1.0],
+     [15.860708756328307, 4.1392912436716935],
+     [0.7930354378164154, 0.20696456218358467],
+     0.0,
+     &#39;No Risk&#39;]]}]}</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15513,7 +16888,7 @@ Now, you can send new scoring records (new data) for which you would like to get
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Copyright © 2020, 2021 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020, 2021, 2022 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 
 </div>
 </div>

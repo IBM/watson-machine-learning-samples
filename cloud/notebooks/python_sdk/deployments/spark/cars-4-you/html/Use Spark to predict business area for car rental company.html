@@ -9,11 +9,11 @@
 
 
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
@@ -14265,7 +14265,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook contains steps and code to create a predictive model, and deploy it on WML. This notebook introduces commands for pipeline creation, model training, model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 2.4.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 3.0.</p>
 <p>You will use <strong>car_rental_training</strong> dataset.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
@@ -14294,7 +14294,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note:</strong> This notebook works correctly with kernel <code>Python 3.6 with Spark 2.4</code>, please <strong>do not change kernel</strong>.</p>
+<p><strong>Note:</strong> This notebook works correctly with kernel <code>Python 3.8 with Spark 3.0</code>, please <strong>do not change kernel</strong>.</p>
 
 </div>
 </div>
@@ -14335,7 +14335,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR PLATFORM API KEY HERE&#39;</span>
@@ -14350,7 +14350,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wml_credentials</span> <span class="o">=</span> <span class="p">{</span>
@@ -14387,7 +14387,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14455,10 +14455,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <p>To be able to interact with all resources available in Watson Machine Learning, you need to set <strong>space</strong> which you will be using.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -14469,6 +14469,29 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&#39;SUCCESS&#39;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14477,7 +14500,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -14513,7 +14536,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -14533,13 +14556,14 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
 
 <span class="n">df_data</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span>\
   <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;org.apache.spark.sql.execution.datasources.csv.CSVFileFormat&#39;</span><span class="p">)</span>\
@@ -14555,15 +14579,40 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[Row(ID=83, Gender=&#39;Female&#39;, Status=&#39;M&#39;, Children=2, Age=48.85, Customer_Status=&#39;Inactive&#39;, Car_Owner=&#39;Yes&#39;, Customer_Service=&#39;I thought the representative handled the initial situation badly.  The company was out of cars, with none coming in that day.  Then the representative tried to find us a car at another franchise.  There they were successful.&#39;, Satisfaction=0, Business_Area=&#39;Product: Availability/Variety/Size&#39;, Action=&#39;Free Upgrade&#39;),
+ Row(ID=1307, Gender=&#39;Female&#39;, Status=&#39;M&#39;, Children=0, Age=55.0, Customer_Status=&#39;Inactive&#39;, Car_Owner=&#39;No&#39;, Customer_Service=&#39;I have had a few recent rentals that have taken a very very long time, with no offer of apology.  In the most recent case, the agent subsequently offered me a car type on an upgrade coupon and then told me it was no longer available because it had just be&#39;, Satisfaction=0, Business_Area=&#39;Product: Availability/Variety/Size&#39;, Action=&#39;Voucher&#39;),
+ Row(ID=1737, Gender=&#39;Male&#39;, Status=&#39;M&#39;, Children=0, Age=42.35, Customer_Status=&#39;Inactive&#39;, Car_Owner=&#39;Yes&#39;, Customer_Service=&#34;car cost more because I didn&#39;t pay when I reserved it&#34;, Satisfaction=0, Business_Area=&#39;Product: Availability/Variety/Size&#39;, Action=&#39;Free Upgrade&#39;)]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Explore-data">Explore data<a class="anchor-link" href="#Explore-data">&#182;</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_data</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -14574,16 +14623,49 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>root
+ |-- ID: integer (nullable = true)
+ |-- Gender: string (nullable = true)
+ |-- Status: string (nullable = true)
+ |-- Children: integer (nullable = true)
+ |-- Age: double (nullable = true)
+ |-- Customer_Status: string (nullable = true)
+ |-- Car_Owner: string (nullable = true)
+ |-- Customer_Service: string (nullable = true)
+ |-- Satisfaction: integer (nullable = true)
+ |-- Business_Area: string (nullable = true)
+ |-- Action: string (nullable = true)
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>As you can see, the data contains eleven fields. <code>Business_Area</code> field is the one you would like to predict using feedback data in <code>Customer_Service</code> field.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of records: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
@@ -14594,16 +14676,37 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Number of records: 486
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Let's see distribution of target field.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_data</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Business_Area&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;Business_Area&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -14612,6 +14715,39 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>+----------------------------------+-----+
+|Business_Area                     |count|
++----------------------------------+-----+
+|Service: Accessibility            |26   |
+|Product: Functioning              |150  |
+|Service: Attitude                 |24   |
+|Service: Orders/Contracts         |32   |
+|Product: Availability/Variety/Size|42   |
+|Product: Pricing and Billing      |24   |
+|Product: Information              |8    |
+|Service: Knowledge                |180  |
++----------------------------------+-----+
+
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14633,10 +14769,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <h3 id="3.1-Prepare-data-for-model-training-and-evaluation">3.1 Prepare data for model training and evaluation<a class="anchor-link" href="#3.1-Prepare-data-for-model-training-and-evaluation">&#182;</a></h3><p>In this subsection you will split your data into: train and test data set.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;Customer_Service&quot;</span><span class="p">,</span> <span class="s2">&quot;Business_Area&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="mi">24</span><span class="p">)</span>
@@ -14648,6 +14784,28 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Number of training records: 401
+Number of testing records : 85
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14664,7 +14822,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span><span class="p">,</span> <span class="n">IndexToString</span><span class="p">,</span> <span class="n">HashingTF</span><span class="p">,</span> <span class="n">IDF</span><span class="p">,</span> <span class="n">Tokenizer</span>
@@ -14688,7 +14846,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;Customer_Service&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;words&quot;</span><span class="p">)</span>
@@ -14710,7 +14868,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">string_indexer_label</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;Business_Area&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
@@ -14730,7 +14888,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt_area</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">featuresCol</span><span class="o">=</span><span class="n">idf</span><span class="o">.</span><span class="n">getOutputCol</span><span class="p">())</span>
@@ -14750,7 +14908,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">label_converter</span> <span class="o">=</span> <span class="n">IndexToString</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="n">outputCol</span><span class="o">=</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">string_indexer_label</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span>
@@ -14764,7 +14922,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">hashing_tf</span><span class="p">,</span> <span class="n">idf</span><span class="p">,</span> <span class="n">string_indexer_label</span><span class="p">,</span> <span class="n">dt_area</span><span class="p">,</span> <span class="n">label_converter</span><span class="p">])</span>
@@ -14786,10 +14944,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <p>In this subsection you will train model and evaluate its accuracy.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
@@ -14800,10 +14958,30 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>                                                                                </pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
@@ -14815,10 +14993,39 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>+--------------------+--------------------+------------------+
+|    Customer_Service|       Business_Area|    predictedLabel|
++--------------------+--------------------+------------------+
+|I do not  underst...|Product: Pricing ...|Service: Knowledge|
+|I was penalty cha...|Product: Pricing ...|Service: Knowledge|
+|My experience was...|Product: Pricing ...|Service: Knowledge|
++--------------------+--------------------+------------------+
+only showing top 3 rows
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -14829,10 +15036,44 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>root
+ |-- ID: integer (nullable = true)
+ |-- Customer_Service: string (nullable = true)
+ |-- Business_Area: string (nullable = true)
+ |-- words: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+ |-- hash: vector (nullable = true)
+ |-- features: vector (nullable = true)
+ |-- label: double (nullable = false)
+ |-- rawPrediction: vector (nullable = true)
+ |-- probability: vector (nullable = true)
+ |-- prediction: double (nullable = false)
+ |-- predictedLabel: string (nullable = true)
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="n">predictionCol</span><span class="o">=</span><span class="s2">&quot;prediction&quot;</span><span class="p">,</span> <span class="n">metricName</span><span class="o">=</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
@@ -14844,6 +15085,27 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Accuracy = 0.54
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14867,7 +15129,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note</strong>: Apache® Spark 2.4 is required.</p>
+<p><strong>Note</strong>: Apache® Spark 3.0 is required.</p>
 
 </div>
 </div>
@@ -14884,7 +15146,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibm_boto3</span>
@@ -14931,7 +15193,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_apikey</span> <span class="o">=</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">]</span>
@@ -14955,7 +15217,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">service_endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://s3.us.cloud-object-storage.appdomain.cloud&#39;</span>
@@ -14975,7 +15237,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">auth_endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://iam.cloud.ibm.com/identity/token&#39;</span>
@@ -14995,7 +15257,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span> <span class="o">=</span> <span class="n">ibm_boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span>
@@ -15020,7 +15282,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
@@ -15036,10 +15298,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
@@ -15056,10 +15318,31 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Creating bucket &#34;car-rental-63826f2c-3c4b-4d96-8b04-9645f7827bad&#34;...
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_obj</span> <span class="o">=</span> <span class="n">cos</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -15075,15 +15358,37 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Uploading data car_rental_training_data.csv...
+car_rental_training_data.csv is uploaded.
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Create-connections-to-a-COS-bucket">Create connections to a COS bucket<a class="anchor-link" href="#Create-connections-to-a-COS-bucket">&#182;</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="s1">&#39;bluemixcloudobjectstorage&#39;</span><span class="p">)</span>
@@ -15106,6 +15411,28 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Creating connections...
+SUCCESS
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15133,7 +15460,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">conn_details</span><span class="p">)</span>
@@ -15152,7 +15479,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_data_references</span> <span class="o">=</span> <span class="p">[</span>
@@ -15175,18 +15502,18 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">saved_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s2">&quot;CARS4U - Business Area Prediction Modeljj&quot;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_2.4&quot;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_2.4&#39;</span><span class="p">),</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_3.0&quot;</span><span class="p">,</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_3.0&#39;</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TRAINING_DATA_REFERENCES</span><span class="p">:</span> <span class="n">training_data_references</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">&quot;Business_Area&quot;</span><span class="p">,</span>
     <span class="p">},</span>  
@@ -15199,19 +15526,39 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>                                                                                </pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Get saved model metadata from Watson Machine Learning.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_uid</span><span class="p">(</span><span class="n">saved_model</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">saved_model</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Id: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">published_model_id</span><span class="p">))</span>
 </pre></div>
@@ -15219,6 +15566,27 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Model Id: 0bdddd98-6030-4a85-87f3-252407756891
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15233,10 +15601,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 <p>Below you can see stored model details.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_details</span><span class="p">(</span><span class="n">published_model_id</span><span class="p">)</span>
@@ -15245,6 +15613,61 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[39]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;entity&#39;: {&#39;hybrid_pipeline_software_specs&#39;: [],
+  &#39;label_column&#39;: &#39;Business_Area&#39;,
+  &#39;pipeline&#39;: {&#39;id&#39;: &#39;00616a47-4ab0-4bc4-b71c-ce569fd436f4&#39;},
+  &#39;software_spec&#39;: {&#39;id&#39;: &#39;5c1b0ca2-4977-5c2e-9439-ffd44ea8ffe9&#39;,
+   &#39;name&#39;: &#39;spark-mllib_3.0&#39;},
+  &#39;training_data_references&#39;: [{&#39;connection&#39;: {&#39;id&#39;: &#39;d0a55118-974f-443b-b282-ba4a78e84a2a&#39;},
+    &#39;id&#39;: &#39;car-rental-training&#39;,
+    &#39;location&#39;: {&#39;bucket&#39;: &#39;car-rental-63826f2c-3c4b-4d96-8b04-9645f7827bad&#39;,
+     &#39;file_name&#39;: &#39;car_rental_training_data.csv&#39;},
+    &#39;schema&#39;: {&#39;fields&#39;: [{&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;ID&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;Customer_Service&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {&#39;modeling_role&#39;: &#39;target&#39;},
+       &#39;name&#39;: &#39;Business_Area&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;}],
+     &#39;id&#39;: &#39;1&#39;,
+     &#39;type&#39;: &#39;struct&#39;},
+    &#39;type&#39;: &#39;connection_asset&#39;}],
+  &#39;type&#39;: &#39;mllib_3.0&#39;},
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-03T12:01:23.257Z&#39;,
+  &#39;id&#39;: &#39;0bdddd98-6030-4a85-87f3-252407756891&#39;,
+  &#39;modified_at&#39;: &#39;2022-02-03T12:01:29.497Z&#39;,
+  &#39;name&#39;: &#39;CARS4U - Business Area Prediction Modeljj&#39;,
+  &#39;owner&#39;: &#39;IBMid-663001S62U&#39;,
+  &#39;resource_key&#39;: &#39;b2754141-96ec-4151-8948-fa0317edbc05&#39;,
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15259,10 +15682,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 <p>In this section you will learn how to create model deployment in the IBM Cloud and retreive information about scoring endpoint.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -15279,10 +15702,50 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+
+#######################################################################################
+
+Synchronous deployment creation for uid: &#39;0bdddd98-6030-4a85-87f3-252407756891&#39; started
+
+#######################################################################################
+
+
+initializing
+Note: online_url is deprecated and will be removed in a future release. Use serving_urls instead.
+.
+ready
+
+
+------------------------------------------------------------------------------------------------
+Successfully finished deployment creation, deployment_uid=&#39;8c5a9f70-442a-43cb-8185-0c85c12c4252&#39;
+------------------------------------------------------------------------------------------------
+
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span>
@@ -15291,6 +15754,48 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[41]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;0bdddd98-6030-4a85-87f3-252407756891&#39;},
+  &#39;custom&#39;: {},
+  &#39;deployed_asset_type&#39;: &#39;model&#39;,
+  &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;e7ed1d6c-2e89-42d7-aed5-863b972c1d2b&#39;,
+   &#39;name&#39;: &#39;S&#39;,
+   &#39;num_nodes&#39;: 1},
+  &#39;name&#39;: &#39;CARS4U - Business Area Prediction Model deployment&#39;,
+  &#39;online&#39;: {},
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;,
+  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/8c5a9f70-442a-43cb-8185-0c85c12c4252/predictions&#39;},
+   &#39;serving_urls&#39;: [&#39;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/8c5a9f70-442a-43cb-8185-0c85c12c4252/predictions&#39;],
+   &#39;state&#39;: &#39;ready&#39;}},
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-03T12:01:32.576Z&#39;,
+  &#39;id&#39;: &#39;8c5a9f70-442a-43cb-8185-0c85c12c4252&#39;,
+  &#39;modified_at&#39;: &#39;2022-02-03T12:01:32.576Z&#39;,
+  &#39;name&#39;: &#39;CARS4U - Business Area Prediction Model deployment&#39;,
+  &#39;owner&#39;: &#39;IBMid-663001S62U&#39;,
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: [{&#39;id&#39;: &#39;Deprecated&#39;,
+    &#39;message&#39;: &#39;online_url is deprecated and will be removed in a future release. Use serving_urls instead.&#39;}]}}</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15302,7 +15807,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Status&#39;</span><span class="p">,</span> <span class="s1">&#39;Children&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Customer_Status&#39;</span><span class="p">,</span><span class="s1">&#39;Car_Owner&#39;</span><span class="p">,</span> <span class="s1">&#39;Customer_Service&#39;</span><span class="p">,</span> <span class="s1">&#39;Business_Area&#39;</span><span class="p">,</span> <span class="s1">&#39;Satisfaction&#39;</span><span class="p">]</span>
@@ -15314,10 +15819,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -15331,6 +15836,183 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{
+   &#34;predictions&#34;: [
+      {
+         &#34;fields&#34;: [
+            &#34;ID&#34;,
+            &#34;Gender&#34;,
+            &#34;Status&#34;,
+            &#34;Children&#34;,
+            &#34;Age&#34;,
+            &#34;Customer_Status&#34;,
+            &#34;Car_Owner&#34;,
+            &#34;Customer_Service&#34;,
+            &#34;Business_Area&#34;,
+            &#34;Satisfaction&#34;,
+            &#34;words&#34;,
+            &#34;hash&#34;,
+            &#34;features&#34;,
+            &#34;label&#34;,
+            &#34;rawPrediction&#34;,
+            &#34;probability&#34;,
+            &#34;prediction&#34;,
+            &#34;predictedLabel&#34;
+         ],
+         &#34;values&#34;: [
+            [
+               3785,
+               &#34;Male&#34;,
+               &#34;S&#34;,
+               1.0,
+               17.0,
+               &#34;Inactive&#34;,
+               &#34;Yes&#34;,
+               &#34;The car should have been brought to us instead of us trying to find it in the lot.&#34;,
+               &#34;Product: Information&#34;,
+               0.0,
+               [
+                  &#34;the&#34;,
+                  &#34;car&#34;,
+                  &#34;should&#34;,
+                  &#34;have&#34;,
+                  &#34;been&#34;,
+                  &#34;brought&#34;,
+                  &#34;to&#34;,
+                  &#34;us&#34;,
+                  &#34;instead&#34;,
+                  &#34;of&#34;,
+                  &#34;us&#34;,
+                  &#34;trying&#34;,
+                  &#34;to&#34;,
+                  &#34;find&#34;,
+                  &#34;it&#34;,
+                  &#34;in&#34;,
+                  &#34;the&#34;,
+                  &#34;lot.&#34;
+               ],
+               [
+                  262144,
+                  [
+                     9639,
+                     21872,
+                     74079,
+                     86175,
+                     91878,
+                     99585,
+                     103838,
+                     175817,
+                     205044,
+                     218965,
+                     222453,
+                     227152,
+                     227431,
+                     229772,
+                     253475
+                  ],
+                  [
+                     1.0,
+                     2.0,
+                     1.0,
+                     1.0,
+                     1.0,
+                     1.0,
+                     2.0,
+                     1.0,
+                     2.0,
+                     1.0,
+                     1.0,
+                     1.0,
+                     1.0,
+                     1.0,
+                     1.0
+                  ]
+               ],
+               [
+                  262144,
+                  [
+                     9639,
+                     21872,
+                     74079,
+                     86175,
+                     91878,
+                     99585,
+                     103838,
+                     175817,
+                     205044,
+                     218965,
+                     222453,
+                     227152,
+                     227431,
+                     229772,
+                     253475
+                  ],
+                  [
+                     0.0,
+                     0.0,
+                     0.0,
+                     0.0,
+                     3.288401887516811,
+                     0.0,
+                     0.0,
+                     0.0,
+                     0.0,
+                     0.0,
+                     0.0,
+                     0.0,
+                     3.5985568158206505,
+                     0.0,
+                     1.8693177035739295
+                  ]
+               ],
+               7.0,
+               [
+                  127.0,
+                  91.0,
+                  14.0,
+                  21.0,
+                  21.0,
+                  13.0,
+                  17.0,
+                  6.0
+               ],
+               [
+                  0.4096774193548387,
+                  0.29354838709677417,
+                  0.04516129032258064,
+                  0.06774193548387097,
+                  0.06774193548387097,
+                  0.041935483870967745,
+                  0.054838709677419356,
+                  0.01935483870967742
+               ],
+               0.0,
+               &#34;Service: Knowledge&#34;
+            ]
+         ]
+      }
+   ]
+}
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>

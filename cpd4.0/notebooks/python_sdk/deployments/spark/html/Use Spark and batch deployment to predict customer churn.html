@@ -9,11 +9,11 @@
 
 
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
@@ -14265,7 +14265,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook contains steps and code to develop a predictive model, and start scoring new data. This notebook introduces commands for getting data and for basic data cleaning and exploration, pipeline creation, model training, model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 2.4.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 3.0.</p>
 <p>You will use a data set, <strong>Telco Customer Churn</strong>, which details anonymous customer data from a telecommunication company. Use the details of this data set to predict customer churn which is very critical to business as it's easier to retain existing customers rather than acquiring new ones.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
@@ -14310,7 +14310,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR USERNAME HERE&#39;</span>
@@ -14380,7 +14380,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14519,7 +14519,7 @@ a.anchor-link {
 <p>In this section you will load the data as an Apache® Spark DataFrame and perform a basic exploration.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
@@ -14540,6 +14540,26 @@ a.anchor-link {
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>100% [........................................................] 970456 / 970456</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14821,9 +14841,9 @@ Number of fields:  21
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Number of records for training: 5621
-Number of records for evaluation: 1263
-Number of records for prediction: 148
+<pre>Number of records for training: 5638
+Number of records for evaluation: 1261
+Number of records for prediction: 133
 </pre>
 </div>
 </div>
@@ -15026,7 +15046,7 @@ Accuracy = 0.80
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note</strong>: Apache® Spark 2.4 is required.</p>
+<p><strong>Note</strong>: Apache® Spark 3.0 is required.</p>
 
 </div>
 </div>
@@ -15050,8 +15070,8 @@ Accuracy = 0.80
     <span class="n">model</span><span class="o">=</span><span class="n">model_lr</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s1">&#39;Customer Churn model&#39;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_2.4&quot;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_2.4&#39;</span><span class="p">),</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_3.0&quot;</span><span class="p">,</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_3.0&#39;</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">&quot;Churn&quot;</span><span class="p">,</span>
     <span class="p">},</span>  
     <span class="n">training_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span> 
@@ -15075,7 +15095,7 @@ Accuracy = 0.80
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_ID</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_uid</span><span class="p">(</span><span class="n">saved_model</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_ID</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">saved_model</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Id: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">published_model_ID</span><span class="p">))</span>
 </pre></div>
@@ -15097,7 +15117,7 @@ Accuracy = 0.80
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Model Id: 7b5b7c8c-09fb-4cb2-96a6-382a70a6b309
+<pre>Model Id: 6dfdb7d0-3a4e-4a34-803a-0c75c1d4d12a
 </pre>
 </div>
 </div>
@@ -15247,141 +15267,141 @@ Accuracy = 0.80
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>-RECORD 0-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0378-XSZPU                                                                                                                            
- gender           | Male                                                                                                                                  
- SeniorCitizen    | 0                                                                                                                                     
- Partner          | Yes                                                                                                                                   
- Dependents       | No                                                                                                                                    
- tenure           | 58                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | No                                                                                                                                    
- InternetService  | DSL                                                                                                                                   
- OnlineSecurity   | Yes                                                                                                                                   
- OnlineBackup     | Yes                                                                                                                                   
- DeviceProtection | Yes                                                                                                                                   
- TechSupport      | No                                                                                                                                    
- StreamingTV      | No                                                                                                                                    
- StreamingMovies  | No                                                                                                                                    
- Contract         | One year                                                                                                                              
- PaperlessBilling | No                                                                                                                                    
- PaymentMethod    | Credit card (automatic)                                                                                                               
- MonthlyCharges   | 60.3                                                                                                                                  
- TotalCharges     | 3563.8                                                                                                                                
- Churn            | Yes                                                                                                                                   
- features         | (31,[0,4,5,6,7,10,12,14,16,17,19,21,29,30],[1.0,1.0,58.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,60.3,3563.8])                            
- label            | 1.0                                                                                                                                   
- rawPrediction    | [3.7506513342517183,-3.7506513342517183]                                                                                              
- probability      | [0.9770372476176872,0.02296275238231276]                                                                                              
- prediction       | 0.0                                                                                                                                   
--RECORD 1-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0380-NEAVX                                                                                                                            
- gender           | Male                                                                                                                                  
- SeniorCitizen    | 1                                                                                                                                     
- Partner          | No                                                                                                                                    
- Dependents       | No                                                                                                                                    
- tenure           | 34                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | No                                                                                                                                    
- InternetService  | Fiber optic                                                                                                                           
- OnlineSecurity   | No                                                                                                                                    
- OnlineBackup     | Yes                                                                                                                                   
- DeviceProtection | Yes                                                                                                                                   
- TechSupport      | No                                                                                                                                    
- StreamingTV      | Yes                                                                                                                                   
- StreamingMovies  | Yes                                                                                                                                   
- Contract         | One year                                                                                                                              
- PaperlessBilling | Yes                                                                                                                                   
- PaymentMethod    | Electronic check                                                                                                                      
- MonthlyCharges   | 99.85                                                                                                                                 
- TotalCharges     | 3343.15                                                                                                                               
- Churn            | No                                                                                                                                    
- features         | (31,[0,2,3,4,5,6,7,9,11,14,16,17,20,22,25,26,29,30],[1.0,1.0,1.0,1.0,34.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,99.85,3343.15]) 
- label            | 0.0                                                                                                                                   
- rawPrediction    | [0.4431818908777708,-0.4431818908777708]                                                                                              
- probability      | [0.6090169499297452,0.39098305007025475]                                                                                              
- prediction       | 0.0                                                                                                                                   
--RECORD 2-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0434-CSFON                                                                                                                            
- gender           | Female                                                                                                                                
- SeniorCitizen    | 0                                                                                                                                     
- Partner          | Yes                                                                                                                                   
- Dependents       | No                                                                                                                                    
- tenure           | 47                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | Yes                                                                                                                                   
- InternetService  | Fiber optic                                                                                                                           
- OnlineSecurity   | No                                                                                                                                    
- OnlineBackup     | No                                                                                                                                    
- DeviceProtection | Yes                                                                                                                                   
- TechSupport      | No                                                                                                                                    
- StreamingTV      | Yes                                                                                                                                   
- StreamingMovies  | Yes                                                                                                                                   
- Contract         | Month-to-month                                                                                                                        
- PaperlessBilling | Yes                                                                                                                                   
- PaymentMethod    | Electronic check                                                                                                                      
- MonthlyCharges   | 100.5                                                                                                                                 
- TotalCharges     | 4707.1                                                                                                                                
- Churn            | No                                                                                                                                    
- features         | (31,[1,4,5,6,8,9,11,13,16,17,20,22,23,25,26,29,30],[1.0,1.0,47.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,100.5,4707.1])       
- label            | 0.0                                                                                                                                   
- rawPrediction    | [-0.09265166369876421,0.09265166369876421]                                                                                            
- probability      | [0.4768536397079073,0.5231463602920927]                                                                                               
- prediction       | 1.0                                                                                                                                   
--RECORD 3-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0461-CVKMU                                                                                                                            
- gender           | Female                                                                                                                                
- SeniorCitizen    | 0                                                                                                                                     
- Partner          | Yes                                                                                                                                   
- Dependents       | Yes                                                                                                                                   
- tenure           | 23                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | No                                                                                                                                    
- InternetService  | Fiber optic                                                                                                                           
- OnlineSecurity   | No                                                                                                                                    
- OnlineBackup     | Yes                                                                                                                                   
- DeviceProtection | Yes                                                                                                                                   
- TechSupport      | Yes                                                                                                                                   
- StreamingTV      | No                                                                                                                                    
- StreamingMovies  | No                                                                                                                                    
- Contract         | Month-to-month                                                                                                                        
- PaperlessBilling | No                                                                                                                                    
- PaymentMethod    | Electronic check                                                                                                                      
- MonthlyCharges   | 83.8                                                                                                                                  
- TotalCharges     | 1900.25                                                                                                                               
- Churn            | Yes                                                                                                                                   
- features         | (31,[1,5,6,7,9,11,14,16,18,19,21,23,26,29,30],[1.0,23.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,83.8,1900.25])                    
- label            | 1.0                                                                                                                                   
- rawPrediction    | [0.7996444341847366,-0.7996444341847366]                                                                                              
- probability      | [0.6898984170147664,0.31010158298523366]                                                                                              
- prediction       | 0.0                                                                                                                                   
--RECORD 4-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0531-XBKMM                                                                                                                            
- gender           | Male                                                                                                                                  
- SeniorCitizen    | 0                                                                                                                                     
- Partner          | No                                                                                                                                    
- Dependents       | Yes                                                                                                                                   
- tenure           | 66                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | Yes                                                                                                                                   
- InternetService  | DSL                                                                                                                                   
- OnlineSecurity   | Yes                                                                                                                                   
- OnlineBackup     | Yes                                                                                                                                   
- DeviceProtection | No                                                                                                                                    
- TechSupport      | Yes                                                                                                                                   
- StreamingTV      | No                                                                                                                                    
- StreamingMovies  | No                                                                                                                                    
- Contract         | Two year                                                                                                                              
- PaperlessBilling | No                                                                                                                                    
- PaymentMethod    | Bank transfer (automatic)                                                                                                             
- MonthlyCharges   | 65.7                                                                                                                                  
- TotalCharges     | 4378.9                                                                                                                                
- Churn            | No                                                                                                                                    
- features         | (31,[0,3,5,6,8,10,12,14,15,18,19,21,24,28,29,30],[1.0,1.0,66.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,65.7,4378.9])              
- label            | 0.0                                                                                                                                   
- rawPrediction    | [5.008878523224736,-5.008878523224736]                                                                                                
- probability      | [0.993365916224575,0.006634083775424955]                                                                                              
- prediction       | 0.0                                                                                                                                   
+<pre>-RECORD 0-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0117-LFRMW                                                                                                                    
+ gender           | Male                                                                                                                          
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | Yes                                                                                                                           
+ Dependents       | Yes                                                                                                                           
+ tenure           | 37                                                                                                                            
+ PhoneService     | No                                                                                                                            
+ MultipleLines    | No phone service                                                                                                              
+ InternetService  | DSL                                                                                                                           
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | Yes                                                                                                                           
+ DeviceProtection | Yes                                                                                                                           
+ TechSupport      | No                                                                                                                            
+ StreamingTV      | No                                                                                                                            
+ StreamingMovies  | No                                                                                                                            
+ Contract         | Month-to-month                                                                                                                
+ PaperlessBilling | No                                                                                                                            
+ PaymentMethod    | Bank transfer (automatic)                                                                                                     
+ MonthlyCharges   | 40.2                                                                                                                          
+ TotalCharges     | 1448.8                                                                                                                        
+ Churn            | Yes                                                                                                                           
+ features         | (31,[0,5,10,12,14,16,17,19,21,23,28,29,30],[1.0,37.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,40.2,1448.8])                        
+ label            | 1.0                                                                                                                           
+ rawPrediction    | [1.9626194004455484,-1.9626194004455484]                                                                                      
+ probability      | [0.8768161521616983,0.1231838478383017]                                                                                       
+ prediction       | 0.0                                                                                                                           
+-RECORD 1-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0121-SNYRK                                                                                                                    
+ gender           | Male                                                                                                                          
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | No                                                                                                                            
+ Dependents       | No                                                                                                                            
+ tenure           | 50                                                                                                                            
+ PhoneService     | No                                                                                                                            
+ MultipleLines    | No phone service                                                                                                              
+ InternetService  | DSL                                                                                                                           
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | No                                                                                                                            
+ DeviceProtection | No                                                                                                                            
+ TechSupport      | Yes                                                                                                                           
+ StreamingTV      | No                                                                                                                            
+ StreamingMovies  | No                                                                                                                            
+ Contract         | One year                                                                                                                      
+ PaperlessBilling | Yes                                                                                                                           
+ PaymentMethod    | Mailed check                                                                                                                  
+ MonthlyCharges   | 35.4                                                                                                                          
+ TotalCharges     | 1748.9                                                                                                                        
+ Churn            | No                                                                                                                            
+ features         | (31,[0,3,4,5,10,12,13,15,18,19,21,25,27,29,30],[1.0,1.0,1.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,35.4,1748.9])            
+ label            | 0.0                                                                                                                           
+ rawPrediction    | [2.7913815222317555,-2.7913815222317555]                                                                                      
+ probability      | [0.9422083170753114,0.05779168292468861]                                                                                      
+ prediction       | 0.0                                                                                                                           
+-RECORD 2-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0314-TKOSI                                                                                                                    
+ gender           | Female                                                                                                                        
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | No                                                                                                                            
+ Dependents       | No                                                                                                                            
+ tenure           | 6                                                                                                                             
+ PhoneService     | Yes                                                                                                                           
+ MultipleLines    | No                                                                                                                            
+ InternetService  | DSL                                                                                                                           
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | Yes                                                                                                                           
+ DeviceProtection | No                                                                                                                            
+ TechSupport      | No                                                                                                                            
+ StreamingTV      | No                                                                                                                            
+ StreamingMovies  | No                                                                                                                            
+ Contract         | Month-to-month                                                                                                                
+ PaperlessBilling | No                                                                                                                            
+ PaymentMethod    | Mailed check                                                                                                                  
+ MonthlyCharges   | 55.15                                                                                                                         
+ TotalCharges     | 322.9                                                                                                                         
+ Churn            | No                                                                                                                            
+ features         | (31,[1,3,4,5,6,7,10,12,14,15,17,19,21,23,27,29,30],[1.0,1.0,1.0,6.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,55.15,322.9]) 
+ label            | 0.0                                                                                                                           
+ rawPrediction    | [1.4099918130909657,-1.4099918130909657]                                                                                      
+ probability      | [0.8037646523405363,0.1962353476594637]                                                                                       
+ prediction       | 0.0                                                                                                                           
+-RECORD 3-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0365-TRTPY                                                                                                                    
+ gender           | Female                                                                                                                        
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | No                                                                                                                            
+ Dependents       | No                                                                                                                            
+ tenure           | 37                                                                                                                            
+ PhoneService     | Yes                                                                                                                           
+ MultipleLines    | Yes                                                                                                                           
+ InternetService  | Fiber optic                                                                                                                   
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | Yes                                                                                                                           
+ DeviceProtection | Yes                                                                                                                           
+ TechSupport      | No                                                                                                                            
+ StreamingTV      | No                                                                                                                            
+ StreamingMovies  | No                                                                                                                            
+ Contract         | Month-to-month                                                                                                                
+ PaperlessBilling | No                                                                                                                            
+ PaymentMethod    | Bank transfer (automatic)                                                                                                     
+ MonthlyCharges   | 91.2                                                                                                                          
+ TotalCharges     | 3382.3                                                                                                                        
+ Churn            | No                                                                                                                            
+ features         | (31,[1,3,4,5,6,8,9,12,14,16,17,19,21,23,28,29,30],[1.0,1.0,1.0,37.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,91.2,3382.3]) 
+ label            | 0.0                                                                                                                           
+ rawPrediction    | [1.2214169620331363,-1.2214169620331363]                                                                                      
+ probability      | [0.7723128122911829,0.22768718770881713]                                                                                      
+ prediction       | 0.0                                                                                                                           
+-RECORD 4-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0384-LPITE                                                                                                                    
+ gender           | Male                                                                                                                          
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | No                                                                                                                            
+ Dependents       | No                                                                                                                            
+ tenure           | 40                                                                                                                            
+ PhoneService     | No                                                                                                                            
+ MultipleLines    | No phone service                                                                                                              
+ InternetService  | DSL                                                                                                                           
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | Yes                                                                                                                           
+ DeviceProtection | Yes                                                                                                                           
+ TechSupport      | No                                                                                                                            
+ StreamingTV      | Yes                                                                                                                           
+ StreamingMovies  | Yes                                                                                                                           
+ Contract         | One year                                                                                                                      
+ PaperlessBilling | No                                                                                                                            
+ PaymentMethod    | Credit card (automatic)                                                                                                       
+ MonthlyCharges   | 62.05                                                                                                                         
+ TotalCharges     | 2511.55                                                                                                                       
+ Churn            | No                                                                                                                            
+ features         | (31,[0,3,4,5,10,12,14,16,17,20,22,29,30],[1.0,1.0,1.0,40.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,62.05,2511.55])                        
+ label            | 0.0                                                                                                                           
+ rawPrediction    | [1.9757055839213993,-1.9757055839213993]                                                                                      
+ probability      | [0.8782226299073993,0.12177737009260067]                                                                                      
+ prediction       | 0.0                                                                                                                           
 only showing top 5 rows
 
 </pre>
@@ -15427,8 +15447,8 @@ only showing top 5 rows
 <pre>+----------+-----+
 |prediction|count|
 +----------+-----+
-|0.0       |114  |
-|1.0       |34   |
+|0.0       |104  |
+|1.0       |29   |
 +----------+-----+
 
 </pre>
@@ -15468,7 +15488,7 @@ For more information about REST APIs, see the <a href="https://cloud.ibm.com/api
 <p>First, download scoring data into notebook's filesystem</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
@@ -15489,6 +15509,26 @@ For more information about REST APIs, see the <a href="https://cloud.ibm.com/api
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>100% [............................................................] 1643 / 1643</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15547,7 +15587,7 @@ Execute the following sample code that uses the <strong>published_model_ID</stro
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;7b5b7c8c-09fb-4cb2-96a6-382a70a6b309&#39; started
+Synchronous deployment creation for uid: &#39;6dfdb7d0-3a4e-4a34-803a-0c75c1d4d12a&#39; started
 
 #######################################################################################
 
@@ -15556,7 +15596,7 @@ ready.
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400f-87ca-6e168e13c5f2&#39;
+Successfully finished deployment creation, deployment_uid=&#39;67247040-4f16-43c8-b9e7-4b45aa01e427&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -15578,10 +15618,10 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15621,7 +15661,7 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15682,7 +15722,7 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -15698,7 +15738,7 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">job_payload_ref</span> <span class="o">=</span> <span class="p">{</span>
@@ -15719,10 +15759,10 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">job_payload_ref</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">job_payload_ref</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15740,7 +15780,7 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">job_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_uid</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
@@ -15757,10 +15797,10 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 <p>You can also list all jobs in your space.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">list_jobs</span><span class="p">()</span>
@@ -15769,6 +15809,33 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>------------------------------------  ---------  ------------------------  ------------------------------------
+JOB-UID                               STATE      CREATED                   DEPLOYMENT-ID
+ae7716c4-d8f0-4b46-829e-b61ae77b0559  queued     2022-02-03T12:22:15.122Z  67247040-4f16-43c8-b9e7-4b45aa01e427
+4f565247-bf47-45ef-82c0-b6d2140e52d2  completed  2022-02-02T13:52:44.823Z  ed305dab-6e70-4f00-a144-7de6122f8dee
+79cb30e4-57b2-4383-8e51-034615465df4  failed     2022-02-02T13:51:36.835Z  ed305dab-6e70-4f00-a144-7de6122f8dee
+5294fb65-22ac-4682-9a87-46668081431b  completed  2022-01-31T11:16:03.939Z  c51f0d13-ed0f-41df-b5cb-781221105680
+------------------------------------  ---------  ------------------------  ------------------------------------
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15780,7 +15847,7 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_details</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
@@ -15799,15 +15866,15 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[37]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[42]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;deployment&#39;: {&#39;id&#39;: &#39;82f2f0e9-c0e5-400f-87ca-6e168e13c5f2&#39;},
-  &#39;platform_job&#39;: {&#39;job_id&#39;: &#39;d65691cd-1185-4d3f-bfa5-da2e90840b92&#39;,
-   &#39;run_id&#39;: &#39;b1e8309d-12a5-46d4-8aa9-4cf6009f8430&#39;},
+<pre>{&#39;entity&#39;: {&#39;deployment&#39;: {&#39;id&#39;: &#39;67247040-4f16-43c8-b9e7-4b45aa01e427&#39;},
+  &#39;platform_job&#39;: {&#39;job_id&#39;: &#39;e22ad116-ac98-4cdb-8654-eafb7b34e509&#39;,
+   &#39;run_id&#39;: &#39;948d4cf9-24a4-4f2c-8fcf-528b1f85d873&#39;},
   &#39;scoring&#39;: {&#39;input_data&#39;: [{&#39;fields&#39;: [&#39;customerID&#39;,
       &#39;gender&#39;,
       &#39;SeniorCitizen&#39;,
@@ -15853,10 +15920,10 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
        &#39;Yes&#39;,
        1.0]]}],
    &#39;status&#39;: {&#39;completed_at&#39;: &#39;&#39;, &#39;running_at&#39;: &#39;&#39;, &#39;state&#39;: &#39;queued&#39;}}},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2020-12-08T12:12:22.131Z&#39;,
-  &#39;id&#39;: &#39;4e6b1c95-85ec-4aaf-85dc-606505b08087&#39;,
-  &#39;name&#39;: &#39;name_1a3e88eb-d4fe-432c-a783-ba8c92058f3f&#39;,
-  &#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;}}</pre>
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-03T12:22:15.122Z&#39;,
+  &#39;id&#39;: &#39;ae7716c4-d8f0-4b46-829e-b61ae77b0559&#39;,
+  &#39;name&#39;: &#39;name_6184a553-5758-4602-97c3-31d8f0747951&#39;,
+  &#39;space_id&#39;: &#39;779349f5-b119-496d-9a2b-3fcd6df73f91&#39;}}</pre>
 </div>
 
 </div>
@@ -15876,10 +15943,10 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 <p>Here you can check status of your batch scoring. When status of Spark job is <code>completed</code> the results will be written to scoring_output file in Object Storage.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -15902,6 +15969,32 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre> Current state: queued
+ Current state: queued
+ Current state: queued
+ Current state: queued
+ Current state: completed
+{&#39;entity&#39;: {&#39;deployment&#39;: {&#39;id&#39;: &#39;67247040-4f16-43c8-b9e7-4b45aa01e427&#39;}, &#39;platform_job&#39;: {&#39;job_id&#39;: &#39;e22ad116-ac98-4cdb-8654-eafb7b34e509&#39;, &#39;run_id&#39;: &#39;948d4cf9-24a4-4f2c-8fcf-528b1f85d873&#39;}, &#39;scoring&#39;: {&#39;input_data&#39;: [{&#39;fields&#39;: [&#39;customerID&#39;, &#39;gender&#39;, &#39;SeniorCitizen&#39;, &#39;Partner&#39;, &#39;Dependents&#39;, &#39;tenure&#39;, &#39;PhoneService&#39;, &#39;MultipleLines&#39;, &#39;InternetService&#39;, &#39;OnlineSecurity&#39;, &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;, &#39;StreamingMovies&#39;, &#39;Contract&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;, &#39;MonthlyCharges&#39;, &#39;TotalCharges&#39;, &#39;Churn&#39;, &#39;SampleWeight&#39;], &#39;values&#39;: [[&#39;9237-HQITU&#39;, &#39;Female&#39;, 0, &#39;No&#39;, &#39;No&#39;, 2, &#39;Yes&#39;, &#39;No&#39;, &#39;Fiber optic&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;Month-to-month&#39;, &#39;Yes&#39;, &#39;Electronic check&#39;, 70.7, 151.65, &#39;Yes&#39;, 1.0]]}], &#39;predictions&#39;: [{&#39;fields&#39;: [&#39;customerID&#39;, &#39;gender&#39;, &#39;SeniorCitizen&#39;, &#39;Partner&#39;, &#39;Dependents&#39;, &#39;tenure&#39;, &#39;PhoneService&#39;, &#39;MultipleLines&#39;, &#39;InternetService&#39;, &#39;OnlineSecurity&#39;, &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;, &#39;StreamingMovies&#39;, &#39;Contract&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;, &#39;MonthlyCharges&#39;, &#39;TotalCharges&#39;, &#39;Churn&#39;, &#39;SampleWeight&#39;, &#39;features&#39;, &#39;label&#39;, &#39;rawPrediction&#39;, &#39;probability&#39;, &#39;prediction&#39;], &#39;values&#39;: [[&#39;9237-HQITU&#39;, &#39;Female&#39;, 0, &#39;No&#39;, &#39;No&#39;, 2, &#39;Yes&#39;, &#39;No&#39;, &#39;Fiber optic&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;Month-to-month&#39;, &#39;Yes&#39;, &#39;Electronic check&#39;, 70.7, 151.65, &#39;Yes&#39;, 1.0, [31, [1, 3, 4, 5, 6, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 29, 30], [1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 70.7, 151.65]], 1.0, [-0.7082988149434561, 0.7082988149434561], [0.32997484880952394, 0.6700251511904761], 1.0]]}], &#39;status&#39;: {&#39;completed_at&#39;: &#39;2022-02-03T12:23:09.000Z&#39;, &#39;running_at&#39;: &#39;2022-02-03T12:23:08.000Z&#39;, &#39;state&#39;: &#39;completed&#39;}}}, &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-03T12:22:15.122Z&#39;, &#39;id&#39;: &#39;ae7716c4-d8f0-4b46-829e-b61ae77b0559&#39;, &#39;modified_at&#39;: &#39;2022-02-03T12:23:09.611Z&#39;, &#39;name&#39;: &#39;name_6184a553-5758-4602-97c3-31d8f0747951&#39;, &#39;space_id&#39;: &#39;779349f5-b119-496d-9a2b-3fcd6df73f91&#39;}}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15910,7 +16003,7 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
@@ -15938,11 +16031,11 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 <pre>{
   &#34;entity&#34;: {
     &#34;deployment&#34;: {
-      &#34;id&#34;: &#34;82f2f0e9-c0e5-400f-87ca-6e168e13c5f2&#34;
+      &#34;id&#34;: &#34;67247040-4f16-43c8-b9e7-4b45aa01e427&#34;
     },
     &#34;platform_job&#34;: {
-      &#34;job_id&#34;: &#34;d65691cd-1185-4d3f-bfa5-da2e90840b92&#34;,
-      &#34;run_id&#34;: &#34;b1e8309d-12a5-46d4-8aa9-4cf6009f8430&#34;
+      &#34;job_id&#34;: &#34;e22ad116-ac98-4cdb-8654-eafb7b34e509&#34;,
+      &#34;run_id&#34;: &#34;948d4cf9-24a4-4f2c-8fcf-528b1f85d873&#34;
     },
     &#34;scoring&#34;: {
       &#34;input_data&#34;: [
@@ -16099,12 +16192,12 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
               ],
               1.0,
               [
-                -0.6714665069908214,
-                0.6714665069908214
+                -0.7082988149434561,
+                0.7082988149434561
               ],
               [
-                0.3381685431624339,
-                0.661831456837566
+                0.32997484880952394,
+                0.6700251511904761
               ],
               1.0
             ]
@@ -16112,18 +16205,18 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
         }
       ],
       &#34;status&#34;: {
-        &#34;completed_at&#34;: &#34;2020-12-08T12:13:13.000Z&#34;,
-        &#34;running_at&#34;: &#34;2020-12-08T12:13:12.000Z&#34;,
+        &#34;completed_at&#34;: &#34;2022-02-03T12:23:09.000Z&#34;,
+        &#34;running_at&#34;: &#34;2022-02-03T12:23:08.000Z&#34;,
         &#34;state&#34;: &#34;completed&#34;
       }
     }
   },
   &#34;metadata&#34;: {
-    &#34;created_at&#34;: &#34;2020-12-08T12:12:22.131Z&#34;,
-    &#34;id&#34;: &#34;4e6b1c95-85ec-4aaf-85dc-606505b08087&#34;,
-    &#34;modified_at&#34;: &#34;2020-12-08T12:13:14.060Z&#34;,
-    &#34;name&#34;: &#34;name_1a3e88eb-d4fe-432c-a783-ba8c92058f3f&#34;,
-    &#34;space_id&#34;: &#34;83b00166-9047-4159-b777-83dcb498e7ab&#34;
+    &#34;created_at&#34;: &#34;2022-02-03T12:22:15.122Z&#34;,
+    &#34;id&#34;: &#34;ae7716c4-d8f0-4b46-829e-b61ae77b0559&#34;,
+    &#34;modified_at&#34;: &#34;2022-02-03T12:23:09.611Z&#34;,
+    &#34;name&#34;: &#34;name_6184a553-5758-4602-97c3-31d8f0747951&#34;,
+    &#34;space_id&#34;: &#34;779349f5-b119-496d-9a2b-3fcd6df73f91&#34;
   }
 }
 </pre>
@@ -16179,7 +16272,7 @@ Successfully finished deployment creation, deployment_uid=&#39;82f2f0e9-c0e5-400
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Copyright © 2020, 2021 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020, 2021, 2022 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 
 </div>
 </div>

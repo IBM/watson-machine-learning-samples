@@ -3,9 +3,9 @@
   "project_id": "...",
   "space_id": "...",
   "description": "Classifies person who take credit in bank to good or bad credit risk group.",
-  "type": "mllib_2.4",
+  "type": "mllib_3.0",
   "software_spec": {
-    "id": "390d21f8-e58b-4fac-9c55-d7ceda621326"
+    "id": "5c1b0ca2-4977-5c2e-9439-ffd44ea8ffe9"
   },
   "pipeline": {
     "id": "...",
@@ -279,14 +279,6 @@
             "name": "ForeignWorker",
             "nullable": true,
             "type": "string"
-          },
-          {
-            "metadata": {
-              "modeling_role": "target"
-            },
-            "name": "Risk",
-            "nullable": true,
-            "type": "string"
           }
         ]
       }
@@ -294,6 +286,7 @@
     "output": [
       {
         "id": "out_1",
+        "type": "struct",
         "fields": [
           {
             "metadata": {
@@ -474,11 +467,7 @@
             },
             "name": "probability",
             "nullable": true,
-            "type": {
-              "containsNull": true,
-              "elementType": "double",
-              "type": "array"
-            }
+            "type": "[double]"
           },
           {
             "metadata": {},

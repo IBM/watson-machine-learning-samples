@@ -9,11 +9,11 @@
 
 
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
@@ -14265,7 +14265,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook introduces commands for model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 2.4.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 3.0.</p>
 <p>You will use <strong>German Credit Risk</strong> dataset.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
@@ -14308,7 +14308,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR USERNAME HERE&#39;</span>
@@ -14378,7 +14378,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14448,7 +14448,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -14467,7 +14467,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
 
 
@@ -14490,7 +14490,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -14523,10 +14523,10 @@ a.anchor-link {
 <p>The csv file for German Credit Risk is available on the same repository as this notebook. Load the file to Apache® Spark DataFrame using code below.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -14546,10 +14546,30 @@ a.anchor-link {
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>100% [........................................................] 689222 / 689222</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
@@ -14580,7 +14600,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_data</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -14643,7 +14663,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_data</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -14789,7 +14809,7 @@ only showing top 5 rows
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of records: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
@@ -14836,7 +14856,7 @@ only showing top 5 rows
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">splitted_data</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span> <span class="mi">24</span><span class="p">)</span>
@@ -14866,9 +14886,9 @@ only showing top 5 rows
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Number of training records: 4016
-Number of testing records : 881
-Number of prediction records : 103
+<pre>Number of training records: 4005
+Number of testing records : 901
+Number of prediction records : 94
 </pre>
 </div>
 </div>
@@ -14903,7 +14923,7 @@ Number of prediction records : 103
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note</strong>: Apache® Spark 2.4 is required.</p>
+<p><strong>Note</strong>: Apache® Spark 3.0 is required.</p>
 
 </div>
 </div>
@@ -14923,10 +14943,10 @@ Number of prediction records : 103
 <p><strong>Download pipeline and model archives</strong></p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -14949,6 +14969,26 @@ Number of prediction records : 103
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>100% [..........................................................] 41564 / 41564</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14964,7 +15004,7 @@ Number of prediction records : 103
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_data_references</span> <span class="o">=</span> <span class="p">[</span>
@@ -15117,15 +15157,15 @@ Number of prediction records : 103
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model_filename</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s1">&#39;Credit Risk model&#39;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_2.4&quot;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_2.4&#39;</span><span class="p">),</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_3.0&quot;</span><span class="p">,</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_3.0&#39;</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TRAINING_DATA_REFERENCES</span><span class="p">:</span> <span class="n">training_data_references</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">&quot;Risk&quot;</span><span class="p">,</span>
     <span class="p">},</span> 
@@ -15141,10 +15181,10 @@ Number of prediction records : 103
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_uid</span><span class="p">(</span><span class="n">published_model_details</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">published_model_details</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
 </pre></div>
 
@@ -15165,7 +15205,7 @@ Number of prediction records : 103
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>e96692a9-cc64-408d-9b1c-05da622c508a
+<pre>9ceb0c03-9008-4b0c-b144-e00cf138d0c0
 </pre>
 </div>
 </div>
@@ -15174,10 +15214,10 @@ Number of prediction records : 103
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_details</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
@@ -15186,6 +15226,117 @@ Number of prediction records : 103
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;entity&#39;: {&#39;hybrid_pipeline_software_specs&#39;: [],
+  &#39;label_column&#39;: &#39;Risk&#39;,
+  &#39;software_spec&#39;: {&#39;id&#39;: &#39;5c1b0ca2-4977-5c2e-9439-ffd44ea8ffe9&#39;,
+   &#39;name&#39;: &#39;spark-mllib_3.0&#39;},
+  &#39;training_data_references&#39;: [{&#39;connection&#39;: {},
+    &#39;location&#39;: {},
+    &#39;schema&#39;: {&#39;fields&#39;: [{&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;CheckingStatus&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;LoanDuration&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;CreditHistory&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;LoanPurpose&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;LoanAmount&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;ExistingSavings&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;EmploymentDuration&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;InstallmentPercent&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {}, &#39;name&#39;: &#39;Sex&#39;, &#39;nullable&#39;: True, &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;OthersOnLoan&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;CurrentResidenceDuration&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;OwnsProperty&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {}, &#39;name&#39;: &#39;Age&#39;, &#39;nullable&#39;: True, &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;InstallmentPlans&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {}, &#39;name&#39;: &#39;Housing&#39;, &#39;nullable&#39;: True, &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;ExistingCreditsCount&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {}, &#39;name&#39;: &#39;Job&#39;, &#39;nullable&#39;: True, &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;Dependents&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;integer&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;Telephone&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {},
+       &#39;name&#39;: &#39;ForeignWorker&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;},
+      {&#39;metadata&#39;: {&#39;modeling_role&#39;: &#39;target&#39;},
+       &#39;name&#39;: &#39;Risk&#39;,
+       &#39;nullable&#39;: True,
+       &#39;type&#39;: &#39;string&#39;}],
+     &#39;id&#39;: &#39;training_schema&#39;},
+    &#39;type&#39;: &#39;fs&#39;}],
+  &#39;type&#39;: &#39;mllib_3.0&#39;},
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-03T12:26:46.178Z&#39;,
+  &#39;id&#39;: &#39;9ceb0c03-9008-4b0c-b144-e00cf138d0c0&#39;,
+  &#39;modified_at&#39;: &#39;2022-02-03T12:26:49.069Z&#39;,
+  &#39;name&#39;: &#39;Credit Risk model&#39;,
+  &#39;owner&#39;: &#39;1000330999&#39;,
+  &#39;resource_key&#39;: &#39;79db797c-a37c-4e24-946b-55fea4c99874&#39;,
+  &#39;space_id&#39;: &#39;779349f5-b119-496d-9a2b-3fcd6df73f91&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15273,7 +15424,7 @@ TF_MODEL_PARAMS           dict  N
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loaded_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
@@ -15293,7 +15444,7 @@ TF_MODEL_PARAMS           dict  N
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">loaded_model</span><span class="p">))</span>
@@ -15351,7 +15502,7 @@ TF_MODEL_PARAMS           dict  N
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">predict_data</span><span class="p">)</span>
@@ -15371,10 +15522,10 @@ TF_MODEL_PARAMS           dict  N
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15394,15 +15545,211 @@ TF_MODEL_PARAMS           dict  N
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>+--------------+------------+--------------------+-----------+----------+---------------+------------------+------------------+------+------------+------------------------+------------+---+----------------+-------+--------------------+----------+----------+---------+-------------+-------+-----------------+----------------+--------------+------------------+---------------------+------+---------------+---------------+-------------------+----------+------+------------+----------------+-----+--------------------+--------------------+--------------------+----------+--------------+
-|CheckingStatus|LoanDuration|       CreditHistory|LoanPurpose|LoanAmount|ExistingSavings|EmploymentDuration|InstallmentPercent|   Sex|OthersOnLoan|CurrentResidenceDuration|OwnsProperty|Age|InstallmentPlans|Housing|ExistingCreditsCount|       Job|Dependents|Telephone|ForeignWorker|   Risk|CheckingStatus_IX|CreditHistory_IX|LoanPurpose_IX|ExistingSavings_IX|EmploymentDuration_IX|Sex_IX|OthersOnLoan_IX|OwnsProperty_IX|InstallmentPlans_IX|Housing_IX|Job_IX|Telephone_IX|ForeignWorker_IX|label|            features|       rawPrediction|         probability|prediction|predictedLabel|
-+--------------+------------+--------------------+-----------+----------+---------------+------------------+------------------+------+------------+------------------------+------------+---+----------------+-------+--------------------+----------+----------+---------+-------------+-------+-----------------+----------------+--------------+------------------+---------------------+------+---------------+---------------+-------------------+----------+------+------------+----------------+-----+--------------------+--------------------+--------------------+----------+--------------+
-|      0_to_200|          10|credits_paid_to_date|    repairs|      2224|       less_100|            4_to_7|                 3|  male|        none|                       3|   car_other| 29|            none|    own|                   1|   skilled|         1|     none|          yes|   Risk|              2.0|             1.0|           5.0|               0.0|                  1.0|   0.0|            0.0|            1.0|                0.0|       0.0|   0.0|         0.0|             0.0|  1.0|(20,[0,1,2,4,7,13...|[16.7095445704993...|[0.83547722852496...|       0.0|       No Risk|
-|      0_to_200|          10|          no_credits|    car_new|       250|       less_100|            less_1|                 2|female|        none|                       2| real_estate| 22|            none|    own|                   1|   skilled|         1|     none|          yes|No Risk|              2.0|             4.0|           0.0|               0.0|                  3.0|   1.0|            0.0|            2.0|                0.0|       0.0|   0.0|         0.0|             0.0|  0.0|(20,[0,1,4,5,7,13...|[18.7487477403696...|[0.93743738701848...|       0.0|       No Risk|
-|      0_to_200|          12|credits_paid_to_date|   car_used|       250|   greater_1000|            1_to_4|                 2|female|        none|                       2| real_estate| 24|            bank|   rent|                   1|unemployed|         1|     none|          yes|No Risk|              2.0|             1.0|           2.0|               3.0|                  0.0|   1.0|            0.0|            2.0|                2.0|       1.0|   3.0|         0.0|             0.0|  0.0|[2.0,1.0,2.0,3.0,...|[17.8941841848564...|[0.89470920924282...|       0.0|       No Risk|
-|      0_to_200|          13|all_credits_paid_...|    car_new|       250|       less_100|            less_1|                 1|  male|        none|                       2| real_estate| 25|          stores|   rent|                   1|   skilled|         1|     none|          yes|No Risk|              2.0|             3.0|           0.0|               0.0|                  3.0|   0.0|            0.0|            2.0|                1.0|       1.0|   0.0|         0.0|             0.0|  0.0|[2.0,3.0,0.0,0.0,...|[18.7487477403696...|[0.93743738701848...|       0.0|       No Risk|
-|      0_to_200|          13|prior_payments_de...|   radio_tv|      2453|       less_100|            4_to_7|                 3|  male|        none|                       2|   car_other| 39|            none|    own|                   2|   skilled|         1|     none|          yes|No Risk|              2.0|             0.0|           3.0|               0.0|                  1.0|   0.0|            0.0|            1.0|                0.0|       0.0|   0.0|         0.0|             0.0|  0.0|(20,[0,2,4,7,13,1...|[16.1402858904161...|[0.80701429452080...|       0.0|       No Risk|
-+--------------+------------+--------------------+-----------+----------+---------------+------------------+------------------+------+------------+------------------------+------------+---+----------------+-------+--------------------+----------+----------+---------+-------------+-------+-----------------+----------------+--------------+------------------+---------------------+------+---------------+---------------+-------------------+----------+------+------------+----------------+-----+--------------------+--------------------+--------------------+----------+--------------+
+<pre>-RECORD 0----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 4                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | education            
+ LoanAmount               | 936                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 2                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 2                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 41                   
+ InstallmentPlans         | bank                 
+ Housing                  | rent                 
+ ExistingCreditsCount     | 1                    
+ Job                      | unskilled            
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 7.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 2.0                  
+ Housing_IX               | 1.0                  
+ Job_IX                   | 1.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | [2.0,3.0,7.0,0.0,... 
+ rawPrediction            | [17.8582417779453... 
+ probability              | [0.89291208889726... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+-RECORD 1----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 4                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | furniture            
+ LoanAmount               | 250                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | 1_to_4               
+ InstallmentPercent       | 2                    
+ Sex                      | female               
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 1                    
+ OwnsProperty             | real_estate          
+ Age                      | 19                   
+ InstallmentPlans         | bank                 
+ Housing                  | rent                 
+ ExistingCreditsCount     | 1                    
+ Job                      | unskilled            
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 1.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 0.0                  
+ Sex_IX                   | 1.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 2.0                  
+ InstallmentPlans_IX      | 2.0                  
+ Housing_IX               | 1.0                  
+ Job_IX                   | 1.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | [2.0,3.0,1.0,0.0,... 
+ rawPrediction            | [18.6217190953704... 
+ probability              | [0.93108595476852... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+-RECORD 2----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 7                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | car_new              
+ LoanAmount               | 3091                 
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 3                    
+ Sex                      | female               
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 2                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 28                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 2                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 0.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 1.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,1,4,5,13,1... 
+ rawPrediction            | [17.0900288758532... 
+ probability              | [0.85450144379266... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+-RECORD 3----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 9                    
+ CreditHistory            | prior_payments_de... 
+ LoanPurpose              | furniture            
+ LoanAmount               | 250                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 1                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 3                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 31                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 1                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | yes                  
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 0.0                  
+ LoanPurpose_IX           | 1.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 1.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,2,4,11,13,... 
+ rawPrediction            | [17.3233263549217... 
+ probability              | [0.86616631774608... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
+-RECORD 4----------------------------------------
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 10                   
+ CreditHistory            | prior_payments_de... 
+ LoanPurpose              | car_new              
+ LoanAmount               | 1797                 
+ ExistingSavings          | greater_1000         
+ EmploymentDuration       | 4_to_7               
+ InstallmentPercent       | 3                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 3                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 28                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 1                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 0.0                  
+ LoanPurpose_IX           | 0.0                  
+ ExistingSavings_IX       | 3.0                  
+ EmploymentDuration_IX    | 1.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,3,4,13,14,... 
+ rawPrediction            | [16.7833363666722... 
+ probability              | [0.83916681833361... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
 only showing top 5 rows
 
 </pre>
@@ -15422,7 +15769,7 @@ only showing top 5 rows
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;predictedLabel&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -15448,8 +15795,8 @@ only showing top 5 rows
 <pre>+--------------+-----+
 |predictedLabel|count|
 +--------------+-----+
-|No Risk       |82   |
-|Risk          |21   |
+|No Risk       |71   |
+|Risk          |23   |
 +--------------+-----+
 
 </pre>
@@ -15498,7 +15845,7 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -15531,17 +15878,19 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;e96692a9-cc64-408d-9b1c-05da622c508a&#39; started
+Synchronous deployment creation for uid: &#39;9ceb0c03-9008-4b0c-b144-e00cf138d0c0&#39; started
 
 #######################################################################################
 
 
-initializing.
+initializing
+Note: online_url is deprecated and will be removed in a future release. Use serving_urls instead.
+...
 ready
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;3f22f536-f395-4d03-a08f-6311765a0e42&#39;
+Successfully finished deployment creation, deployment_uid=&#39;b05684ff-385e-4fc0-a1ea-9849b536c66a&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -15556,7 +15905,7 @@ Successfully finished deployment creation, deployment_uid=&#39;3f22f536-f395-4d0
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span>
@@ -15575,27 +15924,32 @@ Successfully finished deployment creation, deployment_uid=&#39;3f22f536-f395-4d0
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;e96692a9-cc64-408d-9b1c-05da622c508a&#39;},
+<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;9ceb0c03-9008-4b0c-b144-e00cf138d0c0&#39;},
   &#39;custom&#39;: {},
   &#39;deployed_asset_type&#39;: &#39;model&#39;,
-  &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;Not_Applicable&#39;, &#39;name&#39;: &#39;S&#39;, &#39;num_nodes&#39;: 1},
+  &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;e7ed1d6c-2e89-42d7-aed5-863b972c1d2b&#39;,
+   &#39;name&#39;: &#39;S&#39;,
+   &#39;num_nodes&#39;: 1},
   &#39;name&#39;: &#39;Credit Risk model deployment&#39;,
   &#39;online&#39;: {},
-  &#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;,
-  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://wmlgmc-cpd-wmlgmc.apps.wmlautoai.cp.fyre.ibm.com/ml/v4/deployments/3f22f536-f395-4d03-a08f-6311765a0e42/predictions&#39;},
+  &#39;space_id&#39;: &#39;779349f5-b119-496d-9a2b-3fcd6df73f91&#39;,
+  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://cpd-zen.apps.ocp46wmlautoaix2.cp.fyre.ibm.com/ml/v4/deployments/b05684ff-385e-4fc0-a1ea-9849b536c66a/predictions&#39;},
+   &#39;serving_urls&#39;: [&#39;https://cpd-zen.apps.ocp46wmlautoaix2.cp.fyre.ibm.com/ml/v4/deployments/b05684ff-385e-4fc0-a1ea-9849b536c66a/predictions&#39;],
    &#39;state&#39;: &#39;ready&#39;}},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2020-12-08T12:12:57.722Z&#39;,
-  &#39;id&#39;: &#39;3f22f536-f395-4d03-a08f-6311765a0e42&#39;,
-  &#39;modified_at&#39;: &#39;2020-12-08T12:12:57.722Z&#39;,
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-03T12:29:04.824Z&#39;,
+  &#39;id&#39;: &#39;b05684ff-385e-4fc0-a1ea-9849b536c66a&#39;,
+  &#39;modified_at&#39;: &#39;2022-02-03T12:29:04.824Z&#39;,
   &#39;name&#39;: &#39;Credit Risk model deployment&#39;,
   &#39;owner&#39;: &#39;1000330999&#39;,
-  &#39;space_id&#39;: &#39;83b00166-9047-4159-b777-83dcb498e7ab&#39;}}</pre>
+  &#39;space_id&#39;: &#39;779349f5-b119-496d-9a2b-3fcd6df73f91&#39;},
+ &#39;system&#39;: {&#39;warnings&#39;: [{&#39;id&#39;: &#39;Deprecated&#39;,
+    &#39;message&#39;: &#39;online_url is deprecated and will be removed in a future release. Use serving_urls instead.&#39;}]}}</pre>
 </div>
 
 </div>
@@ -15614,7 +15968,7 @@ Now, you can send new scoring records (new data) for which you would like to get
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;CheckingStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;LoanDuration&quot;</span><span class="p">,</span> <span class="s2">&quot;CreditHistory&quot;</span><span class="p">,</span> <span class="s2">&quot;LoanPurpose&quot;</span><span class="p">,</span> <span class="s2">&quot;LoanAmount&quot;</span><span class="p">,</span> <span class="s2">&quot;ExistingSavings&quot;</span><span class="p">,</span>
@@ -15659,7 +16013,7 @@ Now, you can send new scoring records (new data) for which you would like to get
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 
 
 
@@ -15739,8 +16093,8 @@ Now, you can send new scoring records (new data) for which you would like to get
      [20,
       [1, 3, 5, 13, 14, 15, 16, 17, 18, 19],
       [1.0, 1.0, 1.0, 13.0, 1343.0, 2.0, 3.0, 46.0, 2.0, 1.0]],
-     [13.539659419607977, 6.46034058039202],
-     [0.676982970980399, 0.32301702901960105],
+     [14.298844113312466, 5.701155886687534],
+     [0.7149422056656233, 0.2850577943343767],
      0.0,
      &#39;No Risk&#39;],
     [&#39;no_checking&#39;,
@@ -15779,8 +16133,8 @@ Now, you can send new scoring records (new data) for which you would like to get
      [20,
       [2, 3, 9, 10, 13, 14, 15, 16, 17, 18, 19],
       [1.0, 2.0, 2.0, 2.0, 24.0, 4567.0, 4.0, 4.0, 36.0, 2.0, 1.0]],
-     [12.785167512823998, 7.214832487176002],
-     [0.6392583756411999, 0.3607416243588001],
+     [13.06676919836477, 6.93323080163523],
+     [0.6533384599182386, 0.34666154008176153],
      0.0,
      &#39;No Risk&#39;],
     [&#39;0_to_200&#39;,
@@ -15836,8 +16190,8 @@ Now, you can send new scoring records (new data) for which you would like to get
       38.0,
       1.0,
       1.0],
-     [17.542315254085228, 2.457684745914773],
-     [0.8771157627042614, 0.12288423729573865],
+     [17.26065854270966, 2.739341457290342],
+     [0.863032927135483, 0.1369670728645171],
      0.0,
      &#39;No Risk&#39;],
     [&#39;0_to_200&#39;,
@@ -15876,8 +16230,8 @@ Now, you can send new scoring records (new data) for which you would like to get
      [20,
       [0, 1, 5, 7, 13, 14, 15, 16, 17, 18, 19],
       [2.0, 4.0, 1.0, 2.0, 14.0, 2368.0, 3.0, 3.0, 29.0, 1.0, 1.0]],
-     [16.74917151322493, 3.2508284867750716],
-     [0.8374585756612465, 0.16254142433875357],
+     [17.80975737817367, 2.190242621826325],
+     [0.8904878689086837, 0.10951213109131627],
      0.0,
      &#39;No Risk&#39;],
     [&#39;0_to_200&#39;,
@@ -15933,8 +16287,8 @@ Now, you can send new scoring records (new data) for which you would like to get
       23.0,
       1.0,
       1.0],
-     [18.519458793482613, 1.4805412065173857],
-     [0.9259729396741306, 0.07402706032586928],
+     [18.38016125542918, 1.6198387445708178],
+     [0.9190080627714591, 0.08099193722854091],
      0.0,
      &#39;No Risk&#39;],
     [&#39;no_checking&#39;,
@@ -15973,8 +16327,8 @@ Now, you can send new scoring records (new data) for which you would like to get
      [20,
       [1, 3, 7, 13, 14, 15, 16, 17, 18, 19],
       [1.0, 1.0, 2.0, 17.0, 832.0, 2.0, 2.0, 42.0, 1.0, 1.0]],
-     [15.520847400508805, 4.4791525994911945],
-     [0.7760423700254402, 0.22395762997455973],
+     [16.887908351466088, 3.112091648533915],
+     [0.8443954175733043, 0.15560458242669573],
      0.0,
      &#39;No Risk&#39;],
     [&#39;no_checking&#39;,
@@ -16030,8 +16384,8 @@ Now, you can send new scoring records (new data) for which you would like to get
       54.0,
       2.0,
       1.0],
-     [1.8811314591199693, 18.11886854088003],
-     [0.09405657295599847, 0.9059434270440014],
+     [2.252422102778986, 17.747577897221014],
+     [0.1126211051389493, 0.8873788948610507],
      1.0,
      &#39;Risk&#39;],
     [&#39;0_to_200&#39;,
@@ -16087,8 +16441,8 @@ Now, you can send new scoring records (new data) for which you would like to get
       37.0,
       2.0,
       1.0],
-     [16.185863861771526, 3.8141361382284735],
-     [0.8092931930885763, 0.19070680691142367],
+     [15.860708756328307, 4.1392912436716935],
+     [0.7930354378164154, 0.20696456218358467],
      0.0,
      &#39;No Risk&#39;]]}]}</pre>
 </div>
@@ -16143,7 +16497,7 @@ Now, you can send new scoring records (new data) for which you would like to get
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Copyright © 2020, 2021 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020, 2021, 2022 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 
 </div>
 </div>

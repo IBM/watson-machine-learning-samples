@@ -9,11 +9,11 @@
 
 
 <style type="text/css">
-    pre { line-height: 125%; margin: 0; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding: 0 5px 0 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
-span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px 0 5px; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
 .highlight .c { color: var(--jp-mirror-editor-comment-color); font-style: italic } /* Comment */
@@ -14265,7 +14265,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This notebook contains steps and code to develop a predictive model, and start scoring new data. This notebook introduces commands for getting data and for basic data cleaning and exploration, pipeline creation, model training, model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 2.4.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.8 and Apache® Spark 3.0.</p>
 <p>You will use a data set, <strong>Telco Customer Churn</strong>, which details anonymous customer data from a telecommunication company. Use the details of this data set to predict customer churn which is very critical to business as it's easier to retain existing customers rather than acquiring new ones.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
@@ -14381,7 +14381,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14412,7 +14412,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR SPACE ID HERE&#39;</span>
@@ -14452,7 +14452,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -14471,7 +14471,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
 
 
 
@@ -14494,7 +14494,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -14524,7 +14524,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -14547,7 +14547,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
@@ -14580,7 +14580,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_data</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
@@ -14646,7 +14646,7 @@ Number of fields:  21
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total number of records: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
@@ -14693,7 +14693,7 @@ Number of fields:  21
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_complete</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
@@ -14742,7 +14742,7 @@ Number of fields:  21
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_complete</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;Churn&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -14796,7 +14796,7 @@ Number of fields:  21
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">,</span> <span class="n">predict_data</span><span class="p">)</span> <span class="o">=</span> <span class="n">df_complete</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.18</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">],</span> <span class="mi">24</span><span class="p">)</span>
@@ -14823,9 +14823,9 @@ Number of fields:  21
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Number of records for training: 5621
-Number of records for evaluation: 1263
-Number of records for prediction: 148
+<pre>Number of records for training: 5638
+Number of records for evaluation: 1261
+Number of records for prediction: 133
 </pre>
 </div>
 </div>
@@ -14865,7 +14865,7 @@ Number of records for prediction: 148
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span><span class="p">,</span> <span class="n">IndexToString</span><span class="p">,</span> <span class="n">RFormula</span>
@@ -14888,7 +14888,7 @@ Number of records for prediction: 148
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span> <span class="o">=</span> <span class="s1">&#39;Churn&#39;</span><span class="p">,</span> <span class="n">outputCol</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">)</span>
@@ -14909,7 +14909,7 @@ Number of records for prediction: 148
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">maxIter</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
@@ -14929,7 +14929,7 @@ Number of records for prediction: 148
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline_lr</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span> <span class="o">=</span> <span class="p">[</span><span class="n">features</span><span class="p">,</span> <span class="n">lab</span> <span class="p">,</span> <span class="n">lr</span><span class="p">])</span>
@@ -14946,10 +14946,10 @@ Number of records for prediction: 148
 <p>Now, you can train your Logistic Regression model using the previously defined <strong>pipeline</strong> and <strong>train data</strong>."</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_lr</span> <span class="o">=</span> <span class="n">pipeline_lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
@@ -14958,6 +14958,29 @@ Number of records for prediction: 148
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>22/02/02 15:47:31 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting &#39;spark.sql.debug.maxToStringFields&#39;.
+22/02/02 15:47:34 WARN BLAS: Failed to load implementation from: com.github.fommil.netlib.NativeSystemBLAS
+22/02/02 15:47:34 WARN BLAS: Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -14969,7 +14992,7 @@ Number of records for prediction: 148
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model_lr</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
@@ -15028,7 +15051,7 @@ Accuracy = 0.80
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Note</strong>: Apache® Spark 2.4 is required.</p>
+<p><strong>Note</strong>: Apache® Spark 3.0 is required.</p>
 
 </div>
 </div>
@@ -15045,7 +15068,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibm_boto3</span>
@@ -15066,7 +15089,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos_credentials</span> <span class="o">=</span> <span class="p">{</span>
@@ -15092,7 +15115,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_apikey</span> <span class="o">=</span> <span class="n">cos_credentials</span><span class="p">[</span><span class="s1">&#39;apikey&#39;</span><span class="p">]</span>
@@ -15116,7 +15139,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">service_endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://s3.us.cloud-object-storage.appdomain.cloud&#39;</span>
@@ -15136,7 +15159,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">auth_endpoint</span> <span class="o">=</span> <span class="s1">&#39;https://iam.cloud.ibm.com/identity/token&#39;</span>
@@ -15156,7 +15179,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span> <span class="o">=</span> <span class="n">ibm_boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">,</span>
@@ -15181,7 +15204,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
@@ -15200,7 +15223,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
@@ -15229,7 +15252,7 @@ Accuracy = 0.80
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Creating bucket &#34;churn-2241566d-aa03-4b44-b821-d6cb4989b335&#34;...
+<pre>Creating bucket &#34;churn-b5a25149-9444-406a-820f-b791dade203e&#34;...
 </pre>
 </div>
 </div>
@@ -15241,7 +15264,7 @@ Accuracy = 0.80
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_obj</span> <span class="o">=</span> <span class="n">cos</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -15284,10 +15307,10 @@ WA_FnUseC_TelcoCustomerChurn.csv is uploaded.
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Create-connections-to-a-COS-bucket">Create connections to a COS bucket<a class="anchor-link" href="#Create-connections-to-a-COS-bucket">&#182;</a></h3>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="s1">&#39;bluemixcloudobjectstorage&#39;</span><span class="p">)</span>
@@ -15310,6 +15333,28 @@ WA_FnUseC_TelcoCustomerChurn.csv is uploaded.
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Creating connections...
+SUCCESS
+</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15337,7 +15382,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">conn_details</span><span class="p">)</span>
@@ -15362,7 +15407,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_data_references</span> <span class="o">=</span> <span class="p">[</span>
@@ -15385,18 +15430,18 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">saved_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
     <span class="n">model</span><span class="o">=</span><span class="n">model_lr</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s1">&#39;Customer Churn model&#39;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_2.4&quot;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_2.4&#39;</span><span class="p">),</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_3.0&quot;</span><span class="p">,</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_3.0&#39;</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TRAINING_DATA_REFERENCES</span><span class="p">:</span> <span class="n">training_data_references</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">&quot;Churn&quot;</span><span class="p">,</span>
     <span class="p">},</span>  
@@ -15409,6 +15454,26 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>                                                                                </pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15418,10 +15483,10 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_ID</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_uid</span><span class="p">(</span><span class="n">saved_model</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">published_model_ID</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">saved_model</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Id: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">published_model_ID</span><span class="p">))</span>
 </pre></div>
@@ -15443,7 +15508,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Model Id: 1dadccda-6a06-4cc4-865d-79c75538bc3a
+<pre>Model Id: 0f6c13b2-b4ec-4e4c-a24f-c95eecfd4385
 </pre>
 </div>
 </div>
@@ -15472,7 +15537,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">loaded_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">published_model_ID</span><span class="p">)</span>
@@ -15486,7 +15551,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">loaded_model</span><span class="p">))</span>
@@ -15550,7 +15615,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">predict_data</span><span class="p">)</span>
@@ -15570,7 +15635,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -15593,141 +15658,141 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>-RECORD 0-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0378-XSZPU                                                                                                                            
- gender           | Male                                                                                                                                  
- SeniorCitizen    | 0                                                                                                                                     
- Partner          | Yes                                                                                                                                   
- Dependents       | No                                                                                                                                    
- tenure           | 58                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | No                                                                                                                                    
- InternetService  | DSL                                                                                                                                   
- OnlineSecurity   | Yes                                                                                                                                   
- OnlineBackup     | Yes                                                                                                                                   
- DeviceProtection | Yes                                                                                                                                   
- TechSupport      | No                                                                                                                                    
- StreamingTV      | No                                                                                                                                    
- StreamingMovies  | No                                                                                                                                    
- Contract         | One year                                                                                                                              
- PaperlessBilling | No                                                                                                                                    
- PaymentMethod    | Credit card (automatic)                                                                                                               
- MonthlyCharges   | 60.3                                                                                                                                  
- TotalCharges     | 3563.8                                                                                                                                
- Churn            | Yes                                                                                                                                   
- features         | (31,[0,4,5,6,7,10,12,14,16,17,19,21,29,30],[1.0,1.0,58.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,60.3,3563.8])                            
- label            | 1.0                                                                                                                                   
- rawPrediction    | [3.7506513342517183,-3.7506513342517183]                                                                                              
- probability      | [0.9770372476176872,0.02296275238231276]                                                                                              
- prediction       | 0.0                                                                                                                                   
--RECORD 1-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0380-NEAVX                                                                                                                            
- gender           | Male                                                                                                                                  
- SeniorCitizen    | 1                                                                                                                                     
- Partner          | No                                                                                                                                    
- Dependents       | No                                                                                                                                    
- tenure           | 34                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | No                                                                                                                                    
- InternetService  | Fiber optic                                                                                                                           
- OnlineSecurity   | No                                                                                                                                    
- OnlineBackup     | Yes                                                                                                                                   
- DeviceProtection | Yes                                                                                                                                   
- TechSupport      | No                                                                                                                                    
- StreamingTV      | Yes                                                                                                                                   
- StreamingMovies  | Yes                                                                                                                                   
- Contract         | One year                                                                                                                              
- PaperlessBilling | Yes                                                                                                                                   
- PaymentMethod    | Electronic check                                                                                                                      
- MonthlyCharges   | 99.85                                                                                                                                 
- TotalCharges     | 3343.15                                                                                                                               
- Churn            | No                                                                                                                                    
- features         | (31,[0,2,3,4,5,6,7,9,11,14,16,17,20,22,25,26,29,30],[1.0,1.0,1.0,1.0,34.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,99.85,3343.15]) 
- label            | 0.0                                                                                                                                   
- rawPrediction    | [0.4431818908777708,-0.4431818908777708]                                                                                              
- probability      | [0.6090169499297452,0.39098305007025475]                                                                                              
- prediction       | 0.0                                                                                                                                   
--RECORD 2-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0434-CSFON                                                                                                                            
- gender           | Female                                                                                                                                
- SeniorCitizen    | 0                                                                                                                                     
- Partner          | Yes                                                                                                                                   
- Dependents       | No                                                                                                                                    
- tenure           | 47                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | Yes                                                                                                                                   
- InternetService  | Fiber optic                                                                                                                           
- OnlineSecurity   | No                                                                                                                                    
- OnlineBackup     | No                                                                                                                                    
- DeviceProtection | Yes                                                                                                                                   
- TechSupport      | No                                                                                                                                    
- StreamingTV      | Yes                                                                                                                                   
- StreamingMovies  | Yes                                                                                                                                   
- Contract         | Month-to-month                                                                                                                        
- PaperlessBilling | Yes                                                                                                                                   
- PaymentMethod    | Electronic check                                                                                                                      
- MonthlyCharges   | 100.5                                                                                                                                 
- TotalCharges     | 4707.1                                                                                                                                
- Churn            | No                                                                                                                                    
- features         | (31,[1,4,5,6,8,9,11,13,16,17,20,22,23,25,26,29,30],[1.0,1.0,47.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,100.5,4707.1])       
- label            | 0.0                                                                                                                                   
- rawPrediction    | [-0.09265166369876421,0.09265166369876421]                                                                                            
- probability      | [0.4768536397079073,0.5231463602920927]                                                                                               
- prediction       | 1.0                                                                                                                                   
--RECORD 3-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0461-CVKMU                                                                                                                            
- gender           | Female                                                                                                                                
- SeniorCitizen    | 0                                                                                                                                     
- Partner          | Yes                                                                                                                                   
- Dependents       | Yes                                                                                                                                   
- tenure           | 23                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | No                                                                                                                                    
- InternetService  | Fiber optic                                                                                                                           
- OnlineSecurity   | No                                                                                                                                    
- OnlineBackup     | Yes                                                                                                                                   
- DeviceProtection | Yes                                                                                                                                   
- TechSupport      | Yes                                                                                                                                   
- StreamingTV      | No                                                                                                                                    
- StreamingMovies  | No                                                                                                                                    
- Contract         | Month-to-month                                                                                                                        
- PaperlessBilling | No                                                                                                                                    
- PaymentMethod    | Electronic check                                                                                                                      
- MonthlyCharges   | 83.8                                                                                                                                  
- TotalCharges     | 1900.25                                                                                                                               
- Churn            | Yes                                                                                                                                   
- features         | (31,[1,5,6,7,9,11,14,16,18,19,21,23,26,29,30],[1.0,23.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,83.8,1900.25])                    
- label            | 1.0                                                                                                                                   
- rawPrediction    | [0.7996444341847366,-0.7996444341847366]                                                                                              
- probability      | [0.6898984170147664,0.31010158298523366]                                                                                              
- prediction       | 0.0                                                                                                                                   
--RECORD 4-------------------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0531-XBKMM                                                                                                                            
- gender           | Male                                                                                                                                  
- SeniorCitizen    | 0                                                                                                                                     
- Partner          | No                                                                                                                                    
- Dependents       | Yes                                                                                                                                   
- tenure           | 66                                                                                                                                    
- PhoneService     | Yes                                                                                                                                   
- MultipleLines    | Yes                                                                                                                                   
- InternetService  | DSL                                                                                                                                   
- OnlineSecurity   | Yes                                                                                                                                   
- OnlineBackup     | Yes                                                                                                                                   
- DeviceProtection | No                                                                                                                                    
- TechSupport      | Yes                                                                                                                                   
- StreamingTV      | No                                                                                                                                    
- StreamingMovies  | No                                                                                                                                    
- Contract         | Two year                                                                                                                              
- PaperlessBilling | No                                                                                                                                    
- PaymentMethod    | Bank transfer (automatic)                                                                                                             
- MonthlyCharges   | 65.7                                                                                                                                  
- TotalCharges     | 4378.9                                                                                                                                
- Churn            | No                                                                                                                                    
- features         | (31,[0,3,5,6,8,10,12,14,15,18,19,21,24,28,29,30],[1.0,1.0,66.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,65.7,4378.9])              
- label            | 0.0                                                                                                                                   
- rawPrediction    | [5.008878523224736,-5.008878523224736]                                                                                                
- probability      | [0.993365916224575,0.006634083775424955]                                                                                              
- prediction       | 0.0                                                                                                                                   
+<pre>-RECORD 0-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0117-LFRMW                                                                                                                    
+ gender           | Male                                                                                                                          
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | Yes                                                                                                                           
+ Dependents       | Yes                                                                                                                           
+ tenure           | 37                                                                                                                            
+ PhoneService     | No                                                                                                                            
+ MultipleLines    | No phone service                                                                                                              
+ InternetService  | DSL                                                                                                                           
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | Yes                                                                                                                           
+ DeviceProtection | Yes                                                                                                                           
+ TechSupport      | No                                                                                                                            
+ StreamingTV      | No                                                                                                                            
+ StreamingMovies  | No                                                                                                                            
+ Contract         | Month-to-month                                                                                                                
+ PaperlessBilling | No                                                                                                                            
+ PaymentMethod    | Bank transfer (automatic)                                                                                                     
+ MonthlyCharges   | 40.2                                                                                                                          
+ TotalCharges     | 1448.8                                                                                                                        
+ Churn            | Yes                                                                                                                           
+ features         | (31,[0,5,10,12,14,16,17,19,21,23,28,29,30],[1.0,37.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,40.2,1448.8])                        
+ label            | 1.0                                                                                                                           
+ rawPrediction    | [1.9626194004455484,-1.9626194004455484]                                                                                      
+ probability      | [0.8768161521616983,0.1231838478383017]                                                                                       
+ prediction       | 0.0                                                                                                                           
+-RECORD 1-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0121-SNYRK                                                                                                                    
+ gender           | Male                                                                                                                          
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | No                                                                                                                            
+ Dependents       | No                                                                                                                            
+ tenure           | 50                                                                                                                            
+ PhoneService     | No                                                                                                                            
+ MultipleLines    | No phone service                                                                                                              
+ InternetService  | DSL                                                                                                                           
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | No                                                                                                                            
+ DeviceProtection | No                                                                                                                            
+ TechSupport      | Yes                                                                                                                           
+ StreamingTV      | No                                                                                                                            
+ StreamingMovies  | No                                                                                                                            
+ Contract         | One year                                                                                                                      
+ PaperlessBilling | Yes                                                                                                                           
+ PaymentMethod    | Mailed check                                                                                                                  
+ MonthlyCharges   | 35.4                                                                                                                          
+ TotalCharges     | 1748.9                                                                                                                        
+ Churn            | No                                                                                                                            
+ features         | (31,[0,3,4,5,10,12,13,15,18,19,21,25,27,29,30],[1.0,1.0,1.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,35.4,1748.9])            
+ label            | 0.0                                                                                                                           
+ rawPrediction    | [2.7913815222317555,-2.7913815222317555]                                                                                      
+ probability      | [0.9422083170753114,0.05779168292468861]                                                                                      
+ prediction       | 0.0                                                                                                                           
+-RECORD 2-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0314-TKOSI                                                                                                                    
+ gender           | Female                                                                                                                        
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | No                                                                                                                            
+ Dependents       | No                                                                                                                            
+ tenure           | 6                                                                                                                             
+ PhoneService     | Yes                                                                                                                           
+ MultipleLines    | No                                                                                                                            
+ InternetService  | DSL                                                                                                                           
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | Yes                                                                                                                           
+ DeviceProtection | No                                                                                                                            
+ TechSupport      | No                                                                                                                            
+ StreamingTV      | No                                                                                                                            
+ StreamingMovies  | No                                                                                                                            
+ Contract         | Month-to-month                                                                                                                
+ PaperlessBilling | No                                                                                                                            
+ PaymentMethod    | Mailed check                                                                                                                  
+ MonthlyCharges   | 55.15                                                                                                                         
+ TotalCharges     | 322.9                                                                                                                         
+ Churn            | No                                                                                                                            
+ features         | (31,[1,3,4,5,6,7,10,12,14,15,17,19,21,23,27,29,30],[1.0,1.0,1.0,6.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,55.15,322.9]) 
+ label            | 0.0                                                                                                                           
+ rawPrediction    | [1.4099918130909657,-1.4099918130909657]                                                                                      
+ probability      | [0.8037646523405363,0.1962353476594637]                                                                                       
+ prediction       | 0.0                                                                                                                           
+-RECORD 3-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0365-TRTPY                                                                                                                    
+ gender           | Female                                                                                                                        
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | No                                                                                                                            
+ Dependents       | No                                                                                                                            
+ tenure           | 37                                                                                                                            
+ PhoneService     | Yes                                                                                                                           
+ MultipleLines    | Yes                                                                                                                           
+ InternetService  | Fiber optic                                                                                                                   
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | Yes                                                                                                                           
+ DeviceProtection | Yes                                                                                                                           
+ TechSupport      | No                                                                                                                            
+ StreamingTV      | No                                                                                                                            
+ StreamingMovies  | No                                                                                                                            
+ Contract         | Month-to-month                                                                                                                
+ PaperlessBilling | No                                                                                                                            
+ PaymentMethod    | Bank transfer (automatic)                                                                                                     
+ MonthlyCharges   | 91.2                                                                                                                          
+ TotalCharges     | 3382.3                                                                                                                        
+ Churn            | No                                                                                                                            
+ features         | (31,[1,3,4,5,6,8,9,12,14,16,17,19,21,23,28,29,30],[1.0,1.0,1.0,37.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,91.2,3382.3]) 
+ label            | 0.0                                                                                                                           
+ rawPrediction    | [1.2214169620331363,-1.2214169620331363]                                                                                      
+ probability      | [0.7723128122911829,0.22768718770881713]                                                                                      
+ prediction       | 0.0                                                                                                                           
+-RECORD 4-----------------------------------------------------------------------------------------------------------------------------------------
+ customerID       | 0384-LPITE                                                                                                                    
+ gender           | Male                                                                                                                          
+ SeniorCitizen    | 0                                                                                                                             
+ Partner          | No                                                                                                                            
+ Dependents       | No                                                                                                                            
+ tenure           | 40                                                                                                                            
+ PhoneService     | No                                                                                                                            
+ MultipleLines    | No phone service                                                                                                              
+ InternetService  | DSL                                                                                                                           
+ OnlineSecurity   | Yes                                                                                                                           
+ OnlineBackup     | Yes                                                                                                                           
+ DeviceProtection | Yes                                                                                                                           
+ TechSupport      | No                                                                                                                            
+ StreamingTV      | Yes                                                                                                                           
+ StreamingMovies  | Yes                                                                                                                           
+ Contract         | One year                                                                                                                      
+ PaperlessBilling | No                                                                                                                            
+ PaymentMethod    | Credit card (automatic)                                                                                                       
+ MonthlyCharges   | 62.05                                                                                                                         
+ TotalCharges     | 2511.55                                                                                                                       
+ Churn            | No                                                                                                                            
+ features         | (31,[0,3,4,5,10,12,14,16,17,20,22,29,30],[1.0,1.0,1.0,40.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,62.05,2511.55])                        
+ label            | 0.0                                                                                                                           
+ rawPrediction    | [1.9757055839213993,-1.9757055839213993]                                                                                      
+ probability      | [0.8782226299073993,0.12177737009260067]                                                                                      
+ prediction       | 0.0                                                                                                                           
 only showing top 5 rows
 
 </pre>
@@ -15747,7 +15812,7 @@ only showing top 5 rows
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -15773,8 +15838,8 @@ only showing top 5 rows
 <pre>+----------+-----+
 |prediction|count|
 +----------+-----+
-|0.0       |114  |
-|1.0       |34   |
+|0.0       |104  |
+|1.0       |29   |
 +----------+-----+
 
 </pre>
@@ -15817,7 +15882,7 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -15830,173 +15895,6 @@ For more information about REST APIs, see the <a href="https://watson-ml-v4-api.
 <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">,</span> <span class="s1">&#39;scoreInput.csv&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s2">&quot;https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/customer_churn/scoreInput.csv&quot;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Save-data-for-prediction-to-Object-Storage">Save data for prediction to Object Storage<a class="anchor-link" href="#Save-data-for-prediction-to-Object-Storage">&#182;</a></h4>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
-
-<span class="n">bucket_uid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
-
-<span class="n">score_filename</span> <span class="o">=</span> <span class="s2">&quot;scoreInput.csv&quot;</span>
-<span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;batch-job-&quot;</span> <span class="o">+</span> <span class="n">bucket_uid</span><span class="p">]</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">bucket</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">cos</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span> <span class="ow">in</span> <span class="n">cos</span><span class="o">.</span><span class="n">buckets</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating bucket &quot;</span><span class="si">{}</span><span class="s1">&quot;...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bucket</span><span class="p">))</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">cos</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span><span class="n">Bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">ibm_boto3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ibm_botocore</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;Error&#39;</span><span class="p">][</span><span class="s1">&#39;Message&#39;</span><span class="p">]))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Creating bucket &#34;batch-job-58b4e9f2-5c69-4aae-95b7-67bb7430155e&#34;...
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_obj</span> <span class="o">=</span> <span class="n">cos</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Uploading data </span><span class="si">{}</span><span class="s1">...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_filename</span><span class="p">))</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">bucket_obj</span><span class="o">.</span><span class="n">upload_fileobj</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">score_filename</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> is uploaded.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_filename</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Uploading data scoreInput.csv...
-scoreInput.csv is uploaded.
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Create-connections-to-COS-Buckets">Create connections to COS Buckets<a class="anchor-link" href="#Create-connections-to-COS-Buckets">&#182;</a></h3>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasource_type</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_datasource_type_uid_by_name</span><span class="p">(</span><span class="s1">&#39;bluemixcloudobjectstorage&#39;</span><span class="p">)</span>
-
-<span class="n">input_conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Input COS connection - spark&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">datasource_type</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">connection_access_key_id</span><span class="p">,</span>
-        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">connection_secret_access_key</span><span class="p">,</span>
-        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="n">auth_endpoint</span><span class="p">,</span>
-        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">service_endpoint</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">output_conn_meta_props</span><span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Output COS connection - spark&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DATASOURCE_TYPE</span><span class="p">:</span> <span class="n">datasource_type</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PROPERTIES</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;bucket&#39;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-        <span class="s1">&#39;access_key&#39;</span><span class="p">:</span> <span class="n">connection_access_key_id</span><span class="p">,</span>
-        <span class="s1">&#39;secret_key&#39;</span><span class="p">:</span> <span class="n">connection_secret_access_key</span><span class="p">,</span>
-        <span class="s1">&#39;iam_url&#39;</span><span class="p">:</span> <span class="n">auth_endpoint</span><span class="p">,</span>
-        <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">service_endpoint</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">input_conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">input_conn_meta_props</span><span class="p">)</span>
-<span class="n">output_conn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">output_conn_meta_props</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">input_conn_details</span><span class="p">)</span>
-<span class="n">output_connection_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">connections</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">output_conn_details</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16024,14 +15922,14 @@ Execute the following sample code that uses the <strong>published_model_ID</stro
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[74]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Customer Churn batch deployment&quot;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">BATCH</span><span class="p">:</span> <span class="p">{},</span>
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">HARDWARE_SPEC</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;S-Spark&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span>
         <span class="s2">&quot;num_nodes&quot;</span><span class="p">:</span> <span class="mi">1</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -16060,7 +15958,7 @@ Execute the following sample code that uses the <strong>published_model_ID</stro
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;1dadccda-6a06-4cc4-865d-79c75538bc3a&#39; started
+Synchronous deployment creation for uid: &#39;0f6c13b2-b4ec-4e4c-a24f-c95eecfd4385&#39; started
 
 #######################################################################################
 
@@ -16069,7 +15967,7 @@ ready.
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-4225-b9ce-9a3fb37189ca&#39;
+Successfully finished deployment creation, deployment_uid=&#39;18910601-22d3-48b6-a8c9-9f7f4fa2aa07&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -16091,7 +15989,7 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[75]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
@@ -16131,10 +16029,10 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[77]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="s1">&#39;cf94b879-4747-4c46-985f-413abe9a6cc0&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16150,27 +16048,28 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[77]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[46]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;1dadccda-6a06-4cc4-865d-79c75538bc3a&#39;},
+<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;b7a5b0bd-a829-4647-ac93-4f6951590039&#39;},
   &#39;batch&#39;: {},
   &#39;custom&#39;: {},
+  &#39;deployed_asset_type&#39;: &#39;model&#39;,
   &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;d92943ba-9f47-407d-9280-c85281687a1e&#39;,
    &#39;name&#39;: &#39;S-Spark&#39;,
    &#39;num_nodes&#39;: 1},
   &#39;name&#39;: &#39;Customer Churn batch deployment&#39;,
-  &#39;space_id&#39;: &#39;968d9b1a-3cb4-4029-bc57-f53ec5e8743b&#39;,
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;,
   &#39;status&#39;: {&#39;state&#39;: &#39;ready&#39;}},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2020-08-27T10:43:39.915Z&#39;,
-  &#39;id&#39;: &#39;745449c0-f784-4225-b9ce-9a3fb37189ca&#39;,
-  &#39;modified_at&#39;: &#39;2020-08-27T10:43:39.915Z&#39;,
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-02T12:20:02.517Z&#39;,
+  &#39;id&#39;: &#39;cf94b879-4747-4c46-985f-413abe9a6cc0&#39;,
+  &#39;modified_at&#39;: &#39;2022-02-02T12:20:02.517Z&#39;,
   &#39;name&#39;: &#39;Customer Churn batch deployment&#39;,
-  &#39;owner&#39;: &#39;IBMid-310002AFR6&#39;,
-  &#39;space_id&#39;: &#39;968d9b1a-3cb4-4029-bc57-f53ec5e8743b&#39;}}</pre>
+  &#39;owner&#39;: &#39;IBMid-663001S62U&#39;,
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;}}</pre>
 </div>
 
 </div>
@@ -16185,37 +16084,41 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 <p><a id="score"></a></p>
 <h4 id="Create-and-run-Batch-job">Create and run Batch job<a class="anchor-link" href="#Create-and-run-Batch-job">&#182;</a></h4>
 </div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Tip</strong>: To install pandas execute <code>!pip install pandas</code></p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[82]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">score_input</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">job_payload_ref</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA_REFERENCES</span><span class="p">:</span> <span class="p">[</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
-            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;scoringDataset&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">input_connection_id</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-              <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-              <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="n">score_filename</span>
-            <span class="p">}</span>
+            <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="n">score_input</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">score_input</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
         <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">OUTPUT_DATA_REFERENCE</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;output&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;connection_asset&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;connection&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">output_connection_id</span><span class="p">,</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
-              <span class="s2">&quot;bucket&quot;</span><span class="p">:</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-              <span class="s2">&quot;file_name&quot;</span><span class="p">:</span> <span class="s2">&quot;scoring_output&quot;</span>
-            <span class="p">}</span>
-    <span class="p">}</span>
+    <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -16227,7 +16130,7 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[84]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">job</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create_job</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">job_payload_ref</span><span class="p">)</span>
@@ -16248,7 +16151,7 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[97]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">job_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_uid</span><span class="p">(</span><span class="n">job</span><span class="p">)</span>
@@ -16285,10 +16188,10 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 <p>If you want to get additional information on your job, you can do it as below.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_details</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
@@ -16297,6 +16200,82 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[53]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;entity&#39;: {&#39;deployment&#39;: {&#39;id&#39;: &#39;18910601-22d3-48b6-a8c9-9f7f4fa2aa07&#39;},
+  &#39;platform_job&#39;: {&#39;job_id&#39;: &#39;4dd8a531-6f05-4229-b386-aaab9e0a732c&#39;,
+   &#39;run_id&#39;: &#39;c76e100a-6aff-40d6-b629-957760c8efe2&#39;},
+  &#39;scoring&#39;: {&#39;input_data&#39;: [{&#39;fields&#39;: [&#39;customerID&#39;,
+      &#39;gender&#39;,
+      &#39;SeniorCitizen&#39;,
+      &#39;Partner&#39;,
+      &#39;Dependents&#39;,
+      &#39;tenure&#39;,
+      &#39;PhoneService&#39;,
+      &#39;MultipleLines&#39;,
+      &#39;InternetService&#39;,
+      &#39;OnlineSecurity&#39;,
+      &#39;OnlineBackup&#39;,
+      &#39;DeviceProtection&#39;,
+      &#39;TechSupport&#39;,
+      &#39;StreamingTV&#39;,
+      &#39;StreamingMovies&#39;,
+      &#39;Contract&#39;,
+      &#39;PaperlessBilling&#39;,
+      &#39;PaymentMethod&#39;,
+      &#39;MonthlyCharges&#39;,
+      &#39;TotalCharges&#39;,
+      &#39;Churn&#39;,
+      &#39;SampleWeight&#39;],
+     &#39;values&#39;: [[&#39;9237-HQITU&#39;,
+       &#39;Female&#39;,
+       0,
+       &#39;No&#39;,
+       &#39;No&#39;,
+       2,
+       &#39;Yes&#39;,
+       &#39;No&#39;,
+       &#39;Fiber optic&#39;,
+       &#39;No&#39;,
+       &#39;No&#39;,
+       &#39;No&#39;,
+       &#39;No&#39;,
+       &#39;No&#39;,
+       &#39;No&#39;,
+       &#39;Month-to-month&#39;,
+       &#39;Yes&#39;,
+       &#39;Electronic check&#39;,
+       70.7,
+       151.65,
+       &#39;Yes&#39;,
+       1.0]]}],
+   &#39;status&#39;: {&#39;completed_at&#39;: &#39;&#39;,
+    &#39;running_at&#39;: &#39;2022-02-02T14:53:15.269Z&#39;,
+    &#39;state&#39;: &#39;running&#39;}}},
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-02T14:52:40.583Z&#39;,
+  &#39;id&#39;: &#39;f88dabf3-a52d-4333-bf92-eb3ad2894d3d&#39;,
+  &#39;name&#39;: &#39;name_451b1ed4-b122-477c-9680-f0eae72e2599&#39;,
+  &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;}}</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -16310,10 +16289,10 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 <p>Here you can check status of your batch scoring. When status of Spark job is <code>completed</code> the results will be written to scoring_output file in Object Storage.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -16336,46 +16315,42 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre> Current state: completed
+{&#39;entity&#39;: {&#39;deployment&#39;: {&#39;id&#39;: &#39;18910601-22d3-48b6-a8c9-9f7f4fa2aa07&#39;}, &#39;platform_job&#39;: {&#39;job_id&#39;: &#39;4dd8a531-6f05-4229-b386-aaab9e0a732c&#39;, &#39;run_id&#39;: &#39;c76e100a-6aff-40d6-b629-957760c8efe2&#39;}, &#39;scoring&#39;: {&#39;input_data&#39;: [{&#39;fields&#39;: [&#39;customerID&#39;, &#39;gender&#39;, &#39;SeniorCitizen&#39;, &#39;Partner&#39;, &#39;Dependents&#39;, &#39;tenure&#39;, &#39;PhoneService&#39;, &#39;MultipleLines&#39;, &#39;InternetService&#39;, &#39;OnlineSecurity&#39;, &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;, &#39;StreamingMovies&#39;, &#39;Contract&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;, &#39;MonthlyCharges&#39;, &#39;TotalCharges&#39;, &#39;Churn&#39;, &#39;SampleWeight&#39;], &#39;values&#39;: [[&#39;9237-HQITU&#39;, &#39;Female&#39;, 0, &#39;No&#39;, &#39;No&#39;, 2, &#39;Yes&#39;, &#39;No&#39;, &#39;Fiber optic&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;Month-to-month&#39;, &#39;Yes&#39;, &#39;Electronic check&#39;, 70.7, 151.65, &#39;Yes&#39;, 1.0]]}], &#39;predictions&#39;: [{&#39;fields&#39;: [&#39;customerID&#39;, &#39;gender&#39;, &#39;SeniorCitizen&#39;, &#39;Partner&#39;, &#39;Dependents&#39;, &#39;tenure&#39;, &#39;PhoneService&#39;, &#39;MultipleLines&#39;, &#39;InternetService&#39;, &#39;OnlineSecurity&#39;, &#39;OnlineBackup&#39;, &#39;DeviceProtection&#39;, &#39;TechSupport&#39;, &#39;StreamingTV&#39;, &#39;StreamingMovies&#39;, &#39;Contract&#39;, &#39;PaperlessBilling&#39;, &#39;PaymentMethod&#39;, &#39;MonthlyCharges&#39;, &#39;TotalCharges&#39;, &#39;Churn&#39;, &#39;SampleWeight&#39;, &#39;features&#39;, &#39;label&#39;, &#39;rawPrediction&#39;, &#39;probability&#39;, &#39;prediction&#39;], &#39;values&#39;: [[&#39;9237-HQITU&#39;, &#39;Female&#39;, 0, &#39;No&#39;, &#39;No&#39;, 2, &#39;Yes&#39;, &#39;No&#39;, &#39;Fiber optic&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;Month-to-month&#39;, &#39;Yes&#39;, &#39;Electronic check&#39;, 70.7, 151.65, &#39;Yes&#39;, 1.0, [31, [1, 3, 4, 5, 6, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 26, 29, 30], [1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 70.7, 151.65]], 1.0, [-0.7082988149434561, 0.7082988149434561], [0.32997484880952394, 0.6700251511904761], 1.0]]}], &#39;status&#39;: {&#39;completed_at&#39;: &#39;2022-02-02T14:53:16.000Z&#39;, &#39;running_at&#39;: &#39;2022-02-02T14:53:15.000Z&#39;, &#39;state&#39;: &#39;completed&#39;}}}, &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-02T14:52:40.583Z&#39;, &#39;id&#39;: &#39;f88dabf3-a52d-4333-bf92-eb3ad2894d3d&#39;, &#39;modified_at&#39;: &#39;2022-02-02T14:53:17.024Z&#39;, &#39;name&#39;: &#39;name_451b1ed4-b122-477c-9680-f0eae72e2599&#39;, &#39;space_id&#39;: &#39;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#39;}}
+</pre>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><strong>Preview scored data</strong></p>
+</div>
 
 </div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>In this subsection you will load scored data.</p>
-<p>Get data with scores from Cloud Object Storage.</p>
 
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[87]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bucket_obj</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="n">Key</span><span class="o">=</span><span class="s1">&#39;scoring_output&#39;</span><span class="p">,</span> <span class="n">Filename</span><span class="o">=</span><span class="s1">&#39;result.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
 </div>
 
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>'result.csv' file is downloaded to your local file directory</p>
-
+<h4 id="Get-scored-data">Get scored data<a class="anchor-link" href="#Get-scored-data">&#182;</a></h4>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[88]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls res*
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_details</span><span class="p">(</span><span class="n">job_id</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -16395,7 +16370,197 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>result.csv
+<pre>{
+ &#34;entity&#34;: {
+  &#34;deployment&#34;: {
+   &#34;id&#34;: &#34;18910601-22d3-48b6-a8c9-9f7f4fa2aa07&#34;
+  },
+  &#34;platform_job&#34;: {
+   &#34;job_id&#34;: &#34;4dd8a531-6f05-4229-b386-aaab9e0a732c&#34;,
+   &#34;run_id&#34;: &#34;c76e100a-6aff-40d6-b629-957760c8efe2&#34;
+  },
+  &#34;scoring&#34;: {
+   &#34;input_data&#34;: [
+    {
+     &#34;fields&#34;: [
+      &#34;customerID&#34;,
+      &#34;gender&#34;,
+      &#34;SeniorCitizen&#34;,
+      &#34;Partner&#34;,
+      &#34;Dependents&#34;,
+      &#34;tenure&#34;,
+      &#34;PhoneService&#34;,
+      &#34;MultipleLines&#34;,
+      &#34;InternetService&#34;,
+      &#34;OnlineSecurity&#34;,
+      &#34;OnlineBackup&#34;,
+      &#34;DeviceProtection&#34;,
+      &#34;TechSupport&#34;,
+      &#34;StreamingTV&#34;,
+      &#34;StreamingMovies&#34;,
+      &#34;Contract&#34;,
+      &#34;PaperlessBilling&#34;,
+      &#34;PaymentMethod&#34;,
+      &#34;MonthlyCharges&#34;,
+      &#34;TotalCharges&#34;,
+      &#34;Churn&#34;,
+      &#34;SampleWeight&#34;
+     ],
+     &#34;values&#34;: [
+      [
+       &#34;9237-HQITU&#34;,
+       &#34;Female&#34;,
+       0,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       2,
+       &#34;Yes&#34;,
+       &#34;No&#34;,
+       &#34;Fiber optic&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;Month-to-month&#34;,
+       &#34;Yes&#34;,
+       &#34;Electronic check&#34;,
+       70.7,
+       151.65,
+       &#34;Yes&#34;,
+       1.0
+      ]
+     ]
+    }
+   ],
+   &#34;predictions&#34;: [
+    {
+     &#34;fields&#34;: [
+      &#34;customerID&#34;,
+      &#34;gender&#34;,
+      &#34;SeniorCitizen&#34;,
+      &#34;Partner&#34;,
+      &#34;Dependents&#34;,
+      &#34;tenure&#34;,
+      &#34;PhoneService&#34;,
+      &#34;MultipleLines&#34;,
+      &#34;InternetService&#34;,
+      &#34;OnlineSecurity&#34;,
+      &#34;OnlineBackup&#34;,
+      &#34;DeviceProtection&#34;,
+      &#34;TechSupport&#34;,
+      &#34;StreamingTV&#34;,
+      &#34;StreamingMovies&#34;,
+      &#34;Contract&#34;,
+      &#34;PaperlessBilling&#34;,
+      &#34;PaymentMethod&#34;,
+      &#34;MonthlyCharges&#34;,
+      &#34;TotalCharges&#34;,
+      &#34;Churn&#34;,
+      &#34;SampleWeight&#34;,
+      &#34;features&#34;,
+      &#34;label&#34;,
+      &#34;rawPrediction&#34;,
+      &#34;probability&#34;,
+      &#34;prediction&#34;
+     ],
+     &#34;values&#34;: [
+      [
+       &#34;9237-HQITU&#34;,
+       &#34;Female&#34;,
+       0,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       2,
+       &#34;Yes&#34;,
+       &#34;No&#34;,
+       &#34;Fiber optic&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;No&#34;,
+       &#34;Month-to-month&#34;,
+       &#34;Yes&#34;,
+       &#34;Electronic check&#34;,
+       70.7,
+       151.65,
+       &#34;Yes&#34;,
+       1.0,
+       [
+        31,
+        [
+         1,
+         3,
+         4,
+         5,
+         6,
+         7,
+         9,
+         11,
+         13,
+         15,
+         17,
+         19,
+         21,
+         23,
+         25,
+         26,
+         29,
+         30
+        ],
+        [
+         1.0,
+         1.0,
+         1.0,
+         2.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         1.0,
+         70.7,
+         151.65
+        ]
+       ],
+       1.0,
+       [
+        -0.7082988149434561,
+        0.7082988149434561
+       ],
+       [
+        0.32997484880952394,
+        0.6700251511904761
+       ],
+       1.0
+      ]
+     ]
+    }
+   ],
+   &#34;status&#34;: {
+    &#34;completed_at&#34;: &#34;2022-02-02T14:53:16.000Z&#34;,
+    &#34;running_at&#34;: &#34;2022-02-02T14:53:15.000Z&#34;,
+    &#34;state&#34;: &#34;completed&#34;
+   }
+  }
+ },
+ &#34;metadata&#34;: {
+  &#34;created_at&#34;: &#34;2022-02-02T14:52:40.583Z&#34;,
+  &#34;id&#34;: &#34;f88dabf3-a52d-4333-bf92-eb3ad2894d3d&#34;,
+  &#34;modified_at&#34;: &#34;2022-02-02T14:53:17.024Z&#34;,
+  &#34;name&#34;: &#34;name_451b1ed4-b122-477c-9680-f0eae72e2599&#34;,
+  &#34;space_id&#34;: &#34;4e3759d0-67ee-4622-b03a-3ddc5dd32463&#34;
+ }
+}
 </pre>
 </div>
 </div>
@@ -16404,240 +16569,6 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Loading 'result.csv' file as pandas dataframe</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[92]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">results_pdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;result.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Preview the results by calling the <em>head()</em> method on the predictions in Pandas data frame.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[93]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results_pdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[93]:</div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>...</th>
-      <th>17</th>
-      <th>18</th>
-      <th>19</th>
-      <th>20</th>
-      <th>21</th>
-      <th>22</th>
-      <th>23</th>
-      <th>24</th>
-      <th>25</th>
-      <th>26</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>9237-HQITU</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>No</td>
-      <td>No</td>
-      <td>2</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>Fiber optic</td>
-      <td>No</td>
-      <td>...</td>
-      <td>Electronic check</td>
-      <td>70.7</td>
-      <td>151.65</td>
-      <td>Yes</td>
-      <td>1.000</td>
-      <td>(31,[1,3,4,5,6,7,9,11,13,15,17,19,21,23,25,26,...</td>
-      <td>1.0</td>
-      <td>[-0.6714665069908214,0.6714665069908214]</td>
-      <td>[0.3381685431624339,0.661831456837566]</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>3638-WEABW</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>58</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>DSL</td>
-      <td>No</td>
-      <td>...</td>
-      <td>Credit card (automatic)</td>
-      <td>59.9</td>
-      <td>3505.10</td>
-      <td>No</td>
-      <td>2.768</td>
-      <td>(31,[1,4,5,6,8,10,11,14,15,18,19,21,24,25,29,3...</td>
-      <td>0.0</td>
-      <td>[3.9132571296604866,-3.9132571296604866]</td>
-      <td>[0.9804158668366412,0.01958413316335884]</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>8665-UTDHZ</td>
-      <td>Male</td>
-      <td>0</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>1</td>
-      <td>No</td>
-      <td>No phone service</td>
-      <td>DSL</td>
-      <td>No</td>
-      <td>...</td>
-      <td>Electronic check</td>
-      <td>30.2</td>
-      <td>30.20</td>
-      <td>Yes</td>
-      <td>1.000</td>
-      <td>(31,[0,5,10,11,14,15,17,19,21,23,26,29,30],[1....</td>
-      <td>1.0</td>
-      <td>[0.05572147387283066,-0.05572147387283066]</td>
-      <td>[0.5139267652403491,0.48607323475965086]</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>8773-HHUOZ</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>No</td>
-      <td>Yes</td>
-      <td>17</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>DSL</td>
-      <td>No</td>
-      <td>...</td>
-      <td>Mailed check</td>
-      <td>64.7</td>
-      <td>1093.10</td>
-      <td>Yes</td>
-      <td>1.000</td>
-      <td>(31,[1,3,5,6,7,10,11,13,15,17,20,22,23,25,27,2...</td>
-      <td>1.0</td>
-      <td>[0.646282974444357,-0.646282974444357]</td>
-      <td>[0.6561723512925712,0.34382764870742877]</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4080-IIARD</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>Yes</td>
-      <td>No</td>
-      <td>13</td>
-      <td>Yes</td>
-      <td>Yes</td>
-      <td>DSL</td>
-      <td>Yes</td>
-      <td>...</td>
-      <td>Electronic check</td>
-      <td>76.2</td>
-      <td>981.45</td>
-      <td>No</td>
-      <td>2.768</td>
-      <td>(31,[1,4,5,6,8,10,12,14,15,18,20,21,23,25,26,2...</td>
-      <td>0.0</td>
-      <td>[0.5669775770632643,-0.5669775770632643]</td>
-      <td>[0.6380654747444198,0.3619345252555803]</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 27 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can see the predictions for all the records in pandas data frame.</p>
-
-</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -16682,7 +16613,7 @@ Successfully finished deployment creation, deployment_uid=&#39;745449c0-f784-422
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Copyright © 2020, 2021 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020, 2021, 2022 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 
 </div>
 </div>
