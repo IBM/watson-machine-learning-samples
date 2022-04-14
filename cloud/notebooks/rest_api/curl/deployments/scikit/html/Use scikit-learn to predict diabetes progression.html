@@ -14559,12 +14559,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14641,6 +14641,23 @@ Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">loads</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">JSON</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
@@ -14696,7 +14713,7 @@ Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
@@ -14720,7 +14737,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TOKEN</span><span class="o">=</span><span class="err">$</span><span class="n">token</span>
@@ -14745,7 +14762,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TOKEN=eyJraWQiOiIyMDIwMTAyMjE4MzMiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC01NTAwMDA5MVZDIiwiaWQiOiJJQk1pZC01NTAwMDA5MVZDIiwicmVhbG1pZCI6IklCTWlkIiwianRpIjoiMDlhMTI0MWYtZTk2My00OWU3LTkyOGUtNWY1MDY5Y2Q0ZDUxIiwiaWRlbnRpZmllciI6IjU1MDAwMDkxVkMiLCJnaXZlbl9uYW1lIjoiV01MIiwiZmFtaWx5X25hbWUiOiJXTUwtQmV0YSIsIm5hbWUiOiJXTUwgV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20iLCJzdWIiOiJXTUwtQmV0YUBwbC5pYm0uY29tIiwiYWNjb3VudCI6eyJ2YWxpZCI6dHJ1ZSwiYnNzIjoiZTBmN2VjM2FjMWIyNGVjOWFlNzcxZWZkNzcyNTM4YTIiLCJpbXNfdXNlcl9pZCI6IjcxNzY5NDMiLCJmcm96ZW4iOnRydWUsImltcyI6IjE2ODQ3ODMifSwiaWF0IjoxNjA1Mjc3MjQ3LCJleHAiOjE2MDUyODA4NDcsImlzcyI6Imh0dHBzOi8vaWFtLmNsb3VkLmlibS5jb20vaWRlbnRpdHkiLCJncmFudF90eXBlIjoidXJuOmlibTpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTphcGlrZXkiLCJzY29wZSI6ImlibSBvcGVuaWQiLCJjbGllbnRfaWQiOiJkZWZhdWx0IiwiYWNyIjoxLCJhbXIiOlsicHdkIl19.KXf88nuxeztDWJaY2g1xccu0Dp6R0w6KPObVF8wimprt-k2SsEX6-L7YU1xwq5MXB87Ur_kP2IDtFwu2F-SY7vq6KmAO25kXVlrB7qsj-hf9FbjWkgX6sELiDcjYj9MiqUgwynPhyZC0MJdFc6y0WDt3q9pohwyemPVUNl7ru2dL510vx17f-MZU0-7m0PyppY7qgT4ZX-0211FeMKqOTYe34WtPic0z0ZnYxv_JGh5N3oe3TNn9oneEYN6woY9sk4sI62Zt5CPNN6gFaHdBfhQroWfI6wbf7Q67Fc02DSp1WpuVUfIhwhTCFeTDH7myk6yMZTaSXTLk5_vXmTuAQA
+<pre>env: TOKEN=eyJraWQiOiIyMDIyMDMxNzA4MjMiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC01NTAwMDA5MVZDIiwiaWQiOiJJQk1pZC01NTAwMDA5MVZDIiwicmVhbG1pZCI6IklCTWlkIiwianRpIjoiYmYwZTNjMjEtMmZmYy00ZWZkLWFkOWQtMzRjYTAwMjJjZTM4IiwiaWRlbnRpZmllciI6IjU1MDAwMDkxVkMiLCJnaXZlbl9uYW1lIjoiV01MIiwiZmFtaWx5X25hbWUiOiJXTUwtQmV0YSIsIm5hbWUiOiJXTUwgV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20iLCJzdWIiOiJXTUwtQmV0YUBwbC5pYm0uY29tIiwiYXV0aG4iOnsic3ViIjoiV01MLUJldGFAcGwuaWJtLmNvbSIsImlhbV9pZCI6IklCTWlkLTU1MDAwMDkxVkMiLCJuYW1lIjoiV01MIFdNTC1CZXRhIiwiZ2l2ZW5fbmFtZSI6IldNTCIsImZhbWlseV9uYW1lIjoiV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20ifSwiYWNjb3VudCI6eyJib3VuZGFyeSI6Imdsb2JhbCIsInZhbGlkIjp0cnVlLCJic3MiOiJlMGY3ZWMzYWMxYjI0ZWM5YWU3NzFlZmQ3NzI1MzhhMiIsImltc191c2VyX2lkIjoiNzE3Njk0MyIsImZyb3plbiI6dHJ1ZSwiaW1zIjoiMTY4NDc4MyJ9LCJpYXQiOjE2NDk3Njg4MDIsImV4cCI6MTY0OTc3MjQwMiwiaXNzIjoiaHR0cHM6Ly9pYW0uY2xvdWQuaWJtLmNvbS9pZGVudGl0eSIsImdyYW50X3R5cGUiOiJ1cm46aWJtOnBhcmFtczpvYXV0aDpncmFudC10eXBlOmFwaWtleSIsInNjb3BlIjoiaWJtIG9wZW5pZCIsImNsaWVudF9pZCI6ImRlZmF1bHQiLCJhY3IiOjEsImFtciI6WyJwd2QiXX0.TeHnosVgvUd_cz-5Y398WFQGe379xd6AFRx7PVfnfkxXNI1OUfRIfRFhO8J2cITtsvSgC06CrdRWMoHqnvgpHUtBYTSi906yzyyOiif-qmu0v77RIkGo0rLx_BDUsX_h2eaLXn7SPrClBHKaavLXIjCl4BdqN5dG64Y2ErNeEGbDYVHqWeGwuCtGvmbenGW2dEtCTuHa1yDpx4Xlz7uc8nJZ41KT2ugpOZgo-IJ7y-UAPQ5_pUDhd9qxEmwi0fBmdszIzuBFnhTbwsMSl25p-Z16weGWPGjauNhEd4g4Yagkg9rlD-Jf2Oy2St8iD7DIRbHuAdQoDndTZ52CoaCn-w
 </pre>
 </div>
 </div>
@@ -14879,13 +14896,13 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_payload
 
-<span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;scikit_diabetes_model&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;type&quot;: &quot;scikit-learn_0.23&quot;, &quot;software_spec&quot;: {&quot;name&quot;: &quot;default_py3.8&quot;}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$MODEL_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;scikit_diabetes_model&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;type&quot;: &quot;scikit-learn_1.0&quot;, &quot;software_spec&quot;: {&quot;name&quot;: &quot;runtime-22.1-py3.9&quot;}}&#39;</span>
+<span class="nb">echo</span> <span class="nv">$MODEL_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -14898,10 +14915,10 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">MODEL_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">model_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">model_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14919,21 +14936,15 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: MODEL_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;name&#34;: &#34;scikit_diabetes_model&#34;,
-    &#34;description&#34;: &#34;This is description&#34;,
-    &#34;type&#34;: &#34;scikit-learn_0.23&#34;,
-    &#34;software_spec&#34;: {
-        &#34;name&#34;: &#34;default_py3.7&#34;
-    }
-}
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
+
 </div>
 
 </div>
@@ -14945,7 +14956,23 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">MODEL_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">model_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_id -s <span class="s2">&quot;</span><span class="nv">$model_payload</span><span class="s2">&quot;</span>
@@ -14968,7 +14995,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">MODEL_ID</span><span class="o">=</span><span class="err">$</span><span class="n">model_id</span>
@@ -14993,7 +15020,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: MODEL_ID=f023f27f-b8e9-4efc-8036-3b4b7646f937
+<pre>env: MODEL_ID=091c518d-3f56-4a24-8b36-b8a1e8d98371
 </pre>
 </div>
 </div>
@@ -15031,13 +15058,13 @@ target="_blank" rel="noopener no referrer">Model revision</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out revision_payload
 
 <span class="nv">REVISION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;commit_message&quot;: &quot;Initial model.&quot;}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$REVISION_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$REVISION_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -15050,10 +15077,10 @@ target="_blank" rel="noopener no referrer">Model revision</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">REVISION_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">revision_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">revision_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15071,20 +15098,35 @@ target="_blank" rel="noopener no referrer">Model revision</a></p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: REVISION_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;commit_message&#34;: &#34;Initial model.&#34;
-}
-</pre>
-</div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
 
 </div>
 
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">REVISION_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">revision_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15092,7 +15134,7 @@ target="_blank" rel="noopener no referrer">Model revision</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15127,25 +15169,27 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{
     &#34;entity&#34;: {
+        &#34;hybrid_pipeline_software_specs&#34;: [],
         &#34;software_spec&#34;: {
-            &#34;id&#34;: &#34;e4429883-c883-42b6-87a8-f419d64088cd&#34;,
-            &#34;name&#34;: &#34;default_py3.7&#34;
+            &#34;id&#34;: &#34;12b83a17-24d8-5082-900f-0ab31fbfd3cb&#34;,
+            &#34;name&#34;: &#34;runtime-22.1-py3.9&#34;
         },
-        &#34;type&#34;: &#34;scikit-learn_0.23&#34;
+        &#34;type&#34;: &#34;scikit-learn_1.0&#34;
     },
     &#34;metadata&#34;: {
         &#34;commit_info&#34;: {
             &#34;commit_message&#34;: &#34;Initial model.&#34;,
-            &#34;committed_at&#34;: &#34;2020-11-13T14:21:28.002Z&#34;
+            &#34;committed_at&#34;: &#34;2022-04-12T13:09:45.002Z&#34;
         },
-        &#34;created_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
+        &#34;created_at&#34;: &#34;2022-04-12T13:08:52.237Z&#34;,
         &#34;description&#34;: &#34;This is description&#34;,
-        &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;,
-        &#34;modified_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
+        &#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;,
+        &#34;modified_at&#34;: &#34;2022-04-12T13:08:57.416Z&#34;,
         &#34;name&#34;: &#34;scikit_diabetes_model&#34;,
         &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
+        &#34;resource_key&#34;: &#34;844bae18-ff37-495f-8d33-0e29b95bf6f4&#34;,
         &#34;rev&#34;: &#34;1&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
     },
     &#34;system&#34;: {
         &#34;warnings&#34;: []
@@ -15190,10 +15234,10 @@ target="_blank" rel="noopener no referrer">Upload model content</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">IBM</span><span class="o">/</span><span class="n">watson</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">learning</span><span class="o">-</span><span class="n">samples</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">cloud</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">scikit</span><span class="o">/</span><span class="n">diabetes</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">diabetes_model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> \
+<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">IBM</span><span class="o">/</span><span class="n">watson</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">learning</span><span class="o">-</span><span class="n">samples</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">cloud</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">scikit</span><span class="o">/</span><span class="n">diabetes</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">diabetes_model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> \
     <span class="o">-</span><span class="n">O</span> <span class="n">diabetes_model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 
@@ -15207,7 +15251,7 @@ target="_blank" rel="noopener no referrer">Upload model content</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out attachment_id
@@ -15231,7 +15275,7 @@ curl -sk -X PUT <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">ATTACHMENT_ID</span><span class="o">=</span><span class="err">$</span><span class="n">attachment_id</span>
@@ -15256,7 +15300,7 @@ curl -sk -X PUT <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: ATTACHMENT_ID=a8cde043-4c4d-4489-a186-994ac196b5c1
+<pre>env: ATTACHMENT_ID=abe3eaf0-4f3b-4913-a0b2-afa41823c7af
 </pre>
 </div>
 </div>
@@ -15296,7 +15340,7 @@ target="_blank" rel="noopener no referrer">Download model content</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15372,13 +15416,13 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_payload
 
 <span class="nv">DEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;Diabetes deployment&quot;, &quot;description&quot;: &quot;This is description&quot;,&quot;online&quot;: {},&quot;hardware_spec&quot;: {&quot;name&quot;: &quot;S&quot;},&quot;asset&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$DEPLOYMENT_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$DEPLOYMENT_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -15391,7 +15435,48 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">deployment_payload</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">DEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">deployment_payload</span>
@@ -15416,18 +15501,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: DEPLOYMENT_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;name&#34;: &#34;Diabetes deployment&#34;,
-    &#34;description&#34;: &#34;This is description&#34;,
-    &#34;online&#34;: {},
-    &#34;hardware_spec&#34;: {
-        &#34;name&#34;: &#34;S&#34;
-    },
-    &#34;asset&#34;: {
-        &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;
-    }
-}
+<pre>env: DEPLOYMENT_PAYLOAD={&#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;,&#34;name&#34;: &#34;Diabetes deployment&#34;, &#34;description&#34;: &#34;This is description&#34;,&#34;online&#34;: {},&#34;hardware_spec&#34;: {&#34;name&#34;: &#34;S&#34;},&#34;asset&#34;: {&#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;}}
 </pre>
 </div>
 </div>
@@ -15441,7 +15515,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_id
@@ -15464,7 +15538,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">DEPLOYMENT_ID</span><span class="o">=</span><span class="err">$</span><span class="n">deployment_id</span>
@@ -15489,7 +15563,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: DEPLOYMENT_ID=c7ffca1e-4ee3-42dd-ac86-4747416cb138
+<pre>env: DEPLOYMENT_ID=d8fb127e-83e5-4b6b-af68-82fe901a875d
 </pre>
 </div>
 </div>
@@ -15529,7 +15603,7 @@ target="_blank" rel="noopener no referrer">Get deployment details</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15563,34 +15637,45 @@ curl -sk -X GET <span class="se">\</span>
 <pre>{
     &#34;entity&#34;: {
         &#34;asset&#34;: {
-            &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;
+            &#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;
         },
         &#34;custom&#34;: {},
         &#34;deployed_asset_type&#34;: &#34;model&#34;,
         &#34;description&#34;: &#34;This is description&#34;,
         &#34;hardware_spec&#34;: {
-            &#34;id&#34;: &#34;Not_Applicable&#34;,
+            &#34;id&#34;: &#34;e7ed1d6c-2e89-42d7-aed5-863b972c1d2b&#34;,
             &#34;name&#34;: &#34;S&#34;,
             &#34;num_nodes&#34;: 1
         },
         &#34;name&#34;: &#34;Diabetes deployment&#34;,
         &#34;online&#34;: {},
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;,
         &#34;status&#34;: {
             &#34;online_url&#34;: {
-                &#34;url&#34;: &#34;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/c7ffca1e-4ee3-42dd-ac86-4747416cb138/predictions&#34;
+                &#34;url&#34;: &#34;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/d8fb127e-83e5-4b6b-af68-82fe901a875d/predictions&#34;
             },
+            &#34;serving_urls&#34;: [
+                &#34;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/d8fb127e-83e5-4b6b-af68-82fe901a875d/predictions&#34;
+            ],
             &#34;state&#34;: &#34;ready&#34;
         }
     },
     &#34;metadata&#34;: {
-        &#34;created_at&#34;: &#34;2020-11-13T14:23:23.956Z&#34;,
+        &#34;created_at&#34;: &#34;2022-04-12T13:10:55.346Z&#34;,
         &#34;description&#34;: &#34;This is description&#34;,
-        &#34;id&#34;: &#34;c7ffca1e-4ee3-42dd-ac86-4747416cb138&#34;,
-        &#34;modified_at&#34;: &#34;2020-11-13T14:23:23.956Z&#34;,
+        &#34;id&#34;: &#34;d8fb127e-83e5-4b6b-af68-82fe901a875d&#34;,
+        &#34;modified_at&#34;: &#34;2022-04-12T13:10:55.346Z&#34;,
         &#34;name&#34;: &#34;Diabetes deployment&#34;,
         &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
+    },
+    &#34;system&#34;: {
+        &#34;warnings&#34;: [
+            {
+                &#34;id&#34;: &#34;Deprecated&#34;,
+                &#34;message&#34;: &#34;online_url is deprecated and will be removed in a future release. Use serving_urls instead.&#34;
+            }
+        ]
     }
 }
 </pre>
@@ -15632,13 +15717,13 @@ target="_blank" rel="noopener no referrer">Score your deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out scoring_payload
 
 <span class="nv">SCORING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;$SPACE_ID&quot;,&quot;input_data&quot;: [{&quot;fields&quot;: [&quot;age&quot;, &quot;sex&quot;, &quot;bmi&quot;, &quot;bp&quot;, &quot;s1&quot;, &quot;s2&quot;, &quot;s3&quot;, &quot;s4&quot;, &quot;s5&quot;, &quot;s6&quot;], &quot;values&quot;: [[-0.00188201652779104, -0.044641636506989, -0.0514740612388061, -0.0263278347173518, -0.00844872411121698, -0.019163339748222, 0.0744115640787594, -0.0394933828740919, -0.0683297436244215, -0.09220404962683], [0.0852989062966783, 0.0506801187398187, 0.0444512133365941, -0.00567061055493425, -0.0455994512826475, -0.0341944659141195, -0.0323559322397657, -0.00259226199818282, 0.00286377051894013, -0.0259303389894746]]}]}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$SCORING_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$SCORING_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -15651,10 +15736,10 @@ target="_blank" rel="noopener no referrer">Score your deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">SCORING_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">scoring_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">scoring_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15672,61 +15757,35 @@ target="_blank" rel="noopener no referrer">Score your deployment</a></p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[44]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: SCORING_PAYLOAD={
-    &#34;space_id&#34;: &#34;$SPACE_ID&#34;,
-    &#34;input_data&#34;: [
-        {
-            &#34;fields&#34;: [
-                &#34;age&#34;,
-                &#34;sex&#34;,
-                &#34;bmi&#34;,
-                &#34;bp&#34;,
-                &#34;s1&#34;,
-                &#34;s2&#34;,
-                &#34;s3&#34;,
-                &#34;s4&#34;,
-                &#34;s5&#34;,
-                &#34;s6&#34;
-            ],
-            &#34;values&#34;: [
-                [
-                    -0.00188201652779104,
-                    -0.044641636506989,
-                    -0.0514740612388061,
-                    -0.0263278347173518,
-                    -0.00844872411121698,
-                    -0.019163339748222,
-                    0.0744115640787594,
-                    -0.0394933828740919,
-                    -0.0683297436244215,
-                    -0.09220404962683
-                ],
-                [
-                    0.0852989062966783,
-                    0.0506801187398187,
-                    0.0444512133365941,
-                    -0.00567061055493425,
-                    -0.0455994512826475,
-                    -0.0341944659141195,
-                    -0.0323559322397657,
-                    -0.00259226199818282,
-                    0.00286377051894013,
-                    -0.0259303389894746
-                ]
-            ]
-        }
-    ]
-}
-</pre>
-</div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
 
 </div>
 
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">SCORING_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">scoring_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15734,7 +15793,7 @@ target="_blank" rel="noopener no referrer">Score your deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15900,12 +15959,12 @@ target="_blank" rel="noopener no referrer">List revisions</a></p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15921,52 +15980,6 @@ curl -sk -X GET <span class="se">\</span>
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-    &#34;first&#34;: {
-        &#34;href&#34;: &#34;/ml/v4/models/f023f27f-b8e9-4efc-8036-3b4b7646f937/revisions?space_id=d70a423e-bab5-4b24-943a-3b0b29ad7527&amp;limit=100&#34;
-    },
-    &#34;limit&#34;: 100,
-    &#34;resources&#34;: [
-        {
-            &#34;metadata&#34;: {
-                &#34;commit_info&#34;: {
-                    &#34;commit_message&#34;: &#34;Initial model.&#34;,
-                    &#34;committed_at&#34;: &#34;2020-11-13T14:21:28.002Z&#34;
-                },
-                &#34;created_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
-                &#34;description&#34;: &#34;This is description&#34;,
-                &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;,
-                &#34;modified_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
-                &#34;name&#34;: &#34;scikit_diabetes_model&#34;,
-                &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-                &#34;rev&#34;: &#34;1&#34;,
-                &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
-            }
-        }
-    ]
-}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -15998,13 +16011,13 @@ target="_blank" rel="noopener no referrer">Create model revision</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out revision_payload
 
 <span class="nv">REVISION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;commit_message&quot;: &quot;Updated model.&quot;}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$REVISION_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$REVISION_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -16017,7 +16030,48 @@ target="_blank" rel="noopener no referrer">Create model revision</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">revision_payload</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[48]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">REVISION_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">revision_payload</span>
@@ -16042,10 +16096,7 @@ target="_blank" rel="noopener no referrer">Create model revision</a></p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: REVISION_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;commit_message&#34;: &#34;Updated model.&#34;
-}
+<pre>env: REVISION_PAYLOAD={&#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;, &#34;commit_message&#34;: &#34;Updated model.&#34;}
 </pre>
 </div>
 </div>
@@ -16054,12 +16105,12 @@ target="_blank" rel="noopener no referrer">Create model revision</a></p>
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16076,54 +16127,6 @@ curl -sk -X POST <span class="se">\</span>
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-    &#34;entity&#34;: {
-        &#34;software_spec&#34;: {
-            &#34;id&#34;: &#34;e4429883-c883-42b6-87a8-f419d64088cd&#34;,
-            &#34;name&#34;: &#34;default_py3.7&#34;
-        },
-        &#34;type&#34;: &#34;scikit-learn_0.23&#34;
-    },
-    &#34;metadata&#34;: {
-        &#34;commit_info&#34;: {
-            &#34;commit_message&#34;: &#34;Updated model.&#34;,
-            &#34;committed_at&#34;: &#34;2020-11-13T14:23:49.002Z&#34;
-        },
-        &#34;created_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
-        &#34;description&#34;: &#34;This is description&#34;,
-        &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;,
-        &#34;modified_at&#34;: &#34;2020-11-13T14:23:02.061Z&#34;,
-        &#34;name&#34;: &#34;scikit_diabetes_model&#34;,
-        &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;rev&#34;: &#34;2&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
-    },
-    &#34;system&#34;: {
-        &#34;warnings&#34;: []
-    }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -16156,12 +16159,12 @@ target="_blank" rel="noopener no referrer">Patch model</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out update_payload
 
-<span class="nb">echo</span> <span class="s1">&#39;[{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/name&quot;, &quot;value&quot;: &quot;updated scikit model&quot;}]&#39;</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="s1">&#39;[{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/name&quot;, &quot;value&quot;: &quot;updated scikit model&quot;}]&#39;</span>
 </pre></div>
 
      </div>
@@ -16174,7 +16177,7 @@ target="_blank" rel="noopener no referrer">Patch model</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">UPDATE_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">update_payload</span>
@@ -16199,13 +16202,7 @@ target="_blank" rel="noopener no referrer">Patch model</a></p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: UPDATE_PAYLOAD=[
-    {
-        &#34;op&#34;: &#34;add&#34;,
-        &#34;path&#34;: &#34;/name&#34;,
-        &#34;value&#34;: &#34;updated scikit model&#34;
-    }
-]
+<pre>env: UPDATE_PAYLOAD=[{&#34;op&#34;: &#34;add&#34;, &#34;path&#34;: &#34;/name&#34;, &#34;value&#34;: &#34;updated scikit model&#34;}]
 </pre>
 </div>
 </div>
@@ -16219,7 +16216,7 @@ target="_blank" rel="noopener no referrer">Patch model</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16254,23 +16251,25 @@ curl -sk -X PATCH <span class="se">\</span>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{
     &#34;entity&#34;: {
+        &#34;hybrid_pipeline_software_specs&#34;: [],
         &#34;software_spec&#34;: {
-            &#34;id&#34;: &#34;e4429883-c883-42b6-87a8-f419d64088cd&#34;,
-            &#34;name&#34;: &#34;default_py3.7&#34;
+            &#34;id&#34;: &#34;12b83a17-24d8-5082-900f-0ab31fbfd3cb&#34;,
+            &#34;name&#34;: &#34;runtime-22.1-py3.9&#34;
         },
-        &#34;type&#34;: &#34;scikit-learn_0.23&#34;
+        &#34;type&#34;: &#34;scikit-learn_1.0&#34;
     },
     &#34;metadata&#34;: {
         &#34;commit_info&#34;: {
-            &#34;committed_at&#34;: &#34;2020-11-13T14:23:58.062Z&#34;
+            &#34;committed_at&#34;: &#34;2022-04-12T13:13:05.072Z&#34;
         },
-        &#34;created_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
+        &#34;created_at&#34;: &#34;2022-04-12T13:08:52.237Z&#34;,
         &#34;description&#34;: &#34;This is description&#34;,
-        &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;,
-        &#34;modified_at&#34;: &#34;2020-11-13T14:23:58.028Z&#34;,
+        &#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;,
+        &#34;modified_at&#34;: &#34;2022-04-12T13:13:04.869Z&#34;,
         &#34;name&#34;: &#34;updated scikit model&#34;,
         &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+        &#34;resource_key&#34;: &#34;004c3bd1-4f58-4d17-a84c-f0a527ca9830&#34;,
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
     },
     &#34;system&#34;: {
         &#34;warnings&#34;: []
@@ -16300,10 +16299,10 @@ curl -sk -X PATCH <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">IBM</span><span class="o">/</span><span class="n">watson</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">learning</span><span class="o">-</span><span class="n">samples</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">cloud</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">scikit</span><span class="o">/</span><span class="n">diabetes</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">new_diabetes_model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> \
+<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">q</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">IBM</span><span class="o">/</span><span class="n">watson</span><span class="o">-</span><span class="n">machine</span><span class="o">-</span><span class="n">learning</span><span class="o">-</span><span class="n">samples</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">cloud</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">scikit</span><span class="o">/</span><span class="n">diabetes</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">new_diabetes_model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span> \
     <span class="o">-</span><span class="n">O</span> <span class="n">new_diabetes_model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 
@@ -16330,7 +16329,7 @@ target="_blank" rel="noopener no referrer">Upload model content</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16364,7 +16363,7 @@ curl -sk -X PUT <span class="se">\</span>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{
-    &#34;attachment_id&#34;: &#34;ff38d69e-a431-4895-a4d0-71ef907a1f5b&#34;,
+    &#34;attachment_id&#34;: &#34;a61f2746-3e3a-4ea9-acbf-5ac1d6a1ff3a&#34;,
     &#34;content_format&#34;: &#34;native&#34;,
     &#34;persisted&#34;: true
 }
@@ -16405,7 +16404,7 @@ target="_blank" rel="noopener no referrer">List revisions</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16439,7 +16438,7 @@ curl -sk -X GET <span class="se">\</span>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{
     &#34;first&#34;: {
-        &#34;href&#34;: &#34;/ml/v4/models/f023f27f-b8e9-4efc-8036-3b4b7646f937/revisions?space_id=d70a423e-bab5-4b24-943a-3b0b29ad7527&amp;limit=100&#34;
+        &#34;href&#34;: &#34;/ml/v4/models/091c518d-3f56-4a24-8b36-b8a1e8d98371/revisions?space_id=680a7515-620c-461f-9c6f-1f4c535bfc47&amp;limit=100&#34;
     },
     &#34;limit&#34;: 100,
     &#34;resources&#34;: [
@@ -16447,32 +16446,34 @@ curl -sk -X GET <span class="se">\</span>
             &#34;metadata&#34;: {
                 &#34;commit_info&#34;: {
                     &#34;commit_message&#34;: &#34;Updated model.&#34;,
-                    &#34;committed_at&#34;: &#34;2020-11-13T14:23:49.002Z&#34;
+                    &#34;committed_at&#34;: &#34;2022-04-12T13:12:29.002Z&#34;
                 },
-                &#34;created_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
+                &#34;created_at&#34;: &#34;2022-04-12T13:08:52.237Z&#34;,
                 &#34;description&#34;: &#34;This is description&#34;,
-                &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;,
-                &#34;modified_at&#34;: &#34;2020-11-13T14:23:02.061Z&#34;,
+                &#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;,
+                &#34;modified_at&#34;: &#34;2022-04-12T13:10:15.830Z&#34;,
                 &#34;name&#34;: &#34;scikit_diabetes_model&#34;,
                 &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
+                &#34;resource_key&#34;: &#34;059d30d9-a47c-4ada-a1bc-904733099fb1&#34;,
                 &#34;rev&#34;: &#34;2&#34;,
-                &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+                &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
             }
         },
         {
             &#34;metadata&#34;: {
                 &#34;commit_info&#34;: {
                     &#34;commit_message&#34;: &#34;Initial model.&#34;,
-                    &#34;committed_at&#34;: &#34;2020-11-13T14:21:28.002Z&#34;
+                    &#34;committed_at&#34;: &#34;2022-04-12T13:09:45.002Z&#34;
                 },
-                &#34;created_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
+                &#34;created_at&#34;: &#34;2022-04-12T13:08:52.237Z&#34;,
                 &#34;description&#34;: &#34;This is description&#34;,
-                &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;,
-                &#34;modified_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
+                &#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;,
+                &#34;modified_at&#34;: &#34;2022-04-12T13:08:57.416Z&#34;,
                 &#34;name&#34;: &#34;scikit_diabetes_model&#34;,
                 &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
+                &#34;resource_key&#34;: &#34;844bae18-ff37-495f-8d33-0e29b95bf6f4&#34;,
                 &#34;rev&#34;: &#34;1&#34;,
-                &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+                &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
             }
         }
     ]
@@ -16515,7 +16516,7 @@ target="_blank" rel="noopener no referrer">Get model details</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[58]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16549,23 +16550,25 @@ curl -sk -X GET <span class="se">\</span>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{
     &#34;entity&#34;: {
+        &#34;hybrid_pipeline_software_specs&#34;: [],
         &#34;software_spec&#34;: {
-            &#34;id&#34;: &#34;e4429883-c883-42b6-87a8-f419d64088cd&#34;,
-            &#34;name&#34;: &#34;default_py3.7&#34;
+            &#34;id&#34;: &#34;12b83a17-24d8-5082-900f-0ab31fbfd3cb&#34;,
+            &#34;name&#34;: &#34;runtime-22.1-py3.9&#34;
         },
-        &#34;type&#34;: &#34;scikit-learn_0.23&#34;
+        &#34;type&#34;: &#34;scikit-learn_1.0&#34;
     },
     &#34;metadata&#34;: {
         &#34;commit_info&#34;: {
-            &#34;committed_at&#34;: &#34;2020-11-13T14:24:38.044Z&#34;
+            &#34;committed_at&#34;: &#34;2022-04-12T13:13:32.613Z&#34;
         },
-        &#34;created_at&#34;: &#34;2020-11-13T14:20:58.899Z&#34;,
+        &#34;created_at&#34;: &#34;2022-04-12T13:08:52.237Z&#34;,
         &#34;description&#34;: &#34;This is description&#34;,
-        &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;,
-        &#34;modified_at&#34;: &#34;2020-11-13T14:24:21.908Z&#34;,
+        &#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;,
+        &#34;modified_at&#34;: &#34;2022-04-12T13:13:25.446Z&#34;,
         &#34;name&#34;: &#34;updated scikit model&#34;,
         &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+        &#34;resource_key&#34;: &#34;0c2b2541-92a9-4645-8697-4f0949bf698d&#34;,
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
     },
     &#34;system&#34;: {
         &#34;warnings&#34;: []
@@ -16621,13 +16624,12 @@ target="_blank" rel="noopener no referrer">Deployment update</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out redeploy_payload
 
-<span class="nb">echo</span> <span class="s1">&#39;[{&quot;op&quot;: &quot;replace&quot;, &quot;path&quot;: &quot;/asset&quot;, &quot;value&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}]&#39;</span> <span class="se">\</span>
-     <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="s1">&#39;[{&quot;op&quot;: &quot;replace&quot;, &quot;path&quot;: &quot;/asset&quot;, &quot;value&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}]&#39;</span>
 </pre></div>
 
      </div>
@@ -16640,7 +16642,7 @@ target="_blank" rel="noopener no referrer">Deployment update</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[62]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">REDEPLOY_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">redeploy_payload</span>
@@ -16665,15 +16667,7 @@ target="_blank" rel="noopener no referrer">Deployment update</a></p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: REDEPLOY_PAYLOAD=[
-    {
-        &#34;op&#34;: &#34;replace&#34;,
-        &#34;path&#34;: &#34;/asset&#34;,
-        &#34;value&#34;: {
-            &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;
-        }
-    }
-]
+<pre>env: REDEPLOY_PAYLOAD=[{&#34;op&#34;: &#34;replace&#34;, &#34;path&#34;: &#34;/asset&#34;, &#34;value&#34;: {&#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;}}]
 </pre>
 </div>
 </div>
@@ -16687,7 +16681,7 @@ target="_blank" rel="noopener no referrer">Deployment update</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[63]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16723,34 +16717,45 @@ curl -sk -X PATCH <span class="se">\</span>
 <pre>{
     &#34;entity&#34;: {
         &#34;asset&#34;: {
-            &#34;id&#34;: &#34;f023f27f-b8e9-4efc-8036-3b4b7646f937&#34;
+            &#34;id&#34;: &#34;091c518d-3f56-4a24-8b36-b8a1e8d98371&#34;
         },
         &#34;custom&#34;: {},
         &#34;deployed_asset_type&#34;: &#34;model&#34;,
         &#34;description&#34;: &#34;This is description&#34;,
         &#34;hardware_spec&#34;: {
-            &#34;id&#34;: &#34;Not_Applicable&#34;,
+            &#34;id&#34;: &#34;e7ed1d6c-2e89-42d7-aed5-863b972c1d2b&#34;,
             &#34;name&#34;: &#34;S&#34;,
             &#34;num_nodes&#34;: 1
         },
         &#34;name&#34;: &#34;Diabetes deployment&#34;,
         &#34;online&#34;: {},
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;,
         &#34;status&#34;: {
             &#34;online_url&#34;: {
-                &#34;url&#34;: &#34;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/c7ffca1e-4ee3-42dd-ac86-4747416cb138/predictions&#34;
+                &#34;url&#34;: &#34;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/d8fb127e-83e5-4b6b-af68-82fe901a875d/predictions&#34;
             },
+            &#34;serving_urls&#34;: [
+                &#34;https://yp-qa.ml.cloud.ibm.com/ml/v4/deployments/d8fb127e-83e5-4b6b-af68-82fe901a875d/predictions&#34;
+            ],
             &#34;state&#34;: &#34;ready&#34;
         }
     },
     &#34;metadata&#34;: {
-        &#34;created_at&#34;: &#34;2020-11-13T14:23:23.956Z&#34;,
+        &#34;created_at&#34;: &#34;2022-04-12T13:10:55.346Z&#34;,
         &#34;description&#34;: &#34;This is description&#34;,
-        &#34;id&#34;: &#34;c7ffca1e-4ee3-42dd-ac86-4747416cb138&#34;,
-        &#34;modified_at&#34;: &#34;2020-11-13T14:24:43.046Z&#34;,
+        &#34;id&#34;: &#34;d8fb127e-83e5-4b6b-af68-82fe901a875d&#34;,
+        &#34;modified_at&#34;: &#34;2022-04-12T13:13:47.467Z&#34;,
         &#34;name&#34;: &#34;Diabetes deployment&#34;,
         &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
+    },
+    &#34;system&#34;: {
+        &#34;warnings&#34;: [
+            {
+                &#34;id&#34;: &#34;Deprecated&#34;,
+                &#34;message&#34;: &#34;online_url is deprecated and will be removed in a future release. Use serving_urls instead.&#34;
+            }
+        ]
     }
 }
 </pre>
@@ -16777,7 +16782,7 @@ curl -sk -X PATCH <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash

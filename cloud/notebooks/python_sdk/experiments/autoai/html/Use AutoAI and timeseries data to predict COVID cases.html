@@ -14559,12 +14559,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -15230,7 +15230,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)</code></pre
                             <span class="n">path</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
     <span class="p">)</span>
 
-<span class="n">data_connection</span><span class="o">.</span><span class="n">_wml_client</span> <span class="o">=</span> <span class="n">client</span>
+<span class="n">data_connection</span><span class="o">.</span><span class="n">set_client</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
 <span class="n">data_connection</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">remote_name</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
 <span class="n">data_connections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_connection</span><span class="p">)</span>
 </pre></div>

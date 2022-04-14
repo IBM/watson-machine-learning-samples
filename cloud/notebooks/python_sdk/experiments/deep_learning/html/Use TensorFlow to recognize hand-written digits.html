@@ -14559,12 +14559,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -15327,7 +15327,7 @@ SUCCESS
     <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;Hand-written Digit Recognition&quot;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;Hand-written Digit Recognition&quot;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">COMMAND</span><span class="p">:</span>  <span class="s2">&quot;python convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PLATFORM</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;versions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;3.8&quot;</span><span class="p">]},</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PLATFORM</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;versions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;3.9&quot;</span><span class="p">]},</span>
     <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">VERSION</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">SPACE_UID</span><span class="p">:</span> <span class="n">space_id</span>
 <span class="p">}</span>
@@ -15535,7 +15535,7 @@ SUCCESS
           <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="mi">1</span>
         <span class="p">},</span>
         <span class="s2">&quot;software_spec&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tensorflow_2.4-py3.8&quot;</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;tensorflow_rt22.1-py3.9&quot;</span>
         <span class="p">},</span>
         <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
           <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Hand-written Digit Recognition&quot;</span><span class="p">,</span>
@@ -15877,7 +15877,7 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;tensorflow_2.4-py3.8&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;tensorflow_rt22.1-py3.9&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15894,7 +15894,7 @@ SUCCESS
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_meta_props</span> <span class="o">=</span> <span class="p">{</span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;TF Mnist Model&quot;</span><span class="p">,</span>
-                    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;tensorflow_2.4&quot;</span><span class="p">,</span>
+                    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;tensorflow_2.7&quot;</span><span class="p">,</span>
                     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">software_spec_uid</span>
                     <span class="p">}</span>
 
@@ -15918,12 +15918,12 @@ SUCCESS
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
@@ -15933,45 +15933,6 @@ SUCCESS
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-  &#34;entity&#34;: {
-    &#34;software_spec&#34;: {
-      &#34;id&#34;: &#34;2b73a275-7cbf-420b-a912-eae7f436e0bc&#34;,
-      &#34;name&#34;: &#34;tensorflow_1.15-py3.6&#34;
-    },
-    &#34;type&#34;: &#34;tensorflow_1.15&#34;
-  },
-  &#34;metadata&#34;: {
-    &#34;created_at&#34;: &#34;2020-08-13T07:42:54.543Z&#34;,
-    &#34;id&#34;: &#34;c592b0b8-b07f-4fa7-930f-14a23aed49a8&#34;,
-    &#34;modified_at&#34;: &#34;2020-08-13T07:42:56.860Z&#34;,
-    &#34;name&#34;: &#34;TF Mnist Model&#34;,
-    &#34;owner&#34;: &#34;IBMid-5500067NJD&#34;,
-    &#34;space_id&#34;: &#34;74133c06-dce2-4dfc-b913-2e0dc8efc750&#34;
-  }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -16107,12 +16068,12 @@ Successfully finished deployment creation, deployment_uid=&#39;b78beeb5-84b6-4a3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployments_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">)</span>
@@ -16122,58 +16083,6 @@ Successfully finished deployment creation, deployment_uid=&#39;b78beeb5-84b6-4a3
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-  &#34;entity&#34;: {
-    &#34;asset&#34;: {
-      &#34;id&#34;: &#34;c592b0b8-b07f-4fa7-930f-14a23aed49a8&#34;
-    },
-    &#34;custom&#34;: {},
-    &#34;hardware_spec&#34;: {
-      &#34;id&#34;: &#34;Not_Applicable&#34;,
-      &#34;name&#34;: &#34;S&#34;,
-      &#34;num_nodes&#34;: 1
-    },
-    &#34;name&#34;: &#34;TF Mnist deployment&#34;,
-    &#34;online&#34;: {},
-    &#34;space_id&#34;: &#34;74133c06-dce2-4dfc-b913-2e0dc8efc750&#34;,
-    &#34;status&#34;: {
-      &#34;online_url&#34;: {
-        &#34;url&#34;: &#34;https://wml-fvt.ml.test.cloud.ibm.com/ml/v4/deployments/b78beeb5-84b6-4a3b-9abc-a740ad781d9f/predictions&#34;
-      },
-      &#34;state&#34;: &#34;ready&#34;
-    }
-  },
-  &#34;metadata&#34;: {
-    &#34;created_at&#34;: &#34;2020-08-13T07:43:03.139Z&#34;,
-    &#34;id&#34;: &#34;b78beeb5-84b6-4a3b-9abc-a740ad781d9f&#34;,
-    &#34;modified_at&#34;: &#34;2020-08-13T07:43:03.139Z&#34;,
-    &#34;name&#34;: &#34;TF Mnist deployment&#34;,
-    &#34;owner&#34;: &#34;IBMid-5500067NJD&#34;,
-    &#34;space_id&#34;: &#34;74133c06-dce2-4dfc-b913-2e0dc8efc750&#34;
-  }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>

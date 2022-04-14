@@ -14559,12 +14559,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14651,6 +14651,23 @@ Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">loads</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">JSON</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
@@ -14706,7 +14723,7 @@ Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
@@ -14730,7 +14747,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TOKEN</span><span class="o">=</span><span class="err">$</span><span class="n">token</span>
@@ -14755,7 +14772,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TOKEN=eyJraWQiOiIyMDIxMDUyMDE4MzYiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC01NTAwMDA5MVZDIiwiaWQiOiJJQk1pZC01NTAwMDA5MVZDIiwicmVhbG1pZCI6IklCTWlkIiwianRpIjoiMzllMmRiMjQtZjFiNy00MWYyLTg2ODItZGRiZjRlZTlmZjM1IiwiaWRlbnRpZmllciI6IjU1MDAwMDkxVkMiLCJnaXZlbl9uYW1lIjoiV01MIiwiZmFtaWx5X25hbWUiOiJXTUwtQmV0YSIsIm5hbWUiOiJXTUwgV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20iLCJzdWIiOiJXTUwtQmV0YUBwbC5pYm0uY29tIiwiYXV0aG4iOnsic3ViIjoiV01MLUJldGFAcGwuaWJtLmNvbSIsImlhbV9pZCI6ImlhbS01NTAwMDA5MVZDIiwibmFtZSI6IldNTCBXTUwtQmV0YSIsImdpdmVuX25hbWUiOiJXTUwiLCJmYW1pbHlfbmFtZSI6IldNTC1CZXRhIiwiZW1haWwiOiJXTUwtQmV0YUBwbC5pYm0uY29tIn0sImFjY291bnQiOnsiYm91bmRhcnkiOiJnbG9iYWwiLCJ2YWxpZCI6dHJ1ZSwiYnNzIjoiZTBmN2VjM2FjMWIyNGVjOWFlNzcxZWZkNzcyNTM4YTIiLCJpbXNfdXNlcl9pZCI6IjcxNzY5NDMiLCJmcm96ZW4iOnRydWUsImltcyI6IjE2ODQ3ODMifSwiaWF0IjoxNjIzODM3MTc1LCJleHAiOjE2MjM4NDA3NzUsImlzcyI6Imh0dHBzOi8vaWFtLmNsb3VkLmlibS5jb20vaWRlbnRpdHkiLCJncmFudF90eXBlIjoidXJuOmlibTpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTphcGlrZXkiLCJzY29wZSI6ImlibSBvcGVuaWQiLCJjbGllbnRfaWQiOiJkZWZhdWx0IiwiYWNyIjoxLCJhbXIiOlsicHdkIl19.ddBw_llqrcMW51a-iL6IyexaWGOsnkfH8RucO4gLhCebp6DPOQYD-zMT_iiebMFSxqq-gJ-72oDDQQclEzjp79iHQxrlmRRastkSrRlFYKqiVi-y0l_4Ka7PpCzYz9p5HdnHjfDQsOZIMGcKz-Y4nDZvqeTAnbYOshbgcUJuzO7GyFKKEFtbmi-ttRDu1Ex6fgbLCYTYTkUvRdxcoGIXQwMYnoU75yqr3CHSCAGnwhGDgKu5eoqVKZFV9WQSZMYYQuotxFzyaqXDcJfE71R1W764ajlHYcYykHCL6kSG7ksNNZJGyAjDks_WaU1mF8UBen_iC8_k-axJmx5AJFDQmQ
+<pre>env: TOKEN=eyJraWQiOiIyMDIyMDMxNzA4MjMiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC01NTAwMDA5MVZDIiwiaWQiOiJJQk1pZC01NTAwMDA5MVZDIiwicmVhbG1pZCI6IklCTWlkIiwianRpIjoiZTA5ZjcxMDktZjk3Mi00ZGVjLWE1MjUtN2RkMTBiMjc0NGM3IiwiaWRlbnRpZmllciI6IjU1MDAwMDkxVkMiLCJnaXZlbl9uYW1lIjoiV01MIiwiZmFtaWx5X25hbWUiOiJXTUwtQmV0YSIsIm5hbWUiOiJXTUwgV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20iLCJzdWIiOiJXTUwtQmV0YUBwbC5pYm0uY29tIiwiYXV0aG4iOnsic3ViIjoiV01MLUJldGFAcGwuaWJtLmNvbSIsImlhbV9pZCI6IklCTWlkLTU1MDAwMDkxVkMiLCJuYW1lIjoiV01MIFdNTC1CZXRhIiwiZ2l2ZW5fbmFtZSI6IldNTCIsImZhbWlseV9uYW1lIjoiV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20ifSwiYWNjb3VudCI6eyJib3VuZGFyeSI6Imdsb2JhbCIsInZhbGlkIjp0cnVlLCJic3MiOiJlMGY3ZWMzYWMxYjI0ZWM5YWU3NzFlZmQ3NzI1MzhhMiIsImltc191c2VyX2lkIjoiNzE3Njk0MyIsImZyb3plbiI6dHJ1ZSwiaW1zIjoiMTY4NDc4MyJ9LCJpYXQiOjE2NDk3NzAwOTYsImV4cCI6MTY0OTc3MzY5NiwiaXNzIjoiaHR0cHM6Ly9pYW0uY2xvdWQuaWJtLmNvbS9pZGVudGl0eSIsImdyYW50X3R5cGUiOiJ1cm46aWJtOnBhcmFtczpvYXV0aDpncmFudC10eXBlOmFwaWtleSIsInNjb3BlIjoiaWJtIG9wZW5pZCIsImNsaWVudF9pZCI6ImRlZmF1bHQiLCJhY3IiOjEsImFtciI6WyJwd2QiXX0.OOTbgpCdsqM-jxXKo6kFGkAjwjyd5-qsOPQy1yaLHTKP5bsKyYCTBqc8nvWb9nVkZkLGgKJV7Tgmvwa19jyIQfkpD81GutBm1Lh4-h_mhceEdtinV6_ijtiaTX1fLpovU9at6Ye8n7hQIjvQABFsZ3g2od7YuEeRj-5zgFsBAvJSLBu770pb0keXcAN2NYTAerW3M98F0mKI_GO_Sc7088c9cw-lPem-spybS57RNL1colJK72ge8WW5O45-VRQY3n_JUS0y6OHDL13cHBAwmvQKUP8BGS767Lyg255BGfr9G9zDSnX04AzHqyXoRHbNyQ0T7x-q8wNeFm2ZnmCxbQ
 </pre>
 </div>
 </div>
@@ -14865,12 +14882,12 @@ curl -sk -X GET \
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
-wget -q https://s3.amazonaws.com/img-datasets/mnist.npz <span class="se">\</span>
+wget -q https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/data/mnist/mnist.npz <span class="se">\</span>
      -O mnist.npz
 </pre></div>
 
@@ -14910,7 +14927,7 @@ target="_blank" rel="noopener no referrer">Retrieve COS authentication token</a>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out cos_token
@@ -14934,7 +14951,7 @@ curl -s -X <span class="s2">&quot;POST&quot;</span> <span class="s2">&quot;</spa
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">COS_TOKEN</span><span class="o">=</span><span class="err">$</span><span class="n">cos_token</span>
@@ -14959,7 +14976,7 @@ curl -s -X <span class="s2">&quot;POST&quot;</span> <span class="s2">&quot;</spa
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: COS_TOKEN=eyJraWQiOiIyMDIxMDUyMDE4MzYiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJpYW0tU2VydmljZUlkLTU3MzMwOTM3LWJkNTQtNDYyYi04ODUxLWY3OTFhZDYyYzY1OSIsImlkIjoiaWFtLVNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJyZWFsbWlkIjoiaWFtIiwianRpIjoiZTZhOWJjY2UtM2EzMS00MjhmLThiYjktNjgwNTgxYzAyOGQ5IiwiaWRlbnRpZmllciI6IlNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJuYW1lIjoiY3JlZGVudGlhbHNfMSIsInN1YiI6IlNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJzdWJfdHlwZSI6IlNlcnZpY2VJZCIsImF1dGhuIjp7InN1YiI6ImlhbS1TZXJ2aWNlSWQtNTczMzA5MzctYmQ1NC00NjJiLTg4NTEtZjc5MWFkNjJjNjU5IiwiaWFtX2lkIjoiaWFtLWlhbS1TZXJ2aWNlSWQtNTczMzA5MzctYmQ1NC00NjJiLTg4NTEtZjc5MWFkNjJjNjU5Iiwic3ViX3R5cGUiOiIxIiwibmFtZSI6ImNyZWRlbnRpYWxzXzEifSwiYWNjb3VudCI6eyJib3VuZGFyeSI6Imdsb2JhbCIsInZhbGlkIjp0cnVlLCJic3MiOiJlMGY3ZWMzYWMxYjI0ZWM5YWU3NzFlZmQ3NzI1MzhhMiIsImZyb3plbiI6dHJ1ZX0sImlhdCI6MTYyMzgzNzE4MSwiZXhwIjoxNjIzODQwNzgxLCJpc3MiOiJodHRwczovL2lhbS5jbG91ZC5pYm0uY29tL2lkZW50aXR5IiwiZ3JhbnRfdHlwZSI6InVybjppYm06cGFyYW1zOm9hdXRoOmdyYW50LXR5cGU6YXBpa2V5Iiwic2NvcGUiOiJpYm0gb3BlbmlkIiwiY2xpZW50X2lkIjoiZGVmYXVsdCIsImFjciI6MSwiYW1yIjpbInB3ZCJdfQ.aN1pGaXxDcCGsoT6AtIsD-IRWSew2rc5S4JNFRT-KI-axDy2P834ZNdqwjwaguXz0tL4N6CQsy-NN8OSUs7Uy0bo8l1wPJUL42tDdKS5Wq5F8redL90wt1RQ2feRzbX18YvcnIrcygZRPZ3HRSSoBhiN0lm3OxXihwCotEf1dPu1z9Vfp1NEv6k1BCHMoHvbtwkxYXaoCZfbEm3Nvss0MKnDzr9-YNcpgLcVjvPpBpMUt1fuKzjNnjHQzy7dGAOlL6nRgqasxx8k7VC4JQ5DaYH7JSPSphbGhkB1Ut46oL4svsXpN7Jx3BUzp67y2pJ5AVXnlImRlhD7R9YKOiPSJw
+<pre>env: COS_TOKEN=eyJraWQiOiIyMDIyMDMxNzA4MjMiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJpYW0tU2VydmljZUlkLTE1ODE3MTAyLTAxYWYtNDlhMC1iMTYxLWZjMGM2YTRhMjZlOCIsImlkIjoiaWFtLVNlcnZpY2VJZC0xNTgxNzEwMi0wMWFmLTQ5YTAtYjE2MS1mYzBjNmE0YTI2ZTgiLCJyZWFsbWlkIjoiaWFtIiwianRpIjoiNGVjYjM5MDAtZDMyYi00YTRhLTg3OTEtZDBlZDQ2NDZkMzY5IiwiaWRlbnRpZmllciI6IlNlcnZpY2VJZC0xNTgxNzEwMi0wMWFmLTQ5YTAtYjE2MS1mYzBjNmE0YTI2ZTgiLCJuYW1lIjoidGVzdC13bWwtc2FtcGxlcyIsInN1YiI6IlNlcnZpY2VJZC0xNTgxNzEwMi0wMWFmLTQ5YTAtYjE2MS1mYzBjNmE0YTI2ZTgiLCJzdWJfdHlwZSI6IlNlcnZpY2VJZCIsImF1dGhuIjp7InN1YiI6IlNlcnZpY2VJZC0xNTgxNzEwMi0wMWFmLTQ5YTAtYjE2MS1mYzBjNmE0YTI2ZTgiLCJpYW1faWQiOiJpYW0tU2VydmljZUlkLTE1ODE3MTAyLTAxYWYtNDlhMC1iMTYxLWZjMGM2YTRhMjZlOCIsInN1Yl90eXBlIjoiU2VydmljZUlkIiwibmFtZSI6InRlc3Qtd21sLXNhbXBsZXMifSwiYWNjb3VudCI6eyJib3VuZGFyeSI6Imdsb2JhbCIsInZhbGlkIjp0cnVlLCJic3MiOiJlMGY3ZWMzYWMxYjI0ZWM5YWU3NzFlZmQ3NzI1MzhhMiIsImZyb3plbiI6dHJ1ZX0sImlhdCI6MTY0OTc3MDM3MiwiZXhwIjoxNjQ5NzczOTcyLCJpc3MiOiJodHRwczovL2lhbS5jbG91ZC5pYm0uY29tL2lkZW50aXR5IiwiZ3JhbnRfdHlwZSI6InVybjppYm06cGFyYW1zOm9hdXRoOmdyYW50LXR5cGU6YXBpa2V5Iiwic2NvcGUiOiJpYm0gb3BlbmlkIiwiY2xpZW50X2lkIjoiZGVmYXVsdCIsImFjciI6MSwiYW1yIjpbInB3ZCJdfQ.cVSBXc7kvdTBGjcRc8YJN63b3HkJ9RW8CuxHpJRXKmed1jX7jtgEcnLmUP6JCUw1u_Rx9CkESGwU3SZ0sWCHf54xgslKq8kqETwQLXBXmxjE-XYllSJKitVGjudZHLazVVkm1hc2MAYwbhzu7v9ZErGDI1S0W8dHd0eho_puQBs7gehxL6QJjFOrWC_sK7tDWgeIYs-2xshOGhq6nYmF3cJLHipw7vzsQPeGvkJkoGXYP4Y1w3TNItIJIWQsKVEja_daAEPPs546cnzC-AU9kgyXKp0Q7nQlXSdRMD13Mn9gyFBgT1ftJdoCdpQOGw-4TumXIWRdjXwjwkH7tGosUw
 </pre>
 </div>
 </div>
@@ -14999,7 +15016,7 @@ target="_blank" rel="noopener no referrer">Upload file to COS</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash 
@@ -15045,13 +15062,13 @@ curl -sk -X PUT <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out connection_payload
 
 <span class="nv">CONNECTION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;REST COS connection&quot;, &quot;datasource_type&quot;: &quot;193a97c1-4475-4a19-b90c-295c4fdc6517&quot;, &quot;properties&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;iam_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$AUTH_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;origin_country&quot;: &quot;US&quot;}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$CONNECTION_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$CONNECTION_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -15059,12 +15076,28 @@ curl -sk -X PUT <span class="se">\</span>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">connection_payload</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">CONNECTION_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">connection_payload</span>
@@ -15075,46 +15108,12 @@ curl -sk -X PUT <span class="se">\</span>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: CONNECTION_PAYLOAD={
-    &#34;name&#34;: &#34;REST COS connection&#34;,
-    &#34;datasource_type&#34;: &#34;193a97c1-4475-4a19-b90c-295c4fdc6517&#34;,
-    &#34;properties&#34;: {
-        &#34;bucket&#34;: &#34;&#34;,
-        &#34;access_key&#34;: &#34;&#34;,
-        &#34;secret_key&#34;: &#34;&#34;,
-        &#34;iam_url&#34;: &#34;&#34;,
-        &#34;url&#34;: &#34;&#34;
-    },
-    &#34;origin_country&#34;: &#34;US&#34;
-}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out connection_id
@@ -15140,7 +15139,7 @@ curl -sk -X PUT <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">CONNECTION_ID</span><span class="o">=</span><span class="err">$</span><span class="n">connection_id</span>
@@ -15165,7 +15164,7 @@ curl -sk -X PUT <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: CONNECTION_ID=65c9a953-8816-413b-9af7-a264bb5c610e
+<pre>env: CONNECTION_ID=c1cf1a83-72fa-445e-801b-a89b9a8e53d2
 </pre>
 </div>
 </div>
@@ -15205,13 +15204,13 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_definition_payload
 
-<span class="nv">MODEL_DEFINITION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;mlp-model-definition&quot;, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;description&quot;: &quot;mlp-model-definition&quot;, &quot;tags&quot;: [&quot;DL&quot;, &quot;MNIST&quot;], &quot;version&quot;: &quot;2.0&quot;, &quot;platform&quot;: {&quot;name&quot;: &quot;python&quot;, &quot;versions&quot;: [&quot;3.8&quot;]}, &quot;command&quot;: &quot;python3 mnist_mlp.py&quot;}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$MODEL_DEFINITION_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nv">MODEL_DEFINITION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;mlp-model-definition&quot;, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;description&quot;: &quot;mlp-model-definition&quot;, &quot;tags&quot;: [&quot;DL&quot;, &quot;MNIST&quot;], &quot;version&quot;: &quot;2.0&quot;, &quot;platform&quot;: {&quot;name&quot;: &quot;python&quot;, &quot;versions&quot;: [&quot;3.9&quot;]}, &quot;command&quot;: &quot;python3 mnist_mlp.py&quot;}&#39;</span>
+<span class="nb">echo</span> <span class="nv">$MODEL_DEFINITION_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -15224,10 +15223,10 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">MODEL_DEFINITION_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">model_definition_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">model_definition_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15245,29 +15244,15 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: MODEL_DEFINITION_PAYLOAD={
-    &#34;name&#34;: &#34;mlp-model-definition&#34;,
-    &#34;space_id&#34;: &#34;&#34;,
-    &#34;description&#34;: &#34;mlp-model-definition&#34;,
-    &#34;tags&#34;: [
-        &#34;DL&#34;,
-        &#34;MNIST&#34;
-    ],
-    &#34;version&#34;: &#34;2.0&#34;,
-    &#34;platform&#34;: {
-        &#34;name&#34;: &#34;python&#34;,
-        &#34;versions&#34;: [
-            &#34;3.8&#34;
-        ]
-    },
-    &#34;command&#34;: &#34;python3 mnist_mlp.py&#34;
-}
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
+
 </div>
 
 </div>
@@ -15279,7 +15264,23 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">MODEL_DEFINITION_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">model_definition_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_definition_id
@@ -15302,7 +15303,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">MODEL_DEFINITION_ID</span><span class="o">=</span><span class="err">$</span><span class="n">model_definition_id</span>
@@ -15327,7 +15328,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: MODEL_DEFINITION_ID=7883edea-3751-47bd-9c47-f8fae0b837da
+<pre>env: MODEL_DEFINITION_ID=152f9c3c-5b5e-4770-880c-b5cfac536e0f
 </pre>
 </div>
 </div>
@@ -15362,61 +15363,23 @@ target="_blank" rel="noopener no referrer">Download MNIST.zip</a></p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
-wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/definitions/keras/mnist/MNIST.zip <span class="se">\</span>
+wget -q https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/definitions/keras/mnist/MNIST.zip <span class="se">\</span>
      -O MNIST.zip
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>--2020-09-14 15:52:14--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/definitions/keras/mnist/MNIST.zip
-Resolving github.com... 140.82.121.4
-Connecting to github.com|140.82.121.4|:443... connected.
-HTTP request sent, awaiting response... 302 Found
-Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/definitions/keras/mnist/MNIST.zip [following]
---2020-09-14 15:52:15--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/definitions/keras/mnist/MNIST.zip
-Resolving raw.githubusercontent.com... 151.101.112.133
-Connecting to raw.githubusercontent.com|151.101.112.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3836 (3.7K) [application/zip]
-Saving to: &#39;MNIST.zip&#39;
-
-     0K ...                                                   100% 7.83M=0s
-
-2020-09-14 15:52:15 (7.83 MB/s) - &#39;MNIST.zip&#39; saved [3836/3836]
-
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -15461,7 +15424,7 @@ target="_blank" rel="noopener no referrer">Upload model for the model definition
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15495,7 +15458,7 @@ curl -sk -X PUT <span class="se">\</span>
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>{
-    &#34;attachment_id&#34;: &#34;189ef773-bc16-4a35-bca3-569020476c49&#34;,
+    &#34;attachment_id&#34;: &#34;3a339c34-b4a5-4178-a577-b9e3614975c8&#34;,
     &#34;content_format&#34;: &#34;native&#34;,
     &#34;persisted&#34;: true
 }
@@ -15538,13 +15501,13 @@ target="_blank" rel="noopener no referrer">Schedule a training job for Deep Lear
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_payload
 
-<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;training_data_references&quot;: [{&quot;name&quot;: &quot;training_input_data&quot;, &quot;type&quot;: &quot;connection_asset&quot;, &quot;connection&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$CONNECTION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;file_name&quot;: &quot;.&quot;}, &quot;schema&quot;: {&quot;id&quot;: &quot;idmlp_schema&quot;, &quot;fields&quot;: [{&quot;name&quot;: &quot;text&quot;, &quot;type&quot;: &quot;string&quot;}]}}], &quot;results_reference&quot;: {&quot;name&quot;: &quot;MNIST results&quot;, &quot;connection&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$CONNECTION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;file_name&quot;: &quot;.&quot;}, &quot;type&quot;: &quot;connection_asset&quot;}, &quot;tags&quot;: [{&quot;value&quot;: &quot;tags_mnist&quot;, &quot;description&quot;: &quot;dome MNIST&quot;}], &quot;name&quot;: &quot;MNIST mlp&quot;, &quot;description&quot;: &quot;test training modeldef MNIST&quot;, &quot;model_definition&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;K80&quot;, &quot;nodes&quot;: 1}, &quot;software_spec&quot;: {&quot;name&quot;: &quot;tensorflow_2.4-py3.8&quot;}, &quot;parameters&quot;: {&quot;name&quot;: &quot;MNIST mlp&quot;, &quot;description&quot;: &quot;Simple MNIST mlp model&quot;}}, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;training_data_references&quot;: [{&quot;name&quot;: &quot;training_input_data&quot;, &quot;type&quot;: &quot;connection_asset&quot;, &quot;connection&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$CONNECTION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;file_name&quot;: &quot;.&quot;}, &quot;schema&quot;: {&quot;id&quot;: &quot;idmlp_schema&quot;, &quot;fields&quot;: [{&quot;name&quot;: &quot;text&quot;, &quot;type&quot;: &quot;string&quot;}]}}], &quot;results_reference&quot;: {&quot;name&quot;: &quot;MNIST results&quot;, &quot;connection&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$CONNECTION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;file_name&quot;: &quot;.&quot;}, &quot;type&quot;: &quot;connection_asset&quot;}, &quot;tags&quot;: [{&quot;value&quot;: &quot;tags_mnist&quot;, &quot;description&quot;: &quot;dome MNIST&quot;}], &quot;name&quot;: &quot;MNIST mlp&quot;, &quot;description&quot;: &quot;test training modeldef MNIST&quot;, &quot;model_definition&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;K80&quot;, &quot;nodes&quot;: 1}, &quot;software_spec&quot;: {&quot;name&quot;: &quot;tensorflow_rt22.1-py3.9&quot;}, &quot;parameters&quot;: {&quot;name&quot;: &quot;MNIST mlp&quot;, &quot;description&quot;: &quot;Simple MNIST mlp model&quot;}}, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}&#39;</span>
+<span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -15557,10 +15520,10 @@ target="_blank" rel="noopener no referrer">Schedule a training job for Deep Lear
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TRAINING_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">training_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">training_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15578,70 +15541,15 @@ target="_blank" rel="noopener no referrer">Schedule a training job for Deep Lear
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TRAINING_PAYLOAD={
-    &#34;training_data_references&#34;: [
-        {
-            &#34;name&#34;: &#34;training_input_data&#34;,
-            &#34;type&#34;: &#34;connection_asset&#34;,
-            &#34;connection&#34;: {
-                &#34;id&#34;: &#34;&#34;
-            },
-            &#34;location&#34;: {
-                &#34;bucket&#34;: &#34;&#34;,
-                &#34;file_name&#34;: &#34;.&#34;
-            },
-            &#34;schema&#34;: {
-                &#34;id&#34;: &#34;idmlp_schema&#34;,
-                &#34;fields&#34;: [
-                    {
-                        &#34;name&#34;: &#34;text&#34;,
-                        &#34;type&#34;: &#34;string&#34;
-                    }
-                ]
-            }
-        }
-    ],
-    &#34;results_reference&#34;: {
-        &#34;name&#34;: &#34;MNIST results&#34;,
-        &#34;connection&#34;: {
-            &#34;id&#34;: &#34;&#34;
-        },
-        &#34;location&#34;: {
-            &#34;bucket&#34;: &#34;&#34;,
-            &#34;file_name&#34;: &#34;.&#34;
-        },
-        &#34;type&#34;: &#34;connection_asset&#34;
-    },
-    &#34;tags&#34;: [
-        {
-            &#34;value&#34;: &#34;tags_mnist&#34;,
-            &#34;description&#34;: &#34;dome MNIST&#34;
-        }
-    ],
-    &#34;name&#34;: &#34;MNIST mlp&#34;,
-    &#34;description&#34;: &#34;test training modeldef MNIST&#34;,
-    &#34;model_definition&#34;: {
-        &#34;id&#34;: &#34;&#34;,
-        &#34;hardware_spec&#34;: {
-            &#34;name&#34;: &#34;K80&#34;,
-            &#34;nodes&#34;: 1
-        },
-        &#34;software_spec&#34;: {
-            &#34;name&#34;: &#34;tensorflow_2.4-py3.8&#34;
-        },
-        &#34;parameters&#34;: {
-            &#34;name&#34;: &#34;MNIST mlp&#34;,
-            &#34;description&#34;: &#34;Simple MNIST mlp model&#34;
-        }
-    },
-    &#34;space_id&#34;: &#34;&#34;
-}
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
+
 </div>
 
 </div>
@@ -15653,7 +15561,23 @@ target="_blank" rel="noopener no referrer">Schedule a training job for Deep Lear
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TRAINING_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">training_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_id
@@ -15676,7 +15600,7 @@ curl -sk -X  POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TRAINING_ID</span><span class="o">=</span><span class="err">$</span><span class="n">training_id</span>
@@ -15701,7 +15625,7 @@ curl -sk -X  POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TRAINING_ID=7709e2d9-1d6b-4185-91d0-c926cb4b8185
+<pre>env: TRAINING_ID=95c2047e-09f7-496a-bd73-3e347bdd7bf2
 </pre>
 </div>
 </div>
@@ -15760,7 +15684,7 @@ curl -sk -X GET \
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15795,7 +15719,7 @@ curl -sk -X GET \
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>completed
+<pre>running
 </pre>
 </div>
 </div>

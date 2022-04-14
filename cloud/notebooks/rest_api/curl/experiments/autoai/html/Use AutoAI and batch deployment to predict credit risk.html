@@ -14559,12 +14559,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14651,6 +14651,23 @@ Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">loads</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">JSON</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
@@ -14706,7 +14723,7 @@ Go to the <strong>Endpoint</strong> tab in the COS instance's dashboard to get t
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
@@ -14730,7 +14747,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TOKEN</span><span class="o">=</span><span class="err">$</span><span class="n">token</span>
@@ -14755,7 +14772,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TOKEN=eyJraWQiOiIyMDIwMDgyMzE4MzIiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC01NTAwMDA5MVZDIiwiaWQiOiJJQk1pZC01NTAwMDA5MVZDIiwicmVhbG1pZCI6IklCTWlkIiwiaWRlbnRpZmllciI6IjU1MDAwMDkxVkMiLCJnaXZlbl9uYW1lIjoiV01MIiwiZmFtaWx5X25hbWUiOiJXTUwtQmV0YSIsIm5hbWUiOiJXTUwgV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20iLCJzdWIiOiJXTUwtQmV0YUBwbC5pYm0uY29tIiwiYWNjb3VudCI6eyJ2YWxpZCI6dHJ1ZSwiYnNzIjoiZTBmN2VjM2FjMWIyNGVjOWFlNzcxZWZkNzcyNTM4YTIiLCJpbXNfdXNlcl9pZCI6IjcxNzY5NDMiLCJmcm96ZW4iOnRydWUsImltcyI6IjE2ODQ3ODMifSwiaWF0IjoxNjAwMTcwNzMzLCJleHAiOjE2MDAxNzQzMzMsImlzcyI6Imh0dHBzOi8vaWFtLmNsb3VkLmlibS5jb20vaWRlbnRpdHkiLCJncmFudF90eXBlIjoidXJuOmlibTpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTphcGlrZXkiLCJzY29wZSI6ImlibSBvcGVuaWQiLCJjbGllbnRfaWQiOiJkZWZhdWx0IiwiYWNyIjoxLCJhbXIiOlsicHdkIl19.D22NXXVAtiO-xw-XMzZRXVo7jBu0MPx9kJLS2Qu-Iw0wzUzTAzJf2ojUKB8T60nVypy_b_pYsDJDbAYZOQSXPI3rVC3otuCqyQVzAePtUW7OKws_bPzpyHb6MAwopZUKHxD0iDg5oj8eZ2Hs7oowiIwyJzqrjJEEeuayGC4Mzx4iF6Bdoup9CACXvIozBUu4FXdauxTt8_KXl4i8Oq0gvPNurBB06WudjaHgdDgX2iDNVHlmj33BMba_4mmLMDfjKp-2KENlfKfInAl0Bda-HJV-xpbj4KlWP6OTDmLqW67E36c6bGKmN7gw4UgUk3oRfQGPPPKbN7OMQ5QUzuWluA
+<pre>env: TOKEN=eyJraWQiOiIyMDIyMDMxNzA4MjMiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC01NTAwMDA5MVZDIiwiaWQiOiJJQk1pZC01NTAwMDA5MVZDIiwicmVhbG1pZCI6IklCTWlkIiwianRpIjoiODAzZmEwMzctNWJkMC00YWZhLTljZTYtYTcwMDFjZGE1NDIxIiwiaWRlbnRpZmllciI6IjU1MDAwMDkxVkMiLCJnaXZlbl9uYW1lIjoiV01MIiwiZmFtaWx5X25hbWUiOiJXTUwtQmV0YSIsIm5hbWUiOiJXTUwgV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20iLCJzdWIiOiJXTUwtQmV0YUBwbC5pYm0uY29tIiwiYXV0aG4iOnsic3ViIjoiV01MLUJldGFAcGwuaWJtLmNvbSIsImlhbV9pZCI6IklCTWlkLTU1MDAwMDkxVkMiLCJuYW1lIjoiV01MIFdNTC1CZXRhIiwiZ2l2ZW5fbmFtZSI6IldNTCIsImZhbWlseV9uYW1lIjoiV01MLUJldGEiLCJlbWFpbCI6IldNTC1CZXRhQHBsLmlibS5jb20ifSwiYWNjb3VudCI6eyJib3VuZGFyeSI6Imdsb2JhbCIsInZhbGlkIjp0cnVlLCJic3MiOiJlMGY3ZWMzYWMxYjI0ZWM5YWU3NzFlZmQ3NzI1MzhhMiIsImltc191c2VyX2lkIjoiNzE3Njk0MyIsImZyb3plbiI6dHJ1ZSwiaW1zIjoiMTY4NDc4MyJ9LCJpYXQiOjE2NDk3NjkzNDcsImV4cCI6MTY0OTc3Mjk0NywiaXNzIjoiaHR0cHM6Ly9pYW0uY2xvdWQuaWJtLmNvbS9pZGVudGl0eSIsImdyYW50X3R5cGUiOiJ1cm46aWJtOnBhcmFtczpvYXV0aDpncmFudC10eXBlOmFwaWtleSIsInNjb3BlIjoiaWJtIG9wZW5pZCIsImNsaWVudF9pZCI6ImRlZmF1bHQiLCJhY3IiOjEsImFtciI6WyJwd2QiXX0.K070zyeLoYhGS0XeUbbor88gfKNdtaSn6zDDidk7_qlIdcIPX6C0FHAIOaLP6jrx9uWBki0NFEWXiRlq6kSxe8g0WfiRO7FoEXvR4dL5M9rgtscKAgx7OB0mj0DvxEsH2cItJ6xE6yyF1v2m6mBJsUOqe2Y38u1CcJL_oyGKCsf32yej2og7IduSHRhGaKyHWqf8J1KpaMMG2hlNlJuv_6Z_2dya7g_ITVwfaULGx59Klfa7JZtYxevsiUagXNAwnrEgUa9srbZ8_RlOikiNchOpkEf8L_YxQQm-RIemQV3OXGh_ahnEI1-RsqlLy8JYWf-wwX64puO2skpk-IH_sQ
 </pre>
 </div>
 </div>
@@ -14884,13 +14901,13 @@ target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out pipeline_payload
 
 <span class="nv">PIPELINE_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;name&quot;: &quot;Credit Risk Prediction - AutoAI&quot;, &quot;description&quot;: &quot;&quot;, &quot;document&quot;: {&quot;doc_type&quot;: &quot;pipeline&quot;, &quot;version&quot;: &quot;2.0&quot;, &quot;pipelines&quot;: [{&quot;id&quot;: &quot;autoai&quot;, &quot;runtime_ref&quot;: &quot;hybrid&quot;, &quot;nodes&quot;: [{&quot;id&quot;: &quot;automl&quot;, &quot;type&quot;: &quot;execution_node&quot;, &quot;parameters&quot;: {&quot;stage_flag&quot;: true, &quot;output_logs&quot;: true, &quot;input_file_separator&quot;: &quot;,&quot;, &quot;optimization&quot;: {&quot;learning_type&quot;: &quot;binary&quot;, &quot;label&quot;: &quot;Risk&quot;, &quot;max_num_daub_ensembles&quot;: 1, &quot;daub_include_only_estimators&quot;: [&quot;ExtraTreesClassifierEstimator&quot;, &quot;GradientBoostingClassifierEstimator&quot;, &quot;LGBMClassifierEstimator&quot;, &quot;LogisticRegressionEstimator&quot;, &quot;RandomForestClassifierEstimator&quot;, &quot;XGBClassifierEstimator&quot;, &quot;DecisionTreeClassifierEstimator&quot;], &quot;scorer_for_ranking&quot;: &quot;roc_auc&quot;, &quot;compute_pipeline_notebooks_flag&quot;: true, &quot;run_cognito_flag&quot;: true, &quot;holdout_param&quot;: 0.1}}, &quot;runtime_ref&quot;: &quot;autoai&quot;, &quot;op&quot;: &quot;kube&quot;}]}], &quot;runtimes&quot;: [{&quot;id&quot;: &quot;autoai&quot;, &quot;name&quot;: &quot;auto_ai.kb&quot;, &quot;app_data&quot;: {&quot;wml_data&quot;: {&quot;hardware_spec&quot;: { &quot;name&quot;: &quot;L&quot;}}}, &quot;version&quot;: &quot;3.0.2&quot;}],&quot;primary_pipeline&quot;: &quot;autoai&quot;}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$PIPELINE_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$PIPELINE_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -14903,10 +14920,10 @@ target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">PIPELINE_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">pipeline_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">pipeline_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14924,73 +14941,15 @@ target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: PIPELINE_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;name&#34;: &#34;Credit Risk Prediction - AutoAI&#34;,
-    &#34;description&#34;: &#34;&#34;,
-    &#34;document&#34;: {
-        &#34;doc_type&#34;: &#34;pipeline&#34;,
-        &#34;version&#34;: &#34;2.0&#34;,
-        &#34;pipelines&#34;: [
-            {
-                &#34;id&#34;: &#34;autoai&#34;,
-                &#34;runtime_ref&#34;: &#34;hybrid&#34;,
-                &#34;nodes&#34;: [
-                    {
-                        &#34;id&#34;: &#34;automl&#34;,
-                        &#34;type&#34;: &#34;execution_node&#34;,
-                        &#34;parameters&#34;: {
-                            &#34;stage_flag&#34;: true,
-                            &#34;output_logs&#34;: true,
-                            &#34;input_file_separator&#34;: &#34;,&#34;,
-                            &#34;optimization&#34;: {
-                                &#34;learning_type&#34;: &#34;binary&#34;,
-                                &#34;label&#34;: &#34;Risk&#34;,
-                                &#34;max_num_daub_ensembles&#34;: 1,
-                                &#34;daub_include_only_estimators&#34;: [
-                                    &#34;ExtraTreesClassifierEstimator&#34;,
-                                    &#34;GradientBoostingClassifierEstimator&#34;,
-                                    &#34;LGBMClassifierEstimator&#34;,
-                                    &#34;LogisticRegressionEstimator&#34;,
-                                    &#34;RandomForestClassifierEstimator&#34;,
-                                    &#34;XGBClassifierEstimator&#34;,
-                                    &#34;DecisionTreeClassifierEstimator&#34;
-                                ],
-                                &#34;scorer_for_ranking&#34;: &#34;roc_auc&#34;,
-                                &#34;compute_pipeline_notebooks_flag&#34;: true,
-                                &#34;run_cognito_flag&#34;: true,
-                                &#34;holdout_param&#34;: 0.1
-                            }
-                        },
-                        &#34;runtime_ref&#34;: &#34;autoai&#34;,
-                        &#34;op&#34;: &#34;kube&#34;
-                    }
-                ]
-            }
-        ],
-        &#34;runtimes&#34;: [
-            {
-                &#34;id&#34;: &#34;autoai&#34;,
-                &#34;name&#34;: &#34;auto_ai.kb&#34;,
-                &#34;app_data&#34;: {
-                    &#34;wml_data&#34;: {
-                        &#34;hardware_spec&#34;: {
-                            &#34;name&#34;: &#34;L&#34;
-                        }
-                    }
-                },
-                &#34;version&#34;: &#34;3.0.2&#34;
-            }
-        ],
-        &#34;primary_pipeline&#34;: &#34;autoai&#34;
-    }
-}
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
+
 </div>
 
 </div>
@@ -15002,7 +14961,23 @@ target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">PIPELINE_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">pipeline_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out pipeline_id
@@ -15026,7 +15001,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">PIPELINE_ID</span><span class="o">=</span><span class="err">$</span><span class="n">pipeline_id</span>
@@ -15051,7 +15026,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: PIPELINE_ID=366e3603-4dc3-4552-b8d9-9d093dafc44c
+<pre>env: PIPELINE_ID=fa6d06e8-e1ee-4c17-a2bb-8482c4a5b3c8
 </pre>
 </div>
 </div>
@@ -15091,7 +15066,7 @@ target="_blank" rel="noopener no referrer">Get experiment / optimizer informatio
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15184,12 +15159,15 @@ curl -sk -X GET <span class="se">\</span>
         }
     },
     &#34;metadata&#34;: {
-        &#34;created_at&#34;: &#34;2020-09-15T11:43:31.908Z&#34;,
-        &#34;id&#34;: &#34;366e3603-4dc3-4552-b8d9-9d093dafc44c&#34;,
-        &#34;modified_at&#34;: &#34;2020-09-15T11:43:31.908Z&#34;,
+        &#34;created_at&#34;: &#34;2022-04-12T13:16:51.189Z&#34;,
+        &#34;id&#34;: &#34;fa6d06e8-e1ee-4c17-a2bb-8482c4a5b3c8&#34;,
+        &#34;modified_at&#34;: &#34;2022-04-12T13:16:51.189Z&#34;,
         &#34;name&#34;: &#34;Credit Risk Prediction - AutoAI&#34;,
         &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
+    },
+    &#34;system&#34;: {
+        &#34;warnings&#34;: []
     }
 }
 </pre>
@@ -15215,61 +15193,23 @@ curl -sk -X GET <span class="se">\</span>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
-wget https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/credit_risk/credit_risk_training_light.csv <span class="se">\</span>
+wget -q https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/credit_risk/credit_risk_training_light.csv <span class="se">\</span>
      -O credit_risk_training_light.csv
 </pre></div>
 
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>--2020-09-15 13:43:40--  https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/credit_risk/credit_risk_training_light.csv
-Resolving github.com... 140.82.121.4
-Connecting to github.com|140.82.121.4|:443... connected.
-HTTP request sent, awaiting response... 302 Found
-Location: https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/data/credit_risk/credit_risk_training_light.csv [following]
---2020-09-15 13:43:41--  https://raw.githubusercontent.com/IBM/watson-machine-learning-samples/master/cloud/data/credit_risk/credit_risk_training_light.csv
-Resolving raw.githubusercontent.com... 199.232.16.133
-Connecting to raw.githubusercontent.com|199.232.16.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 34787 (34K) [text/plain]
-Saving to: &#39;credit_risk_training_light.csv&#39;
-
-     0K .......... .......... .......... ...                  100%  574K=0.06s
-
-2020-09-15 13:43:41 (574 KB/s) - &#39;credit_risk_training_light.csv&#39; saved [34787/34787]
-
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -15303,7 +15243,7 @@ target="_blank" rel="noopener no referrer">Retrieve COS authentication token</a>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out cos_token
@@ -15327,7 +15267,7 @@ curl -s -X <span class="s2">&quot;POST&quot;</span> <span class="s2">&quot;</spa
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">COS_TOKEN</span><span class="o">=</span><span class="err">$</span><span class="n">cos_token</span>
@@ -15352,7 +15292,7 @@ curl -s -X <span class="s2">&quot;POST&quot;</span> <span class="s2">&quot;</spa
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: COS_TOKEN=eyJraWQiOiIyMDIwMDgyMzE4MzIiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJpYW0tU2VydmljZUlkLTU3MzMwOTM3LWJkNTQtNDYyYi04ODUxLWY3OTFhZDYyYzY1OSIsImlkIjoiaWFtLVNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJyZWFsbWlkIjoiaWFtIiwiaWRlbnRpZmllciI6IlNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJuYW1lIjoiY3JlZGVudGlhbHNfMSIsInN1YiI6IlNlcnZpY2VJZC01NzMzMDkzNy1iZDU0LTQ2MmItODg1MS1mNzkxYWQ2MmM2NTkiLCJzdWJfdHlwZSI6IlNlcnZpY2VJZCIsImFjY291bnQiOnsidmFsaWQiOnRydWUsImJzcyI6ImUwZjdlYzNhYzFiMjRlYzlhZTc3MWVmZDc3MjUzOGEyIiwiZnJvemVuIjp0cnVlfSwiaWF0IjoxNjAwMTcwMjIwLCJleHAiOjE2MDAxNzM4MjAsImlzcyI6Imh0dHBzOi8vaWFtLmNsb3VkLmlibS5jb20vaWRlbnRpdHkiLCJncmFudF90eXBlIjoidXJuOmlibTpwYXJhbXM6b2F1dGg6Z3JhbnQtdHlwZTphcGlrZXkiLCJzY29wZSI6ImlibSBvcGVuaWQiLCJjbGllbnRfaWQiOiJkZWZhdWx0IiwiYWNyIjoxLCJhbXIiOlsicHdkIl19.bb2asi8pl7rPmjivTBPA3Ln-d6aVUCviESoLTU0JIvxjyyKaD54w0rakXb2xqay7PkgiGgvuoLdHy9FV4fsc2m-0lpWeW-2u-nxDPIv6J-Sd3MIestN3ZhAsd1bJ_LGnGKNj1L6saflWaDzaZIlZkMImeNnzT84YPfjycm7KggdG7io21sdBEYoWcnwVAp050kh1VhSd5vfGmZecpvbWu_Z6sY151qSBd9Icwb8XO4VFDVfNSN4xcH6sLN-speIYD7o-FRNvyqY_qswUiy0LgKurVVBH3K5st4gWe6eA_3N8iCHICvzPsODXaHYsMbnbFVo0ZtYY5qIGL7CORyqaFA
+<pre>env: COS_TOKEN=eyJraWQiOiIyMDIyMDMxNzA4MjMiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJpYW0tU2VydmljZUlkLTE1ODE3MTAyLTAxYWYtNDlhMC1iMTYxLWZjMGM2YTRhMjZlOCIsImlkIjoiaWFtLVNlcnZpY2VJZC0xNTgxNzEwMi0wMWFmLTQ5YTAtYjE2MS1mYzBjNmE0YTI2ZTgiLCJyZWFsbWlkIjoiaWFtIiwianRpIjoiMmUyYjhkZGUtZjMzOS00NGE0LWFiMDQtOWZiYmUyMDhkMzQ4IiwiaWRlbnRpZmllciI6IlNlcnZpY2VJZC0xNTgxNzEwMi0wMWFmLTQ5YTAtYjE2MS1mYzBjNmE0YTI2ZTgiLCJuYW1lIjoidGVzdC13bWwtc2FtcGxlcyIsInN1YiI6IlNlcnZpY2VJZC0xNTgxNzEwMi0wMWFmLTQ5YTAtYjE2MS1mYzBjNmE0YTI2ZTgiLCJzdWJfdHlwZSI6IlNlcnZpY2VJZCIsImF1dGhuIjp7InN1YiI6IlNlcnZpY2VJZC0xNTgxNzEwMi0wMWFmLTQ5YTAtYjE2MS1mYzBjNmE0YTI2ZTgiLCJpYW1faWQiOiJpYW0tU2VydmljZUlkLTE1ODE3MTAyLTAxYWYtNDlhMC1iMTYxLWZjMGM2YTRhMjZlOCIsInN1Yl90eXBlIjoiU2VydmljZUlkIiwibmFtZSI6InRlc3Qtd21sLXNhbXBsZXMifSwiYWNjb3VudCI6eyJib3VuZGFyeSI6Imdsb2JhbCIsInZhbGlkIjp0cnVlLCJic3MiOiJlMGY3ZWMzYWMxYjI0ZWM5YWU3NzFlZmQ3NzI1MzhhMiIsImZyb3plbiI6dHJ1ZX0sImlhdCI6MTY0OTc2OTQyMywiZXhwIjoxNjQ5NzczMDIzLCJpc3MiOiJodHRwczovL2lhbS5jbG91ZC5pYm0uY29tL2lkZW50aXR5IiwiZ3JhbnRfdHlwZSI6InVybjppYm06cGFyYW1zOm9hdXRoOmdyYW50LXR5cGU6YXBpa2V5Iiwic2NvcGUiOiJpYm0gb3BlbmlkIiwiY2xpZW50X2lkIjoiZGVmYXVsdCIsImFjciI6MSwiYW1yIjpbInB3ZCJdfQ.lRaASCSCFcR_gJDCqchMaWboU395Nkm0-i_CpFyK92EJ5aAf65_pDw1mn2Lv0gFKhgV2FBaNc-jOA8_X3shvQWlin9e94Ah1CQ4Kf6F6qlKtMY1gih19DnJu0pa_kjWXbJ_M-txu6ar8JcXQacuSLbxXXWNGUsl15WmeaKdoqNDBGrBopyzuTVO-WAcoIJ3xsnx7pHcEJWEgmo_LD75RrsshP4tX1Fcfr2nNxeSi3tAwI8IxLNIEh61Yazc_QjXb_eyolNTpAc0tDnWcxQXQ1Pf3Oh4ow_DAyHLbx2EwPhegkEwn8M1aRM0GC3sOvp77fPpI6_em42IKpr7jMXAhDQ
 </pre>
 </div>
 </div>
@@ -15392,7 +15332,7 @@ target="_blank" rel="noopener no referrer">Upload file to COS</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -15438,13 +15378,13 @@ curl -sk -X PUT <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out connection_payload
 
 <span class="nv">CONNECTION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;REST COS connection&quot;, &quot;datasource_type&quot;: &quot;193a97c1-4475-4a19-b90c-295c4fdc6517&quot;, &quot;properties&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;iam_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$AUTH_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;origin_country&quot;: &quot;US&quot;}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$CONNECTION_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$CONNECTION_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -15452,12 +15392,28 @@ curl -sk -X PUT <span class="se">\</span>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">connection_payload</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">CONNECTION_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">connection_payload</span>
@@ -15468,46 +15424,12 @@ curl -sk -X PUT <span class="se">\</span>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: CONNECTION_PAYLOAD={
-    &#34;name&#34;: &#34;REST COS connection&#34;,
-    &#34;datasource_type&#34;: &#34;193a97c1-4475-4a19-b90c-295c4fdc6517&#34;,
-    &#34;properties&#34;: {
-        &#34;bucket&#34;: &#34;&#34;,
-        &#34;access_key&#34;: &#34;&#34;,
-        &#34;secret_key&#34;: &#34;&#34;,
-        &#34;iam_url&#34;: &#34;&#34;,
-        &#34;url&#34;: &#34;&#34;
-    },
-    &#34;origin_country&#34;: &#34;US&#34;
-}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out connection_id
@@ -15533,7 +15455,7 @@ curl -sk -X PUT <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">CONNECTION_ID</span><span class="o">=</span><span class="err">$</span><span class="n">connection_id</span>
@@ -15558,7 +15480,7 @@ curl -sk -X PUT <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: CONNECTION_ID=65c9a953-8816-413b-9af7-a264bb5c610e
+<pre>env: CONNECTION_ID=fcda6643-799d-443f-bbe1-fabcd838b9bf
 </pre>
 </div>
 </div>
@@ -15658,13 +15580,13 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_payload
 
 <span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;training_data_references&quot;: [{&quot;type&quot;: &quot;connection_asset&quot;, &quot;id&quot;: &quot;credit_risk_training_light.csv&quot;, &quot;connection&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$CONNECTION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;file_name&quot;: &quot;credit_risk_training_light.csv&quot;}}], &quot;results_reference&quot;: {&quot;type&quot;: &quot;connection_asset&quot;, &quot;id&quot;: &quot;autoai_results&quot;, &quot;connection&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$CONNECTION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;file_name&quot;: &quot;.&quot;}}, &quot;tags&quot;: [{&quot;value&quot;: &quot;autoai&quot;}], &quot;pipeline&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$PIPELINE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -15677,10 +15599,10 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TRAINING_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">training_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">training_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15698,47 +15620,15 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TRAINING_PAYLOAD={
-    &#34;space_id&#34;: &#34;&#34;,
-    &#34;training_data_references&#34;: [
-        {
-            &#34;type&#34;: &#34;connection_asset&#34;,
-            &#34;id&#34;: &#34;credit_risk_training_light.csv&#34;,
-            &#34;connection&#34;: {
-                &#34;id&#34;: &#34;&#34;
-            },
-            &#34;location&#34;: {
-                &#34;bucket&#34;: &#34;&#34;,
-                &#34;file_name&#34;: &#34;credit_risk_training_light.csv&#34;
-            }
-        }
-    ],
-    &#34;results_reference&#34;: {
-        &#34;type&#34;: &#34;connection_asset&#34;,
-        &#34;id&#34;: &#34;autoai_results&#34;,
-        &#34;connection&#34;: {
-            &#34;id&#34;: &#34;&#34;
-        },
-        &#34;location&#34;: {
-            &#34;bucket&#34;: &#34;&#34;,
-            &#34;file_name&#34;: &#34;.&#34;
-        }
-    },
-    &#34;tags&#34;: [
-        {
-            &#34;value&#34;: &#34;autoai&#34;
-        }
-    ],
-    &#34;pipeline&#34;: {
-        &#34;id&#34;: &#34;&#34;
-    }
-}
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
+
 </div>
 
 </div>
@@ -15750,7 +15640,23 @@ target="_blank" rel="noopener no referrer">Schedule a training job for AutoAI ex
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TRAINING_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">training_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_id
@@ -15774,7 +15680,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">TRAINING_ID</span><span class="o">=</span><span class="err">$</span><span class="n">training_id</span>
@@ -15799,7 +15705,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: TRAINING_ID=75589ec7-738c-4460-bf12-9c94cde3929d
+<pre>env: TRAINING_ID=a88891fc-49d3-452f-996b-9578c2a73b63
 </pre>
 </div>
 </div>
@@ -16083,13 +15989,13 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_payload
 
 <span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;autoai_credit_risk_model&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;type&quot;: &quot;wml-hybrid_0.1&quot;, &quot;software_spec&quot;: {&quot;name&quot;: &quot;hybrid_0.1&quot;}, &quot;content_location&quot;: { &quot;type&quot;: &quot;s3&quot;, &quot;contents&quot;: [ { &quot;content_format&quot;: &quot;native&quot;, &quot;file_name&quot;: &quot;pipeline_model.json&quot;, &quot;location&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$TRAINING_ID</span><span class="s2">/assets/</span><span class="si">${</span><span class="nv">TRAINING_ID</span><span class="si">}</span><span class="s2">_P1_global_output/resources/wml_model/pipeline_model.json&quot;</span><span class="s1">&#39;&quot;}, { &quot;content_format&quot;: &quot;pipeline-node&quot;, &quot;file_name&quot;: &quot;P1_automl.zip&quot;, &quot;location&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$TRAINING_ID</span><span class="s2">/assets/</span><span class="si">${</span><span class="nv">TRAINING_ID</span><span class="si">}</span><span class="s2">_P1_global_output/resources/wml_model/P1_automl.zip&quot;</span><span class="s1">&#39;&quot;, &quot;pipeline_node_id&quot;: &quot;automl&quot;}],&quot;connection&quot;: {&quot;endpoint_url&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ENDPOINT</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;access_key_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_ACCESS_KEY_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;secret_access_key&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_SECRET_ACCESS_KEY</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;location&quot;: {&quot;bucket&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$COS_BUCKET</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$MODEL_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$MODEL_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -16097,12 +16003,28 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">model_payload</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">MODEL_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">model_payload</span>
@@ -16113,67 +16035,12 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 </div>
 </div>
 
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: MODEL_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;name&#34;: &#34;autoai_credit_risk_model&#34;,
-    &#34;description&#34;: &#34;This is description&#34;,
-    &#34;type&#34;: &#34;wml-hybrid_0.1&#34;,
-    &#34;software_spec&#34;: {
-        &#34;name&#34;: &#34;hybrid_0.1&#34;
-    },
-    &#34;content_location&#34;: {
-        &#34;type&#34;: &#34;s3&#34;,
-        &#34;contents&#34;: [
-            {
-                &#34;content_format&#34;: &#34;native&#34;,
-                &#34;file_name&#34;: &#34;pipeline_model.json&#34;,
-                &#34;location&#34;: &#34;75589ec7-738c-4460-bf12-9c94cde3929d/assets/75589ec7-738c-4460-bf12-9c94cde3929d_P1_global_output/resources/wml_model/pipeline_model.json&#34;
-            },
-            {
-                &#34;content_format&#34;: &#34;pipeline-node&#34;,
-                &#34;file_name&#34;: &#34;P1_automl.zip&#34;,
-                &#34;location&#34;: &#34;75589ec7-738c-4460-bf12-9c94cde3929d/assets/75589ec7-738c-4460-bf12-9c94cde3929d_P1_global_output/resources/wml_model/P1_automl.zip&#34;,
-                &#34;pipeline_node_id&#34;: &#34;automl&#34;
-            }
-        ],
-        &#34;connection&#34;: {
-            &#34;endpoint_url&#34;: &#34;***&#34;,
-            &#34;access_key_id&#34;: &#34;***&#34;,
-            &#34;secret_access_key&#34;: &#34;***&#34;
-        },
-        &#34;location&#34;: {
-            &#34;bucket&#34;: &#34;***&#34;
-        }
-    }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_id
@@ -16197,7 +16064,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">MODEL_ID</span><span class="o">=</span><span class="err">$</span><span class="n">model_id</span>
@@ -16222,7 +16089,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: MODEL_ID=27c9eb97-28f3-48a4-862d-1227f0fb0c03
+<pre>env: MODEL_ID=c1f8582c-3669-415d-b776-2a79e0618fb3
 </pre>
 </div>
 </div>
@@ -16278,12 +16145,12 @@ curl -sk -X GET <span class="se">\</span>
 </div>
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="n">model</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
@@ -16292,29 +16159,6 @@ curl -sk -X GET <span class="se">\</span>
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>-rw-r--r--  1 jansoltysik  staff  297 Sep 15 13:54 model.tar.gz
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -16347,13 +16191,13 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_payload
 
 <span class="nv">DFEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;AutoAI deployment&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;batch&quot;: {}, &quot;hybrid_pipeline_hardware_specs&quot;: [{&quot;node_runtime_id&quot;: &quot;auto_ai.kb&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;M&quot;}}],&quot;asset&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$DFEPLOYMENT_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$DFEPLOYMENT_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -16366,10 +16210,10 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">DFEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">deployment_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">deployment_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -16387,29 +16231,15 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[43]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: DFEPLOYMENT_PAYLOAD={
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;name&#34;: &#34;AutoAI deployment&#34;,
-    &#34;description&#34;: &#34;This is description&#34;,
-    &#34;batch&#34;: {},
-    &#34;hybrid_pipeline_hardware_specs&#34;: [
-        {
-            &#34;node_runtime_id&#34;: &#34;auto_ai.kb&#34;,
-            &#34;hardware_spec&#34;: {
-                &#34;name&#34;: &#34;M&#34;
-            }
-        }
-    ],
-    &#34;asset&#34;: {
-        &#34;id&#34;: &#34;27c9eb97-28f3-48a4-862d-1227f0fb0c03&#34;
-    }
-}
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
+
 </div>
 
 </div>
@@ -16421,7 +16251,23 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">DFEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">deployment_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_id
@@ -16444,7 +16290,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">DEPLOYMENT_ID</span><span class="o">=</span><span class="err">$</span><span class="n">deployment_id</span>
@@ -16469,7 +16315,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: DEPLOYMENT_ID=a2a56ec9-d2a1-45b3-b316-1bcfe81dba77
+<pre>env: DEPLOYMENT_ID=23a726a1-9853-49d8-834e-db301d813267
 </pre>
 </div>
 </div>
@@ -16504,12 +16350,12 @@ target="_blank" rel="noopener no referrer">Get deployment details</a></p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16524,61 +16370,6 @@ curl -sk -X GET <span class="se">\</span>
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-    &#34;entity&#34;: {
-        &#34;asset&#34;: {
-            &#34;id&#34;: &#34;27c9eb97-28f3-48a4-862d-1227f0fb0c03&#34;
-        },
-        &#34;batch&#34;: {},
-        &#34;custom&#34;: {},
-        &#34;deployed_asset_type&#34;: &#34;model&#34;,
-        &#34;description&#34;: &#34;This is description&#34;,
-        &#34;hybrid_pipeline_hardware_specs&#34;: [
-            {
-                &#34;hardware_spec&#34;: {
-                    &#34;name&#34;: &#34;M&#34;
-                },
-                &#34;node_runtime_id&#34;: &#34;auto_ai.kb&#34;
-            }
-        ],
-        &#34;name&#34;: &#34;AutoAI deployment&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-        &#34;status&#34;: {
-            &#34;state&#34;: &#34;ready&#34;
-        }
-    },
-    &#34;metadata&#34;: {
-        &#34;created_at&#34;: &#34;2020-09-15T11:54:27.598Z&#34;,
-        &#34;description&#34;: &#34;This is description&#34;,
-        &#34;id&#34;: &#34;a2a56ec9-d2a1-45b3-b316-1bcfe81dba77&#34;,
-        &#34;modified_at&#34;: &#34;2020-09-15T11:54:27.598Z&#34;,
-        &#34;name&#34;: &#34;AutoAI deployment&#34;,
-        &#34;owner&#34;: &#34;IBMid-55000091VC&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
-    }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -16612,13 +16403,13 @@ target="_blank" rel="noopener no referrer">Create deployment job</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out job_payload
 
 <span class="nv">JOB_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;AutoAI job&quot;, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;deployment&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;hybrid_pipeline_hardware_specs&quot;: [{&quot;node_runtime_id&quot;: &quot;auto_ai.kb&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;M&quot;}}], &quot;scoring&quot;: {&quot;input_data&quot;: [{&quot;fields&quot;: [&quot;CheckingStatus&quot;, &quot;LoanDuration&quot;, &quot;CreditHistory&quot;, &quot;LoanPurpose&quot;, &quot;LoanAmount&quot;, &quot;ExistingSavings&quot;, &quot;EmploymentDuration&quot;, &quot;InstallmentPercent&quot;, &quot;Sex&quot;, &quot;OthersOnLoan&quot;, &quot;CurrentResidenceDuration&quot;, &quot;OwnsProperty&quot;, &quot;Age&quot;, &quot;InstallmentPlans&quot;, &quot;Housing&quot;, &quot;ExistingCreditsCount&quot;, &quot;Job&quot;, &quot;Dependents&quot;, &quot;Telephone&quot;, &quot;ForeignWorker&quot;], &quot;values&quot;: [[&quot;less_0&quot;, 6, &quot;all_credits_paid_back&quot;, &quot;car_used&quot;, 250, &quot;less_100&quot;, &quot;1_to_4&quot;, 2, &quot;male&quot;, &quot;none&quot;, 2, &quot;savings_insurance&quot;, 28, &quot;stores&quot;, &quot;rent&quot;, 1, &quot;skilled&quot;, 1, &quot;none&quot;, &quot;yes&quot;]]}]}}&#39;</span>
-<span class="nb">echo</span> <span class="nv">$JOB_PAYLOAD</span> <span class="p">|</span> python -m json.tool
+<span class="nb">echo</span> <span class="nv">$JOB_PAYLOAD</span>
 </pre></div>
 
      </div>
@@ -16631,10 +16422,10 @@ target="_blank" rel="noopener no referrer">Create deployment job</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">JOB_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">job_payload</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">JSON</span><span class="p">(</span><span class="n">loads</span><span class="p">(</span><span class="n">job_payload</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -16652,79 +16443,15 @@ target="_blank" rel="noopener no referrer">Create deployment job</a></p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[49]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: JOB_PAYLOAD={
-    &#34;name&#34;: &#34;AutoAI job&#34;,
-    &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;,
-    &#34;deployment&#34;: {
-        &#34;id&#34;: &#34;a2a56ec9-d2a1-45b3-b316-1bcfe81dba77&#34;
-    },
-    &#34;hybrid_pipeline_hardware_specs&#34;: [
-        {
-            &#34;node_runtime_id&#34;: &#34;auto_ai.kb&#34;,
-            &#34;hardware_spec&#34;: {
-                &#34;name&#34;: &#34;M&#34;
-            }
-        }
-    ],
-    &#34;scoring&#34;: {
-        &#34;input_data&#34;: [
-            {
-                &#34;fields&#34;: [
-                    &#34;CheckingStatus&#34;,
-                    &#34;LoanDuration&#34;,
-                    &#34;CreditHistory&#34;,
-                    &#34;LoanPurpose&#34;,
-                    &#34;LoanAmount&#34;,
-                    &#34;ExistingSavings&#34;,
-                    &#34;EmploymentDuration&#34;,
-                    &#34;InstallmentPercent&#34;,
-                    &#34;Sex&#34;,
-                    &#34;OthersOnLoan&#34;,
-                    &#34;CurrentResidenceDuration&#34;,
-                    &#34;OwnsProperty&#34;,
-                    &#34;Age&#34;,
-                    &#34;InstallmentPlans&#34;,
-                    &#34;Housing&#34;,
-                    &#34;ExistingCreditsCount&#34;,
-                    &#34;Job&#34;,
-                    &#34;Dependents&#34;,
-                    &#34;Telephone&#34;,
-                    &#34;ForeignWorker&#34;
-                ],
-                &#34;values&#34;: [
-                    [
-                        &#34;less_0&#34;,
-                        6,
-                        &#34;all_credits_paid_back&#34;,
-                        &#34;car_used&#34;,
-                        250,
-                        &#34;less_100&#34;,
-                        &#34;1_to_4&#34;,
-                        2,
-                        &#34;male&#34;,
-                        &#34;none&#34;,
-                        2,
-                        &#34;savings_insurance&#34;,
-                        28,
-                        &#34;stores&#34;,
-                        &#34;rent&#34;,
-                        1,
-                        &#34;skilled&#34;,
-                        1,
-                        &#34;none&#34;,
-                        &#34;yes&#34;
-                    ]
-                ]
-            }
-        ]
-    }
-}
-</pre>
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;IPython.core.display.JSON object&gt;</pre>
 </div>
+
 </div>
 
 </div>
@@ -16736,7 +16463,23 @@ target="_blank" rel="noopener no referrer">Create deployment job</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">JOB_PAYLOAD</span><span class="o">=</span><span class="err">$</span><span class="n">job_payload</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out job_id
@@ -16760,7 +16503,7 @@ curl -sk -X POST <span class="se">\</span>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">env</span> <span class="n">JOB_ID</span><span class="o">=</span><span class="err">$</span><span class="n">job_id</span>
@@ -16785,7 +16528,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>env: JOB_ID=9d4d4f6c-ad44-416c-9992-2871d8ff3970
+<pre>env: JOB_ID=45ccfd00-2518-4a84-9aeb-0de5f9a45680
 </pre>
 </div>
 </div>
@@ -16872,7 +16615,7 @@ target="_blank" rel="noopener no referrer">Get job details</a></p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
@@ -16907,7 +16650,11 @@ curl -sk -X GET <span class="se">\</span>
 <pre>{
     &#34;entity&#34;: {
         &#34;deployment&#34;: {
-            &#34;id&#34;: &#34;a2a56ec9-d2a1-45b3-b316-1bcfe81dba77&#34;
+            &#34;id&#34;: &#34;23a726a1-9853-49d8-834e-db301d813267&#34;
+        },
+        &#34;platform_job&#34;: {
+            &#34;job_id&#34;: &#34;74803edb-0727-464b-9931-4343b02efb30&#34;,
+            &#34;run_id&#34;: &#34;7af48a72-761e-4cc8-9f39-7bf8be4ac30a&#34;
         },
         &#34;scoring&#34;: {
             &#34;input_data&#34;: [
@@ -16968,28 +16715,28 @@ curl -sk -X GET <span class="se">\</span>
                     ],
                     &#34;values&#34;: [
                         [
-                            &#34;Risk&#34;,
+                            &#34;No Risk&#34;,
                             [
-                                0.3,
-                                0.7
+                                0.9936711491879138,
+                                0.0063288508120862424
                             ]
                         ]
                     ]
                 }
             ],
             &#34;status&#34;: {
-                &#34;completed_at&#34;: &#34;2020-09-15T11:55:19.000Z&#34;,
-                &#34;running_at&#34;: &#34;2020-09-15T11:55:14.000Z&#34;,
+                &#34;completed_at&#34;: &#34;2022-04-12T13:26:48.688Z&#34;,
+                &#34;running_at&#34;: &#34;2022-04-12T13:26:41.565Z&#34;,
                 &#34;state&#34;: &#34;completed&#34;
             }
         }
     },
     &#34;metadata&#34;: {
-        &#34;created_at&#34;: &#34;2020-09-15T11:54:41.424Z&#34;,
-        &#34;id&#34;: &#34;9d4d4f6c-ad44-416c-9992-2871d8ff3970&#34;,
-        &#34;modified_at&#34;: &#34;2020-09-15T11:55:19.492Z&#34;,
+        &#34;created_at&#34;: &#34;2022-04-12T13:26:11.923Z&#34;,
+        &#34;id&#34;: &#34;45ccfd00-2518-4a84-9aeb-0de5f9a45680&#34;,
+        &#34;modified_at&#34;: &#34;2022-04-12T13:26:49.530Z&#34;,
         &#34;name&#34;: &#34;AutoAI job&#34;,
-        &#34;space_id&#34;: &#34;d70a423e-bab5-4b24-943a-3b0b29ad7527&#34;
+        &#34;space_id&#34;: &#34;680a7515-620c-461f-9c6f-1f4c535bfc47&#34;
     }
 }
 </pre>

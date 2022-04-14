@@ -14559,12 +14559,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14735,7 +14735,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
@@ -14830,7 +14830,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -14851,7 +14851,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
 
 
@@ -14897,7 +14897,7 @@ with statsmodels module calculating describition of a given data.<br>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">deployable_callable</span><span class="p">():</span>
@@ -14949,7 +14949,7 @@ with statsmodels module calculating describition of a given data.<br>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14986,50 +14986,68 @@ with statsmodels module calculating describition of a given data.<br>
 <pre>                          0          1          2          3          4  \
 nobs              10.000000  10.000000  10.000000  10.000000  10.000000   
 missing            0.000000   0.000000   0.000000   0.000000   0.000000   
-mean              -0.087662  -0.162800   0.021847  -0.484764  -0.151347   
-std_err            0.086628   0.082336   0.088078   0.154758   0.060011   
-upper_ci           0.082126  -0.001424   0.194477  -0.181444  -0.033728   
-lower_ci          -0.257450  -0.324175  -0.150783  -0.788085  -0.268967   
-std                0.866281   0.823361   0.880783   1.547581   0.600109   
-iqr                1.220332   0.774040   1.173032   1.866595   0.455900   
-iqr_normal         0.904633   0.573797   0.869570   1.383709   0.337959   
-mad                0.696300   0.556041   0.700227   1.257709   0.403634   
-mad_normal         0.872682   0.696895   0.877605   1.576305   0.505881   
-coef_var          -9.882045  -5.057510  40.315579  -3.192440  -3.965111   
-range              2.514768   2.889136   2.903603   4.598605   2.228215   
-max                1.458946   0.788044   1.426277   1.386525   0.671509   
-min               -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
-skew               0.621923  -1.182308  -0.110031  -0.582020  -1.165771   
-kurtosis           2.083665   4.191979   2.178047   2.099710   4.236195   
-jarque_bera        0.994509   2.921762   0.301681   0.902296   2.901779   
-jarque_bera_pval   0.608198   0.232032   0.859985   0.636897   0.234362   
-mode              -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
+mean               0.226671   0.118863   0.296608   0.018030  -0.059889   
+std_err            0.078214   0.109682   0.077958   0.069102   0.099104   
+upper_ci           0.379969   0.333837   0.449404   0.153467   0.134352   
+lower_ci           0.073374  -0.096110   0.143813  -0.117407  -0.254130   
+std                0.782143   1.096823   0.779584   0.691019   0.991042   
+iqr                1.138703   0.979375   1.111591   0.625231   1.315194   
+iqr_normal         0.844122   0.726012   0.824023   0.463485   0.974954   
+mad                0.623878   0.774813   0.618962   0.513830   0.799944   
+mad_normal         0.781915   0.971084   0.775754   0.643991   1.002581   
+coef_var           3.450557   9.227584   2.628330  38.326234 -16.547990   
+range              2.289961   3.407891   2.370988   2.429216   3.152545   
+max                1.216507   1.544682   1.624286   1.266127   1.517858   
+min               -1.073454  -1.863208  -0.746702  -1.163089  -1.634687   
+skew              -0.180136  -0.472191   0.300966   0.263092   0.206849   
+kurtosis           1.900409   2.384448   1.984736   2.702869   2.043656   
+jarque_bera        0.557873   0.529483   0.580451   0.152149   0.452392   
+jarque_bera_pval   0.756588   0.767404   0.748095   0.926747   0.797562   
+mode              -1.073454  -1.863208  -0.746702  -1.163089  -1.634687   
 mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000   
-median            -0.259626  -0.203613   0.127268  -0.060631  -0.028983   
+median             0.131746   0.126305   0.196596  -0.075777  -0.289048   
+1%                -1.035160  -1.819212  -0.736463  -1.097474  -1.557357   
+5%                -0.881982  -1.643226  -0.695507  -0.835012  -1.248039   
+10%               -0.690509  -1.423244  -0.644312  -0.506934  -0.861391   
+25%               -0.265950  -0.093626  -0.179451  -0.372709  -0.669090   
+50%                0.131746   0.126305   0.196596  -0.075777  -0.289048   
+75%                0.872753   0.885749   0.932140   0.252522   0.646103   
+90%                1.207454   1.400947   1.147246   0.910790   1.227843   
+95%                1.211980   1.472815   1.385766   1.088459   1.372850   
+99%                1.215602   1.530309   1.576582   1.230594   1.488856   
 
                           5          6          7          8          9  
 nobs              10.000000  10.000000  10.000000  10.000000  10.000000  
 missing            0.000000   0.000000   0.000000   0.000000   0.000000  
-mean               0.273284   0.205051   0.023256   0.102842  -0.209529  
-std_err            0.061042   0.087203   0.126508   0.103825   0.072225  
-upper_ci           0.392923   0.375966   0.271207   0.306335  -0.067971  
-lower_ci           0.153644   0.034137  -0.224696  -0.100650  -0.351088  
-std                0.610416   0.872028   1.265081   1.038247   0.722251  
-iqr                0.780093   1.144017   1.897466   1.087920   1.181144  
-iqr_normal         0.578284   0.848061   1.406594   0.806476   0.875583  
-mad                0.476876   0.702078   0.962314   0.802775   0.623214  
-mad_normal         0.597675   0.879924   1.206082   1.006129   0.781083  
-coef_var           2.233637   4.252729  54.398852  10.095509  -3.447017  
-range              2.012750   2.399845   3.639744   3.386568   1.965249  
-max                1.364230   1.624449   1.719675   1.524333   0.677055  
-min               -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
-skew               0.305785   0.606322  -0.150434  -0.368515  -0.382710  
-kurtosis           2.245390   1.963650   1.837083   2.477825   1.604283  
-jarque_bera        0.393106   1.060220   0.601208   0.339950   1.055789  
-jarque_bera_pval   0.821558   0.588540   0.740371   0.843686   0.589846  
-mode              -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
+mean              -0.483244  -0.254453   0.058877   0.426315   0.070967  
+std_err            0.096181   0.121981   0.067393   0.132276   0.142787  
+upper_ci          -0.294733  -0.015374   0.190965   0.685572   0.350825  
+lower_ci          -0.671756  -0.493532  -0.073210   0.167058  -0.208891  
+std                0.961811   1.219812   0.673929   1.322764   1.427874  
+iqr                0.702320   1.694391   1.086336   0.818691   2.260862  
+iqr_normal         0.520631   1.256054   0.805302   0.606896   1.675980  
+mad                0.595403   0.992851   0.548831   0.775163   1.241234  
+mad_normal         0.746228   1.244354   0.687858   0.971523   1.555656  
+coef_var          -1.990319  -4.793857  11.446314   3.102789  20.120208  
+range              3.290262   3.729499   2.020311   4.731702   4.155165  
+max                0.264072   1.728591   1.288685   3.818537   2.356818  
+min               -3.026190  -2.000908  -0.731626  -0.913165  -1.798347  
+skew              -2.016374   0.280287   0.361658   1.723070   0.344541  
+kurtosis           6.145500   1.926644   2.092429   5.591678   1.669951  
+jarque_bera       10.898847   0.610973   0.561196   7.746946   0.934943  
+jarque_bera_pval   0.004299   0.736765   0.755332   0.020786   0.626585  
+mode              -3.026190  -2.000908  -0.731626  -0.913165  -1.798347  
 mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000  
-median             0.228023  -0.050927   0.073169   0.306686   0.022939  
+median            -0.281243  -0.424602  -0.082306   0.343253  -0.500832  
+1%                -2.818282  -1.945829  -0.727344  -0.906817  -1.742649  
+5%                -1.986648  -1.725515  -0.710218  -0.881427  -1.519857  
+10%               -0.947106  -1.450121  -0.688811  -0.849689  -1.241366  
+25%               -0.631465  -1.180252  -0.542524  -0.252573  -1.023235  
+50%               -0.281243  -0.424602  -0.082306   0.343253  -0.500832  
+75%                0.070856   0.514139   0.543813   0.566118   1.237627  
+90%                0.251427   1.368129   0.707175   0.955073   1.826901  
+95%                0.257750   1.548360   0.997930   2.386805   2.091860  
+99%                0.262807   1.692545   1.230534   3.532191   2.303827  
 </pre>
 </div>
 </div>
@@ -15068,11 +15086,11 @@ median             0.228023  -0.050927   0.073169   0.306686   0.022939
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">config_yml</span> <span class="o">=</span>\
-<span class="sd">&quot;&quot;&quot;name: python38</span>
+<span class="sd">&quot;&quot;&quot;name: python39</span>
 <span class="sd">channels:</span>
 <span class="sd">  - empty</span>
 <span class="sd">  - nodefaults</span>
@@ -15080,7 +15098,7 @@ median             0.228023  -0.050927   0.073169   0.306686   0.022939
 <span class="sd">- pip:</span>
 <span class="sd">  - statsmodels</span>
 
-<span class="sd">prefix: /opt/anaconda3/envs/python38</span>
+<span class="sd">prefix: /opt/anaconda3/envs/python39</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -15097,10 +15115,10 @@ median             0.228023  -0.050927   0.073169   0.306686   0.022939
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">base_sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s2">&quot;default_py3.8&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">base_sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s2">&quot;runtime-22.1-py3.9&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15113,7 +15131,7 @@ median             0.228023  -0.050927   0.073169   0.306686   0.022939
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">cat</span> <span class="n">config</span><span class="o">.</span><span class="n">yaml</span>
@@ -15138,14 +15156,15 @@ median             0.228023  -0.050927   0.073169   0.306686   0.022939
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>name: python37
+<pre>name: python39
 channels:
-  - defaults
+  - empty
+  - nodefaults
 dependencies:
-  - pip:
-    - statsmodels
+- pip:
+  - statsmodels
 
-prefix: /opt/anaconda3/envs/python37
+prefix: /opt/anaconda3/envs/python39
 </pre>
 </div>
 </div>
@@ -15171,7 +15190,7 @@ prefix: /opt/anaconda3/envs/python37
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_prop_pkg_extn</span> <span class="o">=</span> <span class="p">{</span>
@@ -15230,7 +15249,7 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_prop_sw_spec</span> <span class="o">=</span> <span class="p">{</span>
@@ -15272,7 +15291,7 @@ SUCCESS
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
 
 
@@ -15298,12 +15317,12 @@ SUCCESS
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">sw_spec_uid</span><span class="p">)</span>
@@ -15312,6 +15331,457 @@ SUCCESS
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;metadata&#39;: {&#39;name&#39;: &#39;statsmodels software_spec&#39;,
+  &#39;asset_id&#39;: &#39;e81c0d6d-45cf-43d6-8047-d9858f0c74f8&#39;,
+  &#39;href&#39;: &#39;/v2/software_specifications/e81c0d6d-45cf-43d6-8047-d9858f0c74f8&#39;,
+  &#39;asset_type&#39;: &#39;software_specification&#39;,
+  &#39;created_at&#39;: &#39;2022-04-12T09:33:32Z&#39;},
+ &#39;entity&#39;: {&#39;software_specification&#39;: {&#39;type&#39;: &#39;derived&#39;,
+   &#39;display_name&#39;: &#39;statsmodels software_spec&#39;,
+   &#39;base_software_specification&#39;: {&#39;guid&#39;: &#39;12b83a17-24d8-5082-900f-0ab31fbfd3cb&#39;,
+    &#39;href&#39;: &#39;/v2/software_specifications/12b83a17-24d8-5082-900f-0ab31fbfd3cb&#39;},
+   &#39;package_extensions&#39;: [{&#39;metadata&#39;: {&#39;space_id&#39;: &#39;680a7515-620c-461f-9c6f-1f4c535bfc47&#39;,
+      &#39;usage&#39;: {&#39;last_updated_at&#39;: &#39;2022-04-12T09:33:31Z&#39;,
+       &#39;last_updater_id&#39;: &#39;IBMid-55000091VC&#39;,
+       &#39;last_update_time&#39;: 1649756011121,
+       &#39;last_accessed_at&#39;: &#39;2022-04-12T09:33:31Z&#39;,
+       &#39;last_access_time&#39;: 1649756011121,
+       &#39;last_accessor_id&#39;: &#39;IBMid-55000091VC&#39;,
+       &#39;access_count&#39;: 0},
+      &#39;rov&#39;: {&#39;mode&#39;: 0,
+       &#39;collaborator_ids&#39;: {},
+       &#39;member_roles&#39;: {&#39;IBMid-55000091VC&#39;: {&#39;user_iam_id&#39;: &#39;IBMid-55000091VC&#39;,
+         &#39;roles&#39;: [&#39;OWNER&#39;]}}},
+      &#39;is_primary_attachment_downloadable&#39;: True,
+      &#39;name&#39;: &#39;statsmodels env&#39;,
+      &#39;description&#39;: &#39;Environment with statsmodels&#39;,
+      &#39;tags&#39;: [&#39;dsx&#39;],
+      &#39;asset_type&#39;: &#39;package_extension&#39;,
+      &#39;origin_country&#39;: &#39;us&#39;,
+      &#39;rating&#39;: 0,
+      &#39;total_ratings&#39;: 0,
+      &#39;catalog_id&#39;: &#39;ec8defc6-79d9-4989-9ec4-282b559d5a4e&#39;,
+      &#39;created&#39;: 0,
+      &#39;created_at&#39;: &#39;2022-04-12T09:33:27Z&#39;,
+      &#39;owner_id&#39;: &#39;IBMid-55000091VC&#39;,
+      &#39;size&#39;: 125,
+      &#39;version&#39;: 0,
+      &#39;asset_state&#39;: &#39;available&#39;,
+      &#39;asset_attributes&#39;: [&#39;package_extension&#39;],
+      &#39;asset_id&#39;: &#39;f6fd8022-5def-4a68-8ba5-f73cc74bb723&#39;,
+      &#39;asset_category&#39;: &#39;USER&#39;,
+      &#39;creator_id&#39;: &#39;IBMid-55000091VC&#39;},
+     &#39;entity&#39;: {&#39;package_extension&#39;: {&#39;type&#39;: &#39;conda_yml&#39;,
+       &#39;object_key&#39;: &#39;package_extension/statsmodels_env_Lfm3x4rP3.yml&#39;}}}],
+   &#39;software_configuration&#39;: {&#39;included_packages&#39;: [{&#39;name&#39;: &#39;abseil-cpp&#39;,
+      &#39;version&#39;: &#39;20210324.2&#39;},
+     {&#39;name&#39;: &#39;absl-py&#39;, &#39;version&#39;: &#39;0.12.0&#39;},
+     {&#39;name&#39;: &#39;aiohttp&#39;, &#39;version&#39;: &#39;3.8.1&#39;},
+     {&#39;name&#39;: &#39;aiosignal&#39;, &#39;version&#39;: &#39;1.2.0&#39;},
+     {&#39;name&#39;: &#39;appdirs&#39;, &#39;version&#39;: &#39;1.4.4&#39;},
+     {&#39;name&#39;: &#39;argon2-cffi&#39;, &#39;version&#39;: &#39;20.1.0&#39;},
+     {&#39;name&#39;: &#39;arrow-cpp&#39;, &#39;version&#39;: &#39;5.0.0&#39;},
+     {&#39;name&#39;: &#39;astropy&#39;, &#39;version&#39;: &#39;4.3.1&#39;},
+     {&#39;name&#39;: &#39;astunparse&#39;, &#39;version&#39;: &#39;1.6.3&#39;},
+     {&#39;name&#39;: &#39;async-timeout&#39;, &#39;version&#39;: &#39;4.0.1&#39;},
+     {&#39;name&#39;: &#39;async_generator&#39;, &#39;version&#39;: &#39;1.10&#39;},
+     {&#39;name&#39;: &#39;attrs&#39;, &#39;version&#39;: &#39;21.2.0&#39;},
+     {&#39;name&#39;: &#39;autovizwidget&#39;, &#39;version&#39;: &#39;0.18.0&#39;},
+     {&#39;name&#39;: &#39;av&#39;, &#39;version&#39;: &#39;8.0.3&#39;},
+     {&#39;name&#39;: &#39;backcall&#39;, &#39;version&#39;: &#39;0.2.0&#39;},
+     {&#39;name&#39;: &#39;beautifulsoup4&#39;, &#39;version&#39;: &#39;4.10.0&#39;},
+     {&#39;name&#39;: &#39;biopython&#39;, &#39;version&#39;: &#39;1.78&#39;},
+     {&#39;name&#39;: &#39;black&#39;, &#39;version&#39;: &#39;19.10b0&#39;},
+     {&#39;name&#39;: &#39;blas&#39;, &#39;version&#39;: &#39;1.0&#39;},
+     {&#39;name&#39;: &#39;bleach&#39;, &#39;version&#39;: &#39;4.0.0&#39;},
+     {&#39;name&#39;: &#39;blinker&#39;, &#39;version&#39;: &#39;1.4&#39;},
+     {&#39;name&#39;: &#39;blosc&#39;, &#39;version&#39;: &#39;1.21.0&#39;},
+     {&#39;name&#39;: &#39;bokeh&#39;, &#39;version&#39;: &#39;2.3.3&#39;},
+     {&#39;name&#39;: &#39;boto3&#39;, &#39;version&#39;: &#39;1.18.21&#39;},
+     {&#39;name&#39;: &#39;botocore&#39;, &#39;version&#39;: &#39;1.21.41&#39;},
+     {&#39;name&#39;: &#39;bottleneck&#39;, &#39;version&#39;: &#39;1.3.2&#39;},
+     {&#39;name&#39;: &#39;brotli&#39;, &#39;version&#39;: &#39;1.0.9&#39;},
+     {&#39;name&#39;: &#39;brotlipy&#39;, &#39;version&#39;: &#39;0.7.0&#39;},
+     {&#39;name&#39;: &#39;brunsli&#39;, &#39;version&#39;: &#39;0.1&#39;},
+     {&#39;name&#39;: &#39;bzip2&#39;, &#39;version&#39;: &#39;1.0.8&#39;},
+     {&#39;name&#39;: &#39;c-ares&#39;, &#39;version&#39;: &#39;1.17.1&#39;},
+     {&#39;name&#39;: &#39;ca-certificates&#39;, &#39;version&#39;: &#39;2021.10.26&#39;},
+     {&#39;name&#39;: &#39;cached-property&#39;, &#39;version&#39;: &#39;1.5.2&#39;},
+     {&#39;name&#39;: &#39;cachetools&#39;, &#39;version&#39;: &#39;4.2.2&#39;},
+     {&#39;name&#39;: &#39;cairo&#39;, &#39;version&#39;: &#39;1.16.0&#39;},
+     {&#39;name&#39;: &#39;certifi&#39;, &#39;version&#39;: &#39;2021.10.8&#39;},
+     {&#39;name&#39;: &#39;cffi&#39;, &#39;version&#39;: &#39;1.14.6&#39;},
+     {&#39;name&#39;: &#39;cfitsio&#39;, &#39;version&#39;: &#39;3.470&#39;},
+     {&#39;name&#39;: &#39;charls&#39;, &#39;version&#39;: &#39;2.2.0&#39;},
+     {&#39;name&#39;: &#39;charset-normalizer&#39;, &#39;version&#39;: &#39;2.0.4&#39;},
+     {&#39;name&#39;: &#39;click&#39;, &#39;version&#39;: &#39;8.0.3&#39;},
+     {&#39;name&#39;: &#39;cloudpickle&#39;, &#39;version&#39;: &#39;1.6.0&#39;},
+     {&#39;name&#39;: &#39;cryptography&#39;, &#39;version&#39;: &#39;3.4.8&#39;},
+     {&#39;name&#39;: &#39;cx_oracle&#39;, &#39;version&#39;: &#39;8.3.0&#39;},
+     {&#39;name&#39;: &#39;cycler&#39;, &#39;version&#39;: &#39;0.11.0&#39;},
+     {&#39;name&#39;: &#39;cytoolz&#39;, &#39;version&#39;: &#39;0.11.0&#39;},
+     {&#39;name&#39;: &#39;dask-core&#39;, &#39;version&#39;: &#39;2021.10.0&#39;},
+     {&#39;name&#39;: &#39;dataclasses&#39;, &#39;version&#39;: &#39;0.8&#39;},
+     {&#39;name&#39;: &#39;debugpy&#39;, &#39;version&#39;: &#39;1.5.1&#39;},
+     {&#39;name&#39;: &#39;decorator&#39;, &#39;version&#39;: &#39;5.1.0&#39;},
+     {&#39;name&#39;: &#39;defusedxml&#39;, &#39;version&#39;: &#39;0.7.1&#39;},
+     {&#39;name&#39;: &#39;dm-tree&#39;, &#39;version&#39;: &#39;0.1.5&#39;},
+     {&#39;name&#39;: &#39;entrypoints&#39;, &#39;version&#39;: &#39;0.3&#39;},
+     {&#39;name&#39;: &#39;et_xmlfile&#39;, &#39;version&#39;: &#39;1.1.0&#39;},
+     {&#39;name&#39;: &#39;ffmpeg&#39;, &#39;version&#39;: &#39;4.2.2&#39;},
+     {&#39;name&#39;: &#39;flatbuffers&#39;, &#39;version&#39;: &#39;1.12.0&#39;},
+     {&#39;name&#39;: &#39;fontconfig&#39;, &#39;version&#39;: &#39;2.13.1&#39;},
+     {&#39;name&#39;: &#39;fonttools&#39;, &#39;version&#39;: &#39;4.25.0&#39;},
+     {&#39;name&#39;: &#39;freeglut&#39;, &#39;version&#39;: &#39;3.0.0&#39;},
+     {&#39;name&#39;: &#39;freetds&#39;, &#39;version&#39;: &#39;1.3.3&#39;},
+     {&#39;name&#39;: &#39;freetype&#39;, &#39;version&#39;: &#39;2.11.0&#39;},
+     {&#39;name&#39;: &#39;frozenlist&#39;, &#39;version&#39;: &#39;1.2.0&#39;},
+     {&#39;name&#39;: &#39;fsspec&#39;, &#39;version&#39;: &#39;2021.10.1&#39;},
+     {&#39;name&#39;: &#39;future&#39;, &#39;version&#39;: &#39;0.18.2&#39;},
+     {&#39;name&#39;: &#39;gast&#39;, &#39;version&#39;: &#39;0.4.0&#39;},
+     {&#39;name&#39;: &#39;gflags&#39;, &#39;version&#39;: &#39;2.2.2&#39;},
+     {&#39;name&#39;: &#39;giflib&#39;, &#39;version&#39;: &#39;5.2.1&#39;},
+     {&#39;name&#39;: &#39;glib&#39;, &#39;version&#39;: &#39;2.69.1&#39;},
+     {&#39;name&#39;: &#39;glog&#39;, &#39;version&#39;: &#39;0.5.0&#39;},
+     {&#39;name&#39;: &#39;gmp&#39;, &#39;version&#39;: &#39;6.2.1&#39;},
+     {&#39;name&#39;: &#39;gmpy2&#39;, &#39;version&#39;: &#39;2.0.8&#39;},
+     {&#39;name&#39;: &#39;gnutls&#39;, &#39;version&#39;: &#39;3.6.15&#39;},
+     {&#39;name&#39;: &#39;google-auth&#39;, &#39;version&#39;: &#39;1.23.0&#39;},
+     {&#39;name&#39;: &#39;google-auth-oauthlib&#39;, &#39;version&#39;: &#39;0.4.4&#39;},
+     {&#39;name&#39;: &#39;google-pasta&#39;, &#39;version&#39;: &#39;0.2.0&#39;},
+     {&#39;name&#39;: &#39;googleapis-common-protos&#39;, &#39;version&#39;: &#39;1.52.0&#39;},
+     {&#39;name&#39;: &#39;graphite2&#39;, &#39;version&#39;: &#39;1.3.14&#39;},
+     {&#39;name&#39;: &#39;greenlet&#39;, &#39;version&#39;: &#39;1.1.1&#39;},
+     {&#39;name&#39;: &#39;grpc-cpp&#39;, &#39;version&#39;: &#39;1.41.0&#39;},
+     {&#39;name&#39;: &#39;grpcio&#39;, &#39;version&#39;: &#39;1.42.0&#39;},
+     {&#39;name&#39;: &#39;h5py&#39;, &#39;version&#39;: &#39;3.2.1&#39;},
+     {&#39;name&#39;: &#39;harfbuzz&#39;, &#39;version&#39;: &#39;1.8.8&#39;},
+     {&#39;name&#39;: &#39;hdf5&#39;, &#39;version&#39;: &#39;1.10.6&#39;},
+     {&#39;name&#39;: &#39;hdijupyterutils&#39;, &#39;version&#39;: &#39;0.19.0&#39;},
+     {&#39;name&#39;: &#39;html5lib&#39;, &#39;version&#39;: &#39;1.1&#39;},
+     {&#39;name&#39;: &#39;icu&#39;, &#39;version&#39;: &#39;58.2&#39;},
+     {&#39;name&#39;: &#39;idna&#39;, &#39;version&#39;: &#39;3.3&#39;},
+     {&#39;name&#39;: &#39;imagecodecs&#39;, &#39;version&#39;: &#39;2021.8.26&#39;},
+     {&#39;name&#39;: &#39;imageio&#39;, &#39;version&#39;: &#39;2.9.0&#39;},
+     {&#39;name&#39;: &#39;importlib-metadata&#39;, &#39;version&#39;: &#39;4.8.2&#39;},
+     {&#39;name&#39;: &#39;importlib_metadata&#39;, &#39;version&#39;: &#39;4.8.2&#39;},
+     {&#39;name&#39;: &#39;iniconfig&#39;, &#39;version&#39;: &#39;1.1.1&#39;},
+     {&#39;name&#39;: &#39;ipykernel&#39;, &#39;version&#39;: &#39;6.4.1&#39;},
+     {&#39;name&#39;: &#39;ipython&#39;, &#39;version&#39;: &#39;7.29.0&#39;},
+     {&#39;name&#39;: &#39;ipython_genutils&#39;, &#39;version&#39;: &#39;0.2.0&#39;},
+     {&#39;name&#39;: &#39;ipywidgets&#39;, &#39;version&#39;: &#39;7.6.5&#39;},
+     {&#39;name&#39;: &#39;jasper&#39;, &#39;version&#39;: &#39;2.0.14&#39;},
+     {&#39;name&#39;: &#39;jedi&#39;, &#39;version&#39;: &#39;0.18.0&#39;},
+     {&#39;name&#39;: &#39;jinja2&#39;, &#39;version&#39;: &#39;3.0.2&#39;},
+     {&#39;name&#39;: &#39;jmespath&#39;, &#39;version&#39;: &#39;0.10.0&#39;},
+     {&#39;name&#39;: &#39;joblib&#39;, &#39;version&#39;: &#39;0.17.0&#39;},
+     {&#39;name&#39;: &#39;jpeg&#39;, &#39;version&#39;: &#39;9d&#39;},
+     {&#39;name&#39;: &#39;jsonschema&#39;, &#39;version&#39;: &#39;3.2.0&#39;},
+     {&#39;name&#39;: &#39;jupyter&#39;, &#39;version&#39;: &#39;1.0.0&#39;},
+     {&#39;name&#39;: &#39;jupyter_client&#39;, &#39;version&#39;: &#39;7.0.6&#39;},
+     {&#39;name&#39;: &#39;jupyter_console&#39;, &#39;version&#39;: &#39;6.4.0&#39;},
+     {&#39;name&#39;: &#39;jupyter_core&#39;, &#39;version&#39;: &#39;4.9.1&#39;},
+     {&#39;name&#39;: &#39;jupyterlab_pygments&#39;, &#39;version&#39;: &#39;0.1.2&#39;},
+     {&#39;name&#39;: &#39;jupyterlab_widgets&#39;, &#39;version&#39;: &#39;1.0.0&#39;},
+     {&#39;name&#39;: &#39;jxrlib&#39;, &#39;version&#39;: &#39;1.1&#39;},
+     {&#39;name&#39;: &#39;keras&#39;, &#39;version&#39;: &#39;2.7.0&#39;},
+     {&#39;name&#39;: &#39;keras-preprocessing&#39;, &#39;version&#39;: &#39;1.1.2&#39;},
+     {&#39;name&#39;: &#39;kiwisolver&#39;, &#39;version&#39;: &#39;1.3.1&#39;},
+     {&#39;name&#39;: &#39;krb5&#39;, &#39;version&#39;: &#39;1.19.2&#39;},
+     {&#39;name&#39;: &#39;lame&#39;, &#39;version&#39;: &#39;3.100&#39;},
+     {&#39;name&#39;: &#39;lcms2&#39;, &#39;version&#39;: &#39;2.12&#39;},
+     {&#39;name&#39;: &#39;ld_impl_linux-64&#39;, &#39;version&#39;: &#39;2.35.1&#39;},
+     {&#39;name&#39;: &#39;lerc&#39;, &#39;version&#39;: &#39;3.0&#39;},
+     {&#39;name&#39;: &#39;leveldb&#39;, &#39;version&#39;: &#39;1.20&#39;},
+     {&#39;name&#39;: &#39;libaec&#39;, &#39;version&#39;: &#39;1.0.4&#39;},
+     {&#39;name&#39;: &#39;libclang&#39;, &#39;version&#39;: &#39;10.0.1&#39;},
+     {&#39;name&#39;: &#39;libcurl&#39;, &#39;version&#39;: &#39;7.80.0&#39;},
+     {&#39;name&#39;: &#39;libdeflate&#39;, &#39;version&#39;: &#39;1.8&#39;},
+     {&#39;name&#39;: &#39;libedit&#39;, &#39;version&#39;: &#39;3.1.20210910&#39;},
+     {&#39;name&#39;: &#39;libev&#39;, &#39;version&#39;: &#39;4.33&#39;},
+     {&#39;name&#39;: &#39;libevent&#39;, &#39;version&#39;: &#39;2.1.8&#39;},
+     {&#39;name&#39;: &#39;libffi&#39;, &#39;version&#39;: &#39;3.3&#39;},
+     {&#39;name&#39;: &#39;libgcc-ng&#39;, &#39;version&#39;: &#39;9.3.0&#39;},
+     {&#39;name&#39;: &#39;libgfortran-ng&#39;, &#39;version&#39;: &#39;7.5.0&#39;},
+     {&#39;name&#39;: &#39;libgfortran4&#39;, &#39;version&#39;: &#39;7.5.0&#39;},
+     {&#39;name&#39;: &#39;libglu&#39;, &#39;version&#39;: &#39;9.0.0&#39;},
+     {&#39;name&#39;: &#39;libgomp&#39;, &#39;version&#39;: &#39;9.3.0&#39;},
+     {&#39;name&#39;: &#39;libidn2&#39;, &#39;version&#39;: &#39;2.3.2&#39;},
+     {&#39;name&#39;: &#39;liblightgbm&#39;, &#39;version&#39;: &#39;3.3.1&#39;},
+     {&#39;name&#39;: &#39;libllvm10&#39;, &#39;version&#39;: &#39;10.0.1&#39;},
+     {&#39;name&#39;: &#39;libllvm11&#39;, &#39;version&#39;: &#39;11.1.0&#39;},
+     {&#39;name&#39;: &#39;libnghttp2&#39;, &#39;version&#39;: &#39;1.46.0&#39;},
+     {&#39;name&#39;: &#39;libopenblas&#39;, &#39;version&#39;: &#39;0.3.13&#39;},
+     {&#39;name&#39;: &#39;libopencv&#39;, &#39;version&#39;: &#39;4.5.3&#39;},
+     {&#39;name&#39;: &#39;libopus&#39;, &#39;version&#39;: &#39;1.3.1&#39;},
+     {&#39;name&#39;: &#39;libpng&#39;, &#39;version&#39;: &#39;1.6.37&#39;},
+     {&#39;name&#39;: &#39;libpq&#39;, &#39;version&#39;: &#39;12.9&#39;},
+     {&#39;name&#39;: &#39;libprotobuf&#39;, &#39;version&#39;: &#39;3.14.0&#39;},
+     {&#39;name&#39;: &#39;libsodium&#39;, &#39;version&#39;: &#39;1.0.18&#39;},
+     {&#39;name&#39;: &#39;libssh2&#39;, &#39;version&#39;: &#39;1.9.0&#39;},
+     {&#39;name&#39;: &#39;libstdcxx-ng&#39;, &#39;version&#39;: &#39;9.3.0&#39;},
+     {&#39;name&#39;: &#39;libtasn1&#39;, &#39;version&#39;: &#39;4.16.0&#39;},
+     {&#39;name&#39;: &#39;libthrift&#39;, &#39;version&#39;: &#39;0.15.0&#39;},
+     {&#39;name&#39;: &#39;libtiff&#39;, &#39;version&#39;: &#39;4.2.0&#39;},
+     {&#39;name&#39;: &#39;libunistring&#39;, &#39;version&#39;: &#39;0.9.10&#39;},
+     {&#39;name&#39;: &#39;libutf8proc&#39;, &#39;version&#39;: &#39;2.6.1&#39;},
+     {&#39;name&#39;: &#39;libuuid&#39;, &#39;version&#39;: &#39;1.0.3&#39;},
+     {&#39;name&#39;: &#39;libvpx&#39;, &#39;version&#39;: &#39;1.7.0&#39;},
+     {&#39;name&#39;: &#39;libwebp&#39;, &#39;version&#39;: &#39;1.2.0&#39;},
+     {&#39;name&#39;: &#39;libwebp-base&#39;, &#39;version&#39;: &#39;1.2.0&#39;},
+     {&#39;name&#39;: &#39;libxcb&#39;, &#39;version&#39;: &#39;1.14&#39;},
+     {&#39;name&#39;: &#39;libxgboost&#39;, &#39;version&#39;: &#39;1.5.1&#39;},
+     {&#39;name&#39;: &#39;libxml2&#39;, &#39;version&#39;: &#39;2.9.12&#39;},
+     {&#39;name&#39;: &#39;libxslt&#39;, &#39;version&#39;: &#39;1.1.34&#39;},
+     {&#39;name&#39;: &#39;libzopfli&#39;, &#39;version&#39;: &#39;1.0.3&#39;},
+     {&#39;name&#39;: &#39;lightgbm&#39;, &#39;version&#39;: &#39;3.3.1&#39;},
+     {&#39;name&#39;: &#39;llvmlite&#39;, &#39;version&#39;: &#39;0.37.0&#39;},
+     {&#39;name&#39;: &#39;lmdb&#39;, &#39;version&#39;: &#39;0.9.29&#39;},
+     {&#39;name&#39;: &#39;locket&#39;, &#39;version&#39;: &#39;0.2.1&#39;},
+     {&#39;name&#39;: &#39;lxml&#39;, &#39;version&#39;: &#39;4.7.1&#39;},
+     {&#39;name&#39;: &#39;lz4-c&#39;, &#39;version&#39;: &#39;1.9.3&#39;},
+     {&#39;name&#39;: &#39;lzo&#39;, &#39;version&#39;: &#39;2.10&#39;},
+     {&#39;name&#39;: &#39;markdown&#39;, &#39;version&#39;: &#39;3.3.3&#39;},
+     {&#39;name&#39;: &#39;markupsafe&#39;, &#39;version&#39;: &#39;2.0.1&#39;},
+     {&#39;name&#39;: &#39;matplotlib&#39;, &#39;version&#39;: &#39;3.5.0&#39;},
+     {&#39;name&#39;: &#39;matplotlib-base&#39;, &#39;version&#39;: &#39;3.5.0&#39;},
+     {&#39;name&#39;: &#39;matplotlib-inline&#39;, &#39;version&#39;: &#39;0.1.2&#39;},
+     {&#39;name&#39;: &#39;mistune&#39;, &#39;version&#39;: &#39;0.8.4&#39;},
+     {&#39;name&#39;: &#39;mock&#39;, &#39;version&#39;: &#39;4.0.3&#39;},
+     {&#39;name&#39;: &#39;mpc&#39;, &#39;version&#39;: &#39;1.1.0&#39;},
+     {&#39;name&#39;: &#39;mpfr&#39;, &#39;version&#39;: &#39;4.0.2&#39;},
+     {&#39;name&#39;: &#39;mpi&#39;, &#39;version&#39;: &#39;1.0&#39;},
+     {&#39;name&#39;: &#39;mpmath&#39;, &#39;version&#39;: &#39;1.2.1&#39;},
+     {&#39;name&#39;: &#39;multidict&#39;, &#39;version&#39;: &#39;5.2.0&#39;},
+     {&#39;name&#39;: &#39;munkres&#39;, &#39;version&#39;: &#39;1.1.4&#39;},
+     {&#39;name&#39;: &#39;mypy_extensions&#39;, &#39;version&#39;: &#39;0.4.3&#39;},
+     {&#39;name&#39;: &#39;nbclient&#39;, &#39;version&#39;: &#39;0.5.3&#39;},
+     {&#39;name&#39;: &#39;nbconvert&#39;, &#39;version&#39;: &#39;6.1.0&#39;},
+     {&#39;name&#39;: &#39;nbformat&#39;, &#39;version&#39;: &#39;5.1.3&#39;},
+     {&#39;name&#39;: &#39;ncurses&#39;, &#39;version&#39;: &#39;6.3&#39;},
+     {&#39;name&#39;: &#39;nest-asyncio&#39;, &#39;version&#39;: &#39;1.5.1&#39;},
+     {&#39;name&#39;: &#39;nettle&#39;, &#39;version&#39;: &#39;3.7.3&#39;},
+     {&#39;name&#39;: &#39;networkx&#39;, &#39;version&#39;: &#39;2.6.3&#39;},
+     {&#39;name&#39;: &#39;nltk&#39;, &#39;version&#39;: &#39;3.6.5&#39;},
+     {&#39;name&#39;: &#39;nose&#39;, &#39;version&#39;: &#39;1.3.7&#39;},
+     {&#39;name&#39;: &#39;notebook&#39;, &#39;version&#39;: &#39;6.4.6&#39;},
+     {&#39;name&#39;: &#39;numactl&#39;, &#39;version&#39;: &#39;2.0.12&#39;},
+     {&#39;name&#39;: &#39;numba&#39;, &#39;version&#39;: &#39;0.54.1&#39;},
+     {&#39;name&#39;: &#39;numexpr&#39;, &#39;version&#39;: &#39;2.8.1&#39;},
+     {&#39;name&#39;: &#39;numpy&#39;, &#39;version&#39;: &#39;1.20.3&#39;},
+     {&#39;name&#39;: &#39;numpy-base&#39;, &#39;version&#39;: &#39;1.20.3&#39;},
+     {&#39;name&#39;: &#39;oauthlib&#39;, &#39;version&#39;: &#39;3.1.1&#39;},
+     {&#39;name&#39;: &#39;olefile&#39;, &#39;version&#39;: &#39;0.46&#39;},
+     {&#39;name&#39;: &#39;onnx&#39;, &#39;version&#39;: &#39;1.10.2&#39;},
+     {&#39;name&#39;: &#39;onnxconverter-common&#39;, &#39;version&#39;: &#39;1.9.0&#39;},
+     {&#39;name&#39;: &#39;opencv&#39;, &#39;version&#39;: &#39;4.5.3&#39;},
+     {&#39;name&#39;: &#39;openh264&#39;, &#39;version&#39;: &#39;2.1.1&#39;},
+     {&#39;name&#39;: &#39;openjpeg&#39;, &#39;version&#39;: &#39;2.4.0&#39;},
+     {&#39;name&#39;: &#39;openmpi&#39;, &#39;version&#39;: &#39;4.1.1&#39;},
+     {&#39;name&#39;: &#39;openpyxl&#39;, &#39;version&#39;: &#39;3.0.9&#39;},
+     {&#39;name&#39;: &#39;openssl&#39;, &#39;version&#39;: &#39;1.1.1m&#39;},
+     {&#39;name&#39;: &#39;opt_einsum&#39;, &#39;version&#39;: &#39;3.3.0&#39;},
+     {&#39;name&#39;: &#39;orc&#39;, &#39;version&#39;: &#39;1.7.2&#39;},
+     {&#39;name&#39;: &#39;packaging&#39;, &#39;version&#39;: &#39;21.3&#39;},
+     {&#39;name&#39;: &#39;pandas&#39;, &#39;version&#39;: &#39;1.3.4&#39;},
+     {&#39;name&#39;: &#39;pandocfilters&#39;, &#39;version&#39;: &#39;1.4.3&#39;},
+     {&#39;name&#39;: &#39;parso&#39;, &#39;version&#39;: &#39;0.8.3&#39;},
+     {&#39;name&#39;: &#39;partd&#39;, &#39;version&#39;: &#39;1.2.0&#39;},
+     {&#39;name&#39;: &#39;pathspec&#39;, &#39;version&#39;: &#39;0.7.0&#39;},
+     {&#39;name&#39;: &#39;patsy&#39;, &#39;version&#39;: &#39;0.5.2&#39;},
+     {&#39;name&#39;: &#39;pcre&#39;, &#39;version&#39;: &#39;8.45&#39;},
+     {&#39;name&#39;: &#39;pexpect&#39;, &#39;version&#39;: &#39;4.8.0&#39;},
+     {&#39;name&#39;: &#39;pickleshare&#39;, &#39;version&#39;: &#39;0.7.5&#39;},
+     {&#39;name&#39;: &#39;pillow&#39;, &#39;version&#39;: &#39;8.4.0&#39;},
+     {&#39;name&#39;: &#39;pip&#39;, &#39;version&#39;: &#39;21.2.4&#39;},
+     {&#39;name&#39;: &#39;pixman&#39;, &#39;version&#39;: &#39;0.40.0&#39;},
+     {&#39;name&#39;: &#39;plotly&#39;, &#39;version&#39;: &#39;5.1.0&#39;},
+     {&#39;name&#39;: &#39;pluggy&#39;, &#39;version&#39;: &#39;1.0.0&#39;},
+     {&#39;name&#39;: &#39;portpicker&#39;, &#39;version&#39;: &#39;1.3.1&#39;},
+     {&#39;name&#39;: &#39;prometheus_client&#39;, &#39;version&#39;: &#39;0.12.0&#39;},
+     {&#39;name&#39;: &#39;prompt-toolkit&#39;, &#39;version&#39;: &#39;3.0.20&#39;},
+     {&#39;name&#39;: &#39;prompt_toolkit&#39;, &#39;version&#39;: &#39;3.0.20&#39;},
+     {&#39;name&#39;: &#39;protobuf&#39;, &#39;version&#39;: &#39;3.14.0&#39;},
+     {&#39;name&#39;: &#39;psutil&#39;, &#39;version&#39;: &#39;5.8.0&#39;},
+     {&#39;name&#39;: &#39;psycopg2&#39;, &#39;version&#39;: &#39;2.8.6&#39;},
+     {&#39;name&#39;: &#39;ptyprocess&#39;, &#39;version&#39;: &#39;0.7.0&#39;},
+     {&#39;name&#39;: &#39;py&#39;, &#39;version&#39;: &#39;1.10.0&#39;},
+     {&#39;name&#39;: &#39;py-opencv&#39;, &#39;version&#39;: &#39;4.5.3&#39;},
+     {&#39;name&#39;: &#39;pyarrow&#39;, &#39;version&#39;: &#39;5.0.0&#39;},
+     {&#39;name&#39;: &#39;pyasn1&#39;, &#39;version&#39;: &#39;0.4.8&#39;},
+     {&#39;name&#39;: &#39;pyasn1-modules&#39;, &#39;version&#39;: &#39;0.2.8&#39;},
+     {&#39;name&#39;: &#39;pycparser&#39;, &#39;version&#39;: &#39;2.21&#39;},
+     {&#39;name&#39;: &#39;pycryptodome&#39;, &#39;version&#39;: &#39;3.10.1&#39;},
+     {&#39;name&#39;: &#39;pydeprecate&#39;, &#39;version&#39;: &#39;0.3.2&#39;},
+     {&#39;name&#39;: &#39;pyerfa&#39;, &#39;version&#39;: &#39;2.0.0&#39;},
+     {&#39;name&#39;: &#39;pygments&#39;, &#39;version&#39;: &#39;2.10.0&#39;},
+     {&#39;name&#39;: &#39;pyjwt&#39;, &#39;version&#39;: &#39;2.1.0&#39;},
+     {&#39;name&#39;: &#39;pymssql&#39;, &#39;version&#39;: &#39;2.1.4&#39;},
+     {&#39;name&#39;: &#39;pyodbc&#39;, &#39;version&#39;: &#39;4.0.31&#39;},
+     {&#39;name&#39;: &#39;pyopenssl&#39;, &#39;version&#39;: &#39;21.0.0&#39;},
+     {&#39;name&#39;: &#39;pyparsing&#39;, &#39;version&#39;: &#39;3.0.4&#39;},
+     {&#39;name&#39;: &#39;pyrsistent&#39;, &#39;version&#39;: &#39;0.18.0&#39;},
+     {&#39;name&#39;: &#39;pysocks&#39;, &#39;version&#39;: &#39;1.7.1&#39;},
+     {&#39;name&#39;: &#39;pyspnego&#39;, &#39;version&#39;: &#39;0.3.1&#39;},
+     {&#39;name&#39;: &#39;pytables&#39;, &#39;version&#39;: &#39;3.6.1&#39;},
+     {&#39;name&#39;: &#39;pytest&#39;, &#39;version&#39;: &#39;6.2.5&#39;},
+     {&#39;name&#39;: &#39;python&#39;, &#39;version&#39;: &#39;3.9.7&#39;},
+     {&#39;name&#39;: &#39;python-clang&#39;, &#39;version&#39;: &#39;10.0.1&#39;},
+     {&#39;name&#39;: &#39;python-dateutil&#39;, &#39;version&#39;: &#39;2.8.2&#39;},
+     {&#39;name&#39;: &#39;python-flatbuffers&#39;, &#39;version&#39;: &#39;1.12&#39;},
+     {&#39;name&#39;: &#39;pytorch-base&#39;, &#39;version&#39;: &#39;1.10.1&#39;},
+     {&#39;name&#39;: &#39;pytorch-cpu&#39;, &#39;version&#39;: &#39;1.10.1&#39;},
+     {&#39;name&#39;: &#39;pytorch-lightning&#39;, &#39;version&#39;: &#39;1.5.7&#39;},
+     {&#39;name&#39;: &#39;pytz&#39;, &#39;version&#39;: &#39;2021.3&#39;},
+     {&#39;name&#39;: &#39;pywavelets&#39;, &#39;version&#39;: &#39;1.1.1&#39;},
+     {&#39;name&#39;: &#39;pyyaml&#39;, &#39;version&#39;: &#39;5.4.1&#39;},
+     {&#39;name&#39;: &#39;pyzmq&#39;, &#39;version&#39;: &#39;22.3.0&#39;},
+     {&#39;name&#39;: &#39;qtconsole&#39;, &#39;version&#39;: &#39;5.1.1&#39;},
+     {&#39;name&#39;: &#39;qtpy&#39;, &#39;version&#39;: &#39;1.10.0&#39;},
+     {&#39;name&#39;: &#39;re2&#39;, &#39;version&#39;: &#39;2020.11.01&#39;},
+     {&#39;name&#39;: &#39;readline&#39;, &#39;version&#39;: &#39;8.1&#39;},
+     {&#39;name&#39;: &#39;regex&#39;, &#39;version&#39;: &#39;2021.11.2&#39;},
+     {&#39;name&#39;: &#39;requests&#39;, &#39;version&#39;: &#39;2.26.0&#39;},
+     {&#39;name&#39;: &#39;requests-kerberos&#39;, &#39;version&#39;: &#39;0.14.0&#39;},
+     {&#39;name&#39;: &#39;requests-oauthlib&#39;, &#39;version&#39;: &#39;1.3.0&#39;},
+     {&#39;name&#39;: &#39;rsa&#39;, &#39;version&#39;: &#39;4.7.2&#39;},
+     {&#39;name&#39;: &#39;ruamel.yaml&#39;, &#39;version&#39;: &#39;0.16.12&#39;},
+     {&#39;name&#39;: &#39;ruamel.yaml.clib&#39;, &#39;version&#39;: &#39;0.2.6&#39;},
+     {&#39;name&#39;: &#39;s3transfer&#39;, &#39;version&#39;: &#39;0.5.0&#39;},
+     {&#39;name&#39;: &#39;scikit-image&#39;, &#39;version&#39;: &#39;0.18.3&#39;},
+     {&#39;name&#39;: &#39;scikit-learn&#39;, &#39;version&#39;: &#39;1.0.2&#39;},
+     {&#39;name&#39;: &#39;scipy&#39;, &#39;version&#39;: &#39;1.7.3&#39;},
+     {&#39;name&#39;: &#39;seaborn&#39;, &#39;version&#39;: &#39;0.11.2&#39;},
+     {&#39;name&#39;: &#39;send2trash&#39;, &#39;version&#39;: &#39;1.8.0&#39;},
+     {&#39;name&#39;: &#39;sentencepiece&#39;, &#39;version&#39;: &#39;0.1.96&#39;},
+     {&#39;name&#39;: &#39;setuptools&#39;, &#39;version&#39;: &#39;58.0.4&#39;},
+     {&#39;name&#39;: &#39;six&#39;, &#39;version&#39;: &#39;1.15.0&#39;},
+     {&#39;name&#39;: &#39;skl2onnx&#39;, &#39;version&#39;: &#39;1.10.3&#39;},
+     {&#39;name&#39;: &#39;snapml&#39;, &#39;version&#39;: &#39;1.8.3&#39;},
+     {&#39;name&#39;: &#39;snappy&#39;, &#39;version&#39;: &#39;1.1.8&#39;},
+     {&#39;name&#39;: &#39;snowballstemmer&#39;, &#39;version&#39;: &#39;2.2.0&#39;},
+     {&#39;name&#39;: &#39;sortedcontainers&#39;, &#39;version&#39;: &#39;2.4.0&#39;},
+     {&#39;name&#39;: &#39;soupsieve&#39;, &#39;version&#39;: &#39;2.3.1&#39;},
+     {&#39;name&#39;: &#39;sparkmagic&#39;, &#39;version&#39;: &#39;0.19.0&#39;},
+     {&#39;name&#39;: &#39;sqlalchemy&#39;, &#39;version&#39;: &#39;1.4.27&#39;},
+     {&#39;name&#39;: &#39;sqlite&#39;, &#39;version&#39;: &#39;3.37.0&#39;},
+     {&#39;name&#39;: &#39;statsmodels&#39;, &#39;version&#39;: &#39;0.12.2&#39;},
+     {&#39;name&#39;: &#39;sympy&#39;, &#39;version&#39;: &#39;1.9&#39;},
+     {&#39;name&#39;: &#39;tabulate&#39;, &#39;version&#39;: &#39;0.8.9&#39;},
+     {&#39;name&#39;: &#39;tbb&#39;, &#39;version&#39;: &#39;2021.4.0&#39;},
+     {&#39;name&#39;: &#39;tenacity&#39;, &#39;version&#39;: &#39;8.0.1&#39;},
+     {&#39;name&#39;: &#39;tensorboard&#39;, &#39;version&#39;: &#39;2.7.0&#39;},
+     {&#39;name&#39;: &#39;tensorboard-data-server&#39;, &#39;version&#39;: &#39;0.6.1&#39;},
+     {&#39;name&#39;: &#39;tensorboard-plugin-wit&#39;, &#39;version&#39;: &#39;1.6.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-addons&#39;, &#39;version&#39;: &#39;0.15.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-base&#39;, &#39;version&#39;: &#39;2.7.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-cpu&#39;, &#39;version&#39;: &#39;2.7.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-estimator&#39;, &#39;version&#39;: &#39;2.7.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-hub&#39;, &#39;version&#39;: &#39;0.12.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-io-gcs-filesystem&#39;, &#39;version&#39;: &#39;0.23.1&#39;},
+     {&#39;name&#39;: &#39;tensorflow-metadata&#39;, &#39;version&#39;: &#39;1.5.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-model-optimization&#39;, &#39;version&#39;: &#39;0.7.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-probability&#39;, &#39;version&#39;: &#39;0.15.0&#39;},
+     {&#39;name&#39;: &#39;tensorflow-text&#39;, &#39;version&#39;: &#39;2.7.3&#39;},
+     {&#39;name&#39;: &#39;termcolor&#39;, &#39;version&#39;: &#39;1.1.0&#39;},
+     {&#39;name&#39;: &#39;terminado&#39;, &#39;version&#39;: &#39;0.9.4&#39;},
+     {&#39;name&#39;: &#39;testpath&#39;, &#39;version&#39;: &#39;0.5.0&#39;},
+     {&#39;name&#39;: &#39;tf2onnx&#39;, &#39;version&#39;: &#39;1.9.3&#39;},
+     {&#39;name&#39;: &#39;threadpoolctl&#39;, &#39;version&#39;: &#39;2.2.0&#39;},
+     {&#39;name&#39;: &#39;tifffile&#39;, &#39;version&#39;: &#39;2021.7.2&#39;},
+     {&#39;name&#39;: &#39;tk&#39;, &#39;version&#39;: &#39;8.6.11&#39;},
+     {&#39;name&#39;: &#39;toml&#39;, &#39;version&#39;: &#39;0.10.2&#39;},
+     {&#39;name&#39;: &#39;toolz&#39;, &#39;version&#39;: &#39;0.11.2&#39;},
+     {&#39;name&#39;: &#39;torchmetrics&#39;, &#39;version&#39;: &#39;0.6.2&#39;},
+     {&#39;name&#39;: &#39;torchtext-base&#39;, &#39;version&#39;: &#39;0.11.1&#39;},
+     {&#39;name&#39;: &#39;torchvision-base&#39;, &#39;version&#39;: &#39;0.11.2&#39;},
+     {&#39;name&#39;: &#39;tornado&#39;, &#39;version&#39;: &#39;6.1&#39;},
+     {&#39;name&#39;: &#39;tqdm&#39;, &#39;version&#39;: &#39;4.62.3&#39;},
+     {&#39;name&#39;: &#39;traitlets&#39;, &#39;version&#39;: &#39;5.1.1&#39;},
+     {&#39;name&#39;: &#39;typed-ast&#39;, &#39;version&#39;: &#39;1.4.3&#39;},
+     {&#39;name&#39;: &#39;typeguard&#39;, &#39;version&#39;: &#39;2.12.0&#39;},
+     {&#39;name&#39;: &#39;typing-extensions&#39;, &#39;version&#39;: &#39;3.7.4.3&#39;},
+     {&#39;name&#39;: &#39;typing_extensions&#39;, &#39;version&#39;: &#39;3.7.4.3&#39;},
+     {&#39;name&#39;: &#39;tzdata&#39;, &#39;version&#39;: &#39;2021e&#39;},
+     {&#39;name&#39;: &#39;unixodbc&#39;, &#39;version&#39;: &#39;2.3.9&#39;},
+     {&#39;name&#39;: &#39;urllib3&#39;, &#39;version&#39;: &#39;1.26.7&#39;},
+     {&#39;name&#39;: &#39;wcwidth&#39;, &#39;version&#39;: &#39;0.2.5&#39;},
+     {&#39;name&#39;: &#39;webencodings&#39;, &#39;version&#39;: &#39;0.5.1&#39;},
+     {&#39;name&#39;: &#39;werkzeug&#39;, &#39;version&#39;: &#39;2.0.2&#39;},
+     {&#39;name&#39;: &#39;wheel&#39;, &#39;version&#39;: &#39;0.37.0&#39;},
+     {&#39;name&#39;: &#39;widgetsnbextension&#39;, &#39;version&#39;: &#39;3.5.1&#39;},
+     {&#39;name&#39;: &#39;wrapt&#39;, &#39;version&#39;: &#39;1.12.1&#39;},
+     {&#39;name&#39;: &#39;x264&#39;, &#39;version&#39;: &#39;1!157.20191217&#39;},
+     {&#39;name&#39;: &#39;xgboost&#39;, &#39;version&#39;: &#39;1.5.1&#39;},
+     {&#39;name&#39;: &#39;xlrd&#39;, &#39;version&#39;: &#39;2.0.1&#39;},
+     {&#39;name&#39;: &#39;xlsxwriter&#39;, &#39;version&#39;: &#39;3.0.2&#39;},
+     {&#39;name&#39;: &#39;xz&#39;, &#39;version&#39;: &#39;5.2.5&#39;},
+     {&#39;name&#39;: &#39;yaml&#39;, &#39;version&#39;: &#39;0.2.5&#39;},
+     {&#39;name&#39;: &#39;yarl&#39;, &#39;version&#39;: &#39;1.6.3&#39;},
+     {&#39;name&#39;: &#39;zeromq&#39;, &#39;version&#39;: &#39;4.3.4&#39;},
+     {&#39;name&#39;: &#39;zfp&#39;, &#39;version&#39;: &#39;0.5.5&#39;},
+     {&#39;name&#39;: &#39;zipp&#39;, &#39;version&#39;: &#39;3.6.0&#39;},
+     {&#39;name&#39;: &#39;zlib&#39;, &#39;version&#39;: &#39;1.2.11&#39;},
+     {&#39;name&#39;: &#39;zstd&#39;, &#39;version&#39;: &#39;1.4.9&#39;},
+     {&#39;name&#39;: &#39;azure-core&#39;, &#39;version&#39;: &#39;1.21.0&#39;},
+     {&#39;name&#39;: &#39;azure-cosmos&#39;, &#39;version&#39;: &#39;4.2.0&#39;},
+     {&#39;name&#39;: &#39;ca-data-connector&#39;, &#39;version&#39;: &#39;11.2.0&#39;},
+     {&#39;name&#39;: &#39;cassandra-driver&#39;, &#39;version&#39;: &#39;3.25.0&#39;},
+     {&#39;name&#39;: &#39;cplex&#39;, &#39;version&#39;: &#39;20.1.0.2&#39;},
+     {&#39;name&#39;: &#39;docplex&#39;, &#39;version&#39;: &#39;2.22.213&#39;},
+     {&#39;name&#39;: &#39;dsx-core-utils&#39;, &#39;version&#39;: &#39;0.3&#39;},
+     {&#39;name&#39;: &#39;gensim&#39;, &#39;version&#39;: &#39;3.8.3&#39;},
+     {&#39;name&#39;: &#39;geographiclib&#39;, &#39;version&#39;: &#39;1.52&#39;},
+     {&#39;name&#39;: &#39;geomet&#39;, &#39;version&#39;: &#39;0.2.1.post1&#39;},
+     {&#39;name&#39;: &#39;geopy&#39;, &#39;version&#39;: &#39;2.2.0&#39;},
+     {&#39;name&#39;: &#39;greenery&#39;, &#39;version&#39;: &#39;3.3.2&#39;},
+     {&#39;name&#39;: &#39;hadoop-lib-utils&#39;, &#39;version&#39;: &#39;0.2&#39;},
+     {&#39;name&#39;: &#39;hyperopt&#39;, &#39;version&#39;: &#39;0.2.5&#39;},
+     {&#39;name&#39;: &#39;ibm-cloud-sdk-core&#39;, &#39;version&#39;: &#39;3.10.1&#39;},
+     {&#39;name&#39;: &#39;ibm-cos-sdk&#39;, &#39;version&#39;: &#39;2.11.0&#39;},
+     {&#39;name&#39;: &#39;ibm-cos-sdk-core&#39;, &#39;version&#39;: &#39;2.11.0&#39;},
+     {&#39;name&#39;: &#39;ibm-cos-sdk-s3transfer&#39;, &#39;version&#39;: &#39;2.11.0&#39;},
+     {&#39;name&#39;: &#39;ibm-db&#39;, &#39;version&#39;: &#39;3.1.0&#39;},
+     {&#39;name&#39;: &#39;ibm-db-sa&#39;, &#39;version&#39;: &#39;0.3.7&#39;},
+     {&#39;name&#39;: &#39;ibm-watson-openscale&#39;, &#39;version&#39;: &#39;3.0.12&#39;},
+     {&#39;name&#39;: &#39;ibm-watson-studio-lib&#39;, &#39;version&#39;: &#39;3.0.7&#39;},
+     {&#39;name&#39;: &#39;itc-utils&#39;, &#39;version&#39;: &#39;0.1.10&#39;},
+     {&#39;name&#39;: &#39;jaydebeapi&#39;, &#39;version&#39;: &#39;1.2.3&#39;},
+     {&#39;name&#39;: &#39;jpype1&#39;, &#39;version&#39;: &#39;1.3.0&#39;},
+     {&#39;name&#39;: &#39;jsonref&#39;, &#39;version&#39;: &#39;0.2&#39;},
+     {&#39;name&#39;: &#39;jsonsubschema&#39;, &#39;version&#39;: &#39;0.0.5&#39;},
+     {&#39;name&#39;: &#39;lale&#39;, &#39;version&#39;: &#39;0.6.0&#39;},
+     {&#39;name&#39;: &#39;lomond&#39;, &#39;version&#39;: &#39;0.3.3&#39;},
+     {&#39;name&#39;: &#39;mysql-connector-python&#39;, &#39;version&#39;: &#39;8.0.25&#39;},
+     {&#39;name&#39;: &#39;portion&#39;, &#39;version&#39;: &#39;2.2.0&#39;},
+     {&#39;name&#39;: &#39;project-lib&#39;, &#39;version&#39;: &#39;2.0.4&#39;},
+     {&#39;name&#39;: &#39;python-graphviz&#39;, &#39;version&#39;: &#39;0.19&#39;},
+     {&#39;name&#39;: &#39;smart-open&#39;, &#39;version&#39;: &#39;5.2.1&#39;}],
+    &#39;platform&#39;: {&#39;name&#39;: &#39;python&#39;, &#39;version&#39;: &#39;3.9&#39;}}}}}</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15330,7 +15800,7 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">meta_props</span> <span class="o">=</span> <span class="p">{</span>
@@ -15339,7 +15809,7 @@ SUCCESS
 <span class="p">}</span>
 
 <span class="n">function_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_function</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_props</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">deployable_callable</span><span class="p">)</span>
-<span class="n">function_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_function_uid</span><span class="p">(</span><span class="n">function_details</span><span class="p">)</span>
+<span class="n">function_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_function_id</span><span class="p">(</span><span class="n">function_details</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15363,10 +15833,10 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">function_uid</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">function_id</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15384,21 +15854,21 @@ SUCCESS
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;software_spec&#39;: {&#39;id&#39;: &#39;62123911-898c-49be-87ae-e056067645d8&#39;,
+<pre>{&#39;entity&#39;: {&#39;software_spec&#39;: {&#39;id&#39;: &#39;e81c0d6d-45cf-43d6-8047-d9858f0c74f8&#39;,
    &#39;name&#39;: &#39;statsmodels software_spec&#39;},
   &#39;type&#39;: &#39;python&#39;},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2021-02-03T13:02:50.513Z&#39;,
-  &#39;id&#39;: &#39;77cc037c-6aab-4eac-9e45-c3331e010132&#39;,
-  &#39;modified_at&#39;: &#39;2021-02-03T13:02:53.304Z&#39;,
+ &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-04-12T09:33:47.753Z&#39;,
+  &#39;id&#39;: &#39;1211c5af-3f0e-475a-927c-30114868bafa&#39;,
+  &#39;modified_at&#39;: &#39;2022-04-12T09:33:52.512Z&#39;,
   &#39;name&#39;: &#39;statsmodels function&#39;,
   &#39;owner&#39;: &#39;IBMid-55000091VC&#39;,
-  &#39;space_id&#39;: &#39;d70a423e-bab5-4b24-943a-3b0b29ad7527&#39;},
+  &#39;space_id&#39;: &#39;680a7515-620c-461f-9c6f-1f4c535bfc47&#39;},
  &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
 </div>
 
@@ -15465,7 +15935,7 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
@@ -15473,7 +15943,7 @@ SUCCESS
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{}</span>
 <span class="p">}</span>
 
-<span class="n">function_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">function_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+<span class="n">function_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">function_id</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15499,17 +15969,19 @@ SUCCESS
 
 #######################################################################################
 
-Synchronous deployment creation for uid: &#39;77cc037c-6aab-4eac-9e45-c3331e010132&#39; started
+Synchronous deployment creation for uid: &#39;1211c5af-3f0e-475a-927c-30114868bafa&#39; started
 
 #######################################################################################
 
 
-initializing....................................................................................................................................................
+initializing
+Note: online_url is deprecated and will be removed in a future release. Use serving_urls instead.
+.........
 ready
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid=&#39;340eb7f7-4a08-4c9c-8371-f6cd907b7a3e&#39;
+Successfully finished deployment creation, deployment_uid=&#39;9b723c1c-5d8f-4f1f-bc4e-bf7d582a4ba6&#39;
 ------------------------------------------------------------------------------------------------
 
 
@@ -15554,10 +16026,10 @@ Successfully finished deployment creation, deployment_uid=&#39;340eb7f7-4a08-4c9
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">function_deployment</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">function_deployment</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
 </pre></div>
 
@@ -15580,7 +16052,7 @@ Successfully finished deployment creation, deployment_uid=&#39;340eb7f7-4a08-4c9
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>340eb7f7-4a08-4c9c-8371-f6cd907b7a3e
+<pre>9b723c1c-5d8f-4f1f-bc4e-bf7d582a4ba6
 </pre>
 </div>
 </div>
@@ -15607,7 +16079,7 @@ Successfully finished deployment creation, deployment_uid=&#39;340eb7f7-4a08-4c9
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span>
@@ -15627,7 +16099,7 @@ Successfully finished deployment creation, deployment_uid=&#39;340eb7f7-4a08-4c9
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
@@ -15656,50 +16128,68 @@ Successfully finished deployment creation, deployment_uid=&#39;340eb7f7-4a08-4c9
 <pre>                          0          1          2          3          4  \
 nobs              10.000000  10.000000  10.000000  10.000000  10.000000   
 missing            0.000000   0.000000   0.000000   0.000000   0.000000   
-mean              -0.087662  -0.162800   0.021847  -0.484764  -0.151347   
-std_err            0.086628   0.082336   0.088078   0.154758   0.060011   
-upper_ci           0.082126  -0.001424   0.194477  -0.181444  -0.033728   
-lower_ci          -0.257450  -0.324175  -0.150783  -0.788085  -0.268967   
-std                0.866281   0.823361   0.880783   1.547581   0.600109   
-iqr                1.220332   0.774040   1.173032   1.866595   0.455900   
-iqr_normal         0.904633   0.573797   0.869570   1.383709   0.337959   
-mad                0.696300   0.556041   0.700227   1.257709   0.403634   
-mad_normal         0.872682   0.696895   0.877605   1.576305   0.505881   
-coef_var          -9.882045  -5.057510  40.315579  -3.192440  -3.965111   
-range              2.514768   2.889136   2.903603   4.598605   2.228215   
-max                1.458946   0.788044   1.426277   1.386525   0.671509   
-min               -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
-skew               0.621923  -1.182308  -0.110031  -0.582020  -1.165771   
-kurtosis           2.083665   4.191979   2.178047   2.099710   4.236195   
-jarque_bera        0.994509   2.921762   0.301681   0.902296   2.901779   
-jarque_bera_pval   0.608198   0.232032   0.859985   0.636897   0.234362   
-mode              -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
+mean               0.226671   0.118863   0.296608   0.018030  -0.059889   
+std_err            0.078214   0.109682   0.077958   0.069102   0.099104   
+upper_ci           0.379969   0.333837   0.449404   0.153467   0.134352   
+lower_ci           0.073374  -0.096110   0.143813  -0.117407  -0.254130   
+std                0.782143   1.096823   0.779584   0.691019   0.991042   
+iqr                1.138703   0.979375   1.111591   0.625231   1.315194   
+iqr_normal         0.844122   0.726012   0.824023   0.463485   0.974954   
+mad                0.623878   0.774813   0.618962   0.513830   0.799944   
+mad_normal         0.781915   0.971084   0.775754   0.643991   1.002581   
+coef_var           3.450557   9.227584   2.628330  38.326234 -16.547990   
+range              2.289961   3.407891   2.370988   2.429216   3.152545   
+max                1.216507   1.544682   1.624286   1.266127   1.517858   
+min               -1.073454  -1.863208  -0.746702  -1.163089  -1.634687   
+skew              -0.180136  -0.472191   0.300966   0.263092   0.206849   
+kurtosis           1.900409   2.384448   1.984736   2.702869   2.043656   
+jarque_bera        0.557873   0.529483   0.580451   0.152149   0.452392   
+jarque_bera_pval   0.756588   0.767404   0.748095   0.926747   0.797562   
+mode              -1.073454  -1.863208  -0.746702  -1.163089  -1.634687   
 mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000   
-median            -0.259626  -0.203613   0.127268  -0.060631  -0.028983   
+median             0.131746   0.126305   0.196596  -0.075777  -0.289048   
+1%                -1.035160  -1.819212  -0.736463  -1.097474  -1.557357   
+5%                -0.881982  -1.643226  -0.695507  -0.835012  -1.248039   
+10%               -0.690509  -1.423244  -0.644312  -0.506934  -0.861391   
+25%               -0.265950  -0.093626  -0.179451  -0.372709  -0.669090   
+50%                0.131746   0.126305   0.196596  -0.075777  -0.289048   
+75%                0.872753   0.885749   0.932140   0.252522   0.646103   
+90%                1.207454   1.400947   1.147246   0.910790   1.227843   
+95%                1.211980   1.472815   1.385766   1.088459   1.372850   
+99%                1.215602   1.530309   1.576582   1.230594   1.488856   
 
                           5          6          7          8          9  
 nobs              10.000000  10.000000  10.000000  10.000000  10.000000  
 missing            0.000000   0.000000   0.000000   0.000000   0.000000  
-mean               0.273284   0.205051   0.023256   0.102842  -0.209529  
-std_err            0.061042   0.087203   0.126508   0.103825   0.072225  
-upper_ci           0.392923   0.375966   0.271207   0.306335  -0.067971  
-lower_ci           0.153644   0.034137  -0.224696  -0.100650  -0.351088  
-std                0.610416   0.872028   1.265081   1.038247   0.722251  
-iqr                0.780093   1.144017   1.897466   1.087920   1.181144  
-iqr_normal         0.578284   0.848061   1.406594   0.806476   0.875583  
-mad                0.476876   0.702078   0.962314   0.802775   0.623214  
-mad_normal         0.597675   0.879924   1.206082   1.006129   0.781083  
-coef_var           2.233637   4.252729  54.398852  10.095509  -3.447017  
-range              2.012750   2.399845   3.639744   3.386568   1.965249  
-max                1.364230   1.624449   1.719675   1.524333   0.677055  
-min               -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
-skew               0.305785   0.606322  -0.150434  -0.368515  -0.382710  
-kurtosis           2.245390   1.963650   1.837083   2.477825   1.604283  
-jarque_bera        0.393106   1.060220   0.601208   0.339950   1.055789  
-jarque_bera_pval   0.821558   0.588540   0.740371   0.843686   0.589846  
-mode              -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
+mean              -0.483244  -0.254453   0.058877   0.426315   0.070967  
+std_err            0.096181   0.121981   0.067393   0.132276   0.142787  
+upper_ci          -0.294733  -0.015374   0.190965   0.685572   0.350825  
+lower_ci          -0.671756  -0.493532  -0.073210   0.167058  -0.208891  
+std                0.961811   1.219812   0.673929   1.322764   1.427874  
+iqr                0.702320   1.694391   1.086336   0.818691   2.260862  
+iqr_normal         0.520631   1.256054   0.805302   0.606896   1.675980  
+mad                0.595403   0.992851   0.548831   0.775163   1.241234  
+mad_normal         0.746228   1.244354   0.687858   0.971523   1.555656  
+coef_var          -1.990319  -4.793857  11.446314   3.102789  20.120208  
+range              3.290262   3.729499   2.020311   4.731702   4.155165  
+max                0.264072   1.728591   1.288685   3.818537   2.356818  
+min               -3.026190  -2.000908  -0.731626  -0.913165  -1.798347  
+skew              -2.016374   0.280287   0.361658   1.723070   0.344541  
+kurtosis           6.145500   1.926644   2.092429   5.591678   1.669951  
+jarque_bera       10.898847   0.610973   0.561196   7.746946   0.934943  
+jarque_bera_pval   0.004299   0.736765   0.755332   0.020786   0.626585  
+mode              -3.026190  -2.000908  -0.731626  -0.913165  -1.798347  
 mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000  
-median             0.228023  -0.050927   0.073169   0.306686   0.022939  
+median            -0.281243  -0.424602  -0.082306   0.343253  -0.500832  
+1%                -2.818282  -1.945829  -0.727344  -0.906817  -1.742649  
+5%                -1.986648  -1.725515  -0.710218  -0.881427  -1.519857  
+10%               -0.947106  -1.450121  -0.688811  -0.849689  -1.241366  
+25%               -0.631465  -1.180252  -0.542524  -0.252573  -1.023235  
+50%               -0.281243  -0.424602  -0.082306   0.343253  -0.500832  
+75%                0.070856   0.514139   0.543813   0.566118   1.237627  
+90%                0.251427   1.368129   0.707175   0.955073   1.826901  
+95%                0.257750   1.548360   0.997930   2.386805   2.091860  
+99%                0.262807   1.692545   1.230534   3.532191   2.303827  
 </pre>
 </div>
 </div>

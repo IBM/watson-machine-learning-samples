@@ -14559,12 +14559,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14889,7 +14889,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">tensorflow</span><span class="o">==</span><span class="mf">2.4</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">tensorflow</span><span class="o">==</span><span class="mf">2.7</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
 </pre></div>
 
      </div>
@@ -15739,7 +15739,7 @@ Epoch 20/20
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;default_py3.8&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;runtime-22.1-py3.9&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">software_spec_id</span><span class="p">)</span>
 </pre></div>
 
@@ -15793,7 +15793,7 @@ Epoch 20/20
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;CARS4U - Satisfaction Prediction Model&quot;</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;tensorflow_2.4&#39;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">&#39;tensorflow_2.7&#39;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span> <span class="p">:</span> <span class="n">software_spec_id</span>
 <span class="p">}</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>    
@@ -15839,17 +15839,17 @@ Epoch 20/20
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 
-<span class="n">model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_uid</span><span class="p">(</span><span class="n">stored_model_details</span><span class="p">)</span>
+<span class="n">model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">stored_model_details</span><span class="p">)</span>
 
 <span class="n">model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">model_uid</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">model_details</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
@@ -15858,48 +15858,6 @@ Epoch 20/20
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>{
-  &#34;entity&#34;: {
-    &#34;software_spec&#34;: {
-      &#34;id&#34;: &#34;ab9e1b80-f2ce-592c-a7d2-4f2344f77194&#34;,
-      &#34;name&#34;: &#34;default_py3.8&#34;
-    },
-    &#34;type&#34;: &#34;tensorflow_2.4&#34;
-  },
-  &#34;metadata&#34;: {
-    &#34;created_at&#34;: &#34;2021-07-19T10:11:17.277Z&#34;,
-    &#34;id&#34;: &#34;47111f2c-d826-4771-8796-1fa0a0c100eb&#34;,
-    &#34;modified_at&#34;: &#34;2021-07-19T10:11:19.731Z&#34;,
-    &#34;name&#34;: &#34;CARS4U - Satisfaction Prediction Model&#34;,
-    &#34;owner&#34;: &#34;1000330999&#34;,
-    &#34;space_id&#34;: &#34;97cebfee-a9da-4c04-822d-f36540c1070d&#34;
-  },
-  &#34;system&#34;: {
-    &#34;warnings&#34;: []
-  }
-}
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -16013,7 +15971,7 @@ Successfully finished deployment creation, deployment_uid=&#39;0dac350e-7d32-4ff
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">deployment_details</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16060,12 +16018,12 @@ Successfully finished deployment creation, deployment_uid=&#39;0dac350e-7d32-4ff
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">)</span>
@@ -16074,48 +16032,6 @@ Successfully finished deployment creation, deployment_uid=&#39;0dac350e-7d32-4ff
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;asset&#39;: {&#39;id&#39;: &#39;47111f2c-d826-4771-8796-1fa0a0c100eb&#39;},
-  &#39;custom&#39;: {},
-  &#39;deployed_asset_type&#39;: &#39;model&#39;,
-  &#39;hardware_spec&#39;: {&#39;id&#39;: &#39;Not_Applicable&#39;, &#39;name&#39;: &#39;XXS&#39;, &#39;num_nodes&#39;: 1},
-  &#39;name&#39;: &#39;CARS4U - Satisfaction Prediction Model Deployment&#39;,
-  &#39;online&#39;: {},
-  &#39;space_id&#39;: &#39;97cebfee-a9da-4c04-822d-f36540c1070d&#39;,
-  &#39;status&#39;: {&#39;online_url&#39;: {&#39;url&#39;: &#39;https://cpd-wmlautoai-jun24.apps.ocp46wmlautoaai.cp.fyre.ibm.com/ml/v4/deployments/0dac350e-7d32-4ff8-a81a-da242d811a6d/predictions&#39;},
-   &#39;serving_urls&#39;: [&#39;https://cpd-wmlautoai-jun24.apps.ocp46wmlautoaai.cp.fyre.ibm.com/ml/v4/deployments/0dac350e-7d32-4ff8-a81a-da242d811a6d/predictions&#39;],
-   &#39;state&#39;: &#39;ready&#39;}},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2021-07-19T10:11:43.426Z&#39;,
-  &#39;id&#39;: &#39;0dac350e-7d32-4ff8-a81a-da242d811a6d&#39;,
-  &#39;modified_at&#39;: &#39;2021-07-19T10:11:43.426Z&#39;,
-  &#39;name&#39;: &#39;CARS4U - Satisfaction Prediction Model Deployment&#39;,
-  &#39;owner&#39;: &#39;1000330999&#39;,
-  &#39;space_id&#39;: &#39;97cebfee-a9da-4c04-822d-f36540c1070d&#39;},
- &#39;system&#39;: {&#39;warnings&#39;: [{&#39;id&#39;: &#39;Deprecated&#39;,
-    &#39;message&#39;: &#39;online_url is deprecated and will be removed in a future release. Use serving_urls instead.&#39;}]}}</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -16579,7 +16495,7 @@ Successfully finished deployment creation, deployment_uid=&#39;0dac350e-7d32-4ff
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">&quot;default_py3.8&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">&quot;runtime-22.1-py3.9&quot;</span><span class="p">)</span>
 <span class="n">software_spec_id</span>
 </pre></div>
 
@@ -16661,15 +16577,15 @@ Successfully finished deployment creation, deployment_uid=&#39;0dac350e-7d32-4ff
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">function_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_function_uid</span><span class="p">(</span><span class="n">function_details</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">function_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_function_id</span><span class="p">(</span><span class="n">function_details</span><span class="p">)</span>
 <span class="n">published_function_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_function_id</span><span class="p">(</span><span class="n">function_details</span><span class="p">)</span>
 <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_function_details</span><span class="p">(</span><span class="n">function_uid</span><span class="p">)</span>
 </pre></div>
@@ -16677,40 +16593,6 @@ Successfully finished deployment creation, deployment_uid=&#39;0dac350e-7d32-4ff
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[39]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;entity&#39;: {&#39;software_spec&#39;: {&#39;id&#39;: &#39;ab9e1b80-f2ce-592c-a7d2-4f2344f77194&#39;,
-   &#39;name&#39;: &#39;default_py3.8&#39;},
-  &#39;type&#39;: &#39;python&#39;},
- &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2021-07-19T10:12:52.648Z&#39;,
-  &#39;id&#39;: &#39;b86a09b6-95f2-4527-b1e1-7a46413a9709&#39;,
-  &#39;modified_at&#39;: &#39;2021-07-19T10:12:54.577Z&#39;,
-  &#39;name&#39;: &#39;CARS4U - Satisfaction Prediction - AI Function&#39;,
-  &#39;owner&#39;: &#39;1000330999&#39;,
-  &#39;space_id&#39;: &#39;97cebfee-a9da-4c04-822d-f36540c1070d&#39;},
- &#39;system&#39;: {&#39;warnings&#39;: []}}</pre>
-</div>
-
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
