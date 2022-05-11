@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><PMML version="4.3" xmlns="http://www.dmg.org/PMML-4_3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_3 pmml-4-3.xsd">
+	<Header copyright="(C) Copyright IBM Corp. 1994, 2021">
+		<Application name="IBM SPSS Modeler Server" version="18.3.0.0"/>
+	</Header>
+	<DataDictionary numberOfFields="21">
+		<DataField dataType="string" name="Risk" optype="categorical">
+			<Value property="valid" value="No Risk"/>
+			<Value property="valid" value="Risk"/>
+		</DataField>
+		<DataField dataType="double" name="Age" optype="continuous"/>
+		<DataField dataType="string" name="CheckingStatus" optype="categorical">
+			<Value property="valid" value="0_to_200"/>
+			<Value property="valid" value="less_0"/>
+			<Value property="valid" value="no_checking"/>
+			<Value property="valid" value="greater_200"/>
+		</DataField>
+		<DataField dataType="string" name="CreditHistory" optype="categorical">
+			<Value property="valid" value="credits_paid_to_date"/>
+			<Value property="valid" value="prior_payments_delayed"/>
+			<Value property="valid" value="outstanding_credit"/>
+			<Value property="valid" value="all_credits_paid_back"/>
+			<Value property="valid" value="no_credits"/>
+		</DataField>
+		<DataField dataType="double" name="CurrentResidenceDuration" optype="continuous"/>
+		<DataField dataType="double" name="Dependents" optype="continuous"/>
+		<DataField dataType="string" name="EmploymentDuration" optype="categorical">
+			<Value property="valid" value="less_1"/>
+			<Value property="valid" value="1_to_4"/>
+			<Value property="valid" value="greater_7"/>
+			<Value property="valid" value="4_to_7"/>
+			<Value property="valid" value="unemployed"/>
+		</DataField>
+		<DataField dataType="double" name="ExistingCreditsCount" optype="continuous"/>
+		<DataField dataType="string" name="ExistingSavings" optype="categorical">
+			<Value property="valid" value="100_to_500"/>
+			<Value property="valid" value="less_100"/>
+			<Value property="valid" value="500_to_1000"/>
+			<Value property="valid" value="unknown"/>
+			<Value property="valid" value="greater_1000"/>
+		</DataField>
+		<DataField dataType="string" name="ForeignWorker" optype="categorical">
+			<Value property="valid" value="yes"/>
+			<Value property="valid" value="no"/>
+		</DataField>
+		<DataField dataType="string" name="Housing" optype="categorical">
+			<Value property="valid" value="own"/>
+			<Value property="valid" value="free"/>
+			<Value property="valid" value="rent"/>
+		</DataField>
+		<DataField dataType="double" name="InstallmentPercent" optype="continuous"/>
+		<DataField dataType="string" name="InstallmentPlans" optype="categorical">
+			<Value property="valid" value="none"/>
+			<Value property="valid" value="stores"/>
+			<Value property="valid" value="bank"/>
+		</DataField>
+		<DataField dataType="string" name="Job" optype="categorical">
+			<Value property="valid" value="skilled"/>
+			<Value property="valid" value="management_self-employed"/>
+			<Value property="valid" value="unskilled"/>
+			<Value property="valid" value="unemployed"/>
+		</DataField>
+		<DataField dataType="double" name="LoanAmount" optype="continuous"/>
+		<DataField dataType="double" name="LoanDuration" optype="continuous"/>
+		<DataField dataType="string" name="LoanPurpose" optype="categorical">
+			<Value property="valid" value="other"/>
+			<Value property="valid" value="car_new"/>
+			<Value property="valid" value="furniture"/>
+			<Value property="valid" value="retraining"/>
+			<Value property="valid" value="education"/>
+			<Value property="valid" value="vacation"/>
+			<Value property="valid" value="appliances"/>
+			<Value property="valid" value="car_used"/>
+			<Value property="valid" value="repairs"/>
+			<Value property="valid" value="radio_tv"/>
+			<Value property="valid" value="business"/>
+		</DataField>
+		<DataField dataType="string" name="OthersOnLoan" optype="categorical">
+			<Value property="valid" value="none"/>
+			<Value property="valid" value="co-applicant"/>
+			<Value property="valid" value="guarantor"/>
+		</DataField>
+		<DataField dataType="string" name="OwnsProperty" optype="categorical">
+			<Value property="valid" value="savings_insurance"/>
+			<Value property="valid" value="real_estate"/>
+			<Value property="valid" value="unknown"/>
+			<Value property="valid" value="car_other"/>
+		</DataField>
+		<DataField dataType="string" name="Sex" optype="categorical">
+			<Value property="valid" value="female"/>
+			<Value property="valid" value="male"/>
+		</DataField>
+		<DataField dataType="string" name="Telephone" optype="categorical">
+			<Value property="valid" value="none"/>
+			<Value property="valid" value="yes"/>
+		</DataField>
+	</DataDictionary>
+	<RuleSetModel algorithmName="DecisionList" functionName="classification" modelName="RuleSet0">
+		<MiningSchema>
+			<MiningField name="OwnsProperty"/>
+			<MiningField name="CurrentResidenceDuration"/>
+			<MiningField name="EmploymentDuration"/>
+			<MiningField name="LoanDuration"/>
+			<MiningField name="Age"/>
+			<MiningField name="CheckingStatus"/>
+			<MiningField name="LoanAmount"/>
+			<MiningField name="Risk" usageType="predicted"/>
+		</MiningSchema>
+		<RuleSet>
+			<RuleSelectionMethod criterion="firstHit"/>
+			<SimpleRule id="1" nbCorrect="310" recordCount="314" score="No Risk">
+				<Extension extender="spss.com" name="isDisabled" value="false"/>
+				<Extension extender="spss.com" name="searchDirection" value="up"/>
+				<CompoundPredicate booleanOperator="and">
+					<SimplePredicate field="OwnsProperty" operator="equal" value="real_estate"/>
+					<SimplePredicate field="CurrentResidenceDuration" operator="lessOrEqual" value="1.000000"/>
+				</CompoundPredicate>
+			</SimpleRule>
+			<SimpleRule id="2" nbCorrect="261" recordCount="266" score="No Risk">
+				<Extension extender="spss.com" name="isDisabled" value="false"/>
+				<Extension extender="spss.com" name="searchDirection" value="up"/>
+				<CompoundPredicate booleanOperator="and">
+					<SimplePredicate field="OwnsProperty" operator="equal" value="real_estate"/>
+					<SimplePredicate field="EmploymentDuration" operator="equal" value="less_1"/>
+				</CompoundPredicate>
+			</SimpleRule>
+			<SimpleRule id="3" nbCorrect="323" recordCount="337" score="No Risk">
+				<Extension extender="spss.com" name="isDisabled" value="false"/>
+				<Extension extender="spss.com" name="searchDirection" value="up"/>
+				<CompoundPredicate booleanOperator="and">
+					<SimplePredicate field="OwnsProperty" operator="equal" value="real_estate"/>
+					<SimplePredicate field="LoanDuration" operator="lessOrEqual" value="17.000000"/>
+				</CompoundPredicate>
+			</SimpleRule>
+			<SimpleRule id="4" nbCorrect="274" recordCount="294" score="No Risk">
+				<Extension extender="spss.com" name="isDisabled" value="false"/>
+				<Extension extender="spss.com" name="searchDirection" value="up"/>
+				<CompoundPredicate booleanOperator="and">
+					<SimplePredicate field="Age" operator="lessOrEqual" value="26.000000"/>
+					<SimplePredicate field="CheckingStatus" operator="equal" value="less_0"/>
+				</CompoundPredicate>
+			</SimpleRule>
+			<SimpleRule id="5" nbCorrect="267" recordCount="309" score="No Risk">
+				<Extension extender="spss.com" name="isDisabled" value="false"/>
+				<Extension extender="spss.com" name="searchDirection" value="up"/>
+				<SimplePredicate field="LoanAmount" operator="lessOrEqual" value="859.500000"/>
+			</SimpleRule>
+			<SimpleRule id="6" nbCorrect="1895" recordCount="3480" score="No Risk">
+				<Extension extender="spss.com" name="label" value="remainder"/>
+				<Extension extender="spss.com" name="isDisabled" value="true"/>
+				<Extension extender="spss.com" name="searchDirection" value="up"/>
+				<True/>
+			</SimpleRule>
+		</RuleSet>
+	</RuleSetModel>
+</PMML>
