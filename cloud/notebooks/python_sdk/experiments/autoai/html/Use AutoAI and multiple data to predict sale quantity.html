@@ -16641,7 +16641,7 @@ operator.</p>
 <span class="n">service</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="n">wml_credentials</span><span class="p">,</span> <span class="n">source_space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
 
 <span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_run_details</span><span class="p">()[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;guid&#39;</span><span class="p">],</span>
+    <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_run_details</span><span class="p">()[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">],</span>
     <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span> 
     <span class="n">deployment_name</span><span class="o">=</span><span class="s2">&quot;Product Quantity with OBM and KB AutoAI&quot;</span>
     <span class="p">)</span>
