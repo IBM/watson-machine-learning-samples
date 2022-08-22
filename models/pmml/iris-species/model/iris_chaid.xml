@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_2 pmml-4-2.xsd">
+  <Header copyright="Copyright(c) IBM Corp. 1989-2015. All rights reserved.">
+    <Application name="IBM SPSS Modeler Common" version="18.0.0.0"/>
+    <Timestamp/>
+</Header>
+  <DataDictionary numberOfFields="5">
+    <DataField dataType="double" displayName="Sepal.Length" isCyclic="0" name="Sepal.Length" optype="continuous"/>
+    <DataField dataType="double" displayName="Sepal.Width" isCyclic="0" name="Sepal.Width" optype="continuous"/>
+    <DataField dataType="double" displayName="Petal.Length" isCyclic="0" name="Petal.Length" optype="continuous"/>
+    <DataField dataType="double" displayName="Petal.Width" isCyclic="0" name="Petal.Width" optype="continuous"/>
+    <DataField dataType="string" displayName="Species" isCyclic="0" name="Species" optype="categorical">
+      <Value displayValue="setosa" property="valid" value="setosa"/>
+      <Value displayValue="versicolor" property="valid" value="versicolor"/>
+      <Value displayValue="virginica" property="valid" value="virginica"/>
+</DataField>
+</DataDictionary>
+  <TreeModel algorithmName="CHAID" functionName="classification">
+    <Extension extender="spss.com">
+      <X-risk value="0.0266666666666667"/>
+      <X-seOfRisk value="0.01315435429951"/>
+</Extension>
+    <MiningSchema>
+      <MiningField importance="0.792654" name="Petal.Width" usageType="active"/>
+      <MiningField importance="0.128223" name="Sepal.Width" usageType="active"/>
+      <MiningField importance="0.0791228" name="Petal.Length" usageType="active"/>
+      <MiningField name="Species" usageType="predicted"/>
+</MiningSchema>
+    <ModelStats>
+      <UnivariateStats field="Petal.Width">
+        <Counts invalidFreq="0" missingFreq="0" totalFreq="150"/>
+        <NumericInfo maximum="9" minimum="0"/>
+</UnivariateStats>
+      <UnivariateStats field="Sepal.Width">
+        <Counts invalidFreq="0" missingFreq="0" totalFreq="150"/>
+        <NumericInfo maximum="9" minimum="0"/>
+</UnivariateStats>
+      <UnivariateStats field="Petal.Length">
+        <Counts invalidFreq="0" missingFreq="0" totalFreq="150"/>
+        <NumericInfo maximum="9" minimum="0"/>
+</UnivariateStats>
+</ModelStats>
+    <Node defaultChild="1" id="0" recordCount="150" score="setosa">
+      <Extension>
+        <X-Node>
+          <X-NodeStats adjPValue="4.75967387732713e-051" chiSquare="258.699665551839" df1="6"/>
+</X-Node>
+</Extension>
+      <True/>
+      <ScoreDistribution confidence="0.333333333333333" probability="0.333333333333333" recordCount="50" value="setosa">
+        <Extension extender="spss.com" name="probability" value="0.333333333333333"/>
+</ScoreDistribution>
+      <ScoreDistribution confidence="0.333333333333333" probability="0.333333333333333" recordCount="50" value="versicolor">
+        <Extension extender="spss.com" name="probability" value="0.333333333333333"/>
+</ScoreDistribution>
+      <ScoreDistribution confidence="0.333333333333333" probability="0.333333333333333" recordCount="50" value="virginica">
+        <Extension extender="spss.com" name="probability" value="0.333333333333333"/>
+</ScoreDistribution>
+      <Node id="1" recordCount="48" score="setosa">
+        <CompoundPredicate booleanOperator="surrogate">
+          <CompoundPredicate booleanOperator="and">
+            <True/>
+            <SimplePredicate field="Petal.Width" operator="lessOrEqual" value="0.4"/>
+</CompoundPredicate>
+          <True/>
+</CompoundPredicate>
+        <ScoreDistribution confidence="1" probability="1" recordCount="48" value="setosa">
+          <Extension extender="spss.com" name="probability" value="1"/>
+</ScoreDistribution>
+        <ScoreDistribution confidence="0" probability="0" recordCount="0" value="versicolor">
+          <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+        <ScoreDistribution confidence="0" probability="0" recordCount="0" value="virginica">
+          <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+</Node>
+      <Node defaultChild="5" id="2" recordCount="30" score="versicolor">
+        <Extension>
+          <X-Node>
+            <X-NodeStats adjPValue="2.5922778346965e-007" chiSquare="30" df1="1"/>
+</X-Node>
+</Extension>
+        <CompoundPredicate booleanOperator="surrogate">
+          <CompoundPredicate booleanOperator="and">
+            <SimplePredicate field="Petal.Width" operator="greaterThan" value="0.4"/>
+            <SimplePredicate field="Petal.Width" operator="lessOrEqual" value="1.3"/>
+</CompoundPredicate>
+          <False/>
+</CompoundPredicate>
+        <ScoreDistribution confidence="0.0666666666666667" probability="0.0666666666666667" recordCount="2" value="setosa">
+          <Extension extender="spss.com" name="probability" value="0.0666666666666667"/>
+</ScoreDistribution>
+        <ScoreDistribution confidence="0.933333333333333" probability="0.933333333333333" recordCount="28" value="versicolor">
+          <Extension extender="spss.com" name="probability" value="0.933333333333333"/>
+</ScoreDistribution>
+        <ScoreDistribution confidence="0" probability="0" recordCount="0" value="virginica">
+          <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+        <Node id="5" recordCount="28" score="versicolor">
+          <CompoundPredicate booleanOperator="surrogate">
+            <CompoundPredicate booleanOperator="and">
+              <True/>
+              <SimplePredicate field="Sepal.Width" operator="lessOrEqual" value="3"/>
+</CompoundPredicate>
+            <True/>
+</CompoundPredicate>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="setosa">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="1" probability="1" recordCount="28" value="versicolor">
+            <Extension extender="spss.com" name="probability" value="1"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="virginica">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+</Node>
+        <Node id="6" recordCount="2" score="setosa">
+          <CompoundPredicate booleanOperator="surrogate">
+            <CompoundPredicate booleanOperator="and">
+              <SimplePredicate field="Sepal.Width" operator="greaterThan" value="3"/>
+              <True/>
+</CompoundPredicate>
+            <False/>
+</CompoundPredicate>
+          <ScoreDistribution confidence="1" probability="1" recordCount="2" value="setosa">
+            <Extension extender="spss.com" name="probability" value="1"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="versicolor">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="virginica">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+</Node>
+</Node>
+      <Node defaultChild="7" id="3" recordCount="26" score="versicolor">
+        <Extension>
+          <X-Node>
+            <X-NodeStats adjPValue="0.00465122067170656" chiSquare="11.2996825396825" df1="1"/>
+</X-Node>
+</Extension>
+        <CompoundPredicate booleanOperator="surrogate">
+          <CompoundPredicate booleanOperator="and">
+            <SimplePredicate field="Petal.Width" operator="greaterThan" value="1.3"/>
+            <SimplePredicate field="Petal.Width" operator="lessOrEqual" value="1.7"/>
+</CompoundPredicate>
+          <False/>
+</CompoundPredicate>
+        <ScoreDistribution confidence="0" probability="0" recordCount="0" value="setosa">
+          <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+        <ScoreDistribution confidence="0.807692307692308" probability="0.807692307692308" recordCount="21" value="versicolor">
+          <Extension extender="spss.com" name="probability" value="0.807692307692308"/>
+</ScoreDistribution>
+        <ScoreDistribution confidence="0.192307692307692" probability="0.192307692307692" recordCount="5" value="virginica">
+          <Extension extender="spss.com" name="probability" value="0.192307692307692"/>
+</ScoreDistribution>
+        <Node id="7" recordCount="20" score="versicolor">
+          <CompoundPredicate booleanOperator="surrogate">
+            <CompoundPredicate booleanOperator="and">
+              <True/>
+              <SimplePredicate field="Petal.Length" operator="lessOrEqual" value="4.9"/>
+</CompoundPredicate>
+            <True/>
+</CompoundPredicate>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="setosa">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0.95" probability="0.95" recordCount="19" value="versicolor">
+            <Extension extender="spss.com" name="probability" value="0.95"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0.05" probability="0.05" recordCount="1" value="virginica">
+            <Extension extender="spss.com" name="probability" value="0.05"/>
+</ScoreDistribution>
+</Node>
+        <Node id="8" recordCount="6" score="virginica">
+          <CompoundPredicate booleanOperator="surrogate">
+            <CompoundPredicate booleanOperator="and">
+              <SimplePredicate field="Petal.Length" operator="greaterThan" value="4.9"/>
+              <True/>
+</CompoundPredicate>
+            <False/>
+</CompoundPredicate>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="setosa">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0.333333333333333" probability="0.333333333333333" recordCount="2" value="versicolor">
+            <Extension extender="spss.com" name="probability" value="0.333333333333333"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0.666666666666667" probability="0.666666666666667" recordCount="4" value="virginica">
+            <Extension extender="spss.com" name="probability" value="0.666666666666667"/>
+</ScoreDistribution>
+</Node>
+</Node>
+      <Node defaultChild="10" id="4" recordCount="46" score="virginica">
+        <Extension>
+          <X-Node>
+            <X-NodeStats adjPValue="0.0271214034627571" chiSquare="6.81481481481481" df1="1"/>
+</X-Node>
+</Extension>
+        <CompoundPredicate booleanOperator="surrogate">
+          <CompoundPredicate booleanOperator="and">
+            <SimplePredicate field="Petal.Width" operator="greaterThan" value="1.7"/>
+            <True/>
+</CompoundPredicate>
+          <False/>
+</CompoundPredicate>
+        <ScoreDistribution confidence="0" probability="0" recordCount="0" value="setosa">
+          <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+        <ScoreDistribution confidence="0.0217391304347826" probability="0.0217391304347826" recordCount="1" value="versicolor">
+          <Extension extender="spss.com" name="probability" value="0.0217391304347826"/>
+</ScoreDistribution>
+        <ScoreDistribution confidence="0.978260869565217" probability="0.978260869565217" recordCount="45" value="virginica">
+          <Extension extender="spss.com" name="probability" value="0.978260869565217"/>
+</ScoreDistribution>
+        <Node id="9" recordCount="6" score="virginica">
+          <CompoundPredicate booleanOperator="surrogate">
+            <CompoundPredicate booleanOperator="and">
+              <True/>
+              <SimplePredicate field="Petal.Length" operator="lessOrEqual" value="4.9"/>
+</CompoundPredicate>
+            <False/>
+</CompoundPredicate>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="setosa">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0.166666666666667" probability="0.166666666666667" recordCount="1" value="versicolor">
+            <Extension extender="spss.com" name="probability" value="0.166666666666667"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0.833333333333333" probability="0.833333333333333" recordCount="5" value="virginica">
+            <Extension extender="spss.com" name="probability" value="0.833333333333333"/>
+</ScoreDistribution>
+</Node>
+        <Node id="10" recordCount="40" score="virginica">
+          <CompoundPredicate booleanOperator="surrogate">
+            <CompoundPredicate booleanOperator="and">
+              <SimplePredicate field="Petal.Length" operator="greaterThan" value="4.9"/>
+              <True/>
+</CompoundPredicate>
+            <True/>
+</CompoundPredicate>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="setosa">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="0" probability="0" recordCount="0" value="versicolor">
+            <Extension extender="spss.com" name="probability" value="0"/>
+</ScoreDistribution>
+          <ScoreDistribution confidence="1" probability="1" recordCount="40" value="virginica">
+            <Extension extender="spss.com" name="probability" value="1"/>
+</ScoreDistribution>
+</Node>
+</Node>
+</Node>
+    <Extension>
+      <X-TreeModel>
+        <X-Priors>
+          <X-Prior-Value targetCategory="setosa" value="0.333333333333333"/>
+          <X-Prior-Value targetCategory="versicolor" value="0.333333333333333"/>
+          <X-Prior-Value targetCategory="virginica" value="0.333333333333333"/>
+</X-Priors>
+</X-TreeModel>
+</Extension>
+</TreeModel>
+</PMML>
+
