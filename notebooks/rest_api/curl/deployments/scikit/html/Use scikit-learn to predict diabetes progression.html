@@ -36,7 +36,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
-.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14716,12 +14715,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
 
 <span class="nv">token</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
-        --header <span class="s2">"Content-type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{\"username\":\"</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span><span class="s2">\",\"api_key\":\"</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">\"}"</span> <span class="se">\</span>
-        <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/icp4d-api/v1/authorize"</span><span class="k">)</span>
+        --header <span class="s2">&quot;Content-type: application/json&quot;</span> <span class="se">\</span>
+        -d <span class="s2">&quot;{\&quot;username\&quot;:\&quot;</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span><span class="s2">\&quot;,\&quot;api_key\&quot;:\&quot;</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">\&quot;}&quot;</span> <span class="se">\</span>
+        <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/icp4d-api/v1/authorize&quot;</span><span class="k">)</span>
 
-<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*token</span><span class="se">\"</span><span class="p">:</span><span class="se">\"</span><span class="si">}</span>
-<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">%%</span><span class="se">\"</span><span class="p">*</span><span class="si">}</span>
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*token</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
 <span class="nb">echo</span> <span class="nv">$token</span>
 </pre></div>
 
@@ -14797,7 +14796,7 @@ target="_blank" rel="noopener no referrer">Space creation</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash --out space_id
+</div>%%bash --out space_id
 
 curl -sk -X POST \
     --header "Authorization: Bearer $TOKEN" \
@@ -14805,8 +14804,8 @@ curl -sk -X POST \
     --header "Accept: application/json" \
     --data '{"name": "curl_DL"}' \
     "$DATAPLATFORM_URL/v2/spaces" \
-     | grep '"id": ' | awk -F '"' '{ print $4 }'</p><p>space_id = space_id.split('\n')[1]
-%env SPACE_ID=$space_id</p>
+     | grep '"id": ' | awk -F '"' '{ print $4 }'space_id = space_id.split('\n')[1]
+%env SPACE_ID=$space_id
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14832,13 +14831,13 @@ target="_blank" rel="noopener no referrer">Get space information</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X GET \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/v2/spaces/$SPACE_ID"</p>
+    "$DATAPLATFORM_URL/v2/spaces/$SPACE_ID"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14899,7 +14898,7 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_payload
 
-<span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'","name": "scikit_diabetes_model","description": "This is description","type": "scikit-learn_1.0", "software_spec": {"name": "runtime-22.1-py3.9"}}'</span>
+<span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;scikit_diabetes_model&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;type&quot;: &quot;scikit-learn_1.0&quot;, &quot;software_spec&quot;: {&quot;name&quot;: &quot;runtime-22.1-py3.9&quot;}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$MODEL_PAYLOAD</span>
 </pre></div>
 
@@ -14996,14 +14995,14 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_id -s <span class="s2">"</span><span class="nv">$model_payload</span><span class="s2">"</span>
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_id -s <span class="s2">&quot;</span><span class="nv">$model_payload</span><span class="s2">&quot;</span>
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$MODEL_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models?version=2020-08-01"</span> <span class="p">|</span> grep <span class="s1">'"id": '</span> <span class="p">|</span> awk -F <span class="s1">'"'</span> <span class="s1">'{ print $4 }'</span> <span class="p">|</span> sed -n 2p
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$MODEL_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models?version=2020-08-01&quot;</span> <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 2p
 </pre></div>
 
      </div>
@@ -15084,7 +15083,7 @@ target="_blank" rel="noopener no referrer">Model revision</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out revision_payload
 
-<span class="nv">REVISION_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'", "commit_message": "Initial model."}'</span>
+<span class="nv">REVISION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;commit_message&quot;: &quot;Initial model.&quot;}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$REVISION_PAYLOAD</span>
 </pre></div>
 
@@ -15143,11 +15142,11 @@ target="_blank" rel="noopener no referrer">Model revision</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$REVISION_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/revisions?version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$REVISION_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/revisions?version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -15260,12 +15259,12 @@ target="_blank" rel="noopener no referrer">Upload model content</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out attachment_id
 
 curl -sk -X PUT <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/gzip"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data-binary <span class="s2">"@diabetes_model.tar.gz"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/content?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;content_format=native"</span> <span class="se">\</span>
-    <span class="p">|</span> grep <span class="s2">"attachment_id"</span> <span class="p">|</span> awk -F <span class="s1">'"'</span> <span class="s1">'{ print $4 }'</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/gzip&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data-binary <span class="s2">&quot;@diabetes_model.tar.gz&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/content?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;content_format=native&quot;</span> <span class="se">\</span>
+    <span class="p">|</span> grep <span class="s2">&quot;attachment_id&quot;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span>
 </pre></div>
 
      </div>
@@ -15349,9 +15348,9 @@ target="_blank" rel="noopener no referrer">Download model content</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --output <span class="s2">"model.tar.gz"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/download?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --output <span class="s2">&quot;model.tar.gz&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/download?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span>
 </pre></div>
 
      </div>
@@ -15424,7 +15423,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_payload
 
-<span class="nv">DEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'","name": "Diabetes deployment", "description": "This is description","online": {},"hardware_spec": {"name": "S"},"asset": {"id": "'</span><span class="s2">"</span><span class="nv">$MODEL_ID</span><span class="s2">"</span><span class="s1">'"}}'</span>
+<span class="nv">DEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;Diabetes deployment&quot;, &quot;description&quot;: &quot;This is description&quot;,&quot;online&quot;: {},&quot;hardware_spec&quot;: {&quot;name&quot;: &quot;S&quot;},&quot;asset&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$DEPLOYMENT_PAYLOAD</span>
 </pre></div>
 
@@ -15524,11 +15523,11 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_id
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$DEPLOYMENT_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?version=2020-08-01"</span> <span class="p">|</span> grep <span class="s1">'"id": '</span> <span class="p">|</span> awk -F <span class="s1">'"'</span> <span class="s1">'{ print $4 }'</span> <span class="p">|</span> sed -n 3p
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$DEPLOYMENT_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?version=2020-08-01&quot;</span> <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 3p
 </pre></div>
 
      </div>
@@ -15612,9 +15611,9 @@ target="_blank" rel="noopener no referrer">Get deployment details</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -15659,7 +15658,7 @@ target="_blank" rel="noopener no referrer">Score your deployment</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out scoring_payload
 
-<span class="nv">SCORING_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "$SPACE_ID","input_data": [{"fields": ["age", "sex", "bmi", "bp", "s1", "s2", "s3", "s4", "s5", "s6"], "values": [[-0.00188201652779104, -0.044641636506989, -0.0514740612388061, -0.0263278347173518, -0.00844872411121698, -0.019163339748222, 0.0744115640787594, -0.0394933828740919, -0.0683297436244215, -0.09220404962683], [0.0852989062966783, 0.0506801187398187, 0.0444512133365941, -0.00567061055493425, -0.0455994512826475, -0.0341944659141195, -0.0323559322397657, -0.00259226199818282, 0.00286377051894013, -0.0259303389894746]]}]}'</span>
+<span class="nv">SCORING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;$SPACE_ID&quot;,&quot;input_data&quot;: [{&quot;fields&quot;: [&quot;age&quot;, &quot;sex&quot;, &quot;bmi&quot;, &quot;bp&quot;, &quot;s1&quot;, &quot;s2&quot;, &quot;s3&quot;, &quot;s4&quot;, &quot;s5&quot;, &quot;s6&quot;], &quot;values&quot;: [[-0.00188201652779104, -0.044641636506989, -0.0514740612388061, -0.0263278347173518, -0.00844872411121698, -0.019163339748222, 0.0744115640787594, -0.0394933828740919, -0.0683297436244215, -0.09220404962683], [0.0852989062966783, 0.0506801187398187, 0.0444512133365941, -0.00567061055493425, -0.0455994512826475, -0.0341944659141195, -0.0323559322397657, -0.00259226199818282, 0.00286377051894013, -0.0259303389894746]]}]}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$SCORING_PAYLOAD</span>
 </pre></div>
 
@@ -15759,11 +15758,11 @@ target="_blank" rel="noopener no referrer">Score your deployment</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$SCORING_PAYLOAD</span><span class="s2">"</span><span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">/predictions?version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$SCORING_PAYLOAD</span><span class="s2">&quot;</span><span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">/predictions?version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -15847,9 +15846,9 @@ target="_blank" rel="noopener no referrer">List deployments details</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -15930,10 +15929,10 @@ target="_blank" rel="noopener no referrer">List revisions</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/revisions?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/revisions?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16023,7 +16022,7 @@ target="_blank" rel="noopener no referrer">Create model revision</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out revision_payload
 
-<span class="nv">REVISION_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'", "commit_message": "Updated model."}'</span>
+<span class="nv">REVISION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;commit_message&quot;: &quot;Updated model.&quot;}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$REVISION_PAYLOAD</span>
 </pre></div>
 
@@ -16123,11 +16122,11 @@ target="_blank" rel="noopener no referrer">Create model revision</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$REVISION_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/revisions?version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$REVISION_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/revisions?version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16221,7 +16220,7 @@ target="_blank" rel="noopener no referrer">Patch model</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out update_payload
 
-<span class="nb">echo</span> <span class="s1">'[{"op": "add", "path": "/name", "value": "updated scikit model"}]'</span>
+<span class="nb">echo</span> <span class="s1">&#39;[{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/name&quot;, &quot;value&quot;: &quot;updated scikit model&quot;}]&#39;</span>
 </pre></div>
 
      </div>
@@ -16279,11 +16278,11 @@ target="_blank" rel="noopener no referrer">Patch model</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X PATCH <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$UPDATE_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$UPDATE_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16392,11 +16391,11 @@ target="_blank" rel="noopener no referrer">Upload model content</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X PUT <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/gzip"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data-binary <span class="s2">"@new_diabetes_model.tar.gz"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/content?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;content_format=native"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/gzip&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data-binary <span class="s2">&quot;@new_diabetes_model.tar.gz&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/content?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;content_format=native&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16467,10 +16466,10 @@ target="_blank" rel="noopener no referrer">List revisions</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/revisions?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/revisions?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16579,10 +16578,10 @@ target="_blank" rel="noopener no referrer">Get model details</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16686,7 +16685,7 @@ target="_blank" rel="noopener no referrer">Deployment update</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out redeploy_payload
 
-<span class="nb">echo</span> <span class="s1">'[{"op": "replace", "path": "/asset", "value": {"id": "'</span><span class="s2">"</span><span class="nv">$MODEL_ID</span><span class="s2">"</span><span class="s1">'"}}]'</span>
+<span class="nb">echo</span> <span class="s1">&#39;[{&quot;op&quot;: &quot;replace&quot;, &quot;path&quot;: &quot;/asset&quot;, &quot;value&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}]&#39;</span>
 </pre></div>
 
      </div>
@@ -16744,11 +16743,11 @@ target="_blank" rel="noopener no referrer">Deployment update</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X PATCH <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$REDEPLOY_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$REDEPLOY_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16779,11 +16778,11 @@ curl -sk -X PATCH <span class="se">\</span>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$SCORING_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">/predictions?version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$SCORING_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">/predictions?version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16858,13 +16857,13 @@ Just convert below cells into the <code>code</code> and run them.</p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16890,12 +16889,12 @@ target="_blank" rel="noopener no referrer">Delete model from repository</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">

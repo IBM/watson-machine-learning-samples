@@ -36,7 +36,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
-.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14713,12 +14712,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
 
 <span class="nv">token</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
-        --header <span class="s2">"Content-type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{\"username\":\"</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span><span class="s2">\",\"api_key\":\"</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">\"}"</span> <span class="se">\</span>
-        <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/icp4d-api/v1/authorize"</span><span class="k">)</span>
+        --header <span class="s2">&quot;Content-type: application/json&quot;</span> <span class="se">\</span>
+        -d <span class="s2">&quot;{\&quot;username\&quot;:\&quot;</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span><span class="s2">\&quot;,\&quot;api_key\&quot;:\&quot;</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">\&quot;}&quot;</span> <span class="se">\</span>
+        <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/icp4d-api/v1/authorize&quot;</span><span class="k">)</span>
 
-<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*token</span><span class="se">\"</span><span class="p">:</span><span class="se">\"</span><span class="si">}</span>
-<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">%%</span><span class="se">\"</span><span class="p">*</span><span class="si">}</span>
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*token</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
 <span class="nb">echo</span> <span class="nv">$token</span>
 </pre></div>
 
@@ -14794,7 +14793,7 @@ target="_blank" rel="noopener no referrer">Space creation</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash --out space_id
+</div>%%bash --out space_id
 
 curl -sk -X POST \
     --header "Authorization: Bearer $TOKEN" \
@@ -14802,8 +14801,8 @@ curl -sk -X POST \
     --header "Accept: application/json" \
     --data '{"name": "curl_DL"}' \
     "$DATAPLATFORM_URL/v2/spaces" \
-     | grep '"id": ' | awk -F '"' '{ print $4 }'</p><p>space_id = space_id.split('\n')[1]
-%env SPACE_ID=$space_id</p>
+     | grep '"id": ' | awk -F '"' '{ print $4 }'space_id = space_id.split('\n')[1]
+%env SPACE_ID=$space_id
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14829,13 +14828,13 @@ target="_blank" rel="noopener no referrer">Get space information</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 !curl -sk -X GET \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/v2/spaces/$SPACE_ID"</p>
+    "$DATAPLATFORM_URL/v2/spaces/$SPACE_ID"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14891,7 +14890,7 @@ target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out pipeline_payload
 
-<span class="nv">PIPELINE_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'", "name": "Credit Risk Prediction - AutoAI", "description": "", "document": {"doc_type": "pipeline", "version": "2.0", "pipelines": [{"id": "autoai", "runtime_ref": "hybrid", "nodes": [{"id": "automl", "type": "execution_node", "parameters": {"stage_flag": true, "output_logs": true, "input_file_separator": ",", "optimization": {"learning_type": "binary", "label": "Risk", "max_num_daub_ensembles": 1, "daub_include_only_estimators": ["ExtraTreesClassifierEstimator", "GradientBoostingClassifierEstimator", "LGBMClassifierEstimator", "LogisticRegressionEstimator", "RandomForestClassifierEstimator", "XGBClassifierEstimator", "DecisionTreeClassifierEstimator"], "scorer_for_ranking": "roc_auc", "compute_pipeline_notebooks_flag": true, "run_cognito_flag": true, "holdout_param": 0.1}}, "runtime_ref": "autoai", "op": "kube"}]}], "runtimes": [{"id": "autoai", "name": "auto_ai.kb", "app_data": {"wml_data": {"hardware_spec": { "name": "M"}}}, "version": "3.0.2"}],"primary_pipeline": "autoai"}}'</span>
+<span class="nv">PIPELINE_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;name&quot;: &quot;Credit Risk Prediction - AutoAI&quot;, &quot;description&quot;: &quot;&quot;, &quot;document&quot;: {&quot;doc_type&quot;: &quot;pipeline&quot;, &quot;version&quot;: &quot;2.0&quot;, &quot;pipelines&quot;: [{&quot;id&quot;: &quot;autoai&quot;, &quot;runtime_ref&quot;: &quot;hybrid&quot;, &quot;nodes&quot;: [{&quot;id&quot;: &quot;automl&quot;, &quot;type&quot;: &quot;execution_node&quot;, &quot;parameters&quot;: {&quot;stage_flag&quot;: true, &quot;output_logs&quot;: true, &quot;input_file_separator&quot;: &quot;,&quot;, &quot;optimization&quot;: {&quot;learning_type&quot;: &quot;binary&quot;, &quot;label&quot;: &quot;Risk&quot;, &quot;max_num_daub_ensembles&quot;: 1, &quot;daub_include_only_estimators&quot;: [&quot;ExtraTreesClassifierEstimator&quot;, &quot;GradientBoostingClassifierEstimator&quot;, &quot;LGBMClassifierEstimator&quot;, &quot;LogisticRegressionEstimator&quot;, &quot;RandomForestClassifierEstimator&quot;, &quot;XGBClassifierEstimator&quot;, &quot;DecisionTreeClassifierEstimator&quot;], &quot;scorer_for_ranking&quot;: &quot;roc_auc&quot;, &quot;compute_pipeline_notebooks_flag&quot;: true, &quot;run_cognito_flag&quot;: true, &quot;holdout_param&quot;: 0.1}}, &quot;runtime_ref&quot;: &quot;autoai&quot;, &quot;op&quot;: &quot;kube&quot;}]}], &quot;runtimes&quot;: [{&quot;id&quot;: &quot;autoai&quot;, &quot;name&quot;: &quot;auto_ai.kb&quot;, &quot;app_data&quot;: {&quot;wml_data&quot;: {&quot;hardware_spec&quot;: { &quot;name&quot;: &quot;M&quot;}}}, &quot;version&quot;: &quot;3.0.2&quot;}],&quot;primary_pipeline&quot;: &quot;autoai&quot;}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$PIPELINE_PAYLOAD</span>
 </pre></div>
 
@@ -14968,12 +14967,12 @@ target="_blank" rel="noopener no referrer">Define AutoAI experiment.</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out pipeline_id
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$PIPELINE_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/pipelines?version=2020-08-01"</span> <span class="se">\</span>
-    <span class="p">|</span> grep <span class="s1">'"id": '</span> <span class="p">|</span> awk -F <span class="s1">'"'</span> <span class="s1">'{ print $4 }'</span> <span class="p">|</span> sed -n 5p
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$PIPELINE_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/pipelines?version=2020-08-01&quot;</span> <span class="se">\</span>
+    <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 5p
 </pre></div>
 
      </div>
@@ -15057,10 +15056,10 @@ target="_blank" rel="noopener no referrer">Get experiment / optimizer informatio
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/pipelines/</span><span class="nv">$PIPELINE_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/pipelines/</span><span class="nv">$PIPELINE_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -15233,7 +15232,7 @@ target="_blank" rel="noopener no referrer">Upload file as Data Asset</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out data_asset_metadata
 
-<span class="nv">DATA_ASSET_METADATA</span><span class="o">=</span><span class="s1">'{"metadata": {"name": "autoai_training_data","description": "desc","asset_type": "data_asset","origin_country": "us","asset_category": "USER"},"entity": {"data_asset": {"mime_type": "text/csv"}}}'</span>
+<span class="nv">DATA_ASSET_METADATA</span><span class="o">=</span><span class="s1">&#39;{&quot;metadata&quot;: {&quot;name&quot;: &quot;autoai_training_data&quot;,&quot;description&quot;: &quot;desc&quot;,&quot;asset_type&quot;: &quot;data_asset&quot;,&quot;origin_country&quot;: &quot;us&quot;,&quot;asset_category&quot;: &quot;USER&quot;},&quot;entity&quot;: {&quot;data_asset&quot;: {&quot;mime_type&quot;: &quot;text/csv&quot;}}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$DATA_ASSET_METADATA</span>
 </pre></div>
 
@@ -15333,13 +15332,13 @@ target="_blank" rel="noopener no referrer">Upload file as Data Asset</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out asset_id
 
 <span class="nv">asset_id</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$DATA_ASSET_METADATA</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/assets?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span><span class="k">)</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$DATA_ASSET_METADATA</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/assets?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span><span class="k">)</span>
 
-<span class="nv">asset_id</span><span class="o">=</span><span class="si">${</span><span class="nv">asset_id</span><span class="p">#*asset_id</span><span class="se">\"</span><span class="p">:</span><span class="se">\"</span><span class="si">}</span>
-<span class="nv">asset_id</span><span class="o">=</span><span class="si">${</span><span class="nv">asset_id</span><span class="p">%%</span><span class="se">\"</span><span class="p">*</span><span class="si">}</span>
+<span class="nv">asset_id</span><span class="o">=</span><span class="si">${</span><span class="nv">asset_id</span><span class="p">#*asset_id</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">asset_id</span><span class="o">=</span><span class="si">${</span><span class="nv">asset_id</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
 <span class="nb">echo</span> <span class="nv">$asset_id</span>
 </pre></div>
 
@@ -15397,7 +15396,7 @@ target="_blank" rel="noopener no referrer">Upload file as Data Asset</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out attachment
 
-<span class="nv">ATTACHMENT</span><span class="o">=</span><span class="s1">'{"asset_type": "data_asset", "name": "credit_risk_training_light.csv", "mime": "text/csv"}'</span>
+<span class="nv">ATTACHMENT</span><span class="o">=</span><span class="s1">&#39;{&quot;asset_type&quot;: &quot;data_asset&quot;, &quot;name&quot;: &quot;credit_risk_training_light.csv&quot;, &quot;mime&quot;: &quot;text/csv&quot;}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$ATTACHMENT</span>
 </pre></div>
 
@@ -15456,10 +15455,10 @@ target="_blank" rel="noopener no referrer">Upload file as Data Asset</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out attachment_response
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$ATTACHMENT</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/assets/</span><span class="nv">$ASSET_ID</span><span class="s2">/attachments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$ATTACHMENT</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/assets/</span><span class="nv">$ASSET_ID</span><span class="s2">/attachments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span>
 </pre></div>
 
      </div>
@@ -15516,7 +15515,7 @@ curl -sk -X POST <span class="se">\</span>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out attachment_id
 
-<span class="nb">echo</span> <span class="nv">$ATTACHMENT_RESPONSE</span> <span class="p">|</span> cut -d <span class="s1">'"'</span> -f <span class="m">4</span> <span class="p">|</span> tr -d <span class="s1">'\n'</span>
+<span class="nb">echo</span> <span class="nv">$ATTACHMENT_RESPONSE</span> <span class="p">|</span> cut -d <span class="s1">&#39;&quot;&#39;</span> -f <span class="m">4</span> <span class="p">|</span> tr -d <span class="s1">&#39;\n&#39;</span>
 </pre></div>
 
      </div>
@@ -15573,8 +15572,8 @@ curl -sk -X POST <span class="se">\</span>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out attachment_url
 
-<span class="nv">ATTACHMENT_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">ATTACHMENT_RESPONSE</span><span class="p">#*url1</span><span class="se">\"</span><span class="p">:</span><span class="se">\"</span><span class="si">}</span>
-<span class="nv">ATTACHMENT_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">ATTACHMENT_URL</span><span class="p">%%</span><span class="se">\"</span><span class="p">*</span><span class="si">}</span>
+<span class="nv">ATTACHMENT_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">ATTACHMENT_RESPONSE</span><span class="p">#*url1</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">ATTACHMENT_URL</span><span class="o">=</span><span class="si">${</span><span class="nv">ATTACHMENT_URL</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
 <span class="nb">echo</span> <span class="nv">$ATTACHMENT_URL</span>
 </pre></div>
 
@@ -15633,10 +15632,10 @@ curl -sk -X POST <span class="se">\</span>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X PUT <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: multipart/form-data"</span> <span class="se">\</span>
-    -F <span class="s1">'file=@credit_risk_training_light.csv'</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL$ATTACHMENT_URL</span><span class="s2">"</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: multipart/form-data&quot;</span> <span class="se">\</span>
+    -F <span class="s1">&#39;file=@credit_risk_training_light.csv&#39;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL$ATTACHMENT_URL</span><span class="s2">&quot;</span>
 </pre></div>
 
      </div>
@@ -15690,9 +15689,9 @@ curl -sk -X PUT <span class="se">\</span>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/assets/</span><span class="nv">$ASSET_ID</span><span class="s2">/attachments/</span><span class="nv">$ATTACHMENT_ID</span><span class="s2">/complete?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/assets/</span><span class="nv">$ASSET_ID</span><span class="s2">/attachments/</span><span class="nv">$ATTACHMENT_ID</span><span class="s2">/complete?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span>
 </pre></div>
 
      </div>
@@ -15815,7 +15814,7 @@ openssl rand -hex <span class="m">20</span>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_payload
 
-<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'", "training_data_references": [{"type": "data_asset", "id": "credit_risk_training_light.csv", "connection": {}, "location": {"href": "/v2/assets/'</span><span class="s2">"</span><span class="nv">$ASSET_ID</span><span class="s2">"</span><span class="s1">'?space_id='</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'"}}], "results_reference": {"type": "fs", "id": "autoai_results", "connection": {}, "location": {"path": "/spaces/'</span><span class="nv">$SPACE_ID</span><span class="s1">'/assets/auto_ml/auto_ml_curl.'</span><span class="nv">$RANDOM_ID</span><span class="s1">'/wml_data"}}, "tags": [{"value": "autoai"}], "pipeline": {"id": "'</span><span class="s2">"</span><span class="nv">$PIPELINE_ID</span><span class="s2">"</span><span class="s1">'"}}'</span>
+<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;training_data_references&quot;: [{&quot;type&quot;: &quot;data_asset&quot;, &quot;id&quot;: &quot;credit_risk_training_light.csv&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;href&quot;: &quot;/v2/assets/&#39;</span><span class="s2">&quot;</span><span class="nv">$ASSET_ID</span><span class="s2">&quot;</span><span class="s1">&#39;?space_id=&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}], &quot;results_reference&quot;: {&quot;type&quot;: &quot;fs&quot;, &quot;id&quot;: &quot;autoai_results&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;/spaces/&#39;</span><span class="nv">$SPACE_ID</span><span class="s1">&#39;/assets/auto_ml/auto_ml_curl.&#39;</span><span class="nv">$RANDOM_ID</span><span class="s1">&#39;/wml_data&quot;}}, &quot;tags&quot;: [{&quot;value&quot;: &quot;autoai&quot;}], &quot;pipeline&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$PIPELINE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span>
 </pre></div>
 
@@ -15915,12 +15914,12 @@ openssl rand -hex <span class="m">20</span>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_id
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$TRAINING_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings?version=2020-08-01"</span> <span class="se">\</span>
-    <span class="p">|</span> awk -F<span class="s1">'"id":'</span> <span class="s1">'{print $2}'</span> <span class="p">|</span> cut -c2-37
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$TRAINING_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings?version=2020-08-01&quot;</span> <span class="se">\</span>
+    <span class="p">|</span> awk -F<span class="s1">&#39;&quot;id&quot;:&#39;</span> <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> cut -c2-37
 </pre></div>
 
      </div>
@@ -15994,14 +15993,14 @@ target="_blank" rel="noopener no referrer">Get information about training job</a
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X GET \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID?space_id=$SPACE_ID&amp;version=2020-08-01" \
-    | python -m json.tool</p>
+    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID?space_id=$SPACE_ID&version=2020-08-01" \
+    | python -m json.tool
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16023,13 +16022,13 @@ curl -sk -X GET \
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 <span class="nv">STATUS</span><span class="o">=</span><span class="k">$(</span>curl -sk -X GET<span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings/</span><span class="nv">$TRAINING_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span><span class="k">)</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings/</span><span class="nv">$TRAINING_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span><span class="k">)</span>
     
-<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">#*state</span><span class="se">\"</span><span class="p">:</span><span class="se">\"</span><span class="si">}</span>
-<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">%%</span><span class="se">\"</span><span class="p">*</span><span class="si">}</span>
+<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">#*state</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
 <span class="nb">echo</span> <span class="nv">$STATUS</span>
 </pre></div>
 
@@ -16126,10 +16125,10 @@ target="_blank" rel="noopener no referrer">Get list of historical training jobs 
 <span class="nv">HISTORICAL_TRAINING_LIMIT_TO_GET</span><span class="o">=</span><span class="m">2</span>
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;limit=</span><span class="nv">$HISTORICAL_TRAINING_LIMIT_TO_GET</span><span class="s2">"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;limit=</span><span class="nv">$HISTORICAL_TRAINING_LIMIT_TO_GET</span><span class="s2">&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16164,7 +16163,7 @@ target="_blank" rel="noopener no referrer">Canceling training</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 TRAINING_ID_TO_CANCEL=...
 
@@ -16172,7 +16171,7 @@ curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_CANCEL?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_CANCEL?space_id=$SPACE_ID&version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16248,10 +16247,10 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_payload
 
 <span class="nv">MODEL_PAYLOAD</span><span class="o">=</span><span class="k">$(</span>curl -sk -X GET <span class="se">\</span>
-        --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-        --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-        <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/asset_files/auto_ml/auto_ml_curl.</span><span class="nv">$RANDOM_ID</span><span class="s2">/wml_data/</span><span class="nv">$TRAINING_ID</span><span class="s2">/assets/</span><span class="nv">$TRAINING_ID</span><span class="s2">""_P1_global_output/resources/wml_model/request.json?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="k">)</span>
+        --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+        --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+        --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+        <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/asset_files/auto_ml/auto_ml_curl.</span><span class="nv">$RANDOM_ID</span><span class="s2">/wml_data/</span><span class="nv">$TRAINING_ID</span><span class="s2">/assets/</span><span class="nv">$TRAINING_ID</span><span class="s2">&quot;&quot;_P1_global_output/resources/wml_model/request.json?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="k">)</span>
 <span class="nb">echo</span> <span class="nv">$MODEL_PAYLOAD</span>
 </pre></div>
 
@@ -16328,11 +16327,11 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_details
 
 <span class="nv">MODEL_DETAILS</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$MODEL_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models?version=2020-08-01&amp;space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="k">)</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$MODEL_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models?version=2020-08-01&amp;space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="k">)</span>
 <span class="nb">echo</span> <span class="nv">$MODEL_DETAILS</span>
 </pre></div>
 
@@ -16408,7 +16407,7 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_id
 
-<span class="nb">echo</span> <span class="nv">$MODEL_DETAILS</span> <span class="p">|</span> awk -F <span class="s1">'"id": '</span> <span class="s1">'{ print $8 }'</span>  <span class="p">|</span> cut -d <span class="s1">'"'</span> -f <span class="m">2</span>
+<span class="nb">echo</span> <span class="nv">$MODEL_DETAILS</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="s1">&#39;{ print $8 }&#39;</span>  <span class="p">|</span> cut -d <span class="s1">&#39;&quot;&#39;</span> -f <span class="m">2</span>
 </pre></div>
 
      </div>
@@ -16492,9 +16491,9 @@ target="_blank" rel="noopener no referrer">Download model content</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --output <span class="s2">"model.tar.gz"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/download?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --output <span class="s2">&quot;model.tar.gz&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models/</span><span class="nv">$MODEL_ID</span><span class="s2">/download?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span>
 </pre></div>
 
      </div>
@@ -16553,7 +16552,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_payload
 
-<span class="nv">DEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'","name": "AutoAI deployment","description": "This is description","batch": {}, "hybrid_pipeline_hardware_specs": [{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"name": "M"}}],"asset": {"id": "'</span><span class="s2">"</span><span class="nv">$MODEL_ID</span><span class="s2">"</span><span class="s1">'"}}'</span>
+<span class="nv">DEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;AutoAI deployment&quot;,&quot;description&quot;: &quot;This is description&quot;,&quot;batch&quot;: {}, &quot;hybrid_pipeline_hardware_specs&quot;: [{&quot;node_runtime_id&quot;: &quot;auto_ai.kb&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;M&quot;}}],&quot;asset&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$DEPLOYMENT_PAYLOAD</span>
 </pre></div>
 
@@ -16630,11 +16629,11 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_details
 
 <span class="nv">DETAILS</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$DEPLOYMENT_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?version=2020-08-01"</span><span class="k">)</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$DEPLOYMENT_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?version=2020-08-01&quot;</span><span class="k">)</span>
 
 <span class="nb">echo</span> <span class="nv">$DETAILS</span>
 </pre></div>
@@ -16693,7 +16692,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_id
 
-<span class="nb">echo</span> <span class="nv">$DEPLOYMENT_DETAILS</span> <span class="p">|</span> awk -F <span class="s1">'"id": '</span> <span class="s1">'{ print $3 }'</span> <span class="p">|</span> cut -d <span class="s1">'"'</span> -f <span class="m">2</span>
+<span class="nb">echo</span> <span class="nv">$DEPLOYMENT_DETAILS</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="s1">&#39;{ print $3 }&#39;</span> <span class="p">|</span> cut -d <span class="s1">&#39;&quot;&#39;</span> -f <span class="m">2</span>
 </pre></div>
 
      </div>
@@ -16777,9 +16776,9 @@ target="_blank" rel="noopener no referrer">Get deployment details</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16879,7 +16878,7 @@ target="_blank" rel="noopener no referrer">Create deployment job</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out job_payload
 
-<span class="nv">JOB_PAYLOAD</span><span class="o">=</span><span class="s1">'{"name": "AutoAI job", "space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'","deployment": {"id": "'</span><span class="s2">"</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">"</span><span class="s1">'"}, "hybrid_pipeline_hardware_specs": [{"node_runtime_id": "auto_ai.kb", "hardware_spec": {"name": "M"}}], "scoring": {"input_data": [{"fields": ["CheckingStatus", "LoanDuration", "CreditHistory", "LoanPurpose", "LoanAmount", "ExistingSavings", "EmploymentDuration", "InstallmentPercent", "Sex", "OthersOnLoan", "CurrentResidenceDuration", "OwnsProperty", "Age", "InstallmentPlans", "Housing", "ExistingCreditsCount", "Job", "Dependents", "Telephone", "ForeignWorker"], "values": [["less_0", 6, "all_credits_paid_back", "car_used", 250, "less_100", "1_to_4", 2, "male", "none", 2, "savings_insurance", 28, "stores", "rent", 1, "skilled", 1, "none", "yes"]]}]}}'</span>
+<span class="nv">JOB_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;AutoAI job&quot;, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;deployment&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}, &quot;hybrid_pipeline_hardware_specs&quot;: [{&quot;node_runtime_id&quot;: &quot;auto_ai.kb&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;M&quot;}}], &quot;scoring&quot;: {&quot;input_data&quot;: [{&quot;fields&quot;: [&quot;CheckingStatus&quot;, &quot;LoanDuration&quot;, &quot;CreditHistory&quot;, &quot;LoanPurpose&quot;, &quot;LoanAmount&quot;, &quot;ExistingSavings&quot;, &quot;EmploymentDuration&quot;, &quot;InstallmentPercent&quot;, &quot;Sex&quot;, &quot;OthersOnLoan&quot;, &quot;CurrentResidenceDuration&quot;, &quot;OwnsProperty&quot;, &quot;Age&quot;, &quot;InstallmentPlans&quot;, &quot;Housing&quot;, &quot;ExistingCreditsCount&quot;, &quot;Job&quot;, &quot;Dependents&quot;, &quot;Telephone&quot;, &quot;ForeignWorker&quot;], &quot;values&quot;: [[&quot;less_0&quot;, 6, &quot;all_credits_paid_back&quot;, &quot;car_used&quot;, 250, &quot;less_100&quot;, &quot;1_to_4&quot;, 2, &quot;male&quot;, &quot;none&quot;, 2, &quot;savings_insurance&quot;, 28, &quot;stores&quot;, &quot;rent&quot;, 1, &quot;skilled&quot;, 1, &quot;none&quot;, &quot;yes&quot;]]}]}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$JOB_PAYLOAD</span>
 </pre></div>
 
@@ -16979,12 +16978,12 @@ target="_blank" rel="noopener no referrer">Create deployment job</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out job_id
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$JOB_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployment_jobs?version=2020-08-01"</span> <span class="se">\</span>
-    <span class="p">|</span> grep <span class="s1">'"id": '</span> <span class="p">|</span> awk -F <span class="s1">'"'</span> <span class="s1">'{ print $4 }'</span> <span class="p">|</span> sed -n 2p
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$JOB_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployment_jobs?version=2020-08-01&quot;</span> <span class="se">\</span>
+    <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 2p
 </pre></div>
 
      </div>
@@ -17067,10 +17066,10 @@ target="_blank" rel="noopener no referrer">List jobs</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployment_jobs?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployment_jobs?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -17115,10 +17114,10 @@ target="_blank" rel="noopener no referrer">Get job details</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployment_jobs/</span><span class="nv">$JOB_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployment_jobs/</span><span class="nv">$JOB_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -17268,13 +17267,13 @@ target="_blank" rel="noopener no referrer">Cancel job</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/deployment_jobs/$JOB_ID?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/deployment_jobs/$JOB_ID?space_id=$SPACE_ID&version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -17310,9 +17309,9 @@ target="_blank" rel="noopener no referrer">List deployments details</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -17361,7 +17360,7 @@ target="_blank" rel="noopener no referrer">Deleting training</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 TRAINING_ID_TO_DELETE=...
 
@@ -17369,7 +17368,7 @@ curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&amp;version=2020-08-01&amp;hard_delete=true"</p>
+    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&version=2020-08-01&hard_delete=true"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -17395,13 +17394,13 @@ target="_blank" rel="noopener no referrer">Delete job</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/deployment_jobs/$JOB_ID?space_id=$SPACE_ID&amp;version=2020-08-01&amp;hard_delete=true"</p>
+    "$DATAPLATFORM_URL/ml/v4/deployment_jobs/$JOB_ID?space_id=$SPACE_ID&version=2020-08-01&hard_delete=true"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -17414,13 +17413,13 @@ curl -sk -X DELETE \
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -17446,12 +17445,12 @@ target="_blank" rel="noopener no referrer">Delete model from repository</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">

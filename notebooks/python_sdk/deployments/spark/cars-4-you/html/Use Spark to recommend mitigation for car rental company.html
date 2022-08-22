@@ -14690,7 +14690,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
     <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
     <span class="s2">&quot;instance_id&quot;</span><span class="p">:</span> <span class="s1">&#39;openshift&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.5&#39;</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.0&#39;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14713,7 +14713,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     "password": ***,
     "url": ***,
     "instance_id": 'openshift',
-    "version": '4.5'
+    "version": '4.0'
 }</code></pre>
 
 </div>
@@ -14779,7 +14779,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <li>Go to space <code>Settings</code> tab</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
-<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.5/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
+<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
 <p><strong>Action</strong>: Assign space ID below</p>
 
 </div>
@@ -14989,7 +14989,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     
 <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">,</span> <span class="s1">&#39;car_rental_training_data.csv&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.5/data/cars-4-you/car_rental_training_data.csv&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/data/cars-4-you/car_rental_training_data.csv&#39;</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15664,8 +15664,8 @@ only showing top 2 rows
     <span class="n">model</span><span class="o">=</span><span class="n">model_action</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s2">&quot;CARS4U - Action Recommendation Model&quot;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_3.2&quot;</span><span class="p">,</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_3.2&#39;</span><span class="p">),</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;mllib_3.0&quot;</span><span class="p">,</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">&#39;spark-mllib_3.0&#39;</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">&quot;Action&quot;</span><span class="p">,</span>
     <span class="p">},</span>  
     <span class="n">training_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span> 
@@ -15790,7 +15790,7 @@ only showing top 2 rows
   &#39;label_column&#39;: &#39;Action&#39;,
   &#39;pipeline&#39;: {&#39;id&#39;: &#39;96df067f-33f1-42d0-9c60-ed7390e0ad79&#39;},
   &#39;software_spec&#39;: {&#39;id&#39;: &#39;5c1b0ca2-4977-5c2e-9439-ffd44ea8ffe9&#39;,
-   &#39;name&#39;: &#39;spark-mllib_3.2&#39;},
+   &#39;name&#39;: &#39;spark-mllib_3.0&#39;},
   &#39;training_data_references&#39;: [{&#39;connection&#39;: {&#39;access_key_id&#39;: &#39;not_applicable&#39;,
      &#39;endpoint_url&#39;: &#39;not_applicable&#39;,
      &#39;secret_access_key&#39;: &#39;not_applicable&#39;},
@@ -15834,7 +15834,7 @@ only showing top 2 rows
      &#39;id&#39;: &#39;1&#39;,
      &#39;type&#39;: &#39;struct&#39;},
     &#39;type&#39;: &#39;fs&#39;}],
-  &#39;type&#39;: &#39;mllib_3.2&#39;},
+  &#39;type&#39;: &#39;mllib_3.0&#39;},
  &#39;metadata&#39;: {&#39;created_at&#39;: &#39;2022-02-03T12:49:33.572Z&#39;,
   &#39;id&#39;: &#39;6b1e3d04-045f-4202-8743-1bf026f6c502&#39;,
   &#39;modified_at&#39;: &#39;2022-02-03T12:49:40.224Z&#39;,
@@ -16175,7 +16175,7 @@ Successfully finished deployment creation, deployment_uid=&#39;e870ee28-042a-47c
 <li>functions</li>
 <li>deployments</li>
 </ul>
-<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.5/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.0/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 
 </div>
 </div>
