@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14590,7 +14604,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>This notebook demonstrates how to deploy in Watson Machine Learning service a python function which requires to create custom software specification and runtime definition.<br>
+<p>This notebook demonstrates how to deploy in Watson Machine Learning service a python function which requires to create custom software specification and runtime definition.<br />
 Familiarity with oc and python is helpful. This notebook uses Python 3.9.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">&#182;</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
@@ -14604,7 +14618,7 @@ Familiarity with oc and python is helpful. This notebook uses Python 3.9.</p>
 <li><a href="#setup">Setup</a></li>
 <li><a href="#image">Create custom image</a></li>
 <li><a href="#soft">Create software specification</a></li>
-<li><a href="#runtime">Create runtime definition</a> </li>
+<li><a href="#runtime">Create runtime definition</a></li>
 <li><a href="#deploy">Web service creation and scoring</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
@@ -14674,7 +14688,7 @@ Familiarity with oc and python is helpful. This notebook uses Python 3.9.</p>
     <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
     <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
     <span class="s2">&quot;instance_id&quot;</span><span class="p">:</span> <span class="s1">&#39;openshift&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.0&#39;</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.5&#39;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14827,9 +14841,7 @@ Familiarity with oc and python is helpful. This notebook uses Python 3.9.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
@@ -14882,31 +14894,30 @@ Familiarity with oc and python is helpful. This notebook uses Python 3.9.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><em>Required Role: You must be a Cloud Pak for Data cluster administrator</em> </p>
+<p><em>Required Role: You must be a Cloud Pak for Data cluster administrator</em></p>
 <p>The Creation of the custom image involves the following steps, which cannot be done from a notebook. It involves pulling building pushing docker images and can be performed in the cluster.</p>
 <ol>
 <li>Downloading the base image <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=image-downloading-base">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=image-downloading-base</a></li>
 <li>Creating and uploading a custom image <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=image-creating-custom">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=image-creating-custom</a></li>
 </ol>
 <h4 id="1.-Downloading-the-base-image">1. Downloading the base image<a class="anchor-link" href="#1.-Downloading-the-base-image">&#182;</a></h4><p>To Find out which CPD release you are on.</p>
-
-<pre><code>    oc get wmlbase wml-cr -o=jsonpath='{.spec.version}'</code></pre>
+<pre><code>    oc get wmlbase wml-cr -o=jsonpath='{.spec.version}'
+</code></pre>
 <p>Select the base image by refering to the documentation. Base image selected for this example:</p>
-
-<pre><code>    wml-deployment-runtime-py38-1:4.0.2.78-amd64</code></pre>
+<pre><code>    wml-deployment-runtime-py38-1:4.0.2.78-amd64
+</code></pre>
 <p>For this example the WML cluster installation uses the private container registry <code>cp.stg.icr.io</code> with the namespace <code>/cp/cpd/</code> and so, the base image will be available from:</p>
-
-<pre><code>    cp.stg.icr.io/cp/cpd/wml-deployment-runtime-py38-1:4.0.2.78-amd64</code></pre>
+<pre><code>    cp.stg.icr.io/cp/cpd/wml-deployment-runtime-py38-1:4.0.2.78-amd64
+</code></pre>
 <p>If you do not remember which private registry have been enabled, you can use the below queries and links to help in identifying. These registrys are configured at installation time. more info - <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-configuring-your-cluster-pull-images">https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-configuring-your-cluster-pull-images</a></p>
-
 <pre><code>    oc get imageContentSourcePolicy/mirror-config -o yaml    
-    oc get secret/pull-secret -n openshift-config -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d</code></pre>
+    oc get secret/pull-secret -n openshift-config -o jsonpath='{.data.\.dockerconfigjson}' | base64 -d
+</code></pre>
 <p>Pull the base image:</p>
-
 <pre><code>    podman login -u &lt;user&gt; -p &lt;password&gt; cp.stg.icr.io/cp/cpd/
-    podman pull cp.stg.icr.io/cp/cpd/wml-deployment-runtime-py38-1:4.0.2.78-amd64</code></pre>
+    podman pull cp.stg.icr.io/cp/cpd/wml-deployment-runtime-py38-1:4.0.2.78-amd64
+</code></pre>
 <h4 id="2.-Creating-and-uploading-a-custom-image">2. Creating and uploading a custom image<a class="anchor-link" href="#2.-Creating-and-uploading-a-custom-image">&#182;</a></h4><h5 id="2.1-Building-the-custom-image">2.1 Building the custom image<a class="anchor-link" href="#2.1-Building-the-custom-image">&#182;</a></h5><p>Dockerfile sample for this example is as below. We are going to install the program <code>gdb</code> as well as the python package <code>simplejson</code> here.</p>
-
 <pre><code>ARG  base_image_tag
 FROM ${base_image_tag}
 
@@ -14920,55 +14931,57 @@ RUN yum install -y gdb
 # e.g.
 USER wmlfuser:condausers
 RUN umask 002 &amp;&amp; \
-   pip install simplejson</code></pre>
-<p>Build the custom image <code>wml-demo-image:test-1</code>:</p>
+   pip install simplejson
 
+</code></pre>
+<p>Build the custom image <code>wml-demo-image:test-1</code>:</p>
 <pre><code>    podman build -t wml-demo-image:test-1 \
         --build-arg base_image_tag=cp.stg.icr.io/cp/cpd/wml-deployment-runtime-py38-1:4.0.2.78-amd64 \
-        -f Dockerfile</code></pre>
+        -f Dockerfile
+</code></pre>
 <p>Some sanity checks on image for this example.</p>
-
 <pre><code>    podman run -it wml-demo-image:test-1 bash
     $ gdb --version
     $ conda list | grep simplejson
     $ uwsgi --version
-    $ exit</code></pre>
+    $ exit
+</code></pre>
 <h5 id="2.2-Uploading-the-custom-image">2.2 Uploading the custom image<a class="anchor-link" href="#2.2-Uploading-the-custom-image">&#182;</a></h5><p>We have the following Options described below on where to upload the custom image. In this demo, we are going to use the internal registry (Option 1).</p>
 <p><em>Option 1:</em> Push the image to internal registry.</p>
 <p>Check if default route is enabled</p>
-
-<pre><code>    oc get configs.imageregistry.operator.openshift.io/cluster -o=jsonpath='{.spec.defaultRoute}</code></pre>
+<pre><code>    oc get configs.imageregistry.operator.openshift.io/cluster -o=jsonpath='{.spec.defaultRoute}
+</code></pre>
 <p>Get default route URL and login</p>
-
 <pre><code>    DEFAULT_ROUTE_REG=$(oc get route default-route -n openshift-image-registry -o=jsonpath='{ .spec.host }')
     echo $DEFAULT_ROUTE_REG
 
     e.g. default-route-openshift-image-registry.apps.wml402devdep3.cp.fyre.ibm.com
-    podman login -u kubeadmin -p $(oc whoami -t) --tls-verify=false $DEFAULT_ROUTE_REG</code></pre>
+    podman login -u kubeadmin -p $(oc whoami -t) --tls-verify=false $DEFAULT_ROUTE_REG
+</code></pre>
 <p>Get internal registry namespace of WML</p>
-
 <pre><code>    WML_REG_NAMESPACE=$(oc get wmlbase wml-cr -o=jsonpath='{.metadata.namespace}')
-    echo $WML_REG_NAMESPACE</code></pre>
+    echo $WML_REG_NAMESPACE
+</code></pre>
 <p>Tag and push the custom image to the <code>default route</code> registry</p>
-
 <pre><code>    podman tag wml-demo-image:test-1 $DEFAULT_ROUTE_REG/$WML_REG_NAMESPACE/wml-demo-image:test-1
-    podman push $DEFAULT_ROUTE_REG/$WML_REG_NAMESPACE/wml-demo-image:test-1 --tls-verify=false</code></pre>
+    podman push $DEFAULT_ROUTE_REG/$WML_REG_NAMESPACE/wml-demo-image:test-1 --tls-verify=false
+</code></pre>
 <p>Required custom image:</p>
-
 <pre><code>    echo image-registry.openshift-image-registry.svc:5000/$WML_REG_NAMESPACE/wml-demo-image:test-1
 
     e.g.
-    image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1</code></pre>
+    image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1
+</code></pre>
 <p>In this demo, the custom image was built in a machine which is part of the cluster. If image is built in a machine outside of the cluster, then additional Openshift related setups may be required to be able to push to the internal registry. Help on Openshift registry - <a href="https://docs.openshift.com/container-platform/4.8/registry/securing-exposing-registry.html">https://docs.openshift.com/container-platform/4.8/registry/securing-exposing-registry.html</a></p>
 <p><em>Option 2: If you know the private container registry. just tag and push it there.</em></p>
-
 <pre><code>    e.g
     podman login -u &lt;user&gt; -p &lt;password&gt; cp.stg.icr.io/cp/cpd/
     podman tag wml-demo-image:test-1 cp.stg.icr.io/cp/cpd/wml-demo-image:test-1
     podman push cp.stg.icr.io/cp/cpd/wml-demo-image:test-1
 
     Required custom image:
-    cp.stg.icr.io/cp/cpd/wml-demo-image:test-1</code></pre>
+    cp.stg.icr.io/cp/cpd/wml-demo-image:test-1
+</code></pre>
 
 </div>
 </div>
@@ -15173,9 +15186,7 @@ RUN umask 002 &amp;&amp; \
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
@@ -15215,9 +15226,7 @@ RUN umask 002 &amp;&amp; \
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
@@ -15270,9 +15279,7 @@ RUN umask 002 &amp;&amp; \
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
@@ -15318,9 +15325,7 @@ RUN umask 002 &amp;&amp; \
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15375,9 +15380,7 @@ vol_svc_id: 1635916789402144
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15456,9 +15459,7 @@ vol_svc_id: 1635916789402144
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15510,9 +15511,7 @@ vol_svc_id: 1635916789402144
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15579,9 +15578,7 @@ vol_svc_id: 1635916789402144
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15605,9 +15602,9 @@ software spec filename : cspec-38-1-t1.json
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Custom-Image-software-specification:">Custom Image software specification:<a class="anchor-link" href="#Custom-Image-software-specification:">&#182;</a></h4><ul>
-<li><code>entity.software_specification.type</code> have to be set to "base" to indicate custom image.</li>
+<li><code>entity.software_specification.type</code> have to be set to &quot;base&quot; to indicate custom image.</li>
 <li><code>entity.software_specification.built_in</code> have to be set boolean <code>False</code> to indicate custom image.</li>
-<li><code>entity.software_configuration.included_packages</code> array is informational, it can be empty list <code>[]</code> . </li>
+<li><code>entity.software_configuration.included_packages</code> array is informational, it can be empty list <code>[]</code> .</li>
 <li><code>entity.software_configuration.platform.name</code> should be set to <code>python</code> .</li>
 </ul>
 
@@ -15693,9 +15690,7 @@ software spec filename : cspec-38-1-t1.json
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
 
@@ -15746,9 +15741,7 @@ software spec filename : cspec-38-1-t1.json
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 
@@ -15787,9 +15780,7 @@ software spec filename : cspec-38-1-t1.json
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
 
@@ -15843,9 +15834,7 @@ software spec filename : cspec-38-1-t1.json
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15898,12 +15887,12 @@ software spec filename : cspec-38-1-t1.json
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="Wait-for-about-5-mins">Wait for about 5 mins<a class="anchor-link" href="#Wait-for-about-5-mins">&#182;</a></h3><p>Refresh intervel is handled by <code>env-spec-sync-job</code> cronjob</p>
-
 <pre><code>e.g.
 oc get cronjobs env-spec-sync-job
 
 NAME                SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
-env-spec-sync-job   */5 * * * *   False     0        82s             23d</code></pre>
+env-spec-sync-job   */5 * * * *   False     0        82s             23d
+</code></pre>
 
 </div>
 </div>
@@ -15945,9 +15934,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16060,9 +16047,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 
@@ -16132,9 +16117,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16195,9 +16178,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
 
@@ -16248,9 +16229,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
 
@@ -16289,9 +16268,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
 
@@ -16347,9 +16324,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16413,9 +16388,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
 
@@ -16464,9 +16437,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16522,9 +16493,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16578,9 +16547,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16634,9 +16601,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16722,9 +16687,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16789,9 +16752,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16840,9 +16801,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[48]:</div>
 
@@ -16888,9 +16847,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[44]:</div>
 
@@ -16940,9 +16897,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[46]:</div>
 
@@ -16998,9 +16953,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d</code><
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -17041,14 +16994,14 @@ Successfully finished deployment creation, deployment_uid=&#39;b2b0a470-35f3-431
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can monitor the cluster for pods with name prefix "wml-" and "ci-" in its name
+<p>You can monitor the cluster for pods with name prefix &quot;wml-&quot; and &quot;ci-&quot; in its name
 example:</p>
-
 <pre><code>$ oc get pods | grep wml | grep ci-
 wml-dep-od-ai-function0.0-cl-ci-wbiku1vw-764974dfd6-bwrn2       0/1     Running     0          4m58s
 
-$ oc describe pod wml-dep-od-ai-function0.0-cl-ci-wbiku1vw-764974dfd6-bwrn2 | grep Image: | grep "wml-demo-image:test-1"
-    Image:         image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1</code></pre>
+$ oc describe pod wml-dep-od-ai-function0.0-cl-ci-wbiku1vw-764974dfd6-bwrn2 | grep Image: | grep &quot;wml-demo-image:test-1&quot;
+    Image:         image-registry.openshift-image-registry.svc:5000/zen/wml-demo-image:test-1
+</code></pre>
 
 </div>
 </div>
@@ -17076,9 +17029,7 @@ $ oc describe pod wml-dep-od-ai-function0.0-cl-ci-wbiku1vw-764974dfd6-bwrn2 | gr
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[51]:</div>
 
@@ -17149,9 +17100,7 @@ $ oc describe pod wml-dep-od-ai-function0.0-cl-ci-wbiku1vw-764974dfd6-bwrn2 | gr
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[54]:</div>
 
@@ -17221,7 +17170,7 @@ $ oc describe pod wml-dep-od-ai-function0.0-cl-ci-wbiku1vw-764974dfd6-bwrn2 | gr
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You successfully completed this notebook! You learned how to use Watson Machine Learning for function deployment and scoring with custom custom_image, software_spec and runtime definition.<br>
+<p>You successfully completed this notebook! You learned how to use Watson Machine Learning for function deployment and scoring with custom custom_image, software_spec and runtime definition.<br />
  Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=analytics">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 
 </div>

@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14687,14 +14701,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Alternatively you can use <code>username</code> and <code>password</code> to authenticate WML services.</p>
-
 <pre><code>wml_credentials = {
-    "username": ***,
-    "password": ***,
-    "url": ***,
-    "instance_id": 'openshift',
-    "version": '4.0'
-}</code></pre>
+    &quot;username&quot;: ***,
+    &quot;password&quot;: ***,
+    &quot;url&quot;: ***,
+    &quot;instance_id&quot;: 'openshift',
+    &quot;version&quot;: '4.0'
+}
+
+</code></pre>
 
 </div>
 </div>
@@ -14843,9 +14858,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
@@ -14905,33 +14918,33 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-
 <pre><code># Template version
 
 def score_template(payload):
-    """AI function example.
+    &quot;&quot;&quot;AI function example.
 
     # Here we present data schema to be used by function:
     Example:
     {
-      "input_data":
+      &quot;input_data&quot;:
           [{
-            "fields": ["Gender", "Status", "Children", "Age", "Customer_Status"],
-            "values": [
-              ["Male", "M", 2, 48, "Inactive"],
-              ["Female", "S", 0, 23, "Inactive"]
+            &quot;fields&quot;: [&quot;Gender&quot;, &quot;Status&quot;, &quot;Children&quot;, &quot;Age&quot;, &quot;Customer_Status&quot;],
+            &quot;values&quot;: [
+              [&quot;Male&quot;, &quot;M&quot;, 2, 48, &quot;Inactive&quot;],
+              [&quot;Female&quot;, &quot;S&quot;, 0, 23, &quot;Inactive&quot;]
             ]
           }]
     }
-    """
+    &quot;&quot;&quot;
     fields = payload['input_data'][0]['fields'] + ['Prediction', 'Probability']
     values = [record + [int(record[0] == 'Male'), 0.9] for record in payload['input_data'][0]['values']]
     return { 'fields': fields, 'values': values }
 
-template_payload = {'input_data': [{"fields": [],
-                    "values": [["Male", "M", 2, 48, "Inactive"], ["Female", "S", 0, 23, "Inactive"]]}]}
+template_payload = {'input_data': [{&quot;fields&quot;: [],
+                    &quot;values&quot;: [[&quot;Male&quot;, &quot;M&quot;, 2, 48, &quot;Inactive&quot;], [&quot;Female&quot;, &quot;S&quot;, 0, 23, &quot;Inactive&quot;]]}]}
 
-print(score_template(template_payload))</code></pre>
+print(score_template(template_payload))
+</code></pre>
 
 </div>
 </div>
@@ -15024,9 +15037,7 @@ print(score_template(template_payload))</code></pre>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15220,9 +15231,7 @@ Business area deployment id: dcb4d6d3-4165-49ad-bca6-9c6d27d9ae71
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15332,9 +15341,7 @@ Business area deployment id: dcb4d6d3-4165-49ad-bca6-9c6d27d9ae71
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15433,9 +15440,7 @@ Business area deployment id: dcb4d6d3-4165-49ad-bca6-9c6d27d9ae71
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15524,9 +15529,7 @@ Successfully finished deployment creation, deployment_uid=&#39;07ff4ef1-5345-40e
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 

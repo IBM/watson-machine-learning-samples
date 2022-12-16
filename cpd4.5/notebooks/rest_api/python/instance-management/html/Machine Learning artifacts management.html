@@ -14465,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14478,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14651,11 +14664,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">USERNAME</span><span class="o">=</span><span class="s2">""</span>
-<span class="n">API_KEY</span><span class="o">=</span><span class="s2">""</span>
-<span class="n">DATAPLATFORM_URL</span><span class="o">=</span><span class="s2">""</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">USERNAME</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="n">API_KEY</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="n">DATAPLATFORM_URL</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 
-<span class="n">space_id</span><span class="o">=</span><span class="s2">"fill out only if you have space already created"</span>
+<span class="n">space_id</span><span class="o">=</span><span class="s2">&quot;fill out only if you have space already created&quot;</span>
 </pre></div>
 
      </div>
@@ -14723,7 +14736,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">token_creation_params</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="se">{{\"</span><span class="s1">username</span><span class="se">\"</span><span class="s1">: </span><span class="se">\"</span><span class="si">{</span><span class="n">USERNAME</span><span class="si">}</span><span class="se">\"</span><span class="s1">, </span><span class="se">\"</span><span class="s1">api_key</span><span class="se">\"</span><span class="s1">: </span><span class="se">\"</span><span class="si">{</span><span class="n">API_KEY</span><span class="si">}</span><span class="se">\"}}</span><span class="s1">'</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">token_creation_params</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">{{\&quot;</span><span class="s1">username</span><span class="se">\&quot;</span><span class="s1">: </span><span class="se">\&quot;</span><span class="si">{</span><span class="n">USERNAME</span><span class="si">}</span><span class="se">\&quot;</span><span class="s1">, </span><span class="se">\&quot;</span><span class="s1">api_key</span><span class="se">\&quot;</span><span class="s1">: </span><span class="se">\&quot;</span><span class="si">{</span><span class="n">API_KEY</span><span class="si">}</span><span class="se">\&quot;}}</span><span class="s1">&#39;</span>
 </pre></div>
 
      </div>
@@ -14751,13 +14764,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s1">/icp4d-api/v1/authorize'</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s1">/icp4d-api/v1/authorize&#39;</span><span class="p">,</span>
                          <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
-                             <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span>
+                             <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
                          <span class="p">},</span>
                          <span class="n">data</span><span class="o">=</span><span class="n">token_creation_params</span><span class="p">,</span>
                          <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'token'</span><span class="p">]</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
 </pre></div>
 
@@ -14772,9 +14785,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14810,9 +14821,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">header</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span>
-        <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
-        <span class="s1">'Accept'</span><span class="p">:</span> <span class="s1">'application/json'</span>
+        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Bearer </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14846,10 +14857,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><p>space_json={
+</div>space_json={
   "name": "my_space2",
   "description": "my_description2",
-}</p>
+}
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14861,12 +14872,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><p>space_details = requests.post(
+</div>space_details = requests.post(
     url = f"{DATAPLATFORM_URL}/v2/spaces",
     headers = header,
     json = space_json,
     verify=False
-)</p>
+)
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14878,8 +14889,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><p>space_id = space_details.json()['metadata']['id']
-print(space_id)</p>
+</div>space_id = space_details.json()['metadata']['id']
+print(space_id)
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14913,7 +14924,7 @@ Make sure that your newly created space is <code>active</code>.</p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/v2/spaces/</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">?version=2020-08-01"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/v2/spaces/</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -14946,9 +14957,7 @@ Make sure that your newly created space is <code>active</code>.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 
@@ -15010,7 +15019,7 @@ Make sure that your newly created space is <code>active</code>.</p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">spaces_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/v2/spaces?limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/v2/spaces?limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -15055,9 +15064,7 @@ Make sure that your newly created space is <code>active</code>.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
@@ -15121,8 +15128,8 @@ Make sure that your newly created space is <code>active</code>.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">space</span> <span class="ow">in</span> <span class="n">spaces_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">space</span><span class="p">[</span><span class="s1">'entity'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">space</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">space</span> <span class="ow">in</span> <span class="n">spaces_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">space</span><span class="p">[</span><span class="s1">&#39;entity&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">space</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15136,9 +15143,7 @@ Make sure that your newly created space is <code>active</code>.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15166,11 +15171,11 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 </div>
 </div>
 </div>
-</div><p>space_delete = requests.delete(
+</div>space_delete = requests.delete(
     url = f"{DATAPLATFORM_URL}/v2/spaces/{space_id}?version=2020-08-01",
     headers = header,
     verify=False
-)</p>
+)
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15204,7 +15209,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">pipelines_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/pipelines?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/pipelines?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -15235,8 +15240,8 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">pipelines_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">pipeline</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">pipeline</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">pipelines_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pipeline</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">pipeline</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15264,7 +15269,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline_id</span> <span class="o">=</span> <span class="n">pipelines_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline_id</span> <span class="o">=</span> <span class="n">pipelines_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pipeline_id</span><span class="p">)</span>
 </pre></div>
 
@@ -15294,7 +15299,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/pipelines/</span><span class="si">{</span><span class="n">pipeline_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/pipelines/</span><span class="si">{</span><span class="n">pipeline_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -15339,9 +15344,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 
@@ -15381,14 +15384,14 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipeline_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/pipelines/</span><span class="si">{</span><span class="n">pipeline_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/pipelines/</span><span class="si">{</span><span class="n">pipeline_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">pipeline_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete pipeline: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">pipeline_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete pipeline: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">pipeline_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15416,16 +15419,16 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">pipelines_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">pipelines_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
     <span class="n">pipeline_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/pipelines/</span><span class="si">{</span><span class="n">pipeline</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/pipelines/</span><span class="si">{</span><span class="n">pipeline</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">pipeline_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete pipeline: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">pipeline_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete pipeline: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">pipeline_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15467,7 +15470,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">model_definitions_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/model_definitions?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/model_definitions?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -15498,8 +15501,8 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model_definition</span> <span class="ow">in</span> <span class="n">model_definitions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">model_definition</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">model_definition</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model_definition</span> <span class="ow">in</span> <span class="n">model_definitions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_definition</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">model_definition</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15527,7 +15530,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_definition_id</span> <span class="o">=</span> <span class="n">model_definitions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_definition_id</span> <span class="o">=</span> <span class="n">model_definitions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model_definition_id</span><span class="p">)</span>
 </pre></div>
 
@@ -15557,7 +15560,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_definition_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/model_definitions/</span><span class="si">{</span><span class="n">model_definition_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/model_definitions/</span><span class="si">{</span><span class="n">model_definition_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -15617,14 +15620,14 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_definition_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/model_definitions/</span><span class="si">{</span><span class="n">model_definition_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/model_definitions/</span><span class="si">{</span><span class="n">model_definition_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">model_definition_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete model definition: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">model_definition_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete model definition: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">model_definition_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15652,16 +15655,16 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model_definition</span> <span class="ow">in</span> <span class="n">model_definitions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model_definition</span> <span class="ow">in</span> <span class="n">model_definitions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
     <span class="n">model_definition_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/model_definitions/</span><span class="si">{</span><span class="n">model_definition</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/model_definitions/</span><span class="si">{</span><span class="n">model_definition</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">model_definition_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete model definition: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">model_definition_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete model definition: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">model_definition_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15703,7 +15706,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">models_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -15735,9 +15738,9 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">software_spec</span><span class="o">=</span><span class="s2">"63dc4cf1-252f-424b-b52d-5cdd9814987f"</span>
+<span class="n">software_spec</span><span class="o">=</span><span class="s2">&quot;63dc4cf1-252f-424b-b52d-5cdd9814987f&quot;</span>
 <span class="n">models_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&amp;software_spec=</span><span class="si">{</span><span class="n">software_spec</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&amp;software_spec=</span><span class="si">{</span><span class="n">software_spec</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -15768,8 +15771,8 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">model</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">model</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15783,9 +15786,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15820,7 +15821,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_id</span> <span class="o">=</span> <span class="n">models_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_id</span> <span class="o">=</span> <span class="n">models_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
 </pre></div>
 
@@ -15835,9 +15836,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15873,7 +15872,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models/</span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models/</span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -15918,9 +15917,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 
@@ -15968,7 +15965,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_revisons</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models/</span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">/revisions?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models/</span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">/revisions?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16013,9 +16010,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
 
@@ -16070,14 +16065,14 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models/</span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models/</span><span class="si">{</span><span class="n">model_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">model_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete model: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">model_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete model: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">model_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16105,16 +16100,16 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
     <span class="n">model_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models/</span><span class="si">{</span><span class="n">model</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/models/</span><span class="si">{</span><span class="n">model</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">model_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete model: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">model_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete model: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">model_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16156,7 +16151,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">functions_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/functions?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/functions?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16187,8 +16182,8 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">function</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">function</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">function</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">function</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16216,7 +16211,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">function_id</span> <span class="o">=</span> <span class="n">functions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">function_id</span> <span class="o">=</span> <span class="n">functions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">function_id</span><span class="p">)</span>
 </pre></div>
 
@@ -16246,7 +16241,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">function_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/functions/</span><span class="si">{</span><span class="n">function_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/functions/</span><span class="si">{</span><span class="n">function_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16306,14 +16301,14 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">function_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/functions/</span><span class="si">{</span><span class="n">function_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/functions/</span><span class="si">{</span><span class="n">function_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">function_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete function: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">function_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete function: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">function_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16341,16 +16336,16 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="n">functions_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
     <span class="n">function_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/functions/</span><span class="si">{</span><span class="n">function</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/functions/</span><span class="si">{</span><span class="n">function</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">function_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete function: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">function_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete function: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">function_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16392,7 +16387,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">experiments_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/experiments?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/experiments?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16423,8 +16418,8 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">experiments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">experiment</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">experiment</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">experiments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16452,7 +16447,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">experiment_id</span> <span class="o">=</span> <span class="n">experiments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">experiment_id</span> <span class="o">=</span> <span class="n">experiments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">experiment_id</span><span class="p">)</span>
 </pre></div>
 
@@ -16482,7 +16477,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">experiment_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/experiments/</span><span class="si">{</span><span class="n">experiment_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/experiments/</span><span class="si">{</span><span class="n">experiment_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16542,14 +16537,14 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">experiment_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/experiments/</span><span class="si">{</span><span class="n">experiment_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/experiments/</span><span class="si">{</span><span class="n">experiment_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">experiment_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete experiment: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">experiment_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete experiment: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">experiment_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16577,16 +16572,16 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">experiments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">experiments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
     <span class="n">experiment_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/experiments/</span><span class="si">{</span><span class="n">experiment</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/experiments/</span><span class="si">{</span><span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">experiment_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete experiment: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">experiment_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete experiment: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">experiment_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16628,7 +16623,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">trainings_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/trainings?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/trainings?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16660,9 +16655,9 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">training_type</span><span class="o">=</span><span class="s1">'pipeline'</span>
+<span class="n">training_type</span><span class="o">=</span><span class="s1">&#39;pipeline&#39;</span>
 <span class="n">trainings_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/trainings?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&amp;type=</span><span class="si">{</span><span class="n">training_type</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/trainings?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&amp;type=</span><span class="si">{</span><span class="n">training_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16693,8 +16688,8 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">training</span> <span class="ow">in</span> <span class="n">trainings_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">training</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'tags'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">training</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">training</span> <span class="ow">in</span> <span class="n">trainings_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">training</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">training</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16722,7 +16717,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_id</span> <span class="o">=</span> <span class="n">trainings_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_id</span> <span class="o">=</span> <span class="n">trainings_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">training_id</span><span class="p">)</span>
 </pre></div>
 
@@ -16752,7 +16747,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/trainings/</span><span class="si">{</span><span class="n">training_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/trainings/</span><span class="si">{</span><span class="n">training_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16816,16 +16811,16 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hard_delete</span> <span class="o">=</span> <span class="s1">'true'</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hard_delete</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span>
 <span class="n">training_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/trainings/</span><span class="si">{</span><span class="n">training_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;hard_delete=</span><span class="si">{</span><span class="n">hard_delete</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/trainings/</span><span class="si">{</span><span class="n">training_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;hard_delete=</span><span class="si">{</span><span class="n">hard_delete</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">training_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete training: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">training_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete training: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">training_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16867,7 +16862,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">limit</span><span class="o">=</span><span class="mi">2</span>
 <span class="n">deployments_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/deployments?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/deployments?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&amp;limit=</span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -16898,8 +16893,8 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">deployment</span> <span class="ow">in</span> <span class="n">deployments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">deployment</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">deployment</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">deployment</span> <span class="ow">in</span> <span class="n">deployments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">deployment</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Id: </span><span class="si">{</span><span class="n">deployment</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16913,9 +16908,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16950,7 +16943,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">deployments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">deployments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
 </pre></div>
 
@@ -16965,9 +16958,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -17003,7 +16994,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/deployments/</span><span class="si">{</span><span class="n">deployment_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/deployments/</span><span class="si">{</span><span class="n">deployment_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -17048,9 +17039,7 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[43]:</div>
 
@@ -17105,14 +17094,14 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/deployments/</span><span class="si">{</span><span class="n">deployment_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/deployments/</span><span class="si">{</span><span class="n">deployment_id</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="k">if</span> <span class="n">deployment_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete deployment: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">deployment_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete deployment: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">deployment_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -17140,16 +17129,16 @@ wml_samples 	 Id: cc59083a-923f-4c35-8947-10c126343bd0
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">deployment</span> <span class="ow">in</span> <span class="n">deployments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">'resources'</span><span class="p">]:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">deployment</span> <span class="ow">in</span> <span class="n">deployments_details</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;resources&#39;</span><span class="p">]:</span>
     <span class="n">deployment_delete</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/deployments/</span><span class="si">{</span><span class="n">deployment</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DATAPLATFORM_URL</span><span class="si">}</span><span class="s2">/ml/v4/deployments/</span><span class="si">{</span><span class="n">deployment</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">?version=2020-08-01&amp;space_id=</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">deployment_delete</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">202</span><span class="p">,</span><span class="mi">204</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">'SUCCES'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCES&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Failed to delete deployment: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">deployment_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to delete deployment: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">deployment_delete</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>

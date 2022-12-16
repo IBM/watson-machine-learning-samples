@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14684,7 +14698,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
     <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
     <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
     <span class="s2">&quot;instance_id&quot;</span><span class="p">:</span> <span class="s1">&#39;openshift&#39;</span><span class="p">,</span>
-    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.0&#39;</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.5&#39;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14701,14 +14715,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Alternatively you can use <code>username</code> and <code>password</code> to authenticate WML services.</p>
-
 <pre><code>wml_credentials = {
-    "username": ***,
-    "password": ***,
-    "url": ***,
-    "instance_id": 'openshift',
-    "version": '4.0'
-}</code></pre>
+    &quot;username&quot;: ***,
+    &quot;password&quot;: ***,
+    &quot;url&quot;: ***,
+    &quot;instance_id&quot;: 'openshift',
+    &quot;version&quot;: '4.5'
+}
+
+</code></pre>
 
 </div>
 </div>
@@ -14857,9 +14872,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
@@ -14974,9 +14987,7 @@ Any 3rd party libraries that are required for the custom transformer must be def
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15027,9 +15038,7 @@ Any 3rd party libraries that are required for the custom transformer must be def
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15068,9 +15077,7 @@ Any 3rd party libraries that are required for the custom transformer must be def
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15122,9 +15129,7 @@ Any 3rd party libraries that are required for the custom transformer must be def
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15167,9 +15172,7 @@ rm -rf linalgnorm-0.1
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15258,9 +15261,7 @@ removing &#39;linalgnorm-0.1&#39; (and everything under it)
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15349,9 +15350,7 @@ Successfully installed linalgnorm-0.1
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15398,9 +15397,7 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15519,9 +15516,7 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
@@ -15760,9 +15755,7 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 
@@ -15804,9 +15797,7 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15832,7 +15823,7 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 <h2 id="5.-Persist-the-model-and-custom-library">5. Persist the model and custom library<a class="anchor-link" href="#5.-Persist-the-model-and-custom-library">&#182;</a></h2><p>In this section, using <code>ibm-watson_machine_learning</code> SDK, you will ...</p>
 <ul>
 <li>save the library <code>linalgnorm-0.1.zip</code> in WML Repository by creating a package extension resource</li>
-<li>create a Software Specification resource and bind the package resource to it. This Software Specification resource will be used to configure the online deployment runtime environment for a model </li>
+<li>create a Software Specification resource and bind the package resource to it. This Software Specification resource will be used to configure the online deployment runtime environment for a model</li>
 <li>bind Software Specification resource to the model and save the model to WML Repository</li>
 </ul>
 
@@ -15860,8 +15851,8 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 <p>Define the meta data required to create package extension resource. <br></p>
 <p>The value for <code>file_path</code> in <code>client.package_extensions.LibraryMetaNames.store()</code> contains the library file name that must be uploaded to the WML.</p>
 <p><strong>Note:</strong> You can also use conda environment configuration file <code>yaml</code> as package extension input. In such case set the <code>TYPE</code> to <code>conda_yml</code> and <code>file_path</code> to yaml file.</p>
-
-<pre><code>client.package_extensions.ConfigurationMetaNames.TYPE = "conda_yml"</code></pre>
+<pre><code>client.package_extensions.ConfigurationMetaNames.TYPE = &quot;conda_yml&quot;
+</code></pre>
 
 </div>
 </div>
@@ -15896,9 +15887,7 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15987,9 +15976,7 @@ SUCCESS
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16108,9 +16095,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16120,9 +16105,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 </pre>
 </div>
 </div>
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
 
@@ -16236,9 +16219,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16323,9 +16304,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16432,9 +16411,7 @@ Successfully finished deployment creation, deployment_uid=&#39;0d94523d-a2e7-4d7
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16531,9 +16508,7 @@ Successfully finished deployment creation, deployment_uid=&#39;0d94523d-a2e7-4d7
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 

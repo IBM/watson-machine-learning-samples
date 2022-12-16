@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14600,12 +14614,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><p>This notebook contains the following parts:</p>
 <ol>
-<li><a href="#setup">Setup</a>   </li>
-<li><a href="#model_definition">Model definition</a>  </li>
-<li><a href="#run">Experiment Run</a>  </li>
-<li><a href="#runs">Historical runs</a>  </li>
-<li><a href="#deploy_and_score">Deploy and Score</a>  </li>
-<li><a href="#cleaning">Cleaning</a>   </li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#model_definition">Model definition</a></li>
+<li><a href="#run">Experiment Run</a></li>
+<li><a href="#runs">Historical runs</a></li>
+<li><a href="#deploy_and_score">Deploy and Score</a></li>
+<li><a href="#cleaning">Cleaning</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
 
@@ -14748,9 +14762,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14902,9 +14914,7 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 
@@ -14943,9 +14953,7 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15005,9 +15013,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15079,7 +15085,7 @@ wget -q https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0
 </div>
 </div>
 </div>
-</div>!unzip -oqd . pytorch-onnx_v1_3.zip && cat pytorch_v_1.1_mnist_onnx.py
+</div>!unzip -oqd . pytorch-onnx_v1_3.zip &amp;&amp; cat pytorch_v_1.1_mnist_onnx.py
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15134,9 +15140,7 @@ curl -sk -X PUT <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15236,9 +15240,7 @@ Change <code>training_data_references: location: path: ...</code></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
 
@@ -15277,9 +15279,7 @@ Change <code>training_data_references: location: path: ...</code></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15339,9 +15339,7 @@ curl -sk -X  POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15389,7 +15387,7 @@ curl -sk -X GET \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID?space_id=$SPACE_ID&version=2020-08-01" \
+    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID?space_id=$SPACE_ID&amp;version=2020-08-01" \
     | python -m json.tool
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
@@ -15433,9 +15431,7 @@ curl -sk -X GET \
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15483,7 +15479,7 @@ Monitor <code>state</code> of your training by running above cell couple of time
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Output should be similar to the output from training creation but you should see more trainings entries.<br>
+<p>Output should be similar to the output from training creation but you should see more trainings entries.<br />
 Listing trainings:</p>
 
 </div>
@@ -15561,14 +15557,14 @@ curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&version=2020-08-01"
+    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&amp;version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<hr>
+<hr />
 
 </div>
 </div>
@@ -15787,9 +15783,7 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15887,9 +15881,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15933,9 +15925,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16031,9 +16021,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16203,9 +16191,7 @@ curl -sk -X GET <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16283,9 +16269,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16426,7 +16410,7 @@ curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&version=2020-08-01&hard_delete=true"
+    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&amp;version=2020-08-01&amp;hard_delete=true"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16458,7 +16442,7 @@ curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&version=2020-08-01"
+    "$DATAPLATFORM_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&amp;version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16489,7 +16473,7 @@ target="_blank" rel="noopener no referrer">Delete model from repository</a></p>
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&version=2020-08-01"
+    "$DATAPLATFORM_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&amp;version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16520,7 +16504,7 @@ target="_blank" rel="noopener no referrer">Delete model definition</a></p>
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/model_definitions/$MODEL_DEFINITION_ID?space_id=$SPACE_ID&version=2020-08-01"
+    "$DATAPLATFORM_URL/ml/v4/model_definitions/$MODEL_DEFINITION_ID?space_id=$SPACE_ID&amp;version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">

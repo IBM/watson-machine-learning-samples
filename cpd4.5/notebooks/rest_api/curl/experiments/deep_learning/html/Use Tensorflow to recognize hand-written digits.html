@@ -14465,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14478,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14601,12 +14614,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><p>This notebook contains the following parts:</p>
 <ol>
-<li><a href="#setup">Setup</a>  </li>
-<li><a href="#model_definition">Model definition</a>  </li>
-<li><a href="#run">Experiment Run</a>  </li>
-<li><a href="#runs">Historical runs</a>  </li>
-<li><a href="#deploy_and_score">Deploy and Score</a>  </li>
-<li><a href="#cleaning">Cleaning</a>   </li>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#model_definition">Model definition</a></li>
+<li><a href="#run">Experiment Run</a></li>
+<li><a href="#runs">Historical runs</a></li>
+<li><a href="#deploy_and_score">Deploy and Score</a></li>
+<li><a href="#cleaning">Cleaning</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
 
@@ -14713,12 +14726,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out token
 
 <span class="nv">token</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
-        --header <span class="s2">"Content-type: application/json"</span> <span class="se">\</span>
-        -d <span class="s2">"{\"username\":\"</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span><span class="s2">\",\"api_key\":\"</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">\"}"</span> <span class="se">\</span>
-        <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/icp4d-api/v1/authorize"</span><span class="k">)</span>
+        --header <span class="s2">&quot;Content-type: application/json&quot;</span> <span class="se">\</span>
+        -d <span class="s2">&quot;{\&quot;username\&quot;:\&quot;</span><span class="si">${</span><span class="nv">USERNAME</span><span class="si">}</span><span class="s2">\&quot;,\&quot;api_key\&quot;:\&quot;</span><span class="si">${</span><span class="nv">API_KEY</span><span class="si">}</span><span class="s2">\&quot;}&quot;</span> <span class="se">\</span>
+        <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/icp4d-api/v1/authorize&quot;</span><span class="k">)</span>
 
-<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*token</span><span class="se">\"</span><span class="p">:</span><span class="se">\"</span><span class="si">}</span>
-<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">%%</span><span class="se">\"</span><span class="p">*</span><span class="si">}</span>
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">#*token</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">token</span><span class="o">=</span><span class="si">${</span><span class="nv">token</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
 <span class="nb">echo</span> <span class="nv">$token</span>
 </pre></div>
 
@@ -14749,9 +14762,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14794,7 +14805,7 @@ target="_blank" rel="noopener no referrer">Space creation</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash --out space_id
+</div>%%bash --out space_id
 
 curl -sk -X POST \
     --header "Authorization: Bearer $TOKEN" \
@@ -14802,8 +14813,8 @@ curl -sk -X POST \
     --header "Accept: application/json" \
     --data '{"name": "curl_DL"}' \
     "$DATAPLATFORM_URL/v2/spaces" \
-     | grep '"id": ' | awk -F '"' '{ print $4 }'</p><p>space_id = space_id.split('\n')[1]
-%env SPACE_ID=$space_id</p>
+     | grep '"id": ' | awk -F '"' '{ print $4 }'space_id = space_id.split('\n')[1]
+%env SPACE_ID=$space_id
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14829,13 +14840,13 @@ target="_blank" rel="noopener no referrer">Get space information</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X GET \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/v2/spaces/$SPACE_ID"</p>
+    "$DATAPLATFORM_URL/v2/spaces/$SPACE_ID"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14872,7 +14883,7 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_definition_payload
 
-<span class="nv">MODEL_DEFINITION_PAYLOAD</span><span class="o">=</span><span class="s1">'{"name": "Hand-written Digit Recognition", "space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'", "description": "Hand-written Digit Recognition", "tags": ["DL", "TF"], "version": "v1", "platform": {"name": "python", "versions": ["3.9"]}, "command": "convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000"}'</span>
+<span class="nv">MODEL_DEFINITION_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;name&quot;: &quot;Hand-written Digit Recognition&quot;, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;description&quot;: &quot;Hand-written Digit Recognition&quot;, &quot;tags&quot;: [&quot;DL&quot;, &quot;TF&quot;], &quot;version&quot;: &quot;v1&quot;, &quot;platform&quot;: {&quot;name&quot;: &quot;python&quot;, &quot;versions&quot;: [&quot;3.9&quot;]}, &quot;command&quot;: &quot;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$MODEL_DEFINITION_PAYLOAD</span>
 </pre></div>
 
@@ -14919,9 +14930,7 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14947,11 +14956,11 @@ target="_blank" rel="noopener no referrer">Store a model definition for Deep Lea
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_definition_id
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$MODEL_DEFINITION_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/model_definitions?version=2020-08-01"</span><span class="p">|</span> grep <span class="s1">'"id": '</span> <span class="p">|</span> awk -F <span class="s1">'"'</span> <span class="s1">'{ print $4 }'</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$MODEL_DEFINITION_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/model_definitions?version=2020-08-01&quot;</span><span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span>
 </pre></div>
 
      </div>
@@ -14981,9 +14990,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15055,7 +15062,7 @@ wget -q https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0
 </div>
 </div>
 </div>
-</div><p>!unzip -oqd . tf_model_with_metrics_2_1.zip &amp;&amp; cat convolutional_network.py</p>
+</div>!unzip -oqd . tf_model_with_metrics_2_1.zip &amp;&amp; cat convolutional_network.py
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15091,11 +15098,11 @@ target="_blank" rel="noopener no referrer">Upload model for the model definition
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X PUT <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data-binary <span class="s2">"@tf_model_with_metrics_2_1.zip"</span><span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/model_definitions/</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">/model?version=2020-08-01&amp;space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data-binary <span class="s2">&quot;@tf_model_with_metrics_2_1.zip&quot;</span><span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/model_definitions/</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">/model?version=2020-08-01&amp;space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -15110,9 +15117,7 @@ curl -sk -X PUT <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15181,7 +15186,7 @@ Change <code>training_data_references: location: path: ...</code></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_payload
 
-<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">'{"training_data_references": [{"name": "training_input_data", "type": "fs", "connection": {}, "location": {"path": "tf-mnist"}, "schema": {"id": "idmlp_schema", "fields": [{"name": "text", "type": "string"}]}}], "results_reference": {"name": "MNIST results", "connection": {}, "location": {"path": "spaces/'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'/assets/experiment"}, "type": "fs"}, "tags": [{"value": "tags_tf", "description": "Tags TF"}], "name": "TF hand-written Digit Recognition", "description": "TF hand-written Digit Recognition", "model_definition": {"id": "'</span><span class="s2">"</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">"</span><span class="s1">'", "command": "convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000", "hardware_spec": {"name": "K80", "nodes": 1}, "software_spec": {"name": "tensorflow_rt22.1-py3.9"}, "parameters": {"name": "MNIST Tf", "description": "Tf DL model"}}, "space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'"}'</span>
+<span class="nv">TRAINING_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;training_data_references&quot;: [{&quot;name&quot;: &quot;training_input_data&quot;, &quot;type&quot;: &quot;fs&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;tf-mnist&quot;}, &quot;schema&quot;: {&quot;id&quot;: &quot;idmlp_schema&quot;, &quot;fields&quot;: [{&quot;name&quot;: &quot;text&quot;, &quot;type&quot;: &quot;string&quot;}]}}], &quot;results_reference&quot;: {&quot;name&quot;: &quot;MNIST results&quot;, &quot;connection&quot;: {}, &quot;location&quot;: {&quot;path&quot;: &quot;spaces/&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;/assets/experiment&quot;}, &quot;type&quot;: &quot;fs&quot;}, &quot;tags&quot;: [{&quot;value&quot;: &quot;tags_tf&quot;, &quot;description&quot;: &quot;Tags TF&quot;}], &quot;name&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;description&quot;: &quot;TF hand-written Digit Recognition&quot;, &quot;model_definition&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_DEFINITION_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;, &quot;command&quot;: &quot;convolutional_network.py --trainImagesFile train-images-idx3-ubyte.gz --trainLabelsFile train-labels-idx1-ubyte.gz --testImagesFile t10k-images-idx3-ubyte.gz --testLabelsFile t10k-labels-idx1-ubyte.gz --learningRate 0.001 --trainingIters 6000&quot;, &quot;hardware_spec&quot;: {&quot;name&quot;: &quot;K80&quot;, &quot;nodes&quot;: 1}, &quot;software_spec&quot;: {&quot;name&quot;: &quot;tensorflow_rt22.1-py3.9&quot;}, &quot;parameters&quot;: {&quot;name&quot;: &quot;MNIST Tf&quot;, &quot;description&quot;: &quot;Tf DL model&quot;}}, &quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$TRAINING_PAYLOAD</span>
 </pre></div>
 
@@ -15212,9 +15217,7 @@ Change <code>training_data_references: location: path: ...</code></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
@@ -15253,9 +15256,7 @@ Change <code>training_data_references: location: path: ...</code></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15281,11 +15282,11 @@ Change <code>training_data_references: location: path: ...</code></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out training_id
 
 curl -sk -X  POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$TRAINING_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings?version=2020-08-01"</span> <span class="p">|</span> awk -F<span class="s1">'"id":'</span> <span class="s1">'{print $2}'</span> <span class="p">|</span> cut -c2-37
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$TRAINING_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings?version=2020-08-01&quot;</span> <span class="p">|</span> awk -F<span class="s1">&#39;&quot;id&quot;:&#39;</span> <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> cut -c2-37
 </pre></div>
 
      </div>
@@ -15315,9 +15316,7 @@ curl -sk -X  POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15359,14 +15358,14 @@ target="_blank" rel="noopener no referrer">Get information about training job</a
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X GET \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID?space_id=$SPACE_ID&amp;version=2020-08-01" \
-    | python -m json.tool</p>
+    | python -m json.tool
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15388,13 +15387,13 @@ curl -sk -X GET \
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 <span class="nv">STATUS</span><span class="o">=</span><span class="k">$(</span>curl -sk -X GET<span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings/</span><span class="nv">$TRAINING_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span><span class="k">)</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings/</span><span class="nv">$TRAINING_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span><span class="k">)</span>
     
-<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">#*state</span><span class="se">\"</span><span class="p">:</span><span class="se">\"</span><span class="si">}</span>
-<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">%%</span><span class="se">\"</span><span class="p">*</span><span class="si">}</span>
+<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">#*state</span><span class="se">\&quot;</span><span class="p">:</span><span class="se">\&quot;</span><span class="si">}</span>
+<span class="nv">STATUS</span><span class="o">=</span><span class="si">${</span><span class="nv">STATUS</span><span class="p">%%</span><span class="se">\&quot;</span><span class="p">*</span><span class="si">}</span>
 <span class="nb">echo</span> <span class="nv">$STATUS</span>
 </pre></div>
 
@@ -15409,9 +15408,7 @@ curl -sk -X GET \
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15459,7 +15456,7 @@ Monitor <code>state</code> of your training by running above cell couple of time
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Output should be similar to the output from training creation but you should see more trainings entries.<br>
+<p>Output should be similar to the output from training creation but you should see more trainings entries.<br />
 Listing trainings:</p>
 
 </div>
@@ -15491,10 +15488,10 @@ target="_blank" rel="noopener no referrer">Get list of historical training jobs 
 <span class="nv">HISTORICAL_TRAINING_LIMIT_TO_GET</span><span class="o">=</span><span class="m">2</span>
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;limit=</span><span class="nv">$HISTORICAL_TRAINING_LIMIT_TO_GET</span><span class="s2">"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/trainings?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&amp;limit=</span><span class="nv">$HISTORICAL_TRAINING_LIMIT_TO_GET</span><span class="s2">&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -15529,7 +15526,7 @@ target="_blank" rel="noopener no referrer">Canceling training</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 TRAINING_ID_TO_CANCEL=...
 
@@ -15537,14 +15534,14 @@ curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&amp;version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<hr>
+<hr />
 
 </div>
 </div>
@@ -15598,10 +15595,10 @@ Please see below cURL call example how to do it.</p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out request_json
 
 <span class="nv">RJSON</span><span class="o">=</span><span class="k">$(</span>curl -sk -X GET <span class="se">\</span>
-        --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-        --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-        <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/asset_files/experiment/</span><span class="nv">$TRAINING_ID</span><span class="s2">/assets/</span><span class="nv">$TRAINING_ID</span><span class="s2">/resources/wml_model/request.json?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span><span class="k">)</span>
+        --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+        --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+        --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+        <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/v2/asset_files/experiment/</span><span class="nv">$TRAINING_ID</span><span class="s2">/assets/</span><span class="nv">$TRAINING_ID</span><span class="s2">/resources/wml_model/request.json?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span><span class="k">)</span>
 <span class="nb">echo</span> <span class="nv">$RJSON</span>
 </pre></div>
 
@@ -15679,11 +15676,11 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_details
 
 <span class="nv">MODEL_DETAILS</span><span class="o">=</span><span class="k">$(</span>curl -sk -X POST <span class="se">\</span>
-        --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-        --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-        --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-        --data <span class="s2">"</span><span class="nv">$MODEL_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-        <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models?version=2020-08-01&amp;space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="k">)</span>
+        --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+        --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+        --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+        --data <span class="s2">&quot;</span><span class="nv">$MODEL_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+        <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/models?version=2020-08-01&amp;space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="k">)</span>
 <span class="nb">echo</span> <span class="nv">$MODEL_JSON</span>
 </pre></div>
 
@@ -15730,9 +15727,7 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15796,7 +15791,7 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out model_id
 
-<span class="nb">echo</span> <span class="nv">$MODEL_DETAILS</span> <span class="p">|</span> awk -F <span class="s1">'"id": '</span> <span class="s1">'{ print $5 }'</span> <span class="p">|</span> cut -d <span class="s1">'"'</span> -f <span class="m">2</span>
+<span class="nb">echo</span> <span class="nv">$MODEL_DETAILS</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="s1">&#39;{ print $5 }&#39;</span> <span class="p">|</span> cut -d <span class="s1">&#39;&quot;&#39;</span> -f <span class="m">2</span>
 </pre></div>
 
      </div>
@@ -15826,9 +15821,7 @@ target="_blank" rel="noopener no referrer">Model storing</a></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15879,7 +15872,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_payload
 
-<span class="nv">DEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">'{"space_id": "'</span><span class="s2">"</span><span class="nv">$SPACE_ID</span><span class="s2">"</span><span class="s1">'","name": "TF Mnist deploymen", "description": "TF model to predict had-written digits","online": {},"hardware_spec": {"name": "S"},"asset": {"id": "'</span><span class="s2">"</span><span class="nv">$MODEL_ID</span><span class="s2">"</span><span class="s1">'"}}'</span>
+<span class="nv">DEPLOYMENT_PAYLOAD</span><span class="o">=</span><span class="s1">&#39;{&quot;space_id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$SPACE_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;,&quot;name&quot;: &quot;TF Mnist deploymen&quot;, &quot;description&quot;: &quot;TF model to predict had-written digits&quot;,&quot;online&quot;: {},&quot;hardware_spec&quot;: {&quot;name&quot;: &quot;S&quot;},&quot;asset&quot;: {&quot;id&quot;: &quot;&#39;</span><span class="s2">&quot;</span><span class="nv">$MODEL_ID</span><span class="s2">&quot;</span><span class="s1">&#39;&quot;}}&#39;</span>
 <span class="nb">echo</span> <span class="nv">$DEPLOYMENT_PAYLOAD</span>
 </pre></div>
 
@@ -15910,9 +15903,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
@@ -15951,9 +15942,7 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15979,11 +15968,11 @@ target="_blank" rel="noopener no referrer">Create deployment</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash --out deployment_id
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s2">"</span><span class="nv">$DEPLOYMENT_PAYLOAD</span><span class="s2">"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?version=2020-08-01"</span> <span class="p">|</span> grep <span class="s1">'"id": '</span> <span class="p">|</span> awk -F <span class="s1">'"'</span> <span class="s1">'{ print $4 }'</span> <span class="p">|</span> sed -n 3p
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s2">&quot;</span><span class="nv">$DEPLOYMENT_PAYLOAD</span><span class="s2">&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?version=2020-08-01&quot;</span> <span class="p">|</span> grep <span class="s1">&#39;&quot;id&quot;: &#39;</span> <span class="p">|</span> awk -F <span class="s1">&#39;&quot;&#39;</span> <span class="s1">&#39;{ print $4 }&#39;</span> <span class="p">|</span> sed -n 3p
 </pre></div>
 
      </div>
@@ -16013,9 +16002,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16067,9 +16054,9 @@ target="_blank" rel="noopener no referrer">Get deployment details</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16117,8 +16104,8 @@ curl -sk -X GET <span class="se">\</span>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'mnist.npz'</span><span class="p">)</span>
-<span class="n">test_mnist</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="p">[</span><span class="s1">'x_test'</span><span class="p">]</span>
+<span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;mnist.npz&#39;</span><span class="p">)</span>
+<span class="n">test_mnist</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="p">[</span><span class="s1">&#39;x_test&#39;</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -16170,8 +16157,8 @@ curl -sk -X GET <span class="se">\</span>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">test_mnist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test_mnist</span><span class="p">[</span><span class="mi">1</span><span class="p">]]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -16185,9 +16172,7 @@ curl -sk -X GET <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16243,14 +16228,14 @@ target="_blank" rel="noopener no referrer">Create deployment job</a></p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>%%bash -s <span class="s2">"</span><span class="nv">$image_1</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$image_2</span><span class="s2">"</span>
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash -s <span class="s2">&quot;</span><span class="nv">$image_1</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$image_2</span><span class="s2">&quot;</span>
 
 curl -sk -X POST <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    --header <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
-    --data <span class="s1">'{"space_id": "$SPACE_ID","input_data": [{"values": ['</span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="s1">', '</span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span><span class="s1">']}]}'</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">/predictions?version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Accept: application/json&quot;</span> <span class="se">\</span>
+    --data <span class="s1">&#39;{&quot;space_id&quot;: &quot;$SPACE_ID&quot;,&quot;input_data&quot;: [{&quot;values&quot;: [&#39;</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="s1">&#39;, &#39;</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span><span class="s1">&#39;]}]}&#39;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments/</span><span class="nv">$DEPLOYMENT_ID</span><span class="s2">/predictions?version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16265,9 +16250,7 @@ curl -sk -X POST <span class="se">\</span>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16328,9 +16311,9 @@ target="_blank" rel="noopener no referrer">List deployments details</a></p>
 <div class=" highlight hl-ipython3"><pre><span></span>%%bash
 
 curl -sk -X GET <span class="se">\</span>
-    --header <span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span> <span class="se">\</span>
-    --header <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="s2">"</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01"</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span> <span class="se">\</span>
+    --header <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="se">\</span>
+    <span class="s2">&quot;</span><span class="nv">$DATAPLATFORM_URL</span><span class="s2">/ml/v4/deployments?space_id=</span><span class="nv">$SPACE_ID</span><span class="s2">&amp;version=2020-08-01&quot;</span> <span class="se">\</span>
     <span class="p">|</span> python -m json.tool
 </pre></div>
 
@@ -16379,7 +16362,7 @@ target="_blank" rel="noopener no referrer">Deleting training</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 TRAINING_ID_TO_DELETE=...
 
@@ -16387,7 +16370,7 @@ curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&amp;version=2020-08-01&amp;hard_delete=true"</p>
+    "$DATAPLATFORM_URL/ml/v4/trainings/$TRAINING_ID_TO_DELETE?space_id=$SPACE_ID&amp;version=2020-08-01&amp;hard_delete=true"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16413,13 +16396,13 @@ target="_blank" rel="noopener no referrer">Delete deployment</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/deployments/$DEPLOYMENT_ID?space_id=$SPACE_ID&amp;version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16445,12 +16428,12 @@ target="_blank" rel="noopener no referrer">Delete model from repository</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/models/$MODEL_ID?space_id=$SPACE_ID&amp;version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -16476,12 +16459,12 @@ target="_blank" rel="noopener no referrer">Delete model definition</a></p>
 </div>
 </div>
 </div>
-</div><p>%%bash
+</div>%%bash
 
 curl -sk -X DELETE \
     --header "Authorization: Bearer $TOKEN" \
     --header "Content-Type: application/json" \
-    "$DATAPLATFORM_URL/ml/v4/model_definitions/$MODEL_DEFINITION_ID?space_id=$SPACE_ID&amp;version=2020-08-01"</p>
+    "$DATAPLATFORM_URL/ml/v4/model_definitions/$MODEL_DEFINITION_ID?space_id=$SPACE_ID&amp;version=2020-08-01"
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">

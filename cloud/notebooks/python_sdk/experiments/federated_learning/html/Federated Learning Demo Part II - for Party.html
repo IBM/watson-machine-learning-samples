@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14610,6 +14624,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="alert alert-block alert-info">This notebook is intended to be run by the administrator or connecting party of the Federated Learning experiment.
 </div>
+
 </div>
 </div>
 </div>
@@ -14622,9 +14637,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">&#182;</a></h2><ol>
 <li><a href="#setup">Setup</a></li>
-<li><a href="#load">Load the data</a>  </li>
-<li><a href="#data-handler">Define a Data Handler</a>  </li>
-<li><a href="#config">Configure the party</a>  </li>
+<li><a href="#load">Load the data</a></li>
+<li><a href="#data-handler">Define a Data Handler</a></li>
+<li><a href="#config">Configure the party</a></li>
 <li><a href="#clean">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
@@ -14658,14 +14673,14 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">&#182;</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
 <p>You can use <a href="https://cloud.ibm.com/docs/cli/index.html">IBM Cloud CLI</a> to retrieve platform API Key and instance location.</p>
 <p>API Key can be generated in the following way:</p>
-
 <pre><code>ibmcloud login
-ibmcloud iam api-key-create API_KEY_NAME</code></pre>
+ibmcloud iam api-key-create API_KEY_NAME
+</code></pre>
 <p>In result, get the value of <code>api_key</code> from the output.</p>
 <p>Location of your WML instance can be retrieved in the following way:</p>
-
 <pre><code>ibmcloud login --apikey API_KEY -a https://cloud.ibm.com
-ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
+ibmcloud resource service-instance WML_INSTANCE_NAME
+</code></pre>
 <p>In result, get the value of <code>location</code> from the output.</p>
 
 </div>
@@ -14817,9 +14832,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
@@ -14962,9 +14975,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME</code></pre>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15070,9 +15081,7 @@ drwxr-xr-x  6 Rinay.Shah@ibm.com  staff   192B Nov 18 13:05 <span class="ansi-bl
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15129,7 +15138,7 @@ drwxr-xr-x  6 Rinay.Shah@ibm.com  staff   192B Nov 18 13:05 <span class="ansi-bl
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Each party must run their party configuration file to call out to the aggregator. Here is an example of a party configuration.</p>
-<p>Because you had already defined the training ID, RTS ID and data handler in the previous sections of this notebook, and the local training and protocol handler are all defined by the SDK, you will only need to define the information for the dataset file under <code>["data"]["info"]</code>.</p>
+<p>Because you had already defined the training ID, RTS ID and data handler in the previous sections of this notebook, and the local training and protocol handler are all defined by the SDK, you will only need to define the information for the dataset file under <code>[&quot;data&quot;][&quot;info&quot;]</code>.</p>
 <p>In this tutorial, the data path is already defined as we have loaded the examplar MNIST dataset from previous sections.</p>
 
 </div>
@@ -15198,9 +15207,7 @@ drwxr-xr-x  6 Rinay.Shah@ibm.com  staff   192B Nov 18 13:05 <span class="ansi-bl
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15210,9 +15217,7 @@ drwxr-xr-x  6 Rinay.Shah@ibm.com  staff   192B Nov 18 13:05 <span class="ansi-bl
 </pre>
 </div>
 </div>
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15229,9 +15234,7 @@ x_train shape: (50040, 28, 28, 1)
 </pre>
 </div>
 </div>
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15242,9 +15245,7 @@ x_train shape: (50040, 28, 28, 1)
 </pre>
 </div>
 </div>
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15383,7 +15384,7 @@ x_train shape: (50040, 28, 28, 1)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You successfully completed this notebook!<br>
+<p>You successfully completed this notebook!<br />
 You have learned to:</p>
 <ol>
 <li>Start a Federated Learning experiment</li>
@@ -15393,7 +15394,7 @@ You have learned to:</p>
 <li>Define the data handler</li>
 <li>Configure the party</li>
 <li>Connect to the aggregator</li>
-<li>Train your Federated Learning model  </li>
+<li>Train your Federated Learning model</li>
 </ol>
 <p>Check out our <em><a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=analytics">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 

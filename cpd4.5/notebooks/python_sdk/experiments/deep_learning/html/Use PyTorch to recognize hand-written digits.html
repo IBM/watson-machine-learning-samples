@@ -14465,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14478,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14650,9 +14663,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">'PASTE YOUR USERNAME HERE'</span>
-<span class="n">api_key</span> <span class="o">=</span> <span class="s1">'PASTE YOUR API_KEY HERE'</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s1">'PASTE THE PLATFORM URL HERE'</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR USERNAME HERE&#39;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR API_KEY HERE&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;PASTE THE PLATFORM URL HERE&#39;</span>
 </pre></div>
 
      </div>
@@ -14669,11 +14682,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wml_credentials</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"username"</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
-    <span class="s2">"apikey"</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
-    <span class="s2">"url"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
-    <span class="s2">"instance_id"</span><span class="p">:</span> <span class="s1">'openshift'</span><span class="p">,</span>
-    <span class="s2">"version"</span><span class="p">:</span> <span class="s1">'4.5'</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+    <span class="s2">&quot;apikey&quot;</span><span class="p">:</span> <span class="n">api_key</span><span class="p">,</span>
+    <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+    <span class="s2">&quot;instance_id&quot;</span><span class="p">:</span> <span class="s1">&#39;openshift&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s1">&#39;4.5&#39;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14690,14 +14703,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Alternatively you can use <code>username</code> and <code>password</code> to authenticate WML services.</p>
-
 <pre><code>wml_credentials = {
-    "username": ***,
-    "password": ***,
-    "url": ***,
-    "instance_id": 'openshift',
-    "version": '4.5'
-}</code></pre>
+    &quot;username&quot;: ***,
+    &quot;password&quot;: ***,
+    &quot;url&quot;: ***,
+    &quot;instance_id&quot;: 'openshift',
+    &quot;version&quot;: '4.5'
+}
+
+</code></pre>
 
 </div>
 </div>
@@ -14776,7 +14790,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">'PASTE YOUR SPACE ID HERE'</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">&#39;PASTE YOUR SPACE ID HERE&#39;</span>
 </pre></div>
 
      </div>
@@ -14846,9 +14860,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
@@ -14897,11 +14909,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_definition_metadata</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"PyTorch Hand-written Digit Recognition"</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">"PyTorch Hand-written Digit Recognition"</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">COMMAND</span><span class="p">:</span>  <span class="s2">"torch_mnist.py --epochs 1"</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PLATFORM</span><span class="p">:</span> <span class="p">{</span><span class="s2">"name"</span><span class="p">:</span> <span class="s2">"python"</span><span class="p">,</span> <span class="s2">"versions"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"3.8"</span><span class="p">]},</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">VERSION</span><span class="p">:</span> <span class="s2">"2.0"</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;PyTorch Hand-written Digit Recognition&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;PyTorch Hand-written Digit Recognition&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">COMMAND</span><span class="p">:</span>  <span class="s2">&quot;torch_mnist.py --epochs 1&quot;</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">PLATFORM</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;versions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;3.8&quot;</span><span class="p">]},</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">VERSION</span><span class="p">:</span> <span class="s2">&quot;2.0&quot;</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">model_definitions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">SPACE_UID</span><span class="p">:</span> <span class="n">space_id</span>
 <span class="p">}</span>
 </pre></div>
@@ -14932,10 +14944,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wget</span><span class="o">,</span> <span class="nn">os</span>
 
-<span class="n">filename</span><span class="o">=</span><span class="s1">'pytorch-model.zip'</span>
+<span class="n">filename</span><span class="o">=</span><span class="s1">&#39;pytorch-model.zip&#39;</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.5/definitions/pytorch/mnist/pytorch-model.zip'</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.5/definitions/pytorch/mnist/pytorch-model.zip&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14955,7 +14967,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 </div>
 </div>
-</div><p>!unzip -oqd . pytorch-model.zip &amp;&amp; cat torch_mnist.py</p>
+</div>!unzip -oqd . pytorch-model.zip &amp;&amp; cat torch_mnist.py
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15005,9 +15017,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15092,44 +15102,44 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">training_metadata</span> <span class="o">=</span> <span class="n">training_metadata</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"PyTorch hand-written Digit Recognition"</span><span class="p">,</span>
-   <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">"PyTorch hand-written Digit Recognition"</span><span class="p">,</span>
+   <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;PyTorch hand-written Digit Recognition&quot;</span><span class="p">,</span>
+   <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">&quot;PyTorch hand-written Digit Recognition&quot;</span><span class="p">,</span>
    <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">TRAINING_RESULTS_REFERENCE</span><span class="p">:</span>  <span class="p">{</span>
-      <span class="s2">"name"</span><span class="p">:</span><span class="s2">"MNIST results"</span><span class="p">,</span>
-      <span class="s2">"connection"</span><span class="p">:{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;MNIST results&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;connection&quot;</span><span class="p">:{</span>
          
       <span class="p">},</span>
-      <span class="s2">"location"</span><span class="p">:{</span>
-         <span class="s2">"path"</span><span class="p">:</span><span class="sa">f</span><span class="s2">"spaces/</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">/assets/experiment"</span>
+      <span class="s2">&quot;location&quot;</span><span class="p">:{</span>
+         <span class="s2">&quot;path&quot;</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;spaces/</span><span class="si">{</span><span class="n">space_id</span><span class="si">}</span><span class="s2">/assets/experiment&quot;</span>
       <span class="p">},</span>
-      <span class="s2">"type"</span><span class="p">:</span><span class="s2">"fs"</span>
+      <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;fs&quot;</span>
    <span class="p">},</span>
   <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">MODEL_DEFINITION</span><span class="p">:{</span>
-        <span class="s2">"id"</span><span class="p">:</span> <span class="n">model_definition_id</span><span class="p">,</span>
-        <span class="s2">"hardware_spec"</span><span class="p">:</span> <span class="p">{</span>
-          <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"K80"</span><span class="p">,</span>
-          <span class="s2">"nodes"</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">model_definition_id</span><span class="p">,</span>
+        <span class="s2">&quot;hardware_spec&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;K80&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;nodes&quot;</span><span class="p">:</span> <span class="mi">1</span>
         <span class="p">},</span>
-        <span class="s2">"software_spec"</span><span class="p">:</span> <span class="p">{</span>
-          <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"pytorch-onnx_rt22.1-py3.9"</span>
+        <span class="s2">&quot;software_spec&quot;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;pytorch-onnx_rt22.1-py3.9&quot;</span>
         <span class="p">}</span>
   <span class="p">},</span>
   <span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">TRAINING_DATA_REFERENCES</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
-         <span class="s2">"name"</span><span class="p">:</span><span class="s2">"training_input_data"</span><span class="p">,</span>
-         <span class="s2">"type"</span><span class="p">:</span><span class="s2">"fs"</span><span class="p">,</span>
-         <span class="s2">"connection"</span><span class="p">:{</span>
+         <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;training_input_data&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;fs&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;connection&quot;</span><span class="p">:{</span>
             
          <span class="p">},</span>
-         <span class="s2">"location"</span><span class="p">:{</span>
-            <span class="s2">"path"</span><span class="p">:</span> <span class="s2">"pytorch-mnist"</span>
+         <span class="s2">&quot;location&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;pytorch-mnist&quot;</span>
          <span class="p">},</span>
-         <span class="s2">"schema"</span><span class="p">:{</span>
-            <span class="s2">"id"</span><span class="p">:</span><span class="s2">"idmlp_schema"</span><span class="p">,</span>
-            <span class="s2">"fields"</span><span class="p">:[</span>
+         <span class="s2">&quot;schema&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;idmlp_schema&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;fields&quot;</span><span class="p">:[</span>
                <span class="p">{</span>
-                  <span class="s2">"name"</span><span class="p">:</span><span class="s2">"text"</span><span class="p">,</span>
-                  <span class="s2">"type"</span><span class="p">:</span><span class="s2">"string"</span>
+                  <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span>
                <span class="p">}</span>
             <span class="p">]</span>
          <span class="p">}</span>
@@ -15204,9 +15214,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15229,7 +15237,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">training_id</span><span class="p">)[</span><span class="s1">'state'</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">training</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">training_id</span><span class="p">)[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -15243,9 +15251,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[45]:</div>
 
@@ -15337,13 +15343,13 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You can cancel the training run by calling the method below.<br>
+<p>You can cancel the training run by calling the method below.<br />
 <strong>Tip</strong>: If you want to  delete train runs and results add <code>hard_delete=True</code> as a parameter.</p>
 
 </div>
 </div>
 </div>
-</div><p>client.training.cancel(training_id)</p>
+</div>client.training.cancel(training_id)
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -15374,7 +15380,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s1">'pytorch-onnx_rt22.1-py3.9'</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">software_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s1">&#39;pytorch-onnx_rt22.1-py3.9&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15390,8 +15396,8 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_meta_props</span> <span class="o">=</span> <span class="p">{</span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"PyTorch Mnist Model"</span><span class="p">,</span>
-                    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">"pytorch-onnx_1.10"</span><span class="p">,</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_meta_props</span> <span class="o">=</span> <span class="p">{</span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">&quot;PyTorch Mnist Model&quot;</span><span class="p">,</span>
+                    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">&quot;pytorch-onnx_1.10&quot;</span><span class="p">,</span>
                     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">software_spec_uid</span>
                     <span class="p">}</span>
 
@@ -15503,7 +15509,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
-                                            <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s2">"PyCharm Mnist deployment"</span><span class="p">,</span>
+                                            <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s2">&quot;PyCharm Mnist deployment&quot;</span><span class="p">,</span>
                                             <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:{}})</span>
 
 <span class="n">scoring_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_scoring_href</span><span class="p">(</span><span class="n">deployment</span><span class="p">)</span>
@@ -15521,9 +15527,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15604,7 +15608,7 @@ Successfully finished deployment creation, deployment_uid=&#39;4f09e2de-6330-486
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Prepare sample scoring data to score deployed model.<br>
+<p>Prepare sample scoring data to score deployed model.<br />
 <strong>Hint:</strong> You may need to install wget using following command <code>!pip install wget</code></p>
 
 </div>
@@ -15620,10 +15624,10 @@ Successfully finished deployment creation, deployment_uid=&#39;4f09e2de-6330-486
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wget</span>
 
-<span class="n">dataset_filename</span><span class="o">=</span><span class="s1">'mnist.npz'</span>
+<span class="n">dataset_filename</span><span class="o">=</span><span class="s1">&#39;mnist.npz&#39;</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_filename</span><span class="p">):</span>
-    <span class="n">dataset_filename</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.5/data/mnist/mnist.npz'</span><span class="p">)</span>
+    <span class="n">dataset_filename</span> <span class="o">=</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.5/data/mnist/mnist.npz&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15641,9 +15645,9 @@ Successfully finished deployment creation, deployment_uid=&#39;4f09e2de-6330-486
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">dataset_filename</span><span class="o">=</span><span class="s1">'mnist.npz'</span>
+<span class="n">dataset_filename</span><span class="o">=</span><span class="s1">&#39;mnist.npz&#39;</span>
 <span class="n">mnist_dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dataset_filename</span><span class="p">)</span>
-<span class="n">x_test</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="p">[</span><span class="s1">'x_test'</span><span class="p">]</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">mnist_dataset</span><span class="p">[</span><span class="s1">&#39;x_test&#39;</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -15695,8 +15699,8 @@ Successfully finished deployment creation, deployment_uid=&#39;4f09e2de-6330-486
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_test</span><span class="p">[</span><span class="mi">1</span><span class="p">]]):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15710,9 +15714,7 @@ Successfully finished deployment creation, deployment_uid=&#39;4f09e2de-6330-486
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15756,11 +15758,11 @@ jp-needs-light-background
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA</span> <span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span><span class="s1">'values'</span><span class="p">:</span> <span class="p">[</span><span class="n">image_1</span><span class="p">,</span> <span class="n">image_2</span><span class="p">]}</span>
+        <span class="p">{</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">image_1</span><span class="p">,</span> <span class="n">image_2</span><span class="p">]}</span>
     <span class="p">]</span>
 <span class="p">}</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">scoring_payload</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Scoring result:</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scoring result:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15774,9 +15776,7 @@ jp-needs-light-background
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15903,7 +15903,7 @@ jp-needs-light-background
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You successfully completed this notebook! You learned how to use <code>ibm-watson-machine-learning-client</code> to train and score PyTorch models.<br>
+<p>You successfully completed this notebook! You learned how to use <code>ibm-watson-machine-learning-client</code> to train and score PyTorch models.<br />
  Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/analyze-data/wml-setup.html">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 
 </div>

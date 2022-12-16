@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14689,14 +14703,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Alternatively you can use <code>username</code> and <code>password</code> to authenticate WML services.</p>
-
 <pre><code>wml_credentials = {
-    "username": ***,
-    "password": ***,
-    "url": ***,
-    "instance_id": 'openshift',
-    "version": '4.0'
-}</code></pre>
+    &quot;username&quot;: ***,
+    &quot;password&quot;: ***,
+    &quot;url&quot;: ***,
+    &quot;instance_id&quot;: 'openshift',
+    &quot;version&quot;: '4.0'
+}
+
+</code></pre>
 
 </div>
 </div>
@@ -14848,9 +14863,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
@@ -14962,9 +14975,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14975,9 +14986,7 @@ SUCCESS
 </pre>
 </div>
 </div>
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
@@ -15123,9 +15132,7 @@ SUCCESS
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
@@ -15207,9 +15214,7 @@ SUCCESS
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15258,9 +15263,7 @@ SUCCESS
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 
@@ -15398,9 +15401,7 @@ SUCCESS
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -15526,9 +15527,7 @@ Successfully finished deployment creation, deployment_uid=&#39;0a561646-ce6e-4dd
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 
@@ -15673,33 +15672,29 @@ schemas for hyperparameter tuning.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?-->
+
 <!-- Generated by graphviz version 2.47.0 (20210316.0004)
  -->
 <!-- Title: cluster:(root) Pages: 1 -->
-<svg width="1275pt" height="149pt"
- viewBox="0.00 0.00 1274.96 148.54" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1275pt" height="149pt" viewBox="0.00 0.00 1274.96 148.54">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 144.54)">
 <title>cluster:(root)</title>
-<g id="a_graph0"><a xlink:title="(root) = ...">
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-144.54 1270.96,-144.54 1270.96,4 -4,4"/>
+<g id="a_graph0"><a>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-144.54 1270.96,-144.54 1270.96,4 -4,4"></polygon>
 </a>
 </g>
 <g id="clust1" class="cluster">
 <title>cluster:tam</title>
-<g id="a_clust1"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.tam.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="tam = TAM(tans_class=feature_agglomeration, name=&#39;featureagglomeration&#39;, col_names=[&#39;CheckingStatus&#39;, &#39;LoanDuration&#39;, &#39;CreditHistory&#39;, &#39;LoanPurpose&#39;, &#39;LoanAmount&#39;, &#39;ExistingSavings&#39;, &#39;EmploymentDuration&#39;, &#39;InstallmentPercent&#39;, &#39;Sex&#39;, &#39;OthersOnLoan&#39;, &#39;CurrentResi...)">
-<polygon fill="white" stroke="black" points="1062.89,-40.77 1062.89,-119.77 1184.96,-119.77 1184.96,-40.77 1062.89,-40.77"/>
+<g id="a_clust1"><a>
+<polygon fill="white" stroke="black" points="1062.89,-40.77 1062.89,-119.77 1184.96,-119.77 1184.96,-40.77 1062.89,-40.77"></polygon>
 <text text-anchor="middle" x="1123.92" y="-104.57" font-family="Times,serif" font-size="14.00">TAM</text>
 </a>
 </g>
@@ -15707,8 +15702,8 @@ schemas for hyperparameter tuning.</p>
 <!-- numpy_column_selector_0 -->
 <g id="node1" class="node">
 <title>numpy_column_selector_0</title>
-<g id="a_node1"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_column_selector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_column_selector_0 = NumpyColumnSelector(columns=[0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19])">
-<ellipse fill="white" stroke="black" cx="33.23" cy="-103.77" rx="33.47" ry="28.07"/>
+<g id="a_node1"><a>
+<ellipse fill="white" stroke="black" cx="33.23" cy="-103.77" rx="33.47" ry="28.07"></ellipse>
 <text text-anchor="middle" x="33.23" y="-112.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="33.23" y="-100.97" font-family="Times,serif" font-size="11.00">Column&#45;</text>
 <text text-anchor="middle" x="33.23" y="-88.97" font-family="Times,serif" font-size="11.00">Selector</text>
@@ -15718,24 +15713,24 @@ schemas for hyperparameter tuning.</p>
 <!-- compress_strings -->
 <g id="node2" class="node">
 <title>compress_strings</title>
-<g id="a_node2"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.compress_strings.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="compress_strings = CompressStrings(compress_type=&#39;hash&#39;, dtypes_list=[&#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;], missing_values_r...)">
-<ellipse fill="white" stroke="black" cx="142.77" cy="-103.77" rx="40.11" ry="19.6"/>
+<g id="a_node2"><a>
+<ellipse fill="white" stroke="black" cx="142.77" cy="-103.77" rx="40.11" ry="19.6"></ellipse>
 <text text-anchor="middle" x="142.77" y="-106.97" font-family="Times,serif" font-size="11.00">Compress&#45;</text>
 <text text-anchor="middle" x="142.77" y="-94.97" font-family="Times,serif" font-size="11.00">Strings</text>
 </a>
 </g>
 </g>
-<!-- numpy_column_selector_0&#45;&gt;compress_strings -->
+<!-- numpy_column_selector_0&amp;#45;&amp;gt;compress_strings -->
 <g id="edge1" class="edge">
 <title>numpy_column_selector_0&#45;&gt;compress_strings</title>
-<path fill="none" stroke="black" d="M66.5,-103.77C74.59,-103.77 83.46,-103.77 92.19,-103.77"/>
-<polygon fill="black" stroke="black" points="92.3,-107.27 102.3,-103.77 92.3,-100.27 92.3,-107.27"/>
+<path fill="none" stroke="black" d="M66.5,-103.77C74.59,-103.77 83.46,-103.77 92.19,-103.77"></path>
+<polygon fill="black" stroke="black" points="92.3,-107.27 102.3,-103.77 92.3,-100.27 92.3,-107.27"></polygon>
 </g>
 <!-- numpy_replace_missing_values_0 -->
 <g id="node3" class="node">
 <title>numpy_replace_missing_values_0</title>
-<g id="a_node3"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_missing_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_missing_values_0 = NumpyReplaceMissingValues(missing_values=[], filling_values=float(&#39;nan&#39;))">
-<ellipse fill="white" stroke="black" cx="253.73" cy="-103.77" rx="34.8" ry="36.54"/>
+<g id="a_node3"><a>
+<ellipse fill="white" stroke="black" cx="253.73" cy="-103.77" rx="34.8" ry="36.54"></ellipse>
 <text text-anchor="middle" x="253.73" y="-118.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="253.73" y="-106.97" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
 <text text-anchor="middle" x="253.73" y="-94.97" font-family="Times,serif" font-size="11.00">Missing&#45;</text>
@@ -15743,17 +15738,17 @@ schemas for hyperparameter tuning.</p>
 </a>
 </g>
 </g>
-<!-- compress_strings&#45;&gt;numpy_replace_missing_values_0 -->
+<!-- compress_strings&amp;#45;&amp;gt;numpy_replace_missing_values_0 -->
 <g id="edge2" class="edge">
 <title>compress_strings&#45;&gt;numpy_replace_missing_values_0</title>
-<path fill="none" stroke="black" d="M183.11,-103.77C191.43,-103.77 200.26,-103.77 208.74,-103.77"/>
-<polygon fill="black" stroke="black" points="208.85,-107.27 218.85,-103.77 208.85,-100.27 208.85,-107.27"/>
+<path fill="none" stroke="black" d="M183.11,-103.77C191.43,-103.77 200.26,-103.77 208.74,-103.77"></path>
+<polygon fill="black" stroke="black" points="208.85,-107.27 218.85,-103.77 208.85,-100.27 208.85,-107.27"></polygon>
 </g>
 <!-- numpy_replace_unknown_values -->
 <g id="node4" class="node">
 <title>numpy_replace_unknown_values</title>
-<g id="a_node4"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_unknown_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_unknown_values = NumpyReplaceUnknownValues(filling_values=float(&#39;nan&#39;), filling_values_list=[float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(...)">
-<ellipse fill="white" stroke="black" cx="363.27" cy="-103.77" rx="38.78" ry="36.54"/>
+<g id="a_node4"><a>
+<ellipse fill="white" stroke="black" cx="363.27" cy="-103.77" rx="38.78" ry="36.54"></ellipse>
 <text text-anchor="middle" x="363.27" y="-118.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="363.27" y="-106.97" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
 <text text-anchor="middle" x="363.27" y="-94.97" font-family="Times,serif" font-size="11.00">Unknown&#45;</text>
@@ -15761,96 +15756,96 @@ schemas for hyperparameter tuning.</p>
 </a>
 </g>
 </g>
-<!-- numpy_replace_missing_values_0&#45;&gt;numpy_replace_unknown_values -->
+<!-- numpy_replace_missing_values_0&amp;#45;&amp;gt;numpy_replace_unknown_values -->
 <g id="edge3" class="edge">
 <title>numpy_replace_missing_values_0&#45;&gt;numpy_replace_unknown_values</title>
-<path fill="none" stroke="black" d="M288.46,-103.77C296.6,-103.77 305.47,-103.77 314.13,-103.77"/>
-<polygon fill="black" stroke="black" points="314.16,-107.27 324.16,-103.77 314.16,-100.27 314.16,-107.27"/>
+<path fill="none" stroke="black" d="M288.46,-103.77C296.6,-103.77 305.47,-103.77 314.13,-103.77"></path>
+<polygon fill="black" stroke="black" points="314.16,-107.27 324.16,-103.77 314.16,-100.27 314.16,-107.27"></polygon>
 </g>
 <!-- boolean2float -->
 <g id="node5" class="node">
 <title>boolean2float</title>
-<g id="a_node5"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.boolean2float.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="boolean2float = boolean2float()">
-<ellipse fill="white" stroke="black" cx="476.11" cy="-100.77" rx="37.91" ry="18"/>
+<g id="a_node5"><a>
+<ellipse fill="white" stroke="black" cx="476.11" cy="-100.77" rx="37.91" ry="18"></ellipse>
 <text text-anchor="middle" x="476.11" y="-97.97" font-family="Times,serif" font-size="11.00">boolean2float</text>
 </a>
 </g>
 </g>
-<!-- numpy_replace_unknown_values&#45;&gt;boolean2float -->
+<!-- numpy_replace_unknown_values&amp;#45;&amp;gt;boolean2float -->
 <g id="edge4" class="edge">
 <title>numpy_replace_unknown_values&#45;&gt;boolean2float</title>
-<path fill="none" stroke="black" d="M402.41,-102.74C410.6,-102.52 419.36,-102.28 427.85,-102.05"/>
-<polygon fill="black" stroke="black" points="428.12,-105.54 438.02,-101.77 427.93,-98.55 428.12,-105.54"/>
+<path fill="none" stroke="black" d="M402.41,-102.74C410.6,-102.52 419.36,-102.28 427.85,-102.05"></path>
+<polygon fill="black" stroke="black" points="428.12,-105.54 438.02,-101.77 427.93,-98.55 428.12,-105.54"></polygon>
 </g>
 <!-- cat_imputer -->
 <g id="node6" class="node">
 <title>cat_imputer</title>
-<g id="a_node6"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.cat_imputer.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="cat_imputer = CatImputer(strategy=&#39;most_frequent&#39;, missing_values=float(&#39;nan&#39;), sklearn_version_family=&#39;23&#39;)">
-<ellipse fill="white" stroke="black" cx="580.47" cy="-98.77" rx="30.31" ry="19.6"/>
+<g id="a_node6"><a>
+<ellipse fill="white" stroke="black" cx="580.47" cy="-98.77" rx="30.31" ry="19.6"></ellipse>
 <text text-anchor="middle" x="580.47" y="-101.97" font-family="Times,serif" font-size="11.00">Cat&#45;</text>
 <text text-anchor="middle" x="580.47" y="-89.97" font-family="Times,serif" font-size="11.00">Imputer</text>
 </a>
 </g>
 </g>
-<!-- boolean2float&#45;&gt;cat_imputer -->
+<!-- boolean2float&amp;#45;&amp;gt;cat_imputer -->
 <g id="edge5" class="edge">
 <title>boolean2float&#45;&gt;cat_imputer</title>
-<path fill="none" stroke="black" d="M514.07,-100.05C522.45,-99.88 531.39,-99.71 539.88,-99.54"/>
-<polygon fill="black" stroke="black" points="540.02,-103.04 549.95,-99.35 539.88,-96.04 540.02,-103.04"/>
+<path fill="none" stroke="black" d="M514.07,-100.05C522.45,-99.88 531.39,-99.71 539.88,-99.54"></path>
+<polygon fill="black" stroke="black" points="540.02,-103.04 549.95,-99.35 539.88,-96.04 540.02,-103.04"></polygon>
 </g>
 <!-- cat_encoder -->
 <g id="node7" class="node">
 <title>cat_encoder</title>
-<g id="a_node7"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.cat_encoder.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="cat_encoder = CatEncoder(encoding=&#39;ordinal&#39;, categories=&#39;auto&#39;, dtype=np.float64, handle_unknown=&#39;error&#39;, sklearn_version_family=&#39;23&#39;)">
-<ellipse fill="white" stroke="black" cx="682.94" cy="-97.77" rx="31.64" ry="19.6"/>
+<g id="a_node7"><a>
+<ellipse fill="white" stroke="black" cx="682.94" cy="-97.77" rx="31.64" ry="19.6"></ellipse>
 <text text-anchor="middle" x="682.94" y="-100.97" font-family="Times,serif" font-size="11.00">Cat&#45;</text>
 <text text-anchor="middle" x="682.94" y="-88.97" font-family="Times,serif" font-size="11.00">Encoder</text>
 </a>
 </g>
 </g>
-<!-- cat_imputer&#45;&gt;cat_encoder -->
+<!-- cat_imputer&amp;#45;&amp;gt;cat_encoder -->
 <g id="edge6" class="edge">
 <title>cat_imputer&#45;&gt;cat_encoder</title>
-<path fill="none" stroke="black" d="M611.07,-98.47C620.35,-98.38 630.77,-98.28 640.7,-98.18"/>
-<polygon fill="black" stroke="black" points="640.84,-101.68 650.8,-98.08 640.77,-94.68 640.84,-101.68"/>
+<path fill="none" stroke="black" d="M611.07,-98.47C620.35,-98.38 630.77,-98.28 640.7,-98.18"></path>
+<polygon fill="black" stroke="black" points="640.84,-101.68 650.8,-98.08 640.77,-94.68 640.84,-101.68"></polygon>
 </g>
 <!-- float32_transform_0 -->
 <g id="node8" class="node">
 <title>float32_transform_0</title>
-<g id="a_node8"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float32_transform.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float32_transform_0 = float32_transform()">
-<ellipse fill="white" stroke="black" cx="791.06" cy="-94.77" rx="36.12" ry="19.6"/>
+<g id="a_node8"><a>
+<ellipse fill="white" stroke="black" cx="791.06" cy="-94.77" rx="36.12" ry="19.6"></ellipse>
 <text text-anchor="middle" x="791.06" y="-97.97" font-family="Times,serif" font-size="11.00">float32_&#45;</text>
 <text text-anchor="middle" x="791.06" y="-85.97" font-family="Times,serif" font-size="11.00">transform</text>
 </a>
 </g>
 </g>
-<!-- cat_encoder&#45;&gt;float32_transform_0 -->
+<!-- cat_encoder&amp;#45;&amp;gt;float32_transform_0 -->
 <g id="edge7" class="edge">
 <title>cat_encoder&#45;&gt;float32_transform_0</title>
-<path fill="none" stroke="black" d="M714.92,-96.89C724.18,-96.63 734.54,-96.34 744.53,-96.06"/>
-<polygon fill="black" stroke="black" points="744.85,-99.55 754.75,-95.77 744.66,-92.55 744.85,-99.55"/>
+<path fill="none" stroke="black" d="M714.92,-96.89C724.18,-96.63 734.54,-96.34 744.53,-96.06"></path>
+<polygon fill="black" stroke="black" points="744.85,-99.55 754.75,-95.77 744.66,-92.55 744.85,-99.55"></polygon>
 </g>
 <!-- concat_features -->
 <g id="node15" class="node">
 <title>concat_features</title>
-<g id="a_node15"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.lale.concat_features.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="concat_features = ConcatFeatures()">
-<ellipse fill="white" stroke="black" cx="896.36" cy="-68.77" rx="33.47" ry="19.6"/>
+<g id="a_node15"><a>
+<ellipse fill="white" stroke="black" cx="896.36" cy="-68.77" rx="33.47" ry="19.6"></ellipse>
 <text text-anchor="middle" x="896.36" y="-71.97" font-family="Times,serif" font-size="11.00">Concat&#45;</text>
 <text text-anchor="middle" x="896.36" y="-59.97" font-family="Times,serif" font-size="11.00">Features</text>
 </a>
 </g>
 </g>
-<!-- float32_transform_0&#45;&gt;concat_features -->
+<!-- float32_transform_0&amp;#45;&amp;gt;concat_features -->
 <g id="edge13" class="edge">
 <title>float32_transform_0&#45;&gt;concat_features</title>
-<path fill="none" stroke="black" d="M824.18,-86.69C834.15,-84.18 845.25,-81.38 855.66,-78.76"/>
-<polygon fill="black" stroke="black" points="856.53,-82.15 865.38,-76.32 854.82,-75.36 856.53,-82.15"/>
+<path fill="none" stroke="black" d="M824.18,-86.69C834.15,-84.18 845.25,-81.38 855.66,-78.76"></path>
+<polygon fill="black" stroke="black" points="856.53,-82.15 865.38,-76.32 854.82,-75.36 856.53,-82.15"></polygon>
 </g>
 <!-- numpy_column_selector_1 -->
 <g id="node9" class="node">
 <title>numpy_column_selector_1</title>
-<g id="a_node9"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_column_selector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_column_selector_1 = NumpyColumnSelector(columns=[1, 4, 12])">
-<ellipse fill="white" stroke="black" cx="253.73" cy="-31.77" rx="33.47" ry="28.07"/>
+<g id="a_node9"><a>
+<ellipse fill="white" stroke="black" cx="253.73" cy="-31.77" rx="33.47" ry="28.07"></ellipse>
 <text text-anchor="middle" x="253.73" y="-40.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="253.73" y="-28.97" font-family="Times,serif" font-size="11.00">Column&#45;</text>
 <text text-anchor="middle" x="253.73" y="-16.97" font-family="Times,serif" font-size="11.00">Selector</text>
@@ -15860,25 +15855,25 @@ schemas for hyperparameter tuning.</p>
 <!-- float_str2_float -->
 <g id="node10" class="node">
 <title>float_str2_float</title>
-<g id="a_node10"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float_str2_float.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float_str2_float = FloatStr2Float(dtypes_list=[&#39;int_num&#39;, &#39;int_num&#39;, &#39;int_num&#39;], missing_values_reference_list=[])">
-<ellipse fill="white" stroke="black" cx="363.27" cy="-31.77" rx="27" ry="28.07"/>
+<g id="a_node10"><a>
+<ellipse fill="white" stroke="black" cx="363.27" cy="-31.77" rx="27" ry="28.07"></ellipse>
 <text text-anchor="middle" x="363.27" y="-40.97" font-family="Times,serif" font-size="11.00">Float&#45;</text>
 <text text-anchor="middle" x="363.27" y="-28.97" font-family="Times,serif" font-size="11.00">Str2&#45;</text>
 <text text-anchor="middle" x="363.27" y="-16.97" font-family="Times,serif" font-size="11.00">Float</text>
 </a>
 </g>
 </g>
-<!-- numpy_column_selector_1&#45;&gt;float_str2_float -->
+<!-- numpy_column_selector_1&amp;#45;&amp;gt;float_str2_float -->
 <g id="edge8" class="edge">
 <title>numpy_column_selector_1&#45;&gt;float_str2_float</title>
-<path fill="none" stroke="black" d="M286.99,-31.77C299.27,-31.77 313.34,-31.77 325.96,-31.77"/>
-<polygon fill="black" stroke="black" points="326.16,-35.27 336.16,-31.77 326.16,-28.27 326.16,-35.27"/>
+<path fill="none" stroke="black" d="M286.99,-31.77C299.27,-31.77 313.34,-31.77 325.96,-31.77"></path>
+<polygon fill="black" stroke="black" points="326.16,-35.27 336.16,-31.77 326.16,-28.27 326.16,-35.27"></polygon>
 </g>
 <!-- numpy_replace_missing_values_1 -->
 <g id="node11" class="node">
 <title>numpy_replace_missing_values_1</title>
-<g id="a_node11"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_missing_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_missing_values_1 = NumpyReplaceMissingValues(missing_values=[], filling_values=float(&#39;nan&#39;))">
-<ellipse fill="white" stroke="black" cx="476.11" cy="-36.77" rx="34.8" ry="36.54"/>
+<g id="a_node11"><a>
+<ellipse fill="white" stroke="black" cx="476.11" cy="-36.77" rx="34.8" ry="36.54"></ellipse>
 <text text-anchor="middle" x="476.11" y="-51.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="476.11" y="-39.97" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
 <text text-anchor="middle" x="476.11" y="-27.97" font-family="Times,serif" font-size="11.00">Missing&#45;</text>
@@ -15886,114 +15881,114 @@ schemas for hyperparameter tuning.</p>
 </a>
 </g>
 </g>
-<!-- float_str2_float&#45;&gt;numpy_replace_missing_values_1 -->
+<!-- float_str2_float&amp;#45;&amp;gt;numpy_replace_missing_values_1 -->
 <g id="edge9" class="edge">
 <title>float_str2_float&#45;&gt;numpy_replace_missing_values_1</title>
-<path fill="none" stroke="black" d="M390.25,-32.94C402.39,-33.49 417.18,-34.16 430.99,-34.78"/>
-<polygon fill="black" stroke="black" points="431.15,-38.29 441.3,-35.24 431.47,-31.3 431.15,-38.29"/>
+<path fill="none" stroke="black" d="M390.25,-32.94C402.39,-33.49 417.18,-34.16 430.99,-34.78"></path>
+<polygon fill="black" stroke="black" points="431.15,-38.29 441.3,-35.24 431.47,-31.3 431.15,-38.29"></polygon>
 </g>
 <!-- num_imputer -->
 <g id="node12" class="node">
 <title>num_imputer</title>
-<g id="a_node12"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.num_imputer.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="num_imputer = NumImputer(strategy=&#39;median&#39;, missing_values=float(&#39;nan&#39;))">
-<ellipse fill="white" stroke="black" cx="580.47" cy="-39.77" rx="30.31" ry="19.6"/>
+<g id="a_node12"><a>
+<ellipse fill="white" stroke="black" cx="580.47" cy="-39.77" rx="30.31" ry="19.6"></ellipse>
 <text text-anchor="middle" x="580.47" y="-42.97" font-family="Times,serif" font-size="11.00">Num&#45;</text>
 <text text-anchor="middle" x="580.47" y="-30.97" font-family="Times,serif" font-size="11.00">Imputer</text>
 </a>
 </g>
 </g>
-<!-- numpy_replace_missing_values_1&#45;&gt;num_imputer -->
+<!-- numpy_replace_missing_values_1&amp;#45;&amp;gt;num_imputer -->
 <g id="edge10" class="edge">
 <title>numpy_replace_missing_values_1&#45;&gt;num_imputer</title>
-<path fill="none" stroke="black" d="M510.91,-37.76C520.15,-38.03 530.24,-38.33 539.78,-38.61"/>
-<polygon fill="black" stroke="black" points="539.74,-42.11 549.83,-38.9 539.94,-35.11 539.74,-42.11"/>
+<path fill="none" stroke="black" d="M510.91,-37.76C520.15,-38.03 530.24,-38.33 539.78,-38.61"></path>
+<polygon fill="black" stroke="black" points="539.74,-42.11 549.83,-38.9 539.94,-35.11 539.74,-42.11"></polygon>
 </g>
 <!-- opt_standard_scaler -->
 <g id="node13" class="node">
 <title>opt_standard_scaler</title>
-<g id="a_node13"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.opt_standard_scaler.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="opt_standard_scaler = OptStandardScaler(num_scaler_copy=None, num_scaler_with_mean=None, num_scaler_with_std=None, use_scaler_flag=False)">
-<ellipse fill="white" stroke="black" cx="682.94" cy="-41.77" rx="36.12" ry="28.07"/>
+<g id="a_node13"><a>
+<ellipse fill="white" stroke="black" cx="682.94" cy="-41.77" rx="36.12" ry="28.07"></ellipse>
 <text text-anchor="middle" x="682.94" y="-50.97" font-family="Times,serif" font-size="11.00">Opt&#45;</text>
 <text text-anchor="middle" x="682.94" y="-38.97" font-family="Times,serif" font-size="11.00">Standard&#45;</text>
 <text text-anchor="middle" x="682.94" y="-26.97" font-family="Times,serif" font-size="11.00">Scaler</text>
 </a>
 </g>
 </g>
-<!-- num_imputer&#45;&gt;opt_standard_scaler -->
+<!-- num_imputer&amp;#45;&amp;gt;opt_standard_scaler -->
 <g id="edge11" class="edge">
 <title>num_imputer&#45;&gt;opt_standard_scaler</title>
-<path fill="none" stroke="black" d="M611.07,-40.36C619.14,-40.52 628.07,-40.7 636.8,-40.87"/>
-<polygon fill="black" stroke="black" points="636.81,-44.37 646.88,-41.07 636.95,-37.37 636.81,-44.37"/>
+<path fill="none" stroke="black" d="M611.07,-40.36C619.14,-40.52 628.07,-40.7 636.8,-40.87"></path>
+<polygon fill="black" stroke="black" points="636.81,-44.37 646.88,-41.07 636.95,-37.37 636.81,-44.37"></polygon>
 </g>
 <!-- float32_transform_1 -->
 <g id="node14" class="node">
 <title>float32_transform_1</title>
-<g id="a_node14"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float32_transform.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float32_transform_1 = float32_transform()">
-<ellipse fill="white" stroke="black" cx="791.06" cy="-45.77" rx="36.12" ry="19.6"/>
+<g id="a_node14"><a>
+<ellipse fill="white" stroke="black" cx="791.06" cy="-45.77" rx="36.12" ry="19.6"></ellipse>
 <text text-anchor="middle" x="791.06" y="-48.97" font-family="Times,serif" font-size="11.00">float32_&#45;</text>
 <text text-anchor="middle" x="791.06" y="-36.97" font-family="Times,serif" font-size="11.00">transform</text>
 </a>
 </g>
 </g>
-<!-- opt_standard_scaler&#45;&gt;float32_transform_1 -->
+<!-- opt_standard_scaler&amp;#45;&amp;gt;float32_transform_1 -->
 <g id="edge12" class="edge">
 <title>opt_standard_scaler&#45;&gt;float32_transform_1</title>
-<path fill="none" stroke="black" d="M718.98,-43.09C727.31,-43.4 736.32,-43.74 745.03,-44.07"/>
-<polygon fill="black" stroke="black" points="744.93,-47.57 755.06,-44.45 745.2,-40.58 744.93,-47.57"/>
+<path fill="none" stroke="black" d="M718.98,-43.09C727.31,-43.4 736.32,-43.74 745.03,-44.07"></path>
+<polygon fill="black" stroke="black" points="744.93,-47.57 755.06,-44.45 745.2,-40.58 744.93,-47.57"></polygon>
 </g>
-<!-- float32_transform_1&#45;&gt;concat_features -->
+<!-- float32_transform_1&amp;#45;&amp;gt;concat_features -->
 <g id="edge14" class="edge">
 <title>float32_transform_1&#45;&gt;concat_features</title>
-<path fill="none" stroke="black" d="M824.75,-53.05C834.41,-55.2 845.1,-57.58 855.18,-59.82"/>
-<polygon fill="black" stroke="black" points="854.47,-63.25 865,-62.01 856,-56.42 854.47,-63.25"/>
+<path fill="none" stroke="black" d="M824.75,-53.05C834.41,-55.2 845.1,-57.58 855.18,-59.82"></path>
+<polygon fill="black" stroke="black" points="854.47,-63.25 865,-62.01 856,-56.42 854.47,-63.25"></polygon>
 </g>
 <!-- numpy_permute_array -->
 <g id="node16" class="node">
 <title>numpy_permute_array</title>
-<g id="a_node16"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_permute_array.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_permute_array = NumpyPermuteArray(axis=0, permutation_indices=[0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 1, 4, 12])">
-<ellipse fill="white" stroke="black" cx="1000.24" cy="-68.77" rx="34.8" ry="28.07"/>
+<g id="a_node16"><a>
+<ellipse fill="white" stroke="black" cx="1000.24" cy="-68.77" rx="34.8" ry="28.07"></ellipse>
 <text text-anchor="middle" x="1000.24" y="-77.97" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="1000.24" y="-65.97" font-family="Times,serif" font-size="11.00">Permute&#45;</text>
 <text text-anchor="middle" x="1000.24" y="-53.97" font-family="Times,serif" font-size="11.00">Array</text>
 </a>
 </g>
 </g>
-<!-- concat_features&#45;&gt;numpy_permute_array -->
+<!-- concat_features&amp;#45;&amp;gt;numpy_permute_array -->
 <g id="edge15" class="edge">
 <title>concat_features&#45;&gt;numpy_permute_array</title>
-<path fill="none" stroke="black" d="M929.6,-68.77C937.81,-68.77 946.78,-68.77 955.46,-68.77"/>
-<polygon fill="black" stroke="black" points="955.46,-72.27 965.46,-68.77 955.46,-65.27 955.46,-72.27"/>
+<path fill="none" stroke="black" d="M929.6,-68.77C937.81,-68.77 946.78,-68.77 955.46,-68.77"></path>
+<polygon fill="black" stroke="black" points="955.46,-72.27 965.46,-68.77 955.46,-65.27 955.46,-72.27"></polygon>
 </g>
 <!-- feature_agglomeration -->
 <g id="node17" class="node">
 <title>feature_agglomeration</title>
-<g id="a_node17"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.feature_agglomeration.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="feature_agglomeration = FeatureAgglomeration()">
-<ellipse fill="white" stroke="black" cx="1123.92" cy="-68.77" rx="53.07" ry="19.6"/>
+<g id="a_node17"><a>
+<ellipse fill="white" stroke="black" cx="1123.92" cy="-68.77" rx="53.07" ry="19.6"></ellipse>
 <text text-anchor="middle" x="1123.92" y="-71.97" font-family="Times,serif" font-size="11.00">Feature&#45;</text>
 <text text-anchor="middle" x="1123.92" y="-59.97" font-family="Times,serif" font-size="11.00">Agglomeration</text>
 </a>
 </g>
 </g>
-<!-- numpy_permute_array&#45;&gt;feature_agglomeration -->
+<!-- numpy_permute_array&amp;#45;&amp;gt;feature_agglomeration -->
 <g id="edge16" class="edge">
 <title>numpy_permute_array&#45;&gt;feature_agglomeration</title>
-<path fill="none" stroke="black" d="M1035.14,-68.77C1043.02,-68.77 1051.66,-68.77 1060.35,-68.77"/>
-<polygon fill="black" stroke="black" points="1052.89,-72.27 1062.89,-68.77 1052.89,-65.27 1052.89,-72.27"/>
+<path fill="none" stroke="black" d="M1035.14,-68.77C1043.02,-68.77 1051.66,-68.77 1060.35,-68.77"></path>
+<polygon fill="black" stroke="black" points="1052.89,-72.27 1062.89,-68.77 1052.89,-65.27 1052.89,-72.27"></polygon>
 </g>
 <!-- fs1 -->
 <g id="node18" class="node">
 <title>fs1</title>
-<g id="a_node18"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.fs1.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="fs1 = FS1(cols_ids_must_keep=range(0, 20), additional_col_count_to_keep=20, ptype=&#39;classification&#39;)">
-<ellipse fill="white" stroke="black" cx="1239.96" cy="-68.77" rx="27" ry="18"/>
+<g id="a_node18"><a>
+<ellipse fill="white" stroke="black" cx="1239.96" cy="-68.77" rx="27" ry="18"></ellipse>
 <text text-anchor="middle" x="1239.96" y="-65.97" font-family="Times,serif" font-size="11.00">FS1</text>
 </a>
 </g>
 </g>
-<!-- feature_agglomeration&#45;&gt;fs1 -->
+<!-- feature_agglomeration&amp;#45;&amp;gt;fs1 -->
 <g id="edge17" class="edge">
 <title>feature_agglomeration&#45;&gt;fs1</title>
-<path fill="none" stroke="black" d="M1184.96,-68.77C1190.96,-68.77 1196.92,-68.77 1202.56,-68.77"/>
-<polygon fill="black" stroke="black" points="1202.72,-72.27 1212.72,-68.77 1202.72,-65.27 1202.72,-72.27"/>
+<path fill="none" stroke="black" d="M1184.96,-68.77C1190.96,-68.77 1196.92,-68.77 1202.56,-68.77"></path>
+<polygon fill="black" stroke="black" points="1202.72,-72.27 1212.72,-68.77 1202.72,-65.27 1202.72,-72.27"></polygon>
 </g>
 </g>
 </svg>
@@ -16043,41 +16038,37 @@ choice). It defines a search space for another optimizer run.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
 
 <div class="jp-RenderedSVG jp-OutputArea-output " data-mime-type="image/svg+xml">
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?-->
+
 <!-- Generated by graphviz version 2.47.0 (20210316.0004)
  -->
 <!-- Title: cluster:(root) Pages: 1 -->
-<svg width="1381pt" height="200pt"
- viewBox="0.00 0.00 1380.96 199.77" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1381pt" height="200pt" viewBox="0.00 0.00 1380.96 199.77">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 195.77)">
 <title>cluster:(root)</title>
-<g id="a_graph0"><a xlink:title="(root) = ...">
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-195.77 1376.96,-195.77 1376.96,4 -4,4"/>
+<g id="a_graph0"><a>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-195.77 1376.96,-195.77 1376.96,4 -4,4"></polygon>
 </a>
 </g>
 <g id="clust1" class="cluster">
 <title>cluster:tam</title>
-<g id="a_clust1"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.tam.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="tam = TAM(tans_class=feature_agglomeration, name=&#39;featureagglomeration&#39;, col_names=[&#39;CheckingStatus&#39;, &#39;LoanDuration&#39;, &#39;CreditHistory&#39;, &#39;LoanPurpose&#39;, &#39;LoanAmount&#39;, &#39;ExistingSavings&#39;, &#39;EmploymentDuration&#39;, &#39;InstallmentPercent&#39;, &#39;Sex&#39;, &#39;OthersOnLoan&#39;, &#39;CurrentResi...)">
-<polygon fill="white" stroke="black" points="1062.89,-92 1062.89,-171 1184.96,-171 1184.96,-92 1062.89,-92"/>
+<g id="a_clust1"><a>
+<polygon fill="white" stroke="black" points="1062.89,-92 1062.89,-171 1184.96,-171 1184.96,-92 1062.89,-92"></polygon>
 <text text-anchor="middle" x="1123.92" y="-155.8" font-family="Times,serif" font-size="14.00">TAM</text>
 </a>
 </g>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster:choice</title>
-<g id="a_clust2"><a xlink:title="choice = lr | tree | knn">
-<polygon fill="#7ec0ee" stroke="black" points="1294.96,-8 1294.96,-169 1364.96,-169 1364.96,-8 1294.96,-8"/>
+<g id="a_clust2"><a>
+<polygon fill="#7ec0ee" stroke="black" points="1294.96,-8 1294.96,-169 1364.96,-169 1364.96,-8 1294.96,-8"></polygon>
 <text text-anchor="middle" x="1329.96" y="-153.8" font-family="Times,serif" font-size="14.00">Choice</text>
 </a>
 </g>
@@ -16085,8 +16076,8 @@ choice). It defines a search space for another optimizer run.</p>
 <!-- numpy_column_selector_0 -->
 <g id="node1" class="node">
 <title>numpy_column_selector_0</title>
-<g id="a_node1"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_column_selector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_column_selector_0 = NumpyColumnSelector(columns=[0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19])">
-<ellipse fill="white" stroke="black" cx="33.23" cy="-155" rx="33.47" ry="28.07"/>
+<g id="a_node1"><a>
+<ellipse fill="white" stroke="black" cx="33.23" cy="-155" rx="33.47" ry="28.07"></ellipse>
 <text text-anchor="middle" x="33.23" y="-164.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="33.23" y="-152.2" font-family="Times,serif" font-size="11.00">Column&#45;</text>
 <text text-anchor="middle" x="33.23" y="-140.2" font-family="Times,serif" font-size="11.00">Selector</text>
@@ -16096,24 +16087,24 @@ choice). It defines a search space for another optimizer run.</p>
 <!-- compress_strings -->
 <g id="node2" class="node">
 <title>compress_strings</title>
-<g id="a_node2"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.compress_strings.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="compress_strings = CompressStrings(compress_type=&#39;hash&#39;, dtypes_list=[&#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;int_num&#39;, &#39;char_str&#39;, &#39;char_str&#39;], missing_values_r...)">
-<ellipse fill="white" stroke="black" cx="142.77" cy="-155" rx="40.11" ry="19.6"/>
+<g id="a_node2"><a>
+<ellipse fill="white" stroke="black" cx="142.77" cy="-155" rx="40.11" ry="19.6"></ellipse>
 <text text-anchor="middle" x="142.77" y="-158.2" font-family="Times,serif" font-size="11.00">Compress&#45;</text>
 <text text-anchor="middle" x="142.77" y="-146.2" font-family="Times,serif" font-size="11.00">Strings</text>
 </a>
 </g>
 </g>
-<!-- numpy_column_selector_0&#45;&gt;compress_strings -->
+<!-- numpy_column_selector_0&amp;#45;&amp;gt;compress_strings -->
 <g id="edge1" class="edge">
 <title>numpy_column_selector_0&#45;&gt;compress_strings</title>
-<path fill="none" stroke="black" d="M66.5,-155C74.59,-155 83.46,-155 92.19,-155"/>
-<polygon fill="black" stroke="black" points="92.3,-158.5 102.3,-155 92.3,-151.5 92.3,-158.5"/>
+<path fill="none" stroke="black" d="M66.5,-155C74.59,-155 83.46,-155 92.19,-155"></path>
+<polygon fill="black" stroke="black" points="92.3,-158.5 102.3,-155 92.3,-151.5 92.3,-158.5"></polygon>
 </g>
 <!-- numpy_replace_missing_values_0 -->
 <g id="node3" class="node">
 <title>numpy_replace_missing_values_0</title>
-<g id="a_node3"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_missing_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_missing_values_0 = NumpyReplaceMissingValues(missing_values=[], filling_values=float(&#39;nan&#39;))">
-<ellipse fill="white" stroke="black" cx="253.73" cy="-155" rx="34.8" ry="36.54"/>
+<g id="a_node3"><a>
+<ellipse fill="white" stroke="black" cx="253.73" cy="-155" rx="34.8" ry="36.54"></ellipse>
 <text text-anchor="middle" x="253.73" y="-170.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="253.73" y="-158.2" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
 <text text-anchor="middle" x="253.73" y="-146.2" font-family="Times,serif" font-size="11.00">Missing&#45;</text>
@@ -16121,17 +16112,17 @@ choice). It defines a search space for another optimizer run.</p>
 </a>
 </g>
 </g>
-<!-- compress_strings&#45;&gt;numpy_replace_missing_values_0 -->
+<!-- compress_strings&amp;#45;&amp;gt;numpy_replace_missing_values_0 -->
 <g id="edge2" class="edge">
 <title>compress_strings&#45;&gt;numpy_replace_missing_values_0</title>
-<path fill="none" stroke="black" d="M183.11,-155C191.43,-155 200.26,-155 208.74,-155"/>
-<polygon fill="black" stroke="black" points="208.85,-158.5 218.85,-155 208.85,-151.5 208.85,-158.5"/>
+<path fill="none" stroke="black" d="M183.11,-155C191.43,-155 200.26,-155 208.74,-155"></path>
+<polygon fill="black" stroke="black" points="208.85,-158.5 218.85,-155 208.85,-151.5 208.85,-158.5"></polygon>
 </g>
 <!-- numpy_replace_unknown_values -->
 <g id="node4" class="node">
 <title>numpy_replace_unknown_values</title>
-<g id="a_node4"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_unknown_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_unknown_values = NumpyReplaceUnknownValues(filling_values=float(&#39;nan&#39;), filling_values_list=[float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(&#39;nan&#39;), float(...)">
-<ellipse fill="white" stroke="black" cx="363.27" cy="-155" rx="38.78" ry="36.54"/>
+<g id="a_node4"><a>
+<ellipse fill="white" stroke="black" cx="363.27" cy="-155" rx="38.78" ry="36.54"></ellipse>
 <text text-anchor="middle" x="363.27" y="-170.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="363.27" y="-158.2" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
 <text text-anchor="middle" x="363.27" y="-146.2" font-family="Times,serif" font-size="11.00">Unknown&#45;</text>
@@ -16139,96 +16130,96 @@ choice). It defines a search space for another optimizer run.</p>
 </a>
 </g>
 </g>
-<!-- numpy_replace_missing_values_0&#45;&gt;numpy_replace_unknown_values -->
+<!-- numpy_replace_missing_values_0&amp;#45;&amp;gt;numpy_replace_unknown_values -->
 <g id="edge3" class="edge">
 <title>numpy_replace_missing_values_0&#45;&gt;numpy_replace_unknown_values</title>
-<path fill="none" stroke="black" d="M288.46,-155C296.6,-155 305.47,-155 314.13,-155"/>
-<polygon fill="black" stroke="black" points="314.16,-158.5 324.16,-155 314.16,-151.5 314.16,-158.5"/>
+<path fill="none" stroke="black" d="M288.46,-155C296.6,-155 305.47,-155 314.13,-155"></path>
+<polygon fill="black" stroke="black" points="314.16,-158.5 324.16,-155 314.16,-151.5 314.16,-158.5"></polygon>
 </g>
 <!-- boolean2float -->
 <g id="node5" class="node">
 <title>boolean2float</title>
-<g id="a_node5"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.boolean2float.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="boolean2float = boolean2float()">
-<ellipse fill="white" stroke="black" cx="476.11" cy="-152" rx="37.91" ry="18"/>
+<g id="a_node5"><a>
+<ellipse fill="white" stroke="black" cx="476.11" cy="-152" rx="37.91" ry="18"></ellipse>
 <text text-anchor="middle" x="476.11" y="-149.2" font-family="Times,serif" font-size="11.00">boolean2float</text>
 </a>
 </g>
 </g>
-<!-- numpy_replace_unknown_values&#45;&gt;boolean2float -->
+<!-- numpy_replace_unknown_values&amp;#45;&amp;gt;boolean2float -->
 <g id="edge4" class="edge">
 <title>numpy_replace_unknown_values&#45;&gt;boolean2float</title>
-<path fill="none" stroke="black" d="M402.41,-153.97C410.6,-153.75 419.36,-153.51 427.85,-153.28"/>
-<polygon fill="black" stroke="black" points="428.12,-156.77 438.02,-153 427.93,-149.78 428.12,-156.77"/>
+<path fill="none" stroke="black" d="M402.41,-153.97C410.6,-153.75 419.36,-153.51 427.85,-153.28"></path>
+<polygon fill="black" stroke="black" points="428.12,-156.77 438.02,-153 427.93,-149.78 428.12,-156.77"></polygon>
 </g>
 <!-- cat_imputer -->
 <g id="node6" class="node">
 <title>cat_imputer</title>
-<g id="a_node6"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.cat_imputer.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="cat_imputer = CatImputer(strategy=&#39;most_frequent&#39;, missing_values=float(&#39;nan&#39;), sklearn_version_family=&#39;23&#39;)">
-<ellipse fill="white" stroke="black" cx="580.47" cy="-150" rx="30.31" ry="19.6"/>
+<g id="a_node6"><a>
+<ellipse fill="white" stroke="black" cx="580.47" cy="-150" rx="30.31" ry="19.6"></ellipse>
 <text text-anchor="middle" x="580.47" y="-153.2" font-family="Times,serif" font-size="11.00">Cat&#45;</text>
 <text text-anchor="middle" x="580.47" y="-141.2" font-family="Times,serif" font-size="11.00">Imputer</text>
 </a>
 </g>
 </g>
-<!-- boolean2float&#45;&gt;cat_imputer -->
+<!-- boolean2float&amp;#45;&amp;gt;cat_imputer -->
 <g id="edge5" class="edge">
 <title>boolean2float&#45;&gt;cat_imputer</title>
-<path fill="none" stroke="black" d="M514.07,-151.28C522.45,-151.11 531.39,-150.94 539.88,-150.77"/>
-<polygon fill="black" stroke="black" points="540.02,-154.27 549.95,-150.58 539.88,-147.27 540.02,-154.27"/>
+<path fill="none" stroke="black" d="M514.07,-151.28C522.45,-151.11 531.39,-150.94 539.88,-150.77"></path>
+<polygon fill="black" stroke="black" points="540.02,-154.27 549.95,-150.58 539.88,-147.27 540.02,-154.27"></polygon>
 </g>
 <!-- cat_encoder -->
 <g id="node7" class="node">
 <title>cat_encoder</title>
-<g id="a_node7"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.cat_encoder.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="cat_encoder = CatEncoder(encoding=&#39;ordinal&#39;, categories=&#39;auto&#39;, dtype=np.float64, handle_unknown=&#39;error&#39;, sklearn_version_family=&#39;23&#39;)">
-<ellipse fill="white" stroke="black" cx="682.94" cy="-149" rx="31.64" ry="19.6"/>
+<g id="a_node7"><a>
+<ellipse fill="white" stroke="black" cx="682.94" cy="-149" rx="31.64" ry="19.6"></ellipse>
 <text text-anchor="middle" x="682.94" y="-152.2" font-family="Times,serif" font-size="11.00">Cat&#45;</text>
 <text text-anchor="middle" x="682.94" y="-140.2" font-family="Times,serif" font-size="11.00">Encoder</text>
 </a>
 </g>
 </g>
-<!-- cat_imputer&#45;&gt;cat_encoder -->
+<!-- cat_imputer&amp;#45;&amp;gt;cat_encoder -->
 <g id="edge6" class="edge">
 <title>cat_imputer&#45;&gt;cat_encoder</title>
-<path fill="none" stroke="black" d="M611.07,-149.71C620.35,-149.61 630.77,-149.51 640.7,-149.41"/>
-<polygon fill="black" stroke="black" points="640.84,-152.91 650.8,-149.31 640.77,-145.91 640.84,-152.91"/>
+<path fill="none" stroke="black" d="M611.07,-149.71C620.35,-149.61 630.77,-149.51 640.7,-149.41"></path>
+<polygon fill="black" stroke="black" points="640.84,-152.91 650.8,-149.31 640.77,-145.91 640.84,-152.91"></polygon>
 </g>
 <!-- float32_transform_0 -->
 <g id="node8" class="node">
 <title>float32_transform_0</title>
-<g id="a_node8"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float32_transform.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float32_transform_0 = float32_transform()">
-<ellipse fill="white" stroke="black" cx="791.06" cy="-146" rx="36.12" ry="19.6"/>
+<g id="a_node8"><a>
+<ellipse fill="white" stroke="black" cx="791.06" cy="-146" rx="36.12" ry="19.6"></ellipse>
 <text text-anchor="middle" x="791.06" y="-149.2" font-family="Times,serif" font-size="11.00">float32_&#45;</text>
 <text text-anchor="middle" x="791.06" y="-137.2" font-family="Times,serif" font-size="11.00">transform</text>
 </a>
 </g>
 </g>
-<!-- cat_encoder&#45;&gt;float32_transform_0 -->
+<!-- cat_encoder&amp;#45;&amp;gt;float32_transform_0 -->
 <g id="edge7" class="edge">
 <title>cat_encoder&#45;&gt;float32_transform_0</title>
-<path fill="none" stroke="black" d="M714.92,-148.12C724.18,-147.86 734.54,-147.57 744.53,-147.29"/>
-<polygon fill="black" stroke="black" points="744.85,-150.78 754.75,-147 744.66,-143.78 744.85,-150.78"/>
+<path fill="none" stroke="black" d="M714.92,-148.12C724.18,-147.86 734.54,-147.57 744.53,-147.29"></path>
+<polygon fill="black" stroke="black" points="744.85,-150.78 754.75,-147 744.66,-143.78 744.85,-150.78"></polygon>
 </g>
 <!-- concat_features -->
 <g id="node15" class="node">
 <title>concat_features</title>
-<g id="a_node15"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.lale.concat_features.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="concat_features = ConcatFeatures()">
-<ellipse fill="white" stroke="black" cx="896.36" cy="-120" rx="33.47" ry="19.6"/>
+<g id="a_node15"><a>
+<ellipse fill="white" stroke="black" cx="896.36" cy="-120" rx="33.47" ry="19.6"></ellipse>
 <text text-anchor="middle" x="896.36" y="-123.2" font-family="Times,serif" font-size="11.00">Concat&#45;</text>
 <text text-anchor="middle" x="896.36" y="-111.2" font-family="Times,serif" font-size="11.00">Features</text>
 </a>
 </g>
 </g>
-<!-- float32_transform_0&#45;&gt;concat_features -->
+<!-- float32_transform_0&amp;#45;&amp;gt;concat_features -->
 <g id="edge13" class="edge">
 <title>float32_transform_0&#45;&gt;concat_features</title>
-<path fill="none" stroke="black" d="M824.18,-137.92C834.15,-135.41 845.25,-132.61 855.66,-129.99"/>
-<polygon fill="black" stroke="black" points="856.53,-133.38 865.38,-127.55 854.82,-126.59 856.53,-133.38"/>
+<path fill="none" stroke="black" d="M824.18,-137.92C834.15,-135.41 845.25,-132.61 855.66,-129.99"></path>
+<polygon fill="black" stroke="black" points="856.53,-133.38 865.38,-127.55 854.82,-126.59 856.53,-133.38"></polygon>
 </g>
 <!-- numpy_column_selector_1 -->
 <g id="node9" class="node">
 <title>numpy_column_selector_1</title>
-<g id="a_node9"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_column_selector.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_column_selector_1 = NumpyColumnSelector(columns=[1, 4, 12])">
-<ellipse fill="white" stroke="black" cx="253.73" cy="-83" rx="33.47" ry="28.07"/>
+<g id="a_node9"><a>
+<ellipse fill="white" stroke="black" cx="253.73" cy="-83" rx="33.47" ry="28.07"></ellipse>
 <text text-anchor="middle" x="253.73" y="-92.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="253.73" y="-80.2" font-family="Times,serif" font-size="11.00">Column&#45;</text>
 <text text-anchor="middle" x="253.73" y="-68.2" font-family="Times,serif" font-size="11.00">Selector</text>
@@ -16238,25 +16229,25 @@ choice). It defines a search space for another optimizer run.</p>
 <!-- float_str2_float -->
 <g id="node10" class="node">
 <title>float_str2_float</title>
-<g id="a_node10"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float_str2_float.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float_str2_float = FloatStr2Float(dtypes_list=[&#39;int_num&#39;, &#39;int_num&#39;, &#39;int_num&#39;], missing_values_reference_list=[])">
-<ellipse fill="white" stroke="black" cx="363.27" cy="-83" rx="27" ry="28.07"/>
+<g id="a_node10"><a>
+<ellipse fill="white" stroke="black" cx="363.27" cy="-83" rx="27" ry="28.07"></ellipse>
 <text text-anchor="middle" x="363.27" y="-92.2" font-family="Times,serif" font-size="11.00">Float&#45;</text>
 <text text-anchor="middle" x="363.27" y="-80.2" font-family="Times,serif" font-size="11.00">Str2&#45;</text>
 <text text-anchor="middle" x="363.27" y="-68.2" font-family="Times,serif" font-size="11.00">Float</text>
 </a>
 </g>
 </g>
-<!-- numpy_column_selector_1&#45;&gt;float_str2_float -->
+<!-- numpy_column_selector_1&amp;#45;&amp;gt;float_str2_float -->
 <g id="edge8" class="edge">
 <title>numpy_column_selector_1&#45;&gt;float_str2_float</title>
-<path fill="none" stroke="black" d="M286.99,-83C299.27,-83 313.34,-83 325.96,-83"/>
-<polygon fill="black" stroke="black" points="326.16,-86.5 336.16,-83 326.16,-79.5 326.16,-86.5"/>
+<path fill="none" stroke="black" d="M286.99,-83C299.27,-83 313.34,-83 325.96,-83"></path>
+<polygon fill="black" stroke="black" points="326.16,-86.5 336.16,-83 326.16,-79.5 326.16,-86.5"></polygon>
 </g>
 <!-- numpy_replace_missing_values_1 -->
 <g id="node11" class="node">
 <title>numpy_replace_missing_values_1</title>
-<g id="a_node11"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_replace_missing_values.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_replace_missing_values_1 = NumpyReplaceMissingValues(missing_values=[], filling_values=float(&#39;nan&#39;))">
-<ellipse fill="white" stroke="black" cx="476.11" cy="-88" rx="34.8" ry="36.54"/>
+<g id="a_node11"><a>
+<ellipse fill="white" stroke="black" cx="476.11" cy="-88" rx="34.8" ry="36.54"></ellipse>
 <text text-anchor="middle" x="476.11" y="-103.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="476.11" y="-91.2" font-family="Times,serif" font-size="11.00">Replace&#45;</text>
 <text text-anchor="middle" x="476.11" y="-79.2" font-family="Times,serif" font-size="11.00">Missing&#45;</text>
@@ -16264,135 +16255,135 @@ choice). It defines a search space for another optimizer run.</p>
 </a>
 </g>
 </g>
-<!-- float_str2_float&#45;&gt;numpy_replace_missing_values_1 -->
+<!-- float_str2_float&amp;#45;&amp;gt;numpy_replace_missing_values_1 -->
 <g id="edge9" class="edge">
 <title>float_str2_float&#45;&gt;numpy_replace_missing_values_1</title>
-<path fill="none" stroke="black" d="M390.25,-84.17C402.39,-84.72 417.18,-85.39 430.99,-86.01"/>
-<polygon fill="black" stroke="black" points="431.15,-89.52 441.3,-86.47 431.47,-82.53 431.15,-89.52"/>
+<path fill="none" stroke="black" d="M390.25,-84.17C402.39,-84.72 417.18,-85.39 430.99,-86.01"></path>
+<polygon fill="black" stroke="black" points="431.15,-89.52 441.3,-86.47 431.47,-82.53 431.15,-89.52"></polygon>
 </g>
 <!-- num_imputer -->
 <g id="node12" class="node">
 <title>num_imputer</title>
-<g id="a_node12"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.num_imputer.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="num_imputer = NumImputer(strategy=&#39;median&#39;, missing_values=float(&#39;nan&#39;))">
-<ellipse fill="white" stroke="black" cx="580.47" cy="-91" rx="30.31" ry="19.6"/>
+<g id="a_node12"><a>
+<ellipse fill="white" stroke="black" cx="580.47" cy="-91" rx="30.31" ry="19.6"></ellipse>
 <text text-anchor="middle" x="580.47" y="-94.2" font-family="Times,serif" font-size="11.00">Num&#45;</text>
 <text text-anchor="middle" x="580.47" y="-82.2" font-family="Times,serif" font-size="11.00">Imputer</text>
 </a>
 </g>
 </g>
-<!-- numpy_replace_missing_values_1&#45;&gt;num_imputer -->
+<!-- numpy_replace_missing_values_1&amp;#45;&amp;gt;num_imputer -->
 <g id="edge10" class="edge">
 <title>numpy_replace_missing_values_1&#45;&gt;num_imputer</title>
-<path fill="none" stroke="black" d="M510.91,-88.99C520.15,-89.26 530.24,-89.56 539.78,-89.84"/>
-<polygon fill="black" stroke="black" points="539.74,-93.34 549.83,-90.13 539.94,-86.34 539.74,-93.34"/>
+<path fill="none" stroke="black" d="M510.91,-88.99C520.15,-89.26 530.24,-89.56 539.78,-89.84"></path>
+<polygon fill="black" stroke="black" points="539.74,-93.34 549.83,-90.13 539.94,-86.34 539.74,-93.34"></polygon>
 </g>
 <!-- opt_standard_scaler -->
 <g id="node13" class="node">
 <title>opt_standard_scaler</title>
-<g id="a_node13"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.opt_standard_scaler.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="opt_standard_scaler = OptStandardScaler(num_scaler_copy=None, num_scaler_with_mean=None, num_scaler_with_std=None, use_scaler_flag=False)">
-<ellipse fill="white" stroke="black" cx="682.94" cy="-93" rx="36.12" ry="28.07"/>
+<g id="a_node13"><a>
+<ellipse fill="white" stroke="black" cx="682.94" cy="-93" rx="36.12" ry="28.07"></ellipse>
 <text text-anchor="middle" x="682.94" y="-102.2" font-family="Times,serif" font-size="11.00">Opt&#45;</text>
 <text text-anchor="middle" x="682.94" y="-90.2" font-family="Times,serif" font-size="11.00">Standard&#45;</text>
 <text text-anchor="middle" x="682.94" y="-78.2" font-family="Times,serif" font-size="11.00">Scaler</text>
 </a>
 </g>
 </g>
-<!-- num_imputer&#45;&gt;opt_standard_scaler -->
+<!-- num_imputer&amp;#45;&amp;gt;opt_standard_scaler -->
 <g id="edge11" class="edge">
 <title>num_imputer&#45;&gt;opt_standard_scaler</title>
-<path fill="none" stroke="black" d="M611.07,-91.59C619.14,-91.75 628.07,-91.93 636.8,-92.1"/>
-<polygon fill="black" stroke="black" points="636.81,-95.6 646.88,-92.3 636.95,-88.6 636.81,-95.6"/>
+<path fill="none" stroke="black" d="M611.07,-91.59C619.14,-91.75 628.07,-91.93 636.8,-92.1"></path>
+<polygon fill="black" stroke="black" points="636.81,-95.6 646.88,-92.3 636.95,-88.6 636.81,-95.6"></polygon>
 </g>
 <!-- float32_transform_1 -->
 <g id="node14" class="node">
 <title>float32_transform_1</title>
-<g id="a_node14"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.float32_transform.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="float32_transform_1 = float32_transform()">
-<ellipse fill="white" stroke="black" cx="791.06" cy="-97" rx="36.12" ry="19.6"/>
+<g id="a_node14"><a>
+<ellipse fill="white" stroke="black" cx="791.06" cy="-97" rx="36.12" ry="19.6"></ellipse>
 <text text-anchor="middle" x="791.06" y="-100.2" font-family="Times,serif" font-size="11.00">float32_&#45;</text>
 <text text-anchor="middle" x="791.06" y="-88.2" font-family="Times,serif" font-size="11.00">transform</text>
 </a>
 </g>
 </g>
-<!-- opt_standard_scaler&#45;&gt;float32_transform_1 -->
+<!-- opt_standard_scaler&amp;#45;&amp;gt;float32_transform_1 -->
 <g id="edge12" class="edge">
 <title>opt_standard_scaler&#45;&gt;float32_transform_1</title>
-<path fill="none" stroke="black" d="M718.98,-94.32C727.31,-94.63 736.32,-94.97 745.03,-95.3"/>
-<polygon fill="black" stroke="black" points="744.93,-98.8 755.06,-95.68 745.2,-91.81 744.93,-98.8"/>
+<path fill="none" stroke="black" d="M718.98,-94.32C727.31,-94.63 736.32,-94.97 745.03,-95.3"></path>
+<polygon fill="black" stroke="black" points="744.93,-98.8 755.06,-95.68 745.2,-91.81 744.93,-98.8"></polygon>
 </g>
-<!-- float32_transform_1&#45;&gt;concat_features -->
+<!-- float32_transform_1&amp;#45;&amp;gt;concat_features -->
 <g id="edge14" class="edge">
 <title>float32_transform_1&#45;&gt;concat_features</title>
-<path fill="none" stroke="black" d="M824.75,-104.28C834.41,-106.43 845.1,-108.81 855.18,-111.05"/>
-<polygon fill="black" stroke="black" points="854.47,-114.48 865,-113.24 856,-107.65 854.47,-114.48"/>
+<path fill="none" stroke="black" d="M824.75,-104.28C834.41,-106.43 845.1,-108.81 855.18,-111.05"></path>
+<polygon fill="black" stroke="black" points="854.47,-114.48 865,-113.24 856,-107.65 854.47,-114.48"></polygon>
 </g>
 <!-- numpy_permute_array -->
 <g id="node16" class="node">
 <title>numpy_permute_array</title>
-<g id="a_node16"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.numpy_permute_array.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="numpy_permute_array = NumpyPermuteArray(axis=0, permutation_indices=[0, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 1, 4, 12])">
-<ellipse fill="white" stroke="black" cx="1000.24" cy="-120" rx="34.8" ry="28.07"/>
+<g id="a_node16"><a>
+<ellipse fill="white" stroke="black" cx="1000.24" cy="-120" rx="34.8" ry="28.07"></ellipse>
 <text text-anchor="middle" x="1000.24" y="-129.2" font-family="Times,serif" font-size="11.00">Numpy&#45;</text>
 <text text-anchor="middle" x="1000.24" y="-117.2" font-family="Times,serif" font-size="11.00">Permute&#45;</text>
 <text text-anchor="middle" x="1000.24" y="-105.2" font-family="Times,serif" font-size="11.00">Array</text>
 </a>
 </g>
 </g>
-<!-- concat_features&#45;&gt;numpy_permute_array -->
+<!-- concat_features&amp;#45;&amp;gt;numpy_permute_array -->
 <g id="edge15" class="edge">
 <title>concat_features&#45;&gt;numpy_permute_array</title>
-<path fill="none" stroke="black" d="M929.6,-120C937.81,-120 946.78,-120 955.46,-120"/>
-<polygon fill="black" stroke="black" points="955.46,-123.5 965.46,-120 955.46,-116.5 955.46,-123.5"/>
+<path fill="none" stroke="black" d="M929.6,-120C937.81,-120 946.78,-120 955.46,-120"></path>
+<polygon fill="black" stroke="black" points="955.46,-123.5 965.46,-120 955.46,-116.5 955.46,-123.5"></polygon>
 </g>
 <!-- feature_agglomeration -->
 <g id="node17" class="node">
 <title>feature_agglomeration</title>
-<g id="a_node17"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.feature_agglomeration.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="feature_agglomeration = FeatureAgglomeration()">
-<ellipse fill="white" stroke="black" cx="1123.92" cy="-120" rx="53.07" ry="19.6"/>
+<g id="a_node17"><a>
+<ellipse fill="white" stroke="black" cx="1123.92" cy="-120" rx="53.07" ry="19.6"></ellipse>
 <text text-anchor="middle" x="1123.92" y="-123.2" font-family="Times,serif" font-size="11.00">Feature&#45;</text>
 <text text-anchor="middle" x="1123.92" y="-111.2" font-family="Times,serif" font-size="11.00">Agglomeration</text>
 </a>
 </g>
 </g>
-<!-- numpy_permute_array&#45;&gt;feature_agglomeration -->
+<!-- numpy_permute_array&amp;#45;&amp;gt;feature_agglomeration -->
 <g id="edge16" class="edge">
 <title>numpy_permute_array&#45;&gt;feature_agglomeration</title>
-<path fill="none" stroke="black" d="M1035.14,-120C1043.02,-120 1051.66,-120 1060.35,-120"/>
-<polygon fill="black" stroke="black" points="1052.89,-123.5 1062.89,-120 1052.89,-116.5 1052.89,-123.5"/>
+<path fill="none" stroke="black" d="M1035.14,-120C1043.02,-120 1051.66,-120 1060.35,-120"></path>
+<polygon fill="black" stroke="black" points="1052.89,-123.5 1062.89,-120 1052.89,-116.5 1052.89,-123.5"></polygon>
 </g>
 <!-- fs1 -->
 <g id="node18" class="node">
 <title>fs1</title>
-<g id="a_node18"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.autoai_libs.fs1.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="fs1 = FS1(cols_ids_must_keep=range(0, 20), additional_col_count_to_keep=20, ptype=&#39;classification&#39;)">
-<ellipse fill="white" stroke="black" cx="1239.96" cy="-120" rx="27" ry="18"/>
+<g id="a_node18"><a>
+<ellipse fill="white" stroke="black" cx="1239.96" cy="-120" rx="27" ry="18"></ellipse>
 <text text-anchor="middle" x="1239.96" y="-117.2" font-family="Times,serif" font-size="11.00">FS1</text>
 </a>
 </g>
 </g>
-<!-- feature_agglomeration&#45;&gt;fs1 -->
+<!-- feature_agglomeration&amp;#45;&amp;gt;fs1 -->
 <g id="edge17" class="edge">
 <title>feature_agglomeration&#45;&gt;fs1</title>
-<path fill="none" stroke="black" d="M1184.96,-120C1190.96,-120 1196.92,-120 1202.56,-120"/>
-<polygon fill="black" stroke="black" points="1202.72,-123.5 1212.72,-120 1202.72,-116.5 1202.72,-123.5"/>
+<path fill="none" stroke="black" d="M1184.96,-120C1190.96,-120 1196.92,-120 1202.56,-120"></path>
+<polygon fill="black" stroke="black" points="1202.72,-123.5 1212.72,-120 1202.72,-116.5 1202.72,-123.5"></polygon>
 </g>
 <!-- lr -->
 <g id="node19" class="node">
 <title>lr</title>
-<g id="a_node19"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.logistic_regression.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="lr = LR">
-<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-120" rx="27" ry="18"/>
+<g id="a_node19"><a>
+<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-120" rx="27" ry="18"></ellipse>
 <text text-anchor="middle" x="1329.96" y="-117.2" font-family="Times,serif" font-size="11.00">LR</text>
 </a>
 </g>
 </g>
-<!-- fs1&#45;&gt;lr -->
+<!-- fs1&amp;#45;&amp;gt;lr -->
 <g id="edge18" class="edge">
 <title>fs1&#45;&gt;lr</title>
-<path fill="none" stroke="black" d="M1267.36,-120C1275.35,-120 1284.27,-120 1292.78,-120"/>
-<polygon fill="black" stroke="black" points="1284.96,-123.5 1294.96,-120 1284.96,-116.5 1284.96,-123.5"/>
+<path fill="none" stroke="black" d="M1267.36,-120C1275.35,-120 1284.27,-120 1292.78,-120"></path>
+<polygon fill="black" stroke="black" points="1284.96,-123.5 1294.96,-120 1284.96,-116.5 1284.96,-123.5"></polygon>
 </g>
 <!-- tree -->
 <g id="node20" class="node">
 <title>tree</title>
-<g id="a_node20"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.decision_tree_classifier.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="tree = Tree">
-<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-77" rx="27" ry="18"/>
+<g id="a_node20"><a>
+<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-77" rx="27" ry="18"></ellipse>
 <text text-anchor="middle" x="1329.96" y="-74.2" font-family="Times,serif" font-size="11.00">Tree</text>
 </a>
 </g>
@@ -16400,8 +16391,8 @@ choice). It defines a search space for another optimizer run.</p>
 <!-- knn -->
 <g id="node21" class="node">
 <title>knn</title>
-<g id="a_node21"><a xlink:href="https://lale.readthedocs.io/en/latest/modules/lale.lib.sklearn.k_neighbors_classifier.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer" xlink:title="knn = KNN">
-<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-34" rx="27" ry="18"/>
+<g id="a_node21"><a>
+<ellipse fill="#7ec0ee" stroke="black" cx="1329.96" cy="-34" rx="27" ry="18"></ellipse>
 <text text-anchor="middle" x="1329.96" y="-31.2" font-family="Times,serif" font-size="11.00">KNN</text>
 </a>
 </g>
@@ -16472,9 +16463,7 @@ data.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16617,9 +16606,7 @@ data.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16837,9 +16824,7 @@ data.</p>
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16927,9 +16912,7 @@ ID  NAME                              CREATED
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -16987,9 +16970,7 @@ ID  NAME                              CREATED
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -17109,9 +17090,7 @@ Deployment update finished with status:  ready
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -17225,7 +17204,7 @@ Deployment update finished with status:  ready
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>You successfully completed this notebook!<br>
+<p>You successfully completed this notebook!<br />
  Check out our <em><a href="https://www.ibm.com/cloud/watson-studio/autoai">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 
 </div>
