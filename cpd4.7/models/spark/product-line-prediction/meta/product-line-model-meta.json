@@ -1,0 +1,109 @@
+{
+  "name": "Product Line Prediction Model",
+  "project_id": "...",
+  "space_id": "...",
+  "description": "Classifies product line for person based on personal information.",
+  "type": "mllib_3.2",
+  "software_spec": {
+    "id": "5c1b0ca2-4977-5c2e-9439-ffd44ea8ffe9"
+  },
+  "pipeline": {
+    "id": "...",
+    "rev": "..."
+  },
+  "domain": "marketing",
+  "schemas": {
+    "input": [
+      {
+        "fields": [
+          {
+            "metadata": {},
+            "name": "GENDER",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "AGE",
+            "nullable": true,
+            "type": "integer"
+          },
+          {
+            "metadata": {},
+            "name": "MARITAL_STATUS",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "PROFESSION",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {
+              "modeling_role": "target"
+            },
+            "name": "PRODUCT_LINE",
+            "nullable": true,
+            "type": "string"
+          }
+        ],
+        "id": "1",
+        "type": "struct"
+      }
+    ],
+    "output": [
+      {
+        "id": "out_1",
+        "fields": [
+          {
+            "metadata": {},
+            "name": "GENDER",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "AGE",
+            "nullable": true,
+            "type": "integer"
+          },
+          {
+            "metadata": {},
+            "name": "MARITAL_STATUS",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {},
+            "name": "PROFESSION",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "metadata": {
+              "modeling_role": "target"
+            },
+            "name": "PRODUCT_LINE",
+            "nullable": true,
+            "type": "string"
+          },
+          {
+            "name": "probability",
+            "type": "array"
+          },
+          {
+            "name": "prediction",
+            "type": "double"
+          },
+          {
+            "name": "predictedLabel",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  },
+  "label_column": "PRODUCT_LINE"
+}
