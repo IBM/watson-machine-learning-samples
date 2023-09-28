@@ -1,0 +1,574 @@
+[
+    {
+        "input": "Please back to lower the prices.",
+        "output": "0"
+    },
+    {
+        "input": "Even economy class cars are too expensive.",
+        "output": "0"
+    },
+    {
+        "input": "I was penalty charged because vehicle was not returned with full tank.",
+        "output": "0"
+    },
+    {
+        "input": "My experience up to date was  good.  It was inconvenient to return car clean, but I had to pay the hefty charge for rental.",
+        "output": "1"
+    },
+    {
+        "input": "Please stop increasing the prices.",
+        "output": "0"
+    },
+    {
+        "input": "price TOO HIGH and off premise location is NOT convenient.",
+        "output": "0"
+    },
+    {
+        "input": "I do not  understand why I have to pay additional fee if vehicle is returned without a full tank.",
+        "output": "0"
+    },
+    {
+        "input": "My experience was positive .The thing I didnt like was returning the car with full tank.  It was time consuming, but I didn't want to pay fill-up charge to the rental company.",
+        "output": "1"
+    },
+    {
+        "input": "Please lower the prices.",
+        "output": "0"
+    },
+    {
+        "input": "price too high and location off premise too far",
+        "output": "0"
+    },
+    {
+        "input": "outlining the cost of gas per gallon charged if vehicle was returned without full tank",
+        "output": "0"
+    },
+    {
+        "input": "My last experience was  seamless.  The only thing I didn't like was having to fill the tank with gas before turning it in.  It was inconvenient, but I didn't want to pay the hefty fill-up charge to the rental company.",
+        "output": "1"
+    },
+    {
+        "input": "Excellent response dealing with child seat.",
+        "output": "1"
+    },
+    {
+        "input": "There was still a live person however we arrived very late.  We had no problems with car return.",
+        "output": "1"
+    },
+    {
+        "input": "Service was incredibly fast. Car was parked in area close to rental office.",
+        "output": "1"
+    },
+    {
+        "input": "I reserved the car over internet,, and had no problems with pick-up of the vehicle.",
+        "output": "1"
+    },
+    {
+        "input": "VERY slow service!",
+        "output": "0"
+    },
+    {
+        "input": "Did not have some problems. My car was not ready on time.",
+        "output": "0"
+    },
+    {
+        "input": "all went quite without hassle, they picked me up to get the car it was great.",
+        "output": "1"
+    },
+    {
+        "input": "I was happy that we arrived very late and there was still a live person to help us get our rental.  We had no problems with the car, and returned it easily.",
+        "output": "1"
+    },
+    {
+        "input": "Service was fast. Car was parked close-by.",
+        "output": "1"
+    },
+    {
+        "input": "I rented over the internet, and there were no problems with the reservation or pick-up of the vehicle.",
+        "output": "1"
+    },
+    {
+        "input": "fast service",
+        "output": "1"
+    },
+    {
+        "input": "Did not have any problems. My car was ready on time and it was the one I had asked for.",
+        "output": "1"
+    },
+    {
+        "input": "all went quite smoothly... it was Enterprise, so they even picked me up to get the car... it was very convenient.",
+        "output": "1"
+    },
+    {
+        "input": "I would like the personnel to pretend they care about customer, at least.",
+        "output": "0"
+    },
+    {
+        "input": "Do not try sell what I do not need.",
+        "output": "0"
+    },
+    {
+        "input": "Agents always want me to take extra insurance but this time they insisted too much.",
+        "output": "0"
+    },
+    {
+        "input": "The rental car person was impertinent.",
+        "output": "1"
+    },
+    {
+        "input": "Guys were extremely nice.",
+        "output": "1"
+    },
+    {
+        "input": "They could really try work harder.",
+        "output": "0"
+    },
+    {
+        "input": "Based on the customer service personnel I encountered most recently, I would say it is vastly preferable for the personnel to be able to at least pretend to care whether the customer ever actually receives a car rental that was reserved months in advance.",
+        "output": "0"
+    },
+    {
+        "input": "they should not try so hard to up sell",
+        "output": "0"
+    },
+    {
+        "input": "Agents usually try to get you to take insurance and pay for full tank of gas.  Some persist even after a \"no thanks.\"  Even after noting preferences on my frequent user file that says I don't want them.",
+        "output": "0"
+    },
+    {
+        "input": "The rental car guy was cute.",
+        "output": "1"
+    },
+    {
+        "input": "For the most part they are very nice.",
+        "output": "1"
+    },
+    {
+        "input": "I guess it really DOES \"try harder.\"",
+        "output": "1"
+    },
+    {
+        "input": "what customer service? It was a nightmare",
+        "output": "0"
+    },
+    {
+        "input": "\"sorely lacking\"  helpdesk was not much helpfull",
+        "output": "0"
+    },
+    {
+        "input": "It took quite a long time, about 45 minutes to an hour.  Several attendants but the line was about 20-25 deep.  Check out was very quick.  A minute or two was all.  Overall a pretty good experience.",
+        "output": "0"
+    },
+    {
+        "input": "they could not provide driving directions",
+        "output": "0"
+    },
+    {
+        "input": "friendly, but could not making any decisions on own",
+        "output": "0"
+    },
+    {
+        "input": "They forgot to ask for my driver's license.",
+        "output": "0"
+    },
+    {
+        "input": "States have different rules and regulations pertaining to speed, radar detectors, even when light should be on.  Customer services reps should have a handout or be knowledgeable of a particular state's laws.",
+        "output": "0"
+    },
+    {
+        "input": "Customer service was fine.  We didn't care for the off site location.  Would not use that car rental company at that airport again.",
+        "output": "0"
+    },
+    {
+        "input": "The rental clerk was nice, but I swear she was deaf.  We had to repeat everything twice and although we had a reservation she treated us like a walk in, so that all the information that we gave to reserve the car we had to repeat all over again.",
+        "output": "0"
+    },
+    {
+        "input": "the rep was friendly but it was so loud in there that I could not hear what she was saying. I HATE having to walk across a big lot with all of my bags in search of my car which is always in the furthest corner.",
+        "output": "0"
+    },
+    {
+        "input": "They should upgrade me every time.",
+        "output": "0"
+    },
+    {
+        "input": "customer service was great until we returned the car.  I experienced an issue with damage to the car, and felt that things were left unanswered and still waiting for a response from them.",
+        "output": "0"
+    },
+    {
+        "input": "Having knowledgeable personnel is very important",
+        "output": "0"
+    },
+    {
+        "input": "It was good, got the car we wanted without much of a wait in picking up and dropping off",
+        "output": "1"
+    },
+    {
+        "input": "adequate to the price. It was fine",
+        "output": "1"
+    },
+    {
+        "input": "Person very friendly but only person working counter",
+        "output": "1"
+    },
+    {
+        "input": "They provided good service.   It was easy to make on-line reservations, the airport bus took me directly and quickly to the car, gas tank filled, customer service friendly and helped with directions and luggage.",
+        "output": "1"
+    },
+    {
+        "input": "The car rental company that I went with had very good customer service. They were out of a certain car I reserved and gave me a upgrade and apologized.",
+        "output": "1"
+    },
+    {
+        "input": "Experience was fine, usually try to get you to upgrade.",
+        "output": "1"
+    },
+    {
+        "input": "good",
+        "output": "1"
+    },
+    {
+        "input": "Customer Service was fine. They were able to upgrade me for $2 a day to the next class...that was nice.",
+        "output": "1"
+    },
+    {
+        "input": "They were helpful and accommodating when I wanted to change the color of the car.",
+        "output": "1"
+    },
+    {
+        "input": "The customer service was excellent",
+        "output": "1"
+    },
+    {
+        "input": "Experience was fine",
+        "output": "1"
+    },
+    {
+        "input": "Have not rented a car since last October.  Customer Service was good, shuttle service was available to and from airport.  Scheduled pickup was on time and they even found a package we had left in the car and brought it to the shuttle.",
+        "output": "1"
+    },
+    {
+        "input": "it was a great experience",
+        "output": "1"
+    },
+    {
+        "input": "No problems encountered",
+        "output": "1"
+    },
+    {
+        "input": "Very satisfactory. Employees were very helpful in providing directions.",
+        "output": "1"
+    },
+    {
+        "input": "Customer Service was quick and friendly.  I received my car with little hassles.",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was good at MSP airport and the process was very fast.  From getting off of the plane to leaving with my rental car was less than 45 minutes.",
+        "output": "1"
+    },
+    {
+        "input": "no complaints",
+        "output": "1"
+    },
+    {
+        "input": "Friendly and very well informed",
+        "output": "1"
+    },
+    {
+        "input": "It was fine",
+        "output": "1"
+    },
+    {
+        "input": "Employees had nice, new uniforms.",
+        "output": "1"
+    },
+    {
+        "input": "customer service was very good and very professional, energetic",
+        "output": "1"
+    },
+    {
+        "input": "customer service was OK",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was great, but I wish they had searched the car when I returned it.  I left my Palm Pilot in the backseat for 2 days before I noticed it was missing!  Fortunately the car was still in the lot when I called and they were able to ship it to me.",
+        "output": "1"
+    },
+    {
+        "input": "they were fine.",
+        "output": "1"
+    },
+    {
+        "input": "they were very nice and willing to help in any way they could",
+        "output": "1"
+    },
+    {
+        "input": "it was fine, I had no problem at all.",
+        "output": "1"
+    },
+    {
+        "input": "They were very good and took care of what I needed. Very quick.",
+        "output": "1"
+    },
+    {
+        "input": "The customer service people were very nice.  During my vacation I locked my keys in the car.  The rental company sent someone out with a new set of keys to unlock the car.",
+        "output": "1"
+    },
+    {
+        "input": "Everything went fine.  Folks were friendly and informed.",
+        "output": "1"
+    },
+    {
+        "input": "It was okay, we got the car quickly, which is the most important thing",
+        "output": "1"
+    },
+    {
+        "input": "No suggestions.  Customer Service was good.",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was outstanding. Got a free upgrade without even asking. Everyone was very courteous and friendly.",
+        "output": "1"
+    },
+    {
+        "input": "Everyone was very friendly. They even drove us to the airport since we were running late for our flight.",
+        "output": "1"
+    },
+    {
+        "input": "All the people I dealt with were pleasant and helpful.",
+        "output": "1"
+    },
+    {
+        "input": "they were very nice",
+        "output": "1"
+    },
+    {
+        "input": "Everything was fine with my last car rental.",
+        "output": "1"
+    },
+    {
+        "input": "It was a good experience, received an upgrade at no charge.",
+        "output": "1"
+    },
+    {
+        "input": "they were friendly",
+        "output": "1"
+    },
+    {
+        "input": "We did not have any trouble with customer service. No complaints.",
+        "output": "1"
+    },
+    {
+        "input": "They were friendly and helpful enough.",
+        "output": "1"
+    },
+    {
+        "input": "My last rental experience for leisure was fine -- no service issues to speak of.",
+        "output": "1"
+    },
+    {
+        "input": "service was excellent",
+        "output": "1"
+    },
+    {
+        "input": "No problems",
+        "output": "1"
+    },
+    {
+        "input": "customer service was OK",
+        "output": "1"
+    },
+    {
+        "input": "People were nice.  Service was fast.",
+        "output": "1"
+    },
+    {
+        "input": "Customer Service is great since you don't have to deal with any people, per se.  The car is ready and waiting for you and the shuttle just drops you off to it.",
+        "output": "1"
+    },
+    {
+        "input": "Good experience with all the rental co.'s I contacted. I Just called with rental dates and received pricing and selected rental co.",
+        "output": "1"
+    },
+    {
+        "input": "No problems",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was fine",
+        "output": "1"
+    },
+    {
+        "input": "Customer service went out of their way to provide a car that would fit our needs",
+        "output": "1"
+    },
+    {
+        "input": "Our customer service representative was polite and well-dressed. He smiled appropriately and answered my questions, not from a rehearsed script, but from his own frame of reference. He shirt was neatly pressed and his hair was professionally coifed.",
+        "output": "1"
+    },
+    {
+        "input": "They were actually very nice. It was in Rome and there was a language barrier, but we overcame it.",
+        "output": "1"
+    },
+    {
+        "input": "The woman at the counter was friendly and tried to accommodate me as best she could. The counter was close to the terminal and the whole thing was quick and expedient.",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was friendly and helpful.",
+        "output": "1"
+    },
+    {
+        "input": "They were competent.",
+        "output": "1"
+    },
+    {
+        "input": "very friendly, brought the car to the hotel",
+        "output": "1"
+    },
+    {
+        "input": "The customer service was very friendly and knowledgeable.  She suggested to upgrade to the SUV and it worked out much better for our trip.",
+        "output": "1"
+    },
+    {
+        "input": "it was fine",
+        "output": "1"
+    },
+    {
+        "input": "Staff member was very pleasant. Provided map/directions to my hotel.",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was fine",
+        "output": "1"
+    },
+    {
+        "input": "The people were very nice.  Directions to and from our hotel, the rental company location and tourists attractions were given and they were happy to help us out.",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was fine as I recall. No problems.",
+        "output": "1"
+    },
+    {
+        "input": "It was very late at night and the customer service representative was very obliging and courteous.",
+        "output": "1"
+    },
+    {
+        "input": "it was fine.",
+        "output": "1"
+    },
+    {
+        "input": "I had no problems with the service",
+        "output": "1"
+    },
+    {
+        "input": "the line was slow but the agent was ok",
+        "output": "1"
+    },
+    {
+        "input": "They were great as far as I could tell, they explained what needed to be done to use the University pricing.",
+        "output": "1"
+    },
+    {
+        "input": " The service was polite and professional. I was attended to quickly and courteously.",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was very good.",
+        "output": "1"
+    },
+    {
+        "input": "Customer service was very good",
+        "output": "1"
+    },
+    {
+        "input": "service was good.",
+        "output": "1"
+    },
+    {
+        "input": "I would have to say that Enterprise car rental has the best customer service. They are very friendly and helpful.",
+        "output": "1"
+    },
+    {
+        "input": "The service I have is always good, I have used the same company for many years and I know the counter personnel personally.  It is always good to know that they are willing to help you in any situation. ",
+        "output": "1"
+    },
+    {
+        "input": "Last time I rented a car was when I went skiing with my whole family.  We got a Chevy Blazer.  We didn't think it was as large as a Ford Explorer, so we asked to switch.  The agent was very nice and gave us the Ford Explorer.",
+        "output": "1"
+    },
+    {
+        "input": "I did everything on-line - never talked to an agent during booking.  There were no problems, even though I had to switch car sizes after initial reservation. Agent on duty for pick-up was courteous.",
+        "output": "1"
+    },
+    {
+        "input": "I recently rented a car and they were outstanding.  The customer service rep was very helpful and courteous.  They even let me extend my rental by a couple of hours for no charge at all. I was very pleased with my experience and I would go back.",
+        "output": "1"
+    },
+    {
+        "input": "Wonderful experience - the rental and whole process was seamless",
+        "output": "1"
+    },
+    {
+        "input": "They had problem to find reservation number, so whole process took too long time.",
+        "output": "0"
+    },
+    {
+        "input": "It took us almost three hours just to get a car! It was absurd.",
+        "output": "0"
+    },
+    {
+        "input": "Provide more convenient car pickup from the airport parking.",
+        "output": "0"
+    },
+    {
+        "input": "We dealt with customer service at car pick-up place, and drive off in few minutes.",
+        "output": "1"
+    },
+    {
+        "input": "We got our car very quickly.",
+        "output": "1"
+    },
+    {
+        "input": "I get keys from customer service and was able to start my vacation,it was nice",
+        "output": "1"
+    },
+    {
+        "input": "I have never rented the car for a week.  It was great experience. It was in agreement with what my friend said about this company.",
+        "output": "1"
+    },
+    {
+        "input": "greater expedience - the rental and whole process was easy and fast",
+        "output": "1"
+    },
+    {
+        "input": "They couldn't find my confirmation number in their system, which was rather frustrating.",
+        "output": "0"
+    },
+    {
+        "input": "The company was overwhelmed by the number of customers verse the number of available agents and they were not articulating their situation to the customers well enough. I think we waited for almost 3 hours just to get a rental car. It was ridiculous.",
+        "output": "0"
+    },
+    {
+        "input": "Provide more frequent pickup from the airport.",
+        "output": "0"
+    },
+    {
+        "input": "We dealt very little with customer service, and we only walked to the car assigned for us, and drive away.",
+        "output": "1"
+    },
+    {
+        "input": "we got the car quickly",
+        "output": "1"
+    },
+    {
+        "input": "I did not need to deal with customer service on my last vacation rental which was nice",
+        "output": "1"
+    },
+    {
+        "input": "For leisure/vacation, I have never personally rented the car.  I have always left that up to my significant other and she did not complain to use this company",
+        "output": "1"
+    }
+]
