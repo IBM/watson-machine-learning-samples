@@ -1,574 +1,574 @@
 [
     {
-        "input": "Please back to lower the prices.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Please back to lower the prices.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Even economy class cars are too expensive.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Even economy class cars are too expensive.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "I was penalty charged because vehicle was not returned with full tank.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I was penalty charged because vehicle was not returned with full tank.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "My experience up to date was  good.  It was inconvenient to return car clean, but I had to pay the hefty charge for rental.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: My experience up to date was  good.  It was inconvenient to return car clean, but I had to pay the hefty charge for rental.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Please stop increasing the prices.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Please stop increasing the prices.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "price TOO HIGH and off premise location is NOT convenient.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: price TOO HIGH and off premise location is NOT convenient.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "I do not  understand why I have to pay additional fee if vehicle is returned without a full tank.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I do not  understand why I have to pay additional fee if vehicle is returned without a full tank.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "My experience was positive .The thing I didnt like was returning the car with full tank.  It was time consuming, but I didn't want to pay fill-up charge to the rental company.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: My experience was positive .The thing I didnt like was returning the car with full tank.  It was time consuming, but I didn't want to pay fill-up charge to the rental company.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Please lower the prices.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Please lower the prices.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "price too high and location off premise too far",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: price too high and location off premise too far\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "outlining the cost of gas per gallon charged if vehicle was returned without full tank",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: outlining the cost of gas per gallon charged if vehicle was returned without full tank\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "My last experience was  seamless.  The only thing I didn't like was having to fill the tank with gas before turning it in.  It was inconvenient, but I didn't want to pay the hefty fill-up charge to the rental company.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: My last experience was  seamless.  The only thing I didn't like was having to fill the tank with gas before turning it in.  It was inconvenient, but I didn't want to pay the hefty fill-up charge to the rental company.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Excellent response dealing with child seat.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Excellent response dealing with child seat.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "There was still a live person however we arrived very late.  We had no problems with car return.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: There was still a live person however we arrived very late.  We had no problems with car return.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Service was incredibly fast. Car was parked in area close to rental office.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Service was incredibly fast. Car was parked in area close to rental office.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I reserved the car over internet,, and had no problems with pick-up of the vehicle.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I reserved the car over internet,, and had no problems with pick-up of the vehicle.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "VERY slow service!",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: VERY slow service!\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Did not have some problems. My car was not ready on time.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Did not have some problems. My car was not ready on time.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "all went quite without hassle, they picked me up to get the car it was great.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: all went quite without hassle, they picked me up to get the car it was great.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I was happy that we arrived very late and there was still a live person to help us get our rental.  We had no problems with the car, and returned it easily.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I was happy that we arrived very late and there was still a live person to help us get our rental.  We had no problems with the car, and returned it easily.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Service was fast. Car was parked close-by.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Service was fast. Car was parked close-by.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I rented over the internet, and there were no problems with the reservation or pick-up of the vehicle.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I rented over the internet, and there were no problems with the reservation or pick-up of the vehicle.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "fast service",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: fast service\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Did not have any problems. My car was ready on time and it was the one I had asked for.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Did not have any problems. My car was ready on time and it was the one I had asked for.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "all went quite smoothly... it was Enterprise, so they even picked me up to get the car... it was very convenient.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: all went quite smoothly... it was Enterprise, so they even picked me up to get the car... it was very convenient.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I would like the personnel to pretend they care about customer, at least.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I would like the personnel to pretend they care about customer, at least.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Do not try sell what I do not need.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Do not try sell what I do not need.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Agents always want me to take extra insurance but this time they insisted too much.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Agents always want me to take extra insurance but this time they insisted too much.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "The rental car person was impertinent.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The rental car person was impertinent.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Guys were extremely nice.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Guys were extremely nice.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They could really try work harder.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They could really try work harder.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Based on the customer service personnel I encountered most recently, I would say it is vastly preferable for the personnel to be able to at least pretend to care whether the customer ever actually receives a car rental that was reserved months in advance.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Based on the customer service personnel I encountered most recently, I would say it is vastly preferable for the personnel to be able to at least pretend to care whether the customer ever actually receives a car rental that was reserved months in advance.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "they should not try so hard to up sell",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: they should not try so hard to up sell\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Agents usually try to get you to take insurance and pay for full tank of gas.  Some persist even after a \"no thanks.\"  Even after noting preferences on my frequent user file that says I don't want them.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Agents usually try to get you to take insurance and pay for full tank of gas.  Some persist even after a \"no thanks.\"  Even after noting preferences on my frequent user file that says I don't want them.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "The rental car guy was cute.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The rental car guy was cute.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "For the most part they are very nice.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: For the most part they are very nice.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I guess it really DOES \"try harder.\"",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I guess it really DOES \"try harder.\"\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "what customer service? It was a nightmare",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: what customer service? It was a nightmare\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "\"sorely lacking\"  helpdesk was not much helpfull",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: \"sorely lacking\"  helpdesk was not much helpfull\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "It took quite a long time, about 45 minutes to an hour.  Several attendants but the line was about 20-25 deep.  Check out was very quick.  A minute or two was all.  Overall a pretty good experience.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: It took quite a long time, about 45 minutes to an hour.  Several attendants but the line was about 20-25 deep.  Check out was very quick.  A minute or two was all.  Overall a pretty good experience.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "they could not provide driving directions",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: they could not provide driving directions\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "friendly, but could not making any decisions on own",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: friendly, but could not making any decisions on own\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "They forgot to ask for my driver's license.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They forgot to ask for my driver's license.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "States have different rules and regulations pertaining to speed, radar detectors, even when light should be on.  Customer services reps should have a handout or be knowledgeable of a particular state's laws.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: States have different rules and regulations pertaining to speed, radar detectors, even when light should be on.  Customer services reps should have a handout or be knowledgeable of a particular state's laws.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Customer service was fine.  We didn't care for the off site location.  Would not use that car rental company at that airport again.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was fine.  We didn't care for the off site location.  Would not use that car rental company at that airport again.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "The rental clerk was nice, but I swear she was deaf.  We had to repeat everything twice and although we had a reservation she treated us like a walk in, so that all the information that we gave to reserve the car we had to repeat all over again.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The rental clerk was nice, but I swear she was deaf.  We had to repeat everything twice and although we had a reservation she treated us like a walk in, so that all the information that we gave to reserve the car we had to repeat all over again.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "the rep was friendly but it was so loud in there that I could not hear what she was saying. I HATE having to walk across a big lot with all of my bags in search of my car which is always in the furthest corner.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: the rep was friendly but it was so loud in there that I could not hear what she was saying. I HATE having to walk across a big lot with all of my bags in search of my car which is always in the furthest corner.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "They should upgrade me every time.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They should upgrade me every time.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "customer service was great until we returned the car.  I experienced an issue with damage to the car, and felt that things were left unanswered and still waiting for a response from them.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: customer service was great until we returned the car.  I experienced an issue with damage to the car, and felt that things were left unanswered and still waiting for a response from them.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Having knowledgeable personnel is very important",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Having knowledgeable personnel is very important\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "It was good, got the car we wanted without much of a wait in picking up and dropping off",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: It was good, got the car we wanted without much of a wait in picking up and dropping off\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "adequate to the price. It was fine",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: adequate to the price. It was fine\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Person very friendly but only person working counter",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Person very friendly but only person working counter\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They provided good service.   It was easy to make on-line reservations, the airport bus took me directly and quickly to the car, gas tank filled, customer service friendly and helped with directions and luggage.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They provided good service.   It was easy to make on-line reservations, the airport bus took me directly and quickly to the car, gas tank filled, customer service friendly and helped with directions and luggage.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "The car rental company that I went with had very good customer service. They were out of a certain car I reserved and gave me a upgrade and apologized.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The car rental company that I went with had very good customer service. They were out of a certain car I reserved and gave me a upgrade and apologized.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Experience was fine, usually try to get you to upgrade.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Experience was fine, usually try to get you to upgrade.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "good",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: good\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer Service was fine. They were able to upgrade me for $2 a day to the next class...that was nice.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer Service was fine. They were able to upgrade me for $2 a day to the next class...that was nice.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They were helpful and accommodating when I wanted to change the color of the car.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They were helpful and accommodating when I wanted to change the color of the car.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "The customer service was excellent",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The customer service was excellent\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Experience was fine",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Experience was fine\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Have not rented a car since last October.  Customer Service was good, shuttle service was available to and from airport.  Scheduled pickup was on time and they even found a package we had left in the car and brought it to the shuttle.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Have not rented a car since last October.  Customer Service was good, shuttle service was available to and from airport.  Scheduled pickup was on time and they even found a package we had left in the car and brought it to the shuttle.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "it was a great experience",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: it was a great experience\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "No problems encountered",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: No problems encountered\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Very satisfactory. Employees were very helpful in providing directions.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Very satisfactory. Employees were very helpful in providing directions.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer Service was quick and friendly.  I received my car with little hassles.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer Service was quick and friendly.  I received my car with little hassles.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was good at MSP airport and the process was very fast.  From getting off of the plane to leaving with my rental car was less than 45 minutes.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was good at MSP airport and the process was very fast.  From getting off of the plane to leaving with my rental car was less than 45 minutes.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "no complaints",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: no complaints\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Friendly and very well informed",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Friendly and very well informed\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "It was fine",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: It was fine\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Employees had nice, new uniforms.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Employees had nice, new uniforms.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "customer service was very good and very professional, energetic",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: customer service was very good and very professional, energetic\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "customer service was OK",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: customer service was OK\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was great, but I wish they had searched the car when I returned it.  I left my Palm Pilot in the backseat for 2 days before I noticed it was missing!  Fortunately the car was still in the lot when I called and they were able to ship it to me.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was great, but I wish they had searched the car when I returned it.  I left my Palm Pilot in the backseat for 2 days before I noticed it was missing!  Fortunately the car was still in the lot when I called and they were able to ship it to me.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "they were fine.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: they were fine.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "they were very nice and willing to help in any way they could",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: they were very nice and willing to help in any way they could\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "it was fine, I had no problem at all.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: it was fine, I had no problem at all.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They were very good and took care of what I needed. Very quick.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They were very good and took care of what I needed. Very quick.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "The customer service people were very nice.  During my vacation I locked my keys in the car.  The rental company sent someone out with a new set of keys to unlock the car.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The customer service people were very nice.  During my vacation I locked my keys in the car.  The rental company sent someone out with a new set of keys to unlock the car.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Everything went fine.  Folks were friendly and informed.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Everything went fine.  Folks were friendly and informed.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "It was okay, we got the car quickly, which is the most important thing",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: It was okay, we got the car quickly, which is the most important thing\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "No suggestions.  Customer Service was good.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: No suggestions.  Customer Service was good.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was outstanding. Got a free upgrade without even asking. Everyone was very courteous and friendly.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was outstanding. Got a free upgrade without even asking. Everyone was very courteous and friendly.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Everyone was very friendly. They even drove us to the airport since we were running late for our flight.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Everyone was very friendly. They even drove us to the airport since we were running late for our flight.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "All the people I dealt with were pleasant and helpful.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: All the people I dealt with were pleasant and helpful.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "they were very nice",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: they were very nice\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Everything was fine with my last car rental.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Everything was fine with my last car rental.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "It was a good experience, received an upgrade at no charge.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: It was a good experience, received an upgrade at no charge.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "they were friendly",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: they were friendly\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "We did not have any trouble with customer service. No complaints.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: We did not have any trouble with customer service. No complaints.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They were friendly and helpful enough.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They were friendly and helpful enough.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "My last rental experience for leisure was fine -- no service issues to speak of.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: My last rental experience for leisure was fine -- no service issues to speak of.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "service was excellent",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: service was excellent\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "No problems",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: No problems\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "customer service was OK",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: customer service was OK\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "People were nice.  Service was fast.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: People were nice.  Service was fast.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer Service is great since you don't have to deal with any people, per se.  The car is ready and waiting for you and the shuttle just drops you off to it.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer Service is great since you don't have to deal with any people, per se.  The car is ready and waiting for you and the shuttle just drops you off to it.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Good experience with all the rental co.'s I contacted. I Just called with rental dates and received pricing and selected rental co.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Good experience with all the rental co.'s I contacted. I Just called with rental dates and received pricing and selected rental co.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "No problems",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: No problems\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was fine",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was fine\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service went out of their way to provide a car that would fit our needs",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service went out of their way to provide a car that would fit our needs\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Our customer service representative was polite and well-dressed. He smiled appropriately and answered my questions, not from a rehearsed script, but from his own frame of reference. He shirt was neatly pressed and his hair was professionally coifed.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Our customer service representative was polite and well-dressed. He smiled appropriately and answered my questions, not from a rehearsed script, but from his own frame of reference. He shirt was neatly pressed and his hair was professionally coifed.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They were actually very nice. It was in Rome and there was a language barrier, but we overcame it.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They were actually very nice. It was in Rome and there was a language barrier, but we overcame it.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "The woman at the counter was friendly and tried to accommodate me as best she could. The counter was close to the terminal and the whole thing was quick and expedient.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The woman at the counter was friendly and tried to accommodate me as best she could. The counter was close to the terminal and the whole thing was quick and expedient.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was friendly and helpful.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was friendly and helpful.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They were competent.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They were competent.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "very friendly, brought the car to the hotel",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: very friendly, brought the car to the hotel\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "The customer service was very friendly and knowledgeable.  She suggested to upgrade to the SUV and it worked out much better for our trip.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The customer service was very friendly and knowledgeable.  She suggested to upgrade to the SUV and it worked out much better for our trip.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "it was fine",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: it was fine\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Staff member was very pleasant. Provided map/directions to my hotel.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Staff member was very pleasant. Provided map/directions to my hotel.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was fine",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was fine\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "The people were very nice.  Directions to and from our hotel, the rental company location and tourists attractions were given and they were happy to help us out.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The people were very nice.  Directions to and from our hotel, the rental company location and tourists attractions were given and they were happy to help us out.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was fine as I recall. No problems.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was fine as I recall. No problems.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "It was very late at night and the customer service representative was very obliging and courteous.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: It was very late at night and the customer service representative was very obliging and courteous.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "it was fine.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: it was fine.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I had no problems with the service",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I had no problems with the service\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "the line was slow but the agent was ok",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: the line was slow but the agent was ok\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They were great as far as I could tell, they explained what needed to be done to use the University pricing.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They were great as far as I could tell, they explained what needed to be done to use the University pricing.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": " The service was polite and professional. I was attended to quickly and courteously.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment:  The service was polite and professional. I was attended to quickly and courteously.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was very good.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was very good.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Customer service was very good",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Customer service was very good\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "service was good.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: service was good.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I would have to say that Enterprise car rental has the best customer service. They are very friendly and helpful.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I would have to say that Enterprise car rental has the best customer service. They are very friendly and helpful.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "The service I have is always good, I have used the same company for many years and I know the counter personnel personally.  It is always good to know that they are willing to help you in any situation. ",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The service I have is always good, I have used the same company for many years and I know the counter personnel personally.  It is always good to know that they are willing to help you in any situation. \nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Last time I rented a car was when I went skiing with my whole family.  We got a Chevy Blazer.  We didn't think it was as large as a Ford Explorer, so we asked to switch.  The agent was very nice and gave us the Ford Explorer.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Last time I rented a car was when I went skiing with my whole family.  We got a Chevy Blazer.  We didn't think it was as large as a Ford Explorer, so we asked to switch.  The agent was very nice and gave us the Ford Explorer.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I did everything on-line - never talked to an agent during booking.  There were no problems, even though I had to switch car sizes after initial reservation. Agent on duty for pick-up was courteous.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I did everything on-line - never talked to an agent during booking.  There were no problems, even though I had to switch car sizes after initial reservation. Agent on duty for pick-up was courteous.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I recently rented a car and they were outstanding.  The customer service rep was very helpful and courteous.  They even let me extend my rental by a couple of hours for no charge at all. I was very pleased with my experience and I would go back.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I recently rented a car and they were outstanding.  The customer service rep was very helpful and courteous.  They even let me extend my rental by a couple of hours for no charge at all. I was very pleased with my experience and I would go back.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "Wonderful experience - the rental and whole process was seamless",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Wonderful experience - the rental and whole process was seamless\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They had problem to find reservation number, so whole process took too long time.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They had problem to find reservation number, so whole process took too long time.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "It took us almost three hours just to get a car! It was absurd.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: It took us almost three hours just to get a car! It was absurd.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Provide more convenient car pickup from the airport parking.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Provide more convenient car pickup from the airport parking.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "We dealt with customer service at car pick-up place, and drive off in few minutes.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: We dealt with customer service at car pick-up place, and drive off in few minutes.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "We got our car very quickly.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: We got our car very quickly.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I get keys from customer service and was able to start my vacation,it was nice",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I get keys from customer service and was able to start my vacation,it was nice\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I have never rented the car for a week.  It was great experience. It was in agreement with what my friend said about this company.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I have never rented the car for a week.  It was great experience. It was in agreement with what my friend said about this company.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "greater expedience - the rental and whole process was easy and fast",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: greater expedience - the rental and whole process was easy and fast\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "They couldn't find my confirmation number in their system, which was rather frustrating.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: They couldn't find my confirmation number in their system, which was rather frustrating.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "The company was overwhelmed by the number of customers verse the number of available agents and they were not articulating their situation to the customers well enough. I think we waited for almost 3 hours just to get a rental car. It was ridiculous.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: The company was overwhelmed by the number of customers verse the number of available agents and they were not articulating their situation to the customers well enough. I think we waited for almost 3 hours just to get a rental car. It was ridiculous.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "Provide more frequent pickup from the airport.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: Provide more frequent pickup from the airport.\nSatisfaction:\n",
         "output": "0"
     },
     {
-        "input": "We dealt very little with customer service, and we only walked to the car assigned for us, and drive away.",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: We dealt very little with customer service, and we only walked to the car assigned for us, and drive away.\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "we got the car quickly",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: we got the car quickly\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "I did not need to deal with customer service on my last vacation rental which was nice",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: I did not need to deal with customer service on my last vacation rental which was nice\nSatisfaction:\n",
         "output": "1"
     },
     {
-        "input": "For leisure/vacation, I have never personally rented the car.  I have always left that up to my significant other and she did not complain to use this company",
+        "input": "Extract the satisfaction from the comment. Return simple 1 for satisfied customer or 0 for unsatisfied.\nComment: For leisure/vacation, I have never personally rented the car.  I have always left that up to my significant other and she did not complain to use this company\nSatisfaction:\n",
         "output": "1"
     }
 ]
