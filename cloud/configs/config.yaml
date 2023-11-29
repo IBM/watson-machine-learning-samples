@@ -1,8 +1,8 @@
-name: python39
+name: python310
 channels:
   - defaults
 dependencies:
   - pip:
     - autoai-libs
 
-prefix: /opt/anaconda3/envs/python39
+prefix: /opt/anaconda3/envs/python310
