@@ -1,0 +1,802 @@
+[
+    {
+        "input": "Narrative: currently hold one credit best buy visa paying full every month last year problem started three month ago paying full account never get credited prevents using card contact best buy visa tell bank cleared transfer contacted bank concerned type creative financing best buy visa going since send full almost month bank record proof electron fund transfer best buy visa cleared immediately im retired enjoyed using best buy visa concerned highly reputable company taken ride behalf could harassment due paying interest fee consumer pay month paying full month im also retired mean air dirty laundry company treat people disrespect work hard stay fiscally inclined lifetime concerned new generation operating company best buy ceo mentioned letter economic havoc country facing would love continually help could use best buy visa without waiting two week im hoping complaint submission help resolve problem best buy visa card help support country financial crisis experiencing\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: asked verification debt appeared credit report validate debt simply asked collector send signed medical document hipaa release itemized list showing debt send method validation date alleged hospital visit per fdcpa need removed unless furnish requested documentation within day\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: loan chase auto car accident car totaled insurance company told make payment going pay car took month kept following chase reporting credit report\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: pas due amount came denied income driven plan think two three week worked waitress lost job found work dealing bill like car bill utility bill phone bill thank god car lender able give three month extension covid find another job considering fact car insurance renewal coming gave make payment dont know whats really going fedloans tried getting help needed way even knew coronavirus\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: attn collection dept submitting complaint reference company knowingly reporting inaccurate data credit profile affected penalty preventing creditworthiness due company demand proof purchasing agreement valid proof alleged debt reporting without valid proper disclosure requirement direct violation consumer right legally requested description detail verification process used verify alleged account federal law requires respond thirty day failure comply federal regulation ftc et esq maintaining careful record communication company thank look forward resolving expeditiously\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: detailed summary writer settled debt diversified consultant inc amount full debt price documented however upon speaking representative company via phone told representative debt could settled considered paid full agreed upon amount paid agreed settlement amount received documentation diversified consultant dated stating account paid full received letter rpm dated regarding owing debt amount writer contacted rpm explained representative previously paid debt another company settled amount advised representative sent proof payment redacted bank statement advised representative phone via email told writer would hear back within day hear back representative company received letter dated diversified consultant dci stating last quarter dci received following payment payment received quarter applied account placed dci however account closed received another letter stating still outstanding account reached spoke representative representative named stated writer fax documentation proof payment number provided call back following monday ensure received complied faxed information next morning waited monday morning call back upon calling given number back writer connected told representative phone would take day sort review faxed information sent received letter dated stating willing accept total due satisfy outstanding balance contacted company spoke representative supervisor regarding paid debt proof payment emailed couple month prior supervisor stated information sent valid proof additional information receipt needed sent proof supervisor also stated someone would reaching within day upon receiving new information sent complied sent additional documentation email address rpm provided yet heard back recently received another letter another letter new company called dated stated account placed u collection amount f scanned emailed previous letter correspondence company attempting collect debt along proof payment emailed upon sending email contact via phone spoke representative stated information processed yet call back friday check system stated call would made friday check situation resolution would like agency attempting collect debt seize form communication phone email letter social medium form communication may apply would like debt absolved removed collection personal credit report applicable presented closed paid full account\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: partner financial collection unfairly placed credit report collection acct company license operate georgia bought inaccurate unvalidated unverified fraudulent collection acct another company also license operate georgia company entity exist never done business company acct anyone take minute search state business search website site page find neither one company license operate business ga company called company lost license operate financial fraud crime ironically paying bill state still illegally operated without license wreckless disregard sold inaccurate unverified fraudulent collection acct partner financial collection also license operate either apparently investigate broke law year ago destroyed credit life fraudulent collection acct fraudulent acct still credit report disputed inaccurate fraudulent acct showed written proof intentionally maliciously refused remove painful fraudulent inaccurate acct credit please help thank advance thoughtful\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: requesting complaint forwarded regulator second complaint several complaint prior resolved respondent made clear admission fraud buy placement collateral protection insurance loan commission loan complained business consumer requesting complaint found reference document attached request complaint originally filed found referenced attachment complainant respondent attempted resolve matter use mediator known company name jam consent order original complaint order company got court authorized mediation party invention complained caused irreparable harm upon complainant totally permanently veteran business owner suffered collateral economical damage past future matter subject complaint warranted authorized consumer protection act code federal regulation recently decided case seila law firm versus consumer financial protection bureau decided supreme court united state honor\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: collection bureau id collection bureau verify amount owed suing would found owed nothing client trying collect contacted resolve issue transferred law office tried state amount owed informed called debtor verify amount owed prior contacting time representative law office rude also received several harassing call collection agency believe violation fdcpa\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: credit card citi bank lost job called tell make payment know going able pay find another job week due date told rep phone took payment next billing cycle charged double payment make payment prior behind payment called back told happened would take payment payment prior month told close account would continue bill added bunch fee owe\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: due coronavirus pandemic chose forbearance plan mortgage day husband laid full time job due pandemic husband returned work called loancare cancel forbearance plan impossible talk human phone company cancel forbearance via automated service felt uncomfortable called loancare multiple time could resolve accumulated amount forbearance waiting hold hour hung week ago started receiving notification different credit bureau account flagged day late immediately called loancare course could get phone human recording said wait time exceeding minute call back another time really finally got ahold human loancare told forbearance amount paid immediately canceling forbearance else start reporting credit bureau never late payment credit score dropped point process trying loan modification loancare ca get human phone called morning recording say wait time exceeding minute call back later longer log account online either using yesterday sudden working today worst mortgage company ever something need done negatively affecting life\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: case reporting credit file reference credit card also reference last four digit card xxxxi send letter called also several time reference incorrect reporting late payment time also explained correct contacted member service payment advised going affect score well within pay period date also told customer service later send communication reverse contacted nothing happened also online payment facility blocked direct payment didnt go created problem result facing consequence still showing credit history negatively effecting current situation may kindly ask please check revert back correct remark credit file help clear late reporting\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: debt buyer company midland funding bought account reporting account credit report still although date first delinquency original creditor render account longer reported anymore statute reporting account information expired account number account number balance shown original creditor already deleted account credit report across three bureau alleged debt old\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: disputed debt company year asking validation account received bill mail know right bill validation owe alleged company provided proper validation law need cease collection reporting credit report\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: attempted use card business purchase find card declined though might due bank suspecting fraud account didnt let go thru called bank speak fraud department advised closed business card personal card risk bank advised risk applied credit card recently get percent interest rate balance transfer higher interest card feel like bank profiling never missed payment bank credit card top checking saving account instatuition\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: dear officer required completed report part program verifies one income benefit provides basic medical service eligible since sending invoice last threatening collection someone bank account life son son called spoke behalf sent everything needed verify financial need said program ignored ever since spoke supervisor later rude unprofessional asking discriminating question like patient legal country like ultimately decided would waive numerous email asking detail service provided ignored request contact information ceo ignored request paperwork may showing agreed cover doctor fee paperwork may ignored company sent collection income money son pay basic need house fight collection company unfairly sent month end writing appropriate government agency ensure poor patient harassed way thank helping patient providing safe space complain\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: escrow new build bank america lender past month partner first home purchase whole escrow process smooth loan officer concise informative patient one road bump end escrow well initial closing date builder informed closing date notified end result le day left close lock rate credit report credit report repulled since previous expired shortly found balance revolver balance primary address incorrect requested lender repull credit report since fixed bank america stated repull since already pulled approved ultimately inaccurate information report going cost u thousand closing cost increased rate significantly tried contacting upper management denied request stating policy already approved get repulled denied lock rate period expired isnt going work since itll push closing date builder point deal situation could simple credit repulled\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: call file westlake financial service paid payment westlake called refusing give company name said needed talk repeatedly asked guy refused tell company name number found westlake financial service call list writing email received communication working hour week messed income collection call cell phone payment late fee refused take working full time people need pay rent food filed complaint late fee tell call email working perfectly\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: contacted requesting refinancing lower payment instructed miss payment enrollment program called hamp complied month three instructed loan sold await instruction make payment b much payment would approximately month phoned concerned timely payment told theyd phone email determined new lender continued save payment finally approximately month notified would receive written notification via mail gregory funding regarding make payment b much payment would gregory funding mailed notice render single payment equal previous payment refinance asked refinance status advised would render payment without interest rate reduction reviewed file amortization chart notice interest paid etc received spite inquiry year note asked time mortgage payment sent credit bureau advised required negatively impacted credit complaint gregory funding accounting continues increase principal balance loan although payment made timely date added excess loan complaint escrow account failure pay tax gregory funding paid property tax accrued delinquent fee although fund within account complaint gregory funding renewed flood insurance policy replacing name filed claim damage gregory funding received payment intended pay damage still payment\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: attempted transfer money region account account using impression fund would available day submitting transfer informed region mobile app fund would available next day reading region account agreement exception fund available suspicious activity receiver enrolled receiving account enrolled fund transferred account previously called region spoke explained region dictate processing time transfer true wanting know reason fund sent available immediately region holding fund caused huge inconvenience would known processing time would found another mean transfer money notification fund available displayed transfer initiated\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: year ago owed student loan went threw divorce use deferment option able pay never went default used option lower payment payment reduction forbearance year balance dollar interest fee employment status changed past year able make payment ca afford standard payment amount kind money ever able pay back offered sell home give money made would find way pay difference original amount said ca settle loan lower amount loan increased turned mortgage qualify make significant purchase fiance looking purchase home together qualify debt upset reason ca move ahead life student loan balance credit report defaulted one thing interest fee life standstill resolve issue thank\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: writing letter demonstrate disgust paypal decision take available fund account total available balance told paypal needed wait day withdraw fund day paypal transferred available balance fund paypal account claiming damage violating acceptable use policy paypal provided zero evidence backup claim company damaged business sale transaction minimal amount return refund buyer received merchandise emailed paypal told would able withdraw fund day attaching proof email showing told information paypal dispute decided favor asking fund returned account right away may withdraw bank account fund returned within day filling lawsuit small claim court please advise\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: reviewing credit report discovered inaccurate account file disputed account belong account inaccurately placed credit please conduct investigation derogatory mark caused serious damage credit\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: chase bank reporting erroneous credit card credit bureau charged status received collection letter aggressive collection call card belong numerous attempt speak someone chase went wasted never ending loop transfer one agent another asking full account number credit card default attempting explain fact belong thus would full act number went ignored written request chase providing copy id social first chase finally responded almost day stating need information account could find account information documentation provided received big envelope copy electronic application name address belonging personal info another person even closely matching mine calling writing chase requesting deletion account credit report went ignored sent letter stating confirm information reported credit bureau correct possible provide copy credit card application another person similar name different social address date birth state reported corrected bureau attached please find evidence violation several count also alarming big bang like chase mail someone application revealing social personal info instead little research least attempt protect identity customer alarming sending complaint attorney general office inspector general ftc wrong consumer suffer lack compliance negligence ignorance\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: cd account missing account selection letter notice screen still fixed bank cd matured called renew cd change term cd cd prior renewal able access letter regarding cd letter notice screen see first attachment renewal cd longer account selection list letter notice screen see second attachment hence even bank sent notifying renewal letter able access letter bank mail hard copy renewal letter neither called talked online technical support staff screen shot online account selection list screen shot told received would ticket issue told someone would call within hour provide ticket number update issue never received call back called talked online technical support supervisor said could find record issue asked screen shot told someone would call hour provide update never received call back called time person talked told found ticket could tell ticket number said person wrote ticket tell ticket number update issue therefore issue go nowhere\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: attempt use amazon pay pay product website transaction failed recorded amazon pay charged back amazon store card provided bank synchrony bank amazon pay stated refunded money synchrony bank stated receive refund amazon pay need pay amount receive good transaction forced pay bank synchrony bank\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: bank america placed hold entirety fund deposited one account account question fiduciary account used manage fund received va benefit father va designated fiduciary father due inability manage affair caused bank froze entire account father passed away called inquire freeze fund account bank advised require provide death certificate father bank still withholding fund discussed matter representative va fiduciary hub provided letter requesting bank release fund also provided letter bank bank still released fund tried reach appropriate department bank release fund able unclear legal authority bank withhold fund belong bank management fund account matter va seeking release fund furthermore bank authority withhold fund belong bank asking appropriate disciplinary measure taken bank\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: hsbc offered bonus opening new premier checking account making recurring direct deposit totaling least three consecutive month second full calendar month account opening completed requirement received bonus contacted hsbc directly via online messaging received following response dear redacted thank valued premier customer thank contacting hsbc bank usa understand concern situation upon review show research eligibility promotion completed apologize review show eligible receive promotion reason due account opened campaign landing page proof account opened page please reach u either via calling premier customer service line internationally provide information reopen investigation eligibility question concern please hesitate contact u additional information product service hsbc bank offer please visit u hsbc launched new messaging channel user messaging app available convenience allows pause conversation needed easily pick left try new feature look forward servicing banking need thank hsbc bank mail team really disappointed hsbc shady tactic considering way apply offer click apply link directly offer page\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: end mortgage bank investor bank offered forbearance month due pandemic issue bank said wo penalized forbearance indirectly monthly payment around forbearance began added unpaid amount included principal interest tax escrow total loan balance extended forbearance time forbearance ended loan balance reported credit bureau increased almost several occasion credit report blamed increase lowering credit score began making mortgage payment financial situation improved investor bank said would report correct loan balance credit reporting company today loan balance still reporting reporting one month behind notified investor bank several time doesnt seem help began dispute two month ago nothing changed get file dispute tried numerous time two issue first forbearance supposed hurt credit way investor added loan balance affect credit score second feel investor enough correct reporting credit report attached document showing increase loan amount credit report lowering credit score\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: gm financial closed title processing office due though sympathetic costing ability retrieve title payoff therefore resell vehicle conversely gm financial continues issue financing accept title car sale captive gm dealership tactic enabling private seller sell vehicle gm financial hold note\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: applied refinance loan depot month loan process nightmare interest rate credit could matched company time repeated call following finally closed funding final cd show prepaid interest day lender also paid cpl fee due borrower final lcd alta received say closing due borrower va credit disclosed cd loan funded mortgage paid waited business day small cash back irrrl received instructed contacted loan depot could get response logged origination dashboard requested call back response emailed processor response called left message response finally pulled alta cd emailed received revised alta change fee date received revised cd valid change circumstance requested one still waiting revised alta emailed following change explanation prepaid interest day closing increase alta still labeled date appears additional dat added without explanation final cd lender paid settlement charge cpl settlement cpl fee settlement final alta line item show charge cd show lender paid item new alta received show charge item debit removed credit new service link credit new alta say listed miscellaneous change offered lower rate customer service issue beat rate locked applied never done see say rate locked rate lock agreement received saying realize rate locked loan processed called status application said system glitch fixed charge wanted cancel go quicker turn around faster service convinced stay lower interest rate point supposed cost service issue stay loan process month irrrl attached following final cd loan depot dated final alta dated revised alta received contacting service link dated numerous attempt loan depot system get service issue resolved showing rate locked rate lock agreement received saying float error corrected loan officer loan sitting processed reviewed cd offered beat remained loan depot month process\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: american financial network continues send solicitation mortgage loan although contact list company warned continues contact mislead potential customer claiming va eligibility although affiliated va way\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: account year old three credit bureau continue report account need removed asap year mark thus reporting agaist consumer right\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: prior report filed relation problem hand someone somewhere using credit information applying credit card loan line credit mortgage hurting score putting sixty credit inquiry recognize report would like inquiry initiated removed credit history fraudulent\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: soon affected called mortgage company sps went detail impact furlough due closure caused able make payment asked sps assist helping deferred payment option went back work sometime spoke sps representative took information week letter received letter sps stating placed forbearance plan needed make balloon payment called explained would able come balloon payment asked assistance situation asked submit last paystubs online system applied financial aid due told call week know status application receive another mail stating load forbearance program needed make arrangement pay balloon payment call sps asked letter send sps said needed wait three month see plan qualified call end said could qualified financial assistance program account past due called told go website fill question find question called sps agent went question told program available foreberance plan balloon payment conversation sps representative stated could make monthly payment come balloon payment sps stated option\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: writing report violation limited recourse repossession sale motor vehicle spouse purchased financed american credit acceptance aca vehicle repossessed without warning paid agreed upon partial payment aca accepting allowed pay fee reinstate loan interest rate percent feel due poor credit time actually visited another vehicle approved told vehicle fallen back transport truck felt forced settle based credit financially approved loan could afford total paid still owe fraud\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: related ftc ftc discover approved complaintant credit line application complaintant put separate application checking account ssn passport driver license utility bill uploaded application however complaintant called discover representative complaintant call disconnected time call went time complaintant stated ssn dob address call suddenly disconnected later error application required complaintant put another application successfully generate check account around pst complaintant attempted setup profile within discover banking website complaintant user cellular tower area via discover us sm number send temporary passcode user however complainant experienced delay receiving code via sm text email sudden surge text message within second span time clearly show factor preventing going recurring issue complainant corresponded around representative indicated widespread issue affecting user complaintant area indicates possibly due usage femtocell cellular network imsi etc complaint neighborhood area issue reported network customer general different note complaintant reached discover issue debit card remains system yet credit card added system discover representative blamed refusing allow card system complaintant wonder many discover customer credit card added system complaintant emailed discover per request investigating issue\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: year ago tried setting disaster told continue paying bill got notification established never got notification continued pay bill suddenly bofa debited checking account current bill even though already paid credit balance following month debited retaining credit balance called asked told nothing could done asked refund credit balance request denied recourse cancel let credit balance get used continue pay manually month month ago tried establish digging finally found section poorly designed spent latter part career designing website working programmer know talking website section entered account information got error message moved never got acknowledgement actually happened paying manually today called customer service find set told customer service representative set account\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: get call approximately everyday everyday ask stop harassment change number call even told gon na report constantly still call going several month even asked call portfolio recovery asked find new way contacting whoever number giving personal information due already identity theft refuse\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: claimed chapter bankruptcy discharged still say open report also still report doesnt chapter fall year know chapter take year fall\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: applied home loan preapproved mid inspection appraisal completed house loan went underwriting scheduled close house lender said needed additional week moved closing date week end realtor reached lender working time asking update continuously told none would keep u updated asked speak supervisor told id get information later never finally notified realtor even lender first loan longer approved due student loan changing past month untrue changed anything better standing feel like company completely scammed money paid inspection appraisal earnest payment total id like money returned back honestly complete nightmare working company hoping make thing right\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: two month ago checked credit noticed account misinformation account werent mine begin mailed dispute letter credit bureau get investigation started month received response dispute letter\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: hello agreed business named install window home promotion month interest financing done syncrony bank applied approved scheduled window installed week month point company partially installed window billed syncrony make payment product received contacted syncrony still forcing u pay service product client provide feel like rail roaded fair u pay bank service provided client please help thank\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: filed refinance loan quicken mortgage discussed fee appraisal pmi insurance told mortgage processing fee would would need appraisal reviewed cost loan processing fee appraisal fee asked told would need appraisal would good faith application fee home valued two time current loan value believe low square footage wrong lender home appraised way market value charge pmi insurance appraiser come loaded proposed loan value guess appraisal end know already happened appraisal done lender choice unable argue scam lender appraiser increase fee payment homeowner allowed get appraisal done controlled lender\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: chase dispute chase executive office failed provide adequate reasoning evidence denial dispute prepayment made contractor chase claimed original dispute mailed letter stating contractor rebilled account proof support claim much time passed investigate matter provide brief recap party rebilled credit card disputed finishing contract walking job chase deny right rebill instead stated much time passed disagreed finding writing know working customer remediation executive office company elapsing time valid reason deny claim legally invalid company cause time delay occurred case chase originally attempted state respond rebilling time know rebilling even occurred time limit expired immediately contacted chase balance reinstated account realized occurred earlier stated chase responded cfpb complaint stating mailed letter period receive complaint stated never received letter chase notification shown account website either logged almost daily period incident occurred response dispute chase admitted proof letter sent handled mail carrier delivered address another note chase executive office called friday tell response dispute mail received either would also like add dispute period chase without consent withdrew excess bank account resulting bounced check made another person also posted interest fee account cfpb complaint pending\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: debt collection company reporting inaccurate information debt mine responded within day violation provided contract bearing signature\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: fifth third bank paid property tax property six contacted number time avail get letter tax accessor raise escrow amount shortage amount escrow account received letter saying late mortgage payment even though automatic monthly mortgage deduction bank called try get problem called nobody clue going account\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: account plagued billing issue incorrectly billed many time service disconnected several time cussed hung financial service rep account paid complaint filed attorney general responded stated account paid full issued apology sent account collection third party collection agency damaging credit\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: receiving verbal approval creditworthiness credit limit informed chase credit limit would reduced receipt care act sba loan extremely likely loan forgiven likelihood interest chase making assumption entire loan need repaid deducting amount fund available service heloc furthermore chase looking potential liability side seek reason withhold credit want cfpb know chase erecting barrier lending impeding small business owner access credit time government policy focused availing credit u resident\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: account added created unbeknownst notice concern hold accountable accuse complicity exercise malevolent hereby mark likely one might one day view civil discord would plaintiff yet declare unjust claim met deliberate determined resistance counteraction clarity claim debt collection insufficient collection much le reporting must delete unjust injurious allegation significantly deficient requisite certified reporting compliance perfect metro format reporting testimonial evidence physically verifiable proof validation related full truth accuracy completeness timeliness ownership identity true debtor date balance audit calculation source code creditor collection code statement associated trailing fragment minimal five portioned personal identifier pay status required confirmation collection elsewise standard mandatory proper reporting mentioned although checking addressing missing deficient aspect reporting compliance contesting debt compliant nature make aware since unlawful reporting transition collection equally complaint circumstance still yet validated document fact compliance requisite standard announced yet legally knowledge validity alleged claim delinquency derogatory nature certifiably compliant matter either collection attempt reporting despite previous consumer filed composed complaint checking might known especially shall elect take matter civil court debt derogatory claim must pursued particularly collection defined precisely compliant physically verifiable certifiable manner detailed requisite obeyed federal state collection reporting regulation associated noted said claim include limited fcba fcra hipaa privacy rule facta fdcpa tcpa etc additionally entity act collector also elect act reporting party consumer credit must well adhere every single one even regulatory reporting requisite standard reporting legal standing full accordance law accepted reporting standard date plaintiff failed demonstrate capacity willingness validate alleged debt much le certify fair accurate complete compliant reporting claim particularly significantly deficient display certified metro compliance given fact recent breach information collection repository hesitating readily accept presented without testimonial certified physically verifiable document evidence claim legitimate deny nothing yet reserve right question unproven claim accept statement claim plaintiff call court reject claim untrue unverified incomplete compliant otherwise invalid thereby dischargeable requirement dismissed full demand said court resolution today even full accord regulatory statute mentioned date received knowledge ever entering contractual relationship plaintiff forward civil complaint entity y allegedly issued defaulted line credit accusation similar despite repeated call accuser demonstrate requisite presented physically verifiable document proof adequately acquired permissible purpose exactly individual irrefutably identified acknowledgement relationship party mentioned form knowledge ever knowingly acknowledging even unknowingly owe proven compliantly reported debt much le claim unproven debt alleged written declaration checking validity claim also document proof certifiable testimony factual complete compliance standard law even mandatory metro format compliance obvious allegation filed accuser plaintiff clear subterfuge act willful disregard ethical practice done ignorance requisite ethical regulatory compliant behavior accusation collection effort credit reporting claim vile nature derelict unjustly injurious unlawful doubt call dismissal plaintiff statement claim discharge misreported delinquency derogatory behavior accuser complaint undeniably unfairly lodged versus knowledge ever receiving proven document fact statement account account aspect item alleged debt delinquent action reiterate called accuser present document certifiably true correct complete adequately compliant documentation full validation claim right collect alleged claim right report alleged claim let true compliance regulatory requisite mandatory optional plaintiff claim mute legal standing full accordance law must dismissed knowledge ever entering open account plaintiff entity y allegedly issued defaulted line credit derogatory claim credit fact claim even submitted adequate compliant proof genesis relationship inability prove application permissible purpose said alleged application agreement contract describing relationship related alleged claim account debt otherwise derelict documentation claim inherently make invalid plaintiff whole statement claim summons complaint request court resolve adequately compliantly required immediate eradication complaint charge rectification injurious collection reporting practice compliance appropriate collection practice equally compliance appropriate complete reporting practice mandatory optional stand proven otherwise complaining plaintiff unjustly unethically likely illegally absolute deficiency requisite legal standing full accordance applicable law mentioned collection practice well reporting practice particularly inability unwillingness timely fully certify physically verifiable document proof full validity debt claim compliance reporting even mandatory metro format declare right preference stand claim plaintiff call authority integrity ensure truth claim correctness claim completeness claim ownership responsibility debt delinquency debt alleged noted claim perfect compliance collection action related claim compliance reporting action related claim\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: lodging formal complaint midwest recovery system debt collector reported derogatory account credit report amount midwest recovery violated never recieved dunning notice midwest recovery allows day dispute ive lived address year check mail everyday never recieved nothing even phone call happening worst time im process purchasing first home family im told errounous account holding back heart breaking family requesting immediate deletion account credit report immediately attorney general complaint filed account deleted thank time\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: dear sir madam ex spouse used social security number applied several credit card may get financial benefit using personal information create false employ information friend applying permanent resident joint account according suggestion attorney hired help apply permanent resident repeatedly stated dont need bother joint account used pay utility bill set credit card automatic repayment main financial activity still use personality account existence joint account tool damaging credit even used joint account cash pay stub check name actually didnt work anybody requested housewife since married housewife several year unfamiliar country isolated society never checked credit report closed joint account personally noticed identity theft issue continued hurt credit victim besides credit hurt kited money family single mommy undergoing hard life right doesnt pay child support reason mentioned figure person responsibility many people thing life testify character apply used credit card know believe justice law although hard tried best resolve probelm called police police report anddetective officer responsible case right summited identity theft report federal trade commission reference number summited dispute request three credit report company one removed credit history fraudulent card two investigation sincerely prayer result case consistent fact thank\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: filing complaint unable resolve issue bank well fargo tried reach customer service person identified started talk fast told elderly woman many health problem asked politely could speak slowly simply hang tried reach well fargo customer service day automatic service let terrible experience reason call needed help reverse monthly fee elderly person highest risk contacting cant make debit transaction waive fee please check cdc guideline information regarding elderly sorry well fargo customer service difficult\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: cabelas reporting late payment late always make payment time error system end trying make payment account long time issue\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: according term mortgage able make payment month would like make payment month asked servicer sure technically dovenmuehle unable process past month due system limitation complaint system able accommodate ability make within term mortgage\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: filed whatever proved state open card capital one decision still remain unchanged reason look transaction made state mention previously state time suppose used guy check date transaction time left state please check carefully also filed claim fbi website internet crime attach clear enough happened get point decision remains give reason\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: issue retail account though cant reach someone customer service basically special term expired yesterday personally going lot right virus mind blur buried family member yesterday last night falling asleep exhaustion freaked realized called automated phone system submitted payment remainder balance without interest owed term expired however wf already added interest account automation system said since paid pct post please know responsible bill bad month accepting\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: hi something listed account named however ive never account people reached number listed said give access account detail owner account make sense credit report name access tried dispute fraud wont even send documentation dispute ive victim identity theft since please remove never contacted knowledge account report attached fraud alert account listed\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: victim identity theft due corona virus pandemic facing sitting still home saw recent news multiple data breach decided look credit report major credit bureau found someone used identity idea theft took place also knowledge suspect receive money good service result identity theft contacted credit bureau told file identity theft report appreciate effort getting matter resolved thank please let know need information block information credit report thank\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: closed sale home money source mortgage servicer claimed title company never received payoff amount despite fed reference number proving entire payoff amount money source reported account day past due dinged credit point according money source still show processed payoff every time call told supervisor call back within hour one ever spend minute waiting explaining someone different every single time call time since sale closed transferred manager voicemail never heard money source say owe entire principal balance house sold paid loan via title company lived month literally consequence messing credit tanking\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: receiving derogatory credit report remark account belong owe debt amount request removed negatively impacting credit report\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: freedom mortgage showing delinquent credit bureau mortgage short sale paid full banker show current credit bureau\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: copy credit account belong also inquiry belong please investigate account inquiry please delete info credit profile send updated copy credit report\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: check free bill pay credit card rejected without notice contacted check free bill pay helpful found bill pay rejected returned ranging question cfbp forthcoming disclosing bill pay payment date amount credit card returned cfbp system however cfbp want go payment made wait process time yr old male yr ago circumstance find dangerous idea please cfbp issue lump sum check fund returned thanks need account number please let know\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: u bank reliacard recieve child support card declined spent several hour day hold customer service time hour waiting call disconnected unable log online account trying several time get gave customer service sent several link year ago supposed help set new password unsuccessful card access need also tried calling going local u bank told cant anything call reliacard customer service\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: account legally paid full le full balance still reported recent charge co error charge offs reported last activity go back year old account hurting ability purchase house\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: best buy store visa credit card purchase two television sum total television plus tax seven day one television unit stop working return television unit seven day later purchase new television however new television purchase reflecting credit card statement difference reflected either purpose writing tried contacting store state return take thirty day probably day forty would like refund best buy event took place best buy new york\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: dear officer consumer financial protection bureau name filing complaint paypal put hold total amount requested paypal case rejected given reason frozen account money paypal account generated selling item buyer received item complaint feel holding fund day reason abuse power paypal lost job week ago corona virus paypal letting access money putting tough situation kindly ask consumer financial protection bureau look issue help resolve thank address paypal case number\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: working refinance mortgage reached loan closing statement amount specialized loan servicing hold neither reach anyone sl parent trying close end need payoff amount financial harm way without sl responding need numerous online complaint federal filing regarding fraudulent company get resolution quickly\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: three credit report updated year information sold back done credit paid period one year never set anything done change update information log contacted three mail several time threw year tried emailing tried calling gotten response customer service line automated nothing going real way talking real person credit information report like stated approx year old\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: caller posed representative called stated computer hacked numerous time would rendered useless id notfollow instructed go thr drocery store near home instructed purchase gift card instructed reveal activaction code told service free would rfund credit card company charge within hour purchase never happened contacted pentagon federal crtedit union file fraud claim never recieved purchase mailed certified mail news article fron arrest man working florida responsible scamming ga senior penfed replied since participated scam say fraud charge valid respopnsible charge telling fraud scam arte thing must pay disagree fraud scam cheat year old feel fraud\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: capital one credit card started making payment via different checking account since always place hold payment modify available credit say protection think descriminatory making larger normal payment according search give pause case happened three month row returned payment available fund account paying capital one keep telling randomly lying consistently\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: approximately applied relief freeze package hold car loan sent correct document one time date unknown told receive paperwork repeat process finally second time received accepted phone conversation teller told received would accepted freeze get credit alert monitoring system saying score dropped point due late payment immediately track issue try rectify situation hand able speak representative tell cancelled freeze due paying dollar interest asked told approved tell step freeze proceeds tell tried contacting phone wrong number asked email tell smaller bank like big bank thing differently obviously immediately make payment next month ask rectify situation due impeccable credit history one late year informed id go credit bureau rectify situation get dealt way\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: xxxxxxxx continuing report expired charge crefit bureau according texas civil practice remedy expired complicit continues fraud due knowledge fraud failing immediately remove injurious action contacted today unsuccessful getting fraud corrected representative suggested whatever resolve issue suffer denial jumbo mortgage application due fraud subsequent failure immediately remove derogatory entry credit bureau complaint stand texas civil practice remedy finance code\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: law right formal investigation performed outlined fair credit reporting act perform investigation remedy file lawsuit please investigate remove following account inquiry credit report refer matter attorney take immediate legal action respectfully suggest complete investigation within time period allotted law event able verify report supply name company address company phone number person verified report full complete report method used perform investigation dictated fair credit reporting act please advised failure complete investigation compliance law may result legal action\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: hello mortgage bb mortgage live california husband work due state wide mandated quarantine paid forced file unemployment tried call bb bank discus option called every day since spent multiple hour hold left message one ever picked phone returned call bb t website state faq give month forbearance end month want pay full amount due would month payment one lump sum possibly going help u never paid late mortgage loan company helping community horrific time loss creating stress potential heath problem due lack communication unreasonable solution mandated government stay home choice therefore issue fault\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: filed dispute regard account convergent outsourcing fraudulently verified account accurate\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: called capital one see application getting denied could figure either found rogue credit card used account name told could longer account locked since way could happened keep insisting account definitely victim fraud trying figure since got prison got prison card open release date obviously make happen\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: trying refinance current home refinance lien property released loan originated bought information file releasing information u lien paid never released recorded deed office need satisfactory letter bank trying refinance started process ill include email screenshots everything anyone talked give u general phone number email cant ever contact person jumping hoop trying find certain individual never return phone call hold multiple time trying find people\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: hello see attachment still received approval confirmation loan modification adjustment well fargo mail copy outlining plan make payment want make sure applied\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: due close loan finished final contingency loan full approval signed doc wired money payment loan never funded blamed short handed covid extended close lender quit period contacted owner lending company via text email didnt close owner home lending group admitted via text line credit suspended two week earlier two week close still go approval process knowing couldnt fund contacted daily realized defrauded started contacting attorney situation scrambled find new lender help close timely fashion without seller backing deal meanwhile made financial obligation people regard work done closed many others lost home due funded lender never got paid people evidence provided text sent realtor\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: account account credit report thats mine\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: amidst worldwide crisis facing going pandemic carrying away livelihood job affected still important good positive remark report contacted creditor failed provide necessary document prove account debt belongs resulted loss credit rating\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: around sent package equifax indicating account mine attorney representing lying amount claiming owed never received response\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: already submitted claim issue cfpb claim wherein company claimed credited checking account fact credit ever made sofi checking account number\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: fraud debit card mid filed claim chase chase still refusing refund account fraudulent charge charge ichase denied claim filed complaint cfpb still refund charge make charge idea never done business company please let chase know emailed complaint regarding chase local senator also emailed local tv station tip line news regarding chase misconduct make charge chase required law refund chase refund next step sue via small claim court also plan continually filing cfpb complaint money refunded\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: applied paycheck protection program like business united state process pretty slow asked could apply program lender applied american express process american express pretty fast approved also told day grace period collect fund canceled thought underpayment since day took money transferred account week later got email informing maximum amount eligible found troubling understand wide discrepancy american express offer called american express talked staffer told better offer would possible withdraw application small bussiness administration returned money enable since better offer talked staffer phone said see problem take day american express completely withdraw application one people spoke phone presented account information pay money nobody american express told impossible withdraw application sba helped everything assured problem borrowed dollar paid money account presented phone american express staffer next day called see withdrawn application told first time impossible withdraw application asked return money said far concerned repaid loan shocked trying get good deal company staff earlier email american express mentioned repayment paycheck protection program loan required today refused return money falsely characterized repayment paycheck protection program never sent repayment invoice applied government rule repayment reached responsibly american express informed damage company even give receipt dollar transferred account tried explore possibility withdrawing application sba possible simply return money never mentioned repayment repayment fo government loan start appealing bureau consumer protection reach american express make return fund already caused huge damage company action completely circumvent purpose federal government provide palliative small business help bolster covid response clear fine decision application sba withdrawn unable withdraw application simply return fund let go process like american difficult period\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: beginning received copy credit report experian sent letter bureau asking look account listed credit report asked verify information reported inaccurate asked validation debt bureau due reporting issue removed account credit report five letter experian response past month finally listed account dispute noted attachment state dispute closed account meet fcra requirement however account account still reporting balance open account clearly meet fcra requirement countless attempt corrected experian refuse look request\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: capital one bank checking saving account period time kept account closed account year ago dont owe anything bank hold money didnt take loan line credit everything fine time venture credit card bank last year debt late payment excellent credit score get lot offer mail offering open saving checking account finally today decided really surprised application denied spoke bank representative phone told bank decline reason really shocked since never problem opening account bank last year bank gladly open account especially large amount recently complained annual fee capital one venture card feel like revenge consequently retaliation seems highly inappropriate correct would like find reason declined\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: bought lease vehicle lease payment went day resulting overpayment spoke rep kia finance told overpayment would reimbursed certain date pointed date passed still received payment added action taken behalf kia finance refund payment even contact discus matter\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: contacted bank america mortgage last year refinance connected loan office asked proceed checked debt income ratio make sure would qualify claimed asked appraisal told uncertain term want pay unless sure going go said problem also asked odd reason would get money back need appraisal email stating stating would miscalculation refinancing go throught refuse give back contacted least x one call back get email stating refuse give money back\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: informing case identity theft victim equifax data breach information floating stolen wallet information providing proof claim requested letter form verbally validate inaccurate account showing credit file requested proof investigation tactic verify account debt claim mine several year also requested remove inaccurate account personal information address etc refuse remove show validation spoke company personally writing able get help experience rude customer service agent repeating send police report notarized statement identity theft claim promise remove inaccurate account information file requested confirmation number letter removal account always told agent sent within certain time frame yet day received anything account still showing credit file recent validation debt letter dispute letter sent account information inaccurately showing credit file follows inaccurate information personal name appears different way name id need inaccurate address never used address id need phone inaccurate phone number never used phone number need spouse inaccurate spouse spouse need personal statement inaccurate phone number phone number need account account need removed non validation account opened balance account opened balance account opened balance hard hard inquiry hard inquiry need inquired inquired inquired equifax mortgage service inquired apply authorize anyone use personal information apply account using fraudulent information associated credit file filed necessary report prove claim applied numerous form protection try protect identity following federal trade commission report filed joined monitor credit personal information applied fraud alert credit freeze file process suppressing file smaller bureau also reporting inaccurate information credit file accurate account report accurate account follows account spoke name last name given work fraud department claimed needed file another dispute filing many recent wait company respond stall tactic keep minority poor locked debt suffering identity action taken company reporting inaccurate account causing face homelessness denied credit trying live life right track trying first class citizen working hard family debt mine caused family many loses shame right disgrace reputation ruined due carelessness others account remove choice file lawsuit party involved\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: around mortgage company named green tree took mortgage home green tree forced placed flood insurance house flood insurance already purchased pocket escrow one year bought house dropped escrow started paying bill associated house pocket tried resolve issue forced placed flood insurance green tree sending proof insurance several time met threat forclosure demand leave home got point start forclosure proceeding refused accept payment made towords mortgage couldnt even make future flood insurance payment money would always returned allowed continue pay home owner insurance tax attorney expected help problem considering fact green tree multiple complaint even lost several dollar class action law suit reference situation thought matter would resolved long time ago ruling green tree make matter complicated green tree longer business getting wire received call stranger lawyer inform house scheduled sheriff sale held know late cutting close end rope hoping letter reach someone help get kicked home thank\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: first want say cfpb amazing job country sure helping even day pandemic going complaining series mistake made fulton bank preventing access money opened account fulton bank opened account deposit made debit card purchase earned bonus total balance remained logged week ago close account noticed determined someone else somehow used account number link account passed verification evidenced two small verification transaction many deposit withdrawal called unpleasantness began said simply want care rest said start investigation made go branch sign form one transaction mine said would get back within hour time asked could withdraw said could today got call asking go branch sign dispute form said sign already photocopy talking caller seemed confused apologetic decided needed make complaint fulton bank holding money even knowing want back b honest rest money mine c done everything asked promptly upset allowed improper access account lost paperwork went way sign top preventing accessing money feel like punished right thing think multiple way could handled situation would allowed immediate access money far fewer headache upset fulton bank may also want investigate allowed account person access bank account guess correctly chance actually ignore test allowing linking either way want money back want asap\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: applied personal loan remodel home asked bank statement verify employment provided three month clearly documenting payroll make per year fico score thought would easily approved said bank statement acceptable since payroll go trust account like many people position asked send tax return time followed reviewed tax return asked bank statement reminded already denied loan unable verify documentation provided unbelievable wasted time truly believe phishing data family resale purpose never serious offer please help\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: bbva credit card notified possible fraud charge account text email great take action remove fraud charge never made card also called customer service told use card request block acct issue new one security purpose\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: enrolled autopay barclaycard u credit card however barclay consistently debited fund checking account excess due barclaycard debited checking account cover account balance transaction posted credit card balance credit owing past barclay offered month deferred interest computer transaction automatically debited full amount purchase first month repeatedly called barclay error payment automatically withdrawing checking account nothing done fix problem fix latest incident overpayment barclay offered send check could arrive day case id however offer account financial damage suffer insufficient fund available cover credit card payment meet minimum checking account balance requirement immediately due solution available incur personal debt cover barclaycard mistake\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: medical debt patient account paid payment paid handling fee continued receive collection call told repeatedly paid told time manager would call resolve time call payment go deal always saying straighten sent repeatedly copy confirmation code account paid avail information collector able tell maybe applied another debt case balance go account able take money away applied received satisfactory answer would call yet way long find money pay account quit calling regarding\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: hi team walmart store synchrony bank credit card account ending till walmart working synchrony bank already closed account due need last statement synchrony bank warranty claim another purchase using card tried calling many time synchrony bank long ivr menu transfer call another department disconnect call without providing help ask statement working walmart anymore walmart credit card detail help\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: chase closed account unknown reason spoke rep told would receive fund within day account closed went branch speak banker called got higher phone pretty much said could call back receive tracking number check called said account still hasnt released kept asking speak someone else got hung time arent giving answer fund said dont tell whole month havent access money fund running low\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: move new apartment recently wallet stolen disable request new card chime sent new card said log app activate attempted log app message received account closed suspended assumed point would need reach customer service reset app create new account log however live customer service person speak option contact email email sent since regarding concern need money direct deposited account got multiple response multiple different people saying willing help account could send document license social security card verification expressed many time already taken wallet need another way prove id case week access money real resolution planning mail check would need statement change address updated otherwise requested transfer fund bank account linked regardless unethical close someone account give way speak anyone resolve issue refund money time efficient way\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: written debt validation letter sent phoenix recovery group received received response requested information validation purpose\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: basic saving account citibank saturday attempted log account kept getting error message password incorrect absolutely correct password hit forgot password reset password received message online access account blocked prompted call customer service line course remainder afternoon called multiple time time either told information could given told completely different thing every phone call finally told would wait letter mailed verify account almost week since first denied access account still received letter mail time call whether gain access account attempt close fund account mailed check told nothing done receive letter absolutely absurd last phone call citibank today rep came back line told simply could help would terminating call hung money bank account way accessing closing account citibank refuse assist outside mentioning letter yet receive almost week right still zero access account online banking money told wait letter arrive via usps mail still middle pandemic access account close\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: complaint quicken loan incorrectly withdrew checking account also directed escrow company withhold interest payment closing statement contacted quicken loan provide opportunity rectify problem prior filing complaint neither quicken loan dispute fact complaint filed told recorded line quicken loan would return ten twelve week fact quicken loan loan method loan payment monthly auto pay checking account quicken loan loan owner loan quicken loan refinance loan quicken loan sold loan official loan serving time refinance closing escrow company occurred applied refinance quicken loan reduce monthly payment quicken loan withdrew checking account fact disputed see proof statement refinance process quicken sold loan illogical refinance quicken directed escrow company withhold interest copy quicken mortgage instructing withhold provided escrow company attached notice date quicken escrow company dated copy attached full month directing escrow company withhold interest payment form quicken loan negligently withdrew account recording transaction show quicken took auto pay quicken dispute erroneously withdrew fund account notified escrow company withhold fund time period date description amount cash balance direct debit quicken loan mtg pymts cash direct debit quicken loan mtg pymts cash amount quicken loan transferred account idea called quicken loan complain incorrectly held demanded refund informed fund transferred need take issue called quicken loan complain recorded phone line quicken loan set conference call quicken loan phone call representative stated would get refund ten twelve week unacceptable wait two three month get money idea return money keep negligent party pocket quicken loan responsible mess directed return money immediately privity\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: elan financial service placed account credit bureau mine victim identity theft account mine hacker stole personal information dark net data breach\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: applied credit card save buying appliance turned letter came day later explaining state deceased quite alive working poor company see dead people go store buy appliance cut rate company disappointed\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: date stated year cfpb complaint intervened well fargo wf finally pay credit balance credit card paid wf cover charge made cover dental bill put card however also wf put false fraudulent debit charge card incurred labelled payment adjustment card appeared balance owing even though actually balance owing since phoned repeatedly spoken multiple rep multiple supervisor recorded line every one people spoke reviewing account agreed owe wf money owe money account balance least twice escalated issue corporate effect received letter corporate dated saying received wf complaint would hear letter case dated saying expect response meanwhile sometime got phone call male recall name reassured wf agreed balance working meanwhile fixed record would require minimum payment phantom knew owe money would pay interest make payment fee last week logged account still also demanded pay minimum payment called rep said seen exact kind problem would send another complaint corporate pay least money owe wf would charge nonpayment fee pay wf entire owe would charge interest unpaid amount spoke supervisor told though agreed looking record owe wf money balance owing account error could anything said would also send another complaint corporate told could request temporary waiver minimum payment interest charge unpaid balance spent least hour probably like hr hold talking many wf rep statement wf agrees owe gotten nowhere please help also given assertion seen happen well fargo customer please investigate well fargo fraud perpetrating customer demanding customer pay money well fargo know customer owe threatening minimum payment fee interest remaining balance fraudulently keep putting statement know customer owe\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: federal student loan supposed zero percent interest rate effective however monthly payment website still reflecting interest rate factored principal holding making full monthly payment waiting navient reflect correct amount relying zero percent interest income went due lack compliance new federal regulation set default\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: wire transfer deposited account blocked bank reason given correspondence email call back fund deposited even though ca withdraw fund bank continues take fee account defaulted mortgage insurance pick gift lay away pay bill utility\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: complaint bank america customer bank year credit card bank auto pay credit card ending payment auto deducted month called payment reduction minimum payment agent phone necessary change getting bill system process autopay tacked late fee agent mention need make payment indicated deducted scam squeeze every little bit customer auto paying bill month charging month tacking fee please investigate\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: hi company reported debt paid\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: applied refi amerisave back answered question provided information ask filled form signed sent dollar ernest money process keep dragging new excuse asking repeated form signed tried several time get answer update progress gotten response information please help thanks\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: trying link bank want let call bank say issue call u guy let u know wasnt bank issue problem still havent solved\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: dear im reporting issue purpose raise attention contacted customer service via phone month ago issued case number told reached week never received response phone mail understand might pandemic disrupted lot thing simple word converted citi thankyou preferred credit card citi double cash credit card last two typ credit card via phone citi customer service kept asking ensure wont lose point making decision conversion understanding point linked another thankyou preferred credit card chatting staff however lost point due conversion couple month month ago contacted customer service hope get lost point back issued case thanks attention\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: current va mortgage holder freedom mortgage called nmls ext emailed regarding refinancing home loan completed paperwork sent digitally freedom mortgage handed closing sent borrower confirmation email stating date closing would edt home address email also stated signing agent conducting closing freedom mortgage would dba signing agent show home call text email yet hear freedom mortgage called left voicemail also called left voicemail evening emailed sent additional email individual left three voicemail never received call back freedom mortgage state handed case freedom mortgage closing department hold freedom mortgage escalation department hour minute hung two occasion called freedom mortgage customer service provided call back phone number one freedom mortgage contacted mean time personal information regarding refinancing mortgage somewhere concerned home title could risk fraud wrote negative review website freedom mortgage lodged complaint freedom mortgage webpage point even care refinancing want protected action closed need contacted freedom mortgage closing department get resolved\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: still affected covid need another payment waiver back work yet\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: called several time ask three account still show potentially negative credit pulled eperian credit report three account paid full never late show account ic closed paid full still say potentially negative\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: car paid late fee paid recieved title still report charged\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: first one guy named sent email job signed contract company position second told start training guy named second job started training date company name guy contacted sent ill copy paste hello name trainer assigned working together one month help new task guide process location online time time zone please send message time discus detail also helping task month become expert payment method consult assist company client successfully go task together go payment method receive exchange bank transfer different way create report payment method compare find best one client company suggest start easy understand perform task lot company client u choose invest bitcoins company token also interested researching applucation downloaded smartphone suggest begin receive test transfer company exchange transfer different way online exchange physical exchange withdrawing cash making exchange bitcoin atm network making exchange online online method making exchange similar web site guide help every method please check information let know started training sending money going withdraw bank put atm bitcoin machine week tried login online banking account saw message someone tried login many time account gave number call called number bank said bad activity account contacted back trainer asked company show bank know work company day asking guy blocked knew scammed contacted local police bank bank told account closed call first job let know direct deposit said money transfer already account closed money going come back first job contacted said money went called bank said account closed restricted told told account closed changed bill pay send money wife son cant hold account say getting transfer please really need help bank capital one company\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: past month noticed credit amount owed hunter warfield llc filled multiple dispute credit bureau recently company never informed accurate information would make responsible account documentation bill information provided removed credit report continues cause significant challenge credit time pandemic preventing obtaining service needed\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: company attempt collect money debt collector without secured party creditor violation federal state law agent sends erroneous validation debt letter unsigned act fraud communication letter misidentified company legal name act fraud agent ceo wont respond three communication non response equates fraud alleged debt reported credit agency causing actual harm contract case alledged original creditor registered business state florida time period stated\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: already contacted company regarding claim owe debt paid\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: extremely dissatisfied pen fed credit union customer service phone line loan servicing department website sent vague letter dated stated recently processed change affecting monthly mortgage payment processed drafting could vague tried called find detail customer service first provide one phone number reach hour et hour people work called phone number today sat hold hour minute one answered call message came even let know closed also pen fed website difficult use refuse provide loan payment history beyond payment applied last two month physical location state ca even go visit person going physical location people vist least need offer better customer service\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: complaint refinanced rental house ameris bank house insured last payment received sent information ameris bank refinanced house got response ameris started sending bill contacted ameris bank branch manager ga c ameris bank investor sale coordinator ii ga ameris bank customer service ga ameris bank mortgage service insurance department texas phone record dont go back far enough thru talked spoke twice lady talked rapidly thick accent time asked insurance department transferred also contacted local insurance agent make sure bill escrowed never received payment amerisand insurance canceled traveler wont reinstate insurance bank ignored told ameris texas past due amount paid gave check number wish used ameris bank refinance house ameris told past due premium paid emailed ameris said expected bank pay late fee call insurance company emailed said overnighted call made received email check number saying paid past due insurance premium lady texas told talked since check mailed right slow reaching checked statement labeled disbursement taken escrow account record email dating back local agent drawing another quote another company new insurance company promptly paid year advance however premium higher fault insurance canceled shouldnt pay difference escrow account local bank representative forwarding email appears clueless mishandling money nightmare fault\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: barclay card u opened dispute regarding purchase process file dispute long complicated told upload document explain happened month later credit card company closed dispute without informing called said would write letter case accept email call case told needed provide purchase receipt statement email already provided opened dispute asked speak manager logged complaint first complaint recorded second complaint promised call back manager within day day later still contacted\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: citi claimed bonus post account already mid penny bonus post\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: erc contacted regarding debt owed credit card amount full fee collection charge agreed amount settle account agreed would mark account closed credit sent written notification responded back check amount notification cashing check adheres agreement credit cashed check reported major charge would better accepting offer full settlement erc violated agreement see attached document\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: ask midland credit management debt validation yet show proof\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: exeter finance place debt credit roper roughly sold account still trying collect debt original account holder exeter settled account whose charge debt account deleted paid exeter updated account balance owed already sold handled timely matter\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: reviewing credit report discovered inaccurate account file liable please negative item credit file\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: involved auto accident admitted nj roughly spent morning hospital released later afternoon came er department instructed physician checkup following day reported incident auto insurance company thursday pip coverage fully able cover hospital expense within timeframe year billing department sent called outstanding bill debt collector even got paid stated billing specialist fabricated unpaid debt affected credit score delinquency reported monthly year til\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: month ago place temporary freeze credit equifax month ago tried lift freeze equifax requested copy social security card since obviously based outside u said would sending information said could send driver license instead week later received letter stating credit still freeze received additional info said could send paystub called confirmed need send driver license since already information sent paystub via fax requested week later received letter mail stating credit still freeze received driver license appears endless loop continue hold freeze credit tried calling help receive copy social security card send overseas get help situation last person spoke equifax named would disclose additional information\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: synchrony financial add hard inquiry credit report per add hard inquiry credit report per add hard inquiry credit report per\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: name due pandamic covid america defferal program till making payment told bank america good till closed account without notifying also send negative report credit bureau making ca make false information proof deferral payment plan authorized bank started making regular payment told account still closed missed payment show credit going send payment made email sent bank america deferal would like account open take negative report credit\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: credit card debt fraud best buy purchased judgement decree trying refinance current home title agency pulled social security number said need resolved order complete refinance trying collect debt belong fraud alert case amount requesting payment full address incorrect never lived referenced address date birth incorrect dated\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: called transunion freeze credit report person phone took credit card number helped putting freeze account manually purchased subscription service charged every month need free credit score report never asked requested service know need meet sale quota shady really hard get touch anyone customer service\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: citi buy never sent statement pursuant usc day dispute validity debt portion thereof debt assumed valid debt collector\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: bank america gave business card reduced ready spent card usage damage credit score dramatically done thing increase interest credit card service take owe add including mortgage report risk bank bank follows thru reducing available amount credit card end result score score reducing risk never missed payment forecloser came back bank fail saved home losing job raised score people know really raising family deserve get hurt credit card service get rich\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: capital account llc attempting collect debt fraudulent company xxxxxxxx capital account llc refuse acknowledge company fraud xxxxxxxx requesting following capital account debt interest interest place called place called also received balance invoice itemized list capital account llc refuse recognize legitimate company aiding xxxxxxxx fraud capital account llc refuse provide contact information xxxxxxxx xxxxxxxx legitimate company able provide contact information capital account llc supervisor said contact information someone provide capital account llc refuse recognize balance legitimate company capital account lcc refuse recognize xxxxxxxx exist company even result show business called billing told owe nothing texas workman comp law would never charged everything point fraud capital account recognizing fraud liking financially involved people scammed xxxxxxxx captial account need stopped reporting company fraud related organization\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: block except otherwise provided section consumer reporting agency shall block reporting information file consumer consumer identifies information resulted alleged identity theft later business day date receipt agency appropriate proof identity consumer copy identity theft report identification information consumer statement consumer information information relating transaction consumer b notification consumer reporting agency shall promptly notify furnisher information identified consumer subsection section information may result identity theft identity theft report filed block requested section effective date block c authority decline rescind general consumer reporting agency may decline block may rescind block information relating consumer section consumer reporting agency reasonably determines information blocked error block requested consumer error b information blocked block requested consumer basis material misrepresentation fact consumer relevant request block c consumer obtained possession good service money result blocked transaction transaction notification consumer block information declined rescinded subsection affected consumer shall notified promptly manner consumer notified reinsertion information section b title significance block purpose subsection consumer reporting agency rescinds block presence information file consumer prior blocking information evidence whether consumer knew known consumer obtained possession good service money result block exception resellers reseller file section shall apply consumer reporting agency consumer reporting agency reseller b time request consumer subsection section otherwise furnishing reselling consumer report concerning information identified consumer c informs consumer mean consumer may report identity theft bureau obtain consumer information regarding identity theft reseller file sole obligation consumer reporting agency section regard request consumer section shall block consumer report maintained consumer reporting agency subsequent use consumer accordance provision subsection section identifies consumer reporting agency information file consumer resulted identity theft b consumer reporting agency reseller identified information notice carrying obligation paragraph reseller shall promptly provide notice consumer decision block file notice shall contain name address telephone number consumer reporting agency consumer information obtained resale e exception verification company provision section apply check service company acting issue authorization purpose approving processing negotiable instrument electronic fund transfer similar method payment except beginning business day receipt information described paragraph subsection section check service company shall report national consumer reporting agency described section p title information identified subject identity theft report resulting identity theft f access blocked information law enforcement agency provision section shall construed requiring consumer reporting agency prevent federal state local law enforcement agency accessing blocked information consumer file agency could otherwise obtain access subchapter according fair credit reporting act section required federal law verify physical verification original signed consumer contract account post credit report otherwise anyone paying reporting service could fax mail email fraudulent account demand see verifiable proof original consumer contract signature file account listed failure positively verify account hurt ability obtain credit fcra unverified account must removed unable provide copy verifiable proof must remove account listed demand following account verified removed immediately\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: experian allowed collection agency violate fair debt collection act actually removed derogatory collection accts allowed another collection agency add acct different amts back provided proof agency never advised debt owed either party ignored letter validate debt within day receiving written correspondence credit bureau since still rectified violated federal law place protect even aware went accts contract cancelled term null void removed still continue dispute accts experian since one point removed added back year would like official investigation conducted experian dispute investigation process procedure please allowed added duration never validated debt original creditor\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: chase bank closed credit card account reason due bank said chase bank never attempted withdraw payment account asked chase bank provide letter checking account tried withdraw keep giving run around need provide bank also hurt credit report process purchasing home manager call supervisor speak let speak people knowledge repair problem\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: receive enough information verify debt previously sent request validate debt fair debt collection practice act received itemized list alleged charge claim owe meet federal trade commission guideline constitutes proper debt validation notice still reporting collection credit report considered collection activity violation fcpda would like cease collection activity regard account\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: one unfortunate folk mortgage loan servicing assigned select portfolio servicing ut ever since mortgage servicing assigned receiving monthly statement timely fashion example last month statement supposedly printed mailed due date payment receive statement till w ell due date consistent since given sad news mortgage servicing assigned joke company contacted telephone writing several occasion discus experience response gotten essentially suck going anything process forced wait statement published website never consistent usually show several day download print fill write envelope put stamp mail want show ahead due date response gotten back anything wrong check post issue post office bill show time one able speak anyone beyond customer service get straightened wo let despite asking cavalier attitude come customer service beyond reproach asking timely statement think would much ask seems everyone else business provides timely statement nope sps maintain credit score making timely payment frustrates end ca make simple request mortgage servicing company like treated second class citizen lick common sense exhibited sps think would want resolve nope instead common sense remains elusive reach frustrated mad stuck joke company ask angry ca anything\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: around year received unsolicited email check rate personal loan lender used past submitted inquiry waited response possible loan rate never signed agreement loan later received email declined moved later received email fund way surprising since never agreed loan never provided banking information according sent fund old account using old data bank account closed year prior told wait fund would returned forwarded approximately one week told didnt agree lone told needed fund back make correction advised bank bank think would release fund told would take care would take approximately day day began calling missed payment point contacted attorney attorney sent demand letter provide proof loan failed respond demand letter also stopped contacting point want credit cleared mistake provided information credit agency two agency deleted account experian notified given document part kept account active ive asked provide information proof communicating contact information attorney information provided\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: dovenmuehin mortgage company posting payment time get late fes call cash check never got sent video proof trying raise payment month saying behind recorded call stopping refinance cosing time stress loss money\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: link pnc bank account\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: attn collection dept submitting complaint reference company knowingly reporting inaccurate data credit profile affected penalty preventing creditworthiness due company demand proof purchasing agreement valid proof alleged debt reporting without valid proper disclosure requirement direct violation consumer right legally requested description detail verification process used verify alleged account federal law requires respond xxxxhirty day failure comply federal regulation ftc et esq maintaining careful record communication company thank look forward resolving expeditiously\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: called chime told bunch fraudulent charge account give money back timeframe investigation allowed another fraudulent charge go allowed overdraft account\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: previous stole license access personal information used rent apartment name broke lease apartment property put entire debt credit ruined credit preventing able rent new property time occurred aware rent house husband year occurred year ago disputed charge debt collector credit bureau accepting helping willing remove credit report\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: booked vacation using delayed payment first payment followed payment used debit card make payment received provisional credit payment made filed complaint bank good service rendered trip booked bank tell past day denying claim understanding day time limit time service date\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: fedloan servicing pheaa begun ignoring payment instruction yet fourth cfpb complaint file company refuse follow payment instruction standing payment instruction attached last cfpb complaint fedloan servicing acknowledged receiving instruction agreed follow part last complaint recent example incorrectly applied payment payment applied loan called making payment said could still mail check note loan deferment mailed check note apply payment according standing instruction instead applying entirety outstanding interest loan applying rest payment principal loan highest interest rate lowest balance loan sequence applied entire payment loan loan sequence loan sequence look like fedloan servicing pheaa may incorrectly using temporary interest rate instead using actual interest rate loan applied payment loan principal apply payment entirety outstanding interest applying money principal state attached document instruction sent payment account history showing outstanding interest payment history detail payment\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: lease ally financial ext account returned car bill received offer account paid call ally month get paid full letter delation letter updated credit report process purchase house family company rep update account give letter request every time call promise letter fax email result\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: purchase order day shipping amount receive product week sent followup email exact verbiage paid two day shipping received order company responded im sorry inform due unusually high order volume order shipped several week stock since early due high demand although continuing take order guaranteeing receive order place due time mask order exact shipping date right however guarantee ship soon soon delivers product u getting small shipment shipping first come first served basis appreciate patience fulfill order quickly recommend keeping order lose place line cancel distributor stock moment prefer cancel please note ask via email cancel accordance cancellation policy agreed checkout electronic inventory online requested order canceled refund issued canceled order sent verification order canceled refunded item particulate respirator refunded subtotal shipping tax total usd visa ending refund called disputed amount stated nothing needed submitted address issue recharged item removing called back dispute amount transaction rebillmerchandiserobert ca purchased thu posted wed purchased appears statement transaction rebill ca u followed see status case submitted documentation showing canceled order supposed submit refund called back speak manager case stated dispute ruled favor charge removed card capital one removed purchase bill purchase adjustmentmerchandiserobert j posted fri purchased appears statement purchase adjustment capital one recharges amount transaction rebillmerchandiserobert j purchased thu posted mon purchased appears statement transaction rebill called capital one requested recharge stated visa ruled case pretended remove purchase knew anything case manager ruling favor\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: emailed loan representative manager manager manager unauthorized credit pull emailed twice called left message response anyone\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: fraudulent mortgage loan servicing specialized loan servicing sl trustee investor respect ny loan sl loan specialized loan servicing sl trustee investor violated mortgage origination document introducing new unsolicited balloon loan home relief option expected bring relief borrower pain threatened foreclose property unless agree sign additional balloon loan agreement solution resolve unpaid arrears refused extension maturity date loan retention program provides instead allow month extension specifically violating clause modification agreement signed see page attachment categorically state deferred bearing amount due payment maturity year mortgage principal paid see page attachment sl claim balloon amount instance investor violates agreement concerning mortgage loan therefore violates respa home retention program specifically violated clause modification agreement signed see page attachment refused account application paid towards principal interest payment\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: hello name several reason filing complaint first filing company called supposedly sell silicone baby doll however scam artist first logged onto order one lifelike baby daughter found perfect one needle say order placed picture different baby appeared right daughter noticed attempted cancel order website say contact email provided cancel order shipped unable one two email came back saying unknown user additional contact information contact number valid email address could cancel order dug little deeper something seem right came across list naming scam website one many review website either tried post comment warning people stay clear scam reason comment posted wrote negative comment shady enough looked bank statement company name different initial order instead saying said addition address given xxxxn website say address california bank statement say screenshots prove contacted bank right away told everything needed stop order processed yet still pending told since unable even cancel order needed payment stopped said nothing could file dispute talked two customer service agent told would get money refunded within business day received letter stating dispute denied bank put first time happened agency helped money taken account unauthorized back within day order placed understanding letter bank say one part letter also screenshot well addition company took unauthorized account addition price doll reason taken account however bank told need cancel debit card nothing like would happen yeah right filing complaint company ordered doll scam site also bank santander also paid expedited shipping paid extra order said standard shipping none add bank agree sound fishy appears scam tell get money back get nothing ridiculous deserve money back fact alone tried cancel order right away yet contact info legit ground alone refund comment happen find said thing sent said unknown user several screenshots upload proof back complaint thank time\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: capital one auto financehas attempt collect alleged debt pursuant usc initial communication capital one auto finance disclose attempt collect debt capital one auto finance violated fair debt collection practice act usc usc usc usc usc l usc usc usc using deceptive form usc order collect debt original creditor usc g consumer credit transaction usc unauthorized use credit card since benefiting consumer credit transaction usc p violation leaf capital one auto finance criminal liable willful knowing truth lending act also capital one auto finance usc civilly liable action\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: american express used bait switch deceptive marketing technique increased fee detail originally offered fee paying charge month period example purchased appliance pay total total total divided paid monthly installment fee interest later month onward fee offered time original fee minimum month appliance cost total also trying circumvent interest rate law calling charge fee attached screenshots american express website corroborate statement showing following amount along calculation detailed old plan principal amount new plan fee principal amount difference time\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: student loan paid loan still remain credit agency open plus saying owe fed loan servicing department education\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: advised choice recovery victim identity theft debt mine submitted copy police report initially removed debt added back also reporting negative bureau submitted company credit bureau copy police report detrimental job livelyhood keep clean credit file want collection removed asap bureau im filing complaint ftc along cfpb unfair practice\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: debt collector refused send validation notice failed respond validation letter\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: disputed two round credit company respond back reported remark bureau disputing last month enclosing information requesting debt validation printed copy report showing company violation reporting consumer disputing requesting validation\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: square closed account allow return remaining balance app back bank bank linked transfer remaining fund end square would even lift finger help everything automated response literally actual person contact even explain situation point stare number screen want money back unfair square xxxxnc feel okay reprimand pigeon hold fund balance point consider theft want try everything possible take legal action involving lawyer judge unfortunately hand close forced direction receive help\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: reviewing current credit report equifax today notice account name reinsurted consumer credit report without written notice business prior per fcra rule section result equifax violation fcra rule account also violation fdcpa section account originally submitted name reinserted totally different original creditor reporting outstanding balance please intentionally done damage consumer credit profile account fraudulent misleading inaccurate inconsistent clear violation fcra rule fdcpa account reinstated back deleted violating fcra rule reinstated please see attachment\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: applied credit card home depot never responded\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: contract canceled original creditor sold account another agency wrote corporate tax loss therefore claim\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: previously filed complaint flagship credit acceptance issue struggling due pandemic reached representative two day filed first complaint made agreement make payment agreed make payment amount would make another payment amount delay payment unfortunately started symptom tested came back positive required quarantine period time required local cdc contact flagship let know told unfortunately would able make second payment put relief deferred one month promptly set new payment arrangement date second amount paid get even go back work quarantine time paperwork needed show proof submit addition however even though new payment arrangement agreed upon flagship credit acceptance calling family member listed reference application asking payment account contacted mother phone number harassing payment account even though phone number contact directly point becoming unbearable account representative making harassing phone call obtain payment even though agreed payment date account situation\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: pulled credit report four time without permission time respond asked many time processing time hold case half year time money went back communicate touch hard professional told u closeting cost charged u commission fee work ethic moral\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: collection according hunter warfield believe still owe apartment complex money moving paid deposit lease manger said complex signed lease ignored believe put deposit sent lease agreement received response\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: unsure add current complaint file new report previous complaint follows noticed cardinal financial mortgage company paid homeowner insurance policy expires called cardinal financial find payment made time spoke person said busy help would call back took information including loan number waited business day one called back called find homeowner insurance paid spoke person said received insurance declaration page would need provide payment issued never provide information past surprised hear complied emailed declaration page immediately following call insurance payment made called third time time speaking someone named informed received declaration page would look matter ten minute hold returned said would send payment asked date told could give information explained fault mine provided declaration page earlier explained never provide past tried explain fault mine asked speak supervisor still supervisor got phone explained error mine said payment request submitted suggested call department request submitted ask payment would processed told department question telephone repeatedly interrupted asking question finally telling could answer question way find insurance paid call daily payment made required active insurance maintain loan concerned situation hope assist new complaint go follows submitting initial complaint received tacit response cardinal financial saying would look matter another front mentioned issue friend mortgage broker said would try ascertain status issue inquiry received email email said insurance payment made amount check able attach email complaint even generated payment report system showing payment throughout process checked account internet shown disbursement escrow account insurance company received cancellation notice insurance company due amount due additional due cardinal lack payment emailing today mentioned would submitting new complaint point heard director servicing indicated would make payment today cardinal saying almost one month find recourse file additional complaint\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: dear cfpb team refer well fargo credit card department wf everything started went limit credit card without aware first time wf debited without consent amount checking account went overdraft due entire amount money debit contacted wf explained entitled pay full amount due exceeded limit mentioned customer service possible moment pay total amount due monthly income range job wf refunded money condition must make card payment month ach expressed concern agent regarding wf attempting debit full amount future agent mentioned paid month everything ok contacted wf report mistake debit amount checking account leaving account overdraft calling wf reported case upscale case executive complaint department order refund money asap know world crisis due virus money checking account one monthly ach payment rejected one cover wf checking account overdraft fee course order cover full amount gone limit enrolled credit card pay debt wf deposited card check payment reflected credit card statement wf said hold money debited checking account refunded shown pay full amount exceeded limit always responsible debt achs regular ach monthly amount amount budget contacted today two time executive complaint department credit card department order get extra help getting money back asap due circumstance virus money cover daily expense answer wait card check clear hold know reason asked email card letter proof credit card approved check sent wf one wf agent asked get document card committed cover check something undoable bank issue kind statement consumer feel wf abused feel powerless bank institution whatever want consumer highly proof wf consumer right respect bank get penalized kind behavior executive credit card department refused provide information institution regulates financial institution said internal kindly answer help request speed refund virus crisis wait fully aware conversation recorded wf proof employee violated consumer right providing public information thank found consumer financial protection bureau highly appreciate help well fargo executive credit card department case telephone contact hour executive department contacted yesterday let know evaluating case today called find refund said third department emailed staying card check hold release money hearing lost patient said people pay credit card debt get bank due fix credit without paying debt u consumer paid time abused please see enclosed card approval notice proof credit card limit cover check deposited wf last\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: dear santander consumer usa incompetent legal team im going keep short think long complaint dont get job done stated qualified settlement due state list eligible state car purchased voluntary repossessed state georgia address associated car georgia also contacted georgia attorney general office informed santander mailing notice georgia resident notice end per website state included settlement may qualify relief resident purchased vehicle one following state got santander auto loan arizona arkansas california connecticut district columbia florida georgia hawaii illinois indiana resident georgia purchased vehicle georgia vehicle surrendered georgia please stop insulting intelligence offer pay delete stand account deleted credit report\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: cash app allow sister refund money back amount occurred emailed day also followed step ordered follow nothing changed month ive contacted via email problem get solved\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: back lost wallet personal information inside think much went get new social security dl continued everyday life never issue couple day ago decided pull credit continued get suspicious letter mail looked report shocked number item opened name suspicious item mine please remove report\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: loan property additional heloc receieve paid irs tax release lien doj paid however trying collect filed converted ch bankruptcy one responded got discharge said owe money got final discharge bankruptcy company came nowhere saying owe bank unreasonable federal government said helping went another dismissed since least international pandemic judicial emergency court allowing eviction foreclosure time due statewide judicial emergency judicial emergency extended however threatening foreclose making monthly payment bankruptcy dismissed refused take money since bankruptcy dismissed think owe anything need month deferment due million people unemployed country due\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: reaching assistance capitalone bank called company good faith hope making payment towards card however asked help eliminating lates fee reducing high interest card result current global pandemic due pandemic experienced significant reduction hour yet paid nysdol became sick period day able work explained agent spoke instead pushed pushed getting payment opposed working reached executive office assistance yet hear back instead working responding inquiry bank went ahead charged account damaging credit experiencing global pandemic instead focusing assisting customer sick bank focused bottom line\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: company hcs harverd collection system constantly call medical bill state service explained seen asked emergency bill hospital amount coming compant could tell exactly amount coming asked several time stop calling keep contacting harrassing debt dont owe dont know stop contacting state patient couldnt unless someone used information asked child said either way go child would provided insurance wrong person bill new year day never send documenentation\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: hi td band visa credit card numbered found three transaction recognized nm nm va called td bank fraud charge never went new mexico buy anything card since covid travel restriction td bank closed account immediately got new card called td bank learn whether temporary credit three transaction td bank employee work dispute department told guaranteed temporary credit replied company closed credit card informed temporary credit since paid charge per government regulation credit card take longer dont pay charge investigation told memo conversation cant issue temporary credit account right bank issue temporary credit investigation bank provided charge signature charge back account unwilling thus submit complaint online get help understanding effort highly appreciated vr ga\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: long time customer paypal use service alot sent money pool company payment however actual email payment contacted pay pal immediately tell stop payment online say receiver money till time however paypal refuse stop payment happened twice paypal receiver money yet still time stop transfer wrong thank\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: cfpb state letter second request based empirical evidence remove inaccurate information credit report b provides whenever consumer reporting agency prepares consumer report shall follow reasonable procedure assure maximum possible accuracy information concerning individual report relates examining statutory language generally give word ordinary contemporary common meaning scott united state cir citation omitted accordance ordinary contemporary common meaning investigation careful search detailed examination systemic inquiry inaccurate information currently reporting affected chance getting loan credit already given notice creditor cease desist reporting inaccurate information cra\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: contacted loan united va refinancing home pennsylvania refinancing processed senior mortgage loan originator loan united requested mortgage statement insurance id note social security card began submitting loan united expanded information request include day paystubs month bank statement social security letter retirement letter loan united requested home appraisal cost va termite report cost performed loan united requested additional information include p l statement tax schedule wife business sent information overnight office loan united requested additional information tax return business license expanded information tax return resent additional information directly loan united overnight mail loan united requested add flood insurance homeowner even though live flood zone loan united loan processor emailed loan payoff last item needed loan clear likely fund wanted sure paid contacted mortgae company payoff amount provided loan united loan united emailed well loan simply waiting reloock loan cleared closing original lock rate last year guess since much time passed new rate lock needed emailed inquired rate going locked high lock today even though rate cut fed bank lender almost zero could since communication loan united advertises va refinancing quick easy limited information needed found quite opposite turned nightmare still closed im discharged vet utilized va help secure original mortgage refinancing always paid mortgage time well bill feel company allowed process va loan type feel refinancing closed\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: added credit report error account never paid late account victim identity theft balance account incorrect never late\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: attn collection dept submitting complaint reference company knowingly reporting inaccurate data credit profile affected penalty preventing creditworthiness due company demand proof purchasing agreement valid proof alleged debt reporting without valid proper disclosure requirement direct violation consumer right legally requested description detail verification process used verify alleged account federal law requires respond thirty day failure comply federal regulation ftc et esq maintaining careful record communication company thank look forward resolving expeditiously\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: knowledge debt called company contract documentation stating signed contract received response byl service pa reported\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: loan always made payment time reason realized late payment credit report see always stellar payment record company tried contacting successful resolution reporting late definitely error part never day late also never day late never day late\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: disputing inquiry credit reporting agency dont investigate properly send verified sending proof inquiry experian bank thats reporting credit report fraud responding back called help please help getting issue resolved\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: bankruptcy discharge added credit report following sent put credit report fcra creditor information supplier must report cra information know reasonable cause know inaccurate duty promptly update correct inaccurate information previously supplied cra must tell negative credit information report cra within day must notify cra voluntarily close account must maintain reasonable procedure respond identity theft notice cra refrain reporting information account previously reported result identity theft\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: patient michigan since visit every month health care insurance insurance paid every single charge since except one visit seems doctor office submitted time bill correct format informed charge around end contacted dhs case worker told ask doctor office submit claim pay contacted billing department asked submit charge however received statement doctor office charge dollar contacted office every time got statement doctor office asked bill charge look like submitted sometime received statement merchant medical credit collection agent called explained happened received call since every time called went whole issue found reported issue credit bureau called today said received case late submit charge insurance doctor\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: trying raise profile pair enormously disastrouspolicies well fargo face crisis ca resident ca banking housed well fargo year home mortgage fo year half point well writing illuminate utter failure well fargo fairly sufficiently act conduit federal state related stimulusto business personal interest believe million people share frightening financial problem right also bank well fargo first paycheck protection program ppp well fargo opened application process point late friday communication business client http even multiple time calling wf number week leading gave lead warning application process would begin weekend accepted application whoever knew apply weekend love know people applied found separate issue sunday posted webpage http telling people program reached billion limit set government unless told incorrectly wf rep phone appears limit set regulation dating back wf false account scandalthey survived many year ago well huge problem u trying survive trickle apply ppp bank unless business bank relationship anyone else contacting bank try signup checking account ppp program faced seems deadend effort able apply ppp loan unacceptable get access relief million others applying write summary may mean future business obviously individual financial status employee make matter worse applied increase business line credit fully paid never late payment denied told appeal decision wait see even go ppp program count credit requesting increase federal consumer protection ppp allows last resort consequence u anyone try pull lever stave worse consequence second issue recently well fargo issue home mortgage payment deferment unlike name one jumbo loan lender thexxxx lender well fargo committing tacking deferred payment onto end mortgage term also threatening force borrower loan modification process immediately catch deferred mortgage payment end day deferred payment whole reason defer payment new income coming pay mortgage face complete economic collapse forced interest rate potentially even subjugated amortization deferredpayments new monthly amount could devastating increase meanwhile many friend mortgage simply going able tack missed payment onto end mortgage term think either situation fair u consumer victim economic collapse everyone facing hindered well fargo choice leaving solve need sign ppp make side crisis feel like many many people must situation would ask help communicating predicament authority might able rectify situation already written representative house senate thank\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: bought ticket floor seat excited changed ticket floor standing could get people sold ticket due covid kept pushing concert date back many ticket see performer giving money back concert charged insurance ticket charged ticket concert received email stating concert cancelled received another email stating refund processed see money account business day called well fargo start claim since received refund gentleman told would take business day refund money gave claim number monday still received refund called see status time told one worked claim since day since purchased ticket proof documentation suggest owed refund tell wait another day receive letter result happy called back spoke tell denied get money back say happy transfer account resolution department name asks go issue tell send email fax email take look take business day receive documentation\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: enrolled citibank account package checking saving offer citibank detail open new checking account citi saving account citibank account package within day account opening make deposit fund new eligible checking account new eligible citi saving account maintain minimum balance sixty consecutive calendar day following date made deposit remaining balance requirement may deposited either eligible checking account eligible citi saving opened checking saving account transferred citi saving account ach transfer online transfer payment ciit checking account banking account transferred citi checking citi saving day made balance kept balance least till sixty consecutive calendar day even double checked citi bank representative phone call make sure balance met balance requirement made deposit confirmed done thing correctly program said reward sent within day day keeping minimum balance day still get called bank said would investigate advised unfortunately account qualify promotion credit considered qualifying studied promo program condition deposit made checked bank representative made deposit advised balance meeting requirement tell qualified month opened account complaining credit real money transferred banking account bank money deposited citi bank account money payment alternative way online transfer check deposit see reason credit account inot alerted check bank representative phone call beginning moreover transferred amount checking saving account right away online online transfer sense made saving account balance online transfer matter deposit qualified reward sent within day day requirement met according term condition first per understanding day latest day get money automatically bank second advised account closed day waiting reward get mean force consumer keep account open another day third day keep minimum account charged service fee every month whole promo program seems fraud forced keep day another day get endure told qualified\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: convergent outsourcing inc collection agency refuse remove paid collection report debt valid loan credit report paid account full sent equipment back several month sent bill saying equipment missing paid account full wa deal removed account fully valid definition debt used credit report leverage pay equipment turned unfair practice\nProduct:\n",
+        "output": "debt_collection"
+    },
+    {
+        "input": "Narrative: trying link account pnc bank denying system access account\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: filed dispute citi bank regarding purchase mattress amount discussed problem ciitbank anyway reversed charge back onto creidt card even though fault attempted contact citibank several time phone internet mail due virus claim response delayed fact contacted also forwarded return receipt letter want incur additional charge mistake sleep happens failed deliver mattress time resulting nothing sleep forced buy air mattress purchase another mattress different company cost pocket even though mattress company error citibank sd\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: although contract never provided wet signature agreeing owing loan video audio confessing student loan debt continue report defaulted private student loan credit bureau although graduated college since reporting credit bureau regarding loan never took sent credit bureau letter disagreeing assertion nothing changed nuisance drastically impacted ability obtain credit financial related opportunity\nProduct:\n",
+        "output": "credit_reporting"
+    },
+    {
+        "input": "Narrative: based previous letter dated district director operation titlemax called informed vehicle excellent condition could sell auction recover amount owed b would accept offer pay return vehicle based discussion agreed option b made payment person titlemaxs store titlemax representative signed release agreement picked vehicle nj titlemax sent vehicle auction observed move vehicle lot parking lot using forklift despite key vehicle took vehicle scheduled maintenance informed vehicle damaged due improper towing front rear control arm damaged due forklift original towing company mishandling vehicle exhaust bracket also damaged need repair damage assessment estimated cost attached damage caused abnormal wear tear tire also minor damage trunk front driver door area titlemax agent attempted open vehicle upon repossession contacted titlemax writing ask pay repair per reply dated titlemax agreed pay sum repair damage however despite repeated attempt contact store arrange sign release document told arrangement make payment made contacted replied asked visit store lockdown started doubt store even open one answer phone regional manager answer written asking send release document via mail electronically signature responded\nProduct:\n",
+        "output": "mortgages_and_loans"
+    },
+    {
+        "input": "Narrative: chase bank sold day trip point worth impossible use trip per must isolation day upon entering country foreigner leaf country end isolation special approval violates law state next entry http basically would illegal take trip however chase bank give back point\nProduct:\n",
+        "output": "credit_card"
+    },
+    {
+        "input": "Narrative: issue linking pnc account\nProduct:\n",
+        "output": "retail_banking"
+    },
+    {
+        "input": "Narrative: got debit coll noticed didnt mention debt owe\nProduct:\n",
+        "output": "debt_collection"
+    }
+]
