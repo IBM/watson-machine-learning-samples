@@ -3,7 +3,7 @@
   "project_id": "...",
   "space_id": "...",
   "description": "Classifies person who take credit in bank to good or bad credit risk group.",
-  "type": "mllib_3.2",
+  "type": "mllib_3.4",
   "software_spec": {
     "id": "5c1b0ca2-4977-5c2e-9439-ffd44ea8ffe9"
   },
