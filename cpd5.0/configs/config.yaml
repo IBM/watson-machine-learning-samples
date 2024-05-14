@@ -1,0 +1,9 @@
+name: python311
+channels:
+  - defaults
+dependencies:
+  - pip:
+    - autoai-libs
+
+prefix: /opt/anaconda3/envs/python311
+
