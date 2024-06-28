@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1796 100">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 2px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4 {
+        fill: #3d3d3d;
+      }
+
+      .cls-4, .cls-2, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        stroke-width: 0px;
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient);
+        fill-rule: evenodd;
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-6 {
+        fill: #000;
+      }
+
+      .cls-3 {
+        stroke-width: 1.5px;
+      }
+
+      .cls-12 {
+        fill: #939598;
+      }
+
+      .cls-12, .cls-13 {
+        font-family: IBMPlexSans, 'IBM Plex Sans';
+      }
+
+      .cls-12, .cls-13, .cls-14, .cls-9, .cls-15 {
+        isolation: isolate;
+      }
+
+      .cls-12, .cls-13, .cls-15 {
+        font-size: 32px;
+      }
+
+      .cls-13, .cls-15 {
+        fill: #fff;
+      }
+
+      .cls-7 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-8 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-9 {
+        fill: url(#linear-gradient-4);
+        opacity: .2;
+      }
+
+      .cls-15 {
+        font-family: IBMPlexSans-SmBld, 'IBM Plex Sans';
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="42.9" y1="2125.9" x2="79.7" y2="2125.9" gradientTransform="translate(0 -2076)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ab74ff"/>
+      <stop offset=".2" stop-color="#866aff"/>
+      <stop offset=".8" stop-color="#2a4fff"/>
+      <stop offset="1" stop-color="#0645ff"/>
+    </linearGradient>
+    <clipPath id="clippath">
+      <path class="cls-2" d="M52.4,45.9c0-2.3,1.8-4.1,4.1-4.1s4.1,1.8,4.1,4.1-1.8,4.1-4.1,4.1-4-1.7-4.1-3.9v-.2ZM77.5,52.5c-.8-1.1-1.4-2.3-1.9-3.5,1.2-4.5.7-8.6-1.8-11.9-2.9-3.8-8.2-6-14.5-6.1-4.5,0-8.8,1.7-12,4.8-3,3-4.6,7.2-4.5,11.5,0,2.9.9,5.8,2.7,8.1.8.8,1.3,1.9,1.4,3v4.5c-.8.5-1.4,1.3-1.4,2.3.2,1.5,1.5,2.6,3,2.4,1.2-.2,2.2-1.1,2.4-2.4,0-1-.5-1.9-1.4-2.3v-4.5c0-2-1-3.3-1.9-4.6-1.5-1.9-2.2-4.2-2.1-6.5,0-3.5,1.4-6.9,3.8-9.4,2.7-2.7,6.3-4.1,10-4.1,5.5,0,9.8,1.9,12.1,5,2,2.8,2.5,6.3,1.4,9.6-.4,1.2.6,2.7,2.3,5.6.6.9,1.2,1.9,1.6,2.9-.9.7-2,1.2-3.1,1.5-.5.4-.7.9-.8,1.5v5.1c0,.4,0,.8-.4,1.1-.3.2-.7.3-1.1.3-1.6-.3-3.4-.7-5.2-1.1v-4.8c.8-.5,1.4-1.4,1.4-2.3,0-1.5-1.2-2.7-2.7-2.7s-2.7,1.2-2.7,2.7.5,1.9,1.4,2.3v4.1c-.4,0-.7,0-1.1-.3-4.5-1.1-4.5-2.6-4.5-3.4v-8.3c3.2-.7,5.4-3.5,5.5-6.7,0-3.8-3.3-6.7-7.1-6.6-3.6,0-6.4,3-6.6,6.6,0,3.2,2.3,6,5.5,6.7v8.3c0,2,.7,4.6,6.6,6.1,3,.8,6,1.5,9.1,1.9h.8c1,0,1.9-.3,2.6-1,.9-.8,1.4-1.9,1.4-3.1v-4.5c2-.8,4.1-2,4.1-3.7,0-.8-.8-2.1-2.3-4.2h0Z"/>
+    </clipPath>
+    <linearGradient id="linear-gradient-2" x1="-1341.4" y1="1903.5" x2="449.7" y2="1903.5" gradientTransform="translate(0 -2076)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ab74ff"/>
+      <stop offset=".2" stop-color="#866aff"/>
+      <stop offset=".8" stop-color="#2a4fff"/>
+      <stop offset="1" stop-color="#0645ff"/>
+    </linearGradient>
+    <clipPath id="clippath-1">
+      <rect class="cls-2" x="-1341.4" y="-876.9" width="1791.1" height="1408.8"/>
+    </clipPath>
+    <linearGradient id="linear-gradient-3" x1="36" y1="2126.1" x2="86.5" y2="2126.1" gradientTransform="translate(0 -2076)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ab74ff"/>
+      <stop offset=".2" stop-color="#866aff"/>
+      <stop offset=".8" stop-color="#2a4fff"/>
+      <stop offset="1" stop-color="#0645ff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="773.8" y1="2126" x2="1796" y2="2126" gradientTransform="translate(0 -2076)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#161616"/>
+      <stop offset=".5" stop-color="#ab74ff"/>
+      <stop offset=".6" stop-color="#866aff"/>
+      <stop offset=".9" stop-color="#2a4fff"/>
+      <stop offset="1" stop-color="#0645ff"/>
+    </linearGradient>
+  </defs>
+  <rect class="cls-6" width="1796" height="100"/>
+  <path class="cls-5" d="M52.4,45.9c0-2.3,1.8-4.1,4.1-4.1s4.1,1.8,4.1,4.1-1.8,4.1-4.1,4.1h0c-2.2,0-4-1.7-4.1-3.9,0,0,0-.2,0-.2ZM77.5,52.5c-.8-1.1-1.4-2.3-1.9-3.5,1.2-4.5.7-8.6-1.8-11.9-2.9-3.8-8.2-6-14.5-6.1-4.5-.1-8.8,1.7-12,4.8-3,3-4.6,7.2-4.5,11.5,0,2.9.9,5.8,2.7,8.1.8.8,1.3,1.9,1.4,3v4.5c-.8.5-1.4,1.3-1.4,2.3.2,1.5,1.5,2.6,3,2.4,1.2-.2,2.2-1.1,2.4-2.4,0-1-.5-1.9-1.4-2.3v-4.5c0-2-1-3.3-1.9-4.6-1.5-1.9-2.2-4.2-2.1-6.5,0-3.5,1.4-6.9,3.8-9.4,2.7-2.7,6.3-4.1,10-4.1,5.5,0,9.8,1.9,12.1,5,2,2.8,2.5,6.3,1.4,9.6-.4,1.2.6,2.7,2.3,5.6.6.9,1.2,1.9,1.6,2.9-.9.7-2,1.2-3.1,1.5-.5.4-.7.9-.8,1.5v5.1c0,.4,0,.8-.4,1.1-.3.2-.7.3-1.1.3-1.6-.3-3.4-.7-5.2-1.1v-4.8c.8-.5,1.4-1.4,1.4-2.3,0-1.5-1.2-2.7-2.7-2.7s-2.7,1.2-2.7,2.7.5,1.9,1.4,2.3v4.1c-.4,0-.7,0-1.1-.3-4.5-1.1-4.5-2.6-4.5-3.4v-8.3c3.2-.7,5.4-3.5,5.5-6.7,0-3.8-3.3-6.7-7.1-6.6-3.6,0-6.4,3-6.6,6.6,0,3.2,2.3,6,5.5,6.7v8.3c0,2,.7,4.6,6.6,6.1,3,.8,6,1.5,9.1,1.9h.8c1,0,1.9-.3,2.6-1,.9-.8,1.4-1.9,1.4-3.1v-4.5c2-.8,4.1-2,4.1-3.7,0-.8-.8-2.1-2.3-4.2h0Z"/>
+  <g class="cls-10">
+    <g>
+      <rect class="cls-7" x="-1341.4" y="-876.9" width="1791.1" height="1408.8"/>
+      <g class="cls-11">
+        <rect class="cls-8" x="36" y="24.1" width="50.5" height="51.9"/>
+      </g>
+    </g>
+  </g>
+  <circle class="cls-1" cx="56.5" cy="45.9" r="5.4"/>
+  <circle class="cls-3" cx="48.3" cy="65" r="1.6"/>
+  <circle class="cls-3" cx="64.8" cy="58.2" r="1.6"/>
+  <g class="cls-14">
+    <text class="cls-15" transform="translate(103 59.3)"><tspan x="0" y="0">AutoAI</tspan></text>
+  </g>
+  <rect class="cls-4" x="233.1" y="34" width="1" height="32"/>
+  <g class="cls-14">
+    <text class="cls-12" transform="translate(258.3 59.7)"><tspan x="0" y="0">Part of IBM watsonx.ai®</tspan></text>
+  </g>
+  <rect class="cls-9" x="773.8" width="1022.2" height="100"/>
+  <g class="cls-14">
+    <text class="cls-13" transform="translate(1207.3 59.7)"><tspan x="0" y="0">RAG retrieval and generation notebook</tspan></text>
+  </g>
+</svg>
