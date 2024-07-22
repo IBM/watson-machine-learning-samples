@@ -7516,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Use-scikit-learn-and-custom-library-to-predict-temperature-with-ibm-watson-machine-learning">Use scikit-learn and custom library to predict temperature with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-scikit-learn-and-custom-library-to-predict-temperature-with-ibm-watson-machine-learning">¶</a></h1>
+<h1 id="Use-custom-software_spec-to-create-statsmodels-function-describing-data-with-ibm-watson-machine-learning">Use custom software_spec to create statsmodels function describing data with <code>ibm-watson-machine-learning</code><a class="anchor-link" href="#Use-custom-software_spec-to-create-statsmodels-function-describing-data-with-ibm-watson-machine-learning">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7527,33 +7527,22 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This notebook contains steps and code to train a Scikit-Learn model that uses a custom defined transformer and use it with Watson Machine Learning service. Once the model is trained, this notebook contains steps to persist the model and custom defined transformer to Watson Machine Learning Repository, deploy and score it using Watson Machine Learning python client.</p>
-<p>In this notebook, we use GNFUV dataset that contains mobile sensor readings data about humidity and temperature from Unmanned Surface Vehicles in a test-bed in Athens, to train a Scikit-Learn model for predicting the temperature.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python-3.10 and scikit-learn.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This notebook demonstrates how to deploy in Watson Machine Learning service a python function with <code>statsmodel</code> which requires to create custom software specification using conda yaml file with all required libraries.<br/>
+Some familiarity with bash is helpful. This notebook uses Python 3.10 with statsmodel.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">¶</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
-<li>Train a model with custom defined transformer</li>
-<li>Persist the custom defined transformer and the model in Watson Machine Learning repository.</li>
-<li>Deploy the model using Watson Machine Learning Service</li>
-<li>Perform predictions using the deployed model</li>
+<li>Working with the Watson Machine Learning instance</li>
+<li>Creating custom software specification</li>
+<li>Online deployment of python function</li>
+<li>Scoring data using deployed function</li>
 </ul>
-<h2 id="Contents">Contents<a class="anchor-link" href="#Contents">¶</a></h2><ol>
-<li><a href="#setup">Set up the environment</a></li>
-<li><a href="#install_lib">Install python library containing custom transformer implementation</a></li>
-<li><a href="#load">Prepare training data</a></li>
-<li><a href="#train">Train the scikit-learn model</a></li>
-<li><a href="#upload">Save the model and library to WML Repository</a></li>
-<li><a href="#deploy">Deploy and score data</a></li>
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents">¶</a></h2><p>This notebook contains the following parts:</p>
+<ol>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#create">Function creation</a></li>
+<li><a href="#upload">Function upload</a></li>
+<li><a href="#deploy">Web service creation</a></li>
+<li><a href="#score">Scoring</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
 </ol>
@@ -7697,7 +7686,7 @@ a.anchor-link {
 <li>Go to space <code>Settings</code> tab</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
-<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.6/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
+<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.7/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
 <p><strong>Action</strong>: Assign space ID below</p>
 </div>
 </div>
@@ -7707,7 +7696,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">'PASTE YOUR SPACE ID HERE'</span>
@@ -7757,7 +7746,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -7771,7 +7760,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>'SUCCESS'</pre>
 </div>
@@ -7785,8 +7774,10 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><a id="install_lib"></a></p>
-<h2 id="2.-Install-the-library-containing-custom-transformer">2. Install the library containing custom transformer<a class="anchor-link" href="#2.-Install-the-library-containing-custom-transformer">¶</a></h2>
+<p><a id="create"></a></p>
+<h2 id="2.-Create-function">2. Create function<a class="anchor-link" href="#2.-Create-function">¶</a></h2><p>In this section you will learn how to create deployable function
+with statsmodels module calculating describition of a given data.<br/>
+<strong>Hint</strong>: To install statsmodels execute <code>!pip install statsmodels</code>.</p>
 </div>
 </div>
 </div>
@@ -7797,339 +7788,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Library - <code>linalgnorm-0.1</code> is a python distributable package that contains the implementation of a user defined Scikit-Learn transformer - <code>LNormalizer</code> . <br/>
-Any 3rd party libraries that are required for the custom transformer must be defined as the dependency for the corresponding library that contains implementation of the transformer.</p>
-<p>In this section, we will create the library and install it in the current notebook environment.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">linalgnorm</span><span class="o">-</span><span class="mf">0.1</span><span class="o">/</span><span class="n">linalg_norm</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Define a custom scikit transformer.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">linalgnorm</span><span class="o">-</span><span class="mf">0.1</span><span class="o">/</span><span class="n">linalg_norm</span><span class="o">/</span><span class="n">sklearn_transformers</span><span class="o">.</span><span class="n">py</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<span class="k">class</span> <span class="nc">LNormalizer</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">norm_ord</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">norm_ord</span> <span class="o">=</span> <span class="n">norm_ord</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_ord</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">X</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span>
-
-    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_norm_vals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Writing linalgnorm-0.1/linalg_norm/sklearn_transformers.py
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Wrap created code into Python source distribution package.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">linalgnorm</span><span class="o">-</span><span class="mf">0.1</span><span class="o">/</span><span class="n">linalg_norm</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
-
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">"0.1"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Writing linalgnorm-0.1/linalg_norm/__init__.py
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">linalgnorm</span><span class="o">-</span><span class="mf">0.1</span><span class="o">/</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
-
-<span class="n">A</span> <span class="n">simple</span> <span class="n">library</span> <span class="n">containing</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">custom</span> <span class="n">scikit</span> <span class="n">estimator</span><span class="o">.</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Writing linalgnorm-0.1/README.md
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">linalgnorm</span><span class="o">-</span><span class="mf">0.1</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">py</span>
-
-<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
-
-<span class="n">VERSION</span><span class="o">=</span><span class="s1">'0.1'</span>
-<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'linalgnorm'</span><span class="p">,</span>
-      <span class="n">version</span><span class="o">=</span><span class="n">VERSION</span><span class="p">,</span>
-      <span class="n">url</span><span class="o">=</span><span class="s1">'https://github.ibm.com/NGP-TWC/repository/'</span><span class="p">,</span>
-      <span class="n">author</span><span class="o">=</span><span class="s1">'IBM'</span><span class="p">,</span>
-      <span class="n">author_email</span><span class="o">=</span><span class="s1">'ibm@ibm.com'</span><span class="p">,</span>
-      <span class="n">license</span><span class="o">=</span><span class="s1">'IBM'</span><span class="p">,</span>
-      <span class="n">packages</span><span class="o">=</span><span class="p">[</span>
-            <span class="s1">'linalg_norm'</span>
-      <span class="p">],</span>
-      <span class="n">zip_safe</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Writing linalgnorm-0.1/setup.py
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span>%%bash
-
-<span class="nb">cd</span><span class="w"> </span>linalgnorm-0.1
-python<span class="w"> </span>setup.py<span class="w"> </span>sdist<span class="w"> </span>--formats<span class="o">=</span>zip
-<span class="nb">cd</span><span class="w"> </span>..
-mv<span class="w"> </span>linalgnorm-0.1/dist/linalgnorm-0.1.zip<span class="w"> </span>.
-rm<span class="w"> </span>-rf<span class="w"> </span>linalgnorm-0.1
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>running sdist
-running egg_info
-creating linalgnorm.egg-info
-writing linalgnorm.egg-info/PKG-INFO
-writing dependency_links to linalgnorm.egg-info/dependency_links.txt
-writing top-level names to linalgnorm.egg-info/top_level.txt
-writing manifest file 'linalgnorm.egg-info/SOURCES.txt'
-reading manifest file 'linalgnorm.egg-info/SOURCES.txt'
-writing manifest file 'linalgnorm.egg-info/SOURCES.txt'
-running check
-creating linalgnorm-0.1
-creating linalgnorm-0.1/linalg_norm
-creating linalgnorm-0.1/linalgnorm.egg-info
-copying files to linalgnorm-0.1...
-copying README.md -&gt; linalgnorm-0.1
-copying setup.py -&gt; linalgnorm-0.1
-copying linalg_norm/__init__.py -&gt; linalgnorm-0.1/linalg_norm
-copying linalg_norm/sklearn_transformers.py -&gt; linalgnorm-0.1/linalg_norm
-copying linalgnorm.egg-info/PKG-INFO -&gt; linalgnorm-0.1/linalgnorm.egg-info
-copying linalgnorm.egg-info/SOURCES.txt -&gt; linalgnorm-0.1/linalgnorm.egg-info
-copying linalgnorm.egg-info/dependency_links.txt -&gt; linalgnorm-0.1/linalgnorm.egg-info
-copying linalgnorm.egg-info/not-zip-safe -&gt; linalgnorm-0.1/linalgnorm.egg-info
-copying linalgnorm.egg-info/top_level.txt -&gt; linalgnorm-0.1/linalgnorm.egg-info
-Writing linalgnorm-0.1/setup.cfg
-creating dist
-creating 'dist/linalgnorm-0.1.zip' and adding 'linalgnorm-0.1' to it
-adding 'linalgnorm-0.1'
-adding 'linalgnorm-0.1/linalg_norm'
-adding 'linalgnorm-0.1/linalgnorm.egg-info'
-adding 'linalgnorm-0.1/PKG-INFO'
-adding 'linalgnorm-0.1/README.md'
-adding 'linalgnorm-0.1/setup.py'
-adding 'linalgnorm-0.1/setup.cfg'
-adding 'linalgnorm-0.1/linalg_norm/sklearn_transformers.py'
-adding 'linalgnorm-0.1/linalg_norm/__init__.py'
-adding 'linalgnorm-0.1/linalgnorm.egg-info/PKG-INFO'
-adding 'linalgnorm-0.1/linalgnorm.egg-info/not-zip-safe'
-adding 'linalgnorm-0.1/linalgnorm.egg-info/SOURCES.txt'
-adding 'linalgnorm-0.1/linalgnorm.egg-info/top_level.txt'
-adding 'linalgnorm-0.1/linalgnorm.egg-info/dependency_links.txt'
-removing 'linalgnorm-0.1' (and everything under it)
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Install the downloaded library using <code>pip</code> command</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">linalgnorm</span><span class="o">-</span><span class="mf">0.1</span><span class="o">.</span><span class="n">zip</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Processing ./linalgnorm-0.1.zip
-Building wheels for collected packages: linalgnorm
-  Building wheel for linalgnorm (setup.py) ... done
-  Created wheel for linalgnorm: filename=linalgnorm-0.1-py3-none-any.whl size=1670 sha256=5416b34c623f8502515a75d8f9de1f6fce41fe55cd31ab9ab87863e6f7f9df23
-  Stored in directory: /Users/jansoltysik/Library/Caches/pip/wheels/78/00/7b/c263b6176f7c38c807f442edaa5f11a3e7a2cbcc5fa07b2673
-Successfully built linalgnorm
-Installing collected packages: linalgnorm
-  Attempting uninstall: linalgnorm
-    Found existing installation: linalgnorm 0.1
-    Uninstalling linalgnorm-0.1:
-      Successfully uninstalled linalgnorm-0.1
-Successfully installed linalgnorm-0.1
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><a id="load"></a></p>
-<h2 id="3.-Download-training-dataset-and-prepare-training-data">3. Download training dataset and prepare training data<a class="anchor-link" href="#3.-Download-training-dataset-and-prepare-training-data">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Download the data from UCI repository - <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/00452/GNFUV%20USV%20Dataset.zip">https://archive.ics.uci.edu/ml/machine-learning-databases/00452/GNFUV%20USV%20Dataset.zip</a></p>
+<h4 id="Create-deploayable-callable-which-uses-stsmodels-library">Create deploayable callable which uses stsmodels library<a class="anchor-link" href="#Create-deploayable-callable-which-uses-stsmodels-library">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8141,10 +7800,44 @@ Successfully installed linalgnorm-0.1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">dataset</span>
-<span class="err">!</span><span class="n">mkdir</span> <span class="n">dataset</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">deployable_callable</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Deployable python function with score</span>
+<span class="sd">    function implemented.</span>
+<span class="sd">    """</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">statsmodels.stats.descriptivestats</span> <span class="kn">import</span> <span class="n">describe</span>
+    <span class="k">except</span> <span class="ne">ModuleNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"statsmodels not installed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Score method.</span>
+<span class="sd">        """</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="s1">'input_data'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'values'</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">'predictions'</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">{</span><span class="s1">'values'</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">data</span><span class="p">))}</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">'predictions'</span><span class="p">:</span> <span class="p">[{</span><span class="s1">'values'</span><span class="p">:</span> <span class="p">[</span><span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">)]}]}</span>
+        
+    <span class="k">return</span> <span class="n">score</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Test-callable-locally">Test callable locally<a class="anchor-link" href="#Test-callable-locally">¶</a></h4><p><strong>Hint</strong>: To install numpy execute <code>!pip install numpy</code>.</p>
 </div>
 </div>
 </div>
@@ -8156,7 +7849,16 @@ Successfully installed linalgnorm-0.1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">archive</span><span class="o">.</span><span class="n">ics</span><span class="o">.</span><span class="n">uci</span><span class="o">.</span><span class="n">edu</span><span class="o">/</span><span class="n">ml</span><span class="o">/</span><span class="n">machine</span><span class="o">-</span><span class="n">learning</span><span class="o">-</span><span class="n">databases</span><span class="o">/</span><span class="mi">00452</span><span class="o">/</span><span class="n">GNFUV</span><span class="o">%</span><span class="mi">20</span><span class="n">USV</span><span class="o">%</span><span class="mi">20</span><span class="n">Dataset</span><span class="o">.</span><span class="n">zip</span> <span class="o">--</span><span class="n">output</span><span class="o">-</span><span class="n">document</span><span class="o">=</span><span class="n">dataset</span><span class="o">/</span><span class="n">gnfuv_dataset</span><span class="o">.</span><span class="n">zip</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">data_description</span> <span class="o">=</span> <span class="n">deployable_callable</span><span class="p">()({</span>
+    <span class="s2">"input_data"</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s2">"values"</span> <span class="p">:</span> <span class="n">data</span>
+    <span class="p">}]</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data_description</span><span class="p">[</span><span class="s2">"predictions"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"values"</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -8169,391 +7871,53 @@ Successfully installed linalgnorm-0.1
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>--2020-12-08 12:45:12--  https://archive.ics.uci.edu/ml/machine-learning-databases/00452/GNFUV%20USV%20Dataset.zip
-Resolving archive.ics.uci.edu... 128.195.10.252
-Connecting to archive.ics.uci.edu|128.195.10.252|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 501978 (490K) [application/x-httpd-php]
-Saving to: 'dataset/gnfuv_dataset.zip'
+<pre>                          0          1          2          3          4  \
+nobs              10.000000  10.000000  10.000000  10.000000  10.000000   
+missing            0.000000   0.000000   0.000000   0.000000   0.000000   
+mean              -0.087662  -0.162800   0.021847  -0.484764  -0.151347   
+std_err            0.086628   0.082336   0.088078   0.154758   0.060011   
+upper_ci           0.082126  -0.001424   0.194477  -0.181444  -0.033728   
+lower_ci          -0.257450  -0.324175  -0.150783  -0.788085  -0.268967   
+std                0.866281   0.823361   0.880783   1.547581   0.600109   
+iqr                1.220332   0.774040   1.173032   1.866595   0.455900   
+iqr_normal         0.904633   0.573797   0.869570   1.383709   0.337959   
+mad                0.696300   0.556041   0.700227   1.257709   0.403634   
+mad_normal         0.872682   0.696895   0.877605   1.576305   0.505881   
+coef_var          -9.882045  -5.057510  40.315579  -3.192440  -3.965111   
+range              2.514768   2.889136   2.903603   4.598605   2.228215   
+max                1.458946   0.788044   1.426277   1.386525   0.671509   
+min               -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
+skew               0.621923  -1.182308  -0.110031  -0.582020  -1.165771   
+kurtosis           2.083665   4.191979   2.178047   2.099710   4.236195   
+jarque_bera        0.994509   2.921762   0.301681   0.902296   2.901779   
+jarque_bera_pval   0.608198   0.232032   0.859985   0.636897   0.234362   
+mode              -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
+mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000   
+median            -0.259626  -0.203613   0.127268  -0.060631  -0.028983   
 
-dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s    
-
-2020-12-08 12:45:17 (119 KB/s) - 'dataset/gnfuv_dataset.zip' saved [501978/501978]
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">unzip</span> <span class="n">dataset</span><span class="o">/</span><span class="n">gnfuv_dataset</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="n">dataset</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Archive:  dataset/gnfuv_dataset.zip
-  inflating: dataset/pi2/gnfuv-temp-exp1-55d487b85b-5g2xh_1.0.csv  
-  inflating: dataset/pi3/gnfuv-temp-exp1-55d487b85b-2bl8b_1.0.csv  
-  inflating: dataset/pi4/gnfuv-temp-exp1-55d487b85b-xcl97_1.0.csv  
-  inflating: dataset/pi5/gnfuv-temp-exp1-55d487b85b-5ztk8_1.0.csv  
-  inflating: dataset/README.pdf      
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Create pandas datafame based on the downloaded dataset</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">JSONDecodeError</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">home_dir</span> <span class="o">=</span> <span class="s1">'./dataset'</span>
-<span class="n">pi_dirs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">home_dir</span><span class="p">)</span>
-
-<span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">base_time</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="n">columns</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="k">for</span> <span class="n">pi_dir</span> <span class="ow">in</span> <span class="n">pi_dirs</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s1">'pi'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pi_dir</span><span class="p">:</span>
-        <span class="k">continue</span>
-    <span class="n">curr_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home_dir</span><span class="p">,</span> <span class="n">pi_dir</span><span class="p">)</span>
-    <span class="n">data_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">curr_dir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">curr_dir</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">data_file</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"'"</span><span class="p">,</span> <span class="s1">'"'</span><span class="p">)</span>
-        <span class="k">while</span> <span class="n">line</span> <span class="o">!=</span> <span class="s1">''</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">input_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-                <span class="n">sensor_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">input_json</span><span class="p">[</span><span class="s1">'time'</span><span class="p">])</span>
-                <span class="k">if</span> <span class="n">base_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">base_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">sensor_datetime</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">sensor_datetime</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">sensor_datetime</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                <span class="n">input_json</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">sensor_datetime</span> <span class="o">-</span> <span class="n">base_time</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span>
-                <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">input_json</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-                <span class="k">if</span> <span class="n">columns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">input_json</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-            <span class="k">except</span> <span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">je</span><span class="p">:</span>
-                <span class="k">pass</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"'"</span><span class="p">,</span> <span class="s1">'"'</span><span class="p">)</span>
-
-<span class="n">data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_list</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">data_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>device</th>
-<th>humidity</th>
-<th>temperature</th>
-<th>experiment</th>
-<th>time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>gnfuv-temp-exp1-55d487b85b-5g2xh</td>
-<td>21.0</td>
-<td>40.0</td>
-<td>1.0</td>
-<td>69557</td>
-</tr>
-<tr>
-<th>1</th>
-<td>gnfuv-temp-exp1-55d487b85b-5g2xh</td>
-<td>21.0</td>
-<td>40.0</td>
-<td>1.0</td>
-<td>69571</td>
-</tr>
-<tr>
-<th>2</th>
-<td>gnfuv-temp-exp1-55d487b85b-5g2xh</td>
-<td>21.0</td>
-<td>40.0</td>
-<td>1.0</td>
-<td>69577</td>
-</tr>
-<tr>
-<th>3</th>
-<td>gnfuv-temp-exp1-55d487b85b-5g2xh</td>
-<td>21.0</td>
-<td>40.0</td>
-<td>1.0</td>
-<td>69583</td>
-</tr>
-<tr>
-<th>4</th>
-<td>gnfuv-temp-exp1-55d487b85b-5g2xh</td>
-<td>22.0</td>
-<td>40.0</td>
-<td>1.0</td>
-<td>69589</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Create training and test datasets from the downloaded GNFUV-USV dataset.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-
-<span class="n">Y</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">'temperature'</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'temperature'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">143</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><a id="train"></a></p>
-<h2 id="4.-Train-a-model">4. Train a model<a class="anchor-link" href="#4.-Train-a-model">¶</a></h2><p>In this section, you will use the custom transformer as a stage in the Scikit-Learn <code>Pipeline</code> and train a model.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Import-the-custom-transformer">Import the custom transformer<a class="anchor-link" href="#Import-the-custom-transformer">¶</a></h4><p>Here, import the custom transformer that has been defined in <code>linalgnorm-0.1.zip</code> and create an instance of it that will inturn be used as stage in <code>sklearn.Pipeline</code></p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">linalg_norm.sklearn_transformers</span> <span class="kn">import</span> <span class="n">LNormalizer</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">lnorm_transf</span> <span class="o">=</span> <span class="n">LNormalizer</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Import other objects required to train a model</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now, you can create a <code>Pipeline</code> with user defined transformer as one of the stages and train the model</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">skl_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s1">'normalizer'</span><span class="p">,</span> <span class="n">lnorm_transf</span><span class="p">),</span> <span class="p">(</span><span class="s1">'regression_estimator'</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())])</span>
-<span class="n">skl_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">'time'</span><span class="p">,</span> <span class="s1">'humidity'</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>Pipeline(steps=[('normalizer', LNormalizer()),
-                ('regression_estimator', LinearRegression())])</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">skl_pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">'time'</span><span class="p">,</span> <span class="s1">'humidity'</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span> <span class="o">-</span> <span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'RMSE: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">rmse</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>RMSE: 2.213758431322581
+                          5          6          7          8          9  
+nobs              10.000000  10.000000  10.000000  10.000000  10.000000  
+missing            0.000000   0.000000   0.000000   0.000000   0.000000  
+mean               0.273284   0.205051   0.023256   0.102842  -0.209529  
+std_err            0.061042   0.087203   0.126508   0.103825   0.072225  
+upper_ci           0.392923   0.375966   0.271207   0.306335  -0.067971  
+lower_ci           0.153644   0.034137  -0.224696  -0.100650  -0.351088  
+std                0.610416   0.872028   1.265081   1.038247   0.722251  
+iqr                0.780093   1.144017   1.897466   1.087920   1.181144  
+iqr_normal         0.578284   0.848061   1.406594   0.806476   0.875583  
+mad                0.476876   0.702078   0.962314   0.802775   0.623214  
+mad_normal         0.597675   0.879924   1.206082   1.006129   0.781083  
+coef_var           2.233637   4.252729  54.398852  10.095509  -3.447017  
+range              2.012750   2.399845   3.639744   3.386568   1.965249  
+max                1.364230   1.624449   1.719675   1.524333   0.677055  
+min               -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
+skew               0.305785   0.606322  -0.150434  -0.368515  -0.382710  
+kurtosis           2.245390   1.963650   1.837083   2.477825   1.604283  
+jarque_bera        0.393106   1.060220   0.601208   0.339950   1.055789  
+jarque_bera_pval   0.821558   0.588540   0.740371   0.843686   0.589846  
+mode              -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
+mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000  
+median             0.228023  -0.050927   0.073169   0.306686   0.022939  
 </pre>
 </div>
 </div>
@@ -8567,12 +7931,7 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="upload"></a></p>
-<h2 id="5.-Persist-the-model-and-custom-library">5. Persist the model and custom library<a class="anchor-link" href="#5.-Persist-the-model-and-custom-library">¶</a></h2><p>In this section, using <code>ibm-watson_machine_learning</code> SDK, you will ...</p>
-<ul>
-<li>save the library <code>linalgnorm-0.1.zip</code> in WML Repository by creating a package extension resource</li>
-<li>create a Software Specification resource and bind the package resource to it. This Software Specification resource will be used to configure the online deployment runtime environment for a model</li>
-<li>bind Software Specification resource to the model and save the model to WML Repository</li>
-</ul>
+<h2 id="3.-Upload-python-function">3. Upload python function<a class="anchor-link" href="#3.-Upload-python-function">¶</a></h2><p>In this section you will learn how to upload the python function to the Cloud.</p>
 </div>
 </div>
 </div>
@@ -8583,22 +7942,48 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Create-package-extension">Create package extension<a class="anchor-link" href="#Create-package-extension">¶</a></h3>
+<h4 id="Custom-software_specification">Custom software_specification<a class="anchor-link" href="#Custom-software_specification">¶</a></h4><p>Create new software specification based on default Python 3.10 environment extended by autoai-libs package.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Define the meta data required to create package extension resource. <br/></p>
-<p>The value for <code>file_path</code> in <code>client.package_extensions.LibraryMetaNames.store()</code> contains the library file name that must be uploaded to the WML.</p>
-<p><strong>Note:</strong> You can also use conda environment configuration file <code>yaml</code> as package extension input. In such case set the <code>TYPE</code> to <code>conda_yml</code> and <code>file_path</code> to yaml file.</p>
-<pre><code>client.package_extensions.ConfigurationMetaNames.TYPE = "conda_yml"
-</code></pre>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">config_yml</span> <span class="o">=</span>\
+<span class="sd">"""name: python38</span>
+<span class="sd">channels:</span>
+<span class="sd">  - empty</span>
+<span class="sd">  - nodefaults</span>
+<span class="sd">dependencies:</span>
+<span class="sd">- pip:</span>
+<span class="sd">  - statsmodels</span>
+
+<span class="sd">prefix: /opt/anaconda3/envs/python38</span>
+<span class="sd">"""</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"config.yaml"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">config_yml</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">base_sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s2">"runtime-23.1-py3.10"</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -8607,16 +7992,61 @@ dataset/gnfuv_datas 100%[===================&gt;] 490.21K   119KB/s    in 4.1s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">cat</span> <span class="n">config</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>name: python37
+channels:
+  - defaults
+dependencies:
+  - pip:
+    - statsmodels
+
+prefix: /opt/anaconda3/envs/python37
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><code>config.yaml</code> file describes details of package extention. Now you need to store new package extention with APIClient.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">meta_prop_pkg_extn</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"K_Linag_norm_skl"</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">"Pkg extension for custom lib"</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">"pip_zip"</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"statsmodels env"</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">"Environment with statsmodels"</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">"conda_yml"</span>
 <span class="p">}</span>
 
-<span class="n">pkg_extn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_prop_pkg_extn</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s2">"linalgnorm-0.1.zip"</span><span class="p">)</span>
+<span class="n">pkg_extn_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_prop_pkg_extn</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s2">"config.yaml"</span><span class="p">)</span>
 <span class="n">pkg_extn_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">pkg_extn_details</span><span class="p">)</span>
 <span class="n">pkg_extn_url</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">get_href</span><span class="p">(</span><span class="n">pkg_extn_details</span><span class="p">)</span>
 </pre></div>
@@ -8645,43 +8075,7 @@ SUCCESS
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Display the details of the package extension resource that was created in the above cell.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">package_extensions</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">pkg_extn_uid</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Create-software-specification-and-add-custom-library">Create software specification and add custom library<a class="anchor-link" href="#Create-software-specification-and-add-custom-library">¶</a></h3>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Define the meta data required to create software spec resource and bind the package. This software spec resource will be used to configure the online deployment runtime environment for a model.</p>
+<h4 id="Create-new-software-specification-and-add-created-package-extention-to-it.">Create new software specification and add created package extention to it.<a class="anchor-link" href="#Create-new-software-specification-and-add-created-package-extention-to-it.">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8690,113 +8084,17 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>---------------------------  ----  --------  --------------------------------
-META_PROP NAME               TYPE  REQUIRED  SCHEMA
-NAME                         str   Y
-DESCRIPTION                  str   N
-PACKAGE_EXTENSIONS           list  N
-SOFTWARE_CONFIGURATION       dict  N         {'platform(required)': 'string'}
-BASE_SOFTWARE_SPECIFICATION  dict  Y
----------------------------  ----  --------  --------------------------------
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="List-base-software-specifications">List base software specifications<a class="anchor-link" href="#List-base-software-specifications">¶</a></h4>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Select-base-software-specification-to-extend">Select base software specification to extend<a class="anchor-link" href="#Select-base-software-specification-to-extend">¶</a></h4>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">base_sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid_by_name</span><span class="p">(</span><span class="s2">"runtime-23.1-py3.10"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Define-new-software-specification-based-on-base-one-and-custom-library">Define new software specification based on base one and custom library<a class="anchor-link" href="#Define-new-software-specification-based-on-base-one-and-custom-library">¶</a></h4>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">meta_prop_sw_spec</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"linalgnorm-0.1"</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">"Software specification for linalgnorm-0.1"</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"statsmodels software_spec"</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">"Software specification for statsmodels"</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">BASE_SOFTWARE_SPECIFICATION</span><span class="p">:</span> <span class="p">{</span><span class="s2">"guid"</span><span class="p">:</span> <span class="n">base_sw_spec_uid</span><span class="p">}</span>
 <span class="p">}</span>
 
 <span class="n">sw_spec_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_prop_sw_spec</span><span class="p">)</span>
 <span class="n">sw_spec_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">sw_spec_details</span><span class="p">)</span>
-
 
 <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">add_package_extension</span><span class="p">(</span><span class="n">sw_spec_uid</span><span class="p">,</span> <span class="n">pkg_extn_uid</span><span class="p">)</span>
 </pre></div>
@@ -8816,7 +8114,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>'SUCCESS'</pre>
 </div>
@@ -8830,7 +8128,21 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Save-the-model">Save the model<a class="anchor-link" href="#Save-the-model">¶</a></h3>
+<h4 id="Get-the-details-of-created-software-specification">Get the details of created software specification<a class="anchor-link" href="#Get-the-details-of-created-software-specification">¶</a></h4>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">sw_spec_uid</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -8841,8 +8153,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Define the metadata to save the trained model to WML Repository along with the information about the software spec resource required for the model.</p>
-<p>The <code>client.repository.ModelMetaNames.SOFTWARE_SPEC_UID</code> metadata property is used to specify the GUID of the software spec resource that needs to be associated with the model.</p>
+<h4 id="Store-the-function">Store the function<a class="anchor-link" href="#Store-the-function">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8851,15 +8162,16 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">model_props</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"Temp prediction model with custom lib"</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">'scikit-learn_1.1'</span><span class="p">,</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">sw_spec_uid</span>
-    
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">meta_props</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">FunctionMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"statsmodels function"</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">FunctionMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_UID</span><span class="p">:</span> <span class="n">sw_spec_uid</span>
 <span class="p">}</span>
+
+<span class="n">function_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_function</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">meta_props</span><span class="p">,</span> <span class="n">function</span><span class="o">=</span><span class="n">deployable_callable</span><span class="p">)</span>
+<span class="n">function_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_function_uid</span><span class="p">(</span><span class="n">function_details</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8872,21 +8184,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Save the model to the WML Repository and display its saved metadata.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">published_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">skl_pipeline</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">model_props</span><span class="p">)</span>
-</pre></div>
-</div>
+<h4 id="Get-function-details">Get function details<a class="anchor-link" href="#Get-function-details">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8895,12 +8193,10 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">published_model_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">published_model</span><span class="p">)</span>
-<span class="n">model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">published_model_uid</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">model_details</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">function_uid</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8910,30 +8206,44 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>{
-  "entity": {
-    "software_spec": {
-      "id": "dae27ebc-97b7-450e-bd27-60bd1e5ca198",
-      "name": "linalgnorm-0.1"
-    },
-    "type": "scikit-learn_0.23"
-  },
-  "metadata": {
-    "created_at": "2020-12-08T11:45:55.651Z",
-    "id": "a6a27638-71ee-493c-b6b6-d8488958b974",
-    "modified_at": "2020-12-08T11:45:57.475Z",
-    "name": "Temp prediction model with custom lib",
-    "owner": "1000330999",
-    "space_id": "83b00166-9047-4159-b777-83dcb498e7ab"
-  },
-  "system": {
-    "warnings": []
-  }
-}
-</pre>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'entity': {'software_spec': {'id': '62123911-898c-49be-87ae-e056067645d8',
+   'name': 'statsmodels software_spec'},
+  'type': 'python'},
+ 'metadata': {'created_at': '2021-02-03T13:02:50.513Z',
+  'id': '77cc037c-6aab-4eac-9e45-c3331e010132',
+  'modified_at': '2021-02-03T13:02:53.304Z',
+  'name': 'statsmodels function',
+  'owner': 'IBMid-55000091VC',
+  'space_id': 'd70a423e-bab5-4b24-943a-3b0b29ad7527'},
+ 'system': {'warnings': []}}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Note:</strong> You can see that function is successfully stored in Watson Machine Learning Service.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">list_functions</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -8946,7 +8256,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="deploy"></a></p>
-<h2 id="6-Deploy-and-Score">6 Deploy and Score<a class="anchor-link" href="#6-Deploy-and-Score">¶</a></h2><p>In this section, you will deploy the saved model that uses the custom transformer and perform predictions. You will use WML client to perform these tasks.</p>
+<h2 id="4.-Create-online-deployment">4. Create online deployment<a class="anchor-link" href="#4.-Create-online-deployment">¶</a></h2><p>You can use commands bellow to create online deployment for stored function (web service).</p>
 </div>
 </div>
 </div>
@@ -8957,7 +8267,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Deploy-the-model">Deploy the model<a class="anchor-link" href="#Deploy-the-model">¶</a></h3>
+<h4 id="Create-online-deployment-of-a-python-function">Create online deployment of a python function<a class="anchor-link" href="#Create-online-deployment-of-a-python-function">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8966,15 +8276,15 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"Deployment of custom lib model"</span><span class="p">,</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"Deployment of statsmodels function"</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{}</span>
 <span class="p">}</span>
 
-<span class="n">created_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">published_model_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+<span class="n">function_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">function_uid</span><span class="p">,</span> <span class="n">meta_props</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8991,20 +8301,73 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 
 #######################################################################################
 
-Synchronous deployment creation for uid: 'a6a27638-71ee-493c-b6b6-d8488958b974' started
+Synchronous deployment creation for uid: '77cc037c-6aab-4eac-9e45-c3331e010132' started
 
 #######################################################################################
 
 
-initializing.
+initializing....................................................................................................................................................
 ready
 
 
 ------------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_uid='0d94523d-a2e7-4d75-b753-648fae333747'
+Successfully finished deployment creation, deployment_uid='340eb7f7-4a08-4c9c-8371-f6cd907b7a3e'
 ------------------------------------------------------------------------------------------------
 
 
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Get deployment id.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">function_deployment</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>340eb7f7-4a08-4c9c-8371-f6cd907b7a3e
 </pre>
 </div>
 </div>
@@ -9018,18 +8381,7 @@ Successfully finished deployment creation, deployment_uid='0d94523d-a2e7-4d75-b7
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="score"></a></p>
-<h3 id="Predict-using-the-deployed-model">Predict using the deployed model<a class="anchor-link" href="#Predict-using-the-deployed-model">¶</a></h3>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Note</strong>: Here we use deployment <code>uid</code> saved in published_model object. In next section, we show how to retrive deployment url from Watson Machine Learning instance.</p>
+<h2 id="5.-Scoring">5. Scoring<a class="anchor-link" href="#5.-Scoring">¶</a></h2><p>You can send new scoring records to web-service deployment using <code>score</code> method.</p>
 </div>
 </div>
 </div>
@@ -9038,117 +8390,29 @@ Successfully finished deployment creation, deployment_uid='0d94523d-a2e7-4d75-b7
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">deployment_uid</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">created_deployment</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now you can print an online scoring endpoint.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">scoring_endpoint</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_scoring_href</span><span class="p">(</span><span class="n">created_deployment</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">scoring_endpoint</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>https://wmlgmc-cpd-wmlgmc.apps.wmlautoai.cp.fyre.ibm.com/ml/v4/deployments/0d94523d-a2e7-4d75-b753-648fae333747/predictions
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Prepare the payload for prediction. The payload contains the input records for which predictions has to be performed.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"input_data"</span><span class="p">:</span> <span class="p">[{</span>
-        <span class="s1">'fields'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"time"</span><span class="p">,</span> <span class="s2">"humidity"</span><span class="p">],</span>
-        <span class="s1">'values'</span><span class="p">:</span> <span class="p">[[</span><span class="mi">79863</span><span class="p">,</span> <span class="mi">47</span><span class="p">]]}]</span>
+        <span class="s1">'values'</span><span class="p">:</span> <span class="n">data</span>
+    <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Execute the method to perform online predictions and display the prediction results</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_uid</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data_description</span><span class="p">[</span><span class="s2">"predictions"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"values"</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -9161,20 +8425,53 @@ Successfully finished deployment creation, deployment_uid='0d94523d-a2e7-4d75-b7
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>{
-  "predictions": [
-    {
-      "fields": [
-        "prediction"
-      ],
-      "values": [
-        [
-          14.629242312262988
-        ]
-      ]
-    }
-  ]
-}
+<pre>                          0          1          2          3          4  \
+nobs              10.000000  10.000000  10.000000  10.000000  10.000000   
+missing            0.000000   0.000000   0.000000   0.000000   0.000000   
+mean              -0.087662  -0.162800   0.021847  -0.484764  -0.151347   
+std_err            0.086628   0.082336   0.088078   0.154758   0.060011   
+upper_ci           0.082126  -0.001424   0.194477  -0.181444  -0.033728   
+lower_ci          -0.257450  -0.324175  -0.150783  -0.788085  -0.268967   
+std                0.866281   0.823361   0.880783   1.547581   0.600109   
+iqr                1.220332   0.774040   1.173032   1.866595   0.455900   
+iqr_normal         0.904633   0.573797   0.869570   1.383709   0.337959   
+mad                0.696300   0.556041   0.700227   1.257709   0.403634   
+mad_normal         0.872682   0.696895   0.877605   1.576305   0.505881   
+coef_var          -9.882045  -5.057510  40.315579  -3.192440  -3.965111   
+range              2.514768   2.889136   2.903603   4.598605   2.228215   
+max                1.458946   0.788044   1.426277   1.386525   0.671509   
+min               -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
+skew               0.621923  -1.182308  -0.110031  -0.582020  -1.165771   
+kurtosis           2.083665   4.191979   2.178047   2.099710   4.236195   
+jarque_bera        0.994509   2.921762   0.301681   0.902296   2.901779   
+jarque_bera_pval   0.608198   0.232032   0.859985   0.636897   0.234362   
+mode              -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
+mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000   
+median            -0.259626  -0.203613   0.127268  -0.060631  -0.028983   
+
+                          5          6          7          8          9  
+nobs              10.000000  10.000000  10.000000  10.000000  10.000000  
+missing            0.000000   0.000000   0.000000   0.000000   0.000000  
+mean               0.273284   0.205051   0.023256   0.102842  -0.209529  
+std_err            0.061042   0.087203   0.126508   0.103825   0.072225  
+upper_ci           0.392923   0.375966   0.271207   0.306335  -0.067971  
+lower_ci           0.153644   0.034137  -0.224696  -0.100650  -0.351088  
+std                0.610416   0.872028   1.265081   1.038247   0.722251  
+iqr                0.780093   1.144017   1.897466   1.087920   1.181144  
+iqr_normal         0.578284   0.848061   1.406594   0.806476   0.875583  
+mad                0.476876   0.702078   0.962314   0.802775   0.623214  
+mad_normal         0.597675   0.879924   1.206082   1.006129   0.781083  
+coef_var           2.233637   4.252729  54.398852  10.095509  -3.447017  
+range              2.012750   2.399845   3.639744   3.386568   1.965249  
+max                1.364230   1.624449   1.719675   1.524333   0.677055  
+min               -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
+skew               0.305785   0.606322  -0.150434  -0.368515  -0.382710  
+kurtosis           2.245390   1.963650   1.837083   2.477825   1.604283  
+jarque_bera        0.393106   1.060220   0.601208   0.339950   1.055789  
+jarque_bera_pval   0.821558   0.588540   0.740371   0.843686   0.589846  
+mode              -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
+mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000  
+median             0.228023  -0.050927   0.073169   0.306686   0.022939  
 </pre>
 </div>
 </div>
@@ -9188,7 +8485,7 @@ Successfully finished deployment creation, deployment_uid='0d94523d-a2e7-4d75-b7
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="cleanup"></a></p>
-<h2 id="7.-Clean-up">7. Clean up<a class="anchor-link" href="#7.-Clean-up">¶</a></h2>
+<h2 id="6.-Clean-up">6. Clean up<a class="anchor-link" href="#6.-Clean-up">¶</a></h2>
 </div>
 </div>
 </div>
@@ -9200,7 +8497,7 @@ Successfully finished deployment creation, deployment_uid='0d94523d-a2e7-4d75-b7
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.6/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.7/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -9221,9 +8518,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="8.-Summary">8. Summary<a class="anchor-link" href="#8.-Summary">¶</a></h2><p>You successfully completed this notebook!</p>
-<p>You learned how to use a scikit-learn model with custom transformer in Watson Machine Learning service to deploy and score.</p>
-<p>Check out our <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=deploying-managing-models-functions">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
+<h2 id="7.-Summary-and-next-steps">7. Summary and next steps<a class="anchor-link" href="#7.-Summary-and-next-steps">¶</a></h2>
 </div>
 </div>
 </div>
@@ -9234,8 +8529,19 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Author">Author<a class="anchor-link" href="#Author">¶</a></h2><p><strong>Krishnamurthy Arthanarisamy</strong>, is a senior technical lead in IBM Watson Machine Learning team. Krishna works on developing cloud services that caters to different stages of machine learning and deep learning modeling life cycle.</p>
-<p><strong>Lukasz Cmielowski</strong>, PhD, is a Software Architect and Data Scientist at IBM.</p>
+<p>You successfully completed this notebook! You learned how to use Watson Machine Learning for function deployment and scoring with custom software_spec.<br/>
+Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=analytics">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Author">Author<a class="anchor-link" href="#Author">¶</a></h3><p><strong>Jan Sołtysik</strong> Intern in Watson Machine Learning.</p>
 </div>
 </div>
 </div>
