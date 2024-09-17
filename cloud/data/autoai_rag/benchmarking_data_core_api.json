@@ -1,0 +1,44 @@
+[
+    {
+        "question": "What is the purpose of get_token()?",
+        "correct_answer": "get_token() is used to retrieve an authentication token for secure API access.",
+        "correct_answer_document_ids": [
+            "core_api.html"
+        ]
+    },
+    {
+        "question": "How does the delete_model() function operate?",
+        "correct_answer": "delete_model() method allows users to delete models they've created or managed.",
+        "correct_answer_document_ids": [
+            "core_api.html"
+        ]
+    },
+    {
+        "question": "How does the get_supported_models() method work, and what does it return?",
+        "correct_answer": "get_supported_models() method retrieves a list of all models supported by the SDK.",
+        "correct_answer_document_ids": [
+            "core_api.html"
+        ]
+    },
+    {
+        "question": "How to create a revision for passed artifact_id?",
+        "correct_answer": "client.repository.create_revision(artifact_id)",
+        "correct_answer_document_ids": [
+            "core_api.html"
+        ]
+    },
+    {
+        "question": "How to set a project ID.",
+        "correct_answer": "client.set.default_project(project_id)",
+        "correct_answer_document_ids": [
+            "core_api.html"
+        ]
+    },
+    {
+        "question": "Ho to list spaces?",
+        "correct_answer": "client.spaces.list()",
+        "correct_answer_document_ids": [
+            "core_api.html"
+        ]
+    }
+]
