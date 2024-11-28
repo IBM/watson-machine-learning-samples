@@ -7516,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Use-ONNX-model-converted-from-TensorFlow-to-recognize-hand-written-digits-with-ibm-watsonx-ai">Use ONNX model converted from TensorFlow to recognize hand-written digits with <code>ibm-watsonx-ai</code><a class="anchor-link" href="#Use-ONNX-model-converted-from-TensorFlow-to-recognize-hand-written-digits-with-ibm-watsonx-ai">¶</a></h1><p>This notebook facilitates ONNX, TensorFlow and Watson Machine Learning service. It contains steps and code to work with <a href="https://pypi.python.org/pypi/ibm-watsonx-ai">ibm-watsonx-ai</a> library available in PyPI repository. It also introduces commands for getting model and training data, converting model to ONNX, persisting model, deploying model and scoring it.</p>
+<h1 id="Use-ONNX-model-converted-from-TensorFlow-to-recognize-hand-written-digits-with-ibm-watsonx-ai">Use ONNX model converted from TensorFlow to recognize hand-written digits with <code>ibm-watsonx-ai</code><a class="anchor-link" href="#Use-ONNX-model-converted-from-TensorFlow-to-recognize-hand-written-digits-with-ibm-watsonx-ai">¶</a></h1><p>This notebook facilitates ONNX, TensorFlow (Keras), and Watson Machine Learning service. It contains steps and code to work with <a href="https://pypi.python.org/pypi/ibm-watsonx-ai">ibm-watsonx-ai</a> library available in PyPI repository in order to convert the TensorFlow model to ONNX format. It also introduces commands for getting model and training data, persisting model, deploying model and scoring it.</p>
 <p>Some familiarity with Python is helpful. This notebook uses Python 3.11.</p>
 </div>
 </div>
@@ -7603,6 +7603,8 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">tf2onnx</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -7610,6 +7612,7 @@ a.anchor-link {
 <span class="kn">import</span> <span class="nn">onnxruntime</span> <span class="k">as</span> <span class="nn">ort</span>
 <span class="kn">import</span> <span class="nn">wget</span>
 <span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span><span class="p">,</span> <span class="n">APIClient</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
 </pre></div>
 </div>
 </div>
@@ -7800,7 +7803,18 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="download"></a></p>
-<h2 id="2.-Download-externally-created-TensorFlow-model-and-data">2. Download externally created TensorFlow model and data<a class="anchor-link" href="#2.-Download-externally-created-TensorFlow-model-and-data">¶</a></h2><p>In this section, you will download externally created TensorFlow models and data used for training it.</p>
+<h2 id="2.-Download-externally-created-TensorFlow-model-and-data">2. Download externally created TensorFlow model and data<a class="anchor-link" href="#2.-Download-externally-created-TensorFlow-model-and-data">¶</a></h2><p>In this section, you will download externally created TensorFlow models and data used for training it. You can choose to download either a <strong>TensorFlow</strong> or a <strong>Keras</strong> model.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.1.-Download-dataset">2.1. Download dataset<a class="anchor-link" href="#2.1.-Download-dataset">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7815,13 +7829,6 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'MNIST_DATA'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
     <span class="n">data_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
-
-<span class="n">tf_model_name</span> <span class="o">=</span> <span class="s1">'mnist-tf-hpo-saved-model'</span>
-<span class="n">model_tar_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">tf_model_name</span><span class="si">}</span><span class="s1">.tar.gz'</span>
-<span class="n">model_path</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">model_tar_name</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">model_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-   <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="sa">f</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/models/tensorflow/mnist/</span><span class="si">{</span><span class="n">model_tar_name</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7865,8 +7872,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><a id="convert"></a></p>
-<h2 id="3.-Convert-TensorFlow-model-to-ONNX-format">3. Convert TensorFlow model to ONNX format<a class="anchor-link" href="#3.-Convert-TensorFlow-model-to-ONNX-format">¶</a></h2><p>In this section, you will convert externally created TensorFlow models (in SavedModel format) to ONNX format model. More information can be found <a href="https://onnxruntime.ai/docs/tutorials/tf-get-started.html">here</a>.</p>
+<h3 id="2.2.-Download-TensorFlow-model">2.2. Download TensorFlow model<a class="anchor-link" href="#2.2.-Download-TensorFlow-model">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7876,6 +7882,65 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">tf_model_name</span> <span class="o">=</span> <span class="s1">'mnist-tf-hpo-saved-model'</span>
+<span class="n">model_tar_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">tf_model_name</span><span class="si">}</span><span class="s1">.tar.gz'</span>
+<span class="n">model_path</span> <span class="o">=</span> <span class="n">data_dir</span> <span class="o">/</span> <span class="n">model_tar_name</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">model_path</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+   <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="sa">f</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/models/tensorflow/mnist/</span><span class="si">{</span><span class="n">model_tar_name</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="2.3.-(OPTIONAL)-Download-TensorFLow-Keras-model">2.3. (OPTIONAL) Download TensorFLow Keras model<a class="anchor-link" href="#2.3.-(OPTIONAL)-Download-TensorFLow-Keras-model">¶</a></h3><p>To download the TensorFLow Keras model, change the <code>Markdown</code> cell below to a <code>Code</code> cell and remove the triple backticks (<code>```</code>).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<pre><code>tf_model_name = 'mnist_cnn.h5'
+model_tar_name = f'mnist_keras.h5.tgz'
+model_path = data_dir / model_tar_name
+
+if not model_path.is_file():
+   wget.download(f"https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/models/keras/{model_tar_name}", out=str(data_dir))
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a id="convert"></a></p>
+<h2 id="3.-Convert-TensorFlow-model-to-ONNX-format">3. Convert TensorFlow model to ONNX format<a class="anchor-link" href="#3.-Convert-TensorFlow-model-to-ONNX-format">¶</a></h2><p>In this section, you will unpack externally created TensorFlow models, provided in either SavedModel or Keras format (depending on your earlier selection), from the tar archive and convert them to the ONNX format. More information can be found <a href="https://onnxruntime.ai/docs/tutorials/tf-get-started.html">here</a>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">onnx_model_name</span> <span class="o">=</span> <span class="s2">"mnist_cnn.onnx"</span>
@@ -7891,7 +7956,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Extract the TensorFlow model from the tar archive</p>
+<h3 id="3.1.-Converting-TensorFlow-SavedModel">3.1. Converting TensorFlow SavedModel<a class="anchor-link" href="#3.1.-Converting-TensorFlow-SavedModel">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7900,7 +7965,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="p">{</span><span class="n">tf_model_name</span><span class="p">}</span>
@@ -7935,6 +8000,20 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">onnx_model</span> <span class="o">=</span> <span class="n">onnx</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">onnx_model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7942,7 +8021,46 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="3.1-Validating-the-ONNX-Model">3.1 Validating the ONNX Model<a class="anchor-link" href="#3.1-Validating-the-ONNX-Model">¶</a></h3><p>After exporting the model, you should verify its integrity and ensure that it functions as expected. We will use <code>onnxruntime</code> to load the model and perform inference on the random dataset. Additionally, we’ll use <code>onnx</code>'s <code>checker</code> module to validate the exported ONNX model.</p>
+<h3 id="3.2.-(OPTIONAL)-Converting-TensorFLow-Keras-model">3.2. (OPTIONAL) Converting TensorFLow Keras model<a class="anchor-link" href="#3.2.-(OPTIONAL)-Converting-TensorFLow-Keras-model">¶</a></h3><p>To convert the TensorFLow Keras model to ONNX format, change the <code>Markdown</code> cells below to a <code>Code</code> cells and remove the triple backticks (<code>```</code>).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<pre><code>!tar xzf MNIST_DATA/{model_tar_name}
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<pre><code>logging.getLogger().setLevel(logging.ERROR)
+
+model = load_model(tf_model_name)
+onnx_model, _ = tf2onnx.convert.from_keras(model)
+onnx.save(onnx_model, onnx_model_name)
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="3.3.-Validating-the-ONNX-Model">3.3. Validating the ONNX Model<a class="anchor-link" href="#3.3.-Validating-the-ONNX-Model">¶</a></h3><p>After exporting the model, you should verify its integrity and ensure that it functions as expected. We will use <code>onnxruntime</code> to load the model and perform inference on the random dataset. Additionally, we’ll use <code>onnx</code>'s <code>checker</code> module to validate the exported ONNX model.</p>
 </div>
 </div>
 </div>
@@ -7951,11 +8069,10 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">onnx_model</span> <span class="o">=</span> <span class="n">onnx</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">onnx_model_name</span><span class="p">)</span>
-<span class="n">onnx</span><span class="o">.</span><span class="n">checker</span><span class="o">.</span><span class="n">check_model</span><span class="p">(</span><span class="n">onnx_model</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">onnx</span><span class="o">.</span><span class="n">checker</span><span class="o">.</span><span class="n">check_model</span><span class="p">(</span><span class="n">onnx_model</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7966,7 +8083,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">session</span> <span class="o">=</span> <span class="n">ort</span><span class="o">.</span><span class="n">InferenceSession</span><span class="p">(</span><span class="n">onnx_model_name</span><span class="p">)</span>
@@ -8028,7 +8145,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">sofware_spec_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s2">"onnxruntime_opset_19"</span><span class="p">)</span>
@@ -8043,7 +8160,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="nb">zip</span> <span class="p">{</span><span class="n">onnx_model_zip</span><span class="p">}</span> <span class="p">{</span><span class="n">onnx_model_name</span><span class="p">}</span>
@@ -8070,7 +8187,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
@@ -8104,7 +8221,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">published_model_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">published_model</span><span class="p">)</span>
@@ -8132,12 +8249,12 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
     "type": "onnxruntime_1.16"
   },
   "metadata": {
-    "created_at": "2024-11-22T12:19:55.793Z",
-    "id": "440a1a7c-e65d-4afd-bda4-e02e28980ae6",
-    "modified_at": "2024-11-22T12:20:01.546Z",
+    "created_at": "2024-11-26T17:55:47.029Z",
+    "id": "29209363-d885-472a-aa11-e69f1db0c2ec",
+    "modified_at": "2024-11-26T17:55:55.987Z",
     "name": "TensorFLow to ONNX converted model",
     "owner": "IBMid-6980008OAA",
-    "resource_key": "28f88b1f-dff2-45cd-9712-1447a3d5e97b",
+    "resource_key": "736795e1-0ae1-4b9c-9f74-48ed534fbb84",
     "space_id": "1cfa7b13-df10-4ab3-8df6-a10e8ac43780"
   },
   "system": {
@@ -8188,7 +8305,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
@@ -8213,7 +8330,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 
 ######################################################################################
 
-Synchronous deployment creation for id: '440a1a7c-e65d-4afd-bda4-e02e28980ae6' started
+Synchronous deployment creation for id: '29209363-d885-472a-aa11-e69f1db0c2ec' started
 
 ######################################################################################
 
@@ -8225,7 +8342,7 @@ ready
 
 
 -----------------------------------------------------------------------------------------------
-Successfully finished deployment creation, deployment_id='f2955a7f-885d-46b7-8ec8-51c145bcbe18'
+Successfully finished deployment creation, deployment_id='ed314c63-4bac-4501-8beb-1067c46cfe33'
 -----------------------------------------------------------------------------------------------
 
 
@@ -8239,7 +8356,7 @@ Successfully finished deployment creation, deployment_id='f2955a7f-885d-46b7-8ec
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">deployment_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">created_deployment</span><span class="p">)</span>
@@ -8362,7 +8479,7 @@ Successfully finished deployment creation, deployment_id='f2955a7f-885d-46b7-8ec
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
@@ -8376,7 +8493,7 @@ Successfully finished deployment creation, deployment_id='f2955a7f-885d-46b7-8ec
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_test</span><span class="p">[</span><span class="mi">1</span><span class="p">]]):</span>
@@ -8416,7 +8533,7 @@ Successfully finished deployment creation, deployment_id='f2955a7f-885d-46b7-8ec
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">score_0</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
@@ -8431,7 +8548,7 @@ Successfully finished deployment creation, deployment_id='f2955a7f-885d-46b7-8ec
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">scoring_payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"input_data"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"values"</span><span class="p">:</span> <span class="p">[</span><span class="n">score_0</span><span class="p">,</span> <span class="n">score_1</span><span class="p">]}]}</span>
@@ -8456,7 +8573,7 @@ Successfully finished deployment creation, deployment_id='f2955a7f-885d-46b7-8ec
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">scoring_payload</span><span class="p">)</span>
@@ -8481,7 +8598,7 @@ Successfully finished deployment creation, deployment_id='f2955a7f-885d-46b7-8ec
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
