@@ -1,6 +1,6 @@
 import pytest
 
-from ai_service_function_calling import (
+from langgraph_react_agent import (
     ordinary_least_squared_regression,
     pearson_correlation,
     check_residuals_normality,

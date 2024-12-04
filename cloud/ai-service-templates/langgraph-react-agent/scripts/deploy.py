@@ -90,6 +90,7 @@ meta_props = {
         "model_id": model_id,
         "space_id": client.default_space_id,
         "url": client.credentials.url,
+        **dep_config["custom"]
     },
 }
 

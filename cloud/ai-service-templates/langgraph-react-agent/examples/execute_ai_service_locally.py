@@ -3,7 +3,7 @@ from ibm_watsonx_ai.deployments import RuntimeContext
 from statsmodels import datasets
 
 from ai_service import deployable_ai_service
-from utils import load_config, print_message
+from utils import load_config
 
 config = load_config()
 dep_config = config["deployment"]
@@ -54,6 +54,7 @@ The following commands are supported:
   --> quit | q : exits the prompt and ends the program
   --> list_datasets : prints a list of available datasets
   --> list_questions : prints a list of available questions
+  --> r | reset : resets the program states allowing choosing different dataset
 
 """
 
@@ -75,7 +76,7 @@ def user_input_loop():
                 print(questions_prompt)
 
         if dataset_chosen:
-            q = input("Choose a question.\n --> ")
+            q = input("Choose a question or ask one of your own.\n --> ")
 
             dataset_chosen = yield q, "question"
 
@@ -88,7 +89,10 @@ def main():
     dataset_chosen = False
     user_loop = user_input_loop()
 
-    for action, stage in user_loop:
+    for action, stage in user_loop:  # unsupported command support! 
+
+        if action == "r" or action == "reset": 
+            return
 
         if action == "h" or action == "help":
             print(help_message)
@@ -99,43 +103,48 @@ def main():
             print(datasets_prompt)
         elif action == "list_questions":
             print(questions_prompt)
+        
 
-        else:
-            try:
+        elif stage == "dataset":
+            if not action.isdigit():
+                print(f"please provide a valid number corresponding to an existing dataset")
+
+            else:        
                 number = int(action)
-            except ValueError:
-                print(f"unsupported command {action}")
+                print(f"you chose DATASET {number}\n")
+                if number > len(data) or number < 0:
+                    print("provided numbers have to match the available numbers")
+                else:
+                    dataset_chosen = True
+                    d = number
+
+        elif stage == "question":
+            # small caveat -- if user answers to the chat a single digit we'll treat it as trying to choose on of our questions
+            if not action.isdigit():  # user defined question
+                context.request_payload_json = {
+                    "question":  action.strip()
+                }
 
             else:
-                if stage == "dataset":
-                    print(f"you chose DATASET {number}\n")
-                    if number > len(data) or number < 0:
-                        print("provided numbers have to be match the available numbers")
-                    else:
-                        dataset_chosen = True
-                        d = number
+                number = int(action)
 
-                elif stage == "question":
-                    print(f"you chose QUESTION {number}\n")
-                    if number > len(questions) or number < 0:
-                        print("provided numbers have to be match the available numbers")
-                    else:
-                        q = number
-
-                if q and d:
+                print(f"you chose QUESTION {number}\n")
+                if number > len(questions) or number < 0:
+                    print("provided numbers have to match the available numbers")
+                else:
                     context.request_payload_json = {
-                        "question": questions[q - 1],
+                        "question": questions[number - 1],
                         "data": {
                             "exog": data[data_names[d - 1]].load_pandas().exog.iloc[:25, 0].to_numpy().tolist(),
                             "endog": data[data_names[d - 1]].load_pandas().endog.iloc[:25].to_numpy().tolist(),
                         }
                     }
 
-                    resp = ai_service_generate_resp_func(context)
+            resp = ai_service_generate_resp_func(context)
+            print(f"{' Ai Message '.center(80, '=')}")
+            print(context.request_payload_json)
+            print(resp["body"]["choices"][0]["message"]["content"])
 
-                    print_message(resp["body"][-1])
-
-                    return
 
         user_loop.send(dataset_chosen)
 

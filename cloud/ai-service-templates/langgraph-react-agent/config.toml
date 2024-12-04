@@ -1,0 +1,14 @@
+
+[deployment]
+  watsonx_apikey = "PLACEHOLDER FOR YOUR APIKEY"
+  watsonx_url = ""  # should follow the format: `https://{REGION}.ml.cloud.ibm.com`
+  space_id = "PLACEHOLDER FOR YOUR SPACE ID"
+  deployment_id = "PLACEHOLDER FOR YOUR DEPLOYMENT ID"
+
+[deployment.custom]
+# during creation of deployment additional parameters can be provided inside `CUSTOM` object for further referencing
+# please refer to the API docs: https://cloud.ibm.com/apidocs/machine-learning-cp#deployments-create
+
+
+[ai_service]
+  model_id = "mistralai/mistral-large"  # underlying model of WatsonxChat

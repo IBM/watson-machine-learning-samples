@@ -1,5 +1,5 @@
 def deployable_ai_service(context, **custom):
-    from ai_service_function_calling.agent import get_graph
+    from langgraph_react_agent.agent import get_graph
     from ibm_watsonx_ai import APIClient, Credentials
 
     model_id = custom.get("model_id")
@@ -41,14 +41,28 @@ def deployable_ai_service(context, **custom):
             endog_data = data.get('endog', [])
 
             # Append the data information to the question string
-            question += f" Explanatory variables (independent): {exog_data}. Dependent variable (response): {endog_data}."
+            question += f"Explanatory variables (independent): {exog_data}. Dependent variable (response): {endog_data}."
 
-        response = graph.invoke({"messages": [("user", question)]})
+        config = {"configurable": {"thread_id": "thread-1"}} # Checkpointer configuration
 
-        json_messages = [msg.to_json() for msg in response['messages']]
+        generated_response = graph.invoke({"messages": [("user", question)]}, config)
 
-        return {
-            "body": json_messages
+        last_message = generated_response["messages"][-1]
+
+        execute_response = {
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": {
+                "choices": [{
+                    "index": 0,
+                    "message": {
+                        "role": "assistant",
+                        "content": last_message.content
+                    }
+                }]
+            }
         }
 
+        return execute_response
     return generate

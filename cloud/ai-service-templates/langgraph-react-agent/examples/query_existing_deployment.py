@@ -1,6 +1,6 @@
 import ibm_watsonx_ai
 
-from utils import load_config, print_message
+from utils import load_config
 
 config = load_config("deployment")
 
@@ -19,6 +19,4 @@ ai_service_payload = {
 
 # Executing deployed AI service with provided scoring data
 response_content = client.deployments.run_ai_service(config["deployment_id"], ai_service_payload)
-
-for r in response_content:
-    print_message(r)
+print(response_content["choices"][0]["message"]["content"])
