@@ -1,0 +1,27 @@
+name: rt24.1-py311-wx_ai_samples
+
+channels:
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip:
+    - ibm-watsonx-ai
+    - langchain
+    - langchain_ibm
+    - langchain-elasticsearch
+    - langchain-core
+    - langchain_community
+    - langchain_chroma
+    - langchain_milvus
+    - datasets
+    - jupyter
+    - evaluate
+    - humanize
+    - matplotlib
+    - nltk
+    - rouge_score
+    - scikit-learn~=1.3.2
+    - sentence-transformers
+    - sqlalchemy==2.0.1
+    - wget
