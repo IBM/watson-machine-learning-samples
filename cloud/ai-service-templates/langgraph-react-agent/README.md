@@ -29,13 +29,10 @@ problems and use cases that the model itself might have problems getting right.
 The high level structure of the repository is as follows (included are only the most important files):
 
 langgraph-react-agent  
- ┣ examples  
  ┣ src  
  ┃ ┣ langgraph_react_agent [(1)]  
  ┃ ┃ ┣ \_\_init\_\_.py  
- ┃ ┃ ┣ agent.py (2)  
- ┣ tests  
- ┃ ┗ \_\_init\_\_.py   
+ ┃ ┃ ┣ agent.py (2)
  ┣ **ai_service.py**  (3)  
  ┣ config.toml  (4)  
  ┣ pyproject.toml  
@@ -154,11 +151,14 @@ In order to execute the function to be deployed within your local environment:
 
 1) populate the `config.toml` file with your necessary credentials (if not already done for the purpose of local testing)  
 2) run the `scripts/deploy.py` file using:  
-```sh
-python scripts/deploy.py
-```
+    ```sh
+    python scripts/deploy.py
+    ```
+3) Successfully completed script will print on stdout the `deployment_id` which will be necessary to test the deployment. For further info please refer [to the next section](#querying-the-deployment)  
 
 ## Querying the deployment  
 
-Can be done in at least a couple of ways. The easiest one is to use the `watsonx.ai` library.  
-The exemplary file querying an exisitng deployment [query_existing_deployment.py](examples/query_existing_deployment.py) is a perfect place to start exploring the said possibilities.  
+The exemplary file [query_existing_deployment.py](examples/query_existing_deployment.py) shows how to test the existing deployment using `watsonx.ai` library.   
+In order to do so you'll need to initialise the `deployment_id` variable that can be found at the beginning of the file.  
+The _deployment_id_ of your deployment can be obtained from [the previous section](#deploying-on-cloud) by running [scripts/deploy.sh](scripts/deploy.py)  
+

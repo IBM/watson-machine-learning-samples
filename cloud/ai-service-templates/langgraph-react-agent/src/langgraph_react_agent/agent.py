@@ -13,6 +13,8 @@ def get_graph(client: APIClient, model_id: str) -> CompiledGraph:
     # Initialise ChatWatsonx
     chat = ChatWatsonx(model_id=model_id, watsonx_client=client)
 
+    system_prompt = "You are a helpful AI assistant, please respond to the user's query to the best of your ability!"
+
     # Create instance of compiled graph
-    graph = create_react_agent(chat, tools=TOOLS, checkpointer=MemorySaver())
+    graph = create_react_agent(chat, tools=TOOLS, checkpointer=MemorySaver(), state_modifier=system_prompt)
     return graph

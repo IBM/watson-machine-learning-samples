@@ -17,7 +17,6 @@ client = ibm_watsonx_ai.APIClient(
     credentials=ibm_watsonx_ai.Credentials(url=dep_config["watsonx_url"], api_key=dep_config["watsonx_apikey"]),
     space_id=dep_config["space_id"])
 
-model_id = config["ai_service"]["model_id"]
 
 pyproject_path = Path(__file__).parents[1] / "pyproject.toml"
 pkg_name, pkg_version = get_package_name_and_version(str(pyproject_path))
@@ -87,10 +86,9 @@ meta_props = {
         f"online ai_service test",
     client.deployments.ConfigurationMetaNames.ONLINE: {},
     client.deployments.ConfigurationMetaNames.CUSTOM: {
-        "model_id": model_id,
         "space_id": client.default_space_id,
         "url": client.credentials.url,
-        **dep_config["custom"]
+        **dep_config["custom"],
     },
 }
 
