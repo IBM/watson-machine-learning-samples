@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7664,7 +7665,7 @@ Some familiarity with bash is helpful. This notebook uses Python 3.10 with stats
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watson_machine_learning</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watson_machine_learning</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">wml_credentials</span><span class="p">)</span>
 </pre></div>
@@ -7800,17 +7801,17 @@ with statsmodels module calculating describition of a given data.<br/>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">deployable_callable</span><span class="p">():</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">deployable_callable</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Deployable python function with score</span>
 <span class="sd">    function implemented.</span>
 <span class="sd">    """</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">statsmodels.stats.descriptivestats</span> <span class="kn">import</span> <span class="n">describe</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.descriptivestats</span><span class="w"> </span><span class="kn">import</span> <span class="n">describe</span>
     <span class="k">except</span> <span class="ne">ModuleNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"statsmodels not installed: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="n">payload</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Score method.</span>
 <span class="sd">        """</span>
@@ -7823,7 +7824,7 @@ with statsmodels module calculating describition of a given data.<br/>
             <span class="p">}</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">{</span><span class="s1">'predictions'</span><span class="p">:</span> <span class="p">[{</span><span class="s1">'values'</span><span class="p">:</span> <span class="p">[</span><span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">)]}]}</span>
-        
+
     <span class="k">return</span> <span class="n">score</span>
 </pre></div>
 </div>
@@ -7849,7 +7850,7 @@ with statsmodels module calculating describition of a given data.<br/>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">data_description</span> <span class="o">=</span> <span class="n">deployable_callable</span><span class="p">()({</span>
@@ -7872,52 +7873,52 @@ with statsmodels module calculating describition of a given data.<br/>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>                          0          1          2          3          4  \
-nobs              10.000000  10.000000  10.000000  10.000000  10.000000   
-missing            0.000000   0.000000   0.000000   0.000000   0.000000   
-mean              -0.087662  -0.162800   0.021847  -0.484764  -0.151347   
-std_err            0.086628   0.082336   0.088078   0.154758   0.060011   
-upper_ci           0.082126  -0.001424   0.194477  -0.181444  -0.033728   
-lower_ci          -0.257450  -0.324175  -0.150783  -0.788085  -0.268967   
-std                0.866281   0.823361   0.880783   1.547581   0.600109   
-iqr                1.220332   0.774040   1.173032   1.866595   0.455900   
-iqr_normal         0.904633   0.573797   0.869570   1.383709   0.337959   
-mad                0.696300   0.556041   0.700227   1.257709   0.403634   
-mad_normal         0.872682   0.696895   0.877605   1.576305   0.505881   
-coef_var          -9.882045  -5.057510  40.315579  -3.192440  -3.965111   
-range              2.514768   2.889136   2.903603   4.598605   2.228215   
-max                1.458946   0.788044   1.426277   1.386525   0.671509   
-min               -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
-skew               0.621923  -1.182308  -0.110031  -0.582020  -1.165771   
-kurtosis           2.083665   4.191979   2.178047   2.099710   4.236195   
-jarque_bera        0.994509   2.921762   0.301681   0.902296   2.901779   
-jarque_bera_pval   0.608198   0.232032   0.859985   0.636897   0.234362   
-mode              -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
-mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000   
-median            -0.259626  -0.203613   0.127268  -0.060631  -0.028983   
+nobs              10.000000  10.000000  10.000000  10.000000  10.000000
+missing            0.000000   0.000000   0.000000   0.000000   0.000000
+mean              -0.087662  -0.162800   0.021847  -0.484764  -0.151347
+std_err            0.086628   0.082336   0.088078   0.154758   0.060011
+upper_ci           0.082126  -0.001424   0.194477  -0.181444  -0.033728
+lower_ci          -0.257450  -0.324175  -0.150783  -0.788085  -0.268967
+std                0.866281   0.823361   0.880783   1.547581   0.600109
+iqr                1.220332   0.774040   1.173032   1.866595   0.455900
+iqr_normal         0.904633   0.573797   0.869570   1.383709   0.337959
+mad                0.696300   0.556041   0.700227   1.257709   0.403634
+mad_normal         0.872682   0.696895   0.877605   1.576305   0.505881
+coef_var          -9.882045  -5.057510  40.315579  -3.192440  -3.965111
+range              2.514768   2.889136   2.903603   4.598605   2.228215
+max                1.458946   0.788044   1.426277   1.386525   0.671509
+min               -1.055823  -2.101093  -1.477326  -3.212081  -1.556706
+skew               0.621923  -1.182308  -0.110031  -0.582020  -1.165771
+kurtosis           2.083665   4.191979   2.178047   2.099710   4.236195
+jarque_bera        0.994509   2.921762   0.301681   0.902296   2.901779
+jarque_bera_pval   0.608198   0.232032   0.859985   0.636897   0.234362
+mode              -1.055823  -2.101093  -1.477326  -3.212081  -1.556706
+mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000
+median            -0.259626  -0.203613   0.127268  -0.060631  -0.028983
 
-                          5          6          7          8          9  
-nobs              10.000000  10.000000  10.000000  10.000000  10.000000  
-missing            0.000000   0.000000   0.000000   0.000000   0.000000  
-mean               0.273284   0.205051   0.023256   0.102842  -0.209529  
-std_err            0.061042   0.087203   0.126508   0.103825   0.072225  
-upper_ci           0.392923   0.375966   0.271207   0.306335  -0.067971  
-lower_ci           0.153644   0.034137  -0.224696  -0.100650  -0.351088  
-std                0.610416   0.872028   1.265081   1.038247   0.722251  
-iqr                0.780093   1.144017   1.897466   1.087920   1.181144  
-iqr_normal         0.578284   0.848061   1.406594   0.806476   0.875583  
-mad                0.476876   0.702078   0.962314   0.802775   0.623214  
-mad_normal         0.597675   0.879924   1.206082   1.006129   0.781083  
-coef_var           2.233637   4.252729  54.398852  10.095509  -3.447017  
-range              2.012750   2.399845   3.639744   3.386568   1.965249  
-max                1.364230   1.624449   1.719675   1.524333   0.677055  
-min               -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
-skew               0.305785   0.606322  -0.150434  -0.368515  -0.382710  
-kurtosis           2.245390   1.963650   1.837083   2.477825   1.604283  
-jarque_bera        0.393106   1.060220   0.601208   0.339950   1.055789  
-jarque_bera_pval   0.821558   0.588540   0.740371   0.843686   0.589846  
-mode              -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
-mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000  
-median             0.228023  -0.050927   0.073169   0.306686   0.022939  
+                          5          6          7          8          9
+nobs              10.000000  10.000000  10.000000  10.000000  10.000000
+missing            0.000000   0.000000   0.000000   0.000000   0.000000
+mean               0.273284   0.205051   0.023256   0.102842  -0.209529
+std_err            0.061042   0.087203   0.126508   0.103825   0.072225
+upper_ci           0.392923   0.375966   0.271207   0.306335  -0.067971
+lower_ci           0.153644   0.034137  -0.224696  -0.100650  -0.351088
+std                0.610416   0.872028   1.265081   1.038247   0.722251
+iqr                0.780093   1.144017   1.897466   1.087920   1.181144
+iqr_normal         0.578284   0.848061   1.406594   0.806476   0.875583
+mad                0.476876   0.702078   0.962314   0.802775   0.623214
+mad_normal         0.597675   0.879924   1.206082   1.006129   0.781083
+coef_var           2.233637   4.252729  54.398852  10.095509  -3.447017
+range              2.012750   2.399845   3.639744   3.386568   1.965249
+max                1.364230   1.624449   1.719675   1.524333   0.677055
+min               -0.648519  -0.775396  -1.920069  -1.862235  -1.288194
+skew               0.305785   0.606322  -0.150434  -0.368515  -0.382710
+kurtosis           2.245390   1.963650   1.837083   2.477825   1.604283
+jarque_bera        0.393106   1.060220   0.601208   0.339950   1.055789
+jarque_bera_pval   0.821558   0.588540   0.740371   0.843686   0.589846
+mode              -0.648519  -0.775396  -1.920069  -1.862235  -1.288194
+mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000
+median             0.228023  -0.050927   0.073169   0.306686   0.022939
 </pre>
 </div>
 </div>
@@ -8426,52 +8427,52 @@ Successfully finished deployment creation, deployment_uid='340eb7f7-4a08-4c9c-83
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>                          0          1          2          3          4  \
-nobs              10.000000  10.000000  10.000000  10.000000  10.000000   
-missing            0.000000   0.000000   0.000000   0.000000   0.000000   
-mean              -0.087662  -0.162800   0.021847  -0.484764  -0.151347   
-std_err            0.086628   0.082336   0.088078   0.154758   0.060011   
-upper_ci           0.082126  -0.001424   0.194477  -0.181444  -0.033728   
-lower_ci          -0.257450  -0.324175  -0.150783  -0.788085  -0.268967   
-std                0.866281   0.823361   0.880783   1.547581   0.600109   
-iqr                1.220332   0.774040   1.173032   1.866595   0.455900   
-iqr_normal         0.904633   0.573797   0.869570   1.383709   0.337959   
-mad                0.696300   0.556041   0.700227   1.257709   0.403634   
-mad_normal         0.872682   0.696895   0.877605   1.576305   0.505881   
-coef_var          -9.882045  -5.057510  40.315579  -3.192440  -3.965111   
-range              2.514768   2.889136   2.903603   4.598605   2.228215   
-max                1.458946   0.788044   1.426277   1.386525   0.671509   
-min               -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
-skew               0.621923  -1.182308  -0.110031  -0.582020  -1.165771   
-kurtosis           2.083665   4.191979   2.178047   2.099710   4.236195   
-jarque_bera        0.994509   2.921762   0.301681   0.902296   2.901779   
-jarque_bera_pval   0.608198   0.232032   0.859985   0.636897   0.234362   
-mode              -1.055823  -2.101093  -1.477326  -3.212081  -1.556706   
-mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000   
-median            -0.259626  -0.203613   0.127268  -0.060631  -0.028983   
+nobs              10.000000  10.000000  10.000000  10.000000  10.000000
+missing            0.000000   0.000000   0.000000   0.000000   0.000000
+mean              -0.087662  -0.162800   0.021847  -0.484764  -0.151347
+std_err            0.086628   0.082336   0.088078   0.154758   0.060011
+upper_ci           0.082126  -0.001424   0.194477  -0.181444  -0.033728
+lower_ci          -0.257450  -0.324175  -0.150783  -0.788085  -0.268967
+std                0.866281   0.823361   0.880783   1.547581   0.600109
+iqr                1.220332   0.774040   1.173032   1.866595   0.455900
+iqr_normal         0.904633   0.573797   0.869570   1.383709   0.337959
+mad                0.696300   0.556041   0.700227   1.257709   0.403634
+mad_normal         0.872682   0.696895   0.877605   1.576305   0.505881
+coef_var          -9.882045  -5.057510  40.315579  -3.192440  -3.965111
+range              2.514768   2.889136   2.903603   4.598605   2.228215
+max                1.458946   0.788044   1.426277   1.386525   0.671509
+min               -1.055823  -2.101093  -1.477326  -3.212081  -1.556706
+skew               0.621923  -1.182308  -0.110031  -0.582020  -1.165771
+kurtosis           2.083665   4.191979   2.178047   2.099710   4.236195
+jarque_bera        0.994509   2.921762   0.301681   0.902296   2.901779
+jarque_bera_pval   0.608198   0.232032   0.859985   0.636897   0.234362
+mode              -1.055823  -2.101093  -1.477326  -3.212081  -1.556706
+mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000
+median            -0.259626  -0.203613   0.127268  -0.060631  -0.028983
 
-                          5          6          7          8          9  
-nobs              10.000000  10.000000  10.000000  10.000000  10.000000  
-missing            0.000000   0.000000   0.000000   0.000000   0.000000  
-mean               0.273284   0.205051   0.023256   0.102842  -0.209529  
-std_err            0.061042   0.087203   0.126508   0.103825   0.072225  
-upper_ci           0.392923   0.375966   0.271207   0.306335  -0.067971  
-lower_ci           0.153644   0.034137  -0.224696  -0.100650  -0.351088  
-std                0.610416   0.872028   1.265081   1.038247   0.722251  
-iqr                0.780093   1.144017   1.897466   1.087920   1.181144  
-iqr_normal         0.578284   0.848061   1.406594   0.806476   0.875583  
-mad                0.476876   0.702078   0.962314   0.802775   0.623214  
-mad_normal         0.597675   0.879924   1.206082   1.006129   0.781083  
-coef_var           2.233637   4.252729  54.398852  10.095509  -3.447017  
-range              2.012750   2.399845   3.639744   3.386568   1.965249  
-max                1.364230   1.624449   1.719675   1.524333   0.677055  
-min               -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
-skew               0.305785   0.606322  -0.150434  -0.368515  -0.382710  
-kurtosis           2.245390   1.963650   1.837083   2.477825   1.604283  
-jarque_bera        0.393106   1.060220   0.601208   0.339950   1.055789  
-jarque_bera_pval   0.821558   0.588540   0.740371   0.843686   0.589846  
-mode              -0.648519  -0.775396  -1.920069  -1.862235  -1.288194  
-mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000  
-median             0.228023  -0.050927   0.073169   0.306686   0.022939  
+                          5          6          7          8          9
+nobs              10.000000  10.000000  10.000000  10.000000  10.000000
+missing            0.000000   0.000000   0.000000   0.000000   0.000000
+mean               0.273284   0.205051   0.023256   0.102842  -0.209529
+std_err            0.061042   0.087203   0.126508   0.103825   0.072225
+upper_ci           0.392923   0.375966   0.271207   0.306335  -0.067971
+lower_ci           0.153644   0.034137  -0.224696  -0.100650  -0.351088
+std                0.610416   0.872028   1.265081   1.038247   0.722251
+iqr                0.780093   1.144017   1.897466   1.087920   1.181144
+iqr_normal         0.578284   0.848061   1.406594   0.806476   0.875583
+mad                0.476876   0.702078   0.962314   0.802775   0.623214
+mad_normal         0.597675   0.879924   1.206082   1.006129   0.781083
+coef_var           2.233637   4.252729  54.398852  10.095509  -3.447017
+range              2.012750   2.399845   3.639744   3.386568   1.965249
+max                1.364230   1.624449   1.719675   1.524333   0.677055
+min               -0.648519  -0.775396  -1.920069  -1.862235  -1.288194
+skew               0.305785   0.606322  -0.150434  -0.368515  -0.382710
+kurtosis           2.245390   1.963650   1.837083   2.477825   1.604283
+jarque_bera        0.393106   1.060220   0.601208   0.339950   1.055789
+jarque_bera_pval   0.821558   0.588540   0.740371   0.843686   0.589846
+mode              -0.648519  -0.775396  -1.920069  -1.862235  -1.288194
+mode_freq          0.100000   0.100000   0.100000   0.100000   0.100000
+median             0.228023  -0.050927   0.073169   0.306686   0.022939
 </pre>
 </div>
 </div>
@@ -8496,8 +8497,7 @@ median             0.228023  -0.050927   0.073169   0.306686   0.022939
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.7/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -8507,6 +8507,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.7/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -8552,7 +8553,7 @@ Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getti
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2020, 2021, 2022, 2023 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>
