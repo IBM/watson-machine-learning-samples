@@ -4981,7 +4981,7 @@ form{
   .bp3-running-text table th, table.bp3-html-table th{
     color:#182026;
     font-weight:600; }
-  
+
   .bp3-running-text table td,
   table.bp3-html-table td{
     color:#182026; }
@@ -14539,6 +14539,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   display: none;
 }
 
+@page {
+    margin: 0.5in; /* Margin for each printed piece of paper */
+}
+
 @media print {
   .jp-Cell-inputWrapper,
   .jp-Cell-outputWrapper {
@@ -14724,7 +14728,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Install-and-import-the-ibm-watson-machine-learning-package">Install and import the <code>ibm-watson-machine-learning</code> package<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning-package">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="https://ibm.github.io/watson-machine-learning-sdk/" target="_blank" rel="noopener no referrer">here</a>.</p>
+<h3 id="Install-and-import-the-ibm-watson-machine-learning-package">Install and import the <code>ibm-watson-machine-learning</code> package<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning-package">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="http://ibm-wml-api-pyclient.mybluemix.net/" target="_blank" rel="noopener no referrer">here</a>.</p>
 
 </div>
 </div>
@@ -14780,7 +14784,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <li>Go to space <code>Settings</code> tab</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
-<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.5/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
+<p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd4.6/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
 <p><strong>Action</strong>: Assign space ID below</p>
 
 </div>
@@ -14865,7 +14869,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
 
@@ -14916,11 +14920,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">wget</span><span class="o">,</span> <span class="nn">zipfile</span>
 
 <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;go_1k.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;go_daily_sales.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;go_methods.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;go_products.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;go_retailers.csv&#39;</span><span class="p">]</span>
-<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.5/data/go_sales/&#39;</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.6/data/go_sales/&#39;</span>
 
 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span> <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">base_url</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
-        
+
 <span class="n">assets_details</span> <span class="o">=</span> <span class="p">[</span><span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span> <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">]</span>
 </pre></div>
 
@@ -14936,7 +14940,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -14984,7 +14988,7 @@ SUCCESS
 
 <span class="n">data_connections</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">DataConnection</span><span class="p">(</span><span class="n">data_join_node_name</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
-                   <span class="n">location</span><span class="o">=</span><span class="n">AssetLocation</span><span class="p">(</span><span class="n">asset_id</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">asset</span><span class="p">)))</span> 
+                   <span class="n">location</span><span class="o">=</span><span class="n">AssetLocation</span><span class="p">(</span><span class="n">asset_id</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">asset</span><span class="p">)))</span>
     <span class="k">for</span> <span class="n">filename</span><span class="p">,</span> <span class="n">asset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="n">assets_details</span><span class="p">)]</span>
 </pre></div>
 
@@ -15020,10 +15024,10 @@ Next, edges between nodes with join columns names (<code>from_column</code>, <co
 
 <span class="n">data_join_graph</span> <span class="o">=</span> <span class="n">DataJoinGraph</span><span class="p">()</span>
 
-<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span> 
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
     <span class="n">data_join_graph</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
 
-<span class="n">data_join_graph</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="n">from_node</span><span class="o">=</span><span class="s2">&quot;go_1k.csv&quot;</span><span class="p">,</span> <span class="n">to_node</span><span class="o">=</span><span class="s2">&quot;go_daily_sales.csv&quot;</span><span class="p">,</span> 
+<span class="n">data_join_graph</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="n">from_node</span><span class="o">=</span><span class="s2">&quot;go_1k.csv&quot;</span><span class="p">,</span> <span class="n">to_node</span><span class="o">=</span><span class="s2">&quot;go_daily_sales.csv&quot;</span><span class="p">,</span>
                      <span class="n">from_column</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Retailer code&quot;</span><span class="p">,</span> <span class="s2">&quot;Product number&quot;</span><span class="p">],</span> <span class="n">to_column</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Retailer code&quot;</span><span class="p">,</span> <span class="s2">&quot;Product number&quot;</span><span class="p">])</span>
 <span class="n">data_join_graph</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="n">from_node</span><span class="o">=</span><span class="s2">&quot;go_daily_sales.csv&quot;</span><span class="p">,</span> <span class="n">to_node</span><span class="o">=</span><span class="s2">&quot;go_methods.csv&quot;</span><span class="p">,</span>
                      <span class="n">from_column</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Order method code&quot;</span><span class="p">],</span> <span class="n">to_column</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Order method code&quot;</span><span class="p">])</span>
@@ -15047,7 +15051,7 @@ Next, edges between nodes with join columns names (<code>from_column</code>, <co
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -15272,7 +15276,7 @@ Next, edges between nodes with join columns names (<code>from_column</code>, <co
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -15321,7 +15325,7 @@ Next, edges between nodes with join columns names (<code>from_column</code>, <co
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 
 
@@ -15377,7 +15381,7 @@ you like for further testing.</p>
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
 
 
@@ -15564,7 +15568,7 @@ you like for further testing.</p>
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 
 
@@ -15576,7 +15580,7 @@ you like for further testing.</p>
 
 </div>
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -15633,7 +15637,7 @@ AutoAI training job.</p>
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -15687,7 +15691,7 @@ Unknown transformation:  ItemsetCOR
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -15742,7 +15746,7 @@ jp-needs-light-background
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -16459,7 +16463,7 @@ operator.</p>
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -17184,7 +17188,7 @@ operator.</p>
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[34]:</div>
 
 
@@ -17254,7 +17258,7 @@ operator.</p>
 
 <span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_run_details</span><span class="p">()[</span><span class="s1">&#39;metadata&#39;</span><span class="p">][</span><span class="s1">&#39;guid&#39;</span><span class="p">],</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span>
     <span class="n">deployment_name</span><span class="o">=</span><span class="s2">&quot;Product Quantity with OBM and KB AutoAI&quot;</span>
     <span class="p">)</span>
 </pre></div>
@@ -17271,7 +17275,7 @@ operator.</p>
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -17339,7 +17343,7 @@ Successfully finished deployment creation, deployment_uid=&#39;6f54697e-688d-459
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[38]:</div>
 
 
@@ -17471,7 +17475,7 @@ Successfully finished deployment creation, deployment_uid=&#39;6f54697e-688d-459
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -17554,7 +17558,7 @@ Scoring job  &#39;3ebe711e-107b-400d-a344-373cc5056547&#39; finished successfull
 
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -17564,7 +17568,7 @@ Scoring job  &#39;3ebe711e-107b-400d-a344-373cc5056547&#39; finished successfull
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[66]:</div>
 
 
