@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7516,7 +7517,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Export/Import-assets-with-ibm-watsonx-ai">Export/Import assets with <code>ibm-watsonx-ai</code><a class="anchor-link" href="#Export/Import-assets-with-ibm-watsonx-ai">¶</a></h1><p>This notebook demonstrates an example for exporting/importing assets using Watson Machine Learning service. It contains steps and code to work with <a href="https://pypi.python.org/pypi/ibm-watsonx-ai">ibm-watsonx-ai</a> library available in PyPI repository.</p>
+<h1 id="Export/Import-assets-with-ibm-watsonx-ai">Export/Import assets with <code>ibm-watsonx-ai</code><a class="anchor-link" href="#Export/Import-assets-with-ibm-watsonx-ai">¶</a></h1><p>This notebook demonstrates an example for exporting/importing assets using watsonx.ai Runtime service. It contains steps and code to work with <a href="https://pypi.python.org/pypi/ibm-watsonx-ai">ibm-watsonx-ai</a> library available in PyPI repository.</p>
 </div>
 </div>
 </div>
@@ -7530,7 +7531,7 @@ a.anchor-link {
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">¶</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
 <li>Download an externally trained Keras model.</li>
-<li>Persist an external model in Watson Machine Learning repository.</li>
+<li>Persist an external model in watsonx.ai Runtime repository.</li>
 <li>Export the model from the space</li>
 <li>Import the model to another space and deploy</li>
 </ul>
@@ -7558,7 +7559,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Create a <a href="https://cloud.ibm.com/catalog/services/watson-machine-learning" rel="noopener no referrer" target="_blank">Watson Machine Learning (WML) Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx&amp;audience=wdp" rel="noopener no referrer" target="_blank">here</a>).</li>
+<li>Create a <a href="https://cloud.ibm.com/catalog/services/watsonxai-runtime" rel="noopener no referrer" target="_blank">watsonx.ai Runtime Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx&amp;audience=wdp" rel="noopener no referrer" target="_blank">here</a>).</li>
 </ul>
 </div>
 </div>
@@ -7582,7 +7583,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">wget</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">wget</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
 <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">ibm</span><span class="o">-</span><span class="n">watsonx</span><span class="o">-</span><span class="n">ai</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
 </pre></div>
 </div>
@@ -7596,16 +7597,16 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
+<h3 id="Connection-to-watsonx.ai-Runtime">Connection to watsonx.ai Runtime<a class="anchor-link" href="#Connection-to-watsonx.ai-Runtime">¶</a></h3><p>Authenticate the watsonx.ai Runtime service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
 <p>You can use <a href="https://cloud.ibm.com/docs/cli/index.html">IBM Cloud CLI</a> to retrieve platform API Key and instance location.</p>
 <p>API Key can be generated in the following way:</p>
 <pre><code>ibmcloud login
 ibmcloud iam api-key-create API_KEY_NAME
 </code></pre>
 <p>In result, get the value of <code>api_key</code> from the output.</p>
-<p>Location of your WML instance can be retrieved in the following way:</p>
+<p>Location of your watsonx.ai Runtime instance can be retrieved in the following way:</p>
 <pre><code>ibmcloud login --apikey API_KEY -a https://cloud.ibm.com
-ibmcloud resource service-instance WML_INSTANCE_NAME
+ibmcloud resource service-instance INSTANCE_NAME
 </code></pre>
 <p>In result, get the value of <code>location</code> from the output.</p>
 </div>
@@ -7618,7 +7619,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the Watson Machine Learning docs</a>.  You can check your instance location in your  <a href="https://cloud.ibm.com/catalog/services/watson-machine-learning" rel="noopener no referrer" target="_blank">Watson Machine Learning (WML) Service</a> instance details.</p>
+<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the watsonx.ai Runtime docs</a>.  You can check your instance location in your  <a href="https://cloud.ibm.com/catalog/services/watsonxai-runtime" rel="noopener no referrer" target="_blank">watsonx.ai Runtime Service</a> instance details.</p>
 <p>You can also get service specific apikey by going to the <a href="https://cloud.ibm.com/iam/serviceids"><strong>Service IDs</strong> section of the Cloud Console</a>.  From that page, click <strong>Create</strong>, then copy the created key and paste it below.</p>
 <p><strong>Action</strong>: Enter your <code>api_key</code> and <code>location</code> in the following cell.</p>
 </div>
@@ -7647,7 +7648,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
@@ -7666,7 +7667,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7696,7 +7697,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Refer to the link in above Tip how to find the cos and instance crns</span>
 <span class="n">cos_resource_crn</span> <span class="o">=</span> <span class="s2">"PUT_YOUR_COS_CRN"</span>
 <span class="n">instance_crn</span> <span class="o">=</span> <span class="s2">"PUT_YOUR_WML_INSTANCE_CRN"</span>
-<span class="n">name</span> <span class="o">=</span> <span class="s2">"PUT_YOUR_WML_INSTANCE_NAME_HERE"</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">"PUT_YOUR_INSTANCE_NAME_HERE"</span>
 </pre></div>
 </div>
 </div>
@@ -7710,7 +7711,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">uuid</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
 
 <span class="n">space_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
 
@@ -7789,13 +7790,13 @@ import space_id: 5d7af2cc-4f8a-4262-ad3c-82916aa2d147
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">wget</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">wget</span>
 
 <span class="n">data_dir</span> <span class="o">=</span> <span class="s1">'MNIST_DATA'</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">data_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
-    
+
 <span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">'mnist_keras.h5.tgz'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">model_path</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/models/keras/mnist_keras.h5.tgz"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">data_dir</span><span class="p">)</span>
@@ -7812,13 +7813,13 @@ import space_id: 5d7af2cc-4f8a-4262-ad3c-82916aa2d147
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">wget</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">wget</span>
 
 <span class="n">data_dir</span> <span class="o">=</span> <span class="s1">'MNIST_DATA'</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">data_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
-    
+
 <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">'mnist.npz'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'https://s3.amazonaws.com/img-datasets/mnist.npz'</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">data_dir</span><span class="p">)</span>
@@ -7835,7 +7836,7 @@ import space_id: 5d7af2cc-4f8a-4262-ad3c-82916aa2d147
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 <span class="n">x_test</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">'x_test'</span><span class="p">]</span>
@@ -7863,7 +7864,7 @@ import space_id: 5d7af2cc-4f8a-4262-ad3c-82916aa2d147
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this section, you will learn how to store your model in Watson Machine Learning repository by using the Watson Machine Learning Client.</p>
+<p>In this section, you will learn how to store your model in watsonx.ai Runtime repository by using the watsonx.ai Client.</p>
 </div>
 </div>
 </div>
@@ -7946,7 +7947,7 @@ import space_id: 5d7af2cc-4f8a-4262-ad3c-82916aa2d147
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="n">published_model_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_model_id</span><span class="p">(</span><span class="n">published_model</span><span class="p">)</span>
 <span class="n">model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">published_model_id</span><span class="p">)</span>
@@ -8082,16 +8083,16 @@ start(meta_props, space_id=None, project_id=None) method of ibm_watson_machine_l
     ALL_ASSETS is by default False. No need to provide explicitly unless it has to be set to True.
     Either ALL_ASSETS or ASSET_TYPES or ASSET_IDS has to be given in the meta_props. Only one of these can be
     provided.
-    
+
     In the `meta_props`:
-    
+
     ALL_ASSETS is a boolean. When set to True, it exports all assets in the given space.
     ASSET_IDS is an array containing the list of assets ids to be exported.
     ASSET_TYPES is for providing the asset types to be exported. All assets of that asset type will be exported.
-    
+
             Eg: wml_model, wml_model_definition, wml_pipeline, wml_function, wml_experiment,
             software_specification, hardware_specification, package_extension, script
-    
+
     :param meta_props: meta data,
         to see available meta names use ``client.export_assets.ConfigurationMetaNames.get()``
     :type meta_props: dict
@@ -8099,35 +8100,35 @@ start(meta_props, space_id=None, project_id=None) method of ibm_watson_machine_l
     :type space_id: str, optional
     :param project_id: project identifier
     :type project: str, optional
-    
+
     :return: Response json
     :rtype: dict
-    
+
     **Example**
-    
+
     .. code-block:: python
-    
+
         metadata = {
             client.export_assets.ConfigurationMetaNames.NAME: "export_model",
             client.export_assets.ConfigurationMetaNames.ASSET_IDS: ["13a53931-a8c0-4c2f-8319-c793155e7517",
                                                                     "13a53931-a8c0-4c2f-8319-c793155e7518"]}
-    
+
         details = client.export_assets.start(meta_props=metadata, space_id="98a53931-a8c0-4c2f-8319-c793155e4598")
-    
+
     .. code-block:: python
-    
+
         metadata = {
             client.export_assets.ConfigurationMetaNames.NAME: "export_model",
             client.export_assets.ConfigurationMetaNames.ASSET_TYPES: ["wml_model"]}
-    
+
         details = client.export_assets.start(meta_props=metadata, space_id="98a53931-a8c0-4c2f-8319-c793155e4598")
-    
+
     .. code-block:: python
-    
+
         metadata = {
             client.export_assets.ConfigurationMetaNames.NAME: "export_model",
             client.export_assets.ConfigurationMetaNames.ALL_ASSETS: True}
-    
+
         details = client.export_assets.start(meta_props=metadata, space_id="98a53931-a8c0-4c2f-8319-c793155e4598")
 
 </pre>
@@ -8188,7 +8189,7 @@ Refer to the help api above to see different usages and details</p>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span> <span class="n">client</span><span class="o">.</span><span class="n">export_assets</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"export_model"</span><span class="p">,</span>
-             <span class="n">client</span><span class="o">.</span><span class="n">export_assets</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ASSET_IDS</span><span class="p">:</span> <span class="p">[</span><span class="n">published_model_id</span><span class="p">]</span>                                                                         
+             <span class="n">client</span><span class="o">.</span><span class="n">export_assets</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ASSET_IDS</span><span class="p">:</span> <span class="p">[</span><span class="n">published_model_id</span><span class="p">]</span>
            <span class="p">}</span>
 
 <span class="n">details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">export_assets</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">meta_props</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">space_id</span><span class="o">=</span><span class="n">export_space_id</span><span class="p">)</span>
@@ -8254,7 +8255,7 @@ Refer to the help api above to see different usages and details</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">diff_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">-</span> <span class="n">start_time</span>
@@ -8332,13 +8333,13 @@ Refer to the help api above to see different usages and details</p>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">export_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">export_dir</span><span class="p">)</span>
-    
+
 <span class="n">export_file_name</span> <span class="o">=</span> <span class="s1">'exported_content_'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span> <span class="o">+</span> <span class="s1">'.zip'</span>
-    
+
 <span class="n">export_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">export_dir</span><span class="p">,</span> <span class="n">export_file_name</span><span class="p">)</span>
 
-<span class="n">details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">export_assets</span><span class="o">.</span><span class="n">get_exported_content</span><span class="p">(</span><span class="n">export_job_id</span><span class="p">,</span> 
-                                                    <span class="n">space_id</span> <span class="o">=</span> <span class="n">export_space_id</span><span class="p">,</span> 
+<span class="n">details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">export_assets</span><span class="o">.</span><span class="n">get_exported_content</span><span class="p">(</span><span class="n">export_job_id</span><span class="p">,</span>
+                                                    <span class="n">space_id</span> <span class="o">=</span> <span class="n">export_space_id</span><span class="p">,</span>
                                                     <span class="n">file_path</span> <span class="o">=</span> <span class="n">export_file_path</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">details</span><span class="p">)</span>
@@ -8468,7 +8469,7 @@ Example: help(client.import_assets.start), help(client.import_assets.get_details
 <div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="n">diff_time</span> <span class="o">=</span> <span class="n">start_time</span> <span class="o">-</span> <span class="n">start_time</span>
@@ -8525,7 +8526,7 @@ Example: help(client.import_assets.start), help(client.import_assets.get_details
   }
 }
 
-List of models: 
+List of models:
 
 ------------------------------------  --------------------  ------------------------  ---------------  ----------  ----------------
 ID                                    NAME                  CREATED                   TYPE             SPEC_STATE  SPEC_REPLACEMENT
@@ -8573,7 +8574,7 @@ model id for deployment: ca321e98-3bcc-4f3b-8619-110438da3c98
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Export jobs: 
+<pre>Export jobs:
 
 ------------------------------------  ------------  ------------------------  ---------
 ID                                    NAME          CREATED                   STATUS
@@ -8846,7 +8847,7 @@ Successfully finished deployment creation, deployment_uid='60545f0f-5d53-440c-b0
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -9099,8 +9100,7 @@ DELETED
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -9110,6 +9110,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -9144,7 +9145,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Authors">Authors<a class="anchor-link" href="#Authors">¶</a></h3><p>*Mithun - *vbmithun@in.ibm.com**, Software Engineer</p>
-<p><strong>Mateusz Szewczyk</strong>, Software Engineer at Watson Machine Learning</p>
+<p><strong>Mateusz Szewczyk</strong>, Software Engineer at watsonx.ai</p>
 </div>
 </div>
 </div>
@@ -9155,7 +9156,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2020-2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>

@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7527,7 +7528,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This notebook contains steps and code to develop a predictive model, and start scoring new data. This notebook introduces commands for getting data and for basic data cleaning and exploration, pipeline creation, model training, model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
+<p>This notebook contains steps and code to develop a predictive model, and start scoring new data. This notebook introduces commands for getting data and for basic data cleaning and exploration, pipeline creation, model training, model persistance to watsonx.ai Runtime repository, model deployment, and scoring.</p>
 <p>Some familiarity with Python is helpful. This notebook uses Python 3.11 and Apache® Spark 3.4.</p>
 <p>You will use a data set, <strong>Telco Customer Churn</strong>, which details anonymous customer data from a telecommunication company. Use the details of this data set to predict customer churn which is very critical to business as it's easier to retain existing customers rather than acquiring new ones.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">¶</a></h2><p>The learning goals of this notebook are:</p>
@@ -7537,7 +7538,7 @@ a.anchor-link {
 <li>Prepare data for training and evaluation.</li>
 <li>Create an Apache® Spark machine learning pipeline.</li>
 <li>Train and evaluate a model.</li>
-<li>Persist a pipeline and model in Watson Machine Learning repository.</li>
+<li>Persist a pipeline and model in watsonx.ai Runtime repository.</li>
 <li>Explore and visualize prediction results using the plotly package.</li>
 <li>Deploy a model for batch scoring using Wastson Machine Learning API.</li>
 </ul>
@@ -7565,7 +7566,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Create a <a href="https://cloud.ibm.com/catalog/services/watson-machine-learning" rel="noopener no referrer" target="_blank">Watson Machine Learning (WML) Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx&amp;audience=wdp" rel="noopener no referrer" target="_blank">here</a>).</li>
+<li>Create a <a href="https://cloud.ibm.com/catalog/services/watsonxai-runtime" rel="noopener no referrer" target="_blank">watsonx.ai Runtime Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx&amp;audience=wdp" rel="noopener no referrer" target="_blank">here</a>).</li>
 </ul>
 </div>
 </div>
@@ -7604,16 +7605,16 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
+<h3 id="Connection-to-watsonx.ai-Runtime">Connection to watsonx.ai Runtime<a class="anchor-link" href="#Connection-to-watsonx.ai-Runtime">¶</a></h3><p>Authenticate the watsonx.ai Runtime service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
 <p>You can use <a href="https://cloud.ibm.com/docs/cli/index.html">IBM Cloud CLI</a> to retrieve platform API Key and instance location.</p>
 <p>API Key can be generated in the following way:</p>
 <pre><code>ibmcloud login
 ibmcloud iam api-key-create API_KEY_NAME
 </code></pre>
 <p>In result, get the value of <code>api_key</code> from the output.</p>
-<p>Location of your WML instance can be retrieved in the following way:</p>
+<p>Location of your watsonx.ai Runtime instance can be retrieved in the following way:</p>
 <pre><code>ibmcloud login --apikey API_KEY -a https://cloud.ibm.com
-ibmcloud resource service-instance WML_INSTANCE_NAME
+ibmcloud resource service-instance INSTANCE_NAME
 </code></pre>
 <p>In result, get the value of <code>location</code> from the output.</p>
 </div>
@@ -7626,7 +7627,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the Watson Machine Learning docs</a>.  You can check your instance location in your  <a href="https://cloud.ibm.com/catalog/services/watson-machine-learning" rel="noopener no referrer" target="_blank">Watson Machine Learning (WML) Service</a> instance details.</p>
+<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the watsonx.ai Runtime docs</a>.  You can check your instance location in your  <a href="https://cloud.ibm.com/catalog/services/watsonxai-runtime" rel="noopener no referrer" target="_blank">watsonx.ai Runtime Service</a> instance details.</p>
 <p>You can also get service specific apikey by going to the <a href="https://cloud.ibm.com/iam/serviceids"><strong>Service IDs</strong> section of the Cloud Console</a>.  From that page, click <strong>Create</strong>, then copy the created key and paste it below.</p>
 <p><strong>Action</strong>: Enter your <code>api_key</code> and <code>location</code> in the following cell.</p>
 </div>
@@ -7655,7 +7656,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
@@ -7674,7 +7675,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7694,7 +7695,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <li>Click New Deployment Space</li>
 <li>Create an empty space</li>
 <li>Select Cloud Object Storage</li>
-<li>Select Watson Machine Learning instance and press Create</li>
+<li>Select watsonx.ai Runtime instance and press Create</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
 <p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
@@ -7748,7 +7749,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>To be able to interact with all resources available in Watson Machine Learning, you need to set <strong>space</strong> which you will be using.</p>
+<p>To be able to interact with all resources available in watsonx.ai Runtime, you need to set <strong>space</strong> which you will be using.</p>
 </div>
 </div>
 </div>
@@ -7798,7 +7799,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'Error: Spark runtime is missing. If you are using Watson Studio change the notebook runtime to Spark.'</span><span class="p">)</span>
     <span class="k">raise</span>
@@ -7838,13 +7839,13 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">wget</span> <span class="kn">import</span> <span class="n">download</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wget</span><span class="w"> </span><span class="kn">import</span> <span class="n">download</span>
 
 <span class="n">sample_dir</span> <span class="o">=</span> <span class="s1">'spark_sample_model'</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">)</span>
-    
+
 <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">,</span> <span class="s1">'WA_FnUseC_TelcoCustomerChurn.csv'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/customer_churn/WA_FnUseC_TelcoCustomerChurn.csv"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
@@ -8200,10 +8201,10 @@ Number of records for prediction: 133
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span><span class="p">,</span> <span class="n">RFormula</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">MulticlassClassificationEvaluator</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml.feature</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIndexer</span><span class="p">,</span> <span class="n">RFormula</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml.classification</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml.evaluation</span><span class="w"> </span><span class="kn">import</span> <span class="n">MulticlassClassificationEvaluator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.ml</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
 </pre></div>
 </div>
 </div>
@@ -8396,7 +8397,7 @@ Accuracy = 0.80
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this section you will learn how to store your pipeline and model in Watson Machine Learning repository using Python client libraries.</p>
+<p>In this section you will learn how to store your pipeline and model in watsonx.ai Runtime repository using Python client libraries.</p>
 </div>
 </div>
 </div>
@@ -8441,8 +8442,8 @@ Accuracy = 0.80
 <div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibm_boto3</span>
-<span class="kn">from</span> <span class="nn">ibm_botocore.client</span> <span class="kn">import</span> <span class="n">Config</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ibm_boto3</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ibm_botocore.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
 </pre></div>
 </div>
 </div>
@@ -8602,7 +8603,7 @@ Accuracy = 0.80
 <div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">uuid</span><span class="w"> </span><span class="kn">import</span> <span class="n">uuid4</span>
 
 <span class="n">bucket_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
 
@@ -8792,7 +8793,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this subsection you will learn how to save pipeline and model artifacts to your Watson Machine Learning instance.</p>
+<p>In this subsection you will learn how to save pipeline and model artifacts to your watsonx.ai Runtime instance.</p>
 </div>
 </div>
 </div>
@@ -8831,15 +8832,15 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">saved_model</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">model_lr</span><span class="p">,</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">model_lr</span><span class="p">,</span>
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s1">'Customer Churn model'</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">"mllib_3.4"</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_ID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">'spark-mllib_3.4'</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TRAINING_DATA_REFERENCES</span><span class="p">:</span> <span class="n">training_data_references</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">"Churn"</span><span class="p">,</span>
-    <span class="p">},</span>  
-    <span class="n">training_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span> 
+    <span class="p">},</span>
+    <span class="n">training_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span>
     <span class="n">pipeline</span><span class="o">=</span><span class="n">pipeline_lr</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8865,7 +8866,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Get saved model metadata from Watson Machine Learning.</p>
+<p>Get saved model metadata from watsonx.ai Runtime.</p>
 </div>
 </div>
 </div>
@@ -8905,7 +8906,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Model Id</strong> can be used to retrive latest model version from Watson Machine Learning instance.</p>
+<p><strong>Model Id</strong> can be used to retrive latest model version from watsonx.ai Runtime instance.</p>
 </div>
 </div>
 </div>
@@ -8927,7 +8928,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this subsection you will learn how to load back saved model from specified instance of Watson Machine Learning.</p>
+<p>In this subsection you will learn how to load back saved model from specified instance of watsonx.ai Runtime.</p>
 </div>
 </div>
 </div>
@@ -8991,7 +8992,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>As you can see the name is correct. You have already learned how save and load the model from Watson Machine Learning repository.</p>
+<p>As you can see the name is correct. You have already learned how save and load the model from watsonx.ai Runtime repository.</p>
 </div>
 </div>
 </div>
@@ -9088,140 +9089,140 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>24/03/06 14:36:05 WARN package: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.sql.debug.maxToStringFields'.
 -RECORD 0-----------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0117-LFRMW                                                                                                                    
- gender           | Male                                                                                                                          
- SeniorCitizen    | 0                                                                                                                             
- Partner          | Yes                                                                                                                           
- Dependents       | Yes                                                                                                                           
- tenure           | 37                                                                                                                            
- PhoneService     | No                                                                                                                            
- MultipleLines    | No phone service                                                                                                              
- InternetService  | DSL                                                                                                                           
- OnlineSecurity   | Yes                                                                                                                           
- OnlineBackup     | Yes                                                                                                                           
- DeviceProtection | Yes                                                                                                                           
- TechSupport      | No                                                                                                                            
- StreamingTV      | No                                                                                                                            
- StreamingMovies  | No                                                                                                                            
- Contract         | Month-to-month                                                                                                                
- PaperlessBilling | No                                                                                                                            
- PaymentMethod    | Bank transfer (automatic)                                                                                                     
- MonthlyCharges   | 40.2                                                                                                                          
- TotalCharges     | 1448.8                                                                                                                        
- Churn            | Yes                                                                                                                           
- features         | (31,[0,5,10,12,14,16,17,19,21,23,28,29,30],[1.0,37.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,40.2,1448.8])                        
- label            | 1.0                                                                                                                           
- rawPrediction    | [2.1157559265159356,-2.1157559265159356]                                                                                      
- probability      | [0.8924251659626177,0.10757483403738233]                                                                                      
- prediction       | 0.0                                                                                                                           
+ customerID       | 0117-LFRMW
+ gender           | Male
+ SeniorCitizen    | 0
+ Partner          | Yes
+ Dependents       | Yes
+ tenure           | 37
+ PhoneService     | No
+ MultipleLines    | No phone service
+ InternetService  | DSL
+ OnlineSecurity   | Yes
+ OnlineBackup     | Yes
+ DeviceProtection | Yes
+ TechSupport      | No
+ StreamingTV      | No
+ StreamingMovies  | No
+ Contract         | Month-to-month
+ PaperlessBilling | No
+ PaymentMethod    | Bank transfer (automatic)
+ MonthlyCharges   | 40.2
+ TotalCharges     | 1448.8
+ Churn            | Yes
+ features         | (31,[0,5,10,12,14,16,17,19,21,23,28,29,30],[1.0,37.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,40.2,1448.8])
+ label            | 1.0
+ rawPrediction    | [2.1157559265159356,-2.1157559265159356]
+ probability      | [0.8924251659626177,0.10757483403738233]
+ prediction       | 0.0
 -RECORD 1-----------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0121-SNYRK                                                                                                                    
- gender           | Male                                                                                                                          
- SeniorCitizen    | 0                                                                                                                             
- Partner          | No                                                                                                                            
- Dependents       | No                                                                                                                            
- tenure           | 50                                                                                                                            
- PhoneService     | No                                                                                                                            
- MultipleLines    | No phone service                                                                                                              
- InternetService  | DSL                                                                                                                           
- OnlineSecurity   | Yes                                                                                                                           
- OnlineBackup     | No                                                                                                                            
- DeviceProtection | No                                                                                                                            
- TechSupport      | Yes                                                                                                                           
- StreamingTV      | No                                                                                                                            
- StreamingMovies  | No                                                                                                                            
- Contract         | One year                                                                                                                      
- PaperlessBilling | Yes                                                                                                                           
- PaymentMethod    | Mailed check                                                                                                                  
- MonthlyCharges   | 35.4                                                                                                                          
- TotalCharges     | 1748.9                                                                                                                        
- Churn            | No                                                                                                                            
- features         | (31,[0,3,4,5,10,12,13,15,18,19,21,25,27,29,30],[1.0,1.0,1.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,35.4,1748.9])            
- label            | 0.0                                                                                                                           
- rawPrediction    | [2.919009391240401,-2.919009391240401]                                                                                        
- probability      | [0.9487781787299795,0.05122182127002051]                                                                                      
- prediction       | 0.0                                                                                                                           
+ customerID       | 0121-SNYRK
+ gender           | Male
+ SeniorCitizen    | 0
+ Partner          | No
+ Dependents       | No
+ tenure           | 50
+ PhoneService     | No
+ MultipleLines    | No phone service
+ InternetService  | DSL
+ OnlineSecurity   | Yes
+ OnlineBackup     | No
+ DeviceProtection | No
+ TechSupport      | Yes
+ StreamingTV      | No
+ StreamingMovies  | No
+ Contract         | One year
+ PaperlessBilling | Yes
+ PaymentMethod    | Mailed check
+ MonthlyCharges   | 35.4
+ TotalCharges     | 1748.9
+ Churn            | No
+ features         | (31,[0,3,4,5,10,12,13,15,18,19,21,25,27,29,30],[1.0,1.0,1.0,50.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,35.4,1748.9])
+ label            | 0.0
+ rawPrediction    | [2.919009391240401,-2.919009391240401]
+ probability      | [0.9487781787299795,0.05122182127002051]
+ prediction       | 0.0
 -RECORD 2-----------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0314-TKOSI                                                                                                                    
- gender           | Female                                                                                                                        
- SeniorCitizen    | 0                                                                                                                             
- Partner          | No                                                                                                                            
- Dependents       | No                                                                                                                            
- tenure           | 6                                                                                                                             
- PhoneService     | Yes                                                                                                                           
- MultipleLines    | No                                                                                                                            
- InternetService  | DSL                                                                                                                           
- OnlineSecurity   | Yes                                                                                                                           
- OnlineBackup     | Yes                                                                                                                           
- DeviceProtection | No                                                                                                                            
- TechSupport      | No                                                                                                                            
- StreamingTV      | No                                                                                                                            
- StreamingMovies  | No                                                                                                                            
- Contract         | Month-to-month                                                                                                                
- PaperlessBilling | No                                                                                                                            
- PaymentMethod    | Mailed check                                                                                                                  
- MonthlyCharges   | 55.15                                                                                                                         
- TotalCharges     | 322.9                                                                                                                         
- Churn            | No                                                                                                                            
- features         | (31,[1,3,4,5,6,7,10,12,14,15,17,19,21,23,27,29,30],[1.0,1.0,1.0,6.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,55.15,322.9]) 
- label            | 0.0                                                                                                                           
- rawPrediction    | [1.384000162011289,-1.384000162011289]                                                                                        
- probability      | [0.7996326754890671,0.20036732451093286]                                                                                      
- prediction       | 0.0                                                                                                                           
+ customerID       | 0314-TKOSI
+ gender           | Female
+ SeniorCitizen    | 0
+ Partner          | No
+ Dependents       | No
+ tenure           | 6
+ PhoneService     | Yes
+ MultipleLines    | No
+ InternetService  | DSL
+ OnlineSecurity   | Yes
+ OnlineBackup     | Yes
+ DeviceProtection | No
+ TechSupport      | No
+ StreamingTV      | No
+ StreamingMovies  | No
+ Contract         | Month-to-month
+ PaperlessBilling | No
+ PaymentMethod    | Mailed check
+ MonthlyCharges   | 55.15
+ TotalCharges     | 322.9
+ Churn            | No
+ features         | (31,[1,3,4,5,6,7,10,12,14,15,17,19,21,23,27,29,30],[1.0,1.0,1.0,6.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,55.15,322.9])
+ label            | 0.0
+ rawPrediction    | [1.384000162011289,-1.384000162011289]
+ probability      | [0.7996326754890671,0.20036732451093286]
+ prediction       | 0.0
 -RECORD 3-----------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0365-TRTPY                                                                                                                    
- gender           | Female                                                                                                                        
- SeniorCitizen    | 0                                                                                                                             
- Partner          | No                                                                                                                            
- Dependents       | No                                                                                                                            
- tenure           | 37                                                                                                                            
- PhoneService     | Yes                                                                                                                           
- MultipleLines    | Yes                                                                                                                           
- InternetService  | Fiber optic                                                                                                                   
- OnlineSecurity   | Yes                                                                                                                           
- OnlineBackup     | Yes                                                                                                                           
- DeviceProtection | Yes                                                                                                                           
- TechSupport      | No                                                                                                                            
- StreamingTV      | No                                                                                                                            
- StreamingMovies  | No                                                                                                                            
- Contract         | Month-to-month                                                                                                                
- PaperlessBilling | No                                                                                                                            
- PaymentMethod    | Bank transfer (automatic)                                                                                                     
- MonthlyCharges   | 91.2                                                                                                                          
- TotalCharges     | 3382.3                                                                                                                        
- Churn            | No                                                                                                                            
- features         | (31,[1,3,4,5,6,8,9,12,14,16,17,19,21,23,28,29,30],[1.0,1.0,1.0,37.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,91.2,3382.3]) 
- label            | 0.0                                                                                                                           
- rawPrediction    | [1.2619544615514307,-1.2619544615514307]                                                                                      
- probability      | [0.7793623739634478,0.22063762603655224]                                                                                      
- prediction       | 0.0                                                                                                                           
+ customerID       | 0365-TRTPY
+ gender           | Female
+ SeniorCitizen    | 0
+ Partner          | No
+ Dependents       | No
+ tenure           | 37
+ PhoneService     | Yes
+ MultipleLines    | Yes
+ InternetService  | Fiber optic
+ OnlineSecurity   | Yes
+ OnlineBackup     | Yes
+ DeviceProtection | Yes
+ TechSupport      | No
+ StreamingTV      | No
+ StreamingMovies  | No
+ Contract         | Month-to-month
+ PaperlessBilling | No
+ PaymentMethod    | Bank transfer (automatic)
+ MonthlyCharges   | 91.2
+ TotalCharges     | 3382.3
+ Churn            | No
+ features         | (31,[1,3,4,5,6,8,9,12,14,16,17,19,21,23,28,29,30],[1.0,1.0,1.0,37.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,91.2,3382.3])
+ label            | 0.0
+ rawPrediction    | [1.2619544615514307,-1.2619544615514307]
+ probability      | [0.7793623739634478,0.22063762603655224]
+ prediction       | 0.0
 -RECORD 4-----------------------------------------------------------------------------------------------------------------------------------------
- customerID       | 0384-LPITE                                                                                                                    
- gender           | Male                                                                                                                          
- SeniorCitizen    | 0                                                                                                                             
- Partner          | No                                                                                                                            
- Dependents       | No                                                                                                                            
- tenure           | 40                                                                                                                            
- PhoneService     | No                                                                                                                            
- MultipleLines    | No phone service                                                                                                              
- InternetService  | DSL                                                                                                                           
- OnlineSecurity   | Yes                                                                                                                           
- OnlineBackup     | Yes                                                                                                                           
- DeviceProtection | Yes                                                                                                                           
- TechSupport      | No                                                                                                                            
- StreamingTV      | Yes                                                                                                                           
- StreamingMovies  | Yes                                                                                                                           
- Contract         | One year                                                                                                                      
- PaperlessBilling | No                                                                                                                            
- PaymentMethod    | Credit card (automatic)                                                                                                       
- MonthlyCharges   | 62.05                                                                                                                         
- TotalCharges     | 2511.55                                                                                                                       
- Churn            | No                                                                                                                            
- features         | (31,[0,3,4,5,10,12,14,16,17,20,22,29,30],[1.0,1.0,1.0,40.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,62.05,2511.55])                        
- label            | 0.0                                                                                                                           
- rawPrediction    | [2.2727488523528008,-2.2727488523528008]                                                                                      
- probability      | [0.9065948226759218,0.09340517732407816]                                                                                      
- prediction       | 0.0                                                                                                                           
+ customerID       | 0384-LPITE
+ gender           | Male
+ SeniorCitizen    | 0
+ Partner          | No
+ Dependents       | No
+ tenure           | 40
+ PhoneService     | No
+ MultipleLines    | No phone service
+ InternetService  | DSL
+ OnlineSecurity   | Yes
+ OnlineBackup     | Yes
+ DeviceProtection | Yes
+ TechSupport      | No
+ StreamingTV      | Yes
+ StreamingMovies  | Yes
+ Contract         | One year
+ PaperlessBilling | No
+ PaymentMethod    | Credit card (automatic)
+ MonthlyCharges   | 62.05
+ TotalCharges     | 2511.55
+ Churn            | No
+ features         | (31,[0,3,4,5,10,12,14,16,17,20,22,29,30],[1.0,1.0,1.0,40.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,62.05,2511.55])
+ label            | 0.0
+ rawPrediction    | [2.2727488523528008,-2.2727488523528008]
+ probability      | [0.9065948226759218,0.09340517732407816]
+ prediction       | 0.0
 only showing top 5 rows
 
 </pre>
@@ -9292,7 +9293,7 @@ only showing top 5 rows
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this section you will learn how to create batch deployment and to score a new data record by using the Watson Machine Learning REST API.
+<p>In this section you will learn how to create batch deployment and to score a new data record by using the watsonx.ai REST API.
 For more information about REST APIs, see the <a href="https://cloud.ibm.com/apidocs/machine-learning#deployments-create">Swagger Documentation</a>.</p>
 </div>
 </div>
@@ -9338,13 +9339,13 @@ For more information about REST APIs, see the <a href="https://cloud.ibm.com/api
 <div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">wget</span> <span class="kn">import</span> <span class="n">download</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wget</span><span class="w"> </span><span class="kn">import</span> <span class="n">download</span>
 
 <span class="n">sample_dir</span> <span class="o">=</span> <span class="s1">'spark_sample_model'</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">)</span>
-    
+
 <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">,</span> <span class="s1">'scoreInput.csv'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/customer_churn/scoreInput.csv"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
@@ -9573,7 +9574,7 @@ Successfully finished deployment creation, deployment_uid='10629654-5f34-45ac-b9
 <div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">score_input</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'object'</span><span class="p">)</span>
 </pre></div>
@@ -9722,7 +9723,7 @@ Successfully finished deployment creation, deployment_uid='10629654-5f34-45ac-b9
 <div class="jp-InputPrompt jp-InputArea-prompt">In [51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="n">elapsed_time</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">while</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_status</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'state'</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">'completed'</span> <span class="ow">and</span> <span class="n">elapsed_time</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">:</span>
@@ -9776,7 +9777,7 @@ Successfully finished deployment creation, deployment_uid='10629654-5f34-45ac-b9
 <div class="jp-InputPrompt jp-InputArea-prompt">In [53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_details</span><span class="p">(</span><span class="n">job_id</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
@@ -10006,8 +10007,7 @@ Successfully finished deployment creation, deployment_uid='10629654-5f34-45ac-b9
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -10017,6 +10017,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -10039,7 +10040,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>You successfully completed this notebook! You learned how to use Apache Spark machine learning as well as Watson Machine Learning for model creation and deployment. Check out our <em><a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=wx">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
+<p>You successfully completed this notebook! You learned how to use Apache Spark machine learning as well as watsonx.ai Runtime for model creation and deployment. Check out our <em><a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=wx">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>
 </div>
 </div>
@@ -10050,8 +10051,8 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Author">Author<a class="anchor-link" href="#Author">¶</a></h3><p><strong>Amadeusz Masny</strong>, Python Software Developer in Watson Machine Learning at IBM</p>
-<p><strong>Mateusz Szewczyk</strong>, Software Engineer at Watson Machine Learning</p>
+<h3 id="Author">Author<a class="anchor-link" href="#Author">¶</a></h3><p><strong>Amadeusz Masny</strong>, Python Software Developer at watsonx.ai</p>
+<p><strong>Mateusz Szewczyk</strong>, Software Engineer at watsonx.ai</p>
 </div>
 </div>
 </div>
@@ -10062,7 +10063,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2020-2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>

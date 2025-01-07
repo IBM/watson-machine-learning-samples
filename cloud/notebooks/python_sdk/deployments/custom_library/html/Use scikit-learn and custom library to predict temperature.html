@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7527,7 +7528,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This notebook contains steps and code to train a Scikit-Learn model that uses a custom defined transformer and use it with Watson Machine Learning service. Once the model is trained, this notebook contains steps to persist the model and custom defined transformer to Watson Machine Learning Repository, deploy and score it using Watson Machine Learning python client.</p>
+<p>This notebook contains steps and code to train a Scikit-Learn model that uses a custom defined transformer and use it with watsonx.ai Runtime service. Once the model is trained, this notebook contains steps to persist the model and custom defined transformer to watsonx.ai Runtime Repository, deploy and score it using watsonx.ai python client.</p>
 <p>In this notebook, we use GNFUV dataset that contains mobile sensor readings data about humidity and temperature from Unmanned Surface Vehicles in a test-bed in Athens, to train a Scikit-Learn model for predicting the temperature.</p>
 <p>Some familiarity with Python is helpful. This notebook uses Python-3.11 &amp; scikit-learn.</p>
 </div>
@@ -7543,8 +7544,8 @@ a.anchor-link {
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">¶</a></h2><p>The learning goals of this notebook are:</p>
 <ul>
 <li>Train a model with custom defined transformer</li>
-<li>Persist the custom defined transformer and the model in Watson Machine Learning repository.</li>
-<li>Deploy the model using Watson Machine Learning Service</li>
+<li>Persist the custom defined transformer and the model in watsonx.ai Runtime repository.</li>
+<li>Deploy the model using watsonx.ai Runtime Service</li>
 <li>Perform predictions using the deployed model</li>
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">¶</a></h2><ol>
@@ -7552,7 +7553,7 @@ a.anchor-link {
 <li><a href="#install_lib">Install python library containing custom transformer implementation</a></li>
 <li><a href="#load">Prepare training data</a></li>
 <li><a href="#train">Train the scikit-learn model</a></li>
-<li><a href="#upload">Save the model and library to WML Repository</a></li>
+<li><a href="#upload">Save the model and library to watsonx.ai Runtime repository</a></li>
 <li><a href="#deploy">Deploy and score data in the IBM Cloud</a></li>
 <li><a href="#cleanup">Clean up</a></li>
 <li><a href="#summary">Summary and next steps</a></li>
@@ -7570,7 +7571,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Create a <a href="https://cloud.ibm.com/catalog/services/watson-machine-learning" rel="noopener no referrer" target="_blank">Watson Machine Learning (WML) Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx&amp;audience=wdp" rel="noopener no referrer" target="_blank">here</a>).</li>
+<li>Create a <a href="https://cloud.ibm.com/catalog/services/watsonxai-runtime" rel="noopener no referrer" target="_blank">watsonx.ai Runtime Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx&amp;audience=wdp" rel="noopener no referrer" target="_blank">here</a>).</li>
 </ul>
 </div>
 </div>
@@ -7609,16 +7610,16 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
+<h3 id="Connection-to-watsonx.ai-Runtime">Connection to watsonx.ai Runtime<a class="anchor-link" href="#Connection-to-watsonx.ai-Runtime">¶</a></h3><p>Authenticate the watsonx.ai Runtime service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
 <p>You can use <a href="https://cloud.ibm.com/docs/cli/index.html">IBM Cloud CLI</a> to retrieve platform API Key and instance location.</p>
 <p>API Key can be generated in the following way:</p>
 <pre><code>ibmcloud login
 ibmcloud iam api-key-create API_KEY_NAME
 </code></pre>
 <p>In result, get the value of <code>api_key</code> from the output.</p>
-<p>Location of your WML instance can be retrieved in the following way:</p>
+<p>Location of your watsonx.ai Runtime instance can be retrieved in the following way:</p>
 <pre><code>ibmcloud login --apikey API_KEY -a https://cloud.ibm.com
-ibmcloud resource service-instance WML_INSTANCE_NAME
+ibmcloud resource service-instance INSTANCE_NAME
 </code></pre>
 <p>In result, get the value of <code>location</code> from the output.</p>
 </div>
@@ -7631,7 +7632,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the Watson Machine Learning docs</a>.  You can check your instance location in your  <a href="https://cloud.ibm.com/catalog/services/watson-machine-learning" rel="noopener no referrer" target="_blank">Watson Machine Learning (WML) Service</a> instance details.</p>
+<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the watsonx.ai Runtime docs</a>.  You can check your instance location in your  <a href="https://cloud.ibm.com/catalog/services/watsonxai-runtime" rel="noopener no referrer" target="_blank">watsonx.ai Runtime Service</a> instance details.</p>
 <p>You can also get service specific apikey by going to the <a href="https://cloud.ibm.com/iam/serviceids"><strong>Service IDs</strong> section of the Cloud Console</a>.  From that page, click <strong>Create</strong>, then copy the created key and paste it below.</p>
 <p><strong>Action</strong>: Enter your <code>api_key</code> and <code>location</code> in the following cell.</p>
 </div>
@@ -7660,7 +7661,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
@@ -7679,7 +7680,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7699,7 +7700,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <li>Click New Deployment Space</li>
 <li>Create an empty space</li>
 <li>Select Cloud Object Storage</li>
-<li>Select Watson Machine Learning instance and press Create</li>
+<li>Select watsonx.ai Runtime instance and press Create</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
 <p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
@@ -7753,7 +7754,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>To be able to interact with all resources available in Watson Machine Learning, you need to set <strong>space</strong> which you will be using.</p>
+<p>To be able to interact with all resources available in watsonx.ai Runtime, you need to set <strong>space</strong> which you will be using.</p>
 </div>
 </div>
 </div>
@@ -7843,26 +7844,26 @@ Any 3rd party libraries that are required for the custom transformer must be def
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">linalgnorm</span><span class="o">-</span><span class="mf">0.1</span><span class="o">/</span><span class="n">linalg_norm</span><span class="o">/</span><span class="n">sklearn_transformers</span><span class="o">.</span><span class="n">py</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
-<span class="k">class</span> <span class="nc">LNormalizer</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">norm_ord</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LNormalizer</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">norm_ord</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">norm_ord</span> <span class="o">=</span> <span class="n">norm_ord</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">norm_ord</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">X</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span>
 
-    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_norm_vals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_norm_vals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_norm_vals</span>
 </pre></div>
 </div>
@@ -7961,7 +7962,7 @@ Any 3rd party libraries that are required for the custom transformer must be def
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">linalgnorm</span><span class="o">-</span><span class="mf">0.1</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">py</span>
 
-<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">setuptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup</span>
 
 <span class="n">VERSION</span><span class="o">=</span><span class="s1">'0.1'</span>
 <span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'linalgnorm'</span><span class="p">,</span>
@@ -8123,12 +8124,12 @@ rm<span class="w"> </span>-rf<span class="w"> </span>linalgnorm-0.1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">json</span> <span class="kn">import</span> <span class="n">JSONDecodeError</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">json</span><span class="w"> </span><span class="kn">import</span> <span class="n">JSONDecodeError</span>
 </pre></div>
 </div>
 </div>
@@ -8289,7 +8290,7 @@ rm<span class="w"> </span>-rf<span class="w"> </span>linalgnorm-0.1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="n">Y</span> <span class="o">=</span> <span class="n">data_df</span><span class="p">[</span><span class="s1">'temperature'</span><span class="p">]</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">data_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'temperature'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -8331,7 +8332,7 @@ rm<span class="w"> </span>-rf<span class="w"> </span>linalgnorm-0.1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">linalg_norm.sklearn_transformers</span> <span class="kn">import</span> <span class="n">LNormalizer</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">linalg_norm.sklearn_transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">LNormalizer</span>
 </pre></div>
 </div>
 </div>
@@ -8370,8 +8371,8 @@ rm<span class="w"> </span>-rf<span class="w"> </span>linalgnorm-0.1
 <div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
 </pre></div>
 </div>
 </div>
@@ -8456,9 +8457,9 @@ rm<span class="w"> </span>-rf<span class="w"> </span>linalgnorm-0.1
 <p><a id="upload"></a></p>
 <h2 id="5.-Persist-the-model-and-custom-library">5. Persist the model and custom library<a class="anchor-link" href="#5.-Persist-the-model-and-custom-library">¶</a></h2><p>In this section, using <code>ibm-watsonx-ai</code> SDK, you will ...</p>
 <ul>
-<li>save the library <code>linalgnorm-0.1.zip</code> in WML Repository by creating a package extension resource</li>
+<li>save the library <code>linalgnorm-0.1.zip</code> in watsonx.ai Runtime repository by creating a package extension resource</li>
 <li>create a Software Specification resource and bind the package resource to it. This Software Specification resource will be used to configure the online deployment runtime environment for a model</li>
-<li>bind Software Specification resource to the model and save the model to WML Repository</li>
+<li>bind Software Specification resource to the model and save the model to watsonx.ai Runtime repository</li>
 </ul>
 </div>
 </div>
@@ -8482,7 +8483,7 @@ rm<span class="w"> </span>-rf<span class="w"> </span>linalgnorm-0.1
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Define the meta data required to create package extension resource. <br/></p>
-<p>The value for <code>file_path</code> in <code>client.package_extensions.LibraryMetaNames.store()</code> contains the library file name that must be uploaded to the WML.</p>
+<p>The value for <code>file_path</code> in <code>client.package_extensions.LibraryMetaNames.store()</code> contains the library file name that must be uploaded to the watsonx.ai Runtime.</p>
 <p><strong>Note:</strong> You can also use conda environment configuration file <code>yaml</code> as package extension input. In such case set the <code>TYPE</code> to <code>conda_yml</code> and <code>file_path</code> to yaml file.</p>
 <pre><code>client.package_extensions.ConfigurationMetaNames.TYPE = "conda_yml"
 </code></pre>
@@ -8728,7 +8729,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Define the metadata to save the trained model to WML Repository along with the information about the software spec resource required for the model.</p>
+<p>Define the metadata to save the trained model to watsonx.ai Runtime repository along with the information about the software spec resource required for the model.</p>
 <p>The <code>client.repository.ModelMetaNames.SOFTWARE_SPEC_ID</code> metadata property is used to specify the GUID of the software spec resource that needs to be associated with the model.</p>
 </div>
 </div>
@@ -8745,7 +8746,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"Temp prediction model with custom lib"</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s1">'scikit-learn_1.3'</span><span class="p">,</span>
     <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_ID</span><span class="p">:</span> <span class="n">sw_spec_id</span>
-    
+
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -8759,7 +8760,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Save the model to the WML Repository and display its saved metadata.</p>
+<p>Save the model to the watsonx.ai Runtime repository and display its saved metadata.</p>
 </div>
 </div>
 </div>
@@ -8835,7 +8836,7 @@ BASE_SOFTWARE_SPECIFICATION  dict  Y
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="deploy"></a></p>
-<h2 id="6-Deploy-and-Score">6 Deploy and Score<a class="anchor-link" href="#6-Deploy-and-Score">¶</a></h2><p>In this section, you will deploy the saved model that uses the custom transformer and perform predictions. You will use WML client to perform these tasks.</p>
+<h2 id="6-Deploy-and-Score">6 Deploy and Score<a class="anchor-link" href="#6-Deploy-and-Score">¶</a></h2><p>In this section, you will deploy the saved model that uses the custom transformer and perform predictions. You will use watsonx.ai client to perform these tasks.</p>
 </div>
 </div>
 </div>
@@ -8919,7 +8920,7 @@ Successfully finished deployment creation, deployment_id='53ecf8c5-b75f-4e34-8d8
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Note</strong>: Here we use deployment <code>id</code> saved in published_model object. In next section, we show how to retrive deployment url from Watson Machine Learning instance.</p>
+<p><strong>Note</strong>: Here we use deployment <code>id</code> saved in published_model object. In next section, we show how to retrive deployment url from watsonx.ai Runtime instance.</p>
 </div>
 </div>
 </div>
@@ -9077,8 +9078,7 @@ Prepare the payload for prediction. The payload contains the input records for w
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -9088,6 +9088,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -9100,7 +9101,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
 <h2 id="8.-Summary">8. Summary<a class="anchor-link" href="#8.-Summary">¶</a></h2><p>You successfully completed this notebook!</p>
-<p>You learned how to use a scikit-learn model with custom transformer in Watson Machine Learning service to deploy and score.</p>
+<p>You learned how to use a scikit-learn model with custom transformer in watsonx.ai Runtime service to deploy and score.</p>
 <p>Check out our <em><a href="https://www.ibm.com/cloud/watson-studio/autoai">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>
 </div>
@@ -9114,7 +9115,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Author">Author<a class="anchor-link" href="#Author">¶</a></h2><p><strong>Krishnamurthy Arthanarisamy</strong>, is a senior technical lead in IBM Watson Machine Learning team. Krishna works on developing cloud services that caters to different stages of machine learning and deep learning modeling life cycle.</p>
 <p><strong>Lukasz Cmielowski</strong>, PhD, is a Software Architect and Data Scientist at IBM.</p>
-<p><strong>Mateusz Szewczyk</strong>, Software Engineer at Watson Machine Learning</p>
+<p><strong>Mateusz Szewczyk</strong>, Software Engineer at watsonx.ai</p>
 </div>
 </div>
 </div>
@@ -9125,7 +9126,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2020-2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>
