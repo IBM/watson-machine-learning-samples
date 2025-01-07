@@ -4551,7 +4551,7 @@ form{
   .bp3-running-text table th, table.bp3-html-table th{
     color:#182026;
     font-weight:600; }
-  
+
   .bp3-running-text table td,
   table.bp3-html-table td{
     color:#182026; }
@@ -14238,17 +14238,17 @@ a.anchor-link {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 },
                 "HTML-CSS": {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14354,7 +14354,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Install-and-import-the-ibm-watson-machine-learning-package">Install and import the <code>ibm-watson-machine-learning</code> package<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning-package">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="https://ibm.github.io/watson-machine-learning-sdk/" target="_blank" rel="noopener no referrer">here</a>.</p>
+<h3 id="Install-and-import-the-ibm-watson-machine-learning-package">Install and import the <code>ibm-watson-machine-learning</code> package<a class="anchor-link" href="#Install-and-import-the-ibm-watson-machine-learning-package">&#182;</a></h3><p><strong>Note:</strong> <code>ibm-watson-machine-learning</code> documentation can be found <a href="http://ibm-wml-api-pyclient.mybluemix.net/" target="_blank" rel="noopener no referrer">here</a>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14466,7 +14466,7 @@ a.anchor-link {
 
 <div class="jp-OutputArea-child">
 
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
 
@@ -14525,9 +14525,9 @@ a.anchor-link {
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd4.0/data/bias/german_credit_data_biased_training.csv&quot;</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span> 
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    
+
 <span class="n">asset_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 
@@ -14543,7 +14543,7 @@ a.anchor-link {
 
 <div class="jp-OutputArea-child">
 
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -14602,7 +14602,7 @@ SUCCESS
 
 <div class="jp-OutputArea-child">
 
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
 
@@ -14849,7 +14849,7 @@ SUCCESS
     <span class="n">scoring</span><span class="o">=</span><span class="n">AutoAI</span><span class="o">.</span><span class="n">Metrics</span><span class="o">.</span><span class="n">ACCURACY_SCORE</span><span class="p">,</span>
     <span class="n">fairness_info</span><span class="o">=</span><span class="n">fairness_info</span><span class="p">,</span>
     <span class="n">max_number_of_estimators</span><span class="o">=</span><span class="mi">4</span>
-    
+
 <span class="p">)</span>
 </pre></div>
 
@@ -14885,7 +14885,7 @@ SUCCESS
 
 <div class="jp-OutputArea-child">
 
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
 
 
@@ -14948,7 +14948,7 @@ SUCCESS
 
 <div class="jp-OutputArea-child">
 
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
@@ -14988,7 +14988,7 @@ SUCCESS
 
 <div class="jp-OutputArea-child">
 
-    
+
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 
 
@@ -15242,7 +15242,7 @@ operator.</p>
     <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;accuracy_and_disparate_impact&quot;</span><span class="p">,</span>
     <span class="n">fairness_info</span><span class="o">=</span><span class="n">fairness_info_mitigation</span><span class="p">,</span>
     <span class="n">max_number_of_estimators</span> <span class="o">=</span> <span class="mi">4</span>
-    
+
 <span class="p">)</span>
 </pre></div>
 
@@ -15493,7 +15493,7 @@ AutoAI training job.</p>
 
 <span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">training_id</span><span class="p">,</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span>
     <span class="n">deployment_name</span><span class="o">=</span><span class="s2">&quot;Credit Risk Deployment AutoAI - bias detection&quot;</span><span class="p">)</span>
 </pre></div>
 

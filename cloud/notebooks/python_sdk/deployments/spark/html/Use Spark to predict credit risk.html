@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7527,7 +7528,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This notebook introduces commands for model persistance to Watson Machine Learning repository, model deployment, and scoring.</p>
+<p>This notebook introduces commands for model persistance to watsonx.ai Runtime repository, model deployment, and scoring.</p>
 <p>Some familiarity with Python is helpful. This notebook uses Python 3.11 and Apache® Spark 3.4.</p>
 <p>You will use <strong>German Credit Risk</strong> dataset.</p>
 <h2 id="Learning-goals">Learning goals<a class="anchor-link" href="#Learning-goals">¶</a></h2><p>The learning goals of this notebook are:</p>
@@ -7535,9 +7536,9 @@ a.anchor-link {
 <li>Load a CSV file into an Apache® Spark DataFrame.</li>
 <li>Explore data.</li>
 <li>Prepare data for training and evaluation.</li>
-<li>Persist a pipeline and model in Watson Machine Learning repository from tar.gz files.</li>
-<li>Deploy a model for online scoring using Wastson Machine Learning API.</li>
-<li>Score sample scoring data using the Watson Machine Learning API.</li>
+<li>Persist a pipeline and model in watsonx.ai Runtime repository from tar.gz files.</li>
+<li>Deploy a model for online scoring using watsonx.ai API.</li>
+<li>Score sample scoring data using the watsonx.ai API.</li>
 <li>Explore and visualize prediction result using the plotly package.</li>
 </ul>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">¶</a></h2><p>This notebook contains the following parts:</p>
@@ -7563,7 +7564,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Create a <a href="https://cloud.ibm.com/catalog/services/watson-machine-learning" rel="noopener no referrer" target="_blank">Watson Machine Learning (WML) Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx&amp;audience=wdp" rel="noopener no referrer" target="_blank">here</a>).</li>
+<li>Create a <a href="https://cloud.ibm.com/catalog/services/watsonxai-runtime" rel="noopener no referrer" target="_blank">watsonx.ai Runtime Service</a> instance (a free plan is offered and information about how to create the instance can be found <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/wml-plans.html?context=wx&amp;audience=wdp" rel="noopener no referrer" target="_blank">here</a>).</li>
 </ul>
 </div>
 </div>
@@ -7602,16 +7603,16 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
+<h3 id="Connection-to-watsonx.ai-Runtime">Connection to watsonx.ai Runtime<a class="anchor-link" href="#Connection-to-watsonx.ai-Runtime">¶</a></h3><p>Authenticate the watsonx.ai Runtime service on IBM Cloud. You need to provide platform <code>api_key</code> and instance <code>location</code>.</p>
 <p>You can use <a href="https://cloud.ibm.com/docs/cli/index.html">IBM Cloud CLI</a> to retrieve platform API Key and instance location.</p>
 <p>API Key can be generated in the following way:</p>
 <pre><code>ibmcloud login
 ibmcloud iam api-key-create API_KEY_NAME
 </code></pre>
 <p>In result, get the value of <code>api_key</code> from the output.</p>
-<p>Location of your WML instance can be retrieved in the following way:</p>
+<p>Location of your watsonx.ai Runtime instance can be retrieved in the following way:</p>
 <pre><code>ibmcloud login --apikey API_KEY -a https://cloud.ibm.com
-ibmcloud resource service-instance WML_INSTANCE_NAME
+ibmcloud resource service-instance INSTANCE_NAME
 </code></pre>
 <p>In result, get the value of <code>location</code> from the output.</p>
 </div>
@@ -7624,7 +7625,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the Watson Machine Learning docs</a>.  You can check your instance location in your  <a href="https://cloud.ibm.com/catalog/services/watson-machine-learning" rel="noopener no referrer" target="_blank">Watson Machine Learning (WML) Service</a> instance details.</p>
+<p><strong>Tip</strong>: Your <code>Cloud API key</code> can be generated by going to the <a href="https://cloud.ibm.com/iam#/users"><strong>Users</strong> section of the Cloud console</a>. From that page, click your name, scroll down to the <strong>API Keys</strong> section, and click <strong>Create an IBM Cloud API key</strong>. Give your key a name and click <strong>Create</strong>, then copy the created key and paste it below. You can also get a service specific url by going to the <a href="https://cloud.ibm.com/apidocs/machine-learning"><strong>Endpoint URLs</strong> section of the watsonx.ai Runtime docs</a>.  You can check your instance location in your  <a href="https://cloud.ibm.com/catalog/services/watsonxai-runtime" rel="noopener no referrer" target="_blank">watsonx.ai Runtime Service</a> instance details.</p>
 <p>You can also get service specific apikey by going to the <a href="https://cloud.ibm.com/iam/serviceids"><strong>Service IDs</strong> section of the Cloud Console</a>.  From that page, click <strong>Create</strong>, then copy the created key and paste it below.</p>
 <p><strong>Action</strong>: Enter your <code>api_key</code> and <code>location</code> in the following cell.</p>
 </div>
@@ -7653,7 +7654,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
@@ -7672,7 +7673,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7692,7 +7693,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <li>Click New Deployment Space</li>
 <li>Create an empty space</li>
 <li>Select Cloud Object Storage</li>
-<li>Select Watson Machine Learning instance and press Create</li>
+<li>Select watsonx.ai Runtime instance and press Create</li>
 <li>Copy <code>space_id</code> and paste it below</li>
 </ul>
 <p><strong>Tip</strong>: You can also use SDK to prepare the space for your work. More information can be found <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Space%20management.ipynb">here</a>.</p>
@@ -7746,7 +7747,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>To be able to interact with all resources available in Watson Machine Learning, you need to set <strong>space</strong> which you will be using.</p>
+<p>To be able to interact with all resources available in watsonx.ai Runtime, you need to set <strong>space</strong> which you will be using.</p>
 </div>
 </div>
 </div>
@@ -7796,7 +7797,7 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'Error: Spark runtime is missing. If you are using Watson Studio change the notebook runtime to Spark.'</span><span class="p">)</span>
     <span class="k">raise</span>
@@ -7847,13 +7848,13 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">wget</span> <span class="kn">import</span> <span class="n">download</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wget</span><span class="w"> </span><span class="kn">import</span> <span class="n">download</span>
 
 <span class="n">sample_dir</span> <span class="o">=</span> <span class="s1">'spark_sample_model'</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">)</span>
-    
+
 <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">,</span> <span class="s1">'credit_risk_training.csv'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s1">'https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/data/credit_risk/credit_risk_training.csv'</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
@@ -7980,115 +7981,115 @@ ibmcloud resource service-instance WML_INSTANCE_NAME
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>-RECORD 0------------------------------------------
- CheckingStatus           | 0_to_200               
- LoanDuration             | 31                     
- CreditHistory            | credits_paid_to_date   
- LoanPurpose              | other                  
- LoanAmount               | 1889                   
- ExistingSavings          | 100_to_500             
- EmploymentDuration       | less_1                 
- InstallmentPercent       | 3                      
- Sex                      | female                 
- OthersOnLoan             | none                   
- CurrentResidenceDuration | 3                      
- OwnsProperty             | savings_insurance      
- Age                      | 32                     
- InstallmentPlans         | none                   
- Housing                  | own                    
- ExistingCreditsCount     | 1                      
- Job                      | skilled                
- Dependents               | 1                      
- Telephone                | none                   
- ForeignWorker            | yes                    
- Risk                     | No Risk                
+ CheckingStatus           | 0_to_200
+ LoanDuration             | 31
+ CreditHistory            | credits_paid_to_date
+ LoanPurpose              | other
+ LoanAmount               | 1889
+ ExistingSavings          | 100_to_500
+ EmploymentDuration       | less_1
+ InstallmentPercent       | 3
+ Sex                      | female
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 3
+ OwnsProperty             | savings_insurance
+ Age                      | 32
+ InstallmentPlans         | none
+ Housing                  | own
+ ExistingCreditsCount     | 1
+ Job                      | skilled
+ Dependents               | 1
+ Telephone                | none
+ ForeignWorker            | yes
+ Risk                     | No Risk
 -RECORD 1------------------------------------------
- CheckingStatus           | less_0                 
- LoanDuration             | 18                     
- CreditHistory            | credits_paid_to_date   
- LoanPurpose              | car_new                
- LoanAmount               | 462                    
- ExistingSavings          | less_100               
- EmploymentDuration       | 1_to_4                 
- InstallmentPercent       | 2                      
- Sex                      | female                 
- OthersOnLoan             | none                   
- CurrentResidenceDuration | 2                      
- OwnsProperty             | savings_insurance      
- Age                      | 37                     
- InstallmentPlans         | stores                 
- Housing                  | own                    
- ExistingCreditsCount     | 2                      
- Job                      | skilled                
- Dependents               | 1                      
- Telephone                | none                   
- ForeignWorker            | yes                    
- Risk                     | No Risk                
+ CheckingStatus           | less_0
+ LoanDuration             | 18
+ CreditHistory            | credits_paid_to_date
+ LoanPurpose              | car_new
+ LoanAmount               | 462
+ ExistingSavings          | less_100
+ EmploymentDuration       | 1_to_4
+ InstallmentPercent       | 2
+ Sex                      | female
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 2
+ OwnsProperty             | savings_insurance
+ Age                      | 37
+ InstallmentPlans         | stores
+ Housing                  | own
+ ExistingCreditsCount     | 2
+ Job                      | skilled
+ Dependents               | 1
+ Telephone                | none
+ ForeignWorker            | yes
+ Risk                     | No Risk
 -RECORD 2------------------------------------------
- CheckingStatus           | less_0                 
- LoanDuration             | 15                     
- CreditHistory            | prior_payments_delayed 
- LoanPurpose              | furniture              
- LoanAmount               | 250                    
- ExistingSavings          | less_100               
- EmploymentDuration       | 1_to_4                 
- InstallmentPercent       | 2                      
- Sex                      | male                   
- OthersOnLoan             | none                   
- CurrentResidenceDuration | 3                      
- OwnsProperty             | real_estate            
- Age                      | 28                     
- InstallmentPlans         | none                   
- Housing                  | own                    
- ExistingCreditsCount     | 2                      
- Job                      | skilled                
- Dependents               | 1                      
- Telephone                | yes                    
- ForeignWorker            | no                     
- Risk                     | No Risk                
+ CheckingStatus           | less_0
+ LoanDuration             | 15
+ CreditHistory            | prior_payments_delayed
+ LoanPurpose              | furniture
+ LoanAmount               | 250
+ ExistingSavings          | less_100
+ EmploymentDuration       | 1_to_4
+ InstallmentPercent       | 2
+ Sex                      | male
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 3
+ OwnsProperty             | real_estate
+ Age                      | 28
+ InstallmentPlans         | none
+ Housing                  | own
+ ExistingCreditsCount     | 2
+ Job                      | skilled
+ Dependents               | 1
+ Telephone                | yes
+ ForeignWorker            | no
+ Risk                     | No Risk
 -RECORD 3------------------------------------------
- CheckingStatus           | 0_to_200               
- LoanDuration             | 28                     
- CreditHistory            | credits_paid_to_date   
- LoanPurpose              | retraining             
- LoanAmount               | 3693                   
- ExistingSavings          | less_100               
- EmploymentDuration       | greater_7              
- InstallmentPercent       | 3                      
- Sex                      | male                   
- OthersOnLoan             | none                   
- CurrentResidenceDuration | 2                      
- OwnsProperty             | savings_insurance      
- Age                      | 32                     
- InstallmentPlans         | none                   
- Housing                  | own                    
- ExistingCreditsCount     | 1                      
- Job                      | skilled                
- Dependents               | 1                      
- Telephone                | none                   
- ForeignWorker            | yes                    
- Risk                     | No Risk                
+ CheckingStatus           | 0_to_200
+ LoanDuration             | 28
+ CreditHistory            | credits_paid_to_date
+ LoanPurpose              | retraining
+ LoanAmount               | 3693
+ ExistingSavings          | less_100
+ EmploymentDuration       | greater_7
+ InstallmentPercent       | 3
+ Sex                      | male
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 2
+ OwnsProperty             | savings_insurance
+ Age                      | 32
+ InstallmentPlans         | none
+ Housing                  | own
+ ExistingCreditsCount     | 1
+ Job                      | skilled
+ Dependents               | 1
+ Telephone                | none
+ ForeignWorker            | yes
+ Risk                     | No Risk
 -RECORD 4------------------------------------------
- CheckingStatus           | no_checking            
- LoanDuration             | 28                     
- CreditHistory            | prior_payments_delayed 
- LoanPurpose              | education              
- LoanAmount               | 6235                   
- ExistingSavings          | 500_to_1000            
- EmploymentDuration       | greater_7              
- InstallmentPercent       | 3                      
- Sex                      | male                   
- OthersOnLoan             | none                   
- CurrentResidenceDuration | 3                      
- OwnsProperty             | unknown                
- Age                      | 57                     
- InstallmentPlans         | none                   
- Housing                  | own                    
- ExistingCreditsCount     | 2                      
- Job                      | skilled                
- Dependents               | 1                      
- Telephone                | none                   
- ForeignWorker            | yes                    
- Risk                     | Risk                   
+ CheckingStatus           | no_checking
+ LoanDuration             | 28
+ CreditHistory            | prior_payments_delayed
+ LoanPurpose              | education
+ LoanAmount               | 6235
+ ExistingSavings          | 500_to_1000
+ EmploymentDuration       | greater_7
+ InstallmentPercent       | 3
+ Sex                      | male
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 3
+ OwnsProperty             | unknown
+ Age                      | 57
+ InstallmentPlans         | none
+ Housing                  | own
+ ExistingCreditsCount     | 2
+ Job                      | skilled
+ Dependents               | 1
+ Telephone                | none
+ ForeignWorker            | yes
+ Risk                     | Risk
 only showing top 5 rows
 
 </pre>
@@ -8216,7 +8217,7 @@ Number of prediction records : 94
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this section you will learn how to store your pipeline and model in Watson Machine Learning repository by using python client libraries.</p>
+<p>In this section you will learn how to store your pipeline and model in watsonx.ai Runtime repository by using python client libraries.</p>
 </div>
 </div>
 </div>
@@ -8261,8 +8262,8 @@ Number of prediction records : 94
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">ibm_boto3</span>
-<span class="kn">from</span> <span class="nn">ibm_botocore.client</span> <span class="kn">import</span> <span class="n">Config</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ibm_boto3</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ibm_botocore.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
 </pre></div>
 </div>
 </div>
@@ -8422,7 +8423,7 @@ Number of prediction records : 94
 <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">uuid</span><span class="w"> </span><span class="kn">import</span> <span class="n">uuid4</span>
 
 <span class="n">bucket_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
 
@@ -8612,7 +8613,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this subsection you will learn how to save pipeline and model artifacts to your Watson Machine Learning instance.</p>
+<p>In this subsection you will learn how to save pipeline and model artifacts to your watsonx.ai Runtime instance.</p>
 </div>
 </div>
 </div>
@@ -8635,13 +8636,13 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 <div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">wget</span> <span class="kn">import</span> <span class="n">download</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wget</span><span class="w"> </span><span class="kn">import</span> <span class="n">download</span>
 
 <span class="n">sample_dir</span> <span class="o">=</span> <span class="s1">'spark_sample_model'</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">)</span>
-    
+
 <span class="n">pipeline_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">,</span> <span class="s1">'credit_risk_spark_pipeline.tar.gz'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pipeline_filename</span><span class="p">):</span>
     <span class="n">pipeline_filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s1">'https://github.com/IBM/watson-machine-learning-samples/raw/master/cloud/models/spark/credit-risk/model/credit_risk_spark_pipeline.tar.gz'</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
@@ -8842,15 +8843,15 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">published_model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">model_filename</span><span class="p">,</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">model_filename</span><span class="p">,</span>
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s1">'Credit Risk model'</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">"mllib_3.4"</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_ID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">'spark-mllib_3.4'</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TRAINING_DATA_REFERENCES</span><span class="p">:</span> <span class="n">training_data_references</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">"Risk"</span><span class="p">,</span>
-    <span class="p">},</span> 
-    <span class="n">training_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span> 
+    <span class="p">},</span>
+    <span class="n">training_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span>
     <span class="n">pipeline</span><span class="o">=</span><span class="n">pipeline_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -9078,7 +9079,7 @@ conn_details = client.connections.create(meta_props=conn_meta_props)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Get saved model metadata from Watson Machine Learning.</p>
+<p>Get saved model metadata from watsonx.ai Runtime.</p>
 </div>
 </div>
 </div>
@@ -9163,7 +9164,7 @@ FAIRNESS_INFO             dict  N
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this subsection you will learn how to load back saved model from specified instance of Watson Machine Learning.</p>
+<p>In this subsection you will learn how to load back saved model from specified instance of watsonx.ai Runtime.</p>
 </div>
 </div>
 </div>
@@ -9336,210 +9337,210 @@ FAIRNESS_INFO             dict  N
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>-RECORD 0----------------------------------------
- CheckingStatus           | 0_to_200             
- LoanDuration             | 4                    
- CreditHistory            | all_credits_paid_... 
- LoanPurpose              | education            
- LoanAmount               | 936                  
- ExistingSavings          | less_100             
- EmploymentDuration       | less_1               
- InstallmentPercent       | 2                    
- Sex                      | male                 
- OthersOnLoan             | none                 
- CurrentResidenceDuration | 2                    
- OwnsProperty             | savings_insurance    
- Age                      | 41                   
- InstallmentPlans         | bank                 
- Housing                  | rent                 
- ExistingCreditsCount     | 1                    
- Job                      | unskilled            
- Dependents               | 1                    
- Telephone                | none                 
- ForeignWorker            | yes                  
- Risk                     | No Risk              
- CheckingStatus_IX        | 2.0                  
- CreditHistory_IX         | 3.0                  
- LoanPurpose_IX           | 7.0                  
- ExistingSavings_IX       | 0.0                  
- EmploymentDuration_IX    | 3.0                  
- Sex_IX                   | 0.0                  
- OthersOnLoan_IX          | 0.0                  
- OwnsProperty_IX          | 0.0                  
- InstallmentPlans_IX      | 2.0                  
- Housing_IX               | 1.0                  
- Job_IX                   | 1.0                  
- Telephone_IX             | 0.0                  
- ForeignWorker_IX         | 0.0                  
- label                    | 0.0                  
- features                 | [2.0,3.0,7.0,0.0,... 
- rawPrediction            | [17.8582417779453... 
- probability              | [0.89291208889726... 
- prediction               | 0.0                  
- predictedLabel           | No Risk              
+ CheckingStatus           | 0_to_200
+ LoanDuration             | 4
+ CreditHistory            | all_credits_paid_...
+ LoanPurpose              | education
+ LoanAmount               | 936
+ ExistingSavings          | less_100
+ EmploymentDuration       | less_1
+ InstallmentPercent       | 2
+ Sex                      | male
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 2
+ OwnsProperty             | savings_insurance
+ Age                      | 41
+ InstallmentPlans         | bank
+ Housing                  | rent
+ ExistingCreditsCount     | 1
+ Job                      | unskilled
+ Dependents               | 1
+ Telephone                | none
+ ForeignWorker            | yes
+ Risk                     | No Risk
+ CheckingStatus_IX        | 2.0
+ CreditHistory_IX         | 3.0
+ LoanPurpose_IX           | 7.0
+ ExistingSavings_IX       | 0.0
+ EmploymentDuration_IX    | 3.0
+ Sex_IX                   | 0.0
+ OthersOnLoan_IX          | 0.0
+ OwnsProperty_IX          | 0.0
+ InstallmentPlans_IX      | 2.0
+ Housing_IX               | 1.0
+ Job_IX                   | 1.0
+ Telephone_IX             | 0.0
+ ForeignWorker_IX         | 0.0
+ label                    | 0.0
+ features                 | [2.0,3.0,7.0,0.0,...
+ rawPrediction            | [17.8582417779453...
+ probability              | [0.89291208889726...
+ prediction               | 0.0
+ predictedLabel           | No Risk
 -RECORD 1----------------------------------------
- CheckingStatus           | 0_to_200             
- LoanDuration             | 4                    
- CreditHistory            | all_credits_paid_... 
- LoanPurpose              | furniture            
- LoanAmount               | 250                  
- ExistingSavings          | less_100             
- EmploymentDuration       | 1_to_4               
- InstallmentPercent       | 2                    
- Sex                      | female               
- OthersOnLoan             | none                 
- CurrentResidenceDuration | 1                    
- OwnsProperty             | real_estate          
- Age                      | 19                   
- InstallmentPlans         | bank                 
- Housing                  | rent                 
- ExistingCreditsCount     | 1                    
- Job                      | unskilled            
- Dependents               | 1                    
- Telephone                | none                 
- ForeignWorker            | yes                  
- Risk                     | No Risk              
- CheckingStatus_IX        | 2.0                  
- CreditHistory_IX         | 3.0                  
- LoanPurpose_IX           | 1.0                  
- ExistingSavings_IX       | 0.0                  
- EmploymentDuration_IX    | 0.0                  
- Sex_IX                   | 1.0                  
- OthersOnLoan_IX          | 0.0                  
- OwnsProperty_IX          | 2.0                  
- InstallmentPlans_IX      | 2.0                  
- Housing_IX               | 1.0                  
- Job_IX                   | 1.0                  
- Telephone_IX             | 0.0                  
- ForeignWorker_IX         | 0.0                  
- label                    | 0.0                  
- features                 | [2.0,3.0,1.0,0.0,... 
- rawPrediction            | [18.6217190953704... 
- probability              | [0.93108595476852... 
- prediction               | 0.0                  
- predictedLabel           | No Risk              
+ CheckingStatus           | 0_to_200
+ LoanDuration             | 4
+ CreditHistory            | all_credits_paid_...
+ LoanPurpose              | furniture
+ LoanAmount               | 250
+ ExistingSavings          | less_100
+ EmploymentDuration       | 1_to_4
+ InstallmentPercent       | 2
+ Sex                      | female
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 1
+ OwnsProperty             | real_estate
+ Age                      | 19
+ InstallmentPlans         | bank
+ Housing                  | rent
+ ExistingCreditsCount     | 1
+ Job                      | unskilled
+ Dependents               | 1
+ Telephone                | none
+ ForeignWorker            | yes
+ Risk                     | No Risk
+ CheckingStatus_IX        | 2.0
+ CreditHistory_IX         | 3.0
+ LoanPurpose_IX           | 1.0
+ ExistingSavings_IX       | 0.0
+ EmploymentDuration_IX    | 0.0
+ Sex_IX                   | 1.0
+ OthersOnLoan_IX          | 0.0
+ OwnsProperty_IX          | 2.0
+ InstallmentPlans_IX      | 2.0
+ Housing_IX               | 1.0
+ Job_IX                   | 1.0
+ Telephone_IX             | 0.0
+ ForeignWorker_IX         | 0.0
+ label                    | 0.0
+ features                 | [2.0,3.0,1.0,0.0,...
+ rawPrediction            | [18.6217190953704...
+ probability              | [0.93108595476852...
+ prediction               | 0.0
+ predictedLabel           | No Risk
 -RECORD 2----------------------------------------
- CheckingStatus           | 0_to_200             
- LoanDuration             | 7                    
- CreditHistory            | all_credits_paid_... 
- LoanPurpose              | car_new              
- LoanAmount               | 3091                 
- ExistingSavings          | less_100             
- EmploymentDuration       | less_1               
- InstallmentPercent       | 3                    
- Sex                      | female               
- OthersOnLoan             | none                 
- CurrentResidenceDuration | 2                    
- OwnsProperty             | savings_insurance    
- Age                      | 28                   
- InstallmentPlans         | none                 
- Housing                  | own                  
- ExistingCreditsCount     | 2                    
- Job                      | skilled              
- Dependents               | 1                    
- Telephone                | none                 
- ForeignWorker            | yes                  
- Risk                     | No Risk              
- CheckingStatus_IX        | 2.0                  
- CreditHistory_IX         | 3.0                  
- LoanPurpose_IX           | 0.0                  
- ExistingSavings_IX       | 0.0                  
- EmploymentDuration_IX    | 3.0                  
- Sex_IX                   | 1.0                  
- OthersOnLoan_IX          | 0.0                  
- OwnsProperty_IX          | 0.0                  
- InstallmentPlans_IX      | 0.0                  
- Housing_IX               | 0.0                  
- Job_IX                   | 0.0                  
- Telephone_IX             | 0.0                  
- ForeignWorker_IX         | 0.0                  
- label                    | 0.0                  
- features                 | (20,[0,1,4,5,13,1... 
- rawPrediction            | [17.0900288758532... 
- probability              | [0.85450144379266... 
- prediction               | 0.0                  
- predictedLabel           | No Risk              
+ CheckingStatus           | 0_to_200
+ LoanDuration             | 7
+ CreditHistory            | all_credits_paid_...
+ LoanPurpose              | car_new
+ LoanAmount               | 3091
+ ExistingSavings          | less_100
+ EmploymentDuration       | less_1
+ InstallmentPercent       | 3
+ Sex                      | female
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 2
+ OwnsProperty             | savings_insurance
+ Age                      | 28
+ InstallmentPlans         | none
+ Housing                  | own
+ ExistingCreditsCount     | 2
+ Job                      | skilled
+ Dependents               | 1
+ Telephone                | none
+ ForeignWorker            | yes
+ Risk                     | No Risk
+ CheckingStatus_IX        | 2.0
+ CreditHistory_IX         | 3.0
+ LoanPurpose_IX           | 0.0
+ ExistingSavings_IX       | 0.0
+ EmploymentDuration_IX    | 3.0
+ Sex_IX                   | 1.0
+ OthersOnLoan_IX          | 0.0
+ OwnsProperty_IX          | 0.0
+ InstallmentPlans_IX      | 0.0
+ Housing_IX               | 0.0
+ Job_IX                   | 0.0
+ Telephone_IX             | 0.0
+ ForeignWorker_IX         | 0.0
+ label                    | 0.0
+ features                 | (20,[0,1,4,5,13,1...
+ rawPrediction            | [17.0900288758532...
+ probability              | [0.85450144379266...
+ prediction               | 0.0
+ predictedLabel           | No Risk
 -RECORD 3----------------------------------------
- CheckingStatus           | 0_to_200             
- LoanDuration             | 9                    
- CreditHistory            | prior_payments_de... 
- LoanPurpose              | furniture            
- LoanAmount               | 250                  
- ExistingSavings          | less_100             
- EmploymentDuration       | less_1               
- InstallmentPercent       | 1                    
- Sex                      | male                 
- OthersOnLoan             | none                 
- CurrentResidenceDuration | 3                    
- OwnsProperty             | savings_insurance    
- Age                      | 31                   
- InstallmentPlans         | none                 
- Housing                  | own                  
- ExistingCreditsCount     | 1                    
- Job                      | skilled              
- Dependents               | 1                    
- Telephone                | yes                  
- ForeignWorker            | yes                  
- Risk                     | No Risk              
- CheckingStatus_IX        | 2.0                  
- CreditHistory_IX         | 0.0                  
- LoanPurpose_IX           | 1.0                  
- ExistingSavings_IX       | 0.0                  
- EmploymentDuration_IX    | 3.0                  
- Sex_IX                   | 0.0                  
- OthersOnLoan_IX          | 0.0                  
- OwnsProperty_IX          | 0.0                  
- InstallmentPlans_IX      | 0.0                  
- Housing_IX               | 0.0                  
- Job_IX                   | 0.0                  
- Telephone_IX             | 1.0                  
- ForeignWorker_IX         | 0.0                  
- label                    | 0.0                  
- features                 | (20,[0,2,4,11,13,... 
- rawPrediction            | [17.3233263549217... 
- probability              | [0.86616631774608... 
- prediction               | 0.0                  
- predictedLabel           | No Risk              
+ CheckingStatus           | 0_to_200
+ LoanDuration             | 9
+ CreditHistory            | prior_payments_de...
+ LoanPurpose              | furniture
+ LoanAmount               | 250
+ ExistingSavings          | less_100
+ EmploymentDuration       | less_1
+ InstallmentPercent       | 1
+ Sex                      | male
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 3
+ OwnsProperty             | savings_insurance
+ Age                      | 31
+ InstallmentPlans         | none
+ Housing                  | own
+ ExistingCreditsCount     | 1
+ Job                      | skilled
+ Dependents               | 1
+ Telephone                | yes
+ ForeignWorker            | yes
+ Risk                     | No Risk
+ CheckingStatus_IX        | 2.0
+ CreditHistory_IX         | 0.0
+ LoanPurpose_IX           | 1.0
+ ExistingSavings_IX       | 0.0
+ EmploymentDuration_IX    | 3.0
+ Sex_IX                   | 0.0
+ OthersOnLoan_IX          | 0.0
+ OwnsProperty_IX          | 0.0
+ InstallmentPlans_IX      | 0.0
+ Housing_IX               | 0.0
+ Job_IX                   | 0.0
+ Telephone_IX             | 1.0
+ ForeignWorker_IX         | 0.0
+ label                    | 0.0
+ features                 | (20,[0,2,4,11,13,...
+ rawPrediction            | [17.3233263549217...
+ probability              | [0.86616631774608...
+ prediction               | 0.0
+ predictedLabel           | No Risk
 -RECORD 4----------------------------------------
- CheckingStatus           | 0_to_200             
- LoanDuration             | 10                   
- CreditHistory            | prior_payments_de... 
- LoanPurpose              | car_new              
- LoanAmount               | 1797                 
- ExistingSavings          | greater_1000         
- EmploymentDuration       | 4_to_7               
- InstallmentPercent       | 3                    
- Sex                      | male                 
- OthersOnLoan             | none                 
- CurrentResidenceDuration | 3                    
- OwnsProperty             | savings_insurance    
- Age                      | 28                   
- InstallmentPlans         | none                 
- Housing                  | own                  
- ExistingCreditsCount     | 1                    
- Job                      | skilled              
- Dependents               | 1                    
- Telephone                | none                 
- ForeignWorker            | yes                  
- Risk                     | No Risk              
- CheckingStatus_IX        | 2.0                  
- CreditHistory_IX         | 0.0                  
- LoanPurpose_IX           | 0.0                  
- ExistingSavings_IX       | 3.0                  
- EmploymentDuration_IX    | 1.0                  
- Sex_IX                   | 0.0                  
- OthersOnLoan_IX          | 0.0                  
- OwnsProperty_IX          | 0.0                  
- InstallmentPlans_IX      | 0.0                  
- Housing_IX               | 0.0                  
- Job_IX                   | 0.0                  
- Telephone_IX             | 0.0                  
- ForeignWorker_IX         | 0.0                  
- label                    | 0.0                  
- features                 | (20,[0,3,4,13,14,... 
- rawPrediction            | [16.7833363666722... 
- probability              | [0.83916681833361... 
- prediction               | 0.0                  
- predictedLabel           | No Risk              
+ CheckingStatus           | 0_to_200
+ LoanDuration             | 10
+ CreditHistory            | prior_payments_de...
+ LoanPurpose              | car_new
+ LoanAmount               | 1797
+ ExistingSavings          | greater_1000
+ EmploymentDuration       | 4_to_7
+ InstallmentPercent       | 3
+ Sex                      | male
+ OthersOnLoan             | none
+ CurrentResidenceDuration | 3
+ OwnsProperty             | savings_insurance
+ Age                      | 28
+ InstallmentPlans         | none
+ Housing                  | own
+ ExistingCreditsCount     | 1
+ Job                      | skilled
+ Dependents               | 1
+ Telephone                | none
+ ForeignWorker            | yes
+ Risk                     | No Risk
+ CheckingStatus_IX        | 2.0
+ CreditHistory_IX         | 0.0
+ LoanPurpose_IX           | 0.0
+ ExistingSavings_IX       | 3.0
+ EmploymentDuration_IX    | 1.0
+ Sex_IX                   | 0.0
+ OthersOnLoan_IX          | 0.0
+ OwnsProperty_IX          | 0.0
+ InstallmentPlans_IX      | 0.0
+ Housing_IX               | 0.0
+ Job_IX                   | 0.0
+ Telephone_IX             | 0.0
+ ForeignWorker_IX         | 0.0
+ label                    | 0.0
+ features                 | (20,[0,3,4,13,14,...
+ rawPrediction            | [16.7833363666722...
+ probability              | [0.83916681833361...
+ prediction               | 0.0
+ predictedLabel           | No Risk
 only showing top 5 rows
 
 </pre>
@@ -9674,7 +9675,7 @@ For more information about REST APIs, see the <a href="https://cloud.ibm.com/api
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model_id</span><span class="p">,</span> 
+    <span class="n">model_id</span><span class="p">,</span>
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"Credit Risk model deployment"</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{}</span>
@@ -10239,8 +10240,7 @@ Now, you can send new scoring records (new data) for which you would like to get
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -10250,6 +10250,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cloud/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -10272,7 +10273,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>You successfully completed this notebook! You learned how to use Apache Spark machine learning as well as Watson Machine Learning for model creation and deployment. Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=wx">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
+<p>You successfully completed this notebook! You learned how to use Apache Spark machine learning as well as watsonx.ai Runtime for model creation and deployment. Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getting-started/welcome-main.html?context=wx">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>
 </div>
 </div>
@@ -10283,8 +10284,8 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Authors">Authors<a class="anchor-link" href="#Authors">¶</a></h3><p><strong>Amadeusz Masny</strong>, Python Software Developer in Watson Machine Learning at IBM</p>
-<p><strong>Mateusz Szewczyk</strong>, Software Engineer at Watson Machine Learning</p>
+<h3 id="Authors">Authors<a class="anchor-link" href="#Authors">¶</a></h3><p><strong>Amadeusz Masny</strong>, Python Software Developer at watsonx.ai</p>
+<p><strong>Mateusz Szewczyk</strong>, Software Engineer at watsonx.ai</p>
 </div>
 </div>
 </div>
@@ -10295,7 +10296,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2020-2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>

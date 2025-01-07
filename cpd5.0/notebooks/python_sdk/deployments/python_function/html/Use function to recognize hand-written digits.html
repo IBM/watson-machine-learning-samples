@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7616,7 +7617,7 @@ See: <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/f
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
@@ -7657,7 +7658,7 @@ See: <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/f
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7779,9 +7780,9 @@ See: <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/f
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">wget</span><span class="o">,</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">wget</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -8175,46 +8176,46 @@ Successfully finished deployment creation, deployment_id='219856c8-c9e1-4d60-84a
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">ai_parms</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"credentials"</span><span class="p">:</span> <span class="n">credentials</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s2">"space_id"</span><span class="p">:</span> <span class="n">space_id</span><span class="p">,</span> <span class="s2">"model_deployment_id"</span><span class="p">:</span> <span class="n">model_deployment_id</span><span class="p">}</span>
 
-<span class="k">def</span> <span class="nf">my_deployable_function</span><span class="p">(</span> <span class="n">parms</span><span class="o">=</span><span class="n">ai_parms</span> <span class="p">):</span>
-    <span class="k">def</span> <span class="nf">getRGBAArr</span><span class="p">(</span><span class="n">canvas_data</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">my_deployable_function</span><span class="p">(</span> <span class="n">parms</span><span class="o">=</span><span class="n">ai_parms</span> <span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getRGBAArr</span><span class="p">(</span><span class="n">canvas_data</span><span class="p">):</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
         <span class="n">dimension</span> <span class="o">=</span> <span class="n">canvas_data</span><span class="p">[</span><span class="s2">"height"</span><span class="p">]</span>
         <span class="n">rgba_data</span> <span class="o">=</span> <span class="n">canvas_data</span><span class="p">[</span><span class="s2">"data"</span><span class="p">]</span>
         <span class="n">rgba_arr</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rgba_data</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'uint8'</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">rgba_arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">getNormAlphaList</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">getNormAlphaList</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
         <span class="n">alpha_arr</span>       <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">norm_alpha_arr</span>  <span class="o">=</span> <span class="n">alpha_arr</span> <span class="o">/</span> <span class="mi">255</span>
         <span class="n">norm_alpha_list</span> <span class="o">=</span> <span class="n">norm_alpha_arr</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">784</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">norm_alpha_list</span>
-        
-    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="n">function_payload</span><span class="p">):</span>
-            
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="n">function_payload</span><span class="p">):</span>
+
         <span class="k">try</span><span class="p">:</span>
-            
-            <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+            <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
             <span class="n">canvas_data</span>   <span class="o">=</span> <span class="n">function_payload</span><span class="p">[</span><span class="s2">"input_data"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"values"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>           <span class="c1"># Read the payload received by the function</span>
             <span class="n">rgba_arr</span>      <span class="o">=</span> <span class="n">getRGBAArr</span><span class="p">(</span><span class="n">canvas_data</span><span class="p">)</span>               <span class="c1"># Create an array object with the required shape</span>
             <span class="n">img</span>           <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">rgba_arr</span><span class="p">,</span> <span class="s1">'RGBA'</span><span class="p">)</span>     <span class="c1"># Create an image object that can be resized</span>
             <span class="n">sm_img</span>        <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">LANCZOS</span><span class="p">)</span> <span class="c1"># Resize the image to 28 x 28 pixels</span>
             <span class="n">alpha_list</span>    <span class="o">=</span> <span class="n">getNormAlphaList</span><span class="p">(</span><span class="n">sm_img</span><span class="p">)</span>              <span class="c1"># Create a 1 x 784 array of values between 0 and 1</span>
             <span class="n">model_payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"input_data"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"values"</span> <span class="p">:</span> <span class="n">alpha_list</span><span class="p">}]}</span>               <span class="c1"># Create a payload to be sent to the model</span>
-                    
+
             <span class="c1">#print( "Payload for model:" ) # For debugging purposes</span>
             <span class="c1">#print( model_payload )        # For debugging purposes</span>
-                    
-            <span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+
+            <span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
             <span class="n">client</span>       <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">parms</span><span class="p">[</span><span class="s2">"credentials"</span><span class="p">])</span>
             <span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">parms</span><span class="p">[</span><span class="s2">"space_id"</span><span class="p">])</span>
             <span class="n">model_result</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">parms</span><span class="p">[</span><span class="s2">"model_deployment_id"</span><span class="p">],</span> <span class="n">model_payload</span><span class="p">)</span>
             <span class="n">digit_class</span>  <span class="o">=</span> <span class="n">model_result</span><span class="p">[</span><span class="s2">"predictions"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"values"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-                    
+
             <span class="k">return</span> <span class="n">model_result</span>
-        
+
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            
+
             <span class="k">return</span> <span class="p">{</span><span class="s1">'predictions'</span><span class="p">:</span> <span class="p">[{</span><span class="s1">'values'</span><span class="p">:</span> <span class="p">[</span><span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">)]}]}</span>
             <span class="c1">#return {"error" : repr(e)}</span>
 
@@ -8480,8 +8481,7 @@ Successfully finished deployment creation, deployment_id='b15ca04a-07e8-45e9-a83
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd5.0/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -8491,6 +8491,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd5.0/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -8526,7 +8527,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-Copyright © IBM Corp. 2018-2024. This notebook and its source code are released under the terms of the MIT License.
+Copyright © 2018-2025 IBM. This notebook and its source code are released under the terms of the MIT License.
 
 
 </div>
