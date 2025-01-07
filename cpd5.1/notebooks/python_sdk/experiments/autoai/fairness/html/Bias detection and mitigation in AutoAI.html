@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7628,7 +7629,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
@@ -7669,7 +7670,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7829,13 +7830,13 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wget</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">wget</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd5.1/data/bias/german_credit_data_biased_training.csv"</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span> 
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    
+
 <span class="n">asset_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7864,7 +7865,7 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">AssetLocation</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">AssetLocation</span>
 
 <span class="n">credit_risk_conn</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
     <span class="n">location</span><span class="o">=</span><span class="n">AssetLocation</span><span class="p">(</span><span class="n">asset_id</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">asset_details</span><span class="p">))</span>
@@ -7884,7 +7885,7 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -8136,7 +8137,7 @@ Numeric range [a,b] from a to b inclusive.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.experiment</span> <span class="kn">import</span> <span class="n">AutoAI</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.experiment</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoAI</span>
 
 <span class="n">experiment</span> <span class="o">=</span> <span class="n">AutoAI</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
 
@@ -9090,8 +9091,8 @@ operator.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lale.lib.aif360</span> <span class="kn">import</span> <span class="n">disparate_impact</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lale.lib.aif360</span><span class="w"> </span><span class="kn">import</span> <span class="n">disparate_impact</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
 
 <span class="n">disparate_impact_scorer</span> <span class="o">=</span> <span class="n">disparate_impact</span><span class="p">(</span><span class="o">**</span><span class="n">fairness_info_lale</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Accuracy: "</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">predicted_y</span><span class="p">))</span>
@@ -10085,8 +10086,8 @@ AutoAI training job.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [60]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lale.lib.aif360</span> <span class="kn">import</span> <span class="n">disparate_impact</span><span class="p">,</span> <span class="n">accuracy_and_disparate_impact</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lale.lib.aif360</span><span class="w"> </span><span class="kn">import</span> <span class="n">disparate_impact</span><span class="p">,</span> <span class="n">accuracy_and_disparate_impact</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
 
 <span class="n">disparate_impact_scorer</span> <span class="o">=</span> <span class="n">disparate_impact</span><span class="p">(</span><span class="o">**</span><span class="n">fairness_info_mitigation_lale</span><span class="p">)</span>
 <span class="n">accuracy_and_disparate_impact_scorer</span> <span class="o">=</span> <span class="n">accuracy_and_disparate_impact</span><span class="p">(</span><span class="o">**</span><span class="n">fairness_info_mitigation_lale</span><span class="p">)</span>
@@ -10158,13 +10159,13 @@ Disparate impact:  1.1140765419331191
 <div class="jp-InputPrompt jp-InputArea-prompt">In [62]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.deployment</span> <span class="kn">import</span> <span class="n">WebService</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.deployment</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebService</span>
 
 <span class="n">service</span> <span class="o">=</span> <span class="n">WebService</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">source_space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
 
 <span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">training_id</span><span class="p">,</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span>
     <span class="n">deployment_name</span><span class="o">=</span><span class="s2">"Credit Risk Deployment AutoAI - bias detection"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -10352,8 +10353,7 @@ To list existing web services you can use <code>service.list()</code>.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd5.1/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -10363,6 +10363,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd5.1/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -10399,7 +10400,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2023-2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2023-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>

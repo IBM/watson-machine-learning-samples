@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7580,7 +7581,7 @@ Familiarity with oc and python is helpful. This notebook uses Python 3.11.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">'PASTE YOUR USERNAME HERE'</span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">'PASTE YOUR USERNAME HERE'</span>
 <span class="n">api_key</span> <span class="o">=</span> <span class="s1">'PASTE YOUR API_KEY HERE'</span>
 <span class="n">password</span> <span class="o">=</span> <span class="s1">'PASTE YOUR PASSWORD HERE'</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">'PASTE THE PLATFORM URL HERE'</span>
@@ -7656,7 +7657,7 @@ Familiarity with oc and python is helpful. This notebook uses Python 3.11.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">wml_credentials</span><span class="p">)</span>
 </pre></div>
@@ -7712,8 +7713,8 @@ It involves:-</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">urllib3</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib3</span>
 <span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">(</span><span class="n">urllib3</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">InsecureRequestWarning</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7780,7 +7781,7 @@ It involves:-</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">/v2/runtime_definitions?include=launch_configuration"</span><span class="p">,</span>
@@ -8148,7 +8149,7 @@ vol_svc_id: 1721129241128898
           <span class="p">{</span>
             <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"pendulum"</span><span class="p">,</span>
             <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"3.0.0"</span>
-          <span class="p">}</span>       
+          <span class="p">}</span>
         <span class="p">],</span>
         <span class="s2">"platform"</span><span class="p">:</span> <span class="p">{</span>
           <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"python"</span><span class="p">,</span>
@@ -8527,7 +8528,7 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">'/v2/runtime_definitions'</span><span class="p">,</span> 
+    <span class="n">CPDHOST</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">'/v2/runtime_definitions'</span><span class="p">,</span>
     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
     <span class="n">json</span><span class="o">=</span><span class="n">custom_image_runtime_definition</span><span class="p">,</span>
     <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -8730,24 +8731,24 @@ env-spec-sync-job   */5 * * * *   False     0        82s             23d
 <div class="jp-InputPrompt jp-InputArea-prompt">In [55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">score_generator</span><span class="p">():</span>
-        
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">score_generator</span><span class="p">():</span>
+
     <span class="c1"># Define scoring function</span>
-    <span class="k">def</span> <span class="nf">callModel</span><span class="p">(</span><span class="n">payload_scoring</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">pendulum</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">callModel</span><span class="p">(</span><span class="n">payload_scoring</span><span class="p">):</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">pendulum</span>
 
         <span class="n">v4_scoring_response</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">'predictions'</span><span class="p">:</span> <span class="p">[{</span><span class="s1">'values'</span><span class="p">:</span> <span class="p">[</span><span class="n">pendulum</span><span class="o">.</span><span class="n">__version__</span><span class="p">]}]</span>
         <span class="p">}</span>
-    
+
         <span class="k">return</span> <span class="n">v4_scoring_response</span>
 
-    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">score</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
         <span class="c1"># Score using the pre-defined model</span>
         <span class="n">prediction</span> <span class="o">=</span> <span class="n">callModel</span><span class="p">(</span><span class="nb">input</span><span class="p">);</span>
         <span class="k">return</span> <span class="n">prediction</span>
-    
+
     <span class="k">return</span> <span class="n">score</span>
 </pre></div>
 </div>
@@ -9101,8 +9102,7 @@ $ oc describe pod wml-2c074a33-8960-47a0-9489-1bd050bbe901-b9867df6f-9fr9g | gre
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd5.1/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -9112,6 +9112,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd5.1/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -9172,7 +9173,7 @@ Check out our <a href="https://dataplatform.cloud.ibm.com/docs/content/wsj/getti
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2020, 2021, 2022, 2023, 2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2020-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>

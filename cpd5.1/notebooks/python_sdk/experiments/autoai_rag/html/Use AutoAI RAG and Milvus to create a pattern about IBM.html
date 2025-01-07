@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7626,7 +7627,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
@@ -7667,7 +7668,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7801,12 +7802,12 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wget</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">os</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">wget</span><span class="o">,</span><span class="w"> </span><span class="nn">zipfile</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="n">archive_name</span> <span class="o">=</span> <span class="s2">"watsonx-ai-python-sdk"</span>
 <span class="n">archive_zip</span> <span class="o">=</span> <span class="s2">"watsonx-ai-python-sdk.zip"</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">archive_zip</span><span class="p">):</span> 
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">archive_zip</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">"https://github.com/IBM/watsonx-ai-python-sdk/archive/refs/heads/gh-pages.zip"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">archive_zip</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">archive_zip</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
@@ -7908,7 +7909,7 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">S3Location</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">S3Location</span>
 
 <span class="n">data_connection</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
     <span class="n">connection_asset_id</span><span class="o">=</span><span class="n">connection_id</span><span class="p">,</span>
@@ -7972,11 +7973,11 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">html_docs_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">html_docs_files</span><span class="p">):</span>
     <span class="n">data_connection</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">html_docs_file</span><span class="p">,</span> <span class="n">remote_name</span> <span class="o">=</span> <span class="n">html_docs_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    
+
     <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\r</span><span class="s2">Progress: </span><span class="si">{</span><span class="s1">'✓'</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">ind</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="si">}{</span><span class="s1">'.'</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">html_docs_files</span><span class="p">)</span><span class="o">-</span><span class="n">ind</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="se">\r</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 </pre></div>
@@ -8078,7 +8079,7 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
 <span class="n">test_filename</span> <span class="o">=</span> <span class="s2">"benchmarking_data_ibm_watson_ai.json"</span>
 
@@ -8134,7 +8135,7 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataConnection</span>
 
 <span class="n">test_data_references</span> <span class="o">=</span> <span class="p">[</span><span class="n">DataConnection</span><span class="p">(</span><span class="n">data_asset_id</span><span class="o">=</span><span class="n">test_asset_id</span><span class="p">)]</span>
 </pre></div>
@@ -8163,8 +8164,8 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">getpass</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">getpass</span>
 
 <span class="n">milvus_connection_id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Provide connection asset ID in your space. Skip this, if you wish to type credentials by hand and hit enter: "</span><span class="p">)</span> <span class="ow">or</span> <span class="kc">None</span>
 
@@ -8265,7 +8266,7 @@ SUCCESS
 <div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.experiment</span> <span class="kn">import</span> <span class="n">AutoAI</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.experiment</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoAI</span>
 
 <span class="n">experiment</span> <span class="o">=</span> <span class="n">AutoAI</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
 
@@ -9279,7 +9280,7 @@ Once you have created a Credentials object, you can pass it to the APIClient con
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Authors">Authors<a class="anchor-link" href="#Authors">¶</a></h3><p><strong>Mateusz Szewczyk</strong>, Software Engineer at Watson Machine Learning</p>
-<p>Copyright © 2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2024-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>

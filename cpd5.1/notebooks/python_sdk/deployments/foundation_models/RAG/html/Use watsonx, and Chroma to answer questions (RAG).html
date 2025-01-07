@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7605,18 +7606,18 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sentence_transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">SentenceTransformer</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"Could not import sentence_transformers: Please install sentence-transformers package."</span><span class="p">)</span>
-    
+
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">chromadb</span>
-    <span class="kn">from</span> <span class="nn">chromadb.api.types</span> <span class="kn">import</span> <span class="n">EmbeddingFunction</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">chromadb</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.api.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbeddingFunction</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"Could not import chromdb: Please install chromadb package."</span><span class="p">)</span>
 </pre></div>
@@ -7659,7 +7660,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
@@ -7751,7 +7752,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wget</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">wget</span>
 
 <span class="n">questions_test_filename</span> <span class="o">=</span> <span class="s1">'questions_test.csv'</span>
 <span class="n">questions_train_filename</span> <span class="o">=</span> <span class="s1">'questions_train.csv'</span>
@@ -7759,11 +7760,11 @@ a.anchor-link {
 <span class="n">questions_train_url</span> <span class="o">=</span> <span class="s1">'https://raw.github.com/IBM/watson-machine-learning-samples/master/cloud/data/RAG/questions_train.csv'</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_test_filename</span><span class="p">):</span> 
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_test_filename</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">questions_test_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">questions_test_filename</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_train_filename</span><span class="p">):</span> 
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_train_filename</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">questions_train_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">questions_train_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7959,7 +7960,7 @@ a.anchor-link {
 <span class="n">documents_url</span> <span class="o">=</span> <span class="s1">'https://raw.github.com/IBM/watson-machine-learning-samples/master/cloud/data/RAG/psgs.tsv'</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">documents_filename</span><span class="p">):</span> 
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">documents_filename</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">documents_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">documents_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8001,9 +8002,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">MiniLML6V2EmbeddingFunction</span><span class="p">(</span><span class="n">EmbeddingFunction</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MiniLML6V2EmbeddingFunction</span><span class="p">(</span><span class="n">EmbeddingFunction</span><span class="p">):</span>
     <span class="n">MODEL</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s1">'all-MiniLM-L6-v2'</span><span class="p">)</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">MiniLML6V2EmbeddingFunction</span><span class="o">.</span><span class="n">MODEL</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="n">emb_func</span> <span class="o">=</span> <span class="n">MiniLML6V2EmbeddingFunction</span><span class="p">()</span>
 </pre></div>
@@ -8030,8 +8031,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ChromaWithUpsert</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ChromaWithUpsert</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"watsonx_rag_collection"</span><span class="p">,</span>
             <span class="n">persist_directory</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -8056,7 +8057,7 @@ a.anchor-link {
             <span class="n">metadata</span><span class="o">=</span><span class="n">collection_metadata</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">upsert_texts</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">upsert_texts</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">texts</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
         <span class="n">metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -8073,7 +8074,7 @@ a.anchor-link {
 <span class="sd">            List[str]: List of IDs of the added texts.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">ids</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="kn">import</span> <span class="nn">uuid</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
             <span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">]</span>
         <span class="n">embeddings</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_collection</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span>
@@ -8081,13 +8082,13 @@ a.anchor-link {
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">ids</span>
 
-    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collection</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">persist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_texts</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">n_results</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_texts</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">n_results</span><span class="p">:</span><span class="nb">int</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Returns the closests vector to the question vector</span>
 <span class="sd">        :param query_texts: the question</span>
@@ -8185,7 +8186,7 @@ Wall time: 4.54 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.foundation_models.utils.enums</span> <span class="kn">import</span> <span class="n">ModelTypes</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.foundation_models.utils.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelTypes</span>
 
 <span class="n">model_id</span> <span class="o">=</span> <span class="n">ModelTypes</span><span class="o">.</span><span class="n">FLAN_UL2</span>
 </pre></div>
@@ -8212,8 +8213,8 @@ Wall time: 4.54 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.metanames</span> <span class="kn">import</span> <span class="n">GenTextParamsMetaNames</span> <span class="k">as</span> <span class="n">GenParams</span>
-<span class="kn">from</span> <span class="nn">ibm_watsonx_ai.foundation_models.utils.enums</span> <span class="kn">import</span> <span class="n">DecodingMethods</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.metanames</span><span class="w"> </span><span class="kn">import</span> <span class="n">GenTextParamsMetaNames</span> <span class="k">as</span> <span class="n">GenParams</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.foundation_models.utils.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecodingMethods</span>
 
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">GenParams</span><span class="o">.</span><span class="n">DECODING_METHOD</span><span class="p">:</span> <span class="n">DecodingMethods</span><span class="o">.</span><span class="n">GREEDY</span><span class="p">,</span>
@@ -8244,7 +8245,7 @@ Wall time: 4.54 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.foundation_models</span> <span class="kn">import</span> <span class="n">ModelInference</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.foundation_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelInference</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">ModelInference</span><span class="p">(</span>
     <span class="n">model_id</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span>
@@ -8465,7 +8466,7 @@ Distance :  1.4074269533157349
 <div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">make_prompt</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">question_text</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_prompt</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">question_text</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"Please answer the following.</span><span class="se">\n</span><span class="s2">"</span>
           <span class="o">+</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2">:</span><span class="se">\n\n</span><span class="s2">"</span>
           <span class="o">+</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">question_text</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -8668,7 +8669,7 @@ Expected Answer(s) (may not be appear with exact wording in the dataset) =  Ray 
 
 
 Question =  when did the food stamp card come out
-Answer =  Jump up   '' . '' . '' . '' . '' . '' . '' . '' . '' 
+Answer =  Jump up   '' . '' . '' . '' . '' . '' . '' . '' . ''
 Expected Answer(s) (may not be appear with exact wording in the dataset) =  the late 1990s
 
 
@@ -8841,7 +8842,7 @@ Expected Answer(s) (may not be appear with exact wording in the dataset) =  Thom
 <div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">evaluate</span> <span class="kn">import</span> <span class="n">load</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">evaluate</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span>
 
 <span class="n">rouge</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s1">'rouge'</span><span class="p">)</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="n">rouge</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">references</span><span class="o">=</span><span class="n">test_data</span><span class="o">.</span><span class="n">answers</span><span class="p">)</span>
@@ -8895,7 +8896,7 @@ Expected Answer(s) (may not be appear with exact wording in the dataset) =  Thom
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2023, 2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2023-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>

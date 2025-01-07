@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Use watsonx to deploy R script</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Notebook</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7579,7 +7580,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>ibm-watsonx-ai<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">ibm</span><span class="o">-</span><span class="n">watsonx</span><span class="o">-</span><span class="n">ai</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -7620,7 +7621,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
@@ -7661,7 +7662,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7860,7 +7861,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> /tmp/CreateSwSpec_script.R
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">CreateSwSpec_script</span><span class="o">.</span><span class="n">R</span>
 
 <span class="n">outfname</span> <span class="o">&lt;-</span> <span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">Sys</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"BATCH_OUTPUT_DIR"</span><span class="p">),</span> <span class="s2">"swspec.log"</span><span class="p">)</span>
 
@@ -7907,7 +7908,7 @@ To check its content, you can use the command below.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>/tmp/CreateSwSpec_script.R
+<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">cat</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">CreateSwSpec_script</span><span class="o">.</span><span class="n">R</span>
 </pre></div>
 </div>
 </div>
@@ -8091,8 +8092,8 @@ Successfully finished deployment creation, deployment_id='dca7efe0-3fbf-4d89-842
 <div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">poll_async_job</span><span class="p">(</span><span class="n">wml_client</span><span class="p">,</span> <span class="n">job_uid</span><span class="p">):</span>
-    <span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">poll_async_job</span><span class="p">(</span><span class="n">wml_client</span><span class="p">,</span> <span class="n">job_uid</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">job_status</span> <span class="o">=</span> <span class="n">wml_client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_job_status</span><span class="p">(</span><span class="n">job_uid</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">job_status</span><span class="p">)</span>
@@ -8235,7 +8236,7 @@ Successfully finished deployment creation, deployment_id='dca7efe0-3fbf-4d89-842
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2024-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>
