@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7609,7 +7610,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">username</span> <span class="o">=</span> <span class="s1">'PASTE YOUR USERNAME HERE'</span>
@@ -7625,10 +7626,10 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">Credentials</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Credentials</span>
 
 <span class="n">credentials</span> <span class="o">=</span> <span class="n">Credentials</span><span class="p">(</span>
     <span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
@@ -7666,10 +7667,10 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai</span> <span class="kn">import</span> <span class="n">APIClient</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">APIClient</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
 </pre></div>
@@ -7701,7 +7702,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">space_id</span> <span class="o">=</span> <span class="s1">'PASTE YOUR SPACE ID HERE'</span>
@@ -7751,7 +7752,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">set</span><span class="o">.</span><span class="n">default_space</span><span class="p">(</span><span class="n">space_id</span><span class="p">)</span>
@@ -7765,7 +7766,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>'SUCCESS'</pre>
 </div>
@@ -7801,7 +7802,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">'german_credit_data_biased_training.csv'</span>
@@ -7826,16 +7827,16 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wget</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">wget</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd5.0/data/bias/german_credit_data_biased_training.csv"</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span> 
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    
+
 <span class="n">asset_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7861,10 +7862,10 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.helpers</span> <span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">AssetLocation</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataConnection</span><span class="p">,</span> <span class="n">AssetLocation</span>
 
 <span class="n">credit_risk_conn</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
     <span class="n">location</span><span class="o">=</span><span class="n">AssetLocation</span><span class="p">(</span><span class="n">asset_id</span><span class="o">=</span><span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">asset_details</span><span class="p">))</span>
@@ -7881,10 +7882,10 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -7897,7 +7898,7 @@ SUCCESS
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8114,12 +8115,12 @@ Numeric range [a,b] from a to b inclusive.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">fairness_info</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"protected_attributes"</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="s2">"Sex"</span><span class="p">,</span> <span class="s2">"reference_group"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'male'</span><span class="p">]},</span>
+                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="s2">"Sex"</span><span class="p">,</span> <span class="s2">"reference_group"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'male'</span><span class="p">],</span> <span class="s2">"monitored_group"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'female'</span><span class="p">]},</span>
                 <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="s2">"Age"</span><span class="p">,</span> <span class="s2">"reference_group"</span><span class="p">:</span> <span class="p">[[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span><span class="mi">90</span><span class="p">]],</span> <span class="s2">"monitored_group"</span><span class="p">:</span> <span class="p">[[</span><span class="mi">41</span><span class="p">,</span> <span class="mi">59</span><span class="p">]]}</span>
             <span class="p">],</span>
             <span class="s2">"favorable_labels"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"No Risk"</span><span class="p">]}</span>
@@ -8133,10 +8134,10 @@ Numeric range [a,b] from a to b inclusive.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [49]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.experiment</span> <span class="kn">import</span> <span class="n">AutoAI</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.experiment</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoAI</span>
 
 <span class="n">experiment</span> <span class="o">=</span> <span class="n">AutoAI</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
 
@@ -8169,7 +8170,7 @@ Numeric range [a,b] from a to b inclusive.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [50]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
@@ -8183,7 +8184,7 @@ Numeric range [a,b] from a to b inclusive.</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[50]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[29]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'name': 'Credit Risk Prediction and bias detection - AutoAI',
  'desc': '',
@@ -8239,9 +8240,10 @@ Numeric range [a,b] from a to b inclusive.</p>
  'time_ordered_data': None,
  'feature_selector_mode': None,
  'fairness_info': {'protected_attributes': [{'feature': 'Sex',
-    'reference_group': ['male']},
+    'reference_group': ['male'],
+    'monitored_group': ['female']},
    {'feature': 'Age',
-    'reference_group': [[20, 40]],
+    'reference_group': [[20, 40], [60, 90]],
     'monitored_group': [[41, 59]]}],
   'favorable_labels': ['No Risk']},
  'run_id': None}</pre>
@@ -8261,18 +8263,31 @@ Numeric range [a,b] from a to b inclusive.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">run_details</span> <span class="o">=</span> <span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
             <span class="n">training_data_reference</span><span class="o">=</span><span class="n">training_data_reference</span><span class="p">,</span>
             <span class="n">background_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Training job d3960f9e-ed4e-458b-bdda-74af21e53561 completed: 100%|████████| [05:11&lt;00:00,  3.11s/it]
+</pre>
 </div>
 </div>
 </div>
@@ -8293,7 +8308,7 @@ Numeric range [a,b] from a to b inclusive.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_run_status</span><span class="p">()</span>
@@ -8307,9 +8322,9 @@ Numeric range [a,b] from a to b inclusive.</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[31]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>'failed'</pre>
+<pre>'completed'</pre>
 </div>
 </div>
 </div>
@@ -8330,7 +8345,7 @@ Numeric range [a,b] from a to b inclusive.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">training_id</span> <span class="o">=</span> <span class="n">run_details</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
@@ -8351,12 +8366,12 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -8365,12 +8380,549 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[33]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Enhancements</th>
+<th>Estimator</th>
+<th>training_accuracy_(optimized)</th>
+<th>training_disparate_impact_Sex</th>
+<th>training_disparate_impact</th>
+<th>training_roc_auc</th>
+<th>holdout_disparate_impact_Sex</th>
+<th>holdout_average_precision</th>
+<th>holdout_log_loss</th>
+<th>holdout_roc_auc</th>
+<th>...</th>
+<th>training_precision</th>
+<th>holdout_accuracy</th>
+<th>holdout_balanced_accuracy</th>
+<th>training_recall</th>
+<th>holdout_f1</th>
+<th>holdout_disparate_impact</th>
+<th>training_balanced_accuracy</th>
+<th>holdout_disparate_impact_Age</th>
+<th>training_f1</th>
+<th>training_disparate_impact_Age</th>
+</tr>
+<tr>
+<th>Pipeline Name</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Pipeline_6</th>
+<td></td>
+<td>RandomForestClassifier</td>
+<td>0.765781</td>
+<td>1.105232</td>
+<td>0.178571</td>
+<td>0.819032</td>
+<td>1.130991</td>
+<td>0.453480</td>
+<td>0.260547</td>
+<td>0.825085</td>
+<td>...</td>
+<td>0.810360</td>
+<td>0.923848</td>
+<td>0.913011</td>
+<td>0.845636</td>
+<td>0.942943</td>
+<td>0.481636</td>
+<td>0.726539</td>
+<td>0.514652</td>
+<td>0.827574</td>
+<td>0.216177</td>
+</tr>
+<tr>
+<th>Pipeline_7</th>
+<td>HPO</td>
+<td>RandomForestClassifier</td>
+<td>0.765781</td>
+<td>1.105232</td>
+<td>0.178571</td>
+<td>0.819032</td>
+<td>1.130991</td>
+<td>0.453480</td>
+<td>0.260547</td>
+<td>0.825085</td>
+<td>...</td>
+<td>0.810360</td>
+<td>0.923848</td>
+<td>0.913011</td>
+<td>0.845636</td>
+<td>0.942943</td>
+<td>0.481636</td>
+<td>0.726539</td>
+<td>0.514652</td>
+<td>0.827574</td>
+<td>0.216177</td>
+</tr>
+<tr>
+<th>Pipeline_10</th>
+<td>HPO, FE, HPO, Ensemble</td>
+<td>BatchedTreeEnsembleClassifier(RandomForestClas...</td>
+<td>0.777827</td>
+<td>1.104047</td>
+<td>0.453209</td>
+<td>0.829532</td>
+<td>1.145059</td>
+<td>0.454145</td>
+<td>0.259776</td>
+<td>0.799717</td>
+<td>...</td>
+<td>0.816122</td>
+<td>0.915832</td>
+<td>0.904011</td>
+<td>0.859393</td>
+<td>0.936937</td>
+<td>0.506985</td>
+<td>0.737750</td>
+<td>0.516910</td>
+<td>0.837181</td>
+<td>0.265509</td>
+</tr>
+<tr>
+<th>Pipeline_9</th>
+<td>HPO, FE, HPO</td>
+<td>RandomForestClassifier</td>
+<td>0.777827</td>
+<td>1.104047</td>
+<td>0.453209</td>
+<td>0.829532</td>
+<td>1.145059</td>
+<td>0.454145</td>
+<td>0.259776</td>
+<td>0.799717</td>
+<td>...</td>
+<td>0.816122</td>
+<td>0.915832</td>
+<td>0.904011</td>
+<td>0.859393</td>
+<td>0.936937</td>
+<td>0.506985</td>
+<td>0.737750</td>
+<td>0.516910</td>
+<td>0.837181</td>
+<td>0.265509</td>
+</tr>
+<tr>
+<th>Pipeline_8</th>
+<td>HPO, FE</td>
+<td>RandomForestClassifier</td>
+<td>0.777827</td>
+<td>1.104047</td>
+<td>0.453209</td>
+<td>0.829532</td>
+<td>1.145059</td>
+<td>0.454145</td>
+<td>0.259776</td>
+<td>0.799717</td>
+<td>...</td>
+<td>0.816122</td>
+<td>0.915832</td>
+<td>0.904011</td>
+<td>0.859393</td>
+<td>0.936937</td>
+<td>0.506985</td>
+<td>0.737750</td>
+<td>0.516910</td>
+<td>0.837181</td>
+<td>0.265509</td>
+</tr>
+<tr>
+<th>Pipeline_1</th>
+<td></td>
+<td>SnapRandomForestClassifier</td>
+<td>0.783181</td>
+<td>1.084645</td>
+<td>0.000000</td>
+<td>0.825818</td>
+<td>0.999727</td>
+<td>0.457421</td>
+<td>0.308564</td>
+<td>0.816896</td>
+<td>...</td>
+<td>0.802792</td>
+<td>0.889780</td>
+<td>0.845745</td>
+<td>0.893288</td>
+<td>0.921986</td>
+<td>0.428484</td>
+<td>0.729082</td>
+<td>0.522214</td>
+<td>0.845608</td>
+<td>0.076768</td>
+</tr>
+<tr>
+<th>Pipeline_15</th>
+<td></td>
+<td>XGBClassifier</td>
+<td>0.795228</td>
+<td>1.022807</td>
+<td>0.000000</td>
+<td>0.842679</td>
+<td>0.977185</td>
+<td>0.465626</td>
+<td>0.347874</td>
+<td>0.841624</td>
+<td>...</td>
+<td>0.813766</td>
+<td>0.833667</td>
+<td>0.782745</td>
+<td>0.897315</td>
+<td>0.882270</td>
+<td>0.359572</td>
+<td>0.745069</td>
+<td>0.495790</td>
+<td>0.853488</td>
+<td>0.037335</td>
+</tr>
+<tr>
+<th>Pipeline_2</th>
+<td>HPO</td>
+<td>SnapRandomForestClassifier</td>
+<td>0.799911</td>
+<td>0.990528</td>
+<td>0.000000</td>
+<td>0.840621</td>
+<td>0.978489</td>
+<td>0.478569</td>
+<td>0.421813</td>
+<td>0.834572</td>
+<td>...</td>
+<td>0.800074</td>
+<td>0.807615</td>
+<td>0.743823</td>
+<td>0.931883</td>
+<td>0.866295</td>
+<td>0.320073</td>
+<td>0.735077</td>
+<td>0.455809</td>
+<td>0.860940</td>
+<td>0.069186</td>
+</tr>
+<tr>
+<th>Pipeline_16</th>
+<td>HPO</td>
+<td>XGBClassifier</td>
+<td>0.806381</td>
+<td>0.999427</td>
+<td>0.000000</td>
+<td>0.849589</td>
+<td>1.042510</td>
+<td>0.480182</td>
+<td>0.433762</td>
+<td>0.837494</td>
+<td>...</td>
+<td>0.807340</td>
+<td>0.807615</td>
+<td>0.745311</td>
+<td>0.930873</td>
+<td>0.865922</td>
+<td>0.450967</td>
+<td>0.745216</td>
+<td>0.483898</td>
+<td>0.864715</td>
+<td>0.071577</td>
+</tr>
+<tr>
+<th>Pipeline_5</th>
+<td>HPO, FE, HPO, Ensemble</td>
+<td>BatchedTreeEnsembleClassifier(SnapRandomForest...</td>
+<td>0.802588</td>
+<td>0.968927</td>
+<td>0.000000</td>
+<td>0.845181</td>
+<td>0.991656</td>
+<td>0.479860</td>
+<td>0.424478</td>
+<td>0.835780</td>
+<td>...</td>
+<td>0.802495</td>
+<td>0.803607</td>
+<td>0.731883</td>
+<td>0.932552</td>
+<td>0.865385</td>
+<td>0.422642</td>
+<td>0.738736</td>
+<td>0.528355</td>
+<td>0.862640</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Pipeline_4</th>
+<td>HPO, FE, HPO</td>
+<td>SnapRandomForestClassifier</td>
+<td>0.802588</td>
+<td>0.968927</td>
+<td>0.000000</td>
+<td>0.845181</td>
+<td>0.991656</td>
+<td>0.479860</td>
+<td>0.424478</td>
+<td>0.835780</td>
+<td>...</td>
+<td>0.802495</td>
+<td>0.803607</td>
+<td>0.731883</td>
+<td>0.932552</td>
+<td>0.865385</td>
+<td>0.422642</td>
+<td>0.738736</td>
+<td>0.528355</td>
+<td>0.862640</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Pipeline_3</th>
+<td>HPO, FE</td>
+<td>SnapRandomForestClassifier</td>
+<td>0.802588</td>
+<td>0.968927</td>
+<td>0.000000</td>
+<td>0.845181</td>
+<td>0.991656</td>
+<td>0.479860</td>
+<td>0.424478</td>
+<td>0.835780</td>
+<td>...</td>
+<td>0.802495</td>
+<td>0.803607</td>
+<td>0.731883</td>
+<td>0.932552</td>
+<td>0.865385</td>
+<td>0.422642</td>
+<td>0.738736</td>
+<td>0.528355</td>
+<td>0.862640</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Pipeline_17</th>
+<td>HPO, FE</td>
+<td>XGBClassifier</td>
+<td>0.799019</td>
+<td>1.001790</td>
+<td>0.000000</td>
+<td>0.845268</td>
+<td>1.024233</td>
+<td>0.475714</td>
+<td>0.426720</td>
+<td>0.839406</td>
+<td>...</td>
+<td>0.803854</td>
+<td>0.801603</td>
+<td>0.739305</td>
+<td>0.922820</td>
+<td>0.861538</td>
+<td>0.407455</td>
+<td>0.738188</td>
+<td>0.469076</td>
+<td>0.859237</td>
+<td>0.035563</td>
+</tr>
+<tr>
+<th>Pipeline_18</th>
+<td>HPO, FE, HPO</td>
+<td>XGBClassifier</td>
+<td>0.799019</td>
+<td>1.001790</td>
+<td>0.000000</td>
+<td>0.845268</td>
+<td>1.024233</td>
+<td>0.475714</td>
+<td>0.426720</td>
+<td>0.839406</td>
+<td>...</td>
+<td>0.803854</td>
+<td>0.801603</td>
+<td>0.739305</td>
+<td>0.922820</td>
+<td>0.861538</td>
+<td>0.407455</td>
+<td>0.738188</td>
+<td>0.469076</td>
+<td>0.859237</td>
+<td>0.035563</td>
+</tr>
+<tr>
+<th>Pipeline_19</th>
+<td>HPO, FE, HPO, Ensemble</td>
+<td>BatchedTreeEnsembleClassifier(XGBClassifier)</td>
+<td>0.799019</td>
+<td>1.001790</td>
+<td>0.000000</td>
+<td>0.845268</td>
+<td>1.024233</td>
+<td>0.475714</td>
+<td>0.426720</td>
+<td>0.839406</td>
+<td>...</td>
+<td>0.803854</td>
+<td>0.801603</td>
+<td>0.739305</td>
+<td>0.922820</td>
+<td>0.861538</td>
+<td>0.407455</td>
+<td>0.738188</td>
+<td>0.469076</td>
+<td>0.859237</td>
+<td>0.035563</td>
+</tr>
+<tr>
+<th>Pipeline_13</th>
+<td>HPO, FE</td>
+<td>SnapSVMClassifier</td>
+<td>0.748386</td>
+<td>1.241903</td>
+<td>0.000000</td>
+<td>0.831162</td>
+<td>1.210282</td>
+<td>0.493041</td>
+<td>4.906590</td>
+<td>0.821928</td>
+<td>...</td>
+<td>0.847824</td>
+<td>0.755511</td>
+<td>0.749306</td>
+<td>0.757711</td>
+<td>0.806962</td>
+<td>0.244173</td>
+<td>0.743804</td>
+<td>0.196287</td>
+<td>0.800107</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Pipeline_14</th>
+<td>HPO, FE, HPO</td>
+<td>SnapSVMClassifier</td>
+<td>0.748386</td>
+<td>1.241903</td>
+<td>0.000000</td>
+<td>0.831162</td>
+<td>1.210282</td>
+<td>0.493041</td>
+<td>4.906590</td>
+<td>0.821928</td>
+<td>...</td>
+<td>0.847824</td>
+<td>0.755511</td>
+<td>0.749306</td>
+<td>0.757711</td>
+<td>0.806962</td>
+<td>0.244173</td>
+<td>0.743804</td>
+<td>0.196287</td>
+<td>0.800107</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Pipeline_11</th>
+<td></td>
+<td>SnapSVMClassifier</td>
+<td>0.747047</td>
+<td>1.273678</td>
+<td>0.000000</td>
+<td>0.827746</td>
+<td>1.243044</td>
+<td>0.490284</td>
+<td>4.515573</td>
+<td>0.812063</td>
+<td>...</td>
+<td>0.850913</td>
+<td>0.733467</td>
+<td>0.741667</td>
+<td>0.751001</td>
+<td>0.781609</td>
+<td>0.265660</td>
+<td>0.745108</td>
+<td>0.180835</td>
+<td>0.797836</td>
+<td>0.072856</td>
+</tr>
+<tr>
+<th>Pipeline_12</th>
+<td>HPO</td>
+<td>SnapSVMClassifier</td>
+<td>0.747047</td>
+<td>1.273678</td>
+<td>0.000000</td>
+<td>0.827746</td>
+<td>1.243044</td>
+<td>0.490284</td>
+<td>4.515573</td>
+<td>0.812063</td>
+<td>...</td>
+<td>0.850913</td>
+<td>0.733467</td>
+<td>0.741667</td>
+<td>0.751001</td>
+<td>0.781609</td>
+<td>0.265660</td>
+<td>0.745108</td>
+<td>0.180835</td>
+<td>0.797836</td>
+<td>0.072856</td>
+</tr>
+</tbody>
+</table>
+<p>19 rows × 24 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">best_pipeline</span> <span class="o">=</span> <span class="n">pipeline_optimizer</span><span class="o">.</span><span class="n">get_pipeline</span><span class="p">()</span>
@@ -8390,16 +8942,28 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">best_pipeline</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedSVG jp-OutputArea-output" data-mime-type="image/svg+xml" tabindex="0">
+<img alt="No description has been provided for this image" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDEwLjAuMSAoMjAyNDAyMTAuMjE1OCkKIC0tPgo8IS0tIFRpdGxlOiBjbHVzdGVyOihyb290KSBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMTE1N3B0IiBoZWlnaHQ9IjE2M3B0Igogdmlld0JveD0iMC4wMCAwLjAwIDExNTYuNzkgMTYzLjQ4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSg0IDE1OS40OCkiPgo8dGl0bGU+Y2x1c3Rlcjoocm9vdCk8L3RpdGxlPgo8ZyBpZD0iYV9ncmFwaDAiPjxhIHhsaW5rOnRpdGxlPSIocm9vdCkgPSAuLi4iPgo8cG9seWdvbiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJub25lIiBwb2ludHM9Ii00LDQgLTQsLTE1OS40OCAxMTUyLjc5LC0xNTkuNDggMTE1Mi43OSw0IC00LDQiLz4KPC9hPgo8L2c+CjwhLS0gbnVtcHlfY29sdW1uX3NlbGVjdG9yXzAgLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bnVtcHlfY29sdW1uX3NlbGVjdG9yXzA8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMSI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLmF1dG9haV9saWJzLm51bXB5X2NvbHVtbl9zZWxlY3Rvci5odG1sIiB4bGluazp0aXRsZT0ibnVtcHlfY29sdW1uX3NlbGVjdG9yXzAgPSBOdW1weUNvbHVtblNlbGVjdG9yKGNvbHVtbnM9WzAsIDEsIDIsIDMsIDUsIDYsIDcsIDgsIDksIDEwLCAxMSwgMTIsIDEzLCAxNCwgMTUsIDE2LCAxNywgMTgsIDE5XSkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSIzMy4xNiIgY3k9Ii0xMTQuMjQiIHJ4PSIzMy4xNiIgcnk9IjMxLjY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjMzLjE2IiB5PSItMTI0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPk51bXB5JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjMzLjE2IiB5PSItMTEwLjU0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNvbHVtbiYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzMy4xNiIgeT0iLTk3LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlNlbGVjdG9yPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIGNvbXByZXNzX3N0cmluZ3MgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Y29tcHJlc3Nfc3RyaW5nczwvdGl0bGU+CjxnIGlkPSJhX25vZGUyIj48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMuY29tcHJlc3Nfc3RyaW5ncy5odG1sIiB4bGluazp0aXRsZT0iY29tcHJlc3Nfc3RyaW5ncyA9IENvbXByZXNzU3RyaW5ncyhjb21wcmVzc190eXBlPSYjMzk7aGFzaCYjMzk7LCBkdHlwZXNfbGlzdD1bJiMzOTtjaGFyX3N0ciYjMzk7LCAmIzM5O2Zsb2F0X2ludF9udW0mIzM5OywgJiMzOTtjaGFyX3N0ciYjMzk7LCAmIzM5O2NoYXJfc3RyJiMzOTssICYjMzk7Y2hhcl9zdHImIzM5OywgJiMzOTtjaGFyX3N0ciYjMzk7LCAmIzM5O2Zsb2F0X2ludF9udW0mIzM5OywgJiMzOTtjaGFyX3N0ciYjMzk7LCAmIzM5O2NoYXJfc3RyJiMzOTssICYjMzk7ZmxvYXRfaW50X251bSYjMzk7LCAmIzM5O2NoYXJfc3RyJiMzOTssICYjMzk7ZmxvYXRfaW50X251bSYjMzk7LCAmIzM5O2NoYXJfc3RyJiMzOTssICYjMzk7Y2hhcl9zdHImIzM5OywgJiMzOTtmbG9hdF9pbnRfbnVtJiMzOTssICYjMzk7Y2hhcl9zdHImIzM5OywgLi4uKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjE0Mi4zNiIgY3k9Ii0xMTQuMjQiIHJ4PSI0MC4wNSIgcnk9IjIyLjE1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE0Mi4zNiIgeT0iLTExNy4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5Db21wcmVzcyYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNDIuMzYiIHk9Ii0xMDMuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+U3RyaW5nczwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBudW1weV9jb2x1bW5fc2VsZWN0b3JfMCYjNDU7Jmd0O2NvbXByZXNzX3N0cmluZ3MgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bnVtcHlfY29sdW1uX3NlbGVjdG9yXzAmIzQ1OyZndDtjb21wcmVzc19zdHJpbmdzPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTY2LjYxLC0xMTQuMjRDNzQuMTUsLTExNC4yNCA4Mi4zNiwtMTE0LjI0IDkwLjQ4LC0xMTQuMjQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iOTAuMzEsLTExNy43NCAxMDAuMzEsLTExNC4yNCA5MC4zMSwtMTEwLjc0IDkwLjMxLC0xMTcuNzQiLz4KPC9nPgo8IS0tIG51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMCAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5udW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzA8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMyI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLmF1dG9haV9saWJzLm51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXMuaHRtbCIgeGxpbms6dGl0bGU9Im51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMCA9IE51bXB5UmVwbGFjZU1pc3NpbmdWYWx1ZXMoZmlsbGluZ192YWx1ZXM9ZmxvYXQoJiMzOTtuYW4mIzM5OyksIG1pc3NpbmdfdmFsdWVzPVtdKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjI1My4xNiIgY3k9Ii0xMTQuMjQiIHJ4PSIzNC43NSIgcnk9IjQxLjI0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI1My4xNiIgeT0iLTEzMC43OSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5OdW1weSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTMuMTYiIHk9Ii0xMTcuMjkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+UmVwbGFjZSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTMuMTYiIHk9Ii0xMDMuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+TWlzc2luZyYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTMuMTYiIHk9Ii05MC4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5WYWx1ZXM8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gY29tcHJlc3Nfc3RyaW5ncyYjNDU7Jmd0O251bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMCAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5jb21wcmVzc19zdHJpbmdzJiM0NTsmZ3Q7bnVtcHlfcmVwbGFjZV9taXNzaW5nX3ZhbHVlc18wPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTE4Mi42NCwtMTE0LjI0QzE5MC40MSwtMTE0LjI0IDE5OC42MywtMTE0LjI0IDIwNi41OSwtMTE0LjI0Ii8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjIwNi40NywtMTE3Ljc0IDIxNi40NywtMTE0LjI0IDIwNi40NywtMTEwLjc0IDIwNi40NywtMTE3Ljc0Ii8+CjwvZz4KPCEtLSBudW1weV9yZXBsYWNlX3Vua25vd25fdmFsdWVzIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm51bXB5X3JlcGxhY2VfdW5rbm93bl92YWx1ZXM8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlNCI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLmF1dG9haV9saWJzLm51bXB5X3JlcGxhY2VfdW5rbm93bl92YWx1ZXMuaHRtbCIgeGxpbms6dGl0bGU9Im51bXB5X3JlcGxhY2VfdW5rbm93bl92YWx1ZXMgPSBOdW1weVJlcGxhY2VVbmtub3duVmFsdWVzKGZpbGxpbmdfdmFsdWVzPWZsb2F0KCYjMzk7bmFuJiMzOTspLCBmaWxsaW5nX3ZhbHVlc19saXN0PVtmbG9hdCgmIzM5O25hbiYjMzk7KSwgMTAwMDAxLCBmbG9hdCgmIzM5O25hbiYjMzk7KSwgZmxvYXQoJiMzOTtuYW4mIzM5OyksIGZsb2F0KCYjMzk7bmFuJiMzOTspLCBmbG9hdCgmIzM5O25hbiYjMzk7KSwgMTAwMDAxLCBmbG9hdCgmIzM5O25hbiYjMzk7KSwgZmxvYXQoJiMzOTtuYW4mIzM5OyksIDEwMDAwMSwgZmxvYXQoJiMzOTtuYW4mIzM5OyksIDEwMDAwMSwgZmxvYXQoJiMzOTtuYW4mIzM5OyksIGZsb2F0KCYjMzk7bmFuJiMzOTspLCAxMDAwMDEsIGZsb2F0KCYjMzk7bmFuJiMzOTspLCAxMDAwMDEsIC4uLikiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSIzNjIuOSIgY3k9Ii0xMTQuMjQiIHJ4PSIzOC45OSIgcnk9IjQxLjI0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM2Mi45IiB5PSItMTMwLjc5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPk51bXB5JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM2Mi45IiB5PSItMTE3LjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlJlcGxhY2UmIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzYyLjkiIHk9Ii0xMDMuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+VW5rbm93biYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNjIuOSIgeT0iLTkwLjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlZhbHVlczwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBudW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzAmIzQ1OyZndDtudW1weV9yZXBsYWNlX3Vua25vd25fdmFsdWVzIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPm51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMCYjNDU7Jmd0O251bXB5X3JlcGxhY2VfdW5rbm93bl92YWx1ZXM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMjg4LjI1LC0xMTQuMjRDMjk1Ljg4LC0xMTQuMjQgMzA0LjEyLC0xMTQuMjQgMzEyLjIzLC0xMTQuMjQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMzEyLjAyLC0xMTcuNzQgMzIyLjAyLC0xMTQuMjQgMzEyLjAyLC0xMTAuNzQgMzEyLjAyLC0xMTcuNzQiLz4KPC9nPgo8IS0tIGJvb2xlYW4yZmxvYXQgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Ym9vbGVhbjJmbG9hdDwvdGl0bGU+CjxnIGlkPSJhX25vZGU1Ij48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMuYm9vbGVhbjJmbG9hdC5odG1sIiB4bGluazp0aXRsZT0iYm9vbGVhbjJmbG9hdCA9IGJvb2xlYW4yZmxvYXQoKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjQ3Ny4zOSIgY3k9Ii0xMTAuMjQiIHJ4PSIzOS41IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDc3LjM5IiB5PSItMTA2LjU0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPmJvb2xlYW4yZmxvYXQ8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gbnVtcHlfcmVwbGFjZV91bmtub3duX3ZhbHVlcyYjNDU7Jmd0O2Jvb2xlYW4yZmxvYXQgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bnVtcHlfcmVwbGFjZV91bmtub3duX3ZhbHVlcyYjNDU7Jmd0O2Jvb2xlYW4yZmxvYXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNDAyLjMsLTExMi44N0M0MTAuMDgsLTExMi42IDQxOC4zOCwtMTEyLjMgNDI2LjUsLTExMi4wMSIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI0MjYuNCwtMTE1LjUyIDQzNi4yNywtMTExLjY3IDQyNi4xNSwtMTA4LjUyIDQyNi40LC0xMTUuNTIiLz4KPC9nPgo8IS0tIGNhdF9pbXB1dGVyIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmNhdF9pbXB1dGVyPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTYiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5jYXRfaW1wdXRlci5odG1sIiB4bGluazp0aXRsZT0iY2F0X2ltcHV0ZXIgPSBDYXRJbXB1dGVyKG1pc3NpbmdfdmFsdWVzPWZsb2F0KCYjMzk7bmFuJiMzOTspLCBza2xlYXJuX3ZlcnNpb25fZmFtaWx5PSYjMzk7MSYjMzk7LCBzdHJhdGVneT0mIzM5O21vc3RfZnJlcXVlbnQmIzM5OykiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSI1ODMuMzkiIGN5PSItMTA4LjI0IiByeD0iMzAuNSIgcnk9IjIyLjE1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU4My4zOSIgeT0iLTExMS4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5DYXQmIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTgzLjM5IiB5PSItOTcuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+SW1wdXRlcjwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBib29sZWFuMmZsb2F0JiM0NTsmZ3Q7Y2F0X2ltcHV0ZXIgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Ym9vbGVhbjJmbG9hdCYjNDU7Jmd0O2NhdF9pbXB1dGVyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTUxNy4xMSwtMTA5LjQ5QzUyNC45NSwtMTA5LjM0IDUzMy4yMiwtMTA5LjE4IDU0MS4xNCwtMTA5LjAzIi8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjU0MC45NiwtMTEyLjU0IDU1MC44OSwtMTA4Ljg0IDU0MC44MywtMTA1LjU0IDU0MC45NiwtMTEyLjU0Ii8+CjwvZz4KPCEtLSBjYXRfZW5jb2RlciAtLT4KPGcgaWQ9Im5vZGU3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5jYXRfZW5jb2RlcjwvdGl0bGU+CjxnIGlkPSJhX25vZGU3Ij48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMuY2F0X2VuY29kZXIuaHRtbCIgeGxpbms6dGl0bGU9ImNhdF9lbmNvZGVyID0gQ2F0RW5jb2RlcihkdHlwZT1ucC5mbG9hdDY0LCBoYW5kbGVfdW5rbm93bj0mIzM5O2Vycm9yJiMzOTssIHNrbGVhcm5fdmVyc2lvbl9mYW1pbHk9JiMzOTsxJiMzOTssIGVuY29kaW5nPSYjMzk7b3JkaW5hbCYjMzk7LCBjYXRlZ29yaWVzPSYjMzk7YXV0byYjMzk7KSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjY4Ni4yMyIgY3k9Ii0xMDYuMjQiIHJ4PSIzMi4xIiByeT0iMjIuMTUiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNjg2LjIzIiB5PSItMTA5LjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNhdCYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2ODYuMjMiIHk9Ii05NS43OSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5FbmNvZGVyPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIGNhdF9pbXB1dGVyJiM0NTsmZ3Q7Y2F0X2VuY29kZXIgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Y2F0X2ltcHV0ZXImIzQ1OyZndDtjYXRfZW5jb2RlcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik02MTQuMzcsLTEwNy42NEM2MjMuMjEsLTEwNy40NyA2MzMuMDUsLTEwNy4yNyA2NDIuNTEsLTEwNy4wOSIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI2NDIuMzUsLTExMC41OSA2NTIuMjcsLTEwNi44OSA2NDIuMjEsLTEwMy41OSA2NDIuMzUsLTExMC41OSIvPgo8L2c+CjwhLS0gZmxvYXQzMl90cmFuc2Zvcm1fMCAtLT4KPGcgaWQ9Im5vZGU4IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5mbG9hdDMyX3RyYW5zZm9ybV8wPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTgiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5mbG9hdDMyX3RyYW5zZm9ybS5odG1sIiB4bGluazp0aXRsZT0iZmxvYXQzMl90cmFuc2Zvcm1fMCA9IGZsb2F0MzJfdHJhbnNmb3JtKCkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSI3OTQuOTEiIGN5PSItMTAyLjI0IiByeD0iMzYuMzQiIHJ5PSIyMi4xNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3OTQuOTEiIHk9Ii0xMDUuMjkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+ZmxvYXQzMl8mIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzk0LjkxIiB5PSItOTEuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+dHJhbnNmb3JtPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIGNhdF9lbmNvZGVyJiM0NTsmZ3Q7ZmxvYXQzMl90cmFuc2Zvcm1fMCAtLT4KPGcgaWQ9ImVkZ2U3IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5jYXRfZW5jb2RlciYjNDU7Jmd0O2Zsb2F0MzJfdHJhbnNmb3JtXzA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNzE4LjY2LC0xMDUuMDZDNzI3LjQ5LC0xMDQuNzMgNzM3LjI4LC0xMDQuMzYgNzQ2LjgxLC0xMDQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iNzQ2Ljg0LC0xMDcuNTEgNzU2LjcsLTEwMy42MyA3NDYuNTcsLTEwMC41MSA3NDYuODQsLTEwNy41MSIvPgo8L2c+CjwhLS0gY29uY2F0X2ZlYXR1cmVzIC0tPgo8ZyBpZD0ibm9kZTE1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5jb25jYXRfZmVhdHVyZXM8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMTUiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5yYXNsLmNvbmNhdF9mZWF0dXJlcy5odG1sIiB4bGluazp0aXRsZT0iY29uY2F0X2ZlYXR1cmVzID0gQ29uY2F0RmVhdHVyZXMoKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjkwMC40IiBjeT0iLTc0LjI0IiByeD0iMzMuMTYiIHJ5PSIyMi4xNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5MDAuNCIgeT0iLTc3LjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNvbmNhdCYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5MDAuNCIgeT0iLTYzLjc5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkZlYXR1cmVzPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIGZsb2F0MzJfdHJhbnNmb3JtXzAmIzQ1OyZndDtjb25jYXRfZmVhdHVyZXMgLS0+CjxnIGlkPSJlZGdlMTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmZsb2F0MzJfdHJhbnNmb3JtXzAmIzQ1OyZndDtjb25jYXRfZmVhdHVyZXM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNODI4LjY1LC05My4zOEM4MzguMTIsLTkwLjgyIDg0OC41NywtODcuOTkgODU4LjQ3LC04NS4zMSIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI4NTkuMTMsLTg4Ljc2IDg2Ny44NywtODIuNzcgODU3LjMsLTgyIDg1OS4xMywtODguNzYiLz4KPC9nPgo8IS0tIG51bXB5X2NvbHVtbl9zZWxlY3Rvcl8xIC0tPgo8ZyBpZD0ibm9kZTkiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm51bXB5X2NvbHVtbl9zZWxlY3Rvcl8xPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTkiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5udW1weV9jb2x1bW5fc2VsZWN0b3IuaHRtbCIgeGxpbms6dGl0bGU9Im51bXB5X2NvbHVtbl9zZWxlY3Rvcl8xID0gTnVtcHlDb2x1bW5TZWxlY3Rvcihjb2x1bW5zPVs0XSkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSIyNTMuMTYiIGN5PSItMzQuMjQiIHJ4PSIzMy4xNiIgcnk9IjMxLjY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI1My4xNiIgeT0iLTQ0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPk51bXB5JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI1My4xNiIgeT0iLTMwLjU0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNvbHVtbiYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTMuMTYiIHk9Ii0xNy4wNCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5TZWxlY3RvcjwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBmbG9hdF9zdHIyX2Zsb2F0IC0tPgo8ZyBpZD0ibm9kZTEwIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5mbG9hdF9zdHIyX2Zsb2F0PC90aXRsZT4KPGcgaWQ9ImFfbm9kZTEwIj48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMuZmxvYXRfc3RyMl9mbG9hdC5odG1sIiB4bGluazp0aXRsZT0iZmxvYXRfc3RyMl9mbG9hdCA9IEZsb2F0U3RyMkZsb2F0KGR0eXBlc19saXN0PVsmIzM5O2Zsb2F0X2ludF9udW0mIzM5O10sIG1pc3NpbmdfdmFsdWVzX3JlZmVyZW5jZV9saXN0PVtdKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjM2Mi45IiBjeT0iLTM0LjI0IiByeD0iMjciIHJ5PSIzMS42OSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNjIuOSIgeT0iLTQ0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkZsb2F0JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM2Mi45IiB5PSItMzAuNTQiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+U3RyMiYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNjIuOSIgeT0iLTE3LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkZsb2F0PC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIG51bXB5X2NvbHVtbl9zZWxlY3Rvcl8xJiM0NTsmZ3Q7ZmxvYXRfc3RyMl9mbG9hdCAtLT4KPGcgaWQ9ImVkZ2U4IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5udW1weV9jb2x1bW5fc2VsZWN0b3JfMSYjNDU7Jmd0O2Zsb2F0X3N0cjJfZmxvYXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMjg2Ljc4LC0zNC4yNEMyOTguNjEsLTM0LjI0IDMxMi4wNiwtMzQuMjQgMzI0LjI4LC0zNC4yNCIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSIzMjQuMDIsLTM3Ljc0IDMzNC4wMiwtMzQuMjQgMzI0LjAyLC0zMC43NCAzMjQuMDIsLTM3Ljc0Ii8+CjwvZz4KPCEtLSBudW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzEgLS0+CjxnIGlkPSJub2RlMTEiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMTwvdGl0bGU+CjxnIGlkPSJhX25vZGUxMSI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLmF1dG9haV9saWJzLm51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXMuaHRtbCIgeGxpbms6dGl0bGU9Im51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMSA9IE51bXB5UmVwbGFjZU1pc3NpbmdWYWx1ZXMoZmlsbGluZ192YWx1ZXM9ZmxvYXQoJiMzOTtuYW4mIzM5OyksIG1pc3NpbmdfdmFsdWVzPVtdKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjQ3Ny4zOSIgY3k9Ii00MS4yNCIgcng9IjM0Ljc1IiByeT0iNDEuMjQiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDc3LjM5IiB5PSItNTcuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+TnVtcHkmIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDc3LjM5IiB5PSItNDQuMjkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+UmVwbGFjZSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0NzcuMzkiIHk9Ii0zMC43OSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5NaXNzaW5nJiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ3Ny4zOSIgeT0iLTE3LjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlZhbHVlczwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBmbG9hdF9zdHIyX2Zsb2F0JiM0NTsmZ3Q7bnVtcHlfcmVwbGFjZV9taXNzaW5nX3ZhbHVlc18xIC0tPgo8ZyBpZD0iZWRnZTkiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmZsb2F0X3N0cjJfZmxvYXQmIzQ1OyZndDtudW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMzkwLjI3LC0zNS44OEM0MDIuNDUsLTM2LjY0IDQxNy4yNSwtMzcuNTYgNDMxLjEzLC0zOC40MiIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI0MzAuNzgsLTQxLjkxIDQ0MC45OCwtMzkuMDQgNDMxLjIyLC0zNC45MiA0MzAuNzgsLTQxLjkxIi8+CjwvZz4KPCEtLSBudW1faW1wdXRlciAtLT4KPGcgaWQ9Im5vZGUxMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bnVtX2ltcHV0ZXI8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMTIiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5udW1faW1wdXRlci5odG1sIiB4bGluazp0aXRsZT0ibnVtX2ltcHV0ZXIgPSBOdW1JbXB1dGVyKG1pc3NpbmdfdmFsdWVzPWZsb2F0KCYjMzk7bmFuJiMzOTspLCBzdHJhdGVneT0mIzM5O21lZGlhbiYjMzk7KSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjU4My4zOSIgY3k9Ii00My4yNCIgcng9IjMwLjUiIHJ5PSIyMi4xNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1ODMuMzkiIHk9Ii00Ni4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5OdW0mIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTgzLjM5IiB5PSItMzIuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+SW1wdXRlcjwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBudW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzEmIzQ1OyZndDtudW1faW1wdXRlciAtLT4KPGcgaWQ9ImVkZ2UxMCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bnVtcHlfcmVwbGFjZV9taXNzaW5nX3ZhbHVlc18xJiM0NTsmZ3Q7bnVtX2ltcHV0ZXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNTEyLjQ0LC00MS44OUM1MjEuNjIsLTQyLjA3IDUzMS42NSwtNDIuMjYgNTQxLjE4LC00Mi40NSIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI1NDAuODgsLTQ1Ljk0IDU1MC45NSwtNDIuNjMgNTQxLjAyLC0zOC45NCA1NDAuODgsLTQ1Ljk0Ii8+CjwvZz4KPCEtLSBvcHRfc3RhbmRhcmRfc2NhbGVyIC0tPgo8ZyBpZD0ibm9kZTEzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5vcHRfc3RhbmRhcmRfc2NhbGVyPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTEzIj48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMub3B0X3N0YW5kYXJkX3NjYWxlci5odG1sIiB4bGluazp0aXRsZT0ib3B0X3N0YW5kYXJkX3NjYWxlciA9IE9wdFN0YW5kYXJkU2NhbGVyKHVzZV9zY2FsZXJfZmxhZz1GYWxzZSkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSI2ODYuMjMiIGN5PSItNDQuMjQiIHJ4PSIzNi4zNCIgcnk9IjMxLjY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjY4Ni4yMyIgeT0iLTU0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPk9wdCYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2ODYuMjMiIHk9Ii00MC41NCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5TdGFuZGFyZCYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2ODYuMjMiIHk9Ii0yNy4wNCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5TY2FsZXI8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gbnVtX2ltcHV0ZXImIzQ1OyZndDtvcHRfc3RhbmRhcmRfc2NhbGVyIC0tPgo8ZyBpZD0iZWRnZTExIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5udW1faW1wdXRlciYjNDU7Jmd0O29wdF9zdGFuZGFyZF9zY2FsZXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNjE0LjM3LC00My41NEM2MjEuODcsLTQzLjYxIDYzMC4wOSwtNDMuNjkgNjM4LjIsLTQzLjc3Ii8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjYzNy45NSwtNDcuMjcgNjQ3Ljk4LC00My44NyA2MzguMDIsLTQwLjI3IDYzNy45NSwtNDcuMjciLz4KPC9nPgo8IS0tIGZsb2F0MzJfdHJhbnNmb3JtXzEgLS0+CjxnIGlkPSJub2RlMTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmZsb2F0MzJfdHJhbnNmb3JtXzE8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMTQiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5mbG9hdDMyX3RyYW5zZm9ybS5odG1sIiB4bGluazp0aXRsZT0iZmxvYXQzMl90cmFuc2Zvcm1fMSA9IGZsb2F0MzJfdHJhbnNmb3JtKCkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSI3OTQuOTEiIGN5PSItNDkuMjQiIHJ4PSIzNi4zNCIgcnk9IjIyLjE1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijc5NC45MSIgeT0iLTUyLjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPmZsb2F0MzJfJiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijc5NC45MSIgeT0iLTM4Ljc5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPnRyYW5zZm9ybTwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBvcHRfc3RhbmRhcmRfc2NhbGVyJiM0NTsmZ3Q7ZmxvYXQzMl90cmFuc2Zvcm1fMSAtLT4KPGcgaWQ9ImVkZ2UxMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+b3B0X3N0YW5kYXJkX3NjYWxlciYjNDU7Jmd0O2Zsb2F0MzJfdHJhbnNmb3JtXzE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNzIyLjc1LC00NS45QzczMC41LC00Ni4yNyA3MzguODEsLTQ2LjY2IDc0Ni45MiwtNDcuMDQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iNzQ2LjUxLC01MC41MiA3NTYuNjcsLTQ3LjQ5IDc0Ni44NCwtNDMuNTMgNzQ2LjUxLC01MC41MiIvPgo8L2c+CjwhLS0gZmxvYXQzMl90cmFuc2Zvcm1fMSYjNDU7Jmd0O2NvbmNhdF9mZWF0dXJlcyAtLT4KPGcgaWQ9ImVkZ2UxNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZmxvYXQzMl90cmFuc2Zvcm1fMSYjNDU7Jmd0O2NvbmNhdF9mZWF0dXJlczwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik04MjkuMjIsLTU3LjI5QzgzOC40LC01OS41IDg0OC40NiwtNjEuOTMgODU4LjAzLC02NC4yNCIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI4NTYuOTQsLTY3LjU4IDg2Ny40OCwtNjYuNTMgODU4LjU4LC02MC43OCA4NTYuOTQsLTY3LjU4Ii8+CjwvZz4KPCEtLSBudW1weV9wZXJtdXRlX2FycmF5IC0tPgo8ZyBpZD0ibm9kZTE2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5udW1weV9wZXJtdXRlX2FycmF5PC90aXRsZT4KPGcgaWQ9ImFfbm9kZTE2Ij48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMubnVtcHlfcGVybXV0ZV9hcnJheS5odG1sIiB4bGluazp0aXRsZT0ibnVtcHlfcGVybXV0ZV9hcnJheSA9IE51bXB5UGVybXV0ZUFycmF5KGF4aXM9MCwgcGVybXV0YXRpb25faW5kaWNlcz1bMCwgMSwgMiwgMywgNSwgNiwgNywgOCwgOSwgMTAsIDExLCAxMiwgMTMsIDE0LCAxNSwgMTYsIDE3LCAxOCwgMTksIDRdKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjEwMDQuMzEiIGN5PSItNzQuMjQiIHJ4PSIzNC43NSIgcnk9IjMxLjY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMDQuMzEiIHk9Ii04NC4wNCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5OdW1weSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDA0LjMxIiB5PSItNzAuNTQiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+UGVybXV0ZSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDA0LjMxIiB5PSItNTcuMDQiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+QXJyYXk8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gY29uY2F0X2ZlYXR1cmVzJiM0NTsmZ3Q7bnVtcHlfcGVybXV0ZV9hcnJheSAtLT4KPGcgaWQ9ImVkZ2UxNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Y29uY2F0X2ZlYXR1cmVzJiM0NTsmZ3Q7bnVtcHlfcGVybXV0ZV9hcnJheTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik05MzMuOTMsLTc0LjI0Qzk0MS42MSwtNzQuMjQgOTQ5LjkzLC03NC4yNCA5NTguMDYsLTc0LjI0Ii8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9Ijk1Ny44MiwtNzcuNzQgOTY3LjgyLC03NC4yNCA5NTcuODIsLTcwLjc0IDk1Ny44MiwtNzcuNzQiLz4KPC9nPgo8IS0tIHJhbmRvbV9mb3Jlc3RfY2xhc3NpZmllciAtLT4KPGcgaWQ9Im5vZGUxNyIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+cmFuZG9tX2ZvcmVzdF9jbGFzc2lmaWVyPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTE3Ij48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuc2tsZWFybi5yYW5kb21fZm9yZXN0X2NsYXNzaWZpZXIuaHRtbCIgeGxpbms6dGl0bGU9InJhbmRvbV9mb3Jlc3RfY2xhc3NpZmllciA9IFJhbmRvbUZvcmVzdENsYXNzaWZpZXIoY2xhc3Nfd2VpZ2h0PSYjMzk7YmFsYW5jZWQmIzM5OywgbWF4X2RlcHRoPTEwLCBuX2VzdGltYXRvcnM9MTAsIG5fam9icz0xLCByYW5kb21fc3RhdGU9MzMpIiB0YXJnZXQ9Il9ibGFuayI+CjxlbGxpcHNlIGZpbGw9IndoaXRlIiBzdHJva2U9ImJsYWNrIiBjeD0iMTExMS45MiIgY3k9Ii03NC4yNCIgcng9IjM2Ljg3IiByeT0iMzEuNjkiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTExMS45MiIgeT0iLTg0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlJhbmRvbSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMTExLjkyIiB5PSItNzAuNTQiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+Rm9yZXN0JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjExMTEuOTIiIHk9Ii01Ny4wNCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5DbGFzc2lmaWVyPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIG51bXB5X3Blcm11dGVfYXJyYXkmIzQ1OyZndDtyYW5kb21fZm9yZXN0X2NsYXNzaWZpZXIgLS0+CjxnIGlkPSJlZGdlMTYiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPm51bXB5X3Blcm11dGVfYXJyYXkmIzQ1OyZndDtyYW5kb21fZm9yZXN0X2NsYXNzaWZpZXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMTAzOS4zMSwtNzQuMjRDMTA0Ny4wMSwtNzQuMjQgMTA1NS4zMywtNzQuMjQgMTA2My40OCwtNzQuMjQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMTA2My4yOSwtNzcuNzQgMTA3My4yOSwtNzQuMjQgMTA2My4yOSwtNzAuNzQgMTA2My4yOSwtNzcuNzQiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo="/>
 </div>
 </div>
 </div>
@@ -8462,17 +9026,29 @@ operator.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">predicted_y</span> <span class="o">=</span> <span class="n">best_pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_X</span><span class="p">)</span>
 <span class="n">predicted_y</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[37]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>array(['No Risk', 'No Risk', 'No Risk', 'No Risk', 'Risk'], dtype=object)</pre>
 </div>
 </div>
 </div>
@@ -8493,13 +9069,13 @@ operator.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">fairness_info_lale</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"protected_attributes"</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s2">"Sex"</span><span class="p">),</span> <span class="s2">"privileged_groups"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'male'</span><span class="p">]},</span>
-                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s2">"Age"</span><span class="p">),</span> <span class="s2">"privileged_groups"</span><span class="p">:</span> <span class="p">[[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span><span class="mi">90</span><span class="p">]]}</span>
+                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s2">"Sex"</span><span class="p">),</span> <span class="s2">"reference_group"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'male'</span><span class="p">]},</span>
+                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s2">"Age"</span><span class="p">),</span> <span class="s2">"reference_group"</span><span class="p">:</span> <span class="p">[[</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span><span class="mi">90</span><span class="p">]]}</span>
             <span class="p">],</span>
             <span class="s2">"favorable_labels"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"No Risk"</span><span class="p">]}</span>
 </pre></div>
@@ -8507,21 +9083,35 @@ operator.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lale.lib.aif360</span> <span class="kn">import</span> <span class="n">disparate_impact</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lale.lib.aif360</span><span class="w"> </span><span class="kn">import</span> <span class="n">disparate_impact</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
 
 <span class="n">disparate_impact_scorer</span> <span class="o">=</span> <span class="n">disparate_impact</span><span class="p">(</span><span class="o">**</span><span class="n">fairness_info_lale</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Accuracy: "</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">predicted_y</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Disparate impact: "</span><span class="p">,</span> <span class="n">disparate_impact_scorer</span><span class="p">(</span><span class="n">best_pipeline</span><span class="p">,</span> <span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">))</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Accuracy:  0.93014853472501
+Disparate impact:  0.6918131000032457
+</pre>
 </div>
 </div>
 </div>
@@ -8571,12 +9161,12 @@ Numeric range [a,b] from a to b inclusive.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">fairness_info_mitigation</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"protected_attributes"</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="s2">"Sex"</span><span class="p">,</span> <span class="s2">"privileged_groups"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'male'</span><span class="p">]}</span>
+                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="s2">"Sex"</span><span class="p">,</span> <span class="s2">"reference_group"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'male'</span><span class="p">],</span> <span class="s2">"monitored_group"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'female'</span><span class="p">]}</span>
             <span class="p">],</span>
             <span class="s2">"favorable_labels"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"No Risk"</span><span class="p">]}</span>
 </pre></div>
@@ -8589,7 +9179,7 @@ Numeric range [a,b] from a to b inclusive.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">experiment_mitigation</span> <span class="o">=</span> <span class="n">AutoAI</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
@@ -8601,7 +9191,6 @@ Numeric range [a,b] from a to b inclusive.</p>
     <span class="n">scoring</span><span class="o">=</span><span class="s2">"accuracy_and_disparate_impact"</span><span class="p">,</span>
     <span class="n">fairness_info</span><span class="o">=</span><span class="n">fairness_info_mitigation</span><span class="p">,</span>
     <span class="n">max_number_of_estimators</span> <span class="o">=</span> <span class="mi">4</span>
-    
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -8619,16 +9208,85 @@ Numeric range [a,b] from a to b inclusive.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pipeline_optimizer_mitigation</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[48]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'name': 'Credit Risk Prediction and bias mitigation - AutoAI',
+ 'desc': '',
+ 'prediction_type': 'binary',
+ 'prediction_column': 'Risk',
+ 'prediction_columns': None,
+ 'timestamp_column_name': None,
+ 'scoring': 'accuracy_and_disparate_impact',
+ 'holdout_size': None,
+ 'max_num_daub_ensembles': 4,
+ 't_shirt_size': 'm',
+ 'train_sample_rows_test_size': None,
+ 'include_only_estimators': None,
+ 'include_batched_ensemble_estimators': None,
+ 'backtest_num': None,
+ 'lookback_window': None,
+ 'forecast_window': None,
+ 'backtest_gap_length': None,
+ 'cognito_transform_names': None,
+ 'csv_separator': ',',
+ 'excel_sheet': None,
+ 'encoding': 'utf-8',
+ 'positive_label': None,
+ 'drop_duplicates': True,
+ 'outliers_columns': None,
+ 'text_processing': None,
+ 'word2vec_feature_number': None,
+ 'daub_give_priority_to_runtime': None,
+ 'text_columns_names': None,
+ 'sampling_type': None,
+ 'sample_size_limit': None,
+ 'sample_rows_limit': None,
+ 'sample_percentage_limit': None,
+ 'number_of_batch_rows': None,
+ 'n_parallel_data_connections': None,
+ 'test_data_csv_separator': ',',
+ 'test_data_excel_sheet': None,
+ 'test_data_encoding': 'utf-8',
+ 'categorical_imputation_strategy': None,
+ 'numerical_imputation_strategy': None,
+ 'numerical_imputation_value': None,
+ 'imputation_threshold': None,
+ 'retrain_on_holdout': True,
+ 'feature_columns': None,
+ 'pipeline_types': None,
+ 'supporting_features_at_forecast': None,
+ 'numerical_columns': None,
+ 'categorical_columns': None,
+ 'confidence_level': None,
+ 'incremental_learning': None,
+ 'early_stop_enabled': None,
+ 'early_stop_window_size': None,
+ 'time_ordered_data': None,
+ 'feature_selector_mode': None,
+ 'fairness_info': {'protected_attributes': [{'feature': 'Sex',
+    'reference_group': ['male'],
+    'monitored_group': ['female']}],
+  'favorable_labels': ['No Risk']},
+ 'run_id': None}</pre>
 </div>
 </div>
 </div>
@@ -8645,18 +9303,31 @@ Numeric range [a,b] from a to b inclusive.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">run_details_mitigation</span> <span class="o">=</span> <span class="n">pipeline_optimizer_mitigation</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
             <span class="n">training_data_reference</span><span class="o">=</span><span class="n">training_data_reference</span><span class="p">,</span>
             <span class="n">background_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Training job 27d691cc-a25e-4ac7-b674-cac7671f9e4a completed: 100%|████████| [08:09&lt;00:00,  4.90s/it]
+</pre>
 </div>
 </div>
 </div>
@@ -8672,16 +9343,28 @@ Numeric range [a,b] from a to b inclusive.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pipeline_optimizer_mitigation</span><span class="o">.</span><span class="n">get_run_status</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[50]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>'completed'</pre>
 </div>
 </div>
 </div>
@@ -8698,12 +9381,12 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pipeline_optimizer_mitigation</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -8712,12 +9395,549 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[51]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Enhancements</th>
+<th>Estimator</th>
+<th>training_accuracy_and_disparate_impact_(optimized)</th>
+<th>training_disparate_impact_Sex</th>
+<th>training_roc_auc</th>
+<th>holdout_average_precision</th>
+<th>holdout_log_loss</th>
+<th>holdout_roc_auc</th>
+<th>training_balanced_accuracy</th>
+<th>training_f1</th>
+<th>...</th>
+<th>training_average_precision</th>
+<th>training_log_loss</th>
+<th>holdout_recall</th>
+<th>training_precision</th>
+<th>holdout_accuracy</th>
+<th>holdout_balanced_accuracy</th>
+<th>training_recall</th>
+<th>holdout_f1</th>
+<th>training_accuracy</th>
+<th>holdout_disparate_impact</th>
+</tr>
+<tr>
+<th>Pipeline Name</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Pipeline_19</th>
+<td>HPO, FE, HPO, Ensemble</td>
+<td>BatchedTreeEnsembleClassifier(ExtraTreesClassi...</td>
+<td>0.893827</td>
+<td>1.011278</td>
+<td>0.841266</td>
+<td>0.665331</td>
+<td>2.220446e-16</td>
+<td>0.857505</td>
+<td>0.745586</td>
+<td>0.857013</td>
+<td>...</td>
+<td>0.906313</td>
+<td>0.471109</td>
+<td>1.000000</td>
+<td>0.812351</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.907043</td>
+<td>1.000000</td>
+<td>0.798794</td>
+<td>1.096222</td>
+</tr>
+<tr>
+<th>Pipeline_18</th>
+<td>HPO, FE, HPO</td>
+<td>ExtraTreesClassifier</td>
+<td>0.893827</td>
+<td>1.011278</td>
+<td>0.841266</td>
+<td>0.665331</td>
+<td>2.220446e-16</td>
+<td>0.857505</td>
+<td>0.745586</td>
+<td>0.857013</td>
+<td>...</td>
+<td>0.906313</td>
+<td>0.471109</td>
+<td>1.000000</td>
+<td>0.812351</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.907043</td>
+<td>1.000000</td>
+<td>0.798794</td>
+<td>1.096222</td>
+</tr>
+<tr>
+<th>Pipeline_17</th>
+<td>HPO, FE</td>
+<td>ExtraTreesClassifier</td>
+<td>0.893827</td>
+<td>1.011278</td>
+<td>0.841266</td>
+<td>0.665331</td>
+<td>2.220446e-16</td>
+<td>0.857505</td>
+<td>0.745586</td>
+<td>0.857013</td>
+<td>...</td>
+<td>0.906313</td>
+<td>0.471109</td>
+<td>1.000000</td>
+<td>0.812351</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.907043</td>
+<td>1.000000</td>
+<td>0.798794</td>
+<td>1.096222</td>
+</tr>
+<tr>
+<th>Pipeline_16</th>
+<td>HPO</td>
+<td>ExtraTreesClassifier</td>
+<td>0.885445</td>
+<td>1.009681</td>
+<td>0.829976</td>
+<td>0.665331</td>
+<td>2.220446e-16</td>
+<td>0.848983</td>
+<td>0.730185</td>
+<td>0.842635</td>
+<td>...</td>
+<td>0.899676</td>
+<td>0.511403</td>
+<td>1.000000</td>
+<td>0.805573</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.883551</td>
+<td>1.000000</td>
+<td>0.780728</td>
+<td>1.096222</td>
+</tr>
+<tr>
+<th>Pipeline_15</th>
+<td></td>
+<td>ExtraTreesClassifier</td>
+<td>0.885445</td>
+<td>1.009681</td>
+<td>0.829976</td>
+<td>0.665331</td>
+<td>2.220446e-16</td>
+<td>0.848983</td>
+<td>0.730185</td>
+<td>0.842635</td>
+<td>...</td>
+<td>0.899676</td>
+<td>0.511403</td>
+<td>1.000000</td>
+<td>0.805573</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>0.883551</td>
+<td>1.000000</td>
+<td>0.780728</td>
+<td>1.096222</td>
+</tr>
+<tr>
+<th>Pipeline_2</th>
+<td>HPO</td>
+<td>XGBClassifier</td>
+<td>0.889312</td>
+<td>1.008463</td>
+<td>0.843840</td>
+<td>0.462943</td>
+<td>3.303090e-01</td>
+<td>0.840235</td>
+<td>0.740480</td>
+<td>0.846126</td>
+<td>...</td>
+<td>0.911090</td>
+<td>0.447442</td>
+<td>0.948795</td>
+<td>0.813743</td>
+<td>0.861723</td>
+<td>0.818709</td>
+<td>0.881535</td>
+<td>0.901288</td>
+<td>0.786973</td>
+<td>0.976996</td>
+</tr>
+<tr>
+<th>Pipeline_1</th>
+<td></td>
+<td>XGBClassifier</td>
+<td>0.889312</td>
+<td>1.008463</td>
+<td>0.843840</td>
+<td>0.462943</td>
+<td>3.303090e-01</td>
+<td>0.840235</td>
+<td>0.740480</td>
+<td>0.846126</td>
+<td>...</td>
+<td>0.911090</td>
+<td>0.447442</td>
+<td>0.948795</td>
+<td>0.813743</td>
+<td>0.861723</td>
+<td>0.818709</td>
+<td>0.881535</td>
+<td>0.901288</td>
+<td>0.786973</td>
+<td>0.976996</td>
+</tr>
+<tr>
+<th>Pipeline_5</th>
+<td>HPO, FE, HPO, Ensemble</td>
+<td>BatchedTreeEnsembleClassifier(XGBClassifier)</td>
+<td>0.895693</td>
+<td>0.998487</td>
+<td>0.846692</td>
+<td>0.462485</td>
+<td>3.259183e-01</td>
+<td>0.846007</td>
+<td>0.748863</td>
+<td>0.854718</td>
+<td>...</td>
+<td>0.911919</td>
+<td>0.440425</td>
+<td>0.966867</td>
+<td>0.817006</td>
+<td>0.867735</td>
+<td>0.818763</td>
+<td>0.896304</td>
+<td>0.906780</td>
+<td>0.797456</td>
+<td>0.951047</td>
+</tr>
+<tr>
+<th>Pipeline_4</th>
+<td>HPO, FE, HPO</td>
+<td>XGBClassifier</td>
+<td>0.895693</td>
+<td>0.998487</td>
+<td>0.846692</td>
+<td>0.462485</td>
+<td>3.259183e-01</td>
+<td>0.846007</td>
+<td>0.748863</td>
+<td>0.854718</td>
+<td>...</td>
+<td>0.911919</td>
+<td>0.440425</td>
+<td>0.966867</td>
+<td>0.817006</td>
+<td>0.867735</td>
+<td>0.818763</td>
+<td>0.896304</td>
+<td>0.906780</td>
+<td>0.797456</td>
+<td>0.951047</td>
+</tr>
+<tr>
+<th>Pipeline_3</th>
+<td>HPO, FE</td>
+<td>XGBClassifier</td>
+<td>0.895693</td>
+<td>0.998487</td>
+<td>0.846692</td>
+<td>0.462485</td>
+<td>3.259183e-01</td>
+<td>0.846007</td>
+<td>0.748863</td>
+<td>0.854718</td>
+<td>...</td>
+<td>0.911919</td>
+<td>0.440425</td>
+<td>0.966867</td>
+<td>0.817006</td>
+<td>0.867735</td>
+<td>0.818763</td>
+<td>0.896304</td>
+<td>0.906780</td>
+<td>0.797456</td>
+<td>0.951047</td>
+</tr>
+<tr>
+<th>Pipeline_12</th>
+<td>HPO, FE</td>
+<td>SnapBoostingMachineClassifier</td>
+<td>0.825598</td>
+<td>1.126772</td>
+<td>0.851151</td>
+<td>0.460046</td>
+<td>3.532214e-01</td>
+<td>0.856648</td>
+<td>0.748085</td>
+<td>0.816113</td>
+<td>...</td>
+<td>0.913872</td>
+<td>0.458903</td>
+<td>0.852410</td>
+<td>0.841517</td>
+<td>0.857715</td>
+<td>0.860337</td>
+<td>0.792943</td>
+<td>0.888540</td>
+<td>0.762885</td>
+<td>1.108495</td>
+</tr>
+<tr>
+<th>Pipeline_13</th>
+<td>HPO, FE, HPO</td>
+<td>SnapBoostingMachineClassifier</td>
+<td>0.825598</td>
+<td>1.126772</td>
+<td>0.851151</td>
+<td>0.460046</td>
+<td>3.532214e-01</td>
+<td>0.856648</td>
+<td>0.748085</td>
+<td>0.816113</td>
+<td>...</td>
+<td>0.913872</td>
+<td>0.458903</td>
+<td>0.852410</td>
+<td>0.841517</td>
+<td>0.857715</td>
+<td>0.860337</td>
+<td>0.792943</td>
+<td>0.888540</td>
+<td>0.762885</td>
+<td>1.108495</td>
+</tr>
+<tr>
+<th>Pipeline_14</th>
+<td>HPO, FE, HPO, Ensemble</td>
+<td>BatchedTreeEnsembleClassifier(SnapBoostingMach...</td>
+<td>0.825598</td>
+<td>1.126772</td>
+<td>0.851151</td>
+<td>0.460046</td>
+<td>3.532214e-01</td>
+<td>0.856648</td>
+<td>0.748085</td>
+<td>0.816113</td>
+<td>...</td>
+<td>0.913872</td>
+<td>0.458903</td>
+<td>0.852410</td>
+<td>0.841517</td>
+<td>0.857715</td>
+<td>0.860337</td>
+<td>0.792943</td>
+<td>0.888540</td>
+<td>0.762885</td>
+<td>1.108495</td>
+</tr>
+<tr>
+<th>Pipeline_8</th>
+<td>HPO, FE</td>
+<td>DecisionTreeClassifier</td>
+<td>0.810792</td>
+<td>1.108714</td>
+<td>0.748605</td>
+<td>0.498007</td>
+<td>2.828017e-01</td>
+<td>0.726607</td>
+<td>0.704793</td>
+<td>0.779662</td>
+<td>...</td>
+<td>0.823298</td>
+<td>4.499096</td>
+<td>0.840361</td>
+<td>0.814812</td>
+<td>0.857715</td>
+<td>0.866289</td>
+<td>0.748310</td>
+<td>0.887122</td>
+<td>0.719161</td>
+<td>1.112008</td>
+</tr>
+<tr>
+<th>Pipeline_9</th>
+<td>HPO, FE, HPO</td>
+<td>DecisionTreeClassifier</td>
+<td>0.810792</td>
+<td>1.108714</td>
+<td>0.748605</td>
+<td>0.498007</td>
+<td>2.828017e-01</td>
+<td>0.726607</td>
+<td>0.704793</td>
+<td>0.779662</td>
+<td>...</td>
+<td>0.823298</td>
+<td>4.499096</td>
+<td>0.840361</td>
+<td>0.814812</td>
+<td>0.857715</td>
+<td>0.866289</td>
+<td>0.748310</td>
+<td>0.887122</td>
+<td>0.719161</td>
+<td>1.112008</td>
+</tr>
+<tr>
+<th>Pipeline_7</th>
+<td>HPO</td>
+<td>DecisionTreeClassifier</td>
+<td>0.807011</td>
+<td>1.126261</td>
+<td>0.737854</td>
+<td>0.497633</td>
+<td>2.763581e-01</td>
+<td>0.744959</td>
+<td>0.703539</td>
+<td>0.783437</td>
+<td>...</td>
+<td>0.814442</td>
+<td>4.829752</td>
+<td>0.858434</td>
+<td>0.810587</td>
+<td>0.859719</td>
+<td>0.860355</td>
+<td>0.758385</td>
+<td>0.890625</td>
+<td>0.721619</td>
+<td>1.150867</td>
+</tr>
+<tr>
+<th>Pipeline_6</th>
+<td></td>
+<td>DecisionTreeClassifier</td>
+<td>0.807011</td>
+<td>1.126261</td>
+<td>0.737854</td>
+<td>0.497633</td>
+<td>2.763581e-01</td>
+<td>0.744959</td>
+<td>0.703539</td>
+<td>0.783437</td>
+<td>...</td>
+<td>0.814442</td>
+<td>4.829752</td>
+<td>0.858434</td>
+<td>0.810587</td>
+<td>0.859719</td>
+<td>0.860355</td>
+<td>0.758385</td>
+<td>0.890625</td>
+<td>0.721619</td>
+<td>1.150867</td>
+</tr>
+<tr>
+<th>Pipeline_11</th>
+<td>HPO</td>
+<td>SnapBoostingMachineClassifier</td>
+<td>0.800746</td>
+<td>1.170873</td>
+<td>0.846750</td>
+<td>0.464231</td>
+<td>3.831811e-01</td>
+<td>0.849993</td>
+<td>0.738472</td>
+<td>0.799044</td>
+<td>...</td>
+<td>0.912502</td>
+<td>0.463771</td>
+<td>0.822289</td>
+<td>0.841797</td>
+<td>0.829659</td>
+<td>0.833300</td>
+<td>0.761066</td>
+<td>0.865293</td>
+<td>0.745932</td>
+<td>1.194605</td>
+</tr>
+<tr>
+<th>Pipeline_10</th>
+<td></td>
+<td>SnapBoostingMachineClassifier</td>
+<td>0.800746</td>
+<td>1.170873</td>
+<td>0.846750</td>
+<td>0.464231</td>
+<td>3.831811e-01</td>
+<td>0.849993</td>
+<td>0.738472</td>
+<td>0.799044</td>
+<td>...</td>
+<td>0.912502</td>
+<td>0.463771</td>
+<td>0.822289</td>
+<td>0.841797</td>
+<td>0.829659</td>
+<td>0.833300</td>
+<td>0.761066</td>
+<td>0.865293</td>
+<td>0.745932</td>
+<td>1.194605</td>
+</tr>
+</tbody>
+</table>
+<p>19 rows × 23 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">best_pipeline_mitigation</span> <span class="o">=</span> <span class="n">pipeline_optimizer_mitigation</span><span class="o">.</span><span class="n">get_pipeline</span><span class="p">()</span>
@@ -8737,16 +9957,28 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">best_pipeline_mitigation</span><span class="o">.</span><span class="n">visualize</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedSVG jp-OutputArea-output" data-mime-type="image/svg+xml" tabindex="0">
+<img alt="No description has been provided for this image" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8IS0tIEdlbmVyYXRlZCBieSBncmFwaHZpeiB2ZXJzaW9uIDEwLjAuMSAoMjAyNDAyMTAuMjE1OCkKIC0tPgo8IS0tIFRpdGxlOiBjbHVzdGVyOihyb290KSBQYWdlczogMSAtLT4KPHN2ZyB3aWR0aD0iMTE1N3B0IiBoZWlnaHQ9IjE2M3B0Igogdmlld0JveD0iMC4wMCAwLjAwIDExNTYuNzkgMTYzLjQ4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGcgaWQ9ImdyYXBoMCIgY2xhc3M9ImdyYXBoIiB0cmFuc2Zvcm09InNjYWxlKDEgMSkgcm90YXRlKDApIHRyYW5zbGF0ZSg0IDE1OS40OCkiPgo8dGl0bGU+Y2x1c3Rlcjoocm9vdCk8L3RpdGxlPgo8ZyBpZD0iYV9ncmFwaDAiPjxhIHhsaW5rOnRpdGxlPSIocm9vdCkgPSAuLi4iPgo8cG9seWdvbiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJub25lIiBwb2ludHM9Ii00LDQgLTQsLTE1OS40OCAxMTUyLjc5LC0xNTkuNDggMTE1Mi43OSw0IC00LDQiLz4KPC9hPgo8L2c+CjwhLS0gbnVtcHlfY29sdW1uX3NlbGVjdG9yXzAgLS0+CjxnIGlkPSJub2RlMSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bnVtcHlfY29sdW1uX3NlbGVjdG9yXzA8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMSI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLmF1dG9haV9saWJzLm51bXB5X2NvbHVtbl9zZWxlY3Rvci5odG1sIiB4bGluazp0aXRsZT0ibnVtcHlfY29sdW1uX3NlbGVjdG9yXzAgPSBOdW1weUNvbHVtblNlbGVjdG9yKGNvbHVtbnM9WzAsIDEsIDIsIDMsIDUsIDYsIDcsIDgsIDksIDEwLCAxMSwgMTIsIDEzLCAxNCwgMTUsIDE2LCAxNywgMTgsIDE5XSkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSIzMy4xNiIgY3k9Ii0xMTQuMjQiIHJ4PSIzMy4xNiIgcnk9IjMxLjY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjMzLjE2IiB5PSItMTI0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPk51bXB5JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjMzLjE2IiB5PSItMTEwLjU0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNvbHVtbiYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzMy4xNiIgeT0iLTk3LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlNlbGVjdG9yPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIGNvbXByZXNzX3N0cmluZ3MgLS0+CjxnIGlkPSJub2RlMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Y29tcHJlc3Nfc3RyaW5nczwvdGl0bGU+CjxnIGlkPSJhX25vZGUyIj48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMuY29tcHJlc3Nfc3RyaW5ncy5odG1sIiB4bGluazp0aXRsZT0iY29tcHJlc3Nfc3RyaW5ncyA9IENvbXByZXNzU3RyaW5ncyhjb21wcmVzc190eXBlPSYjMzk7aGFzaCYjMzk7LCBkdHlwZXNfbGlzdD1bJiMzOTtjaGFyX3N0ciYjMzk7LCAmIzM5O2Zsb2F0X2ludF9udW0mIzM5OywgJiMzOTtjaGFyX3N0ciYjMzk7LCAmIzM5O2NoYXJfc3RyJiMzOTssICYjMzk7Y2hhcl9zdHImIzM5OywgJiMzOTtjaGFyX3N0ciYjMzk7LCAmIzM5O2Zsb2F0X2ludF9udW0mIzM5OywgJiMzOTtjaGFyX3N0ciYjMzk7LCAmIzM5O2NoYXJfc3RyJiMzOTssICYjMzk7ZmxvYXRfaW50X251bSYjMzk7LCAmIzM5O2NoYXJfc3RyJiMzOTssICYjMzk7ZmxvYXRfaW50X251bSYjMzk7LCAmIzM5O2NoYXJfc3RyJiMzOTssICYjMzk7Y2hhcl9zdHImIzM5OywgJiMzOTtmbG9hdF9pbnRfbnVtJiMzOTssICYjMzk7Y2hhcl9zdHImIzM5OywgLi4uKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjE0Mi4zNiIgY3k9Ii0xMTQuMjQiIHJ4PSI0MC4wNSIgcnk9IjIyLjE1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE0Mi4zNiIgeT0iLTExNy4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5Db21wcmVzcyYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxNDIuMzYiIHk9Ii0xMDMuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+U3RyaW5nczwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBudW1weV9jb2x1bW5fc2VsZWN0b3JfMCYjNDU7Jmd0O2NvbXByZXNzX3N0cmluZ3MgLS0+CjxnIGlkPSJlZGdlMSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bnVtcHlfY29sdW1uX3NlbGVjdG9yXzAmIzQ1OyZndDtjb21wcmVzc19zdHJpbmdzPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTY2LjYxLC0xMTQuMjRDNzQuMTUsLTExNC4yNCA4Mi4zNiwtMTE0LjI0IDkwLjQ4LC0xMTQuMjQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iOTAuMzEsLTExNy43NCAxMDAuMzEsLTExNC4yNCA5MC4zMSwtMTEwLjc0IDkwLjMxLC0xMTcuNzQiLz4KPC9nPgo8IS0tIG51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMCAtLT4KPGcgaWQ9Im5vZGUzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5udW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzA8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMyI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLmF1dG9haV9saWJzLm51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXMuaHRtbCIgeGxpbms6dGl0bGU9Im51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMCA9IE51bXB5UmVwbGFjZU1pc3NpbmdWYWx1ZXMoZmlsbGluZ192YWx1ZXM9ZmxvYXQoJiMzOTtuYW4mIzM5OyksIG1pc3NpbmdfdmFsdWVzPVtdKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjI1My4xNiIgY3k9Ii0xMTQuMjQiIHJ4PSIzNC43NSIgcnk9IjQxLjI0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI1My4xNiIgeT0iLTEzMC43OSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5OdW1weSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTMuMTYiIHk9Ii0xMTcuMjkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+UmVwbGFjZSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTMuMTYiIHk9Ii0xMDMuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+TWlzc2luZyYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTMuMTYiIHk9Ii05MC4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5WYWx1ZXM8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gY29tcHJlc3Nfc3RyaW5ncyYjNDU7Jmd0O251bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMCAtLT4KPGcgaWQ9ImVkZ2UyIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5jb21wcmVzc19zdHJpbmdzJiM0NTsmZ3Q7bnVtcHlfcmVwbGFjZV9taXNzaW5nX3ZhbHVlc18wPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTE4Mi42NCwtMTE0LjI0QzE5MC40MSwtMTE0LjI0IDE5OC42MywtMTE0LjI0IDIwNi41OSwtMTE0LjI0Ii8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjIwNi40NywtMTE3Ljc0IDIxNi40NywtMTE0LjI0IDIwNi40NywtMTEwLjc0IDIwNi40NywtMTE3Ljc0Ii8+CjwvZz4KPCEtLSBudW1weV9yZXBsYWNlX3Vua25vd25fdmFsdWVzIC0tPgo8ZyBpZD0ibm9kZTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm51bXB5X3JlcGxhY2VfdW5rbm93bl92YWx1ZXM8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlNCI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLmF1dG9haV9saWJzLm51bXB5X3JlcGxhY2VfdW5rbm93bl92YWx1ZXMuaHRtbCIgeGxpbms6dGl0bGU9Im51bXB5X3JlcGxhY2VfdW5rbm93bl92YWx1ZXMgPSBOdW1weVJlcGxhY2VVbmtub3duVmFsdWVzKGZpbGxpbmdfdmFsdWVzPWZsb2F0KCYjMzk7bmFuJiMzOTspLCBmaWxsaW5nX3ZhbHVlc19saXN0PVtmbG9hdCgmIzM5O25hbiYjMzk7KSwgMTAwMDAxLCBmbG9hdCgmIzM5O25hbiYjMzk7KSwgZmxvYXQoJiMzOTtuYW4mIzM5OyksIGZsb2F0KCYjMzk7bmFuJiMzOTspLCBmbG9hdCgmIzM5O25hbiYjMzk7KSwgMTAwMDAxLCBmbG9hdCgmIzM5O25hbiYjMzk7KSwgZmxvYXQoJiMzOTtuYW4mIzM5OyksIDEwMDAwMSwgZmxvYXQoJiMzOTtuYW4mIzM5OyksIDEwMDAwMSwgZmxvYXQoJiMzOTtuYW4mIzM5OyksIGZsb2F0KCYjMzk7bmFuJiMzOTspLCAxMDAwMDEsIGZsb2F0KCYjMzk7bmFuJiMzOTspLCAxMDAwMDEsIC4uLikiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSIzNjIuOSIgY3k9Ii0xMTQuMjQiIHJ4PSIzOC45OSIgcnk9IjQxLjI0Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM2Mi45IiB5PSItMTMwLjc5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPk51bXB5JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM2Mi45IiB5PSItMTE3LjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlJlcGxhY2UmIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzYyLjkiIHk9Ii0xMDMuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+VW5rbm93biYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNjIuOSIgeT0iLTkwLjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlZhbHVlczwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBudW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzAmIzQ1OyZndDtudW1weV9yZXBsYWNlX3Vua25vd25fdmFsdWVzIC0tPgo8ZyBpZD0iZWRnZTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPm51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMCYjNDU7Jmd0O251bXB5X3JlcGxhY2VfdW5rbm93bl92YWx1ZXM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMjg4LjI1LC0xMTQuMjRDMjk1Ljg4LC0xMTQuMjQgMzA0LjEyLC0xMTQuMjQgMzEyLjIzLC0xMTQuMjQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMzEyLjAyLC0xMTcuNzQgMzIyLjAyLC0xMTQuMjQgMzEyLjAyLC0xMTAuNzQgMzEyLjAyLC0xMTcuNzQiLz4KPC9nPgo8IS0tIGJvb2xlYW4yZmxvYXQgLS0+CjxnIGlkPSJub2RlNSIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+Ym9vbGVhbjJmbG9hdDwvdGl0bGU+CjxnIGlkPSJhX25vZGU1Ij48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMuYm9vbGVhbjJmbG9hdC5odG1sIiB4bGluazp0aXRsZT0iYm9vbGVhbjJmbG9hdCA9IGJvb2xlYW4yZmxvYXQoKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjQ3Ny4zOSIgY3k9Ii0xMTAuMjQiIHJ4PSIzOS41IiByeT0iMTgiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDc3LjM5IiB5PSItMTA2LjU0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPmJvb2xlYW4yZmxvYXQ8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gbnVtcHlfcmVwbGFjZV91bmtub3duX3ZhbHVlcyYjNDU7Jmd0O2Jvb2xlYW4yZmxvYXQgLS0+CjxnIGlkPSJlZGdlNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bnVtcHlfcmVwbGFjZV91bmtub3duX3ZhbHVlcyYjNDU7Jmd0O2Jvb2xlYW4yZmxvYXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNDAyLjMsLTExMi44N0M0MTAuMDgsLTExMi42IDQxOC4zOCwtMTEyLjMgNDI2LjUsLTExMi4wMSIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI0MjYuNCwtMTE1LjUyIDQzNi4yNywtMTExLjY3IDQyNi4xNSwtMTA4LjUyIDQyNi40LC0xMTUuNTIiLz4KPC9nPgo8IS0tIGNhdF9pbXB1dGVyIC0tPgo8ZyBpZD0ibm9kZTYiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmNhdF9pbXB1dGVyPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTYiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5jYXRfaW1wdXRlci5odG1sIiB4bGluazp0aXRsZT0iY2F0X2ltcHV0ZXIgPSBDYXRJbXB1dGVyKG1pc3NpbmdfdmFsdWVzPWZsb2F0KCYjMzk7bmFuJiMzOTspLCBza2xlYXJuX3ZlcnNpb25fZmFtaWx5PSYjMzk7MSYjMzk7LCBzdHJhdGVneT0mIzM5O21vc3RfZnJlcXVlbnQmIzM5OykiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSI1ODMuMzkiIGN5PSItMTA4LjI0IiByeD0iMzAuNSIgcnk9IjIyLjE1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjU4My4zOSIgeT0iLTExMS4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5DYXQmIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTgzLjM5IiB5PSItOTcuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+SW1wdXRlcjwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBib29sZWFuMmZsb2F0JiM0NTsmZ3Q7Y2F0X2ltcHV0ZXIgLS0+CjxnIGlkPSJlZGdlNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Ym9vbGVhbjJmbG9hdCYjNDU7Jmd0O2NhdF9pbXB1dGVyPC90aXRsZT4KPHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgZD0iTTUxNy4xMSwtMTA5LjQ5QzUyNC45NSwtMTA5LjM0IDUzMy4yMiwtMTA5LjE4IDU0MS4xNCwtMTA5LjAzIi8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjU0MC45NiwtMTEyLjU0IDU1MC44OSwtMTA4Ljg0IDU0MC44MywtMTA1LjU0IDU0MC45NiwtMTEyLjU0Ii8+CjwvZz4KPCEtLSBjYXRfZW5jb2RlciAtLT4KPGcgaWQ9Im5vZGU3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5jYXRfZW5jb2RlcjwvdGl0bGU+CjxnIGlkPSJhX25vZGU3Ij48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMuY2F0X2VuY29kZXIuaHRtbCIgeGxpbms6dGl0bGU9ImNhdF9lbmNvZGVyID0gQ2F0RW5jb2RlcihkdHlwZT1ucC5mbG9hdDY0LCBoYW5kbGVfdW5rbm93bj0mIzM5O2Vycm9yJiMzOTssIHNrbGVhcm5fdmVyc2lvbl9mYW1pbHk9JiMzOTsxJiMzOTssIGVuY29kaW5nPSYjMzk7b3JkaW5hbCYjMzk7LCBjYXRlZ29yaWVzPSYjMzk7YXV0byYjMzk7KSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjY4Ni4yMyIgY3k9Ii0xMDYuMjQiIHJ4PSIzMi4xIiByeT0iMjIuMTUiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNjg2LjIzIiB5PSItMTA5LjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNhdCYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2ODYuMjMiIHk9Ii05NS43OSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5FbmNvZGVyPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIGNhdF9pbXB1dGVyJiM0NTsmZ3Q7Y2F0X2VuY29kZXIgLS0+CjxnIGlkPSJlZGdlNiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Y2F0X2ltcHV0ZXImIzQ1OyZndDtjYXRfZW5jb2RlcjwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik02MTQuMzcsLTEwNy42NEM2MjMuMjEsLTEwNy40NyA2MzMuMDUsLTEwNy4yNyA2NDIuNTEsLTEwNy4wOSIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI2NDIuMzUsLTExMC41OSA2NTIuMjcsLTEwNi44OSA2NDIuMjEsLTEwMy41OSA2NDIuMzUsLTExMC41OSIvPgo8L2c+CjwhLS0gZmxvYXQzMl90cmFuc2Zvcm1fMCAtLT4KPGcgaWQ9Im5vZGU4IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5mbG9hdDMyX3RyYW5zZm9ybV8wPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTgiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5mbG9hdDMyX3RyYW5zZm9ybS5odG1sIiB4bGluazp0aXRsZT0iZmxvYXQzMl90cmFuc2Zvcm1fMCA9IGZsb2F0MzJfdHJhbnNmb3JtKCkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSI3OTQuOTEiIGN5PSItMTAyLjI0IiByeD0iMzYuMzQiIHJ5PSIyMi4xNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI3OTQuOTEiIHk9Ii0xMDUuMjkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+ZmxvYXQzMl8mIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNzk0LjkxIiB5PSItOTEuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+dHJhbnNmb3JtPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIGNhdF9lbmNvZGVyJiM0NTsmZ3Q7ZmxvYXQzMl90cmFuc2Zvcm1fMCAtLT4KPGcgaWQ9ImVkZ2U3IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5jYXRfZW5jb2RlciYjNDU7Jmd0O2Zsb2F0MzJfdHJhbnNmb3JtXzA8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNzE4LjY2LC0xMDUuMDZDNzI3LjQ5LC0xMDQuNzMgNzM3LjI4LC0xMDQuMzYgNzQ2LjgxLC0xMDQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iNzQ2Ljg0LC0xMDcuNTEgNzU2LjcsLTEwMy42MyA3NDYuNTcsLTEwMC41MSA3NDYuODQsLTEwNy41MSIvPgo8L2c+CjwhLS0gY29uY2F0X2ZlYXR1cmVzIC0tPgo8ZyBpZD0ibm9kZTE1IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5jb25jYXRfZmVhdHVyZXM8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMTUiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5yYXNsLmNvbmNhdF9mZWF0dXJlcy5odG1sIiB4bGluazp0aXRsZT0iY29uY2F0X2ZlYXR1cmVzID0gQ29uY2F0RmVhdHVyZXMoKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjkwMC40IiBjeT0iLTc0LjI0IiByeD0iMzMuMTYiIHJ5PSIyMi4xNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5MDAuNCIgeT0iLTc3LjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNvbmNhdCYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI5MDAuNCIgeT0iLTYzLjc5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkZlYXR1cmVzPC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIGZsb2F0MzJfdHJhbnNmb3JtXzAmIzQ1OyZndDtjb25jYXRfZmVhdHVyZXMgLS0+CjxnIGlkPSJlZGdlMTMiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmZsb2F0MzJfdHJhbnNmb3JtXzAmIzQ1OyZndDtjb25jYXRfZmVhdHVyZXM8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNODI4LjY1LC05My4zOEM4MzguMTIsLTkwLjgyIDg0OC41NywtODcuOTkgODU4LjQ3LC04NS4zMSIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI4NTkuMTMsLTg4Ljc2IDg2Ny44NywtODIuNzcgODU3LjMsLTgyIDg1OS4xMywtODguNzYiLz4KPC9nPgo8IS0tIG51bXB5X2NvbHVtbl9zZWxlY3Rvcl8xIC0tPgo8ZyBpZD0ibm9kZTkiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm51bXB5X2NvbHVtbl9zZWxlY3Rvcl8xPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTkiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5udW1weV9jb2x1bW5fc2VsZWN0b3IuaHRtbCIgeGxpbms6dGl0bGU9Im51bXB5X2NvbHVtbl9zZWxlY3Rvcl8xID0gTnVtcHlDb2x1bW5TZWxlY3Rvcihjb2x1bW5zPVs0XSkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSIyNTMuMTYiIGN5PSItMzQuMjQiIHJ4PSIzMy4xNiIgcnk9IjMxLjY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI1My4xNiIgeT0iLTQ0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPk51bXB5JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI1My4xNiIgeT0iLTMwLjU0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNvbHVtbiYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIyNTMuMTYiIHk9Ii0xNy4wNCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5TZWxlY3RvcjwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBmbG9hdF9zdHIyX2Zsb2F0IC0tPgo8ZyBpZD0ibm9kZTEwIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5mbG9hdF9zdHIyX2Zsb2F0PC90aXRsZT4KPGcgaWQ9ImFfbm9kZTEwIj48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMuZmxvYXRfc3RyMl9mbG9hdC5odG1sIiB4bGluazp0aXRsZT0iZmxvYXRfc3RyMl9mbG9hdCA9IEZsb2F0U3RyMkZsb2F0KGR0eXBlc19saXN0PVsmIzM5O2Zsb2F0X2ludF9udW0mIzM5O10sIG1pc3NpbmdfdmFsdWVzX3JlZmVyZW5jZV9saXN0PVtdKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjM2Mi45IiBjeT0iLTM0LjI0IiByeD0iMjciIHJ5PSIzMS42OSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNjIuOSIgeT0iLTQ0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkZsb2F0JiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjM2Mi45IiB5PSItMzAuNTQiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+U3RyMiYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIzNjIuOSIgeT0iLTE3LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkZsb2F0PC90ZXh0Pgo8L2E+CjwvZz4KPC9nPgo8IS0tIG51bXB5X2NvbHVtbl9zZWxlY3Rvcl8xJiM0NTsmZ3Q7ZmxvYXRfc3RyMl9mbG9hdCAtLT4KPGcgaWQ9ImVkZ2U4IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5udW1weV9jb2x1bW5fc2VsZWN0b3JfMSYjNDU7Jmd0O2Zsb2F0X3N0cjJfZmxvYXQ8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMjg2Ljc4LC0zNC4yNEMyOTguNjEsLTM0LjI0IDMxMi4wNiwtMzQuMjQgMzI0LjI4LC0zNC4yNCIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSIzMjQuMDIsLTM3Ljc0IDMzNC4wMiwtMzQuMjQgMzI0LjAyLC0zMC43NCAzMjQuMDIsLTM3Ljc0Ii8+CjwvZz4KPCEtLSBudW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzEgLS0+CjxnIGlkPSJub2RlMTEiIGNsYXNzPSJub2RlIj4KPHRpdGxlPm51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMTwvdGl0bGU+CjxnIGlkPSJhX25vZGUxMSI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLmF1dG9haV9saWJzLm51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXMuaHRtbCIgeGxpbms6dGl0bGU9Im51bXB5X3JlcGxhY2VfbWlzc2luZ192YWx1ZXNfMSA9IE51bXB5UmVwbGFjZU1pc3NpbmdWYWx1ZXMoZmlsbGluZ192YWx1ZXM9ZmxvYXQoJiMzOTtuYW4mIzM5OyksIG1pc3NpbmdfdmFsdWVzPVtdKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjQ3Ny4zOSIgY3k9Ii00MS4yNCIgcng9IjM0Ljc1IiByeT0iNDEuMjQiLz4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDc3LjM5IiB5PSItNTcuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+TnVtcHkmIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNDc3LjM5IiB5PSItNDQuMjkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+UmVwbGFjZSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI0NzcuMzkiIHk9Ii0zMC43OSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5NaXNzaW5nJiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ3Ny4zOSIgeT0iLTE3LjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPlZhbHVlczwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBmbG9hdF9zdHIyX2Zsb2F0JiM0NTsmZ3Q7bnVtcHlfcmVwbGFjZV9taXNzaW5nX3ZhbHVlc18xIC0tPgo8ZyBpZD0iZWRnZTkiIGNsYXNzPSJlZGdlIj4KPHRpdGxlPmZsb2F0X3N0cjJfZmxvYXQmIzQ1OyZndDtudW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMzkwLjI3LC0zNS44OEM0MDIuNDUsLTM2LjY0IDQxNy4yNSwtMzcuNTYgNDMxLjEzLC0zOC40MiIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI0MzAuNzgsLTQxLjkxIDQ0MC45OCwtMzkuMDQgNDMxLjIyLC0zNC45MiA0MzAuNzgsLTQxLjkxIi8+CjwvZz4KPCEtLSBudW1faW1wdXRlciAtLT4KPGcgaWQ9Im5vZGUxMiIgY2xhc3M9Im5vZGUiPgo8dGl0bGU+bnVtX2ltcHV0ZXI8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMTIiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5udW1faW1wdXRlci5odG1sIiB4bGluazp0aXRsZT0ibnVtX2ltcHV0ZXIgPSBOdW1JbXB1dGVyKG1pc3NpbmdfdmFsdWVzPWZsb2F0KCYjMzk7bmFuJiMzOTspLCBzdHJhdGVneT0mIzM5O21lZGlhbiYjMzk7KSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjU4My4zOSIgY3k9Ii00My4yNCIgcng9IjMwLjUiIHJ5PSIyMi4xNSIvPgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI1ODMuMzkiIHk9Ii00Ni4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5OdW0mIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iNTgzLjM5IiB5PSItMzIuNzkiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+SW1wdXRlcjwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBudW1weV9yZXBsYWNlX21pc3NpbmdfdmFsdWVzXzEmIzQ1OyZndDtudW1faW1wdXRlciAtLT4KPGcgaWQ9ImVkZ2UxMCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+bnVtcHlfcmVwbGFjZV9taXNzaW5nX3ZhbHVlc18xJiM0NTsmZ3Q7bnVtX2ltcHV0ZXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNTEyLjQ0LC00MS44OUM1MjEuNjIsLTQyLjA3IDUzMS42NSwtNDIuMjYgNTQxLjE4LC00Mi40NSIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI1NDAuODgsLTQ1Ljk0IDU1MC45NSwtNDIuNjMgNTQxLjAyLC0zOC45NCA1NDAuODgsLTQ1Ljk0Ii8+CjwvZz4KPCEtLSBvcHRfc3RhbmRhcmRfc2NhbGVyIC0tPgo8ZyBpZD0ibm9kZTEzIiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5vcHRfc3RhbmRhcmRfc2NhbGVyPC90aXRsZT4KPGcgaWQ9ImFfbm9kZTEzIj48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMub3B0X3N0YW5kYXJkX3NjYWxlci5odG1sIiB4bGluazp0aXRsZT0ib3B0X3N0YW5kYXJkX3NjYWxlciA9IE9wdFN0YW5kYXJkU2NhbGVyKHVzZV9zY2FsZXJfZmxhZz1GYWxzZSkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSI2ODYuMjMiIGN5PSItNDQuMjQiIHJ4PSIzNi4zNCIgcnk9IjMxLjY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjY4Ni4yMyIgeT0iLTU0LjA0IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPk9wdCYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2ODYuMjMiIHk9Ii00MC41NCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5TdGFuZGFyZCYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSI2ODYuMjMiIHk9Ii0yNy4wNCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5TY2FsZXI8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gbnVtX2ltcHV0ZXImIzQ1OyZndDtvcHRfc3RhbmRhcmRfc2NhbGVyIC0tPgo8ZyBpZD0iZWRnZTExIiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5udW1faW1wdXRlciYjNDU7Jmd0O29wdF9zdGFuZGFyZF9zY2FsZXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNjE0LjM3LC00My41NEM2MjEuODcsLTQzLjYxIDYzMC4wOSwtNDMuNjkgNjM4LjIsLTQzLjc3Ii8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9IjYzNy45NSwtNDcuMjcgNjQ3Ljk4LC00My44NyA2MzguMDIsLTQwLjI3IDYzNy45NSwtNDcuMjciLz4KPC9nPgo8IS0tIGZsb2F0MzJfdHJhbnNmb3JtXzEgLS0+CjxnIGlkPSJub2RlMTQiIGNsYXNzPSJub2RlIj4KPHRpdGxlPmZsb2F0MzJfdHJhbnNmb3JtXzE8L3RpdGxlPgo8ZyBpZD0iYV9ub2RlMTQiPjxhIHhsaW5rOmhyZWY9Imh0dHBzOi8vbGFsZS5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvbW9kdWxlcy9sYWxlLmxpYi5hdXRvYWlfbGlicy5mbG9hdDMyX3RyYW5zZm9ybS5odG1sIiB4bGluazp0aXRsZT0iZmxvYXQzMl90cmFuc2Zvcm1fMSA9IGZsb2F0MzJfdHJhbnNmb3JtKCkiIHRhcmdldD0iX2JsYW5rIj4KPGVsbGlwc2UgZmlsbD0id2hpdGUiIHN0cm9rZT0iYmxhY2siIGN4PSI3OTQuOTEiIGN5PSItNDkuMjQiIHJ4PSIzNi4zNCIgcnk9IjIyLjE1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijc5NC45MSIgeT0iLTUyLjI5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPmZsb2F0MzJfJiM0NTs8L3RleHQ+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijc5NC45MSIgeT0iLTM4Ljc5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPnRyYW5zZm9ybTwvdGV4dD4KPC9hPgo8L2c+CjwvZz4KPCEtLSBvcHRfc3RhbmRhcmRfc2NhbGVyJiM0NTsmZ3Q7ZmxvYXQzMl90cmFuc2Zvcm1fMSAtLT4KPGcgaWQ9ImVkZ2UxMiIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+b3B0X3N0YW5kYXJkX3NjYWxlciYjNDU7Jmd0O2Zsb2F0MzJfdHJhbnNmb3JtXzE8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNNzIyLjc1LC00NS45QzczMC41LC00Ni4yNyA3MzguODEsLTQ2LjY2IDc0Ni45MiwtNDcuMDQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iNzQ2LjUxLC01MC41MiA3NTYuNjcsLTQ3LjQ5IDc0Ni44NCwtNDMuNTMgNzQ2LjUxLC01MC41MiIvPgo8L2c+CjwhLS0gZmxvYXQzMl90cmFuc2Zvcm1fMSYjNDU7Jmd0O2NvbmNhdF9mZWF0dXJlcyAtLT4KPGcgaWQ9ImVkZ2UxNCIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+ZmxvYXQzMl90cmFuc2Zvcm1fMSYjNDU7Jmd0O2NvbmNhdF9mZWF0dXJlczwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik04MjkuMjIsLTU3LjI5QzgzOC40LC01OS41IDg0OC40NiwtNjEuOTMgODU4LjAzLC02NC4yNCIvPgo8cG9seWdvbiBmaWxsPSJibGFjayIgc3Ryb2tlPSJibGFjayIgcG9pbnRzPSI4NTYuOTQsLTY3LjU4IDg2Ny40OCwtNjYuNTMgODU4LjU4LC02MC43OCA4NTYuOTQsLTY3LjU4Ii8+CjwvZz4KPCEtLSBudW1weV9wZXJtdXRlX2FycmF5IC0tPgo8ZyBpZD0ibm9kZTE2IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT5udW1weV9wZXJtdXRlX2FycmF5PC90aXRsZT4KPGcgaWQ9ImFfbm9kZTE2Ij48YSB4bGluazpocmVmPSJodHRwczovL2xhbGUucmVhZHRoZWRvY3MuaW8vZW4vbGF0ZXN0L21vZHVsZXMvbGFsZS5saWIuYXV0b2FpX2xpYnMubnVtcHlfcGVybXV0ZV9hcnJheS5odG1sIiB4bGluazp0aXRsZT0ibnVtcHlfcGVybXV0ZV9hcnJheSA9IE51bXB5UGVybXV0ZUFycmF5KGF4aXM9MCwgcGVybXV0YXRpb25faW5kaWNlcz1bMCwgMSwgMiwgMywgNSwgNiwgNywgOCwgOSwgMTAsIDExLCAxMiwgMTMsIDE0LCAxNSwgMTYsIDE3LCAxOCwgMTksIDRdKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjEwMDQuMzEiIGN5PSItNzQuMjQiIHJ4PSIzNC43NSIgcnk9IjMxLjY5Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMDQuMzEiIHk9Ii04NC4wNCIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5OdW1weSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDA0LjMxIiB5PSItNzAuNTQiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+UGVybXV0ZSYjNDU7PC90ZXh0Pgo8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiB4PSIxMDA0LjMxIiB5PSItNTcuMDQiIGZvbnQtZmFtaWx5PSJUaW1lcyxzZXJpZiIgZm9udC1zaXplPSIxMS4wMCI+QXJyYXk8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gY29uY2F0X2ZlYXR1cmVzJiM0NTsmZ3Q7bnVtcHlfcGVybXV0ZV9hcnJheSAtLT4KPGcgaWQ9ImVkZ2UxNSIgY2xhc3M9ImVkZ2UiPgo8dGl0bGU+Y29uY2F0X2ZlYXR1cmVzJiM0NTsmZ3Q7bnVtcHlfcGVybXV0ZV9hcnJheTwvdGl0bGU+CjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iYmxhY2siIGQ9Ik05MzMuOTMsLTc0LjI0Qzk0MS42MSwtNzQuMjQgOTQ5LjkzLC03NC4yNCA5NTguMDYsLTc0LjI0Ii8+Cjxwb2x5Z29uIGZpbGw9ImJsYWNrIiBzdHJva2U9ImJsYWNrIiBwb2ludHM9Ijk1Ny44MiwtNzcuNzQgOTY3LjgyLC03NC4yNCA5NTcuODIsLTcwLjc0IDk1Ny44MiwtNzcuNzQiLz4KPC9nPgo8IS0tIHhnYl9jbGFzc2lmaWVyIC0tPgo8ZyBpZD0ibm9kZTE3IiBjbGFzcz0ibm9kZSI+Cjx0aXRsZT54Z2JfY2xhc3NpZmllcjwvdGl0bGU+CjxnIGlkPSJhX25vZGUxNyI+PGEgeGxpbms6aHJlZj0iaHR0cHM6Ly9sYWxlLnJlYWR0aGVkb2NzLmlvL2VuL2xhdGVzdC9tb2R1bGVzL2xhbGUubGliLnhnYm9vc3QueGdiX2NsYXNzaWZpZXIuaHRtbCIgeGxpbms6dGl0bGU9InhnYl9jbGFzc2lmaWVyID0gWEdCQ2xhc3NpZmllcihtYXhfZGVwdGg9MywgbWluX2NoaWxkX3dlaWdodD0xLCBtaXNzaW5nPWZsb2F0KCYjMzk7bmFuJiMzOTspLCBuX2VzdGltYXRvcnM9MTAwLCBuX2pvYnM9NCwgcmFuZG9tX3N0YXRlPTMzLCB0cmVlX21ldGhvZD0mIzM5O2hpc3QmIzM5OywgdmVyYm9zaXR5PTAsIHNpbGVudD1UcnVlKSIgdGFyZ2V0PSJfYmxhbmsiPgo8ZWxsaXBzZSBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSJibGFjayIgY3g9IjExMTEuOTIiIGN5PSItNzQuMjQiIHJ4PSIzNi44NyIgcnk9IjIyLjE1Ii8+Cjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjExMTEuOTIiIHk9Ii03Ny4yOSIgZm9udC1mYW1pbHk9IlRpbWVzLHNlcmlmIiBmb250LXNpemU9IjExLjAwIj5YR0ImIzQ1OzwvdGV4dD4KPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMTExMS45MiIgeT0iLTYzLjc5IiBmb250LWZhbWlseT0iVGltZXMsc2VyaWYiIGZvbnQtc2l6ZT0iMTEuMDAiPkNsYXNzaWZpZXI8L3RleHQ+CjwvYT4KPC9nPgo8L2c+CjwhLS0gbnVtcHlfcGVybXV0ZV9hcnJheSYjNDU7Jmd0O3hnYl9jbGFzc2lmaWVyIC0tPgo8ZyBpZD0iZWRnZTE2IiBjbGFzcz0iZWRnZSI+Cjx0aXRsZT5udW1weV9wZXJtdXRlX2FycmF5JiM0NTsmZ3Q7eGdiX2NsYXNzaWZpZXI8L3RpdGxlPgo8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9ImJsYWNrIiBkPSJNMTAzOS4zMSwtNzQuMjRDMTA0Ny4wMSwtNzQuMjQgMTA1NS4zMywtNzQuMjQgMTA2My40OCwtNzQuMjQiLz4KPHBvbHlnb24gZmlsbD0iYmxhY2siIHN0cm9rZT0iYmxhY2siIHBvaW50cz0iMTA2My4yOSwtNzcuNzQgMTA3My4yOSwtNzQuMjQgMTA2My4yOSwtNzAuNzQgMTA2My4yOSwtNzcuNzQiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo="/>
 </div>
 </div>
 </div>
@@ -8790,17 +10022,29 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [56]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">predicted_y</span> <span class="o">=</span> <span class="n">best_pipeline_mitigation</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_X</span><span class="p">)</span>
 <span class="n">predicted_y</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[56]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>array(['No Risk', 'No Risk', 'No Risk', 'No Risk', 'Risk'], dtype=object)</pre>
 </div>
 </div>
 </div>
@@ -8821,12 +10065,12 @@ AutoAI training job.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [59]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">fairness_info_mitigation_lale</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"protected_attributes"</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s2">"Sex"</span><span class="p">),</span> <span class="s2">"privileged_groups"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'male'</span><span class="p">]}</span>
+                <span class="p">{</span><span class="s2">"feature"</span><span class="p">:</span> <span class="n">train_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s2">"Sex"</span><span class="p">),</span> <span class="s2">"reference_group"</span><span class="p">:</span> <span class="p">[</span><span class="s1">'male'</span><span class="p">]}</span>
             <span class="p">],</span>
             <span class="s2">"favorable_labels"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"No Risk"</span><span class="p">]}</span>
 </pre></div>
@@ -8834,16 +10078,16 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [60]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lale.lib.aif360</span> <span class="kn">import</span> <span class="n">disparate_impact</span><span class="p">,</span> <span class="n">accuracy_and_disparate_impact</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lale.lib.aif360</span><span class="w"> </span><span class="kn">import</span> <span class="n">disparate_impact</span><span class="p">,</span> <span class="n">accuracy_and_disparate_impact</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
 
 <span class="n">disparate_impact_scorer</span> <span class="o">=</span> <span class="n">disparate_impact</span><span class="p">(</span><span class="o">**</span><span class="n">fairness_info_mitigation_lale</span><span class="p">)</span>
 <span class="n">accuracy_and_disparate_impact_scorer</span> <span class="o">=</span> <span class="n">accuracy_and_disparate_impact</span><span class="p">(</span><span class="o">**</span><span class="n">fairness_info_mitigation_lale</span><span class="p">)</span>
@@ -8851,6 +10095,21 @@ AutoAI training job.</p>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Accuracy and disparate impact: "</span><span class="p">,</span> <span class="n">accuracy_and_disparate_impact_scorer</span><span class="p">(</span><span class="n">best_pipeline</span><span class="p">,</span> <span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Disparate impact: "</span><span class="p">,</span> <span class="n">disparate_impact_scorer</span><span class="p">(</span><span class="n">best_pipeline</span><span class="p">,</span> <span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">))</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Accuracy:  0.8514652749899638
+Accuracy and disparate impact:  0.9138764646804844
+Disparate impact:  1.1140765419331191
+</pre>
 </div>
 </div>
 </div>
@@ -8872,7 +10131,7 @@ AutoAI training job.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [61]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pipeline_name</span> <span class="o">=</span> <span class="s2">"Pipeline_1"</span>
@@ -8892,23 +10151,58 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [62]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ibm_watsonx_ai.deployment</span> <span class="kn">import</span> <span class="n">WebService</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.deployment</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebService</span>
 
 <span class="n">service</span> <span class="o">=</span> <span class="n">WebService</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">source_space_id</span><span class="o">=</span><span class="n">space_id</span><span class="p">)</span>
 
 <span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">training_id</span><span class="p">,</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span> 
+    <span class="n">model</span><span class="o">=</span><span class="n">pipeline_name</span><span class="p">,</span>
     <span class="n">deployment_name</span><span class="o">=</span><span class="s2">"Credit Risk Deployment AutoAI - bias detection"</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Preparing an AutoAI Deployment...
+Published model uid: d1248288-9342-4e48-afe2-0c4206a5689a
+Deploying model d1248288-9342-4e48-afe2-0c4206a5689a using V4 client.
+
+
+######################################################################################
+
+Synchronous deployment creation for id: 'd1248288-9342-4e48-afe2-0c4206a5689a' started
+
+######################################################################################
+
+
+initializing
+Note: online_url is deprecated and will be removed in a future release. Use serving_urls instead.
+....
+ready
+
+
+-----------------------------------------------------------------------------------------------
+Successfully finished deployment creation, deployment_id='1ca08ed4-5baa-4809-b75e-f9b90c385f1d'
+-----------------------------------------------------------------------------------------------
+
+
+</pre>
 </div>
 </div>
 </div>
@@ -8974,17 +10268,39 @@ AutoAI training job.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [65]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">payload</span><span class="o">=</span><span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'Risk'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
 <span class="n">predictions</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[65]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'predictions': [{'fields': ['prediction', 'probability'],
+   'values': [['No Risk', [0.7488465366140008, 0.2511534633859992]],
+    ['No Risk', [0.835607245080173, 0.164392754919827]],
+    ['No Risk', [0.9057868200726807, 0.09421317992731928]],
+    ['No Risk', [0.7172061939164995, 0.2827938060835004]],
+    ['Risk', [0.30902094006538394, 0.6909790599346161]],
+    ['Risk', [0.06607430398464198, 0.933925696015358]],
+    ['No Risk', [0.6907337888795883, 0.30926621112041175]],
+    ['No Risk', [0.7780959460139274, 0.22190405398607255]],
+    ['No Risk', [0.8370824388740584, 0.16291756112594158]],
+    ['Risk', [0.06607430398464198, 0.933925696015358]]]}]}</pre>
 </div>
 </div>
 </div>
@@ -9037,8 +10353,7 @@ To list existing web services you can use <code>service.list()</code>.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If you want to clean up all created assets:
-please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd5.0/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
+<p>If you want to clean up all created assets:</p>
 <ul>
 <li>experiments</li>
 <li>trainings</li>
@@ -9048,6 +10363,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 <li>functions</li>
 <li>deployments</li>
 </ul>
+<p>please follow up this sample <a href="https://github.com/IBM/watson-machine-learning-samples/blob/master/cpd5.0/notebooks/python_sdk/instance-management/Machine%20Learning%20artifacts%20management.ipynb">notebook</a>.</p>
 </div>
 </div>
 </div>
@@ -9084,7 +10400,7 @@ please follow up this sample <a href="https://github.com/IBM/watson-machine-lear
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Copyright © 2023-2024 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
+<p>Copyright © 2023-2025 IBM. This notebook and its source code are released under the terms of the MIT License.</p>
 </div>
 </div>
 </div>
