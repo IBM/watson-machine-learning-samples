@@ -7689,36 +7689,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="definition"></a></p>
-<h2 id="RAG-Optimizer-definition">RAG Optimizer definition<a class="anchor-link" href="#RAG-Optimizer-definition">¶</a></h2><h3 id="Defining-a-connection-to-training-data">Defining a connection to training data<a class="anchor-link" href="#Defining-a-connection-to-training-data">¶</a></h3><p>Upload training data to a COS bucket and then define a connection to this file. This example uses the <code>ModelInference</code> description from the <a href="https://ibm.github.io/watsonx-ai-python-sdk/fm_model_inference.html"><code>ibm_watsonx_ai</code></a> documentation.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebBaseLoader</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://ibm.github.io/watsonx-ai-python-sdk/fm_model_inference.html"</span>
-
-<span class="n">docs</span> <span class="o">=</span> <span class="n">WebBaseLoader</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-<span class="n">model_inference_content</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">page_content</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="RAG-Optimizer-definition">RAG Optimizer definition<a class="anchor-link" href="#RAG-Optimizer-definition">¶</a></h2><h3 id="Defining-a-connection-to-training-data">Defining a connection to training data<a class="anchor-link" href="#Defining-a-connection-to-training-data">¶</a></h3><p>Upload training data to a COS bucket and then define a connection to this file. This example uses the <code>Base</code> description from the <a href="https://ibm.github.io/watsonx-ai-python-sdk/fm_model_inference.html"><code>ibm_watsonx_ai</code></a> documentation.</p>
 <p>The code in the next cell uploads training data to the bucket.</p>
 </div>
 </div>
@@ -7728,16 +7699,23 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-<span class="n">document_filename</span> <span class="o">=</span> <span class="s2">"ModelInference.txt"</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://ibm.github.io/watsonx-ai-python-sdk/base.html"</span>
+
+<span class="n">document_filename</span> <span class="o">=</span> <span class="s2">"base.html"</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">document_filename</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">document_filename</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">model_inference_content</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">document_filename</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
 <span class="n">document_asset_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">document_filename</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">document_filename</span><span class="p">)</span>
 
@@ -7761,9 +7739,9 @@ SUCCESS
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>'dc17d103-f772-4ea9-965a-b4d8a7093bf0'</pre>
+<pre>'4f76e9c4-724e-45a2-8099-2d93f2746db3'</pre>
 </div>
 </div>
 </div>
@@ -7784,7 +7762,7 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataConnection</span>
@@ -7811,22 +7789,22 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">benchmarking_data_IBM_page_content</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
-        <span class="s2">"question"</span><span class="p">:</span> <span class="s2">"What is path to ModelInference class?"</span><span class="p">,</span>
-        <span class="s2">"correct_answer"</span><span class="p">:</span> <span class="s2">"ibm_watsonx_ai.foundation_models.inference.ModelInference"</span><span class="p">,</span>
+        <span class="s2">"question"</span><span class="p">:</span> <span class="s2">"How can you set or refresh user request headers using the APIClient class?"</span><span class="p">,</span>
+        <span class="s2">"correct_answer"</span><span class="p">:</span> <span class="s2">"client.set_headers({'Authorization': 'Bearer &lt;token&gt;'})"</span><span class="p">,</span>
         <span class="s2">"correct_answer_document_ids"</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">"ModelInference.txt"</span>
+            <span class="s2">"base.html"</span>
         <span class="p">]</span>
     <span class="p">},</span>
     <span class="p">{</span>
-        <span class="s2">"question"</span><span class="p">:</span> <span class="s2">"What is method for get model inferance details?"</span><span class="p">,</span>
-        <span class="s2">"correct_answer"</span><span class="p">:</span> <span class="s2">"get_details()"</span><span class="p">,</span>
+        <span class="s2">"question"</span><span class="p">:</span> <span class="s2">"How to initialise Credentials object with api_key"</span><span class="p">,</span>
+        <span class="s2">"correct_answer"</span><span class="p">:</span> <span class="s2">"credentials = Credentials(url = 'https://us-south.ml.cloud.ibm.com', api_key = '***********')"</span><span class="p">,</span>
         <span class="s2">"correct_answer_document_ids"</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">"ModelInference.txt"</span>
+            <span class="s2">"base.html"</span>
         <span class="p">]</span>
     <span class="p">}</span>
 <span class="p">]</span>
@@ -7851,12 +7829,12 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 
-<span class="n">test_filename</span> <span class="o">=</span> <span class="s2">"benchmarking_data_ModelInference.json"</span>
+<span class="n">test_filename</span> <span class="o">=</span> <span class="s2">"benchmarking_data_Base.json"</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">test_filename</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">test_filename</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
@@ -7884,9 +7862,9 @@ SUCCESS
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>'887c3f64-eff2-47eb-a279-03621405880a'</pre>
+<pre>'84b59630-65a4-466d-b174-400928fb9634'</pre>
 </div>
 </div>
 </div>
@@ -7907,7 +7885,7 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">test_data_references</span> <span class="o">=</span> <span class="p">[</span><span class="n">DataConnection</span><span class="p">(</span><span class="n">data_asset_id</span><span class="o">=</span><span class="n">test_asset_id</span><span class="p">)]</span>
@@ -7938,7 +7916,7 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.experiment</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoAI</span>
@@ -7946,8 +7924,18 @@ SUCCESS
 <span class="n">experiment</span> <span class="o">=</span> <span class="n">AutoAI</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
 
 <span class="n">rag_optimizer</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">rag_optimizer</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">'AutoAI RAG run - ModelInference documentation'</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">"AutoAI RAG Optimizer on ibm_watsonx_ai ModelInference documentation"</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'AutoAI RAG run - Base documentation'</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"AutoAI RAG Optimizer on ibm_watsonx_ai Base documentation"</span><span class="p">,</span>
+    <span class="n">foundation_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"ibm/granite-13b-chat-v2"</span><span class="p">],</span>
+    <span class="n">embedding_models</span><span class="o">=</span><span class="p">[</span><span class="s2">"ibm/slate-125m-english-rtrvr"</span><span class="p">],</span>
+    <span class="n">retrieval_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">"simple"</span><span class="p">],</span>
+    <span class="n">chunking</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">"chunk_size"</span><span class="p">:</span> <span class="mi">512</span><span class="p">,</span>
+            <span class="s2">"chunk_overlap"</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+            <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"recursive"</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
     <span class="n">max_number_of_rag_patterns</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
     <span class="n">optimization_metrics</span><span class="o">=</span><span class="p">[</span><span class="n">AutoAI</span><span class="o">.</span><span class="n">RAGMetrics</span><span class="o">.</span><span class="n">ANSWER_CORRECTNESS</span><span class="p">]</span>
 <span class="p">)</span>
@@ -7972,7 +7960,7 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">rag_optimizer</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
@@ -7986,11 +7974,15 @@ SUCCESS
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'name': 'AutoAI RAG run - ModelInference documentation',
  'description': 'AutoAI RAG Optimizer on ibm_watsonx_ai ModelInference documentation',
- 'max_number_of_rag_patterns': 8,
+ 'chunking': [{'chunk_size': 512, 'chunk_overlap': 64, 'method': 'recursive'}],
+ 'embedding_models': ['ibm/slate-125m-english-rtrvr'],
+ 'retrieval_methods': ['simple'],
+ 'foundation_models': ['ibm/granite-13b-chat-v2'],
+ 'max_number_of_rag_patterns': 4,
  'optimization_metrics': ['answer_correctness']}</pre>
 </div>
 </div>
@@ -8013,7 +8005,7 @@ SUCCESS
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">run_details</span> <span class="o">=</span> <span class="n">rag_optimizer</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
@@ -8037,15 +8029,15 @@ SUCCESS
 
 ##############################################
 
-Running 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359'
+Running 'efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69'
 
 ##############################################
 
 
-pending...
-running........................
+pending.................
+running....
 completed
-Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
+Training of 'efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69' finished successfully.
 </pre>
 </div>
 </div>
@@ -8067,7 +8059,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">rag_optimizer</span><span class="o">.</span><span class="n">get_run_status</span><span class="p">()</span>
@@ -8081,7 +8073,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>'completed'</pre>
 </div>
@@ -8105,7 +8097,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="n">rag_optimizer</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -8120,7 +8112,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8143,7 +8135,9 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <th>mean_answer_correctness</th>
 <th>mean_faithfulness</th>
 <th>mean_context_correctness</th>
+<th>chunking.method</th>
 <th>chunking.chunk_size</th>
+<th>chunking.chunk_overlap</th>
 <th>embeddings.model_id</th>
 <th>vector_store.distance_metric</th>
 <th>retrieval.method</th>
@@ -8161,103 +8155,65 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <th></th>
 <th></th>
 <th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th>Pattern1</th>
-<td>1.0</td>
-<td>0.65940</td>
-<td>1.0</td>
-<td>512</td>
-<td>ibm/slate-125m-english-rtrvr</td>
-<td>euclidean</td>
-<td>window</td>
-<td>5</td>
-<td>meta-llama/llama-3-70b-instruct</td>
-</tr>
-<tr>
 <th>Pattern4</th>
+<td>0.7083</td>
+<td>0.2317</td>
 <td>1.0</td>
-<td>0.85365</td>
-<td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
-<td>cosine</td>
-<td>window</td>
-<td>5</td>
-<td>meta-llama/llama-3-70b-instruct</td>
-</tr>
-<tr>
-<th>Pattern6</th>
-<td>1.0</td>
-<td>0.73705</td>
-<td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
-<td>euclidean</td>
-<td>window</td>
-<td>3</td>
-<td>meta-llama/llama-3-70b-instruct</td>
-</tr>
-<tr>
-<th>Pattern8</th>
-<td>1.0</td>
-<td>0.87500</td>
-<td>1.0</td>
-<td>1024</td>
+<td>recursive</td>
+<td>512</td>
+<td>64</td>
 <td>ibm/slate-125m-english-rtrvr</td>
-<td>euclidean</td>
-<td>window</td>
+<td>cosine</td>
+<td>simple</td>
 <td>3</td>
-<td>meta-llama/llama-3-70b-instruct</td>
+<td>ibm/granite-13b-chat-v2</td>
 </tr>
 <tr>
-<th>Pattern2</th>
-<td>0.5</td>
-<td>0.29950</td>
+<th>Pattern1</th>
+<td>0.5833</td>
+<td>0.2045</td>
 <td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
-<td>euclidean</td>
-<td>window</td>
+<td>recursive</td>
+<td>512</td>
+<td>64</td>
+<td>ibm/slate-125m-english-rtrvr</td>
+<td>cosine</td>
+<td>simple</td>
 <td>5</td>
 <td>ibm/granite-13b-chat-v2</td>
 </tr>
 <tr>
-<th>Pattern5</th>
-<td>0.5</td>
-<td>0.61920</td>
+<th>Pattern2</th>
+<td>0.5833</td>
+<td>0.2372</td>
 <td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
-<td>cosine</td>
-<td>window</td>
-<td>3</td>
-<td>mistralai/mixtral-8x7b-instruct-v01</td>
-</tr>
-<tr>
-<th>Pattern7</th>
-<td>0.5</td>
-<td>0.29030</td>
-<td>1.0</td>
-<td>1024</td>
+<td>recursive</td>
+<td>512</td>
+<td>64</td>
 <td>ibm/slate-125m-english-rtrvr</td>
-<td>cosine</td>
-<td>window</td>
+<td>euclidean</td>
+<td>simple</td>
 <td>5</td>
 <td>ibm/granite-13b-chat-v2</td>
 </tr>
 <tr>
 <th>Pattern3</th>
-<td>0.0</td>
-<td>0.71430</td>
+<td>0.5833</td>
+<td>0.2117</td>
 <td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
+<td>recursive</td>
+<td>512</td>
+<td>64</td>
+<td>ibm/slate-125m-english-rtrvr</td>
 <td>euclidean</td>
 <td>simple</td>
-<td>5</td>
+<td>3</td>
 <td>ibm/granite-13b-chat-v2</td>
 </tr>
 </tbody>
@@ -8280,6 +8236,313 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">rag_optimizer</span><span class="o">.</span><span class="n">get_run_details</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>{'entity': {'completed_at': '2025-01-10T10:15:30.808Z',
+  'hardware_spec': {'id': 'a6c4923b-b8e4-444c-9f43-8a7ec3020110', 'name': 'L'},
+  'input_data_references': [{'location': {'href': '/v2/assets/4f76e9c4-724e-45a2-8099-2d93f2746db3?project_id=b9156b62-8f2a-4a40-8570-990fdd5d67cb',
+     'id': '4f76e9c4-724e-45a2-8099-2d93f2746db3'},
+    'type': 'data_asset'}],
+  'message': {'level': 'info', 'text': 'AAR019I: AutoAI execution completed.'},
+  'parameters': {'constraints': {'chunking': [{'chunk_overlap': 64,
+      'chunk_size': 512,
+      'method': 'recursive'}],
+    'embedding_models': ['ibm/slate-125m-english-rtrvr'],
+    'foundation_models': ['ibm/granite-13b-chat-v2'],
+    'max_number_of_rag_patterns': 4,
+    'retrieval_methods': ['simple']},
+   'optimization': {'metrics': ['answer_correctness']},
+   'output_logs': True},
+  'results': [{'context': {'iteration': 1,
+     'max_combinations': 4,
+     'rag_pattern': {'composition_steps': ['chunking',
+       'embeddings',
+       'vector_store',
+       'retrieval',
+       'generation'],
+      'duration_seconds': 16,
+      'location': {'evaluation_results': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern1/evaluation_results.json',
+       'indexing_notebook': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern1/indexing_inference_notebook.ipynb',
+       'inference_notebook': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern1/indexing_inference_notebook.ipynb'},
+      'name': 'Pattern1',
+      'settings': {'chunking': {'chunk_overlap': 64,
+        'chunk_size': 512,
+        'method': 'recursive'},
+       'embeddings': {'model_id': 'ibm/slate-125m-english-rtrvr',
+        'truncate_input_tokens': 512,
+        'truncate_strategy': 'left'},
+       'generation': {'context_template_text': '[Document]\n{document}\n[End]',
+        'model_id': 'ibm/granite-13b-chat-v2',
+        'parameters': {'decoding_method': 'greedy',
+         'max_new_tokens': 1000,
+         'min_new_tokens': 1},
+        'prompt_template_text': '&lt;|system|&gt;\nYou are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.\n&lt;|user|&gt;\nYou are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. When generating responses, prioritize correctness, i.e., ensure that your response is grounded in context and user query. Always make sure that your response is relevant to the question.\nAnswer Length: detailed\n{reference_documents}\n{question} \n&lt;|assistant|&gt;'},
+       'retrieval': {'method': 'simple', 'number_of_chunks': 5},
+       'vector_store': {'datasource_type': 'chroma',
+        'distance_metric': 'cosine',
+        'index_name': 'autoai_rag_efb6f9ce_20250110101318',
+        'operation': 'upsert',
+        'schema': {'fields': [{'description': 'text field',
+           'name': 'text',
+           'role': 'text',
+           'type': 'string'},
+          {'description': 'document name field',
+           'name': 'document_id',
+           'role': 'document_name',
+           'type': 'string'},
+          {'description': 'chunk starting token position in the source document',
+           'name': 'start_index',
+           'role': 'start_index',
+           'type': 'number'},
+          {'description': 'chunk number per document',
+           'name': 'sequence_number',
+           'role': 'sequence_number',
+           'type': 'number'},
+          {'description': 'vector embeddings',
+           'name': 'vector',
+           'role': 'vector_embeddings',
+           'type': 'array'}],
+         'id': 'autoai_rag_1.0',
+         'name': 'Document schema using open-source loaders',
+         'type': 'struct'}}}},
+     'software_spec': {'name': 'autoai-rag_rt24.1-py3.11'}},
+    'metrics': {'test_data': [{'ci_high': 0.6667,
+       'ci_low': 0.5,
+       'mean': 0.5833,
+       'metric_name': 'answer_correctness'},
+      {'ci_high': 0.2541,
+       'ci_low': 0.155,
+       'mean': 0.2045,
+       'metric_name': 'faithfulness'},
+      {'mean': 1.0, 'metric_name': 'context_correctness'}]}},
+   {'context': {'iteration': 2,
+     'max_combinations': 4,
+     'rag_pattern': {'composition_steps': ['chunking',
+       'embeddings',
+       'vector_store',
+       'retrieval',
+       'generation'],
+      'duration_seconds': 13,
+      'location': {'evaluation_results': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern2/evaluation_results.json',
+       'indexing_notebook': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern2/indexing_inference_notebook.ipynb',
+       'inference_notebook': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern2/indexing_inference_notebook.ipynb'},
+      'name': 'Pattern2',
+      'settings': {'chunking': {'chunk_overlap': 64,
+        'chunk_size': 512,
+        'method': 'recursive'},
+       'embeddings': {'model_id': 'ibm/slate-125m-english-rtrvr',
+        'truncate_input_tokens': 512,
+        'truncate_strategy': 'left'},
+       'generation': {'context_template_text': '[Document]\n{document}\n[End]',
+        'model_id': 'ibm/granite-13b-chat-v2',
+        'parameters': {'decoding_method': 'greedy',
+         'max_new_tokens': 1000,
+         'min_new_tokens': 1},
+        'prompt_template_text': '&lt;|system|&gt;\nYou are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.\n&lt;|user|&gt;\nYou are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. When generating responses, prioritize correctness, i.e., ensure that your response is grounded in context and user query. Always make sure that your response is relevant to the question.\nAnswer Length: detailed\n{reference_documents}\n{question} \n&lt;|assistant|&gt;'},
+       'retrieval': {'method': 'simple', 'number_of_chunks': 5},
+       'vector_store': {'datasource_type': 'chroma',
+        'distance_metric': 'euclidean',
+        'index_name': 'autoai_rag_efb6f9ce_20250110101349',
+        'operation': 'upsert',
+        'schema': {'fields': [{'description': 'text field',
+           'name': 'text',
+           'role': 'text',
+           'type': 'string'},
+          {'description': 'document name field',
+           'name': 'document_id',
+           'role': 'document_name',
+           'type': 'string'},
+          {'description': 'chunk starting token position in the source document',
+           'name': 'start_index',
+           'role': 'start_index',
+           'type': 'number'},
+          {'description': 'chunk number per document',
+           'name': 'sequence_number',
+           'role': 'sequence_number',
+           'type': 'number'},
+          {'description': 'vector embeddings',
+           'name': 'vector',
+           'role': 'vector_embeddings',
+           'type': 'array'}],
+         'id': 'autoai_rag_1.0',
+         'name': 'Document schema using open-source loaders',
+         'type': 'struct'}}}},
+     'software_spec': {'name': 'autoai-rag_rt24.1-py3.11'}},
+    'metrics': {'test_data': [{'ci_high': 0.6667,
+       'ci_low': 0.5,
+       'mean': 0.5833,
+       'metric_name': 'answer_correctness'},
+      {'ci_high': 0.3194,
+       'ci_low': 0.155,
+       'mean': 0.2372,
+       'metric_name': 'faithfulness'},
+      {'mean': 1.0, 'metric_name': 'context_correctness'}]}},
+   {'context': {'iteration': 3,
+     'max_combinations': 4,
+     'rag_pattern': {'composition_steps': ['chunking',
+       'embeddings',
+       'vector_store',
+       'retrieval',
+       'generation'],
+      'duration_seconds': 25,
+      'location': {'evaluation_results': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern3/evaluation_results.json',
+       'indexing_notebook': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern3/indexing_inference_notebook.ipynb',
+       'inference_notebook': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern3/indexing_inference_notebook.ipynb'},
+      'name': 'Pattern3',
+      'settings': {'chunking': {'chunk_overlap': 64,
+        'chunk_size': 512,
+        'method': 'recursive'},
+       'embeddings': {'model_id': 'ibm/slate-125m-english-rtrvr',
+        'truncate_input_tokens': 512,
+        'truncate_strategy': 'left'},
+       'generation': {'context_template_text': '[Document]\n{document}\n[End]',
+        'model_id': 'ibm/granite-13b-chat-v2',
+        'parameters': {'decoding_method': 'greedy',
+         'max_new_tokens': 1000,
+         'min_new_tokens': 1},
+        'prompt_template_text': '&lt;|system|&gt;\nYou are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.\n&lt;|user|&gt;\nYou are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. When generating responses, prioritize correctness, i.e., ensure that your response is grounded in context and user query. Always make sure that your response is relevant to the question.\nAnswer Length: detailed\n{reference_documents}\n{question} \n&lt;|assistant|&gt;'},
+       'retrieval': {'method': 'simple', 'number_of_chunks': 3},
+       'vector_store': {'datasource_type': 'chroma',
+        'distance_metric': 'euclidean',
+        'index_name': 'autoai_rag_efb6f9ce_20250110101349',
+        'operation': 'upsert',
+        'schema': {'fields': [{'description': 'text field',
+           'name': 'text',
+           'role': 'text',
+           'type': 'string'},
+          {'description': 'document name field',
+           'name': 'document_id',
+           'role': 'document_name',
+           'type': 'string'},
+          {'description': 'chunk starting token position in the source document',
+           'name': 'start_index',
+           'role': 'start_index',
+           'type': 'number'},
+          {'description': 'chunk number per document',
+           'name': 'sequence_number',
+           'role': 'sequence_number',
+           'type': 'number'},
+          {'description': 'vector embeddings',
+           'name': 'vector',
+           'role': 'vector_embeddings',
+           'type': 'array'}],
+         'id': 'autoai_rag_1.0',
+         'name': 'Document schema using open-source loaders',
+         'type': 'struct'}}}},
+     'software_spec': {'name': 'autoai-rag_rt24.1-py3.11'}},
+    'metrics': {'test_data': [{'ci_high': 0.6667,
+       'ci_low': 0.5,
+       'mean': 0.5833,
+       'metric_name': 'answer_correctness'},
+      {'ci_high': 0.219,
+       'ci_low': 0.2044,
+       'mean': 0.2117,
+       'metric_name': 'faithfulness'},
+      {'mean': 1.0, 'metric_name': 'context_correctness'}]}},
+   {'context': {'iteration': 4,
+     'max_combinations': 4,
+     'rag_pattern': {'composition_steps': ['chunking',
+       'embeddings',
+       'vector_store',
+       'retrieval',
+       'generation'],
+      'duration_seconds': 24,
+      'location': {'evaluation_results': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern4/evaluation_results.json',
+       'indexing_notebook': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern4/indexing_inference_notebook.ipynb',
+       'inference_notebook': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/Pattern4/indexing_inference_notebook.ipynb'},
+      'name': 'Pattern4',
+      'settings': {'chunking': {'chunk_overlap': 64,
+        'chunk_size': 512,
+        'method': 'recursive'},
+       'embeddings': {'model_id': 'ibm/slate-125m-english-rtrvr',
+        'truncate_input_tokens': 512,
+        'truncate_strategy': 'left'},
+       'generation': {'context_template_text': '[Document]\n{document}\n[End]',
+        'model_id': 'ibm/granite-13b-chat-v2',
+        'parameters': {'decoding_method': 'greedy',
+         'max_new_tokens': 1000,
+         'min_new_tokens': 1},
+        'prompt_template_text': '&lt;|system|&gt;\nYou are Granite Chat, an AI language model developed by IBM. You are a cautious assistant. You carefully follow instructions. You are helpful and harmless and you follow ethical guidelines and promote positive behavior.\n&lt;|user|&gt;\nYou are a AI language model designed to function as a specialized Retrieval Augmented Generation (RAG) assistant. When generating responses, prioritize correctness, i.e., ensure that your response is grounded in context and user query. Always make sure that your response is relevant to the question.\nAnswer Length: detailed\n{reference_documents}\n{question} \n&lt;|assistant|&gt;'},
+       'retrieval': {'method': 'simple', 'number_of_chunks': 3},
+       'vector_store': {'datasource_type': 'chroma',
+        'distance_metric': 'cosine',
+        'index_name': 'autoai_rag_efb6f9ce_20250110101318',
+        'operation': 'upsert',
+        'schema': {'fields': [{'description': 'text field',
+           'name': 'text',
+           'role': 'text',
+           'type': 'string'},
+          {'description': 'document name field',
+           'name': 'document_id',
+           'role': 'document_name',
+           'type': 'string'},
+          {'description': 'chunk starting token position in the source document',
+           'name': 'start_index',
+           'role': 'start_index',
+           'type': 'number'},
+          {'description': 'chunk number per document',
+           'name': 'sequence_number',
+           'role': 'sequence_number',
+           'type': 'number'},
+          {'description': 'vector embeddings',
+           'name': 'vector',
+           'role': 'vector_embeddings',
+           'type': 'array'}],
+         'id': 'autoai_rag_1.0',
+         'name': 'Document schema using open-source loaders',
+         'type': 'struct'}}}},
+     'software_spec': {'name': 'autoai-rag_rt24.1-py3.11'}},
+    'metrics': {'test_data': [{'ci_high': 0.75,
+       'ci_low': 0.6667,
+       'mean': 0.7083,
+       'metric_name': 'answer_correctness'},
+      {'ci_high': 0.2589,
+       'ci_low': 0.2044,
+       'mean': 0.2317,
+       'metric_name': 'faithfulness'},
+      {'mean': 1.0, 'metric_name': 'context_correctness'}]}}],
+  'results_reference': {'location': {'path': 'default_autoai_rag_out',
+    'training': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69',
+    'training_status': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/training-status.json',
+    'training_log': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/output.log',
+    'assets_path': 'default_autoai_rag_out/efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69/assets'},
+   'type': 'container'},
+  'running_at': '2025-01-10T10:12:50.000Z',
+  'state': 'completed',
+  'step': 'generation',
+  'test_data_references': [{'location': {'href': '/v2/assets/84b59630-65a4-466d-b174-400928fb9634?project_id=b9156b62-8f2a-4a40-8570-990fdd5d67cb',
+     'id': '84b59630-65a4-466d-b174-400928fb9634'},
+    'type': 'data_asset'}],
+  'timestamp': '2025-01-10T10:19:50.024Z'},
+ 'metadata': {'created_at': '2025-01-10T10:10:59.861Z',
+  'description': 'AutoAI RAG Optimizer on ibm_watsonx_ai ModelInference documentation',
+  'id': 'efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69',
+  'modified_at': '2025-01-10T10:15:30.971Z',
+  'name': 'AutoAI RAG run - ModelInference documentation',
+  'project_id': 'b9156b62-8f2a-4a40-8570-990fdd5d67cb'}}</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -8291,12 +8554,12 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">best_pattern_name</span> <span class="o">=</span> <span class="n">summary</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -8305,25 +8568,6 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <span class="n">best_pattern</span> <span class="o">=</span> <span class="n">rag_optimizer</span><span class="o">.</span><span class="n">get_pattern</span><span class="p">(</span><span class="n">pattern_name</span><span class="o">=</span><span class="s2">"Pattern1"</span><span class="p">)</span>
 <span class="n">best_pattern</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Best pattern is: Pattern1
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;ibm_watsonx_ai.foundation_models.extensions.rag.pattern.pattern.RAGPattern at 0x7fb5499e5660&gt;</pre>
 </div>
 </div>
 </div>
@@ -8365,15 +8609,17 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">urls</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebBaseLoader</span>
+
+<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"https://ibm.github.io/watsonx-ai-python-sdk/fm_embeddings.html"</span><span class="p">,</span>
     <span class="s2">"https://ibm.github.io/watsonx-ai-python-sdk/fm_custom_models.html"</span><span class="p">,</span>
     <span class="s2">"https://ibm.github.io/watsonx-ai-python-sdk/fm_text_extraction.html"</span>
@@ -8385,12 +8631,25 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>USER_AGENT environment variable not set, consider setting it to identify your requests.
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">best_pattern</span><span class="o">.</span><span class="n">indexing_function</span><span class="p">(</span><span class="n">doc_splits</span><span class="p">)</span>
@@ -8404,107 +8663,78 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>['1d66cc8bdf47bf8a6feb581bad2da1b3a84efe6e315b704e257c4694503262fa',
- '41d202e18173f3de8e6fe2487f94be3ba343a0a1ec0ace31a08d15d43df2cdda',
- '2601c867f6ec009dba86bb56b0736e5fcfc0dc6b4dbfac76ca3658d7adb78841',
- 'aa0c2db7aae540ae0d65378060f96cd903a6f1dff07cbc4b69a1c19e5e022eaa',
- '345c1341dbf0413714aba8a5cfc24df26fc927fdd9221aa24db9331172b3730c',
- 'c8ee6e3a9c29e5b8095b9934634b74d7850c385fba543008de11ceff499205bc',
- '8f2d0cd3e48b38ffca8c8781fd701de6f4d15ef3733f73dfda432a9855976a1f',
- '21a8c1f5d6fe14ad136ff85923b8c128c1c21a8eaf8bebefb113f4b2b7df831f',
- '05178f9c7c9f54e1632df71ef376b09dad7ec74c24f9e820e5a81eb3a9324a55',
- '38cf82fa385db9287d2caa7e64e69935d7cd391fba1f642fc3aba96d8909cd57',
- '8f6c8405f9cf229ae0210881e31c53f88942d836a78209f856c12db676cff120',
- '3e4381579adc876a54287f2f175090558a15c1394820851341bc4803f53dc7bf',
- 'c5ba02114835949db97af1e54a1617178a02f9407126c199f3f1abe86ca13e02',
- '666a2c2447484692e4efcdf184ce58668e468b72e1008f46390c5cee39c92843',
- 'a831b5576c6019cf5268426fe970e71a0215b4aba34e01922e9d7c3d49a1b813',
- 'cb3d570a47c3a25fd768ea8276ba695d45bfde4077784b0a3a6bd1a09db2fcd8',
- '00f828fd04e09e887eca8a279077da1ec3e054cedfa36dda80611a8050c45032',
- 'd1fccfbe603d6562baab4bea1a8c9916d4b0241f353db6af0861eb4c54e5dc8a',
- '2c13e3ce32a9f77a9b26fd4f41752c65f0a1f782da40c7f0bf1206d05924481f',
- 'f1ad469e07964ed7a4ae43195e76a394ca5b43ea37e2ecde2f1ec4772a6aa653',
- '2015d3f1a7a1bafe4eab5c708b048a7bb3158ea76b9d0bb7181a164fd72df182',
- 'b963534e394d9d41b75742ef1c79389434a61b4d0364e67756b2cefdaf147c43',
- '4cc896821b1ecef9f5450516bc37be1d92c5252860accc9887503ba2f1382384',
- '3b13e21a7a4a93633816317d970048082883f8ae30f3bfaddc8b4a9efcbe8fd0',
- 'd37616a0bc48ed59707561a26be22c44510b0d4bd8dde5f99378feb3ab40058b',
- 'ce4a4bfb99b96b6ba479fc30bfe894bd3167ccaec7763b6ee9d51101952076e8',
- '2e56d98cf634a60b53bb7662b08ff2d891b413042d79f10e162b8faa02dfe8c1',
- '795f932f57b365d614aa67c610b640296b50afd7974c8a081a7e663456344a2a',
- '5c5913e7002cd4dfa2a5fd194791f97810af18586774e4ee3e31e9e5cb1ef890',
- 'f84e44d7454f246b357d5f58fd480fcd4967367c1ea700ee6a2478331b95692a',
- '8bf37ea6cf481611e054828fee712e0bdabc8a6e6d8dbf9ea99dfe469785927f',
- 'aa82d0ddb3314e5ed617760e67cd9b23ee79cffabc21371600ddf584e0994d18',
- 'd8860e509e822aab25ea4a0135440082c8adeb3950c1bd30d680ac41d5ecc618',
- '0957fddcd18e798adea67a1b8654461fc173e0137b20a52772e08ee9a964750d',
- '635bf41b0e8514b289f33079b9ad6fe1a153cec298052623b23ecd952c678dab',
- '7b8912564920c94fe6b0d33f2ff6746aec3755376cebd09330cb19203a822061',
- '71f3484c615c77b73af276fbb9910976f4c1d5e5ef00f0f48973db2d86ed35cb',
- '39f2b60c298559adbd865a37476a08d8fed93d49f2bf4bbcf881f6ed0559f065',
- '27de078137770a86a7c61c246535b36a3aa31b3284fc3637d7148218e88aecc8',
- '8be1273cd1c21ac0b16ed7d19f4a8d651a8b2b6c6bbac6a4894458e4e22dbf98',
- '32cbe35be643e2c07672096a8ce2c3e7423646bacf41ee7bd576983f45d05479',
- 'f3ced4e56459dfaad38cb3e5904493d5e4fcce9487cf0085731e311d23216dc2',
- 'ae44050a5af3a6884832b8f9a78c46a05baca6c9be39986d6b6df92674379922',
- 'cd649510577ffccc1f4716aa6e90eb260fecaaf71ce08f290255c1ced28c2714',
- '5cba47f9f8b4acabe87c880d4c06431effecefc72db3fd1b4bb154579b1027f8',
- 'bbe47810c0eab7f69c4808134abb13739fb2763992e4f034ddb543c957770484',
- '8e0178c2c427537a8fe198b16f444099367996426d086ff0c50f7ce36e07f690',
- 'c23f35c1bcf73930f583f4cba5e0bae78e54a3cb0c2439bf9972a89fe2b068a6',
- '2bb96c3bdc7ddd4543136bd5b487fff282bd8215a8b29eac763626c3a984ed85',
- '4ea23b83599b7aae5e77fc7df05de3bbf50456c400c4aa555e8100967b4e1106',
- '2151a7877b9655caaeb43149b50af78e7924a2d7d296db443d16e36213f6c235',
- 'ba7d623c6345aa76a3cef7d0aedd85eb630ba1e505ee4ddd4185bf4d36c33415',
- 'b70661cc565526c010771de74ffb1f1b85a6448bbe784db0f4bd3e92d3f4febc',
- '6992491ac6d7df967fd1e52923eb8be868d2fed8b45e50eb77c6f83e98f05d2a',
- 'a2d39804b5f7785bdc08620f6835fc35b76e4d7693421a5056cbd16aa8645605',
- '2ae38ca8eb6fc846edaf84b01e17369e5f0c46461ec73fbdd1d33c4d951669e2',
- '87e5a141c35f05ead50b18cfa9c94e72dcd84f4d4f166da4d965c7b5e50a88e7',
- '87edaaad815433fef09b94c5ce6fdd2b22bfee601008e1ee3d6a8c80eddb1ec8',
- '7fd1029ea6f7e58815cf32e01a9842f5d3fc45237f950caaad9019ea1ca3be6c',
- 'cc4bed61c98fa91a4ba7005f8027bd996933ff0fbfcb46b50fad81b054a64890',
- '1838edce742968f8373846397b63ce2977c1c17bc3e6a3b3a2e897f2c763e13d',
- 'c5f132e654d1218cbcb8e556df96d9843f8b587bfd5d2228c74672c6c51ce302',
- '10db89c1330961c136ad4e3e4aa83c3171c3c052cbc6dbb59b2cd23e574f9eb5',
- '584b71dc92c4d01a6d8022eafc7280ffac60c844c8c9bdd40a40c6d572023c9c',
- '4ab0197d70bf8abcb9148473215794aa20d08d43b9c6e3dace8d39c36e37825c',
- '83b8b698415f8e23a49a3e853a5f02481b788c8f6f84dafa06e29c58998d2a55',
- 'ea76f8a2962ac57a5ce9f75622e9857127979ac53141c50d308e880bbbd8aeb8',
- 'f579e7f77d779a97e8962a4e0aaacc098ef280d66e94fb1699dfcb9b7f1e71fe',
- '15c6317daf499b8c79e2a6def1236b9ce9da51edab1d8514cb35a887e131330e',
- '4003b8a5e9a10e5f07f81def6961539dea04cc5f4c79798da13e4d3e3c73ed6a',
- '6e1fa5abe96e0fdbf367e3f670e1f87912d2bcb0b73d839b7162a904c2c1d53a',
- '0414a021f95d89dc37cd123086dc60854f7d38fe65b4c40d6714b6904ebef84f',
- '0a123635ae9b78503927a764b58052eaff03cbbf21eea03b49da92cfa43024a8',
- '3ad150eb2b4d983aa86e41f1eef071a8ee6b6214a1dd155482ecc67b6a741274',
- 'cfe422409cc2ee63a30425a11d3c9f05cc330c1672d5f58ae4ffeeb2333f589d',
- '738c212e0558b50d8b95647a7392af0523df6de19df90c373aa5cd0629edeb60',
- '4ac2d6ee1ac781604866d37fdccfcd808ed4de528f9dee97f4cc88ddf40f8c8c',
- 'c851c2399bd05d2741a8aca0ba3a9bf1f5298179ac3d54a332bb45fa6218bd3c',
- 'd0cda8b19f30c1bdfe2614189685c5dea75aba06c5120e20a92c2e82321c9739',
- '1133a730e66b8e3c3f9088487c914aaf07823283a910fbfeb10cf78aee81d5e3',
- '826f5ab6b801275d4fb0221a4456bf9a93e759e7231916bc13aa32b2951e7d30',
- '2fc206c0510950bc1acbd5bde881171491c5beb92cac03356c9e41f1450c2d5d',
- 'df915894a2353b43ee004d3721db5f872fdafedfd2c692cf90f934493a38278b',
- 'ac7be0f523f74b459a35d18a22136d73b4ddd1d3dc2a3d3dd19f5bee0e6322b2',
- 'afec2052185db48492078c134059e45c82bc73dbc31d59b1d618eadab8ff0427',
- '9d743cf5bf8109099fdf8f173ee58e2618f9fd70cdf32647e6c0bf53d298aa33',
- 'af9ad89945d53a1e1ce037aeb658c063ae46dc2ebe9b4838f8c79e8b46bff8f7',
- '22cd9bc8595f7057f0f1417ae680fe8508e8340731bfe0461969f6bf25f7da16',
- '0af3b659eda531601c861a2253cb43232c3775a88e9c5c2072798b842c5c5774',
- '2c9ff299bb705b21159a100438d4b3211cffd9cbae3c79f5345b379850676b61',
- '05322f1f89b7c29cfc1a3fddbfa68c994beace6c29a375206130e93e3f8c19cf',
- '273c9c355c530ceade578d849f5ba0d6f1540715380889982339167eb6060e0d',
- '830b1ac394607a994e7a9ed41fab86d1efad5920b6b0299d2a53c637c3ab3739',
- '1662ae11c7486701a5fa1f9adf189e9bd2ee93fb1fdb517243c0dfce3876c1cd',
- 'c78190bdc8768840768c8ef0896bf5d60eae2235a17ff50f4e224309880b425b',
- 'e396f801375ffa1b7969846c3091b3faeba8deb9e14142242d8728a0ea42eeeb',
- '2b2d9e0c8eeeb11161f43907fff73b8729abf7e10000646558d9716c922ec969',
- 'a823f2cee90a19ab1b1ead24f7f3d45c996acc0063d63e7515b773c9275c0ce0',
- '6b349a8d6f0a58a16c2ee24849f21d593fa8901921c9fdee953fbdb50846fe39']</pre>
+<pre>['26e3b6934e2d26b5016e48a72f8066e6e6c46f842921dc3850a9d7e90db422b7',
+ '2a41a4ffaa8030ef315178951f17656100e491e07cbc27e3fd5c246e47297470',
+ 'df6e5765dcfdfa245e80b5f526c4b6ae9bf661b94f46263f6d10fc235670a649',
+ '3cafdf9aa72070f81f85138d6548290f69ce1daf06c2ff77833acb109c54daf1',
+ '800812f60df6a099a6540f30db77eada51455f15d781f1ecc59a830206e9ee4a',
+ '5c177d22821e150afc95ea18a34a94bd4e4cc18fc906fa9f48067a73e4fd9a14',
+ 'd83f23a1d666979ab04abca6229d981af044ce09fbef23a0d180eb5756c50bc8',
+ '987e2db87207c400067195d32d74c46002c6dbea3d63cbcf2bf7739375075424',
+ '75ad5d3f99270fe00cfea3f68f9825fabd66206746ab7b62fe7d7533cb249c78',
+ '03222e428bf11a47ab5b4622437bb34aca042c6e889fbca7817b1d80500e954a',
+ '9d83427cd6341b0d3be46ae5ecef1dafb4ddcafb63540ec12a005c9d1deb92bf',
+ 'da6f13c46cf0bd9e4fc79ef9f80cb89a42fcd260bc9c9397bfa349333fc312eb',
+ '710988569ce081d6edc51cc23903d248a2017451afc6b75c36e69a34ee02c468',
+ '531720786df6b24f44b66afb5e99e5d16f51d78f3a399df9f24e929e0c6e37ae',
+ '9673f7cc44e2c6b59af016a5f97efe77682acab9a46bdf3f57863c0353db5f3d',
+ '73a56b3bf7e6ccd5105013c1ebc8d73a45ed64e48daaea25ad95a9ea0e530f66',
+ 'fd6e62fbdf29810ab9312b9ca0bba262b62a0991e6f36474a22818575d688ef0',
+ 'c1f9e2d2b63d7a68bd8405caacd3ee7d4271a935503e9fc4ad132d863f0f9152',
+ 'c1ddf6459ad12eb0aad568ec5da83f03097f6442eb144133f0f2b788afd2c088',
+ '6956b13358764b6c097b6ab421e8e74a30088bad09ef937f2ffb50c9ddf5898e',
+ '860961359a43043a8fd90d8b7376473edd0fd39ce1b6b724c1ff8323a01758dd',
+ '68799f2438b62ad530437694832105a3fc974eb7f8fb9e55ef83395793911577',
+ '2352e4a519641e8a66a5b87b0015c3a02ecbdc5aa1de62f7a904038d2acda69d',
+ 'b686b759549d9781b9f66325db9f6034e6afaeac60de759afeb4b874b34b3cd6',
+ 'e4a6a6b3c45d63bbc81b143815e6ac7b0a3998e38ce6cc590fa427fd0a1e7bed',
+ 'cf632d17fdaabb5000d5bc1d07af8a8356277ec3cd5ec5a367d5915bf44ad634',
+ 'f61cc206172c9f07ad86f8c5320e44e662fd88b8cc49252b2722fdad6bf884e5',
+ 'ee8cc57587a324ac3c43b44e0669b169d4c3139a31adce852d688ca6b19f0fc6',
+ '531b89f8fb66af799ec63adaf4e8163aa86a415f59f71ba403c71a7a1586b8e0',
+ 'c16e03a96347002fc7365194f0f63ed22d76f8b1b4699fcd391be5dedc1c005f',
+ '2029010a59ab1a1b1b8f360ed3d6532e77176ff31c6bf9d9dffa9b37b23f7dee',
+ 'e4f459e29d7080ed5a85c0942dfaf355d231cee59d53648170867507e7df6d5d',
+ '18446c0fa3966431f1c74dd3db41217e76b9c969e7e1de96b4669d26bdbd4f68',
+ '1973580c0f13fb48f067d79f597590b4db4d75c164bd09ceab943de09c161df1',
+ '54619f9b8ce803679610afc8a4c4e316c16fff73d67031bf8c1f83b8fd9a7b31',
+ 'bd84c8df19f0ac48edda33555ce69c21507d0e666bb1433805647f99df0959bb',
+ '3095fd98675edfec0e467b7b4e1ce38dbd5eba89e7ee9cfa03ba944852313724',
+ 'a8bd89d8e09e3a95060956b88a3d9b85dff06a6f3bdff60f6efe3bd5b2b7d8f2',
+ 'c277e67493de9ee9e92b82030b57c9e021b384c126a46ecea6445e6c63b912c6',
+ '87f5a49d9549eb4260a2a66bce63f367fa39e9e915cb6790c99e290257988e6a',
+ '2fddccc515c8d4d23d2d1e75ac4dc391f413fd2c6baf378d2bb76110bbb60a19',
+ '001b26fe1f1a0a6b642b34eba602bf838947cfff794415787960e855fa68c91c',
+ 'a2cb2616f62ab0831970ae4889e45685168d869dd11ee8f792ae389c3efb913c',
+ 'b2b99fd59119815de9bc3dfd29d46aeaf4929e7eb4875c4e53b527d2fd982eab',
+ '481b335b0d8f1fc74be755601b13981af0fdbe4befa99c7c9ec59eb0e2ed001c',
+ '6e8c8f4479328c60de924d7636089ad176041648938dc6156000577e52caffcb',
+ 'c7484d65bb4e88c10a710b68a0b444b002e73ebef345ff15627f9f8b2ce4c1ad',
+ '17858cb4104c0c36a9f1287888351599dc3103d2b57ca182f85089ab087fdf3c',
+ '2e1e623e9a5e5d25c96e3e63c40dff4839c63787bdfa423ea6b115ee1cc6e67c',
+ '303835f544bbcec40d2063472f10bb7189ed514bf93bcdfae201e6e5d163787f',
+ 'd25fa313eeceafd6b3f16ad27794e7d816b3d26cab0fec035eee862e6b7e3e6a',
+ '68e3e02337f85ecd81da415de431d4be81b7230cfbf35976398f7a569f782273',
+ '547676950eb909affba820fda6e0e3a4e741197e597214ef86c6c8da3d135e61',
+ '04b0c30d3de9df3176bca372e27fb30d71a7d1aad77d60ca8e0f3571298f174c',
+ '236c80504dd62f867ba64780339310ff6da2c1207d3bdad2601175d92ad490d6',
+ '61c6b52998e65348bb296a7a8befcdc96f0af6506690a275e1892a08f5bf6496',
+ '3dbba258aab554d28bb2d6e55d05c730dfa2d21a4e2d5abe50d81dba8cc5055f',
+ 'a7d024c9244d327a30df25e0b7dc63659e72bb959407f51947959b84de30b3f7',
+ '2568930293951272143b719c7b613ffef404cc11fcb0c48913e070b80ce362a9',
+ '6152bbd7066755eb867681c0e39170d6c9c7494fe915285b575d94e407057728',
+ '864c04bab6375d7cae2a99d0deaf5af954259842144674c67ffc088baa04130e',
+ '1739949dd889dc912a77c1045b0e2a6bfe4cfd7f051fb6749f5a6d46227c36e8',
+ '96c1df2eb0305d0faf8c18399e818cfc6be287c66ca416e9161f25d5b06243f2',
+ '0c6b4cf5c33d84c97271da2fbddfd910914b80c63ca22cd4e9f9f0ee54eda8ef',
+ 'bdbd0974ded5efd7349bf9f493a0628df9b65245446fcb177e1c2186b1fe9c8c',
+ '0ec434ccae697cd03bf14f41247e5bc22da92c1c99dd96d538715161f6d52c03',
+ '321f0fc064aa3a50ef0a6df155b33ce054fe5046003c1c4a19870fa1bda21831',
+ 'e7e0b918538d1831863485c25ea55c7a05505e77332c3f96600fd2bd706f93a1',
+ 'ee2d58e72cdf6f056861a2523fd183ae2f26e7678430520f05f823a0127478df',
+ 'fdebb9d726075059af7622033d727f5c36f411c71f291e1d3eea449cf5e568ed']</pre>
 </div>
 </div>
 </div>
@@ -8525,7 +8755,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">questions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"How to add Task Credentials?"</span><span class="p">]</span>
@@ -8550,25 +8780,45 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'predictions': [{'fields': ['answer', 'reference_documents'],
-   'values': [["\n\nTo add Task Credentials, you can use the `store` method of the `task_credentials` object. First, initialize the `APIClient` object with your credentials, then set the default project or space ID. Next, use the `list` method to check if there are any existing task credentials. If the list is empty, you can create new task credentials by calling the `store` method. You can also use the `get_details` method to get the status of available task credentials.\n\nHere's an example:\n```\nfrom ibm_watsonx_ai import APIClient\n\nclient = APIClient(credentials)\nclient.set.default_project(project_id=project_id)\n\n# Check if there are existing task credentials\nclient.task_credentials.list()\n\n# If the list is empty, create new task credentials\nclient.task_credentials.store()\n```\nThis will add new task credentials, which are required for deploying a custom foundation model on IBM watsonx.ai for IBM Cloud.",
-     [{'page_content': 'Initialize APIClient object¶\nInitialize APIClient object if needed. More details about supported APIClient initialization can be found in Setup section,\nfrom ibm_watsonx_ai import APIClient\n\nclient = APIClient(credentials)\nclient.set.default_project(project_id=project_id)\n# or client.set.default_space(space_id=space_id)\n\n\n\n\nAdd Task Credentials¶\n\nWarning\nIf not already added, a Task Credentials are required on IBM watsonx.ai for IBM Cloud to make a deployment.\n\nTask credentials enable you to deploy a custom foundation model and avoid token expiration issues.\nMore details can be found in: Adding task credentials.\nTo list available task credentials, use list method:\nclient.task_credentials.list()\n\n\nIf the list is empty, you can create new task credentials by using store method:\nclient.task_credentials.store()\n\n\nTo get status of available task credentials, use get_details method:\nclient.task_credentials.get_details() Storing model in service repository¶\nTo store model as an asset in the repo, first create proper metadata.\nIn Cloud scenario, there is a need to have an active connection to Cloud Object Storage.\nFor more information and how to create COS connection, see Connection Asset.\nFrom such connection, the user can obtain the parameters needed to fill MODEL_LOCATION field.\nmetadata = {\n    client.repository.ModelMetaNames.NAME: "custom FM asset,\n    client.repository.ModelMetaNames.SOFTWARE_SPEC_ID: sw_spec_id,\n    client.repository.ModelMetaNames.TYPE: client.repository.ModelAssetTypes.CUSTOM_FOUNDATION_MODEL_1_0,\n    client.repository.ModelMetaNames.MODEL_LOCATION: {\n        "file_path": "path/to/pvc",\n        "bucket": "watsonx-llm-models",',
-       'metadata': {'sequence_number': [10, 11, 12, 13, 14],
-        'document_id': '-5799520237987579193'}},
-      {'page_content': 'IBM watsonx.ai for IBM Cloud¶\nThis section shows how to create task credentials, store &amp; deploy model and use ModelInference module with created deployment on the IBM watsonx.ai for IBM Cloud.\n\nInitialize APIClient object¶\nInitialize APIClient object if needed. More details about supported APIClient initialization can be found in Setup section,\nfrom ibm_watsonx_ai import APIClient\n\nclient = APIClient(credentials)\nclient.set.default_project(project_id=project_id)\n# or client.set.default_space(space_id=space_id)\n\n\n\n\nAdd Task Credentials¶\n\nWarning\nIf not already added, a Task Credentials are required on IBM watsonx.ai for IBM Cloud to make a deployment.\n\nTask credentials enable you to deploy a custom foundation model and avoid token expiration issues.\nMore details can be found in: Adding task credentials.\nTo list available task credentials, use list method:\nclient.task_credentials.list()\n\n\nIf the list is empty, you can create new task credentials by using store method:\nclient.task_credentials.store()\n\n\nTo get status of available task credentials, use get_details method:\nclient.task_credentials.get_details() Storing model in service repository¶\nTo store model as an asset in the repo, first create proper metadata.\nIn Cloud scenario, there is a need to have an active connection to Cloud Object Storage.\nFor more information and how to create COS connection, see Connection Asset.\nFrom such connection, the user can obtain the parameters needed to fill MODEL_LOCATION field.\nmetadata = {\n    client.repository.ModelMetaNames.NAME: "custom FM asset,\n    client.repository.ModelMetaNames.SOFTWARE_SPEC_ID: sw_spec_id,',
-       'metadata': {'sequence_number': [9, 10, 11, 12, 13],
-        'document_id': '-5799520237987579193'}},
-      {'page_content': 'Custom models¶\nThe custom models of watsonx.ai client might differ depending on the product offering. Choose an option from the list below\nto see steps.\n\nIBM watsonx.ai for IBM Cloud\nIBM watsonx.ai software with IBM Cloud Pak for Data\n\n\nIBM watsonx.ai for IBM Cloud¶\nThis section shows how to create task credentials, store &amp; deploy model and use ModelInference module with created deployment on the IBM watsonx.ai for IBM Cloud.\n\nInitialize APIClient object¶\nInitialize APIClient object if needed. More details about supported APIClient initialization can be found in Setup section,\nfrom ibm_watsonx_ai import APIClient\n\nclient = APIClient(credentials)\nclient.set.default_project(project_id=project_id)\n# or client.set.default_space(space_id=space_id)\n\n\n\n\nAdd Task Credentials¶\n\nWarning\nIf not already added, a Task Credentials are required on IBM watsonx.ai for IBM Cloud to make a deployment.\n\nTask credentials enable you to deploy a custom foundation model and avoid token expiration issues.\nMore details can be found in: Adding task credentials.\nTo list available task credentials, use list method:\nclient.task_credentials.list()\n\n\nIf the list is empty, you can create new task credentials by using store method:\nclient.task_credentials.store()\n\n\nTo get status of available task credentials, use get_details method:\nclient.task_credentials.get_details()',
-       'metadata': {'sequence_number': [8, 9, 10, 11, 12],
-        'document_id': '-5799520237987579193'}},
-      {'page_content': 'Toggle Light / Dark / Auto color theme\n\n\n\n\n\n\n\nToggle table of contents sidebar\n\n\n\n\n\nCustom models¶\nThe custom models of watsonx.ai client might differ depending on the product offering. Choose an option from the list below\nto see steps.\n\nIBM watsonx.ai for IBM Cloud\nIBM watsonx.ai software with IBM Cloud Pak for Data\n\n\nIBM watsonx.ai for IBM Cloud¶\nThis section shows how to create task credentials, store &amp; deploy model and use ModelInference module with created deployment on the IBM watsonx.ai for IBM Cloud.\n\nInitialize APIClient object¶\nInitialize APIClient object if needed. More details about supported APIClient initialization can be found in Setup section,\nfrom ibm_watsonx_ai import APIClient\n\nclient = APIClient(credentials)\nclient.set.default_project(project_id=project_id)\n# or client.set.default_space(space_id=space_id)\n\n\n\n\nAdd Task Credentials¶\n\nWarning\nIf not already added, a Task Credentials are required on IBM watsonx.ai for IBM Cloud to make a deployment.\n\nTask credentials enable you to deploy a custom foundation model and avoid token expiration issues.\nMore details can be found in: Adding task credentials.\nTo list available task credentials, use list method:\nclient.task_credentials.list()\n\n\nIf the list is empty, you can create new task credentials by using store method:\nclient.task_credentials.store()',
-       'metadata': {'sequence_number': [7, 8, 9, 10, 11],
-        'document_id': '-5799520237987579193'}},
-      {'page_content': 'the path to a CA_BUNDLE file\nthe path of directory with certificates of trusted CAs\nTrue - default path to truststore will be taken\nFalse - no verification will be made persistent_connection (bool, optional) – Whether to keep persistent connection when evaluating generate, ‘embed_query’ and ‘embed_documents` methods with one prompt\nor batch of prompts not longer than documentation allows (for more details see https://cloud.ibm.com/apidocs/watsonx-ai#text-embeddings).\nTo close connection run embeddings.close_persistent_connection(), defaults to True. Added in 1.1.2.\n\n\n\n\nNote\nOne of these parameters is required: [project_id, space_id] when credentials parameter passed.\n\n\nHint\nYou can copy the project_id from the Project’s Manage tab (Project -&gt; Manage -&gt; General -&gt; Details).\n\nExample\n from ibm_watsonx_ai import Credentials\n from ibm_watsonx_ai.foundation_models import Embeddings\n from ibm_watsonx_ai.metanames import EmbedTextParamsMetaNames as EmbedParams\n from ibm_watsonx_ai.foundation_models.utils.enums import EmbeddingTypes embed_params = {\n     EmbedParams.TRUNCATE_INPUT_TOKENS: 3,\n     EmbedParams.RETURN_OPTIONS: {\n     \'input_text\': True\n     }\n }\n\n embedding = Embeddings(\n     model_id=EmbeddingTypes.IBM_SLATE_30M_ENG,\n     params=embed_params,\n     credentials=Credentials(\n         api_key = "***",\n         url = "https://us-south.ml.cloud.ibm.com"),\n     project_id="*****"\n     )\n\n\n\n\nclose_persistent_connection()[source]¶\nOnly applicable if persistent_connection was set to True in Embeddings initialization.\n\n\n\nembed_documents(texts, params=None, concurrency_limit=10)[source]¶\nReturn list of embedding vectors for provided texts.\n\nParameters:',
-       'metadata': {'sequence_number': [10, 11, 12, 13, 14],
-        'document_id': '-7897467398471890708'}}]]]}]}</pre>
+   'values': [["\nTo add Task Credentials, you can use the `client.task_credentials.store()` method. This method requires no parameters and will create new task credentials if they do not already exist. If the list of task credentials is empty, this method will automatically add them.\n\nHere's an example of how to add Task Credentials:\n\n```python\nfrom ibm_watsonx_ai import APIClient\n\n# Initialize the APIClient object if needed\nfrom ibm_watsonx_ai import APIClient\nclient = APIClient(credentials)\n\n# Add Task Credentials\nclient.task_credentials.store()\n```\n\nNote: If you are using a custom foundation model, you will need to add Task Credentials before deploying the model. Failure to do so will result in token expiration issues.",
+     [{'page_content': 'With task credentials, you can deploy a custom foundation model and avoid token expiration issues.\nFor more details, see Adding task credentials.\nTo list available task credentials, use the list method:\nclient.task_credentials.list()\n\n\nIf the list is empty, you can create new task credentials with the store method:\nclient.task_credentials.store()\n\n\nTo get the status of available task credentials, use the get_details method:\nclient.task_credentials.get_details()',
+       'metadata': {'document_id': '8500262700953266120',
+        'language': 'en',
+        'sequence_number': 7,
+        'source': 'https://ibm.github.io/watsonx-ai-python-sdk/fm_custom_models.html',
+        'start_index': 0,
+        'title': 'Custom models - IBM watsonx.ai'}},
+      {'page_content': 'Initialize an APIClient object¶\nInitialize an APIClient object if needed. For more details about supported APIClient initialization, see Setup.\nfrom ibm_watsonx_ai import APIClient\n\nclient = APIClient(credentials)\nclient.set.default_project(project_id=project_id)\n# or client.set.default_space(space_id=space_id)\n\n\n\n\nAdd Task Credentials¶\n\nWarning\nIf not already added, Task Credentials are required on IBM watsonx.ai for IBM Cloud to make a deployment.',
+       'metadata': {'document_id': '8500262700953266120',
+        'language': 'en',
+        'sequence_number': 6,
+        'source': 'https://ibm.github.io/watsonx-ai-python-sdk/fm_custom_models.html',
+        'start_index': 0,
+        'title': 'Custom models - IBM watsonx.ai'}},
+      {'page_content': 'Note\nWhen the credentials parameter is passed, one of these parameters is required: [project_id, space_id].\n\n\nHint\nYou can copy the project_id from the Project’s Manage tab (Project -&gt; Manage -&gt; General -&gt; Details).\n\nExample:\n from ibm_watsonx_ai import Credentials\n from ibm_watsonx_ai.foundation_models import Embeddings\n from ibm_watsonx_ai.metanames import EmbedTextParamsMetaNames as EmbedParams\n from ibm_watsonx_ai.foundation_models.utils.enums import EmbeddingTypes',
+       'metadata': {'document_id': '-541837184247348180',
+        'language': 'en',
+        'sequence_number': 10,
+        'source': 'https://ibm.github.io/watsonx-ai-python-sdk/fm_embeddings.html',
+        'start_index': 0,
+        'title': 'Embeddings - IBM watsonx.ai'}},
+      {'page_content': 'Parameters:\n\ncredentials (Credentials, optional) – credentials to the Watson Machine Learning instance\nproject_id (str, optional) – ID of the Watson Studio project, defaults to None\nspace_id (str, optional) – ID of the Watson Studio space, defaults to None\napi_client (APIClient, optional) – initialized APIClient object with a set project ID or space ID. If passed, credentials and project_id/space_id are not required, defaults to None\n\n\nRaises:',
+       'metadata': {'document_id': '87506292822977493',
+        'language': 'en',
+        'sequence_number': 6,
+        'source': 'https://ibm.github.io/watsonx-ai-python-sdk/fm_text_extraction.html',
+        'start_index': 0,
+        'title': 'Text Extractions - IBM watsonx.ai'}},
+      {'page_content': 'Initialize the APIClient object¶\nInitialize the APIClient object if needed. For information about supported APIClient initialization, see Setup.\nfrom ibm_watsonx_ai import APIClient\n\nclient = APIClient(credentials)\nclient.set.default_project(project_id=project_id)\n# or client.set.default_space(space_id=space_id)\n\n\n\n\nList model specifications¶\n\nWarning\nOnly applicable for IBM watsonx.ai for IBM Cloud Pak® for Data 4.8.4 and later.',
+       'metadata': {'document_id': '8500262700953266120',
+        'language': 'en',
+        'sequence_number': 17,
+        'source': 'https://ibm.github.io/watsonx-ai-python-sdk/fm_custom_models.html',
+        'start_index': 0,
+        'title': 'Custom models - IBM watsonx.ai'}}]]]}]}</pre>
 </div>
 </div>
 </div>
@@ -8591,7 +8841,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">experiment</span><span class="o">.</span><span class="n">runs</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="s1">'rag_optimizer'</span><span class="p">)</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
@@ -8605,7 +8855,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[39]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8634,66 +8884,31 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <tbody>
 <tr>
 <th>0</th>
-<td>2024-09-05T12:55:51.571Z</td>
-<td>4322a167-b17b-4e24-8bb7-137c0770dd4b</td>
+<td>2025-01-10T10:15:30.971Z</td>
+<td>efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69</td>
 <td>completed</td>
 <td>AutoAI RAG run - ModelInference documentation</td>
 </tr>
 <tr>
 <th>1</th>
-<td>2024-09-05T11:22:22.958Z</td>
-<td>5f06cc01-9734-48e9-bbaf-657dfa16bef3</td>
+<td>2025-01-09T15:13:26.515Z</td>
+<td>555cb99c-925b-4f71-9e09-83533ed22fd3</td>
 <td>completed</td>
 <td>AutoAI RAG run - ModelInference documentation</td>
 </tr>
 <tr>
 <th>2</th>
-<td>2024-09-05T08:46:06.437Z</td>
-<td>9e9e289b-6302-49ff-a032-c0a98ccd89dc</td>
+<td>2025-01-09T12:58:25.539Z</td>
+<td>e0b4281c-8908-433b-a762-b68c9a7e3b09</td>
 <td>completed</td>
-<td>AutoAI RAG run - IBM Wikipedia</td>
+<td>AutoAI RAG run - ModelInference documentation</td>
 </tr>
 <tr>
 <th>3</th>
-<td>2024-08-22T09:13:05.513Z</td>
-<td>d74d1d34-e81e-4ccd-804d-f17f33d3eccf</td>
+<td>2025-01-09T09:49:10.264Z</td>
+<td>71d650bb-c357-468a-87cb-e461242c68b3</td>
 <td>completed</td>
-<td>RAG AutoAi name - sample notebook</td>
-</tr>
-<tr>
-<th>4</th>
-<td>2024-08-22T08:53:36.453Z</td>
-<td>e52ff185-5702-4ea1-abee-ad6533196931</td>
-<td>completed</td>
-<td>RAG AutoAi name - sample notebook</td>
-</tr>
-<tr>
-<th>5</th>
-<td>2024-08-21T08:53:51.511Z</td>
-<td>4f08fd2e-a7b1-4ef9-b368-d24b183f0c2f</td>
-<td>completed</td>
-<td>RAG AutoAi name - sample notebook</td>
-</tr>
-<tr>
-<th>6</th>
-<td>2024-08-12T09:49:17.588Z</td>
-<td>55938b70-b5e5-4a8a-8ddd-13e2f44897fe</td>
-<td>completed</td>
-<td>RAG AutoAi name - sample notebook</td>
-</tr>
-<tr>
-<th>7</th>
-<td>2024-08-09T14:08:33.769Z</td>
-<td>b2561f3a-6107-4029-a985-de1f78f8cd6b</td>
-<td>completed</td>
-<td>RAG AutoAi name - sample notebook</td>
-</tr>
-<tr>
-<th>8</th>
-<td>2024-08-09T12:06:45.972Z</td>
-<td>61097ab3-723e-4aa8-bd30-7c007886ec50</td>
-<td>completed</td>
-<td>RAG AutoAi name - sample notebook</td>
+<td>AutoAI RAG run - ModelInference documentation</td>
 </tr>
 </tbody>
 </table>
@@ -8707,7 +8922,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">run_id</span> <span class="o">=</span> <span class="n">run_details</span><span class="p">[</span><span class="s1">'metadata'</span><span class="p">][</span><span class="s1">'id'</span><span class="p">]</span>
@@ -8722,9 +8937,9 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>'b6315fa9-b65a-4fcb-a4e1-bf717d32c359'</pre>
+<pre>'efb6f9ce-8057-4fc1-9d84-5d2d78ffcf69'</pre>
 </div>
 </div>
 </div>
@@ -8745,7 +8960,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">experiment</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">get_rag_params</span><span class="p">(</span><span class="n">run_id</span><span class="o">=</span><span class="n">run_id</span><span class="p">)</span>
@@ -8759,11 +8974,15 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'name': 'AutoAI RAG run - ModelInference documentation',
  'description': 'AutoAI RAG Optimizer on ibm_watsonx_ai ModelInference documentation',
- 'max_number_of_rag_patterns': 8,
+ 'chunking': [{'chunk_overlap': 64, 'chunk_size': 512, 'method': 'recursive'}],
+ 'embedding_models': ['ibm/slate-125m-english-rtrvr'],
+ 'retrieval_methods': ['simple'],
+ 'foundation_models': ['ibm/granite-13b-chat-v2'],
+ 'max_number_of_rag_patterns': 4,
  'optimization_metrics': ['answer_correctness']}</pre>
 </div>
 </div>
@@ -8785,7 +9004,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">historical_opt</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">runs</span><span class="o">.</span><span class="n">get_rag_optimizer</span><span class="p">(</span><span class="n">run_id</span><span class="p">)</span>
@@ -8810,7 +9029,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">historical_opt</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -8824,7 +9043,7 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -8847,7 +9066,9 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <th>mean_answer_correctness</th>
 <th>mean_faithfulness</th>
 <th>mean_context_correctness</th>
+<th>chunking.method</th>
 <th>chunking.chunk_size</th>
+<th>chunking.chunk_overlap</th>
 <th>embeddings.model_id</th>
 <th>vector_store.distance_metric</th>
 <th>retrieval.method</th>
@@ -8865,103 +9086,65 @@ Training of 'b6315fa9-b65a-4fcb-a4e1-bf717d32c359' finished successfully.
 <th></th>
 <th></th>
 <th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th>Pattern1</th>
-<td>1.0</td>
-<td>0.65940</td>
-<td>1.0</td>
-<td>512</td>
-<td>ibm/slate-125m-english-rtrvr</td>
-<td>euclidean</td>
-<td>window</td>
-<td>5</td>
-<td>meta-llama/llama-3-70b-instruct</td>
-</tr>
-<tr>
 <th>Pattern4</th>
+<td>0.7083</td>
+<td>0.2317</td>
 <td>1.0</td>
-<td>0.85365</td>
-<td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
-<td>cosine</td>
-<td>window</td>
-<td>5</td>
-<td>meta-llama/llama-3-70b-instruct</td>
-</tr>
-<tr>
-<th>Pattern6</th>
-<td>1.0</td>
-<td>0.73705</td>
-<td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
-<td>euclidean</td>
-<td>window</td>
-<td>3</td>
-<td>meta-llama/llama-3-70b-instruct</td>
-</tr>
-<tr>
-<th>Pattern8</th>
-<td>1.0</td>
-<td>0.87500</td>
-<td>1.0</td>
-<td>1024</td>
+<td>recursive</td>
+<td>512</td>
+<td>64</td>
 <td>ibm/slate-125m-english-rtrvr</td>
-<td>euclidean</td>
-<td>window</td>
+<td>cosine</td>
+<td>simple</td>
 <td>3</td>
-<td>meta-llama/llama-3-70b-instruct</td>
+<td>ibm/granite-13b-chat-v2</td>
 </tr>
 <tr>
-<th>Pattern2</th>
-<td>0.5</td>
-<td>0.29950</td>
+<th>Pattern1</th>
+<td>0.5833</td>
+<td>0.2045</td>
 <td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
-<td>euclidean</td>
-<td>window</td>
+<td>recursive</td>
+<td>512</td>
+<td>64</td>
+<td>ibm/slate-125m-english-rtrvr</td>
+<td>cosine</td>
+<td>simple</td>
 <td>5</td>
 <td>ibm/granite-13b-chat-v2</td>
 </tr>
 <tr>
-<th>Pattern5</th>
-<td>0.5</td>
-<td>0.61920</td>
+<th>Pattern2</th>
+<td>0.5833</td>
+<td>0.2372</td>
 <td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
-<td>cosine</td>
-<td>window</td>
-<td>3</td>
-<td>mistralai/mixtral-8x7b-instruct-v01</td>
-</tr>
-<tr>
-<th>Pattern7</th>
-<td>0.5</td>
-<td>0.29030</td>
-<td>1.0</td>
-<td>1024</td>
+<td>recursive</td>
+<td>512</td>
+<td>64</td>
 <td>ibm/slate-125m-english-rtrvr</td>
-<td>cosine</td>
-<td>window</td>
+<td>euclidean</td>
+<td>simple</td>
 <td>5</td>
 <td>ibm/granite-13b-chat-v2</td>
 </tr>
 <tr>
 <th>Pattern3</th>
-<td>0.0</td>
-<td>0.71430</td>
+<td>0.5833</td>
+<td>0.2117</td>
 <td>1.0</td>
-<td>1024</td>
-<td>intfloat/multilingual-e5-large</td>
+<td>recursive</td>
+<td>512</td>
+<td>64</td>
+<td>ibm/slate-125m-english-rtrvr</td>
 <td>euclidean</td>
 <td>simple</td>
-<td>5</td>
+<td>3</td>
 <td>ibm/granite-13b-chat-v2</td>
 </tr>
 </tbody>
