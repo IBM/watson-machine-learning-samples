@@ -1,1 +1,1 @@
-For decision optimization sample notebooks please refer to [this repository](https://github.com/IBMDecisionOptimization/DO-Samples/tree/watson_studio_cloud/jupyter/Watson%20Studio%20Public).  
+For decision optimization sample notebooks please refer to [this repository](https://github.com/IBMDecisionOptimization/DO-Samples/tree/watson_studio_cloud/jupyter/watsonx.ai%20and%20Cloud%20Pak%20for%20Data%20as%20a%20Service).
