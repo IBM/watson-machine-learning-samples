@@ -1,5 +1,7 @@
+import json
 import logging
 from pathlib import Path
+import json
 
 import ibm_watsonx_ai
 
@@ -17,8 +19,8 @@ client = ibm_watsonx_ai.APIClient(
     credentials=ibm_watsonx_ai.Credentials(url=dep_config["watsonx_url"], api_key=dep_config["watsonx_apikey"]),
     space_id=dep_config["space_id"])
 
-
-pyproject_path = Path(__file__).parents[1] / "pyproject.toml"
+root_dir = Path(__file__).parents[1]
+pyproject_path = root_dir / "pyproject.toml"
 pkg_name, pkg_version = get_package_name_and_version(str(pyproject_path))
 
 # Create package extension
@@ -27,7 +29,7 @@ pkg_ext_metadata = {
     client.package_extensions.ConfigurationMetaNames.TYPE: "pip_zip"
 }
 
-pkg_ext_sc = Path(__file__).parent / ".." / "dist" / f"{pkg_name.replace('-', '_')}-{pkg_version}.zip"
+pkg_ext_sc = root_dir / "dist" / f"{pkg_name.replace('-', '_')}-{pkg_version}.zip"
 
 if not pkg_ext_sc.exists():
     build_zip_sc(pkg_ext_sc)
@@ -73,9 +75,18 @@ asset_id = client.software_specifications.get_id(sw_spec_asset_details)
 
 sw_spec_asset_details = client.software_specifications.get_details(asset_id)
 
+
+with (root_dir / "schema" / "request.json").open("r", encoding="utf-8") as file:
+    request_schema = json.load(file)
+
+with (root_dir / "schema" / "response.json").open("r", encoding="utf-8") as file:
+    response_schema = json.load(file)
+
 meta_props = {
     client.repository.AIServiceMetaNames.SOFTWARE_SPEC_ID: asset_id,
-    client.repository.AIServiceMetaNames.NAME: "online ai_service"
+    client.repository.AIServiceMetaNames.NAME: "online ai_service",
+    client.repository.AIServiceMetaNames.REQUEST_DOCUMENTATION: request_schema,
+    client.repository.AIServiceMetaNames.RESPONSE_DOCUMENTATION: response_schema
 }
 
 stored_ai_service_details = client.repository.store_ai_service(deployable_ai_service, meta_props)

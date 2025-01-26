@@ -1,33 +1,72 @@
 def deployable_ai_service(context, **custom):
-    from langgraph_react_agent.agent import get_graph
+    from langgraph_react_agent.agent import get_graph_closure
     from ibm_watsonx_ai import APIClient, Credentials
-    from langchain_core.messages import BaseMessage
+    from langchain_core.messages import (
+        BaseMessage,
+        HumanMessage,
+        AIMessage,
+        SystemMessage,
+    )
 
     model_id = custom.get("model_id")
-    client = APIClient(credentials=Credentials(url=custom.get("url"), token=context.generate_token()),
-                       space_id=custom.get("space_id"))
+    client = APIClient(
+        credentials=Credentials(url=custom.get("url"), token=context.generate_token()),
+        space_id=custom.get("space_id"),
+    )
 
-    graph = get_graph(client, model_id)
+    graph = get_graph_closure(client, model_id)
 
-    def get_formatted_message(resp: BaseMessage) -> dict:
+    def get_formatted_message(resp: BaseMessage) -> dict | None:
         role = resp.type
-        if role == "ai":
-            role = "assistant"
-            if kwargs := resp.additional_kwargs:
+
+        if resp.content:
+            if role == "AIMessageChunk":
+                return {"role": "assistant", "delta": resp.content}
+            elif role == "ai":
+                return {"role": "assistant", "content": resp.content}
+            elif role == "tool":
                 return {
                     "role": role,
-                    **kwargs
+                    "id": resp.id,
+                    "tool_call_id": resp.tool_call_id,
+                    "name": resp.name,
+                    "content": resp.content,
                 }
-            else:
+        elif role == "ai":  # this implies resp.additional_kwargs
+            if additional_kw := resp.additional_kwargs:
+                tool_call = additional_kw["tool_calls"][0]
                 return {
-                    "role": role,
-                    "content": resp.content
+                    "role": "assistant",
+                    "tool_calls": [
+                        {
+                            "id": tool_call["id"],
+                            "type": "function",
+                            "function": {
+                                "name": tool_call["function"]["name"],
+                                "arguments": tool_call["function"]["arguments"],
+                            },
+                        }
+                    ],
                 }
-        elif role == "tool":
-            return {
-                "role": role,
-                "content": resp.content
-            }
+
+    def convert_dict_to_message(_dict: dict) -> BaseMessage:
+        """Convert user message in dict to langchain_core.messages.BaseMessage"""
+
+        if _dict["role"] == "assistant":
+            return AIMessage(content=_dict["content"])
+        elif _dict["role"] == "system":
+            return SystemMessage(content=_dict["content"])
+        else:
+            data = _dict.get("data")
+            user_message = _dict["content"]
+            # If data is provided, enhance the question string with the data
+            if data:
+                exog_data = data.get("exog", [])
+                endog_data = data.get("endog", [])
+
+                # Append the data information to the question string
+                user_message += f" Explanatory variables (independent): {exog_data}. Dependent variable (response): {endog_data}."
+            return HumanMessage(content=user_message)
 
     def generate(context) -> dict:
         """
@@ -39,58 +78,55 @@ def deployable_ai_service(context, **custom):
         - data
 
         A JSON body sent to the above endpoint should follow the format:
-          {
-            "question": <your query or prompt to the model>
-            "data" [OPTIONAL]: {
-                "exog": <explanatory variables (independent variables)>,
-                "endog": <dependent variable (response variable)>
-            }
-          }
-
-        Depending on the <value> of the mode, it will return different response
+        {
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant that uses tools to answer questions in detail.",
+                },
+                {
+                    "role": "user",
+                    "content": "Hello!",
+                    "data"[OPTIONAL]: {
+                        "exog": <explanatory variables (independent variables)>,
+                        "endog": <dependent variable (response variable)>
+                    }
+                },
+            ]
+        }
+        Please note that the `system message` MUST be placed first in the list of messages!
         """
 
         client.set_token(context.get_token())
 
         payload = context.get_json()
-        question = str(payload["question"])
-        data = payload.get("data")
+        raw_messages = payload.get("messages", [])
+        messages = [convert_dict_to_message(_dict) for _dict in raw_messages]
 
-        # If data is provided, enhance the question string with the data
-        if data:
-            exog_data = data.get('exog', [])
-            endog_data = data.get('endog', [])
+        if messages and messages[0].type == "system":
+            agent = graph(messages[0])
+            del messages[0]
+        else:
+            agent = graph()
 
-            # Append the data information to the question string
-            question += f" Explanatory variables (independent): {exog_data}. Dependent variable (response): {endog_data}."
+        config = {
+            "configurable": {"thread_id": custom.get("thread_id")}
+        }  # Checkpointer configuration
 
-        config = {"configurable": {"thread_id": custom.get("thread_id")}}  # Checkpointer configuration
-
-        prev_checkpoint_n = len(list(graph.checkpointer.list(config)))
-        generated_response = graph.invoke({"messages": [("user", question)]}, config)
-        new_mess_n = len(list(graph.checkpointer.list(config))) - prev_checkpoint_n - 1
+        prev_checkpoint_n = len(list(agent.checkpointer.list(config)))
+        # Invoke agent
+        generated_response = agent.invoke({"messages": messages}, config)
+        new_mess_n = len(list(agent.checkpointer.list(config))) - prev_checkpoint_n - 1
 
         choices = []
         execute_response = {
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "body": {
-                "choices": choices
-            }
+            "headers": {"Content-Type": "application/json"},
+            "body": {"choices": choices},
         }
 
         for resp in generated_response["messages"][-new_mess_n:]:
-            message = get_formatted_message(resp)
-            if message is None:
-                continue
-            choices.append(
-                {
-                    "index": 0,
-                    "message": message
-                }
-            )
-
+            if (message := get_formatted_message(resp)) is not None:
+                choices.append({"index": 0, "message": message})
 
         return execute_response
 
@@ -104,42 +140,61 @@ def deployable_ai_service(context, **custom):
         - data
 
         A JSON body sent to the above endpoint should follow the format:
-          {
-            "question": <your query or prompt to the model>
-            "data" [OPTIONAL]: {
-                "exog": <explanatory variables (independent variables)>,
-                "endog": <dependent variable (response variable)>
-            }
-          }
-
-        Depending on the <value> of the mode, it will return different streamed responses
+        {
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a helpful assistant that uses tools to answer questions in detail.",
+                },
+                {
+                    "role": "user",
+                    "content": "Hello!",
+                    "data"[OPTIONAL]: {
+                        "exog": <explanatory variables (independent variables)>,
+                        "endog": <dependent variable (response variable)>
+                    }
+                },
+            ]
+        }
+        Please note that the `system message` MUST be placed first in the list of messages!
         """
         client.set_token(context.get_token())
 
         payload = context.get_json()
-        question = str(payload["question"])
-        data = payload.get("data")
+        raw_messages = payload.get("messages", [])
+        messages = [convert_dict_to_message(_dict) for _dict in raw_messages]
 
-        # If data is provided, enhance the question string with the data
-        if data:
-            exog_data = data.get('exog', [])
-            endog_data = data.get('endog', [])
+        if messages and messages[0].type == "system":
+            agent = graph(messages[0])
+            del messages[0]
+        else:
+            agent = graph()
 
-            # Append the data information to the question string
-            question += f" Explanatory variables (independent): {exog_data}. Dependent variable (response): {endog_data}."
+        # Checkpointer configuration
+        config = {"configurable": {"thread_id": custom.get("thread_id")}}
+        response_stream = agent.stream(
+            {"messages": messages}, config, stream_mode=["updates", "messages"]
+        )
 
-        config = {"configurable": {"thread_id": custom.get("thread_id")}}  # Checkpointer configuration
-
-        for value in graph.stream({"messages": [("user", f"{question}")]}, config, stream_mode="values"):
-            message = get_formatted_message(value["messages"][-1])
-            if message is None:
+        for chunk_type, data in response_stream:
+            if chunk_type == "messages":
+                msg_obj = data[0]
+                if msg_obj.type == "tool":
+                    continue
+            elif chunk_type == "updates":
+                if agent := data.get("agent"):
+                    msg_obj = agent["messages"][0]
+                    if msg_obj.response_metadata.get("finish_reason") == "stop":
+                        continue
+                elif tool := data.get("tools"):
+                    msg_obj = tool["messages"][0]
+                else:
+                    continue
+            else:
                 continue
 
-            yield {
-                "choices": [{
-                    "index": 0,
-                    "message": message
-                }]
-            }
+            if (message := get_formatted_message(msg_obj)) is not None:
+                chunk_response = {"choices": [{"index": 0, "message": message}]}
+                yield chunk_response
 
     return generate, generate_stream

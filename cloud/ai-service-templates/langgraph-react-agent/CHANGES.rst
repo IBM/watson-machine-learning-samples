@@ -1,3 +1,8 @@
+Version 0.1.4
+-------------
+- unified response and request schemas with the watsonx.ai Chat API https://cloud.ibm.com/apidocs/watsonx-ai#text-chat,
+- added support for passing a system prompt during invocation.
+
 Version 0.1.3
 -------------
 - added support for streaming interactions, enhancing real-time capabilities,
@@ -5,8 +10,8 @@ Version 0.1.3
 - updated the repository visualization in the README to highlight only the most important files,
 - enhanced `examples/query_existing_deployment.py` to support interactive usage,
 - the `thread_id` can now be set directly via `config.toml` for easier customization,
-- the AI service now returns the entire current state. For interactive chats, this behavior can be suppressed by disabling the verbose flag in the configuration.
-- `deployment_id` removed from the `config.toml`. It should be passed directly in `examples/query_existing_deployment.py`
+- the AI service now returns the entire current state. For interactive chats, this behavior can be suppressed by disabling the verbose flag in the configuration,
+- `deployment_id` removed from the `config.toml`. It should be passed directly in `examples/query_existing_deployment.py`.
 
 Version 0.1.2
 -------------
