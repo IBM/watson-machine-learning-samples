@@ -7587,7 +7587,7 @@ The data used in this notebook is from the <a href="https://arxiv.org/pdf/2405.0
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="s1">'ibm-watsonx-ai[rag]&gt;=1.1.24'</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="s1">'ibm-watsonx-ai[rag]&gt;=1.2.4'</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
 <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="s2">"langchain_community&gt;=0.3,&lt;0.4"</span> <span class="o">|</span> <span class="n">tail</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span>
 </pre></div>
 </div>
@@ -7940,7 +7940,7 @@ SUCCESS
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">result_data_reference</span> <span class="o">=</span> <span class="n">DataConnection</span><span class="p">(</span>
-    <span class="n">connection_asset_id</span><span class="o">=</span><span class="n">cos_connection_id</span><span class="p">,</span> 
+    <span class="n">connection_asset_id</span><span class="o">=</span><span class="n">cos_connection_id</span><span class="p">,</span>
     <span class="n">location</span><span class="o">=</span><span class="n">S3Location</span><span class="p">(</span>
         <span class="n">bucket</span><span class="o">=</span><span class="n">cos_bucket_name</span><span class="p">,</span>
         <span class="n">path</span><span class="o">=</span><span class="n">te_result_filename</span>
@@ -8059,11 +8059,11 @@ SUCCESS
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="n">job_details</span> <span class="o">=</span> <span class="n">extraction</span><span class="o">.</span><span class="n">get_job_details</span><span class="p">(</span><span class="n">job_id</span><span class="p">)</span>
     <span class="n">status</span> <span class="o">=</span> <span class="n">job_details</span><span class="p">[</span><span class="s1">'entity'</span><span class="p">][</span><span class="s1">'results'</span><span class="p">][</span><span class="s1">'status'</span><span class="p">]</span>
-    
+
     <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">"completed"</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"Job completed successfully, details: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">job_details</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)))</span>
         <span class="k">break</span>
-    
+
     <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">"failed"</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"Job failed, details: </span><span class="si">{}</span><span class="s2">. </span><span class="se">\n</span><span class="s2"> Try to run job again."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">job_details</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)))</span>
         <span class="k">break</span>
@@ -8797,7 +8797,7 @@ Training of 'c8aa6019-c9c5-42da-a082-e2ea741e980e' finished successfully.
     <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ScoringMetaNames</span><span class="o">.</span><span class="n">INPUT_DATA</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span>
             <span class="s2">"values"</span><span class="p">:</span> <span class="n">questions</span><span class="p">,</span>
-            <span class="s2">"access_token"</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">service_instance</span><span class="o">.</span><span class="n">_get_token</span><span class="p">()</span>
+            <span class="s2">"access_token"</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">token</span>
         <span class="p">}</span>
     <span class="p">]</span>
 <span class="p">}</span>
