@@ -1,38 +1,38 @@
 import pytest
+from langgraph_react_agent.tools import get_arxiv_contents
 
-from langgraph_react_agent import (
-    ordinary_least_squared_regression,
-    pearson_correlation,
-    check_residuals_normality,
-    data_independence_test,
-    homoscedasticity_tests
-)
+class MockLoader:
+    def __init__(self, mock_html):
+        self.mock_html = mock_html
 
+    def load(self):
+        return self.mock_html
 
-@pytest.mark.parametrize("exog, endog", [
-    (
-            [1, 2, 3, 4, 5, 6, 7, 8],  # Integer values for X1
-            [8.00, 10.58, 14.58, 18.67, 20.12, 23.34, 28.36, 30.77]  # Floats for Y1 with 2 decimal precision
-    ),
-    (
-            [10.00, 11.43, 12.86, 14.29, 15.71, 17.14, 18.57, 20.00],  # Floats for X2 with 2 decimal precision
-            [-0.94, -1.06, -5.21, -7.36, -8.09, -14.54, -16.31, -16.12]  # Floats for Y2 with 2 decimal precision
-    )
+class MockPageContent:
+    def __init__(self, page_content):
+        self.page_content = page_content
+
+class MockTransformer:
+    def transform_documents(self, html_content):
+        return [MockPageContent("Transformed content from the HTML")]
+
+@pytest.mark.parametrize("url, mock_html, expected_output", [
+    ("https://arxiv.org/html/2501.12948v1", "<html>Content here</html>", "Transformed content from the HTML"),
+    ("https://arxiv.org/html/2501.12948v1", None, "Content not available"),
+    ("https://arxiv.org/other/1234", "", "The URL to an arXiv research paper, must be in format 'https://arxiv.org/html/2501.12948v1'"),
 ])
-class TestStatisticalTools:
-    def test_ordinary_least_squared_regression(self, exog, endog):
-        result = ordinary_least_squared_regression.run({"exog": exog, "endog": endog})
-        assert "OLS Regression Results" in result  # Check if the result contains OLS summary
 
-    def test_pearson_correlation(self, exog, endog):
-        result = pearson_correlation.run({"exog": exog, "endog": endog})
-        assert "correlation_coefficient" in result
+class TestTools:
+    def test_get_arxiv_contents(self, monkeypatch, url, mock_html, expected_output):
+        def mock_loader(url):
+            return MockLoader(mock_html)
 
-    def test_check_residuals_normality(self, exog, endog):
-        assert check_residuals_normality.run({"exog": exog, "endog": endog})
+        def mock_transformer():
+            return MockTransformer()
 
-    def test_data_independence_test(self, exog, endog):
-        assert data_independence_test.run({"exog": exog, "endog": endog})
+        monkeypatch.setattr("langgraph_react_agent.tools.AsyncHtmlLoader", mock_loader)
+        monkeypatch.setattr("langgraph_react_agent.tools.MarkdownifyTransformer", mock_transformer)
 
-    def test_homoscedasticity_tests(self, exog, endog):
-        assert homoscedasticity_tests.run({"exog": exog, "endog": endog})
+        result = get_arxiv_contents(url)
+        
+        assert result == expected_output

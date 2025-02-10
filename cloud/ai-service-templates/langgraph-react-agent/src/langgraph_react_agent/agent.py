@@ -8,7 +8,6 @@ from langgraph.checkpoint.memory import MemorySaver
 
 from langgraph_react_agent import TOOLS
 
-
 def get_graph_closure(client: APIClient, model_id: str) -> Callable:
     """Graph generator closure."""
 
@@ -16,7 +15,7 @@ def get_graph_closure(client: APIClient, model_id: str) -> Callable:
     chat = ChatWatsonx(model_id=model_id, watsonx_client=client)
 
     # Define system prompt
-    default_system_prompt = "You are a helpful AI assistant, please respond to the user's query to the best of your ability!"
+    default_system_prompt = "You are a helpful AI Research assistant, please respond to the user's query to the best of your ability! Execute a tool call whenever you see fit. When using tools, make sure to format the URL to an arXiv research paper like 'https://arxiv.org/html/2501.12948v1'"
 
     # Initialise memory saver
     memory = MemorySaver()
