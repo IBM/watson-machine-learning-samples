@@ -7757,11 +7757,11 @@ a.anchor-link {
 <span class="n">questions_train_url</span> <span class="o">=</span> <span class="s1">'https://raw.github.com/IBM/watson-machine-learning-samples/master/cloud/data/RAG/questions_train.csv'</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_test_filename</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_test_filename</span><span class="p">):</span> 
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">questions_test_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">questions_test_filename</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_train_filename</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_train_filename</span><span class="p">):</span> 
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">questions_train_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">questions_train_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7957,7 +7957,7 @@ a.anchor-link {
 <span class="n">documents_url</span> <span class="o">=</span> <span class="s1">'https://raw.github.com/IBM/watson-machine-learning-samples/master/cloud/data/RAG/psgs.tsv'</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">documents_filename</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">documents_filename</span><span class="p">):</span> 
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">documents_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">documents_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8912,7 +8912,7 @@ Indexing time: 0 minutes
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">question</span> <span class="ow">in</span> <span class="n">questions_and_answers</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">qa</span><span class="p">({</span><span class="s2">"query"</span><span class="p">:</span> <span class="n">question</span><span class="p">})</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">qa</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">"query"</span><span class="p">:</span> <span class="n">question</span><span class="p">})</span>
     <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8947,6 +8947,7 @@ Indexing time: 0 minutes
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Source documents:"</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s1">'source_documents'</span><span class="p">]),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    
 </pre></div>
 </div>
 </div>
