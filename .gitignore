@@ -2,3 +2,6 @@
 **/.ipynb_checkpoints
 cpd/data/credit_risk/.DS_Store
 .DS_Store
+.vscode
+__pycache__
+dist
