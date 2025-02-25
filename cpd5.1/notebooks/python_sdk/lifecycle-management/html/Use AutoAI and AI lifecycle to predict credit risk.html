@@ -7561,7 +7561,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="setup"></a></p>
-<h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, contact with your Cloud Pack for Data administrator and ask for your account credentials.</p>
+<h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, contact with your Cloud Pak for Data administrator and ask for your account credentials.</p>
 </div>
 </div>
 </div>
@@ -7601,7 +7601,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pak for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 </div>
 </div>
 </div>
@@ -8223,7 +8223,7 @@ SUCCESS
 
 <span class="n">service</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">experiment_run_id</span><span class="o">=</span><span class="n">run_details</span><span class="p">[</span><span class="s2">"metadata"</span><span class="p">][</span><span class="s2">"id"</span><span class="p">],</span>
-    <span class="n">model</span><span class="o">=</span><span class="s2">"Pipeline_1"</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">"Pipeline_1"</span><span class="p">,</span> 
     <span class="n">deployment_name</span><span class="o">=</span><span class="s2">"AutoAI credit-risk deployment"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8948,7 +8948,7 @@ ID  NAME                              CREATED
         <span class="s2">"rev"</span><span class="p">:</span> <span class="n">rev_id</span>
     <span class="p">}</span>
 <span class="p">}</span>
-
+    
 <span class="n">updated_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">changes</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8995,7 +8995,7 @@ ID  NAME                              CREATED
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
     <span class="n">status</span> <span class="o">=</span> <span class="n">deployment_details</span><span class="p">[</span><span class="s1">'entity'</span><span class="p">][</span><span class="s1">'status'</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'state'</span><span class="p">)</span>
-
+    
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Deployment update finished with status: "</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -9009,7 +9009,7 @@ ID  NAME                              CREATED
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>. . . . . . . .
+<pre>. . . . . . . . 
 Deployment update finished with status:  ready
 </pre>
 </div>

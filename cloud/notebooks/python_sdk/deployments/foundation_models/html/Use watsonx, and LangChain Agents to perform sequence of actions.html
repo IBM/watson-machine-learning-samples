@@ -7990,9 +7990,9 @@ a.anchor-link {
 <span class="nd">@tool</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">remove_punctuations</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Remove all punctuation symbols from the text."""</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span> 
 
-    <span class="n">new_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'[^\w\s]'</span><span class="p">,</span><span class="s1">''</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">new_string</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'[^\w\s]'</span><span class="p">,</span><span class="s1">''</span><span class="p">,</span><span class="n">text</span><span class="p">)</span> 
     <span class="k">return</span> <span class="n">new_string</span>
 
 <span class="nd">@tool</span>
@@ -8093,9 +8093,9 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">prompt_chat</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span>
-        <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">convert_to_openai_tool</span><span class="p">(</span><span class="n">func</span><span class="p">))</span>
-               <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">StructuredTool</span><span class="p">)</span>
-               <span class="k">else</span> <span class="n">render_text_description</span><span class="p">([</span><span class="n">func</span><span class="p">])</span>
+        <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">convert_to_openai_tool</span><span class="p">(</span><span class="n">func</span><span class="p">))</span> 
+               <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">StructuredTool</span><span class="p">)</span> 
+               <span class="k">else</span> <span class="n">render_text_description</span><span class="p">([</span><span class="n">func</span><span class="p">])</span> 
                <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">tools_chat</span><span class="p">],</span>
         <span class="n">tool_names</span><span class="o">=</span><span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">t</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tools_chat</span><span class="p">]),</span>
     <span class="p">)</span>
@@ -8252,7 +8252,7 @@ a.anchor-link {
 <pre>
 
 <span class="ansi-bold">&gt; Entering new AgentExecutor chain...</span>
-<span class="ansi-green-intense-fg ansi-bold">
+<span class="ansi-green-intense-fg ansi-bold"> 
 
 Thought: I'm an AI assistant, I don't have feelings, but I'm here to help.
 
@@ -8305,7 +8305,7 @@ Observation:</span>
 <pre>
 
 <span class="ansi-bold">&gt; Entering new AgentExecutor chain...</span>
-<span class="ansi-green-intense-fg ansi-bold">
+<span class="ansi-green-intense-fg ansi-bold"> 
 
 Question: Normalize the following vector: `1, 2, 4`.
 Thought: I can use Normalize vector tool to solve this problem.
@@ -8316,7 +8316,7 @@ Action:
   "action_input": {"vector": [1, 2, 4]}
 }
 ```
-Observation:</span><span class="ansi-cyan-intense-fg ansi-bold">[0.2182178902359924, 0.4364357804719848, 0.8728715609439696]</span><span class="ansi-green-intense-fg ansi-bold">
+Observation:</span><span class="ansi-cyan-intense-fg ansi-bold">[0.2182178902359924, 0.4364357804719848, 0.8728715609439696]</span><span class="ansi-green-intense-fg ansi-bold"> 
 Action:
 ```
 {
@@ -8365,7 +8365,7 @@ Action:
 <pre>
 
 <span class="ansi-bold">&gt; Entering new AgentExecutor chain...</span>
-<span class="ansi-green-intense-fg ansi-bold">
+<span class="ansi-green-intense-fg ansi-bold"> 
 Question: What is the greatest common divisor of integers 1215 and 645?
 Thought: I can use the Greatest common divisor tool to find the answer.
 Action:
@@ -8375,7 +8375,7 @@ Action:
   "action_input": {"a": 1215, "b": 645}
 }
 ```
-Observation:</span><span class="ansi-yellow-intense-fg ansi-bold">15</span><span class="ansi-green-intense-fg ansi-bold">
+Observation:</span><span class="ansi-yellow-intense-fg ansi-bold">15</span><span class="ansi-green-intense-fg ansi-bold"> 
 Action:
 ```
 {
@@ -8424,7 +8424,7 @@ Action:
 <pre>
 
 <span class="ansi-bold">&gt; Entering new AgentExecutor chain...</span>
-<span class="ansi-green-intense-fg ansi-bold">
+<span class="ansi-green-intense-fg ansi-bold"> 
 
 Question: What is a median?
 Thought: I need to provide a definition of a median.
@@ -8477,7 +8477,7 @@ Observation:</span>
 <pre>
 
 <span class="ansi-bold">&gt; Entering new AgentExecutor chain...</span>
-<span class="ansi-green-intense-fg ansi-bold">
+<span class="ansi-green-intense-fg ansi-bold"> 
 
 Question: Could you be more specific and provide some example?
 Thought: I need to provide a clear explanation with an example.
@@ -8488,7 +8488,7 @@ Action:
   "action_input": "1, 2, 3, 4, 5"
 }
 ```
-Observation:</span><span class="ansi-yellow-intense-fg ansi-bold">3.0</span><span class="ansi-green-intense-fg ansi-bold">
+Observation:</span><span class="ansi-yellow-intense-fg ansi-bold">3.0</span><span class="ansi-green-intense-fg ansi-bold"> 
 Action:
 ```
 {
@@ -8548,7 +8548,7 @@ Action:
 <pre>
 
 <span class="ansi-bold">&gt; Entering new AgentExecutor chain...</span>
-<span class="ansi-green-intense-fg ansi-bold">
+<span class="ansi-green-intense-fg ansi-bold"> 
 
 Question: What is the sentence without punctuation symbols?
 Thought: I can use the remove_punctuations tool to remove all punctuation symbols from the sentence.
@@ -8559,7 +8559,7 @@ Action:
   "action_input": "What, is a. loan?!"
 }
 ```
-Observation:</span><span class="ansi-bold" style="color: rgb(255,0,215)">What is a loan</span><span class="ansi-green-intense-fg ansi-bold">
+Observation:</span><span class="ansi-bold" style="color: rgb(255,0,215)">What is a loan</span><span class="ansi-green-intense-fg ansi-bold"> 
 Action:
 ```
 {
@@ -8608,7 +8608,7 @@ Action:
 <pre>
 
 <span class="ansi-bold">&gt; Entering new AgentExecutor chain...</span>
-<span class="ansi-green-intense-fg ansi-bold">
+<span class="ansi-green-intense-fg ansi-bold"> 
 Question: What is the average length of words `watsonx.ai` and `IBM`?
 Thought: I need to calculate the length of each word and then find the average.
 Action:
@@ -8618,7 +8618,7 @@ Action:
   "action_input": "watsonx.ai"
 }
 ```
-Observation:</span><span class="ansi-cyan-intense-fg ansi-bold">10</span><span class="ansi-green-intense-fg ansi-bold">
+Observation:</span><span class="ansi-cyan-intense-fg ansi-bold">10</span><span class="ansi-green-intense-fg ansi-bold"> 
 Action:
 ```
 {
@@ -8626,7 +8626,7 @@ Action:
   "action_input": "IBM"
 }
 ```
-Observation:</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-green-intense-fg ansi-bold">
+Observation:</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-green-intense-fg ansi-bold"> 
 Action:
 ```
 {
@@ -8634,7 +8634,7 @@ Action:
   "action_input": "10,3"
 }
 ```
-Observation:</span><span class="ansi-yellow-intense-fg ansi-bold">6.5</span><span class="ansi-green-intense-fg ansi-bold">
+Observation:</span><span class="ansi-yellow-intense-fg ansi-bold">6.5</span><span class="ansi-green-intense-fg ansi-bold"> 
 Action:
 ```
 {
@@ -8713,7 +8713,7 @@ Action:
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!.</p>
+<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!</p>
 <p>You learned how to use LangChain Agents using custom llm WastonxLLM.</p>
 <p>Check out our <em><a href="https://ibm.github.io/watson-machine-learning-sdk/samples.html" rel="noopener no referrer" target="_blank">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>

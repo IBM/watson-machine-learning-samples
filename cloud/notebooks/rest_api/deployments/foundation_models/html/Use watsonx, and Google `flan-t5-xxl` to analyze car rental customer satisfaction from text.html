@@ -7691,6 +7691,7 @@ from the API call is returned as the cell output.</p>
             <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">"results"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+        
 </pre></div>
 </div>
 </div>
@@ -8034,10 +8035,10 @@ Name: Satisfaction, dtype: int64</pre>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">data_train</span><span class="p">,</span> <span class="n">data_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Customer_Service</span><span class="p">,</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">data_train</span><span class="p">,</span> <span class="n">data_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Customer_Service</span><span class="p">,</span> 
                                                     <span class="n">data</span><span class="o">.</span><span class="n">Satisfaction</span><span class="p">,</span>
                                                     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
-                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span>
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span> 
                                                     <span class="n">stratify</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">Satisfaction</span><span class="p">)</span>
 <span class="n">data_train</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
 <span class="n">data_test</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
@@ -8265,7 +8266,7 @@ Name: Satisfaction, dtype: int64</pre>
         <span class="n">singleoutput</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">sentence:</span><span class="se">\t</span><span class="si">{</span><span class="n">train_phrase</span><span class="si">}</span><span class="se">\n\t</span><span class="s2">satisfaction: </span><span class="si">{</span><span class="n">sentiment</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">singleoutput</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">sentence:</span><span class="se">\t</span><span class="si">{</span><span class="n">test_phrase</span><span class="si">}</span><span class="se">\n\t</span><span class="s2">satisfaction:"</span><span class="p">)</span>
     <span class="n">few_shot_inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">singleoutput</span><span class="p">))</span>
-    <span class="n">singleoutput</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">singleoutput</span> <span class="o">=</span> <span class="p">[]</span>  
 </pre></div>
 </div>
 </div>
@@ -8607,7 +8608,7 @@ Following cells present test scores for zero-shot prompts received for the <code
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!.</p>
+<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!</p>
 <p>You learned how to analyze car rental customer satisfaction with Google's <code>flan-t5-xxl</code> on watsonx.</p>
 <p>Check out our <a href="https://ibm.github.io/watsonx-ai-python-sdk/samples.html" rel="Online Documentation" target="_blank">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>

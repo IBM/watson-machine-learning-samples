@@ -7563,7 +7563,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Contact with your Cloud Pack for Data administrator and ask him for your account credentials</li>
+<li>Contact with your Cloud Pak for Data administrator and ask them for your account credentials</li>
 </ul>
 </div>
 </div>
@@ -7602,7 +7602,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pak for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 </div>
 </div>
 </div>
@@ -7862,7 +7862,7 @@ a.anchor-link {
 <span class="n">sample_dir</span> <span class="o">=</span> <span class="s1">'spark_sample_model'</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">)</span>
-
+    
 <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">,</span> <span class="s1">'credit_risk_training.csv'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s1">'https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd5.1/data/credit_risk/credit_risk_training.csv'</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
@@ -7989,115 +7989,115 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>-RECORD 0------------------------------------------
- CheckingStatus           | 0_to_200
- LoanDuration             | 31
- CreditHistory            | credits_paid_to_date
- LoanPurpose              | other
- LoanAmount               | 1889
- ExistingSavings          | 100_to_500
- EmploymentDuration       | less_1
- InstallmentPercent       | 3
- Sex                      | female
- OthersOnLoan             | none
- CurrentResidenceDuration | 3
- OwnsProperty             | savings_insurance
- Age                      | 32
- InstallmentPlans         | none
- Housing                  | own
- ExistingCreditsCount     | 1
- Job                      | skilled
- Dependents               | 1
- Telephone                | none
- ForeignWorker            | yes
- Risk                     | No Risk
+ CheckingStatus           | 0_to_200               
+ LoanDuration             | 31                     
+ CreditHistory            | credits_paid_to_date   
+ LoanPurpose              | other                  
+ LoanAmount               | 1889                   
+ ExistingSavings          | 100_to_500             
+ EmploymentDuration       | less_1                 
+ InstallmentPercent       | 3                      
+ Sex                      | female                 
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 3                      
+ OwnsProperty             | savings_insurance      
+ Age                      | 32                     
+ InstallmentPlans         | none                   
+ Housing                  | own                    
+ ExistingCreditsCount     | 1                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | none                   
+ ForeignWorker            | yes                    
+ Risk                     | No Risk                
 -RECORD 1------------------------------------------
- CheckingStatus           | less_0
- LoanDuration             | 18
- CreditHistory            | credits_paid_to_date
- LoanPurpose              | car_new
- LoanAmount               | 462
- ExistingSavings          | less_100
- EmploymentDuration       | 1_to_4
- InstallmentPercent       | 2
- Sex                      | female
- OthersOnLoan             | none
- CurrentResidenceDuration | 2
- OwnsProperty             | savings_insurance
- Age                      | 37
- InstallmentPlans         | stores
- Housing                  | own
- ExistingCreditsCount     | 2
- Job                      | skilled
- Dependents               | 1
- Telephone                | none
- ForeignWorker            | yes
- Risk                     | No Risk
+ CheckingStatus           | less_0                 
+ LoanDuration             | 18                     
+ CreditHistory            | credits_paid_to_date   
+ LoanPurpose              | car_new                
+ LoanAmount               | 462                    
+ ExistingSavings          | less_100               
+ EmploymentDuration       | 1_to_4                 
+ InstallmentPercent       | 2                      
+ Sex                      | female                 
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 2                      
+ OwnsProperty             | savings_insurance      
+ Age                      | 37                     
+ InstallmentPlans         | stores                 
+ Housing                  | own                    
+ ExistingCreditsCount     | 2                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | none                   
+ ForeignWorker            | yes                    
+ Risk                     | No Risk                
 -RECORD 2------------------------------------------
- CheckingStatus           | less_0
- LoanDuration             | 15
- CreditHistory            | prior_payments_delayed
- LoanPurpose              | furniture
- LoanAmount               | 250
- ExistingSavings          | less_100
- EmploymentDuration       | 1_to_4
- InstallmentPercent       | 2
- Sex                      | male
- OthersOnLoan             | none
- CurrentResidenceDuration | 3
- OwnsProperty             | real_estate
- Age                      | 28
- InstallmentPlans         | none
- Housing                  | own
- ExistingCreditsCount     | 2
- Job                      | skilled
- Dependents               | 1
- Telephone                | yes
- ForeignWorker            | no
- Risk                     | No Risk
+ CheckingStatus           | less_0                 
+ LoanDuration             | 15                     
+ CreditHistory            | prior_payments_delayed 
+ LoanPurpose              | furniture              
+ LoanAmount               | 250                    
+ ExistingSavings          | less_100               
+ EmploymentDuration       | 1_to_4                 
+ InstallmentPercent       | 2                      
+ Sex                      | male                   
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 3                      
+ OwnsProperty             | real_estate            
+ Age                      | 28                     
+ InstallmentPlans         | none                   
+ Housing                  | own                    
+ ExistingCreditsCount     | 2                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | yes                    
+ ForeignWorker            | no                     
+ Risk                     | No Risk                
 -RECORD 3------------------------------------------
- CheckingStatus           | 0_to_200
- LoanDuration             | 28
- CreditHistory            | credits_paid_to_date
- LoanPurpose              | retraining
- LoanAmount               | 3693
- ExistingSavings          | less_100
- EmploymentDuration       | greater_7
- InstallmentPercent       | 3
- Sex                      | male
- OthersOnLoan             | none
- CurrentResidenceDuration | 2
- OwnsProperty             | savings_insurance
- Age                      | 32
- InstallmentPlans         | none
- Housing                  | own
- ExistingCreditsCount     | 1
- Job                      | skilled
- Dependents               | 1
- Telephone                | none
- ForeignWorker            | yes
- Risk                     | No Risk
+ CheckingStatus           | 0_to_200               
+ LoanDuration             | 28                     
+ CreditHistory            | credits_paid_to_date   
+ LoanPurpose              | retraining             
+ LoanAmount               | 3693                   
+ ExistingSavings          | less_100               
+ EmploymentDuration       | greater_7              
+ InstallmentPercent       | 3                      
+ Sex                      | male                   
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 2                      
+ OwnsProperty             | savings_insurance      
+ Age                      | 32                     
+ InstallmentPlans         | none                   
+ Housing                  | own                    
+ ExistingCreditsCount     | 1                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | none                   
+ ForeignWorker            | yes                    
+ Risk                     | No Risk                
 -RECORD 4------------------------------------------
- CheckingStatus           | no_checking
- LoanDuration             | 28
- CreditHistory            | prior_payments_delayed
- LoanPurpose              | education
- LoanAmount               | 6235
- ExistingSavings          | 500_to_1000
- EmploymentDuration       | greater_7
- InstallmentPercent       | 3
- Sex                      | male
- OthersOnLoan             | none
- CurrentResidenceDuration | 3
- OwnsProperty             | unknown
- Age                      | 57
- InstallmentPlans         | none
- Housing                  | own
- ExistingCreditsCount     | 2
- Job                      | skilled
- Dependents               | 1
- Telephone                | none
- ForeignWorker            | yes
- Risk                     | Risk
+ CheckingStatus           | no_checking            
+ LoanDuration             | 28                     
+ CreditHistory            | prior_payments_delayed 
+ LoanPurpose              | education              
+ LoanAmount               | 6235                   
+ ExistingSavings          | 500_to_1000            
+ EmploymentDuration       | greater_7              
+ InstallmentPercent       | 3                      
+ Sex                      | male                   
+ OthersOnLoan             | none                   
+ CurrentResidenceDuration | 3                      
+ OwnsProperty             | unknown                
+ Age                      | 57                     
+ InstallmentPlans         | none                   
+ Housing                  | own                    
+ ExistingCreditsCount     | 2                      
+ Job                      | skilled                
+ Dependents               | 1                      
+ Telephone                | none                   
+ ForeignWorker            | yes                    
+ Risk                     | Risk                   
 only showing top 5 rows
 
 </pre>
@@ -8293,7 +8293,7 @@ Number of prediction records : 94
 <span class="n">sample_dir</span> <span class="o">=</span> <span class="s1">'spark_sample_model'</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">)</span>
-
+    
 <span class="n">pipeline_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_dir</span><span class="p">,</span> <span class="s1">'credit_risk_spark_pipeline.tar.gz'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">pipeline_filename</span><span class="p">):</span>
     <span class="n">pipeline_filename</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="s1">'https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd5.1/models/spark/credit-risk/model/credit_risk_spark_pipeline.tar.gz'</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">sample_dir</span><span class="p">)</span>
@@ -8489,15 +8489,15 @@ Number of prediction records : 94
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">published_model_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">store_model</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">model_filename</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model_filename</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span><span class="s1">'Credit Risk model'</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TYPE</span><span class="p">:</span> <span class="s2">"mllib_3.4"</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">SOFTWARE_SPEC_ID</span><span class="p">:</span> <span class="n">client</span><span class="o">.</span><span class="n">software_specifications</span><span class="o">.</span><span class="n">get_id_by_name</span><span class="p">(</span><span class="s1">'spark-mllib_3.4'</span><span class="p">),</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">TRAINING_DATA_REFERENCES</span><span class="p">:</span> <span class="n">training_data_references</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">repository</span><span class="o">.</span><span class="n">ModelMetaNames</span><span class="o">.</span><span class="n">LABEL_FIELD</span><span class="p">:</span> <span class="s2">"Risk"</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="n">training_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span>
+    <span class="p">},</span> 
+    <span class="n">training_data</span><span class="o">=</span><span class="n">train_data</span><span class="p">,</span> 
     <span class="n">pipeline</span><span class="o">=</span><span class="n">pipeline_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8798,210 +8798,210 @@ FAIRNESS_INFO             dict  N
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>-RECORD 0----------------------------------------
- CheckingStatus           | 0_to_200
- LoanDuration             | 4
- CreditHistory            | all_credits_paid_...
- LoanPurpose              | education
- LoanAmount               | 936
- ExistingSavings          | less_100
- EmploymentDuration       | less_1
- InstallmentPercent       | 2
- Sex                      | male
- OthersOnLoan             | none
- CurrentResidenceDuration | 2
- OwnsProperty             | savings_insurance
- Age                      | 41
- InstallmentPlans         | bank
- Housing                  | rent
- ExistingCreditsCount     | 1
- Job                      | unskilled
- Dependents               | 1
- Telephone                | none
- ForeignWorker            | yes
- Risk                     | No Risk
- CheckingStatus_IX        | 2.0
- CreditHistory_IX         | 3.0
- LoanPurpose_IX           | 7.0
- ExistingSavings_IX       | 0.0
- EmploymentDuration_IX    | 3.0
- Sex_IX                   | 0.0
- OthersOnLoan_IX          | 0.0
- OwnsProperty_IX          | 0.0
- InstallmentPlans_IX      | 2.0
- Housing_IX               | 1.0
- Job_IX                   | 1.0
- Telephone_IX             | 0.0
- ForeignWorker_IX         | 0.0
- label                    | 0.0
- features                 | [2.0,3.0,7.0,0.0,...
- rawPrediction            | [17.8582417779453...
- probability              | [0.89291208889726...
- prediction               | 0.0
- predictedLabel           | No Risk
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 4                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | education            
+ LoanAmount               | 936                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 2                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 2                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 41                   
+ InstallmentPlans         | bank                 
+ Housing                  | rent                 
+ ExistingCreditsCount     | 1                    
+ Job                      | unskilled            
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 7.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 2.0                  
+ Housing_IX               | 1.0                  
+ Job_IX                   | 1.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | [2.0,3.0,7.0,0.0,... 
+ rawPrediction            | [17.8582417779453... 
+ probability              | [0.89291208889726... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
 -RECORD 1----------------------------------------
- CheckingStatus           | 0_to_200
- LoanDuration             | 4
- CreditHistory            | all_credits_paid_...
- LoanPurpose              | furniture
- LoanAmount               | 250
- ExistingSavings          | less_100
- EmploymentDuration       | 1_to_4
- InstallmentPercent       | 2
- Sex                      | female
- OthersOnLoan             | none
- CurrentResidenceDuration | 1
- OwnsProperty             | real_estate
- Age                      | 19
- InstallmentPlans         | bank
- Housing                  | rent
- ExistingCreditsCount     | 1
- Job                      | unskilled
- Dependents               | 1
- Telephone                | none
- ForeignWorker            | yes
- Risk                     | No Risk
- CheckingStatus_IX        | 2.0
- CreditHistory_IX         | 3.0
- LoanPurpose_IX           | 1.0
- ExistingSavings_IX       | 0.0
- EmploymentDuration_IX    | 0.0
- Sex_IX                   | 1.0
- OthersOnLoan_IX          | 0.0
- OwnsProperty_IX          | 2.0
- InstallmentPlans_IX      | 2.0
- Housing_IX               | 1.0
- Job_IX                   | 1.0
- Telephone_IX             | 0.0
- ForeignWorker_IX         | 0.0
- label                    | 0.0
- features                 | [2.0,3.0,1.0,0.0,...
- rawPrediction            | [18.6217190953704...
- probability              | [0.93108595476852...
- prediction               | 0.0
- predictedLabel           | No Risk
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 4                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | furniture            
+ LoanAmount               | 250                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | 1_to_4               
+ InstallmentPercent       | 2                    
+ Sex                      | female               
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 1                    
+ OwnsProperty             | real_estate          
+ Age                      | 19                   
+ InstallmentPlans         | bank                 
+ Housing                  | rent                 
+ ExistingCreditsCount     | 1                    
+ Job                      | unskilled            
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 1.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 0.0                  
+ Sex_IX                   | 1.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 2.0                  
+ InstallmentPlans_IX      | 2.0                  
+ Housing_IX               | 1.0                  
+ Job_IX                   | 1.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | [2.0,3.0,1.0,0.0,... 
+ rawPrediction            | [18.6217190953704... 
+ probability              | [0.93108595476852... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
 -RECORD 2----------------------------------------
- CheckingStatus           | 0_to_200
- LoanDuration             | 7
- CreditHistory            | all_credits_paid_...
- LoanPurpose              | car_new
- LoanAmount               | 3091
- ExistingSavings          | less_100
- EmploymentDuration       | less_1
- InstallmentPercent       | 3
- Sex                      | female
- OthersOnLoan             | none
- CurrentResidenceDuration | 2
- OwnsProperty             | savings_insurance
- Age                      | 28
- InstallmentPlans         | none
- Housing                  | own
- ExistingCreditsCount     | 2
- Job                      | skilled
- Dependents               | 1
- Telephone                | none
- ForeignWorker            | yes
- Risk                     | No Risk
- CheckingStatus_IX        | 2.0
- CreditHistory_IX         | 3.0
- LoanPurpose_IX           | 0.0
- ExistingSavings_IX       | 0.0
- EmploymentDuration_IX    | 3.0
- Sex_IX                   | 1.0
- OthersOnLoan_IX          | 0.0
- OwnsProperty_IX          | 0.0
- InstallmentPlans_IX      | 0.0
- Housing_IX               | 0.0
- Job_IX                   | 0.0
- Telephone_IX             | 0.0
- ForeignWorker_IX         | 0.0
- label                    | 0.0
- features                 | (20,[0,1,4,5,13,1...
- rawPrediction            | [17.0900288758532...
- probability              | [0.85450144379266...
- prediction               | 0.0
- predictedLabel           | No Risk
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 7                    
+ CreditHistory            | all_credits_paid_... 
+ LoanPurpose              | car_new              
+ LoanAmount               | 3091                 
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 3                    
+ Sex                      | female               
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 2                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 28                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 2                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 3.0                  
+ LoanPurpose_IX           | 0.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 1.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,1,4,5,13,1... 
+ rawPrediction            | [17.0900288758532... 
+ probability              | [0.85450144379266... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
 -RECORD 3----------------------------------------
- CheckingStatus           | 0_to_200
- LoanDuration             | 9
- CreditHistory            | prior_payments_de...
- LoanPurpose              | furniture
- LoanAmount               | 250
- ExistingSavings          | less_100
- EmploymentDuration       | less_1
- InstallmentPercent       | 1
- Sex                      | male
- OthersOnLoan             | none
- CurrentResidenceDuration | 3
- OwnsProperty             | savings_insurance
- Age                      | 31
- InstallmentPlans         | none
- Housing                  | own
- ExistingCreditsCount     | 1
- Job                      | skilled
- Dependents               | 1
- Telephone                | yes
- ForeignWorker            | yes
- Risk                     | No Risk
- CheckingStatus_IX        | 2.0
- CreditHistory_IX         | 0.0
- LoanPurpose_IX           | 1.0
- ExistingSavings_IX       | 0.0
- EmploymentDuration_IX    | 3.0
- Sex_IX                   | 0.0
- OthersOnLoan_IX          | 0.0
- OwnsProperty_IX          | 0.0
- InstallmentPlans_IX      | 0.0
- Housing_IX               | 0.0
- Job_IX                   | 0.0
- Telephone_IX             | 1.0
- ForeignWorker_IX         | 0.0
- label                    | 0.0
- features                 | (20,[0,2,4,11,13,...
- rawPrediction            | [17.3233263549217...
- probability              | [0.86616631774608...
- prediction               | 0.0
- predictedLabel           | No Risk
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 9                    
+ CreditHistory            | prior_payments_de... 
+ LoanPurpose              | furniture            
+ LoanAmount               | 250                  
+ ExistingSavings          | less_100             
+ EmploymentDuration       | less_1               
+ InstallmentPercent       | 1                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 3                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 31                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 1                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | yes                  
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 0.0                  
+ LoanPurpose_IX           | 1.0                  
+ ExistingSavings_IX       | 0.0                  
+ EmploymentDuration_IX    | 3.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 1.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,2,4,11,13,... 
+ rawPrediction            | [17.3233263549217... 
+ probability              | [0.86616631774608... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
 -RECORD 4----------------------------------------
- CheckingStatus           | 0_to_200
- LoanDuration             | 10
- CreditHistory            | prior_payments_de...
- LoanPurpose              | car_new
- LoanAmount               | 1797
- ExistingSavings          | greater_1000
- EmploymentDuration       | 4_to_7
- InstallmentPercent       | 3
- Sex                      | male
- OthersOnLoan             | none
- CurrentResidenceDuration | 3
- OwnsProperty             | savings_insurance
- Age                      | 28
- InstallmentPlans         | none
- Housing                  | own
- ExistingCreditsCount     | 1
- Job                      | skilled
- Dependents               | 1
- Telephone                | none
- ForeignWorker            | yes
- Risk                     | No Risk
- CheckingStatus_IX        | 2.0
- CreditHistory_IX         | 0.0
- LoanPurpose_IX           | 0.0
- ExistingSavings_IX       | 3.0
- EmploymentDuration_IX    | 1.0
- Sex_IX                   | 0.0
- OthersOnLoan_IX          | 0.0
- OwnsProperty_IX          | 0.0
- InstallmentPlans_IX      | 0.0
- Housing_IX               | 0.0
- Job_IX                   | 0.0
- Telephone_IX             | 0.0
- ForeignWorker_IX         | 0.0
- label                    | 0.0
- features                 | (20,[0,3,4,13,14,...
- rawPrediction            | [16.7833363666722...
- probability              | [0.83916681833361...
- prediction               | 0.0
- predictedLabel           | No Risk
+ CheckingStatus           | 0_to_200             
+ LoanDuration             | 10                   
+ CreditHistory            | prior_payments_de... 
+ LoanPurpose              | car_new              
+ LoanAmount               | 1797                 
+ ExistingSavings          | greater_1000         
+ EmploymentDuration       | 4_to_7               
+ InstallmentPercent       | 3                    
+ Sex                      | male                 
+ OthersOnLoan             | none                 
+ CurrentResidenceDuration | 3                    
+ OwnsProperty             | savings_insurance    
+ Age                      | 28                   
+ InstallmentPlans         | none                 
+ Housing                  | own                  
+ ExistingCreditsCount     | 1                    
+ Job                      | skilled              
+ Dependents               | 1                    
+ Telephone                | none                 
+ ForeignWorker            | yes                  
+ Risk                     | No Risk              
+ CheckingStatus_IX        | 2.0                  
+ CreditHistory_IX         | 0.0                  
+ LoanPurpose_IX           | 0.0                  
+ ExistingSavings_IX       | 3.0                  
+ EmploymentDuration_IX    | 1.0                  
+ Sex_IX                   | 0.0                  
+ OthersOnLoan_IX          | 0.0                  
+ OwnsProperty_IX          | 0.0                  
+ InstallmentPlans_IX      | 0.0                  
+ Housing_IX               | 0.0                  
+ Job_IX                   | 0.0                  
+ Telephone_IX             | 0.0                  
+ ForeignWorker_IX         | 0.0                  
+ label                    | 0.0                  
+ features                 | (20,[0,3,4,13,14,... 
+ rawPrediction            | [16.7833363666722... 
+ probability              | [0.83916681833361... 
+ prediction               | 0.0                  
+ predictedLabel           | No Risk              
 only showing top 5 rows
 
 </pre>
@@ -9130,7 +9130,7 @@ For more information about REST APIs, see the <a href="https://cloud.ibm.com/api
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
-    <span class="n">model_id</span><span class="p">,</span>
+    <span class="n">model_id</span><span class="p">,</span> 
     <span class="n">meta_props</span><span class="o">=</span><span class="p">{</span>
         <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"Credit Risk model deployment"</span><span class="p">,</span>
         <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">ONLINE</span><span class="p">:</span> <span class="p">{}</span>

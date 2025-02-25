@@ -7563,7 +7563,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="Set-up-the-environment">Set up the environment<a class="anchor-link" href="#Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Contact with your Cloud Pack for Data administrator and ask him for your account credentials</li>
+<li>Contact with your Cloud Pak for Data administrator and ask them for your account credentials</li>
 </ul>
 </div>
 </div>
@@ -7632,7 +7632,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-watsonx.ai-Runtime">Connection to watsonx.ai Runtime<a class="anchor-link" href="#Connection-to-watsonx.ai-Runtime">¶</a></h3><p>Authenticate the watsonx.ai Runtime service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
+<h3 id="Connection-to-watsonx.ai-Runtime">Connection to watsonx.ai Runtime<a class="anchor-link" href="#Connection-to-watsonx.ai-Runtime">¶</a></h3><p>Authenticate the watsonx.ai Runtime service on IBM Cloud Pak for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 </div>
 </div>
 </div>
@@ -8430,35 +8430,35 @@ Function defined can be used as an example. To modify the deployed function beha
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">params</span><span class="o">=</span><span class="p">{</span>
-    <span class="s1">'space_id'</span><span class="p">:</span> <span class="n">space_id</span><span class="p">,</span>
+    <span class="s1">'space_id'</span><span class="p">:</span> <span class="n">space_id</span><span class="p">,</span> 
     <span class="s1">'retriever'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'method'</span><span class="p">:</span> <span class="s1">'simple'</span><span class="p">,</span> <span class="s1">'number_of_chunks'</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
     <span class="s1">'credentials'</span><span class="p">:</span> <span class="n">credentials_dict</span><span class="p">,</span>
     <span class="s1">'vector_store'</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">'connection_id'</span><span class="p">:</span> <span class="n">promoted_connection_id</span><span class="p">,</span>
+        <span class="s1">'connection_id'</span><span class="p">:</span> <span class="n">promoted_connection_id</span><span class="p">,</span> 
         <span class="s1">'embeddings'</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">'__class__'</span><span class="p">:</span> <span class="s1">'Embeddings'</span><span class="p">,</span>
-            <span class="s1">'__module__'</span><span class="p">:</span> <span class="s1">'ibm_watsonx_ai.foundation_models.embeddings.embeddings'</span><span class="p">,</span>
+            <span class="s1">'__class__'</span><span class="p">:</span> <span class="s1">'Embeddings'</span><span class="p">,</span> 
+            <span class="s1">'__module__'</span><span class="p">:</span> <span class="s1">'ibm_watsonx_ai.foundation_models.embeddings.embeddings'</span><span class="p">,</span> 
             <span class="s1">'model_id'</span><span class="p">:</span> <span class="s1">'ibm/slate-30m-english-rtrvr'</span><span class="p">,</span>
-            <span class="s1">'credentials'</span><span class="p">:</span> <span class="n">credentials_dict</span><span class="p">,</span>
-            <span class="s1">'params'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="s1">'project_id'</span><span class="p">:</span> <span class="n">project_id</span><span class="p">,</span>
-            <span class="s1">'space_id'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">'credentials'</span><span class="p">:</span> <span class="n">credentials_dict</span><span class="p">,</span> 
+            <span class="s1">'params'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
+            <span class="s1">'project_id'</span><span class="p">:</span> <span class="n">project_id</span><span class="p">,</span> 
+            <span class="s1">'space_id'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
             <span class="s1">'verify'</span><span class="p">:</span> <span class="kc">None</span>
-        <span class="p">},</span>
-        <span class="s1">'index_name'</span><span class="p">:</span> <span class="n">index_name</span><span class="p">,</span>
-        <span class="s1">'datasource_type'</span><span class="p">:</span> <span class="s1">'milvus'</span><span class="p">,</span>
-        <span class="s1">'distance_metric'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">},</span> 
+        <span class="s1">'index_name'</span><span class="p">:</span> <span class="n">index_name</span><span class="p">,</span> 
+        <span class="s1">'datasource_type'</span><span class="p">:</span> <span class="s1">'milvus'</span><span class="p">,</span> 
+        <span class="s1">'distance_metric'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
         <span class="s1">'secure'</span><span class="p">:</span> <span class="kc">True</span>
-    <span class="p">},</span>
-    <span class="s1">'prompt_template_text'</span><span class="p">:</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">    Use the following pieces of documents to answer the question</span><span class="se">\n</span><span class="s2">    at the end. If you don't know the answer, just say that you</span><span class="se">\n</span><span class="s2">    don't know, don't try to make up an answer. Use three sentences</span><span class="se">\n</span><span class="s2">    maximum. Keep the answer as concise as possible. do not include</span><span class="se">\n</span><span class="s2">    question in your response.Your answers should not include any</span><span class="se">\n</span><span class="s2">    harmful, unethical, racist, sexist, toxic, dangerous, or illegal</span><span class="se">\n</span><span class="s2">    content. Please ensure that your responses are socially unbiased</span><span class="se">\n</span><span class="s2">    and positive in nature.</span><span class="se">\n</span><span class="s2">Please provide a concise professional</span><span class="se">\n</span><span class="s2">    response.</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n\n</span><span class="si">{reference_documents}</span><span class="se">\n</span><span class="s2">Question:</span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Answer:"</span><span class="p">,</span>
-    <span class="s1">'context_template_text'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">},</span> 
+    <span class="s1">'prompt_template_text'</span><span class="p">:</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">    Use the following pieces of documents to answer the question</span><span class="se">\n</span><span class="s2">    at the end. If you don't know the answer, just say that you</span><span class="se">\n</span><span class="s2">    don't know, don't try to make up an answer. Use three sentences</span><span class="se">\n</span><span class="s2">    maximum. Keep the answer as concise as possible. do not include</span><span class="se">\n</span><span class="s2">    question in your response.Your answers should not include any</span><span class="se">\n</span><span class="s2">    harmful, unethical, racist, sexist, toxic, dangerous, or illegal</span><span class="se">\n</span><span class="s2">    content. Please ensure that your responses are socially unbiased</span><span class="se">\n</span><span class="s2">    and positive in nature.</span><span class="se">\n</span><span class="s2">Please provide a concise professional</span><span class="se">\n</span><span class="s2">    response.</span><span class="se">\n</span><span class="s2">    </span><span class="se">\n\n</span><span class="si">{reference_documents}</span><span class="se">\n</span><span class="s2">Question:</span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Answer:"</span><span class="p">,</span> 
+    <span class="s1">'context_template_text'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
     <span class="s1">'model'</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">'model_id'</span><span class="p">:</span> <span class="s1">'meta-llama/llama-2-13b-chat'</span><span class="p">,</span>
-        <span class="s1">'params'</span><span class="p">:</span>
-        <span class="p">{</span><span class="s1">'decoding_method'</span><span class="p">:</span> <span class="s1">'greedy'</span><span class="p">,</span> <span class="s1">'min_new_tokens'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'max_new_tokens'</span><span class="p">:</span> <span class="mi">200</span><span class="p">},</span>
-        <span class="s1">'project_id'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">'model_id'</span><span class="p">:</span> <span class="s1">'meta-llama/llama-2-13b-chat'</span><span class="p">,</span> 
+        <span class="s1">'params'</span><span class="p">:</span> 
+        <span class="p">{</span><span class="s1">'decoding_method'</span><span class="p">:</span> <span class="s1">'greedy'</span><span class="p">,</span> <span class="s1">'min_new_tokens'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">'max_new_tokens'</span><span class="p">:</span> <span class="mi">200</span><span class="p">},</span> 
+        <span class="s1">'project_id'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
         <span class="s1">'space_id'</span><span class="p">:</span> <span class="n">space_id</span>
-    <span class="p">},</span>
+    <span class="p">},</span> 
     <span class="s1">'inference_function_params'</span><span class="p">:</span> <span class="p">{}</span>
 <span class="p">}</span>
 
@@ -8996,7 +8996,7 @@ Function defined can be used as an example. To modify the deployed function beha
 <span class="n">meta_props</span> <span class="o">=</span> <span class="p">{</span>
    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="s2">"rag_function"</span><span class="p">,</span>
    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">DESCRIPTION</span><span class="p">:</span> <span class="s2">"RAG function"</span><span class="p">,</span>
-   <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">HARDWARE_SPEC</span><span class="p">:</span> <span class="p">{</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'S'</span><span class="p">},</span>
+   <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">HARDWARE_SPEC</span><span class="p">:</span> <span class="p">{</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'S'</span><span class="p">},</span>  
    <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">ConfigurationMetaNames</span><span class="o">.</span><span class="n">SERVING_NAME</span><span class="p">:</span> <span class="s2">"rag_function"</span>
 <span class="p">}</span>
 
