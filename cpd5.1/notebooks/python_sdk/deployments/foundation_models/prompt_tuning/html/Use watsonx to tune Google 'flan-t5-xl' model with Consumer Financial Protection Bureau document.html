@@ -7567,7 +7567,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="Set-up-the-environment">Set up the environment<a class="anchor-link" href="#Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Contact with your Cloud Pack for Data administrator and ask him for your account credentials</li>
+<li>Contact with your Cloud Pak for Data administrator and ask them for your account credentials</li>
 </ul>
 </div>
 </div>
@@ -7607,7 +7607,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pak for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 </div>
 </div>
 </div>
@@ -7822,9 +7822,9 @@ a.anchor-link {
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://raw.github.com/IBM/watson-machine-learning-samples/master/cloud/data/prompt_tuning/cfpb_train.json"</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span> 
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
+    
 <span class="n">asset_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">data_assets</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8128,7 +8128,7 @@ Training of '2188e5e1-95d4-4548-80b8-df76e78f6041' finished successfully.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Check status/state of initialized Prompt Tuning run if ran in background mode or when process finish if background mode is off.</p>
+<p>Check the status/state of the initialized Prompt Tuning run if it was run in background mode, or when the process finishes if background mode is off.</p>
 </div>
 </div>
 </div>
@@ -8720,9 +8720,9 @@ Successfully finished deployment creation, deployment_id='6a921419-d9cc-425a-b48
 <span class="n">filename</span> <span class="o">=</span> <span class="s1">'cfpb_test.json'</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://raw.github.com/IBM/watson-machine-learning-samples/master/cloud/data/prompt_tuning/cfpb_test.json"</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span> 
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
+    
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8903,7 +8903,7 @@ Successfully finished deployment creation, deployment_id='6a921419-d9cc-425a-b48
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!.</p>
+<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!</p>
 <p>You learned how to use prompt tuning in watsonx for analyze the product classes for a sample prompts.</p>
 <p>Check out our <em><a href="https://ibm.github.io/watsonx-ai-python-sdk/samples.html" rel="noopener no referrer" target="_blank">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>

@@ -7712,6 +7712,7 @@ from the API call is returned as the cell output.</p>
             <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">"results"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+        
 </pre></div>
 </div>
 </div>
@@ -7917,7 +7918,7 @@ the id from the project in which this notebook runs:</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">data_train</span><span class="p">,</span> <span class="n">data_test</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'claim'</span><span class="p">],</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">data_train</span><span class="p">,</span> <span class="n">data_test</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'claim'</span><span class="p">],</span> 
                                                     <span class="n">data</span><span class="p">[</span><span class="s1">'claim'</span><span class="p">],</span>
                                                     <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
                                                     <span class="n">random_state</span><span class="o">=</span><span class="mi">33</span><span class="p">,</span>
@@ -8244,7 +8245,7 @@ The sentence example 5 is:
 <span class="n">example_dic_list</span><span class="o">=</span><span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">data_sample</span><span class="p">:</span>
-
+    
     <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">document</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>  <span class="c1"># Process the document with spacy NLP pipeline</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
         <span class="n">example_dic</span> <span class="o">=</span><span class="p">{}</span>
@@ -8252,7 +8253,7 @@ The sentence example 5 is:
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ent</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">):</span>
             <span class="n">example_dic</span><span class="p">[</span><span class="sa">f</span><span class="s1">'phrase_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span><span class="o">=</span><span class="n">ent</span><span class="o">.</span><span class="n">text</span>
             <span class="n">example_dic</span><span class="p">[</span><span class="sa">f</span><span class="s1">'label_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span><span class="o">=</span><span class="n">ent</span><span class="o">.</span><span class="n">label_</span>
-
+            
         <span class="n">example_dic_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">example_dic</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8374,37 +8375,37 @@ The sentence example 5 is:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>document:
+<pre>document: 
 "In 1999 New Scientist reported a comment by the leading Indian glaciologist Syed Hasnain, who said in an email interview with this author that all the glaciers in the central and eastern Himalayas could disappear by 2035.
 
 {'phrase_0': '1999', 'label_0': 'DATE', 'phrase_1': 'Indian', 'label_1': 'NORP', 'phrase_2': 'Syed Hasnain', 'label_2': 'PERSON', 'phrase_3': 'Himalayas', 'label_3': 'GPE', 'phrase_4': '2035', 'label_4': 'DATE'}
 
 
-document:
+document: 
 "We found [U.S. weather] stations located next to  the exhaust fans of air conditioning units, surrounded by asphalt  parking lots and roads, on blistering-hot rooftops, and near sidewalks  and buildings that absorb and radiate heat.
 
 {'phrase_0': 'U.S.', 'label_0': 'GPE'}
 
 
-document:
+document: 
 Skeptics who oppose scientific findings that threaten their world view are far closer to Galileo's belief-based critics in the Catholic Church.
 
 {'phrase_0': 'Galileo', 'label_0': 'PRODUCT', 'phrase_1': 'the Catholic Church', 'label_1': 'ORG'}
 
 
-document:
+document: 
 Pollard and DeConto are the first to admit that their model is still crude, but its results have pushed the entire scientific community into emergency mode.
 
 {'phrase_0': 'DeConto', 'label_0': 'GPE', 'phrase_1': 'first', 'label_1': 'ORDINAL'}
 
 
-document:
+document: 
 Global average temperatures over land have plummeted by more than 1C since the middle of this year – their biggest and steepest fall on record.
 
 {'phrase_0': 'the middle of this year', 'label_0': 'DATE'}
 
 
-document:
+document: 
 the world is barely half a degree Celsius (0.9 degrees Fahrenheit) warmer than it was about 35 years ago
 
 {'phrase_0': 'barely half', 'label_0': 'CARDINAL', 'phrase_1': '0.9 degrees', 'label_1': 'QUANTITY', 'phrase_2': 'Fahrenheit', 'label_2': 'GPE', 'phrase_3': 'about 35 years ago', 'label_3': 'DATE'}
@@ -8589,8 +8590,8 @@ Accurately identify and classify named entities in text. The list of possible la
 'LOC','MONEY','NORP','ORDINAL','ORG','PERCENT','PERSON','PRODUCT','QUANTITY','TIME','WORK_OF_ART'].
 
 Return your responses in dictionary format. for the each found item, provide the "phrase" and
-the corresponding "label" along with their number as dictionary keys separated by numbers.
-Encapsulate the phrases and labels in single quotation mark.
+the corresponding "label" along with their number as dictionary keys separated by numbers. 
+Encapsulate the phrases and labels in single quotation mark. 
 For instance, 'phrase_0':'London', 'label_0':'LOC', 'phrase_1':'Mount Everest', 'label_1':'LOC', and so on.
 Use the following training examples as follows:
 
@@ -8732,7 +8733,7 @@ Raw results from LLM model:
 Document #4:
 There is no way for us to prevent the world’s CO2 emissions    from doubling by 2100"
 Raw results from LLM model:
-  phrase_0': 'CO2 emissions', 'label_0': 'QUANTITY', 'phrase_1': 'from doubling by 2100', 'label_1': 'DATE', 'phrase_2': 'world’s', 'label_2': 'CO2', 'phrase_3': 'from doubling by 2100', 'label_3': 'DATE', 'phrase_4': 'There is no way for us to prevent the world’s CO2 emissions from doubling by 2100',
+  phrase_0': 'CO2 emissions', 'label_0': 'QUANTITY', 'phrase_1': 'from doubling by 2100', 'label_1': 'DATE', 'phrase_2': 'world’s', 'label_2': 'CO2', 'phrase_3': 'from doubling by 2100', 'label_3': 'DATE', 'phrase_4': 'There is no way for us to prevent the world’s CO2 emissions from doubling by 2100', 
 --------------------------------------------------
 --------------------------------------------------
 Document #5:
@@ -8870,7 +8871,7 @@ Raw results from LLM model:
 Document #27:
 Measurements indicating that 2017 had relatively more sea ice in the Arctic and less melting of glacial ice in Greenland casts scientific doubt on the reality of global warming.
 Raw results from LLM model:
-  ['Arctic', 'label_0': 'LOC', 'Greenland', 'label_1': 'LOC', 'label_2': 'LOC', 'label_3': 'LOC', 'label_4': 'LOC', 'label_5': 'LOC', 'label_6': 'LOC', 'label_7': 'LOC', 'label_8': 'LOC', 'label_9':
+  ['Arctic', 'label_0': 'LOC', 'Greenland', 'label_1': 'LOC', 'label_2': 'LOC', 'label_3': 'LOC', 'label_4': 'LOC', 'label_5': 'LOC', 'label_6': 'LOC', 'label_7': 'LOC', 'label_8': 'LOC', 'label_9': 
 --------------------------------------------------
 --------------------------------------------------
 Document #28:
@@ -8991,8 +8992,8 @@ Raw results from LLM model:
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ent</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">):</span>
             <span class="n">fsi</span><span class="p">[</span><span class="sa">f</span><span class="s1">'phrase_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span><span class="o">=</span><span class="n">ent</span><span class="o">.</span><span class="n">text</span>
             <span class="n">fsi</span><span class="p">[</span><span class="sa">f</span><span class="s1">'label_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span><span class="o">=</span><span class="n">ent</span><span class="o">.</span><span class="n">label_</span>
-
-
+        
+            
         <span class="n">fsi_list_for_ground_truth</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fsi</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">fsi_list_for_ground_truth</span><span class="o">.</span><span class="n">append</span><span class="p">({})</span>
@@ -9074,9 +9075,9 @@ Raw results from LLM model:
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">extract_dictionary_from_results</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-
+    
     <span class="n">ss2</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span>
-
+    
     <span class="n">pc</span><span class="o">=</span><span class="mi">0</span>
     <span class="n">lc</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">ss2</span><span class="p">:</span>
@@ -9086,12 +9087,13 @@ Raw results from LLM model:
             <span class="n">lc</span><span class="o">+=</span><span class="mi">1</span>
     <span class="k">if</span> <span class="p">((</span><span class="n">pc</span><span class="o">==</span><span class="n">lc</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">pc</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">((</span><span class="n">lc</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)):</span>
         <span class="k">return</span> <span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s2">"{"</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="s2">"}"</span><span class="p">))</span>
-
+    
     <span class="k">elif</span><span class="p">((</span><span class="n">pc</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span> <span class="ow">or</span> <span class="p">((</span><span class="n">lc</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span><span class="p">)):</span>
-
+       
         <span class="n">lim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span><span class="n">lc</span><span class="p">)</span>
         <span class="n">wlim</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">lim</span>
         <span class="k">return</span> <span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="s1">'{'</span><span class="o">+</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ss2</span><span class="p">[:</span><span class="n">wlim</span><span class="p">])</span><span class="o">+</span><span class="s1">'}'</span><span class="p">))</span>
+        
 </pre></div>
 </div>
 </div>
@@ -9175,15 +9177,15 @@ Raw results from LLM model:
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">polish_results</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
-
+    
     <span class="n">sp</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
-
+    
     <span class="n">nw</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sp</span><span class="p">:</span>
         <span class="n">b</span><span class="o">=</span><span class="s1">''</span>
         <span class="n">b</span><span class="o">=</span><span class="n">w</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"'"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
         <span class="n">nw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-
+    
     <span class="n">msl</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">nw</span><span class="p">:</span>
         <span class="n">ns</span><span class="o">=</span><span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span>
@@ -9196,7 +9198,7 @@ Raw results from LLM model:
         <span class="n">msl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
 
     <span class="n">res</span><span class="o">=</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msl</span><span class="p">)</span>
-
+    
     <span class="k">return</span> <span class="n">res</span>
 </pre></div>
 </div>
@@ -9226,45 +9228,45 @@ Raw results from LLM model:
 <span class="n">y_pred</span><span class="o">=</span><span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fsi_list_for_ground_truth</span><span class="p">)):</span>
-
+    
     <span class="k">try</span><span class="p">:</span>
         <span class="n">keys</span><span class="o">=</span><span class="n">fsi_list_for_ground_truth</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">!=</span><span class="mi">0</span><span class="p">):</span>
             <span class="n">temp_s</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">fsi_list_for_ground_truth</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
             <span class="k">del</span> <span class="n">temp_s</span><span class="p">[</span><span class="s1">'document'</span><span class="p">]</span>
-
-
+            
+            
             <span class="n">ground_truth_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">temp_s</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="n">ground_truth_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">temp_s</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-
+            
             <span class="n">model_results</span><span class="o">=</span><span class="n">extract_dictionary_from_results</span><span class="p">(</span><span class="n">polish_results</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">]))</span>
-
+            
             <span class="n">model_res_keys</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">model_results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="n">model_res_values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">model_results</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-
-
-
+            
+          
+            
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ground_truth_keys</span><span class="p">:</span>
                 <span class="k">if</span> <span class="p">(</span><span class="s1">'phrase_'</span> <span class="ow">in</span> <span class="n">k</span><span class="p">):</span>
-
+                    
                     <span class="n">phrase</span><span class="o">=</span><span class="n">temp_s</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-
+                    
                     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model_res_values</span><span class="p">:</span>
                         <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">find_common_words</span><span class="p">(</span><span class="n">drop_words</span><span class="p">(</span><span class="n">phrase</span><span class="p">),</span><span class="n">drop_words</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">())</span><span class="o">&gt;</span><span class="mf">0.5</span><span class="p">):</span>
                             <span class="n">ground_truth_label</span> <span class="o">=</span> <span class="n">temp_s</span><span class="p">[</span><span class="s1">'label_'</span><span class="o">+</span><span class="p">(</span><span class="n">ground_truth_keys</span><span class="p">[</span><span class="n">ground_truth_values</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">phrase</span><span class="p">)]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'phrase_'</span><span class="p">))]</span>
                             <span class="n">model_res_label</span><span class="o">=</span><span class="n">model_results</span><span class="p">[</span><span class="s1">'label_'</span><span class="o">+</span><span class="p">(</span><span class="n">model_res_keys</span><span class="p">[</span><span class="n">model_res_values</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'phrase_'</span><span class="p">))]</span>
-
+                            
                             <span class="k">if</span> <span class="p">(</span><span class="n">model_res_label</span><span class="o">==</span><span class="n">ground_truth_label</span><span class="p">):</span>
                                 <span class="n">y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                                 <span class="n">y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                             <span class="k">else</span><span class="p">:</span>
                                 <span class="n">y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                                 <span class="n">y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
+                            
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
-
-
+        
+        
 <span class="n">len_y_true</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
 <span class="n">len_y_pred</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
 
@@ -9272,9 +9274,10 @@ Raw results from LLM model:
 
 <span class="k">try</span><span class="p">:</span>
     <span class="k">del</span> <span class="n">fsi_ners</span><span class="p">[</span><span class="s1">'document'</span><span class="p">]</span>
-
+    
 <span class="k">except</span><span class="p">:</span>
     <span class="k">pass</span>
+        
 </pre></div>
 </div>
 </div>
@@ -9295,14 +9298,14 @@ Raw results from LLM model:
     <span class="n">fsi_ners</span><span class="o">=</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">fsi_list_for_ground_truth</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">del</span> <span class="n">fsi_ners</span><span class="p">[</span><span class="s1">'document'</span><span class="p">]</span>
-
-
+       
+        
         <span class="n">model_ners</span><span class="o">=</span><span class="n">extract_dictionary_from_results</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">])</span>
-
-
+       
+        
         <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fsi_ners</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">model_ners</span><span class="p">)):</span>
             <span class="n">diff</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fsi_ners</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">model_ners</span><span class="p">)</span>
-
+            
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">diff</span><span class="p">)):</span>
                 <span class="n">y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -9501,11 +9504,11 @@ weighted avg       1.00      0.47      0.64        15
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-Accurately identify and classify the
+Accurately identify and classify the 
 NERs of type location (LOC).
 
 Return your responses in dictionary format. for the each item you found, provide the "phrase" and
-the corresponding "label" along with their number as dictionary key separated by numbers.
+the corresponding "label" along with their number as dictionary key separated by numbers. 
 Increment the 'phrase_' and 'label_' for the next NER.Each 'phrase_' should be coupled with a 'label_'.
 Make sure to encapsulate the found phrases and labels in single quotation mark.
 For instance, 'phrase_0':'London', 'label_0':'LOC', 'phrase_1':'Mount Everest', 'label_1':'LOC', and so on.
@@ -9639,7 +9642,7 @@ Use the following training examples as follows:
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">:</span>
         <span class="n">e_cp</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">e_cp</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-
+        
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
             <span class="k">if</span> <span class="s1">'label_'</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
                 <span class="n">numeric_val</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'label_'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
@@ -9647,10 +9650,10 @@ Use the following training examples as follows:
                 <span class="k">if</span> <span class="p">(</span><span class="n">e_cp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">!=</span><span class="n">specific_label</span><span class="p">):</span>
                     <span class="k">del</span> <span class="n">e_cp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
                     <span class="k">del</span> <span class="n">e_cp</span><span class="p">[</span><span class="s1">'phrase_'</span><span class="o">+</span><span class="n">numeric_val</span><span class="p">]</span>
-
+        
         <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">e_cp</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">list_of_modified_examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e_cp</span><span class="p">)</span>
-
+    
     <span class="k">return</span> <span class="n">list_of_modified_examples</span>
 </pre></div>
 </div>
@@ -9789,25 +9792,25 @@ Use the following training examples as follows:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>document:
+<pre>document: 
 "In 1999 New Scientist reported a comment by the leading Indian glaciologist Syed Hasnain, who said in an email interview with this author that all the glaciers in the central and eastern Himalayas could disappear by 2035.
 
 {'phrase_3': 'Himalayas', 'label_3': 'LOC'}
 
 
-document:
+document: 
 "We found [U.S. weather] stations located next to  the exhaust fans of air conditioning units, surrounded by asphalt  parking lots and roads, on blistering-hot rooftops, and near sidewalks  and buildings that absorb and radiate heat.
 
 {'phrase_0': 'U.S.', 'label_0': 'LOC'}
 
 
-document:
+document: 
 Pollard and DeConto are the first to admit that their model is still crude, but its results have pushed the entire scientific community into emergency mode.
 
 {'phrase_0': 'DeConto', 'label_0': 'LOC'}
 
 
-document:
+document: 
 the world is barely half a degree Celsius (0.9 degrees Fahrenheit) warmer than it was about 35 years ago
 
 {'phrase_2': 'Fahrenheit', 'label_2': 'LOC'}
@@ -9897,15 +9900,15 @@ the world is barely half a degree Celsius (0.9 degrees Fahrenheit) warmer than i
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">polish_results</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
-
+    
     <span class="n">sp</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span>
-
+    
     <span class="n">nw</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sp</span><span class="p">:</span>
         <span class="n">b</span><span class="o">=</span><span class="s1">''</span>
         <span class="n">b</span><span class="o">=</span><span class="n">w</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'"'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"'"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
         <span class="n">nw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-
+        
     <span class="n">msl</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">nw</span><span class="p">:</span>
         <span class="n">ns</span><span class="o">=</span><span class="n">w</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">)</span>
@@ -9918,7 +9921,7 @@ the world is barely half a degree Celsius (0.9 degrees Fahrenheit) warmer than i
         <span class="n">msl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
 
     <span class="n">res</span><span class="o">=</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msl</span><span class="p">)</span>
-
+    
     <span class="k">return</span> <span class="n">res</span>
 </pre></div>
 </div>
@@ -10023,28 +10026,28 @@ the world is barely half a degree Celsius (0.9 degrees Fahrenheit) warmer than i
         <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">!=</span><span class="mi">0</span><span class="p">):</span>
             <span class="n">temp_s</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">fsi_list_for_ground_truth</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
             <span class="k">del</span> <span class="n">temp_s</span><span class="p">[</span><span class="s1">'document'</span><span class="p">]</span>
-
-
+      
+            
             <span class="n">ground_truth_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">temp_s</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="n">ground_truth_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">temp_s</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-
+            
             <span class="n">model_results</span><span class="o">=</span><span class="n">extract_dictionary_from_results</span><span class="p">(</span><span class="n">polish_results</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">]))</span>
-
+            
             <span class="n">model_res_keys</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">model_results</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="n">model_res_values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">model_results</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-
-
-
+            
+            
+            
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">ground_truth_keys</span><span class="p">:</span>
                 <span class="k">if</span> <span class="p">(</span><span class="s1">'phrase_'</span> <span class="ow">in</span> <span class="n">k</span><span class="p">):</span>
-
+                  
                     <span class="n">phrase</span><span class="o">=</span><span class="n">temp_s</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
-
+                   
                     <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model_res_values</span><span class="p">:</span>
                         <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">find_common_words</span><span class="p">(</span><span class="n">drop_words</span><span class="p">(</span><span class="n">phrase</span><span class="p">),</span><span class="n">drop_words</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">())</span><span class="o">&gt;</span><span class="mf">0.5</span><span class="p">):</span>
 
                             <span class="n">ground_truth_label</span> <span class="o">=</span> <span class="n">temp_s</span><span class="p">[</span><span class="s1">'label_'</span><span class="o">+</span><span class="p">(</span><span class="n">ground_truth_keys</span><span class="p">[</span><span class="n">ground_truth_values</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">phrase</span><span class="p">)]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'phrase_'</span><span class="p">))]</span>
-
+                            
                             <span class="k">if</span> <span class="p">(</span><span class="n">ground_truth_label</span><span class="o">==</span><span class="n">specific_label</span><span class="p">):</span>
                                 <span class="n">model_res_label</span><span class="o">=</span><span class="n">model_results</span><span class="p">[</span><span class="s1">'label_'</span><span class="o">+</span><span class="p">(</span><span class="n">model_res_keys</span><span class="p">[</span><span class="n">model_res_values</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'phrase_'</span><span class="p">))]</span>
 
@@ -10057,8 +10060,8 @@ the world is barely half a degree Celsius (0.9 degrees Fahrenheit) warmer than i
 
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
-
-
+        
+        
 <span class="n">len_y_true</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
 <span class="n">len_y_pred</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
 
@@ -10066,9 +10069,10 @@ the world is barely half a degree Celsius (0.9 degrees Fahrenheit) warmer than i
 
 <span class="k">try</span><span class="p">:</span>
     <span class="k">del</span> <span class="n">fsi_ners</span><span class="p">[</span><span class="s1">'document'</span><span class="p">]</span>
-
+    
 <span class="k">except</span><span class="p">:</span>
     <span class="k">pass</span>
+        
 </pre></div>
 </div>
 </div>
@@ -10089,14 +10093,14 @@ the world is barely half a degree Celsius (0.9 degrees Fahrenheit) warmer than i
     <span class="n">fsi_ners</span><span class="o">=</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">fsi_list_for_ground_truth</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">del</span> <span class="n">fsi_ners</span><span class="p">[</span><span class="s1">'document'</span><span class="p">]</span>
-
-
+        
+        
         <span class="n">model_ners</span><span class="o">=</span><span class="n">extract_dictionary_from_results</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">'generated_text'</span><span class="p">])</span>
-
-
+       
+        
         <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fsi_ners</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">model_ners</span><span class="p">)):</span>
             <span class="n">diff</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fsi_ners</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">model_ners</span><span class="p">)</span>
-
+            
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">diff</span><span class="p">)):</span>
                 <span class="n">y_true</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">y_pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -10201,7 +10205,7 @@ weighted avg       1.00      1.00      1.00         4
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!.</p>
+<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!</p>
 <p>You learned how to extract named entities with Google's <code>google/flan-ul2</code> on watsonx.</p>
 <p>Check out our <a href="https://ibm.github.io/watsonx-ai-python-sdk/samples.html" rel="Online Documentation" target="_blank">Online Documentation</a> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>

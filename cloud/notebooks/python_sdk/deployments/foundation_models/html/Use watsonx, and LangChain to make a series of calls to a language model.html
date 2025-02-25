@@ -7916,7 +7916,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">PromptTemplate</span>
 
 <span class="n">prompt_1</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
-    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">"topic"</span><span class="p">],</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">"topic"</span><span class="p">],</span> 
     <span class="n">template</span><span class="o">=</span><span class="s2">"Generate a random question about </span><span class="si">{topic}</span><span class="s2">: Question: "</span>
 <span class="p">)</span>
 <span class="n">prompt_2</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
@@ -8109,7 +8109,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">chain_text_generator</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">ai_params</span><span class="p">):</span>
-
+    
     <span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.foundation_models.utils.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelTypes</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">langchain</span><span class="w"> </span><span class="kn">import</span> <span class="n">PromptTemplate</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains</span><span class="w"> </span><span class="kn">import</span> <span class="n">LLMChain</span><span class="p">,</span> <span class="n">SequentialChain</span>
@@ -8500,7 +8500,7 @@ Successfully finished deployment creation, deployment_id='8d7ec29e-51d5-40ae-813
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!.</p>
+<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!</p>
 <p>You learned how to use Sequential Chain using custom llm WastonxLLM.</p>
 <p>Check out our <em><a href="https://ibm.github.io/watson-machine-learning-sdk/samples.html" rel="noopener no referrer" target="_blank">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>

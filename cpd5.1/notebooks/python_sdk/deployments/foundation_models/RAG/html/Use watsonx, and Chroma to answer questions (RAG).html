@@ -7562,7 +7562,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="Set-up-the-environment">Set up the environment<a class="anchor-link" href="#Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Contact with your Cloud Pack for Data administrator and ask him for your account credentials</li>
+<li>Contact with your Cloud Pak for Data administrator and ask them for your account credentials</li>
 </ul>
 </div>
 </div>
@@ -7614,7 +7614,7 @@ a.anchor-link {
     <span class="kn">from</span><span class="w"> </span><span class="nn">sentence_transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">SentenceTransformer</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"Could not import sentence_transformers: Please install sentence-transformers package."</span><span class="p">)</span>
-
+    
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">chromadb</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">chromadb.api.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmbeddingFunction</span>
@@ -7632,7 +7632,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pak for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 </div>
 </div>
 </div>
@@ -7760,11 +7760,11 @@ a.anchor-link {
 <span class="n">questions_train_url</span> <span class="o">=</span> <span class="s1">'https://raw.github.com/IBM/watson-machine-learning-samples/master/cloud/data/RAG/questions_train.csv'</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_test_filename</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_test_filename</span><span class="p">):</span> 
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">questions_test_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">questions_test_filename</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_train_filename</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">questions_train_filename</span><span class="p">):</span> 
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">questions_train_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">questions_train_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7960,7 +7960,7 @@ a.anchor-link {
 <span class="n">documents_url</span> <span class="o">=</span> <span class="s1">'https://raw.github.com/IBM/watson-machine-learning-samples/master/cloud/data/RAG/psgs.tsv'</span>
 
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">documents_filename</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">documents_filename</span><span class="p">):</span> 
     <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">documents_url</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">documents_filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8669,7 +8669,7 @@ Expected Answer(s) (may not be appear with exact wording in the dataset) =  Ray 
 
 
 Question =  when did the food stamp card come out
-Answer =  Jump up   '' . '' . '' . '' . '' . '' . '' . '' . ''
+Answer =  Jump up   '' . '' . '' . '' . '' . '' . '' . '' . '' 
 Expected Answer(s) (may not be appear with exact wording in the dataset) =  the late 1990s
 
 
@@ -8884,7 +8884,7 @@ Expected Answer(s) (may not be appear with exact wording in the dataset) =  Thom
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="summary"></a></p>
-<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!.</p>
+<h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!</p>
 <p>Check out our <em><a href="https://ibm.github.io/watsonx-ai-python-sdk/samples.html" rel="noopener no referrer" target="_blank">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>
 </div>

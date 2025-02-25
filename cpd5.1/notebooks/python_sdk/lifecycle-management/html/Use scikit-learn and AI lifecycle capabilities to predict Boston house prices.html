@@ -7564,7 +7564,7 @@ a.anchor-link {
 <p><a id="setup"></a></p>
 <h2 id="1.-Set-up-the-environment">1. Set up the environment<a class="anchor-link" href="#1.-Set-up-the-environment">¶</a></h2><p>Before you use the sample code in this notebook, you must perform the following setup tasks:</p>
 <ul>
-<li>Contact with your Cloud Pack for Data administrator and ask him for your account credentials</li>
+<li>Contact with your Cloud Pak for Data administrator and ask them for your account credentials</li>
 </ul>
 </div>
 </div>
@@ -7603,7 +7603,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pack for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
+<h3 id="Connection-to-WML">Connection to WML<a class="anchor-link" href="#Connection-to-WML">¶</a></h3><p>Authenticate the Watson Machine Learning service on IBM Cloud Pak for Data. You need to provide platform <code>url</code>, your <code>username</code> and <code>api_key</code>.</p>
 </div>
 </div>
 </div>
@@ -7805,9 +7805,9 @@ a.anchor-link {
 <span class="n">model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">'boston_house_prices_model.tar.gz'</span><span class="p">)</span>
 <span class="n">new_model_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s1">'new_boston_house_prices_model.tar.gz'</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">model_path</span><span class="p">):</span>
-    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd5.1/models/scikit/boston_house_price/model/boston_house_prices_model.tar.gz"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">data_dir</span><span class="p">)</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd5.1/models/scikit/boston_house_price/model/boston_house_prices_model.tar.gz"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">data_dir</span><span class="p">)</span>  
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">new_model_path</span><span class="p">):</span>
-    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd5.1/models/scikit/boston_house_price/model/new_boston_house_prices_model.tar.gz"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">data_dir</span><span class="p">)</span>
+    <span class="n">wget</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">"https://github.com/IBM/watson-machine-learning-samples/raw/master/cpd5.1/models/scikit/boston_house_price/model/new_boston_house_prices_model.tar.gz"</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">data_dir</span><span class="p">)</span>  
 </pre></div>
 </div>
 </div>
@@ -8722,7 +8722,7 @@ Successfully finished deployment creation, deployment_id='53d3f256-db26-48fa-9a1
         <span class="s2">"rev"</span><span class="p">:</span> <span class="n">rev_id</span>
     <span class="p">}</span>
 <span class="p">}</span>
-
+    
 <span class="n">updated_deployment</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">deployment_id</span><span class="o">=</span><span class="n">deployment_id</span><span class="p">,</span> <span class="n">changes</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8769,7 +8769,7 @@ Successfully finished deployment creation, deployment_id='53d3f256-db26-48fa-9a1
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">deployment_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">deployments</span><span class="o">.</span><span class="n">get_details</span><span class="p">(</span><span class="n">deployment_id</span><span class="p">)</span>
     <span class="n">status</span> <span class="o">=</span> <span class="n">deployment_details</span><span class="p">[</span><span class="s1">'entity'</span><span class="p">][</span><span class="s1">'status'</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'state'</span><span class="p">)</span>
-
+    
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Deployment update finished with status: "</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
 </pre></div>
 </div>
