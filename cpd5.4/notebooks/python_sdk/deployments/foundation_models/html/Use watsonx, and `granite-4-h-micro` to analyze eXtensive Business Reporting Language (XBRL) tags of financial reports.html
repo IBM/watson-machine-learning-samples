@@ -8083,7 +8083,9 @@ Successfully installed cachetools-7.0.5 ibm-cos-sdk-2.14.3 ibm-cos-sdk-core-2.14
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
-<span class="n">finer_train</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">"nlpaueb/finer-139"</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">"train"</span><span class="p">)</span>
+<span class="n">finer_train</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
+    <span class="s2">"nlpaueb/finer-139"</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">"train"</span><span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="s2">"refs/convert/parquet"</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8386,7 +8388,7 @@ Successfully installed cachetools-7.0.5 ibm-cos-sdk-2.14.3 ibm-cos-sdk-core-2.14
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Defining-the-model-parameters">Defining the model parameters<a class="anchor-link" href="#Defining-the-model-parameters">¶</a></h3><p>You might need to adjust model <code>parameters</code> for different models or tasks, to do so please refer to <a href="https://ibm.github.io/watsonx-ai-python-sdk/fm_model.html#metanames.GenTextParamsMetaNames" rel="noopener no referrer" target="_blank">documentation</a>.</p>
+<h3 id="Defining-the-model-parameters">Defining the model parameters<a class="anchor-link" href="#Defining-the-model-parameters">¶</a></h3><p>You might need to adjust model <code>parameters</code> for different models or tasks, to do so please refer to <a href="https://ibm.github.io/watsonx-ai-python-sdk/fm_model.html#metanames.GenChatParamsMetaNames" rel="noopener no referrer" target="_blank">documentation</a>.</p>
 </div>
 </div>
 </div>

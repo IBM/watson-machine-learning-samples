@@ -7818,7 +7818,7 @@ a.anchor-link {
 <li>Use only Projects and Spaces that are available in watsonx context.</li>
 </ul>
 <h2 id="Notebook-content">Notebook content<a class="anchor-link" href="#Notebook-content">¶</a></h2><p>This notebook contains the steps and code to demonstrate support of tag entity extraction in watsonx. It introduces commands for data retrieval, model testing and scoring.</p>
-<p>Some familiarity with Python is helpful. This notebook uses Python 3.11.</p>
+<p>Some familiarity with Python is helpful. This notebook uses Python 3.12.</p>
 <h2 id="Learning-goal">Learning goal<a class="anchor-link" href="#Learning-goal">¶</a></h2><p>The goal of this notebook is to demonstrate how to use <code>mistral-small-3-1-24b-instruct-2503</code> model to analyze XBRL tags of financial phrases.</p>
 <h2 id="Contents">Contents<a class="anchor-link" href="#Contents">¶</a></h2><p>This notebook contains the following parts:</p>
 <ol>
@@ -7866,8 +7866,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install "datasets==3.0.0" | tail -n 1
-<span class="o">%</span><span class="k">pip</span> install "scikit-learn==1.3.2" | tail -n 1
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pip</span> install datasets | tail -n 1
+<span class="o">%</span><span class="k">pip</span> install "scikit-learn==1.6.1" | tail -n 1
 <span class="o">%</span><span class="k">pip</span> install -U ibm-watsonx-ai | tail -n 1
 </pre></div>
 </div>
@@ -7881,9 +7881,9 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Successfully installed aiohappyeyeballs-2.6.1 aiohttp-3.13.2 aiosignal-1.4.0 anyio-4.11.0 attrs-25.4.0 certifi-2025.10.5 charset_normalizer-3.4.4 click-8.3.0 datasets-3.0.0 dill-0.3.8 filelock-3.20.0 frozenlist-1.8.0 fsspec-2024.6.1 h11-0.16.0 hf-xet-1.2.0 httpcore-1.0.9 httpx-0.28.1 huggingface-hub-1.0.1 idna-3.11 multidict-6.7.0 multiprocess-0.70.16 numpy-2.3.4 pandas-2.3.3 propcache-0.4.1 pyarrow-22.0.0 pytz-2025.2 pyyaml-6.0.3 requests-2.32.5 shellingham-1.5.4 sniffio-1.3.1 tqdm-4.67.1 typer-slim-0.20.0 tzdata-2025.2 urllib3-2.5.0 xxhash-3.6.0 yarl-1.22.0
-Successfully installed joblib-1.5.2 numpy-1.26.4 scikit-learn-1.3.2 scipy-1.16.3 threadpoolctl-3.6.0
-Successfully installed cachetools-6.2.1 ibm-cos-sdk-2.14.3 ibm-cos-sdk-core-2.14.3 ibm-cos-sdk-s3transfer-2.14.3 ibm-watsonx-ai-1.4.4 jmespath-1.0.1 lomond-0.3.3 pandas-2.2.3 tabulate-0.9.0
+<pre>Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 anyio-4.15.1 attrs-26.1.0 click-8.5.0 datasets-5.1.0 dill-0.4.1 filelock-4.2.4 frozenlist-1.8.0 fsspec-2026.7.0 h11-0.16.0 hf-xet-1.7.0 httpcore2-2.14.0 httpx2-2.14.0 huggingface-hub-2.2.0 idna-3.20 multidict-7.1.0 multiprocess-0.70.19 numpy-2.5.4 pandas-3.0.6 propcache-0.5.4 pyarrow-26.0.0 pyyaml-6.0.3 tqdm-4.70.1 truststore-0.10.5 xxhash-4.0.2 yarl-1.25.1
+Successfully installed cloudpickle-3.1.2 joblib-1.6.0 scikit-learn-1.6.1 scipy-1.18.1 threadpoolctl-3.7.0
+Successfully installed cachetools-7.2.3 certifi-2026.10.18 charset_normalizer-3.5.2 httpcore-1.0.9 httpx-0.28.1 ibm-cos-sdk-2.14.3 ibm-cos-sdk-core-2.14.3 ibm-cos-sdk-s3transfer-2.14.3 ibm-watsonx-ai-1.8.0 jmespath-1.0.1 lomond-0.3.4 pandas-2.3.3 pytz-2026.5 requests-2.34.2 tabulate-0.10.0 tzdata-2026.5 urllib3-2.8.0
 </pre>
 </div>
 </div>
@@ -7930,7 +7930,14 @@ Successfully installed cachetools-6.2.1 ibm-cos-sdk-2.14.3 ibm-cos-sdk-core-2.14
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Defining-the-project-id">Defining the project id<a class="anchor-link" href="#Defining-the-project-id">¶</a></h3><p>The Foundation Model requires project id that provides the context for the call. We will obtain the id from the project in which this notebook runs. Otherwise, please provide the project id.</p>
+<h3 id="Working-with-projects">Working with projects<a class="anchor-link" href="#Working-with-projects">¶</a></h3><p>First of all, you need to create a project that will be used for your work. If you do not have a project created already, follow the steps below:</p>
+<ul>
+<li>Open IBM Cloud Pak® main page</li>
+<li>Click all projects</li>
+<li>Create an empty project</li>
+<li>Copy <code>project_id</code> from url and paste it below</li>
+</ul>
+<p><strong>Action</strong>: Assign project ID below</p>
 </div>
 </div>
 </div>
@@ -7960,8 +7967,7 @@ Successfully installed cachetools-6.2.1 ibm-cos-sdk-2.14.3 ibm-cos-sdk-core-2.14
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><a id="Data-loading"></a></p>
-<h2 id="Data-loading">Data loading<a class="anchor-link" href="#Data-loading">¶</a></h2>
+<h3 id="Create-APIClient-instance">Create <code>APIClient</code> instance<a class="anchor-link" href="#Create-APIClient-instance">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7988,11 +7994,23 @@ Successfully installed cachetools-6.2.1 ibm-cos-sdk-2.14.3 ibm-cos-sdk-core-2.14
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a id="Data-loading"></a></p>
+<h2 id="Data-loading">Data loading<a class="anchor-link" href="#Data-loading">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Download the <code>nlpaueb/finer-139</code> dataset.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8002,23 +8020,10 @@ Successfully installed cachetools-6.2.1 ibm-cos-sdk-2.14.3 ibm-cos-sdk-core-2.14
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 
-<span class="n">finer_train</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">"nlpaueb/finer-139"</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">"train"</span><span class="p">)</span>
+<span class="n">finer_train</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
+    <span class="s2">"nlpaueb/finer-139"</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">"train"</span><span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="s2">"refs/convert/parquet"</span>
+<span class="p">)</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>Generating train split: 100%|██████████| 900384/900384 [00:01&lt;00:00, 842892.79 examples/s]
-Generating validation split: 100%|██████████| 112494/112494 [00:00&lt;00:00, 826359.70 examples/s]
-Generating test split: 100%|██████████| 108378/108378 [00:00&lt;00:00, 812965.15 examples/s]
-</pre>
 </div>
 </div>
 </div>
@@ -8042,8 +8047,8 @@ Generating test split: 100%|██████████| 108378/108378 [00:00
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">ner_tags</span> <span class="o">=</span> <span class="n">finer_train</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">"ner_tags"</span><span class="p">]</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">names</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">17</span><span class="p">]</span>
-<span class="n">ner_tags</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ner_tags</span> <span class="o">=</span> <span class="n">finer_train</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s2">"ner_tags"</span><span class="p">]</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">names</span>
+<span class="n">ner_tags</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8056,18 +8061,16 @@ Generating test split: 100%|██████████| 108378/108378 [00:00
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>['B-AmortizationOfFinancingCosts',
+<pre>['O',
+ 'B-AccrualForEnvironmentalLossContingencies',
+ 'B-AcquiredFiniteLivedIntangibleAssetsWeightedAverageUsefulLife',
+ 'I-AcquiredFiniteLivedIntangibleAssetsWeightedAverageUsefulLife',
+ 'B-AllocatedShareBasedCompensationExpense',
+ 'B-AmortizationOfFinancingCosts',
  'B-AmortizationOfIntangibleAssets',
  'I-AmortizationOfIntangibleAssets',
  'B-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount',
- 'I-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount',
- 'B-AreaOfRealEstateProperty',
- 'I-AreaOfRealEstateProperty',
- 'B-AssetImpairmentCharges',
- 'B-BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued',
- 'B-BusinessAcquisitionPercentageOfVotingInterestsAcquired',
- 'I-BusinessAcquisitionPercentageOfVotingInterestsAcquired',
- 'B-BusinessCombinationAcquisitionRelatedCosts']</pre>
+ 'I-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount']</pre>
 </div>
 </div>
 </div>
@@ -8079,11 +8082,11 @@ Generating test split: 100%|██████████| 108378/108378 [00:00
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Transfer the tokens into sequences for the model.</p>
+<p>Gather data, which references a single tag</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8091,9 +8094,58 @@ Generating test split: 100%|██████████| 108378/108378 [00:00
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">tokens</span> <span class="o">=</span> <span class="n">finer_train</span><span class="p">[</span><span class="s2">"tokens"</span><span class="p">][</span><span class="mi">5</span><span class="p">:</span><span class="mi">17</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">single_tag_indexes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tags</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">finer_train</span><span class="p">[</span><span class="s2">"ner_tags"</span><span class="p">]):</span>
+    <span class="n">tag_count</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">tag</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">tag_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">single_tag_indexes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tags</span> <span class="k">if</span> <span class="n">item</span><span class="p">)</span>
+
+<span class="nb">list</span><span class="p">(</span><span class="n">single_tag_indexes</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">20</span><span class="p">]</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[(26, 168),
+ (34, 14),
+ (41, 41),
+ (43, 41),
+ (45, 41),
+ (72, 87),
+ (73, 87),
+ (74, 87),
+ (84, 41),
+ (86, 41),
+ (89, 41),
+ (90, 41),
+ (92, 41),
+ (93, 41),
+ (125, 93),
+ (126, 93),
+ (127, 72),
+ (170, 67),
+ (194, 67),
+ (201, 85)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Convert the tokens into sequences for the model</p>
 </div>
 </div>
 </div>
@@ -8105,7 +8157,11 @@ Generating test split: 100%|██████████| 108378/108378 [00:00
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">sequences</span> <span class="o">=</span> <span class="p">[</span><span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sequences</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">finer_train</span><span class="p">[</span><span class="s2">"tokens"</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">single_tag_indexes</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8130,9 +8186,7 @@ Generating test split: 100%|██████████| 108378/108378 [00:00
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">sequences</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sequences</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8142,11 +8196,43 @@ Generating test split: 100%|██████████| 108378/108378 [00:00
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"The Company \u2019 s reportable homebuilding segments and all other homebuilding operations not required to be reported separately have homebuilding divisions located in : East : Florida , Georgia , Maryland , New Jersey , North Carolina , South Carolina and Virginia Central : Arizona , Colorado and Texas ( 1 ) West : California and Nevada Houston : Houston , Texas Other : Illinois , Minnesota , Oregon , Tennessee and Washington ( 1 ) Texas in the Central reportable segment excludes Houston , Texas , which is its own reportable segment . Operations of the Lennar Financial Services segment include primarily mortgage financing , title insurance and closing services for both buyers of the Company \u2019 s homes and others ."
-</pre>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>'Interest on the 7.00 % Senior Notes is due semi - annually .'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Select test sequences</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">sequences_for_tag</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">tag_index</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">single_tag_indexes</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+    <span class="n">tag_value</span> <span class="o">=</span> <span class="n">ner_tags</span><span class="p">[</span><span class="n">tag_index</span><span class="p">]</span>
+
+    <span class="n">sequences_for_tag</span><span class="p">[</span><span class="n">tag_value</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+
+<span class="n">selected_ner_tags</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequences_for_tag</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -8170,8 +8256,7 @@ Generating test split: 100%|██████████| 108378/108378 [00:00
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="List-available-models">List available models<a class="anchor-link" href="#List-available-models">¶</a></h4><p>All avaliable models are presented under ModelTypes class.
-For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-sdk/fm_model.html#ibm_watsonx_ai.foundation_models.utils.enums.ModelTypes">documentation</a>.</p>
+<h4 id="List-available-models">List available models<a class="anchor-link" href="#List-available-models">¶</a></h4>
 </div>
 </div>
 </div>
@@ -8180,10 +8265,11 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">api_client</span><span class="o">.</span><span class="n">foundation_models</span><span class="o">.</span><span class="n">TextModels</span><span class="p">])</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">api_client</span><span class="o">.</span><span class="n">foundation_models</span><span class="o">.</span><span class="n">ChatModels</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8196,7 +8282,13 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>['DEFENCE_GRANITE', 'GRANITE_3_2_8B_INSTRUCT', 'GRANITE_3_2B_INSTRUCT', 'GRANITE_3_3_8B_INSTRUCT', 'GRANITE_3_8B_INSTRUCT', 'GRANITE_4_H_SMALL', 'GRANITE_8B_CODE_INSTRUCT', 'GRANITE_GUARDIAN_3_8B', 'GRANITE_VISION_3_2_2B', 'LLAMA_3_2_11B_VISION_INSTRUCT', 'LLAMA_3_2_90B_VISION_INSTRUCT', 'LLAMA_3_3_70B_INSTRUCT', 'LLAMA_3_405B_INSTRUCT', 'LLAMA_4_MAVERICK_17B_128E_INSTRUCT_FP8', 'LLAMA_GUARD_3_11B_VISION', 'MISTRAL_MEDIUM_2505', 'MISTRAL_SMALL_3_1_24B_INSTRUCT_2503', 'GPT_OSS_120B', 'ALLAM_1_13B_INSTRUCT']
+<pre>- ibm/granite-4-h-small
+- meta-llama/llama-3-3-70b-instruct
+- meta-llama/llama-4-maverick-17b-128e-instruct-fp8
+- mistral-large-2512
+- mistralai/mistral-medium-2505
+- mistralai/mistral-small-3-1-24b-instruct-2503
+- openai/gpt-oss-120b
 </pre>
 </div>
 </div>
@@ -8218,10 +8310,10 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">model_id</span> <span class="o">=</span> <span class="n">api_client</span><span class="o">.</span><span class="n">foundation_models</span><span class="o">.</span><span class="n">TextModels</span><span class="o">.</span><span class="n">MISTRAL_SMALL_3_1_24B_INSTRUCT_2503</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">model_id</span> <span class="o">=</span> <span class="n">api_client</span><span class="o">.</span><span class="n">foundation_models</span><span class="o">.</span><span class="n">ChatModels</span><span class="o">.</span><span class="n">MISTRAL_SMALL_3_1_24B_INSTRUCT_2503</span>
 </pre></div>
 </div>
 </div>
@@ -8234,7 +8326,7 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Defining-the-model-parameters">Defining the model parameters<a class="anchor-link" href="#Defining-the-model-parameters">¶</a></h3><p>You might need to adjust model <code>parameters</code> for different models or tasks, to do so please refer to <a href="https://ibm.github.io/watsonx-ai-python-sdk/fm_model.html#metanames.GenTextParamsMetaNames">documentation</a>.</p>
+<h3 id="Defining-the-model-parameters">Defining the model parameters<a class="anchor-link" href="#Defining-the-model-parameters">¶</a></h3><p>You might need to adjust model <code>parameters</code> for different models or tasks, to do so please refer to <a href="https://ibm.github.io/watsonx-ai-python-sdk/fm_model.html#metanames.GenChatParamsMetaNames" rel="noopener no referrer" target="_blank">documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -8243,12 +8335,15 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.metanames</span><span class="w"> </span><span class="kn">import</span> <span class="n">GenTextParamsMetaNames</span> <span class="k">as</span> <span class="n">GenParams</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.metanames</span><span class="w"> </span><span class="kn">import</span> <span class="n">GenChatParamsMetaNames</span> <span class="k">as</span> <span class="n">GenParams</span>
 
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="n">GenParams</span><span class="o">.</span><span class="n">DECODING_METHOD</span><span class="p">:</span> <span class="s2">"greedy"</span><span class="p">}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">GenParams</span><span class="o">.</span><span class="n">TEMPERATURE</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">GenParams</span><span class="o">.</span><span class="n">REPETITION_PENALTY</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -8270,14 +8365,12 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ibm_watsonx_ai.foundation_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelInference</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">ModelInference</span><span class="p">(</span>
-    <span class="n">model_id</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span> <span class="n">credentials</span><span class="o">=</span><span class="n">credentials</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span>
-<span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ModelInference</span><span class="p">(</span><span class="n">model_id</span><span class="o">=</span><span class="n">model_id</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span> <span class="n">api_client</span><span class="o">=</span><span class="n">api_client</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8299,7 +8392,7 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">get_details</span><span class="p">()</span>
@@ -8313,7 +8406,7 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'model_id': 'mistralai/mistral-small-3-1-24b-instruct-2503',
  'label': 'mistral-small-3-1-24b-instruct-2503',
@@ -8321,6 +8414,7 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
  'source': 'Hugging Face',
  'indemnity': 'NON_IBM',
  'functions': [{'id': 'autoai_rag'},
+  {'id': 'autoai_sql_rag'},
   {'id': 'image_chat'},
   {'id': 'text_chat'},
   {'id': 'text_generation'}],
@@ -8348,12 +8442,18 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
   {'id': 'code'},
   {'id': 'extraction'},
   {'id': 'function_calling'}],
- 'model_limits': {'max_sequence_length': 128000, 'max_output_tokens': 16384},
- 'limits': {'3f6acf43-ede8-413a-ac69-f8af3bb0cbfe': {'max_output_tokens': 16384},
-  'a3d2f92f-06f9-48d0-b2e6-a7ba2b4e0577': {'max_output_tokens': 16384},
-  'd18d88b9-be7a-46ec-be1e-aff14904f1e9': {'max_output_tokens': 16384}},
+ 'model_limits': {'max_sequence_length': 128000},
+ 'limits': {'19e27818-79cf-4137-ae58-da279f9e9d16': {'call_time': '10m0s'},
+  '3f6acf43-ede8-413a-ac69-f8af3bb0cbfe': {'call_time': '5m0s'},
+  'a3d2f92f-06f9-48d0-b2e6-a7ba2b4e0577': {'call_time': '10m0s'},
+  'd18d88b9-be7a-46ec-be1e-aff14904f1e9': {'call_time': '10m0s'}},
  'lifecycle': [{'id': 'available', 'start_date': '2025-04-22'}],
- 'versions': [{'version': '1.0.0', 'available_date': '2025-04-22'}]}</pre>
+ 'versions': [{'version': '1.0.0', 'available_date': '2025-04-22'}],
+ 'router_info': {'version': '1.1.35',
+  'build': '1.1.35',
+  'build_date': '20260619142455',
+  'max_concurrent_requests': 8,
+  'balance_mode': 2}}</pre>
 </div>
 </div>
 </div>
@@ -8382,30 +8482,38 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">instruction</span> <span class="o">=</span> <span class="s2">"Determine the eXtensive Business Reporting Language tag in the financial report from following tags: B-AmortizationOfFinancingCosts, B-AmortizationOfIntangibleAssets, I-AmortizationOfIntangibleAssets, B-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount, I-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount, B-AreaOfRealEstateProperty, I-AreaOfRealEstateProperty, B-AssetImpairmentCharges, B-BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued, B-BusinessAcquisitionPercentageOfVotingInterestsAcquired, B-BusinessCombinationAcquisitionRelatedCosts.</span><span class="se">\n</span><span class="s2">"</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">instruction</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_messages</span><span class="p">(</span>
+    <span class="n">example_reports</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">example_tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">all_tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">report_to_check</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+    <span class="n">system_content</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"You are a tag classification model. "</span>
+        <span class="s2">"Determine the eXtensive Business Reporting Language tag in the financial report from following tags. "</span>
+        <span class="s2">"The prefix `B` means it is a balance sheet item, while prefix `I` means it is an income statement item. "</span>
+        <span class="s2">"The following tags are available, produce only a single tag:</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="p">)</span>
+    <span class="n">system_content</span> <span class="o">+=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">all_tags</span><span class="p">)</span>
+
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">system_content</span><span class="p">}]</span>
+
+    <span class="k">for</span> <span class="n">report</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">example_reports</span><span class="p">,</span> <span class="n">example_tags</span><span class="p">):</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">report</span><span class="p">})</span>
+        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"assistant"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">tag</span><span class="p">})</span>
+
+    <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">report_to_check</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">messages</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>"Determine the eXtensive Business Reporting Language tag in the financial report from following tags: B-AmortizationOfFinancingCosts, B-AmortizationOfIntangibleAssets, I-AmortizationOfIntangibleAssets, B-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount, I-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount, B-AreaOfRealEstateProperty, I-AreaOfRealEstateProperty, B-AssetImpairmentCharges, B-BusinessAcquisitionEquityInterestsIssuedOrIssuableNumberOfSharesIssued, B-BusinessAcquisitionPercentageOfVotingInterestsAcquired, B-BusinessCombinationAcquisitionRelatedCosts.\n"
-</pre>
 </div>
 </div>
 </div>
@@ -8421,31 +8529,6 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">few_shot_input</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">few_shot_target</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">singleoutput</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tl</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">ner_tags</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">singleoutput</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">report:</span><span class="se">\t</span><span class="si">{</span><span class="n">tl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n\t</span><span class="s2">tag:"</span><span class="p">)</span>
-        <span class="n">few_shot_input</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">singleoutput</span><span class="p">))</span>
-        <span class="n">few_shot_target</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tl</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">singleoutput</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">singleoutput</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">report:</span><span class="se">\t</span><span class="si">{</span><span class="n">tl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n\t</span><span class="s2">tag: </span><span class="si">{</span><span class="n">tl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -8454,7 +8537,11 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 <div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">print</span><span class="p">(</span><span class="n">few_shot_input</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">example_tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">selected_ner_tags</span><span class="p">)</span>
+<span class="n">example_reports</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">sequences_for_tag</span><span class="p">[</span><span class="n">tag</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">example_tags</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">example_tags</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">example_reports</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8467,17 +8554,17 @@ For more information refer to <a href="https://ibm.github.io/watsonx-ai-python-s
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>	report:	The Company ’ s reportable segments consist of : ( 1 ) Homebuilding East ( 2 ) Homebuilding Central ( 3 ) Homebuilding West ( 4 ) Homebuilding Houston ( 5 ) Lennar Financial Services ( 6 ) Rialto ( 7 ) Lennar Multifamily In the first quarter of 2016 , the Company made the decision to divide the Southeast Florida operating division into two operating segments to maximize operational efficiencies given the continued growth of the division .
-	tag: B-AmortizationOfFinancingCosts
-	report:	As a result of this change in management structure , the Company re - evaluated its reportable segments and determined that neither operating segment met the reportable criteria set forth in Accounting Standards Codification ( " ASC " ) 280 , Segment Reporting .
-	tag: B-AmortizationOfIntangibleAssets
-	report:	All prior year segment information has been restated to conform with the 2016 presentation .
-	tag: I-AmortizationOfIntangibleAssets
-	report:	The Company ’ s reportable homebuilding segments and all other homebuilding operations not required to be reported separately have homebuilding divisions located in : East : Florida , Georgia , Maryland , New Jersey , North Carolina , South Carolina and Virginia Central : Arizona , Colorado and Texas ( 1 ) West : California and Nevada Houston : Houston , Texas Other : Illinois , Minnesota , Oregon , Tennessee and Washington ( 1 ) Texas in the Central reportable segment excludes Houston , Texas , which is its own reportable segment . Operations of the Lennar Financial Services segment include primarily mortgage financing , title insurance and closing services for both buyers of the Company ’ s homes and others .
-	tag: B-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount
-	report:	Rialto ’ s operating earnings consist of revenues generated primarily from gains from securitization transactions and interest income from the Rialto Mortgage Finance ( “ RMF ” ) business , interest income associated with portfolios of real estate loans acquired and other portfolios of real estate loans and assets acquired , asset management , due diligence and underwriting fees derived from the real estate investment funds managed by the Rialto segment , fees for sub - advisory services , other income ( expense ) , net and equity in earnings ( loss ) from unconsolidated entities , less the costs incurred by the segment for managing portfolios , costs related to RMF and other general and administrative expenses . Operations of the Lennar Multifamily segment include revenues generated from the sales of land , revenue from construction activities and management fees generated from joint ventures and equity in earnings ( loss ) from unconsolidated entities , less the cost of sales of land , expenses related to construction activities and general and administrative expenses . Each reportable segment follows the same accounting policies described in Note 1 - “ Summary of Significant Accounting Policies ” to the consolidated financial statements in the Company ’ s Form 10-K for the year ended November 30 , 2015 .
-	tag:
-null
+<pre>['B-AreaOfRealEstateProperty', 'B-BusinessAcquisitionPercentageOfVotingInterestsAcquired', 'B-DebtInstrumentInterestRateStatedPercentage', 'B-FiniteLivedIntangibleAssetUsefulLife', 'B-GuaranteeObligationsMaximumExposure', 'B-LineOfCreditFacilityCurrentBorrowingCapacity', 'B-LineOfCreditFacilityMaximumBorrowingCapacity', 'B-LossContingencyDamagesSoughtValue', 'B-ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGross', 'B-UnrecognizedTaxBenefits']
+The East Rutherford facility consisted of warehouses and offices totaling approximately 81,000 square feet of space .
+In 2010 , the Rialto segment acquired indirectly 40 % managing member equity interests in two limited liability companies ( " LLCs " ) in partnership with the FDIC ( “ FDIC Portfolios ” ) .
+Rialto used the net proceeds of the 7.00 % Senior Notes to provide additional working capital for RMF , and to make investments in the funds that Rialto manages , as well as for general corporate purposes .
+Patents are amortized on the straight - line method over a period of 17 years .
+In its June 29 , 2015 ruling , the District Court determined that the Company will be permitted to stay the judgment during appeal by posting a bond in the amount of $ 223.4 million related to pending litigation .
+Amounts available for borrowing under the Line of Credit equal the lesser of the Borrowing Base ( as defined below ) , and $ 5,500,000 , in each case , as the same is reduced by the aggregate principal amount outstanding under the Line of Credit .
+At May 31 , 2016 , the Company had a $ 1.6 billion Credit Facility , which includes a $ 163 million accordion feature , subject to additional commitments , with certain financial institutions .
+Simple interest on $ 114 million at 12 % per annum will accrue at the rate of $ 13.7 million per year , totaling approximately $ 109 million as of May 31 , 2016 .
+The fair value of the stock option grants below were estimated on the date of the grant using a Black - Scholes valuation model and the assumptions in the following table : On December 1 , 2015 , the Company granted non - qualifed stock options under the Plan for 75,000 shares each to four directors : Sardar Biglari , Philip Cooley , Christopher Hogg and S. David Fineman .
+For both the three and six months ended May 31 , 2015 , the effective tax rate included tax benefits for the domestic production activities deduction and energy tax credits , offset primarily by state income tax expense and interest accrued on uncertain tax positions . As of May 31 , 2016 and November 30 , 2015 , the Company 's deferred tax assets , net included in the condensed consolidated balance sheets were $ 321.3 million and $ 340.7 million , respectively . At both May 31 , 2016 and November 30 , 2015 , the Company had $ 12.3 million of gross unrecognized tax benefits . At May 31 , 2016 , the Company had $ 44.4 million accrued for interest and penalties , of which $ 1.6 million was accrued during the six months ended May 31 , 2016 .
 </pre>
 </div>
 </div>
@@ -8490,7 +8577,7 @@ null
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Analyze-financial-phrase-eXtensive-Business-Reporting-Language-using-Google-mistral-small-3-1-24b-instruct-2503-model.">Analyze financial phrase eXtensive Business Reporting Language using Google <code>mistral-small-3-1-24b-instruct-2503</code> model.<a class="anchor-link" href="#Analyze-financial-phrase-eXtensive-Business-Reporting-Language-using-Google-mistral-small-3-1-24b-instruct-2503-model.">¶</a></h3>
+<h3 id="Analyze-financial-phrase-eXtensive-Business-Reporting-Language-using-mistral-small-3-1-24b-instruct-2503-model">Analyze financial phrase eXtensive Business Reporting Language using <code>mistral-small-3-1-24b-instruct-2503</code> model<a class="anchor-link" href="#Analyze-financial-phrase-eXtensive-Business-Reporting-Language-using-mistral-small-3-1-24b-instruct-2503-model">¶</a></h3>
 </div>
 </div>
 </div>
@@ -8501,34 +8588,7 @@ null
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Analyze the sentiment.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">inp</span> <span class="ow">in</span> <span class="n">few_shot_input</span><span class="p">:</span>
-    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">instruction</span><span class="p">,</span> <span class="n">inp</span><span class="p">]))[</span><span class="s2">"results"</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Explore model output.</p>
+<p>Analyze the report</p>
 </div>
 </div>
 </div>
@@ -8537,10 +8597,22 @@ null
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">selected_ner_tags</span><span class="p">:</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="n">get_messages</span><span class="p">(</span>
+        <span class="n">example_reports</span><span class="p">,</span>
+        <span class="n">example_tags</span><span class="p">,</span>
+        <span class="n">selected_ner_tags</span><span class="p">,</span>
+        <span class="n">sequences_for_tag</span><span class="p">[</span><span class="n">tag</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">"choices"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"message"</span><span class="p">][</span><span class="s2">"content"</span><span class="p">])</span>
+
+<span class="n">results</span>
 </pre></div>
 </div>
 </div>
@@ -8550,24 +8622,19 @@ null
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[
-  {
-    "generated_text": " I-AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount",
-    "generated_token_count": 20,
-    "input_token_count": 813,
-    "stop_reason": "max_tokens"
-  },
-  {
-    "generated_text": " B-BusinessAcquisitionPercentageOfVotingInterestsAcquired\nFinal Answer:\t[B",
-    "generated_token_count": 20,
-    "input_token_count": 1074,
-    "stop_reason": "max_tokens"
-  }
-]
-</pre>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>['B-UnrecognizedTaxBenefits',
+ 'B-BusinessAcquisitionPercentageOfVotingInterestsAcquired',
+ 'B-DebtInstrumentInterestRateStatedPercentage',
+ "I'm sorry, but the provided text does not contain any of the specified tags. It discusses the maturity dates of a credit facility, which is not covered by the given tags.",
+ 'I do not have a tag for this.',
+ 'B-GuaranteeObligationsMaximumExposure',
+ 'B-FiniteLivedIntangibleAssetUsefulLife',
+ 'B-LineOfCreditFacilityCurrentBorrowingCapacity',
+ 'B-ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGross',
+ 'B-AreaOfRealEstateProperty']</pre>
 </div>
 </div>
 </div>
@@ -8596,6 +8663,42 @@ Have in mind that the score is calculated only on dataset sample, for relevant p
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="n">selected_ner_tags</span>
+<span class="n">y_true</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>['B-UnrecognizedTaxBenefits',
+ 'B-BusinessAcquisitionPercentageOfVotingInterestsAcquired',
+ 'B-DebtInstrumentInterestRateStatedPercentage',
+ 'B-LineOfCreditFacilityMaximumBorrowingCapacity',
+ 'B-LossContingencyDamagesSoughtValue',
+ 'B-GuaranteeObligationsMaximumExposure',
+ 'B-FiniteLivedIntangibleAssetUsefulLife',
+ 'B-LineOfCreditFacilityCurrentBorrowingCapacity',
+ 'B-ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGross',
+ 'B-AreaOfRealEstateProperty']</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -8603,31 +8706,43 @@ Have in mind that the score is calculated only on dataset sample, for relevant p
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<pre><code>y_true = few_shot_target
-</code></pre>
+<p>Get the sentiment labels returned by the <code>mistral-small-3-1-24b-instruct-2503</code> model.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Get the sentiment labels returned byt the <code>mistral-small-3-1-24b-instruct-2503</code> model.</p>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span>
+<span class="n">y_pred</span>
+</pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<pre><code>y_pred = [res["generated_text"] for res in results]
-</code></pre>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>['B-UnrecognizedTaxBenefits',
+ 'B-BusinessAcquisitionPercentageOfVotingInterestsAcquired',
+ 'B-DebtInstrumentInterestRateStatedPercentage',
+ "I'm sorry, but the provided text does not contain any of the specified tags. It discusses the maturity dates of a credit facility, which is not covered by the given tags.",
+ 'I do not have a tag for this.',
+ 'B-GuaranteeObligationsMaximumExposure',
+ 'B-FiniteLivedIntangibleAssetUsefulLife',
+ 'B-LineOfCreditFacilityCurrentBorrowingCapacity',
+ 'B-ShareBasedCompensationArrangementByShareBasedPaymentAwardOptionsGrantsInPeriodGross',
+ 'B-AreaOfRealEstateProperty']</pre>
+</div>
 </div>
 </div>
 </div>
@@ -8642,17 +8757,32 @@ Have in mind that the score is calculated only on dataset sample, for relevant p
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<pre><code>from sklearn.metrics import accuracy_score
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
 
-print(accuracy_score(y_pred, y_true))
-</code></pre>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>0.8
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -8665,7 +8795,7 @@ print(accuracy_score(y_pred, y_true))
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><a id="Summary-and-next-steps"></a></p>
 <h2 id="Summary-and-next-steps">Summary and next steps<a class="anchor-link" href="#Summary-and-next-steps">¶</a></h2><p>You successfully completed this notebook!</p>
-<p>You learned how to predict the financial phrases XBRL tag with Mistral's <code>mistral-small-3-1-24b-instruct-2503</code> on watsonx.</p>
+<p>You learned how to predict the financial phrases XBRL tag with <code>mistral-small-3-1-24b-instruct-2503</code> on watsonx.</p>
 <p>Check out our <em><a href="https://ibm.github.io/watsonx-ai-python-sdk/samples.html#">Online Documentation</a></em> for more samples, tutorials, documentation, how-tos, and blog posts.</p>
 </div>
 </div>
